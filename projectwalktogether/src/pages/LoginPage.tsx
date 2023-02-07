@@ -1,7 +1,4 @@
-import React from "react";
-
-function LoginPage() {
-    return <div>LoginPage</div>;
-}
-
+const LoginPage = () => {
+    return <div></div>;
+};
 export default LoginPage;

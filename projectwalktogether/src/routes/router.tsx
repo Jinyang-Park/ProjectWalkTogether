@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {
+import Header from "../components/Header";
+const {
     MainPage,
     LoginPage,
     SignUpPage,
@@ -10,8 +11,7 @@ import {
     DetailPage,
     PostPage,
     ChattingPage,
-} from "../pages";
-import Header from "../components/Header";
+} = require("../pages");
 const Router = () => {
     return (
         <BrowserRouter>
