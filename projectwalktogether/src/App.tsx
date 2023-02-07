@@ -1,9 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import Router from "./routes/Router";
 function App() {
-  return <div>뺑글뺑글</div>;
+  return <Router />;
 }
 
 export default App;
