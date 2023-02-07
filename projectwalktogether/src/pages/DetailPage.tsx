@@ -1,10 +1,7 @@
-import React from "react";
-
+import React from 'react';
 
 const DetailPage = () => {
-    return (
-  
-    );
-  };
-  
-  export default DetailPage;
+  return <div></div>;
+};
+
+export default DetailPage;
