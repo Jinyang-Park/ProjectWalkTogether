@@ -1,10 +1,7 @@
-import React from "react";
-
+import React from 'react';
 
 const PostPage = () => {
-    return (
-  
-    );
-  };
-  
-  export default PostPage;
+  return <div></div>;
+};
+
+export default PostPage;

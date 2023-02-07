@@ -1,10 +1,7 @@
-import React from "react";
-
+import React from 'react';
 
 const MapPage = () => {
-    return (
-  
-    );
-  };
-  
-  export default MapPage;
+  return <div></div>;
+};
+
+export default MapPage;
