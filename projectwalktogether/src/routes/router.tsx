@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { MainPage, LoginPage, SignUpPage, MapPage, MyPage, CategoryPage, DetailPage } from "../pages";
+import { MainPage, LoginPage, SignUpPage, MapPage, MyPage, CategoryPage, DetailPage, PostPage, ChattingPage } from "../pages";
 import Header from "../components/Header";
 const Router = () => {
   return (
@@ -15,6 +15,7 @@ const Router = () => {
         <Route path="/catetory" element={<CategoryPage />} />
         <Route path="/postpage" element={<PostPage />} />
         <Route path="/detailpage" element={<DetailPage />} />
+        <Route path="/chat" element={<ChattingPage />} />
       </Routes>
     </BrowserRouter>
   );
