@@ -95,6 +95,7 @@ const ChattingList = styled.div`
     background-color: white;
     border: 1px solid black;
     display: flex;
+    overflow: hidden;
 `;
 
 //채팅 사진
@@ -102,11 +103,35 @@ const ProfilePhoto = styled.div`
     border: 1px solid black;
     border-radius: 50%;
     background-color: #83e4f35f;
-    width: 100px;
+    width: 6.25rem;
     height: 80%;
     margin: 10px;
     margin-left: 30px;
     overflow: hidden;
+    @media screen and (max-width: 1232px) {
+        width: 140px;
+        height: 80%;
+    }
+    @media screen and (max-width: 983px) {
+        width: 150px;
+        height: 80%;
+        margin-left: 10px;
+    }
+    @media screen and (max-width: 832px) {
+        position: relative;
+        width: 250px;
+        height: 80%;
+        right: 20px;
+        margin-left: 30px;
+    }
+    @media screen and (max-width: 557px) {
+        position: relative;
+        width: 700px;
+        height: 80%;
+        right: 15px;
+        bottom: 5px;
+        margin-left: 25px;
+    }
 `;
 
 //채팅 이름
@@ -114,7 +139,7 @@ const ProfileName = styled.div`
     width: 200px;
     height: 50px;
     left: 30px;
-    top: 35px;
+    top: 25px;
     font-size: 40px;
     margin-top: 5px;
     margin-right: 20px;
@@ -123,6 +148,39 @@ const ProfileName = styled.div`
 
     overflow: hidden;
     /* background-color: antiquewhite; */
+
+    @media screen and (max-width: 1369px) {
+        font-size: 25px;
+        height: 38px;
+        left: 20px;
+        top: 30px;
+    }
+
+    @media screen and (max-width: 1232px) {
+        left: 20px;
+        top: 25px;
+    }
+    @media screen and (max-width: 1079px) {
+        width: 220px;
+        font-size: 30px;
+        left: 20px;
+        top: 25px;
+    }
+    @media screen and (max-width: 890px) {
+        font-size: 20px;
+        width: 250px;
+        height: 30px;
+        left: 5px;
+        top: 25px;
+    }
+
+    @media screen and (max-width: 557px) {
+        font-size: 10px;
+        width: 500px;
+        height: 14px;
+        left: -10px;
+        top: 30px;
+    }
 `;
 
 //채팅 최신글
@@ -136,6 +194,38 @@ const ChattingContents = styled.div`
     position: relative;
     overflow: hidden;
     /* background-color: darkolivegreen; */
+    @media screen and (max-width: 1369px) {
+        font-size: 25px;
+        height: 38px;
+        left: 20px;
+        top: -18px;
+    }
+
+    @media screen and (max-width: 1232px) {
+        left: 20px;
+        top: -18px;
+    }
+    @media screen and (max-width: 1079px) {
+        width: 220px;
+        font-size: 30px;
+        left: 20px;
+        top: -18px;
+    }
+    @media screen and (max-width: 890px) {
+        font-size: 20px;
+        width: 250px;
+        height: 30px;
+        left: 5px;
+        top: -20px;
+    }
+
+    @media screen and (max-width: 557px) {
+        font-size: 10px;
+        width: 500px;
+        height: 14px;
+        left: -10px;
+        top: -14px;
+    }
 `;
 
 // 채팅 시간

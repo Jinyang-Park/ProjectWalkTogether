@@ -1,7 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
+import LoginModal from "../components/PostModal/PostModal";
 
 const PostPage = () => {
+    //아이디 찾기 모달창
+    const [loginModalopen, setLoginModalopen] = useState(false);
+
+    const findPwd = (e: any) => {
+        e.preventDefault();
+        setLoginModalopen(true);
+        console.log(loginModalopen);
+    };
+
     return (
         <div>
             <Boxcontainer>
@@ -20,11 +31,19 @@ const PostPage = () => {
                         </PictureBox>
                         <BtnBox>
                             <ConfrimText>만날 장소 정하러 가기~</ConfrimText>
-                            <ConfirmBtn> 위치 정하기</ConfirmBtn>
+                            <ConfirmBtn onClick={findPwd}>
+                                {" "}
+                                위치 정하기
+                            </ConfirmBtn>
                         </BtnBox>
                     </PicMapBox>
                 </Boxcontents>
             </Boxcontainer>
+            <LoginModal
+                open={loginModalopen}
+                setLoginModalopen={setLoginModalopen}
+                onClose={() => setLoginModalopen(false)}
+            />
         </div>
     );
 };
