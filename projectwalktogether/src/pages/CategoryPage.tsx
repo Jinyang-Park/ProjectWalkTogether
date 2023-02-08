@@ -1,76 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import CategoryAll from "../components/CategoryAll";
 
 const CategoryPage = () => {
   return (
     <PageWrapper>
-      <CategoryTitle>카테고리</CategoryTitle>
-      <CategoryAll>
-        <Categoryitem>
-          <Img src='/assets/dog.png' />
-          <ImgTitle>강아지</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/book.png' />
-          <ImgTitle>책</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/eco.png' />
-          <ImgTitle>환경</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/group.png' />
-          <ImgTitle>인간관계(침목)</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/plant.png' />
-          <ImgTitle>식물/자연</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/workout.png' />
-          <ImgTitle>운동</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/movie.png' />
-          <ImgTitle>영화</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/travel.png' />
-          <ImgTitle>여행</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/finance.png' />
-          <ImgTitle>재테크</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/counsel.png' />
-          <ImgTitle>고민상담</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/food.jpg' />
-          <ImgTitle>음식</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/music.jpg' />
-          <ImgTitle>음악</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/career.png' />
-          <ImgTitle>커리어</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/coffee.jpg' />
-          <ImgTitle>커피</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/photo.jpg' />
-          <ImgTitle>사진</ImgTitle>
-        </Categoryitem>
-        <Categoryitem>
-          <Img src='/assets/walk.jpg' />
-          <ImgTitle>걷기</ImgTitle>
-        </Categoryitem>
-      </CategoryAll>
+      <CategoryContainer>
+        <CategoryTitle>카테고리</CategoryTitle>
+        <CategoryAll />
+      </CategoryContainer>
     </PageWrapper>
   );
 };
@@ -79,20 +17,24 @@ export default CategoryPage;
 
 export const PageWrapper = styled.div`
   width: 88vw;
-  /* max-width: 1150px; */
-  padding: 68px;
+  /* max-width: 71.875rem; */
+  padding: 4.25rem;
   margin: 0 auto;
 `;
-export const CategoryTitle = styled.h1`
-  font-size: 40px;
-  line-height: 43px;
-  letter-spacing: -0.04rem;
-  margin-bottom: 35px;
+export const CategoryContainer = styled.div`
+  justify-content: flex-start;
 `;
-export const CategoryAll = styled.div`
+export const CategoryTitle = styled.h1`
+  margin-left: 2rem;
+  font-size: 2.5rem;
+  line-height: 2.6875rem;
+  letter-spacing: -0.64px;
+  margin-bottom: 3rem;
+`;
+export const CategoryWrapper = styled.div`
   display: flex;
-  grid-gap: 12px 0;
-  gap: 12px 0;
+  grid-gap: 0.75rem 0;
+  gap: 1rem 0;
   flex-wrap: wrap;
   justify-content: flex-start;
 `;
@@ -102,13 +44,14 @@ export const Categoryitem = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  grid-gap: 2px;
-  gap: 2px;
-  width: 200px;
+  /* grid-gap: 0.125rem; */
+  gap: 0.7rem;
+  /* margin-left: 1rem; */
+  width: 10rem;
 `;
 export const Img = styled.img`
-  width: 84px;
-  height: 84px;
+  width: 5.25rem;
+  height: 5.25rem;
   border-radius: 50%;
 `;
 export const ImgTitle = styled.p`
