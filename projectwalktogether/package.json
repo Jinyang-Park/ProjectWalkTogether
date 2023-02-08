@@ -12,6 +12,8 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@types/react-icon-base": "^2.1.4",
+    "@types/react-icons": "^3.0.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.26",
     "create-react-app": "^5.0.1",
@@ -48,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.26"
   }
 }
