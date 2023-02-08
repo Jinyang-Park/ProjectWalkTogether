@@ -16,7 +16,7 @@ const CategoryPage = () => {
 export default CategoryPage;
 
 export const PageWrapper = styled.div`
-  width: 88vw;
+  width: 70vw;
   /* max-width: 71.875rem; */
   padding: 4.25rem;
   margin: 0 auto;
@@ -30,4 +30,5 @@ export const CategoryTitle = styled.h1`
   line-height: 2.6875rem;
   letter-spacing: -0.64px;
   margin-bottom: 3rem;
+  margin-top: 5rem;
 `;

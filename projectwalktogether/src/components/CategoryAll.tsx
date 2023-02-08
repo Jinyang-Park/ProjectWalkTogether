@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { LIGHT_BROWN } from "../common/colors";
 
 const CategoryAll = () => {
   return (
@@ -98,6 +99,6 @@ export const Img = styled.img`
   border-radius: 50%;
 `;
 export const ImgTitle = styled.p`
-  color: #6b6766;
+  color: ${LIGHT_BROWN};
   font-weight: 700;
 `;
