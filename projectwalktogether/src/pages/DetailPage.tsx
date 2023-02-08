@@ -84,4 +84,6 @@ export const DetailCommentsWrapper = styled.div``;
 export const CommentTitle = styled.h1``;
 export const DetailCommentContainer = styled.div``;
 export const CommentUserImgWrapper = styled.span``;
-export const CommtentUserImg = styled.img``;
+export const CommtentUserImg = styled.img`
+  width: 20px;
+`;
