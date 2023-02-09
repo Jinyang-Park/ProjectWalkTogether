@@ -10,6 +10,7 @@ import CategoryPage from "../pages/CategoryPage";
 import PostPage from "../pages/PostPage";
 import DetailPage from "../pages/DetailPage";
 import ChattingPage from "../pages/ChattingPage";
+import MyChattingList from "../pages/ChattingList";
 
 const Router = () => {
     return (
@@ -25,6 +26,7 @@ const Router = () => {
                 <Route path="/postpage" element={<PostPage />} />
                 <Route path="/detailpage" element={<DetailPage />} />
                 <Route path="/chat" element={<ChattingPage />} />
+                <Route path="/chatlist" element={<MyChattingList />} />
             </Routes>
         </BrowserRouter>
     );

@@ -70,6 +70,9 @@ const Boxcontents = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    @media screen and (max-height: 581px) {
+        height: 130%;
+    }
 `;
 
 //input태그를 감싸는 div
