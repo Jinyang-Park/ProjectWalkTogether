@@ -1,49 +1,46 @@
+// 게시글 쪽 데이터 타입
 declare interface IdbState {
-    ESNTL_ID: number | string
-    FCLTY_NM: string
-    LCLAS_NM: number | string
-    MLSFC_NM: string
-    ZIP_NO: number | string
-    FCLTY_ROAD_NM_ADDR: string
-    FCLTY_LA: number | string
-    FCLTY_LO: number | string
-    WORKDAY_OPN_BSNS_TIME: number | string
-    WORKDAY_CLOS_TIME: number | string
-    SAT_OPN_BSNS_TIME: number | string
-    SAT_CLOS_TIME: number | string
-    SUN_OPN_BSNS_TIME: number | string
-    SUN_CLOS_TIME: number | string
-    RSTDE_OPN_BSNS_TIME: number | string
-    RSTDE_CLOS_TIME: number | string
-    RSTDE_GUID_CN: number | string
-    TEL_NO: number | string
-    OPTN_DC: number | string
-    ADIT_DC: string
-    isOpen: boolean
+    UID: number | string
+    PostingID_Posting: string
+    KeyForChat_Posting: number | string
+    Title_Posting: string
+    Tag_Posting: string
+    Description_Posting: string
+    RsvDate_Posting: string
+    RsvHour_Posting: string
+    Category_Posting: string
+    TimeStamp_Posting: string
+    PhotoURL_Posting: string
+    Address_Posting: string
+    MeetLatitude_Posting: number | string
+    MeetLongitude_Posting: number | string
+    NowLatitude_Posting: number | string
+    NowLongitude_Posting: number | string
+    Liked_Posting: boolean
+    CountLiked_Posting: number | string
+    ProceedState_Posting: number
 }
 
 declare interface ResultItemProps {
     info: {
-        ESNTL_ID: number | string
-        FCLTY_NM: number | string
-        LCLAS_NM: number | string
-        MLSFC_NM: number | string
-        ZIP_NO: number | string
-        FCLTY_ROAD_NM_ADDR: number | string
-        FCLTY_LA: number | string
-        FCLTY_LO: number | string
-        WORKDAY_OPN_BSNS_TIME: number | string
-        WORKDAY_CLOS_TIME: number | string
-        SAT_OPN_BSNS_TIME: number | string
-        SAT_CLOS_TIME: number | string
-        SUN_OPN_BSNS_TIME: number | string
-        SUN_CLOS_TIME: number | string
-        RSTDE_OPN_BSNS_TIME: number | string
-        RSTDE_CLOS_TIME: number | string
-        RSTDE_GUID_CN: number | string
-        TEL_NO: number | string
-        OPTN_DC: number | string
-        ADIT_DC: string
-        isOpen: boolean
+        UID: number | string
+        PostingID_Posting: string
+        KeyForChat_Posting: number | string
+        Title_Posting: string
+        Tag_Posting: string
+        Description_Posting: string
+        RsvDate_Posting: string
+        RsvHour_Posting: string
+        Category_Posting: string
+        TimeStamp_Posting: string
+        PhotoURL_Posting: string
+        Address_Posting: string
+        MeetLatitude_Posting: number | string
+        MeetLongitude_Posting: number | string
+        NowLatitude_Posting: number | string
+        NowLongitude_Posting: number | string
+        Liked_Posting: boolean
+        CountLiked_Posting: number | string
+        ProceedState_Posting: number
     }
 }
