@@ -21,11 +21,71 @@ const MyChattingList = () => {
                             </TextBox>
                             <ChattingTime>10:21</ChattingTime>
                         </ChattingList>
-                        <ChattingList></ChattingList>
-                        <ChattingList></ChattingList>
-                        <ChattingList></ChattingList>
-                        <ChattingList></ChattingList>
-                        <ChattingList></ChattingList>
+                        <ChattingList>
+                            <ProfilePhoto></ProfilePhoto>
+                            <TextBox>
+                                <ProfileName>그루트</ProfileName>
+                                <ChattingContents>
+                                    오늘 6시 시간 가능하신가요?오늘 6시 시간
+                                    가능하신가요?오늘 6시 시간 가능하신가요?오늘
+                                    6시 시간 가능하신가요?오늘 6시 시간
+                                    가능하신가요?오늘 6시 시간 가능하신가요?
+                                </ChattingContents>
+                            </TextBox>
+                            <ChattingTime>10:21</ChattingTime>
+                        </ChattingList>
+                        <ChattingList>
+                            <ProfilePhoto></ProfilePhoto>
+                            <TextBox>
+                                <ProfileName>그루트</ProfileName>
+                                <ChattingContents>
+                                    오늘 6시 시간 가능하신가요?오늘 6시 시간
+                                    가능하신가요?오늘 6시 시간 가능하신가요?오늘
+                                    6시 시간 가능하신가요?오늘 6시 시간
+                                    가능하신가요?오늘 6시 시간 가능하신가요?
+                                </ChattingContents>
+                            </TextBox>
+                            <ChattingTime>10:21</ChattingTime>
+                        </ChattingList>
+                        <ChattingList>
+                            <ProfilePhoto></ProfilePhoto>
+                            <TextBox>
+                                <ProfileName>그루트</ProfileName>
+                                <ChattingContents>
+                                    오늘 6시 시간 가능하신가요?오늘 6시 시간
+                                    가능하신가요?오늘 6시 시간 가능하신가요?오늘
+                                    6시 시간 가능하신가요?오늘 6시 시간
+                                    가능하신가요?오늘 6시 시간 가능하신가요?
+                                </ChattingContents>
+                            </TextBox>
+                            <ChattingTime>10:21</ChattingTime>
+                        </ChattingList>
+                        <ChattingList>
+                            <ProfilePhoto></ProfilePhoto>
+                            <TextBox>
+                                <ProfileName>그루트</ProfileName>
+                                <ChattingContents>
+                                    오늘 6시 시간 가능하신가요?오늘 6시 시간
+                                    가능하신가요?오늘 6시 시간 가능하신가요?오늘
+                                    6시 시간 가능하신가요?오늘 6시 시간
+                                    가능하신가요?오늘 6시 시간 가능하신가요?
+                                </ChattingContents>
+                            </TextBox>
+                            <ChattingTime>10:21</ChattingTime>
+                        </ChattingList>
+                        <ChattingList>
+                            <ProfilePhoto></ProfilePhoto>
+                            <TextBox>
+                                <ProfileName>그루트</ProfileName>
+                                <ChattingContents>
+                                    오늘 6시 시간 가능하신가요?오늘 6시 시간
+                                    가능하신가요?오늘 6시 시간 가능하신가요?오늘
+                                    6시 시간 가능하신가요?오늘 6시 시간
+                                    가능하신가요?오늘 6시 시간 가능하신가요?
+                                </ChattingContents>
+                            </TextBox>
+                            <ChattingTime>10:21</ChattingTime>
+                        </ChattingList>
                     </ChattingBox>
                 </Boxcontents>
             </Boxcontainer>
@@ -37,33 +97,40 @@ export default MyChattingList;
 const Boxcontainer = styled.div`
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     /* background-color: blue; */
     width: 100%;
     height: 100vh;
 `;
 
 const Boxcontents = styled.div`
+    position: relative;
+    top: 6%;
     border-radius: 20px;
-    background-color: wheat;
-    width: 1024px;
+    background-color: #fffbeb;
+    width: 614px;
     height: 80%;
 
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    @media screen and (max-width: 1232px) {
+    /* @media screen and (max-width: 1232px) {
+        width: 65%;
+        height: 70%;
+    } */
+    @media screen and (max-width: 1020px) {
         width: 65%;
         height: 70%;
     }
-    @media screen and (max-height: 744px) {
-        width: 65%;
-        height: 90%;
-    }
-    /* @media screen and (max-height: 584px) {
+    /* @media screen and (max-height: 744px) {
         width: 65%;
         height: 90%;
     } */
+
+    @media screen and (min-height: 360px) {
+        width: 65%;
+        height: 90%;
+    }
 `;
 
 const TittleBox = styled.div`
