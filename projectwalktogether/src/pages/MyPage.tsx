@@ -8,36 +8,40 @@ import { MdAccountCircle } from 'react-icons/md';
 const MyPage = () => {
   return (
     <>
-      <TemporaryHeader>Header</TemporaryHeader>
       <ImgAndNameWrap>
         <ImgAndNameContainer>
           <ImgWrap>
             <ImgChange src={'/assets/hodu.jpg'}></ImgChange>
           </ImgWrap>
           <NameContainer>
-            <NameChange>강아지</NameChange>
-            <NameChangeBtn>버튼</NameChangeBtn>
+            <NickNameWrap>
+              <NameChange>강아지</NameChange>
+              <EditIcon />
+            </NickNameWrap>
           </NameContainer>
+          <div>산책완료 2</div>
         </ImgAndNameContainer>
       </ImgAndNameWrap>
       <MannerWrap>
         <MannerContainer>
           <ReceiveManner>받은 매너 평가</ReceiveManner>
-          <MannerDetail>
-            <AccountIcon />
-            <MannerScore>2</MannerScore>
-            <MannerComment>친절하고 매너가 좋아요!</MannerComment>
-          </MannerDetail>
-          <MannerDetail>
-            <AccountIcon />
-            <MannerScore>5</MannerScore>
-            <MannerComment>재미있어요!</MannerComment>
-          </MannerDetail>
-          <MannerDetail>
-            <AccountIcon />
-            <MannerScore>1</MannerScore>
-            <MannerComment>자상하고 편안했어요!</MannerComment>
-          </MannerDetail>
+          <MannerBox>
+            <MannerDetail>
+              <AccountIcon />
+              <MannerScore>2</MannerScore>
+              <MannerComment>친절하고 매너가 좋아요!</MannerComment>
+            </MannerDetail>
+            <MannerDetail>
+              <AccountIcon />
+              <MannerScore>5</MannerScore>
+              <MannerComment>재미있어요!</MannerComment>
+            </MannerDetail>
+            <MannerDetail>
+              <AccountIcon />
+              <MannerScore>1</MannerScore>
+              <MannerComment>자상하고 편안했어요!</MannerComment>
+            </MannerDetail>
+          </MannerBox>
         </MannerContainer>
       </MannerWrap>
       <MyPageWrapper>
@@ -57,80 +61,90 @@ const MyPage = () => {
     </>
   );
 };
-export const TemporaryHeader = styled.div`
-  height: 120px;
-  background-color: aqua;
-`;
+
 const MyPageWrapper = styled.div`
   margin: 0 auto;
 `;
 
+const ImgAndNameContainer = styled.div`
+  display: flex;
+  /* background-color: #f2d3c9; */
+  padding: 50px;
+  width: 60%;
+  height: 400px;
+  margin: 0 auto 50px;
+  margin-top: 50px;
+`;
 const ImgAndNameWrap = styled.div`
-  background-color: #e5f2c9;
+  /* background-color: #e5f2c9; */
   height: 600px;
   padding: 10px;
 `;
-const ImgAndNameContainer = styled.div`
-  display: flex;
-  background-color: #f2d3c9;
-  padding: 10px;
-  width: 80%;
-  height: 500px;
-  margin: 30px auto;
-`;
 const ImgWrap = styled.div``;
 const ImgChange = styled.img`
-  width: 500px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   margin: auto 40px;
 `;
 const NameContainer = styled.div`
+  position: relative;
+`;
+const NickNameWrap = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+  margin-left: 20px;
+  border-bottom: 1px solid #ddd;
 `;
 const NameChange = styled.div`
-  margin-top: 200px;
   font-size: 60px;
 `;
-const NameChangeBtn = styled.button`
-  margin-left: 1300px;
-  height: 0px;
-  margin-top: 200px;
-  font-size: 60px;
-`;
-
 const EditIcon = styled(AiFillEdit)`
-  margin-top: 30px;
   font-size: 80px;
-  margin-left: 400px;
+  margin-left: 200px;
 `;
 const MannerWrap = styled.div`
-  background-color: #f5e4b8;
+  /* background-color: #f5e4b8; */
   width: 100%;
-  height: 800px;
 `;
 const MannerContainer = styled.div`
-  background-color: #99f2a6;
-  width: 40%;
-  height: 600px;
-  margin: 30px auto;
-  text-align: center;
+  /* background-color: #99f2a6; */
+  margin: 0 auto;
+  width: 30%;
+  /* margin: 30px auto; */
+  /* text-align: center; */
 `;
-const ReceiveManner = styled.div`
+const ReceiveManner = styled.p`
   font-size: 60px;
+`;
+const MannerBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 const MannerDetail = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
 `;
 const AccountIcon = styled(MdAccountCircle)`
   font-size: 60px;
-  margin-left: 380px;
 `;
 
-const MannerScore = styled.div`
-  font-size: 60px;
+const MannerScore = styled.p`
+  font-size: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
 `;
 const MannerComment = styled.div`
-  font-size: 30px;
+  font-size: 20px;
+  padding: 10px 30px;
+  border-radius: 40px;
+  background-color: gray;
 `;
 
 export const LikedWrapper = styled.div`
