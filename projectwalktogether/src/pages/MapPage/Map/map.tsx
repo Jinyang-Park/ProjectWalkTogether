@@ -11,8 +11,6 @@ import * as S from '../Map/map.style'
 
 import { data } from '../../../dummydata'
 
-const { kakao } = window
-
 // 카카오 객체를 window 객체의 interface에 추가
 declare global {
   interface Window {
