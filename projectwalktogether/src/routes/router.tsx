@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../layout/Header";
 import MainPage from "../pages/MainPage";
 import MyPage from "../pages/MyPage";
 import LoginPage from "../pages/LoginPage";
@@ -22,7 +22,7 @@ const Router = () => {
                 <Route path="/signup" element={<SignUpPage />} />
                 <Route path="/map" element={<MapPage />} />
                 <Route path="/mypage" element={<MyPage />} />
-                <Route path="/catetory" element={<CategoryPage />} />
+                <Route path="/category" element={<CategoryPage />} />
                 <Route path="/postpage" element={<PostPage />} />
                 <Route path="/detailpage" element={<DetailPage />} />
                 <Route path="/chat" element={<ChattingPage />} />
