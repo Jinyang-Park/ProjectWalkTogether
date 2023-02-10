@@ -31,6 +31,15 @@ const Header = () => {
         <NavLi>
           <NavText to="/chat">chat</NavText>
         </NavLi>
+        <NavLi>
+          <NavText to="/category">카테고리</NavText>
+        </NavLi>
+        <NavLi>
+          <NavText to="/postpage">글쓰기</NavText>
+        </NavLi>
+        <NavLi>
+          <NavText to="/detailpage">상세</NavText>
+        </NavLi>
       </NavUl>
       <Profile onClick={gotomy}>닉네임</Profile>
 
