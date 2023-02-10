@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import CategoryAll from "../components/CategoryAll";
+import React from 'react';
+import styled from 'styled-components';
+import CategoryAll from '../../components/CategoryAll';
 
 const CategoryPage = () => {
     return (

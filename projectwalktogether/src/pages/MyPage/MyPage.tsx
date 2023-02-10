@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import LikePage from "./MyPage/LikePost";
-import WhatIWorte from "./MyPage/WhatIWrote";
-import { AiFillEdit } from "react-icons/ai";
-import { MdAccountCircle } from "react-icons/md";
+import React from 'react';
+import styled from 'styled-components';
+import LikePage from './LikePost';
+import WhatIWorte from './WhatIWrote';
+import { AiFillEdit } from 'react-icons/ai';
+import { MdAccountCircle } from 'react-icons/md';
 
 const MyPage = () => {
     return (
@@ -11,7 +11,7 @@ const MyPage = () => {
             <ImgAndNameWrap>
                 <ImgAndNameContainer>
                     <ImgWrap>
-                        <ImgChange src={"/assets/hodu.jpg"}></ImgChange>
+                        <ImgChange src={'/assets/hodu.jpg'}></ImgChange>
                     </ImgWrap>
                     <NameContainer>
                         <NickNameWrap>

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const MapPageContainer = styled.span`
     display: flex;
@@ -10,23 +10,23 @@ export const MapPageContainer = styled.span`
         height: inherit;
         overflow-y: auto;
     }
-`
+`;
 
 export const MapPageHeader = styled.span`
     display: flex;
     flex-direction: column;
     margin-top: 30px;
     margin-left: 50px;
-`
+`;
 export const EmptyBox = styled.span`
     height: 50px;
     width: 50px;
-`
+`;
 
 export const MapPageTitle = styled.span`
     display: flex;
     font-size: 30px;
-`
+`;
 
 export const LineMarker = styled.span`
     display: flex;
@@ -35,7 +35,7 @@ export const LineMarker = styled.span`
     height: 5px;
     border-bottom: 1px solid black;
     width: 90%;
-`
+`;
 
 export const MapPageContentsWrapper = styled.span`
     display: flex;
@@ -49,7 +49,7 @@ export const MapPageContentsWrapper = styled.span`
     @media screen and (max-width: 344px) {
         flex-direction: column;
     }
-`
+`;
 
 export const MapKaKaoMapContainer = styled.span`
     display: flex;
@@ -60,7 +60,7 @@ export const MapKaKaoMapContainer = styled.span`
         width: 300px;
         height: 300px;
     }
-`
+`;
 
 export const UserInfoContainer = styled.span`
     display: flex;
@@ -70,4 +70,4 @@ export const UserInfoContainer = styled.span`
     @media screen and (max-width: 344px) {
         width: 330px;
     }
-`
+`;

@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { LIGHT_BROWN } from "../common/constants/colors";
+import React from 'react';
+import styled from 'styled-components';
+import { LIGHT_BROWN } from '../assets/constants/colors';
 
 const CategoryAll = () => {
     return (

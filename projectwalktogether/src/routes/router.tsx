@@ -1,16 +1,16 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "../layout/Header";
-import MainPage from "../pages/MainPage";
-import MyPage from "../pages/MyPage";
-import LoginPage from "../pages/LoginPage";
-import SignUpPage from "../pages/SignUpPage";
-import MapPage from "../pages/MapPage/MapPage";
-import CategoryPage from "../pages/CategoryPage";
-import PostPage from "../pages/PostPage";
-import DetailPage from "../pages/DetailPage";
-import ChattingPage from "../pages/ChattingPage";
-import MyChattingList from "../pages/ChattingList";
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from '../layout/Header';
+import Footer from '../layout/Footer';
+import MainPage from '../pages/MainPage/MainPage';
+import MyPage from '../pages/MyPage/MyPage';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import SignUpPage from '../pages/SignUpPage/SignUpPage';
+import MapPage from '../pages/MapPage/MapPage';
+import CategoryPage from '../pages/CategoryPage/CategoryPage';
+import PostPage from '../pages/PostPage/PostPage';
+import DetailPage from '../pages/DetailPage/DetailPage';
+import ChattingPage from '../pages/ChatPage/ChattingPage';
 
 const Router = () => {
     return (
@@ -26,8 +26,8 @@ const Router = () => {
                 <Route path="/postpage" element={<PostPage />} />
                 <Route path="/detailpage" element={<DetailPage />} />
                 <Route path="/chat" element={<ChattingPage />} />
-                <Route path="/chatlist" element={<MyChattingList />} />
             </Routes>
+            <Footer />
         </BrowserRouter>
     );
 };

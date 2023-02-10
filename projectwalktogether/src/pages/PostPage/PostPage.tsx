@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { useState } from "react";
-import LoginModal from "../components/PostModal/PostModal";
+import React from 'react';
+import styled from 'styled-components';
+import { useState } from 'react';
+import LoginModal from '../../components/PostModal/PostModal';
 
 const PostPage = () => {
     //아이디 찾기 모달창
@@ -32,7 +32,7 @@ const PostPage = () => {
                         <BtnBox>
                             <ConfrimText>만날 장소 정하러 가기~</ConfrimText>
                             <ConfirmBtn onClick={findPwd}>
-                                {" "}
+                                {' '}
                                 위치 정하기
                             </ConfirmBtn>
                         </BtnBox>

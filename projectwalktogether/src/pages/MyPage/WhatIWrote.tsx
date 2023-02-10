@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { AiOutlineHeart } from "react-icons/ai";
+import styled from 'styled-components';
+import { AiOutlineHeart } from 'react-icons/ai';
 const WhatIWorte = () => {
     return (
         <>
@@ -7,7 +7,7 @@ const WhatIWorte = () => {
                 <LikedListWapper>
                     <LikedListItem>
                         <ListItemWrapper>
-                            <ListItemThumnail src={"/assets/hodu.jpg"} />
+                            <ListItemThumnail src={'/assets/hodu.jpg'} />
                         </ListItemWrapper>
                         <ListItemThumnailTitle>
                             같이 음악 들으면서 걸어요
@@ -24,7 +24,7 @@ const WhatIWorte = () => {
                     </LikedListItem>
                     <LikedListItem>
                         <ListItemWrapper>
-                            <ListItemThumnail src={"/assets/hodu.jpg"} />
+                            <ListItemThumnail src={'/assets/hodu.jpg'} />
                         </ListItemWrapper>
                         <ListItemThumnailTitle>
                             같이 음악 들으면서 걸어요
@@ -41,7 +41,7 @@ const WhatIWorte = () => {
                     </LikedListItem>
                     <LikedListItem>
                         <ListItemWrapper>
-                            <ListItemThumnail src={"/assets/hodu.jpg"} />
+                            <ListItemThumnail src={'/assets/hodu.jpg'} />
                         </ListItemWrapper>
                         <ListItemThumnailTitle>
                             같이 음악 들으면서 걸어요
@@ -58,7 +58,7 @@ const WhatIWorte = () => {
                     </LikedListItem>
                     <LikedListItem>
                         <ListItemWrapper>
-                            <ListItemThumnail src={"/assets/hodu.jpg"} />
+                            <ListItemThumnail src={'/assets/hodu.jpg'} />
                         </ListItemWrapper>
                         <ListItemThumnailTitle>
                             같이 음악 들으면서 걸어요

@@ -1,17 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-// import logoImg from "../assets/shoes.png";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+// import logoImg from '../../src/assets/shoes.png';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        navigate("login");
+        navigate('login');
     };
     const gotomy = () => {
-        navigate("mypage");
+        navigate('mypage');
     };
 
     return (
@@ -99,4 +99,8 @@ const Profile = styled.div`
     @media (max-width: 850px) {
         display: none;
     }
+`;
+const Logo = styled.img`
+    height: 3.125rem;
+    cursor: pointer;
 `;
