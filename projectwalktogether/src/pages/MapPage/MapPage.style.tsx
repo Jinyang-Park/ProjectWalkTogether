@@ -5,7 +5,7 @@ export const MapPageContainer = styled.span`
     flex-direction: column;
     height: 100vh;
     margin: 30 auto;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 344px) {
         flex-direction: column;
         height: inherit;
         overflow-y: auto;
@@ -44,9 +44,9 @@ export const MapPageContentsWrapper = styled.span`
     align-items: center;
     width: 100%;
     height: 100%;
-    gap: 30px;
+    gap: 60px;
     margin-top: 20px;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 344px) {
         flex-direction: column;
     }
 `
@@ -56,6 +56,10 @@ export const MapKaKaoMapContainer = styled.span`
     flex-direction: column;
     width: 55%;
     height: 85%;
+    @media screen and (max-width: 344px) {
+        width: 300px;
+        height: 300px;
+    }
 `
 
 export const UserInfoContainer = styled.span`
@@ -63,4 +67,7 @@ export const UserInfoContainer = styled.span`
     flex-direction: column;
     width: 35%;
     height: 85%;
+    @media screen and (max-width: 344px) {
+        width: 330px;
+    }
 `
