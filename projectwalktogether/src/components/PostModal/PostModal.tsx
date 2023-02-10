@@ -2,12 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Map from "./Kakaomap";
 
-// declare global {
-//     interface Window {
-//         kakao: any;
-//     }
-// }
-
 function LoginModal({ open, onClose, setLoginModalopen }: any | JSX.Element) {
     const [findPwd, setFindPwd] = useState("");
     const email = findPwd;

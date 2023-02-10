@@ -63,7 +63,7 @@ const Boxcontainer = styled.div`
 // 글쓰기 최상위 박스
 const Boxcontents = styled.div`
     border-radius: 20px;
-    /* background-color: wheat; */
+    /* g */
     width: 50%;
     height: 80%;
     margin: 10px;
