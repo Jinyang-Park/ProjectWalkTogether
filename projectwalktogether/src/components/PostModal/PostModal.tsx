@@ -1,9 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
+import Map from "./Kakaomap";
 
-function LoginModal({ open, onClose, setLoginModalopen }: any) {
+// declare global {
+//     interface Window {
+//         kakao: any;
+//     }
+// }
+
+function LoginModal({ open, onClose, setLoginModalopen }: any | JSX.Element) {
     const [findPwd, setFindPwd] = useState("");
     const email = findPwd;
+    const ref = useRef<HTMLDivElement>(null);
+
+    // useEffect(() => {
+    //     const options = {
+    //         center: new window.kakao.maps.LatLng(33.450701, 126.570667),
+    //         level: 3,
+    //     };
+    //     new window.kakao.maps.Map(ref.current, options);
+    // }, []);
 
     // 인풋값을 저장
     const findPasswordfnc = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,8 +41,8 @@ function LoginModal({ open, onClose, setLoginModalopen }: any) {
                 <CloseBtn onClick={onClose} className="closeBtn">
                     x
                 </CloseBtn>
-
-                <div>안녕하세요</div>
+                <Map />
+                {/* <StyledContainer id="map" ref={ref} /> */}
 
                 <BtnContainer className="btnContainer">
                     <Btnprimary
@@ -44,6 +60,11 @@ function LoginModal({ open, onClose, setLoginModalopen }: any) {
 }
 
 export default LoginModal;
+
+const StyledContainer = styled.div`
+    width: 100%;
+    height: 100%;
+`;
 
 // 배경의 색(회색)
 const Overlay = styled.div`
@@ -79,9 +100,10 @@ const ModalContainer = styled.div`
 // X버튼
 const CloseBtn = styled.p`
     position: absolute;
-    top: 5px;
+    top: -50px;
     right: 50px;
     cursor: pointer;
+    background-color: white;
     @media screen and (max-width: 972px) {
         right: 7%;
     }

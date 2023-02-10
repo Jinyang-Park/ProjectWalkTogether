@@ -63,15 +63,14 @@ const Boxcontainer = styled.div`
 // 글쓰기 최상위 박스
 const Boxcontents = styled.div`
     border-radius: 20px;
-    background-color: wheat;
+    /* background-color: wheat; */
     width: 50%;
     height: 80%;
     margin: 10px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    @media screen and (max-height: 581px) {
-        height: 130%;
+    @media screen and (min-width: 767px) {
     }
 `;
 
