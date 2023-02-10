@@ -11,29 +11,31 @@ const DetailPage = () => {
           <DetailTitle>같이음악 들으면서 걸어요</DetailTitle>
           <DetailHashTag>#락어때요 #뮤즈가짱이에요 #인디곡</DetailHashTag>
           <DetailAddressWrapper>
-            <DetailAddressIcon />
-            <DetailAddress>서울특별시 강남구 청담동</DetailAddress>
+            <DetailAddressContainer>
+              <DetailAddressIcon />
+              <DetailAddress>서울특별시 강남구 청담동</DetailAddress>
+            </DetailAddressContainer>
             <DetailDate>2/9(목) 19:30</DetailDate>
             <HeartIcon />
           </DetailAddressWrapper>
-          <DetailIntroduceArea>
-            <IntroImgWrapper>
-              <UserImg src='/assets/hodu.jpg' />
-            </IntroImgWrapper>
-            <IntroContainer>
-              <IntroUserNickNameArea>
-                <IntroUserNickName>호두누나</IntroUserNickName>
-              </IntroUserNickNameArea>
-              <IntroContentsWrapper>
-                <IntroContents>
-                  산책을 좋아하는 평범한 회사원 30살 여자입니다. 요즘 제가 푹
-                  빠진 락 음악을 같이 들으며 걸으실분 있으신가요? 락 음악을
-                  좋아하는 사람들과 교류하고 싶습니다. 많은 댓글 남겨주세요
-                </IntroContents>
-              </IntroContentsWrapper>
-            </IntroContainer>
-          </DetailIntroduceArea>
         </DetailTextWrapper>
+        <DetailIntroduceArea>
+          <IntroImgWrapper>
+            <UserImg src='/assets/hodu.jpg' />
+          </IntroImgWrapper>
+          <IntroContainer>
+            <IntroUserNickNameArea>
+              <IntroUserNickName>호두누나</IntroUserNickName>
+            </IntroUserNickNameArea>
+            <IntroContentsWrapper>
+              <IntroContents>
+                산책을 좋아하는 평범한 회사원 30살 여자입니다. 요즘 제가 푹 빠진
+                락 음악을 같이 들으며 걸으실분 있으신가요? 락 음악을 좋아하는
+                사람들과 교류하고 싶습니다. 많은 댓글 남겨주세요
+              </IntroContents>
+            </IntroContentsWrapper>
+          </IntroContainer>
+        </DetailIntroduceArea>
         <DetailLoactionWrapper>
           <DeatilLoactionTitle>만나는 장소</DeatilLoactionTitle>
           <DetailLoactionContainer>
@@ -71,11 +73,34 @@ export const ThumbnailImg = styled.img`
   height: 31rem;
 `;
 export const DetailTextWrapper = styled.div`
-  max-width: 736px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* text-align: center; */
+  padding-bottom: 24px;
+  /* max-width: 736px; */
 `;
-export const DetailTitle = styled.h1``;
-export const DetailHashTag = styled.p``;
-export const DetailAddressWrapper = styled.div``;
+export const DetailTitle = styled.h1`
+  font-weight: 600;
+  text-align: left;
+  font-size: 28px;
+  margin-bottom: 4px;
+  margin-top: 24px;
+`;
+export const DetailHashTag = styled.p`
+  font-size: 16px;
+  letter-spacing: -0.38px;
+  text-align: left;
+`;
+export const DetailAddressWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+export const DetailAddressContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
 export const DetailAddressIcon = styled(MdLocationOn)``;
 export const DetailAddress = styled.h2``;
 export const DetailDate = styled.p``;
