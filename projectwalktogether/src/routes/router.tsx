@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from '../layout/Header';
@@ -11,6 +12,7 @@ import CategoryPage from '../pages/CategoryPage';
 import PostPage from '../pages/PostPage';
 import DetailPage from '../pages/DetailPage';
 import ChattingPage from '../pages/ChattingPage';
+
 
 const Router = () => {
   return (
