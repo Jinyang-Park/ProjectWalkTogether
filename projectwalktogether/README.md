@@ -44,3 +44,87 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+```
+projectwalktogether
+├─ .env
+├─ .gitignore
+├─ @types
+│  └─ pages
+│     └─ index.d.ts
+├─ package-lock.json
+├─ package.json
+├─ public
+│  ├─ assets
+│  │  ├─ art.png
+│  │  ├─ book.png
+│  │  ├─ career.png
+│  │  ├─ coffee.jpg
+│  │  ├─ counsel.png
+│  │  ├─ dog.png
+│  │  ├─ eco.png
+│  │  ├─ finance.png
+│  │  ├─ food.jpg
+│  │  ├─ group.png
+│  │  ├─ hodu.jpg
+│  │  ├─ mapimg.png
+│  │  ├─ movie.png
+│  │  ├─ music.jpg
+│  │  ├─ photo.jpg
+│  │  ├─ plant.png
+│  │  ├─ thumbnailImg.png
+│  │  ├─ travel.png
+│  │  ├─ walk.jpg
+│  │  └─ workout.png
+│  ├─ favicon.ico
+│  ├─ index.html
+│  ├─ logo192.png
+│  ├─ logo512.png
+│  ├─ manifest.json
+│  └─ robots.txt
+├─ README.md
+├─ src
+│  ├─ App.css
+│  ├─ App.tsx
+│  ├─ common
+│  │  ├─ colors.ts
+│  │  ├─ firebase.ts
+│  │  ├─ globalStyles.ts
+│  │  └─ layout.ts
+│  ├─ components
+│  │  ├─ CategoryAll.tsx
+│  │  └─ Header.tsx
+│  ├─ index.css
+│  ├─ index.tsx
+│  ├─ logo.svg
+│  ├─ pages
+│  │  ├─ CategoryPage.tsx
+│  │  ├─ ChattingPage.tsx
+│  │  ├─ DetailPage.tsx
+│  │  ├─ LoginPage.tsx
+│  │  ├─ MainPage.tsx
+│  │  ├─ MapPage
+│  │  │  ├─ InfoList
+│  │  │  │  ├─ InfoList.style.tsx
+│  │  │  │  └─ InfoList.tsx
+│  │  │  ├─ MapPage.style.tsx
+│  │  │  ├─ MapPage.tsx
+│  │  │  └─ Overlay
+│  │  │     ├─ Overlay.style.tsx
+│  │  │     └─ Overlay.tsx
+│  │  ├─ MyPage
+│  │  │  └─ LikePost.tsx
+│  │  ├─ MyPage.tsx
+│  │  ├─ PostPage.tsx
+│  │  └─ SignUpPage.tsx
+│  ├─ react-app-env.d.ts
+│  ├─ reportWebVitals.ts
+│  ├─ routes
+│  │  └─ router.tsx
+│  ├─ setupTests.ts
+│  └─ store
+│     └─ selector.ts
+├─ tsconfig.json
+└─ yarn.lock
+
+```
