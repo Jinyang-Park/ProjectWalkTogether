@@ -2526,7 +2526,14 @@
   resolved "https://registry.yarnpkg.com/@types/react-icon-base/-/react-icon-base-2.1.4.tgz#354f703e1210362d877d13e78df5737c65a67c1d"
   integrity sha512-aL6T93bw5hFvwkcLH12PrOFryMjRWFeMxt8MeKkb+kaFjohqIwmfdyTvloAS7QXDNzSHfmcpIiwLbTikcypBiw==
   dependencies:
-    "@types/react" "*"
+    react-icons "*"
+
+"@types/react-icons@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-icons/-/react-icons-3.0.0.tgz#27ca2823a6add881d06a371bfff093afc1b9c829"
+  integrity sha512-Vefs6LkLqF61vfV7AiAqls+vpR94q67gunhMueDznG+msAkrYgRxl7gYjNem/kZ+as2l2mNChmF1jRZzzQQtMg==
+  dependencies:
+    react-icons "*"
 
 "@types/react-icons@^3.0.0":
   version "3.0.0"

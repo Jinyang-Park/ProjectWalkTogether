@@ -10,10 +10,21 @@ export const HeaderLine = styled.span`
     margin-top: 30px;
     margin-left: 50px;
     margin-bottom: 10px;
+    @media screen {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 15px;
+        gap: 20px;
+    }
 `
 export const HeaderLineTitle = styled.span`
     font-size: 30px;
     font-weight: 600;
+    @media screen {
+        font-size: Large;
+    }
 `
 export const HeaderLineCategory = styled.span`
     display: flex;
@@ -23,6 +34,11 @@ export const HeaderLineCategory = styled.span`
     border-radius: 5px;
     width: 120px;
     height: 40px;
+    @media screen {
+        margin-left: 60px;
+        width: 100px;
+        height: 30px;
+    }
 `
 export const SearchLine = styled.span`
     display: flex;
@@ -72,6 +88,10 @@ export const ResultListCardLocationTimeDateWrapper = styled.span`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    @media screen {
+        display: flex;
+        flex-direction: column;
+    }
 `
 export const ResultListCardLocation = styled.span`
     font-size: smaller;

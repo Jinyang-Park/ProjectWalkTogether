@@ -2,8 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import * as S from './MapPage.style'
 import InfoList from './InfoList/InfoList'
-
-const { kakao } = window
+import MapContainer from './Map/map'
 
 declare global {
     interface Window {
@@ -20,7 +19,9 @@ const MapPage = () => {
                 <S.LineMarker></S.LineMarker>
             </S.MapPageHeader>
             <S.MapPageContentsWrapper>
-                <S.MapKaKaoMapContainer></S.MapKaKaoMapContainer>
+                <S.MapKaKaoMapContainer>
+                    <MapContainer />
+                </S.MapKaKaoMapContainer>
                 <S.UserInfoContainer>
                     <InfoList />
                 </S.UserInfoContainer>
