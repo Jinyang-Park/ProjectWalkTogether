@@ -56,10 +56,23 @@ const DetailPage = () => {
 
 export default DetailPage;
 
-export const DetailWapper = styled.div``;
+export const DetailWapper = styled.div`
+  display: flex;
+  justify-content: center;
+  position: relative;
+  max-width: 72rem;
+  margin: 0 auto;
+`;
 export const DetailContainer = styled.div``;
-export const ThumbnailImg = styled.img``;
-export const DetailTextWrapper = styled.div``;
+export const ThumbnailImg = styled.img`
+  background-position: 50%;
+  background-size: cover;
+  position: relative;
+  height: 31rem;
+`;
+export const DetailTextWrapper = styled.div`
+  max-width: 736px;
+`;
 export const DetailTitle = styled.h1``;
 export const DetailHashTag = styled.p``;
 export const DetailAddressWrapper = styled.div``;

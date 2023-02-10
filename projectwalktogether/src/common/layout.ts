@@ -5,6 +5,8 @@ export const PAGE_HEIGHT = WINDOW_HEIGHT - HEADER_HEIGHT;
 
 // media 반응형
 export const SMART_PHONE_MAX_WIDTH = 767;
-export const SMART_PHONE_MIN_WIDTH = 767;
-export const WEB_MAX_WIDTH = 1024;
+
+export const SMART_PHONE_MIN_WIDTH = 344;
+export const WEB_MAX_WIDTH = 1020;
+
 export const WEB_MIN_WIDTH = 1024;
