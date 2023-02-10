@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from '../components/Header';
+import Header from "../layout/Header";
+import Footer from "../layout/Footer";
 import MainPage from '../pages/MainPage';
 import MyPage from '../pages/MyPage';
 import LoginPage from '../pages/LoginPage';
@@ -26,6 +27,7 @@ const Router = () => {
         <Route path='/detailpage' element={<DetailPage />} />
         <Route path='/chat' element={<ChattingPage />} />
       </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 };
