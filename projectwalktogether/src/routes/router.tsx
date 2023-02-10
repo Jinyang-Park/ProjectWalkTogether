@@ -1,16 +1,18 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
-import MainPage from "../pages/MainPage";
-import MyPage from "../pages/MyPage";
-import LoginPage from "../pages/LoginPage";
-import SignUpPage from "../pages/SignUpPage";
-import MapPage from "../pages/MapPage/MapPage";
-import CategoryPage from "../pages/CategoryPage";
-import PostPage from "../pages/PostPage";
-import DetailPage from "../pages/DetailPage";
-import ChattingPage from "../pages/ChattingPage";
+
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from '../layout/Header';
+import Footer from '../layout/Footer';
+import MainPage from '../pages/MainPage';
+import MyPage from '../pages/MyPage';
+import LoginPage from '../pages/LoginPage';
+import SignUpPage from '../pages/SignUpPage';
+import MapPage from '../pages/MapPage/MapPage';
+import CategoryPage from '../pages/CategoryPage';
+import PostPage from '../pages/PostPage';
+import DetailPage from '../pages/DetailPage';
+import ChattingPage from '../pages/ChattingPage';
+
 
 const Router = () => {
   return (
