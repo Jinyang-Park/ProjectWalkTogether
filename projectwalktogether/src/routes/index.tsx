@@ -1,4 +1,5 @@
 import React from "react";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
@@ -12,7 +13,7 @@ import PostPage from "../pages/PostPage";
 import DetailPage from "../pages/DetailPage";
 import ChattingPage from "../pages/ChattingPage";
 
-const Router = () => {
+const index = () => {
   return (
     <BrowserRouter>
       <Header />
@@ -32,4 +33,4 @@ const Router = () => {
   );
 };
 
-export default Router;
+export default index;
