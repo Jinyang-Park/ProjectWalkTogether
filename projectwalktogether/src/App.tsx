@@ -1,7 +1,15 @@
-import React from "react";
+import { RecoilRoot } from "recoil";
 import Router from "./routes/router";
-function App() {
-    return <Router />;
+import GlobalStyle from "./common/globalStyles";
+
+function App(): JSX.Element {
+  return (
+    <RecoilRoot>
+      <GlobalStyle />
+
+      <Router />
+    </RecoilRoot>
+  );
 }
 
 export default App;
