@@ -14,8 +14,8 @@ const DetailPage = () => {
             <DetailAddressContainer>
               <DetailAddressIcon />
               <DetailAddress>서울특별시 강남구 청담동</DetailAddress>
+              <DetailDate>2/9(목) 19:30</DetailDate>
             </DetailAddressContainer>
-            <DetailDate>2/9(목) 19:30</DetailDate>
             <HeartIcon />
           </DetailAddressWrapper>
         </DetailTextWrapper>
@@ -96,7 +96,14 @@ export const DetailAddressWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-top: 1px solid #f2efed;
+  margin-top: 16px;
+  padding-top: 12px;
 `;
+// export const DetailDateWrapper = styled.div`
+//   display: flex;
+//   align-items: center;
+// `;
 export const DetailAddressContainer = styled.div`
   display: flex;
   align-items: center;
