@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { authService } from '../api/firebaseService';
+import { authService } from '../common/firebase';
 import { emailRegex, nicknameRegex, pwdRegex } from '../utils/UserInfoRegex';
 
 const SignUpPage = () => {
