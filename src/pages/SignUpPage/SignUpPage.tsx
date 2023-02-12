@@ -171,18 +171,22 @@ export default SignUpPage;
 
 const InputBox = styled.div`
   position: relative;
-  width: 430px;
-  height: 600px;
-  border-radius: 30px;
-  padding: 5px;
-  top: 150px;
-  border: 2px solid #2192ff;
+  width: 22.5rem;
+  height: 40rem;
+  margin-left: -11.25rem;
+  margin-top: 5rem;
+  left: 50%;
+  border-radius: 1.875rem;
+  padding: 0.3125rem;
+  top: 3.125rem;
+  border: 0.125rem solid #2192ff;
+  z-index: 1;
 `;
 
 //Inputholder안의 진짜 input태그
 const Input = styled.input`
   border: none;
-  width: 300px;
+  width: 250px;
   height: 38px;
   position: relative;
   left: 30px;
@@ -192,7 +196,7 @@ const Input = styled.input`
 //Input태그의 테두리
 const Inputholder = styled.div`
   border-radius: 30px;
-  width: 380px;
+  width: 300px;
   height: 45px;
   border: 3px solid #b2c8df;
   color: #b2c8df;
@@ -225,17 +229,12 @@ const LoginBtn = styled.button`
   width: 110px;
   height: 40px;
   font-size: 20px;
-  color: #2192ff;
+  color: #orange;
   border-color: #2192ff;
   font-weight: 900;
   margin-top: 15px;
   background-color: White;
   cursor: pointer;
-  &:hover {
-    background: cornflowerblue;
-    color: white;
-    transition: 0.5s;
-  }
 `;
 
 //유효성검사시 글자
