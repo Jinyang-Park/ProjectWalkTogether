@@ -1,9 +1,10 @@
-import * as S from "./DetailPage.style";
-import CommentsList from "./CommentsList/CommentsList";
+import * as S from './DetailPage.style';
+import Comments from './CommentsList/Comments';
 
 const DetailPage = () => {
   return (
     <S.DetailWapper>
+      {/*글 디테일 */}
       <S.DetailContainer>
         <S.ThumbnailImg src='/assets/thumbnailImg.png' />
         <S.DetailTextWrapper>
@@ -47,12 +48,8 @@ const DetailPage = () => {
             <S.LoactionMap src='/assets/mapimg.png' />
           </S.DetailLoactionContainer>
         </S.DetailLoactionWrapper>
-        <S.DetailCommentsWrapper>
-          <S.CommentTitle>댓글</S.CommentTitle>
-          <S.DetailCommentContainer>
-            <CommentsList />
-          </S.DetailCommentContainer>
-        </S.DetailCommentsWrapper>
+        {/* 댓글 */}
+        <Comments />
       </S.DetailContainer>
     </S.DetailWapper>
   );
