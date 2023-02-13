@@ -6,23 +6,23 @@ import MapContainer from './Map/map'
 import { currentLocationState } from '../../store/selector'
 
 const MapPage = () => {
-    return (
-        <S.MapPageContainer>
-            <S.MapPageHeader>
-                <S.EmptyBox></S.EmptyBox>
-                <S.MapPageTitle>같이 걷고 싶은 사람들</S.MapPageTitle>
-                <S.LineMarker></S.LineMarker>
-            </S.MapPageHeader>
-            <S.MapPageContentsWrapper>
-                <S.MapKaKaoMapContainer>
-                    <MapContainer />
-                </S.MapKaKaoMapContainer>
-                <S.UserInfoContainer>
-                    <InfoList />
-                </S.UserInfoContainer>
-            </S.MapPageContentsWrapper>
-        </S.MapPageContainer>
-    )
+  return (
+    <S.MapPageContainer>
+      <S.MapPageHeader>
+        <S.EmptyBox></S.EmptyBox>
+        <S.MapKaKaoMapContainer>
+          <MapContainer />
+        </S.MapKaKaoMapContainer>
+        <S.MapPageTitle>같이 걷고 싶은 사람들</S.MapPageTitle>
+        <S.LineMarker></S.LineMarker>
+      </S.MapPageHeader>
+      <S.MapPageContentsWrapper>
+        <S.UserInfoContainer>
+          <InfoList />
+        </S.UserInfoContainer>
+      </S.MapPageContentsWrapper>
+    </S.MapPageContainer>
+  )
 }
 
 export default MapPage
