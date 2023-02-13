@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export const InputBox = styled.div`
   position: relative;
   width: 22.5rem;
@@ -59,7 +60,7 @@ export const Line = styled.div`
   border-top: 1px solid #444444;
   margin-top: 5px;
   margin-bottom: 3px;
-  width: 100px;
+  width: 130px;
   margin: auto;
 `;
 
@@ -71,7 +72,6 @@ export const SocialBox = styled.div`
 
 export const FindBox = styled.div`
   display: flex;
-  margin-top: 10px;
 `;
 export const LineBox = styled.div`
   align-items: center;
@@ -122,31 +122,6 @@ export const RegisterBtn = styled.button`
   color: #2192ff;
   border: none;
   margin-top: 10px;
-  background-color: White;
-  cursor: pointer;
-  &:hover {
-    color: #816ceb;
-    transition: 0.4s;
-  }
-`;
-
-export const Findid = styled.div`
-  color: #2192ff;
-  border: none;
-
-  margin-right: 5px;
-  background-color: White;
-  cursor: pointer;
-  &:hover {
-    color: #816ceb;
-    transition: 0.4s;
-  }
-`;
-export const FindPasswd = styled.div`
-  color: #2192ff;
-  border: none;
-
-  margin-left: 5px;
   background-color: White;
   cursor: pointer;
   &:hover {

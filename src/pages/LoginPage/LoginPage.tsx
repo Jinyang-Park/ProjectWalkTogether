@@ -1,11 +1,25 @@
 import React from 'react';
 import * as S from './LoginPage.style';
-
 import { useState } from 'react';
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, TwitterAuthProvider, FacebookAuthProvider, setPersistence, browserSessionPersistence } from 'firebase/auth';
+import {
+  RecaptchaVerifier,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  TwitterAuthProvider,
+  FacebookAuthProvider,
+  setPersistence,
+  browserSessionPersistence,
+  multiFactor,
+  PhoneAuthProvider,
+  PhoneMultiFactorGenerator,
+  getMultiFactorResolver,
+} from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../../common/firebase';
 import { emailRegex, pwdRegex } from '../../utils/UserInfoRegex';
+
+import PassModal from '../LoginPage/PassModal';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -102,9 +116,9 @@ const LoginPage = () => {
   };
 
   return (
-    <S.InputBox>
+    <div>
       <form onSubmit={handleSubmitClick}>
-        <div>
+        <S.InputBox>
           <S.LoginLogo>
             <h1>같이 걸을래?</h1>
           </S.LoginLogo>
@@ -136,12 +150,13 @@ const LoginPage = () => {
               회원 가입
             </S.RegisterBtn>
             <S.FindBox>
-              <S.Findid>계정찾기</S.Findid>|<S.FindPasswd>비밀번호찾기</S.FindPasswd>
+              <S.RegisterBtn onClick={findPwd}>비밀번호찾기</S.RegisterBtn>
             </S.FindBox>
           </S.ThirdBox>
-        </div>
+        </S.InputBox>
       </form>
-    </S.InputBox>
+      <PassModal open={loginModalopen} setLoginModalopen={setLoginModalopen} onClose={() => setLoginModalopen(false)} />
+    </div>
   );
 };
 
