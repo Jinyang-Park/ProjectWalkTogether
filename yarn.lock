@@ -2526,14 +2526,7 @@
   resolved "https://registry.yarnpkg.com/@types/react-icon-base/-/react-icon-base-2.1.4.tgz#354f703e1210362d877d13e78df5737c65a67c1d"
   integrity sha512-aL6T93bw5hFvwkcLH12PrOFryMjRWFeMxt8MeKkb+kaFjohqIwmfdyTvloAS7QXDNzSHfmcpIiwLbTikcypBiw==
   dependencies:
-    react-icons "*"
-
-"@types/react-icons@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/react-icons/-/react-icons-3.0.0.tgz#27ca2823a6add881d06a371bfff093afc1b9c829"
-  integrity sha512-Vefs6LkLqF61vfV7AiAqls+vpR94q67gunhMueDznG+msAkrYgRxl7gYjNem/kZ+as2l2mNChmF1jRZzzQQtMg==
-  dependencies:
-    react-icons "*"
+    "@types/react" "*"
 
 "@types/react-icons@^3.0.0":
   version "3.0.0"
@@ -4013,15 +4006,10 @@ cssesc@^3.0.0:
   resolved "https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
 
-"cssesc@^3.0.0":
-  "integrity" "sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg=="
-  "resolved" "https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz"
-  "version" "3.0.0"
-
-"cssnano-preset-default@^5.2.13":
-  "integrity" "sha512-PX7sQ4Pb+UtOWuz8A1d+Rbi+WimBIxJTRyBdgGp1J75VU0r/HFQeLnMYgHiCAp6AR4rqrc7Y4R+1Rjk3KJz6DQ=="
-  "resolved" "https://registry.npmjs.org/cssnano-preset-default/-/cssnano-preset-default-5.2.13.tgz"
-  "version" "5.2.13"
+cssnano-preset-default@^5.2.13:
+  version "5.2.13"
+  resolved "https://registry.npmjs.org/cssnano-preset-default/-/cssnano-preset-default-5.2.13.tgz"
+  integrity sha512-PX7sQ4Pb+UtOWuz8A1d+Rbi+WimBIxJTRyBdgGp1J75VU0r/HFQeLnMYgHiCAp6AR4rqrc7Y4R+1Rjk3KJz6DQ==
   dependencies:
     css-declaration-sorter "^6.3.1"
     cssnano-utils "^3.1.0"
@@ -5071,18 +5059,10 @@ find-up@^5.0.0:
     locate-path "^6.0.0"
     path-exists "^4.0.0"
 
-"find-up@^5.0.0":
-  "integrity" "sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng=="
-  "resolved" "https://registry.npmjs.org/find-up/-/find-up-5.0.0.tgz"
-  "version" "5.0.0"
-  dependencies:
-    "locate-path" "^6.0.0"
-    "path-exists" "^4.0.0"
-
-"firebase@^9.17.1":
-  "integrity" "sha512-MSZaTRaaRLgDFLqoEnoPYK8zkLwQNvYeLZ3YSKdcQxG8hDifNO22ywS1cSA1ZCGHlQeOsDtfDwBejKcANf/RQw=="
-  "resolved" "https://registry.npmjs.org/firebase/-/firebase-9.17.1.tgz"
-  "version" "9.17.1"
+firebase@^9.17.1:
+  version "9.17.1"
+  resolved "https://registry.npmjs.org/firebase/-/firebase-9.17.1.tgz"
+  integrity sha512-MSZaTRaaRLgDFLqoEnoPYK8zkLwQNvYeLZ3YSKdcQxG8hDifNO22ywS1cSA1ZCGHlQeOsDtfDwBejKcANf/RQw==
   dependencies:
     "@firebase/analytics" "0.9.3"
     "@firebase/analytics-compat" "0.2.3"
@@ -8339,7 +8319,7 @@ readdirp@~3.6.0:
 
 recoil@^0.7.6:
   version "0.7.6"
-  resolved "https://registry.npmjs.org/recoil/-/recoil-0.7.6.tgz"
+  resolved "https://registry.yarnpkg.com/recoil/-/recoil-0.7.6.tgz#75297ecd70bbfeeb72e861aa6141a86bb6dfcd5e"
   integrity sha512-hsBEw7jFdpBCY/tu2GweiyaqHKxVj6EqF2/SfrglbKvJHhpN57SANWvPW+gE90i3Awi+A5gssOd3u+vWlT+g7g==
   dependencies:
     hamt_plus "1.0.2"
