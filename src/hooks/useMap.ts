@@ -1,6 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import { useCallback, useState } from 'react'
 
+declare global {
+  interface Window {
+    kakao: any
+  }
+}
+
 const { kakao } = window
 
 export const useMap = (
