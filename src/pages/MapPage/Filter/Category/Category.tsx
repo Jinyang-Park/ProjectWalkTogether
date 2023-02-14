@@ -11,14 +11,9 @@ export const FunctionCategory = () => {
   return (
     <>
       <S.CategoryWrapper>
-        <S.CategoryButton onClick = {() => setOpenCategory (!openCategory)}>
-          {currentCategory && (
-          <Category 
-          setOpenCategory={setOpenCategory}
-          currentCategory={currentCategory}
-          setCurrentCategory={setCurrentCategory } />
-        )}}
-        </S.CategoryButton>
+        <S.CategoryButton
+          onClick={() => setOpenCategory(!openCategory)}
+        ></S.CategoryButton>
       </S.CategoryWrapper>
     </>
   )
