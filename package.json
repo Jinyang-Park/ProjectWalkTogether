@@ -15,7 +15,6 @@
     "@types/react-icon-base": "^2.1.4",
     "@types/react-icons": "^3.0.0",
     "@types/react-router-dom": "^5.3.3",
-    "@types/styled-components": "^5.1.26",
     "create-react-app": "^5.0.1",
     "firebase": "^9.17.1",
     "react": "^18.2.0",
