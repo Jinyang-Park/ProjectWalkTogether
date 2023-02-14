@@ -21,7 +21,7 @@ export const Boxcontents = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  @media screen and (min-width: 767px) {
+  @media screen and (max-width: 868px) {
   }
 `;
 
@@ -34,8 +34,17 @@ export const BoxMain = styled.div`
 `;
 export const BoxPhoto = styled.div`
   width: 25%;
-  height: 350px;
+  height: 250px;
   background-color: yellow;
+`;
+
+export const Photo = styled.input`
+  width: 80%;
+  height: 80%;
+  position: relative;
+  left: 10%;
+  top: 5%;
+  background-color: crimson;
 `;
 
 //input태그를 감싸는 div

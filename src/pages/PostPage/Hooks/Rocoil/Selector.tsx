@@ -1,5 +1,5 @@
 import { selector } from 'recoil';
-import { Time, TitleInput } from './Atom';
+import { Time, TitleInput, DescriptionInput } from './Atom';
 
 const timeSelector = selector({
   key: 'Time',
@@ -12,6 +12,13 @@ const titleSelector = selector({
   key: 'Title',
   get: ({ get }) => {
     const TitleValue = get(TitleInput);
+  },
+});
+
+const DescripttionSelector = selector({
+  key: 'Title',
+  get: ({ get }) => {
+    const TitleValue = get(DescriptionInput);
   },
 });
 

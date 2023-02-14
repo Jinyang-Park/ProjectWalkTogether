@@ -1,8 +1,8 @@
-import * as S from './Inputinfomation.style';
+import * as S from './InputInformation.style';
 import MaterialUIPickers from '../Hooks/Calendar/MuiCalendar';
 import MapContainer from '../../MapPage/Map/map';
 
-function PostPageInputinfomation() {
+function InputInformation() {
   return (
     <S.MapNInputBox>
       PostPageInputinfomation
@@ -24,4 +24,4 @@ function PostPageInputinfomation() {
   );
 }
 
-export default PostPageInputinfomation;
+export default InputInformation;

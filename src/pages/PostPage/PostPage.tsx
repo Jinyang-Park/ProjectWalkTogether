@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 import { useState } from 'react';
-import LoginModal from '../../components/PostModal/PostModal';
-import UI from './Hooks/Calendar/MuiCalendar';
-import { Time } from './Hooks/Rocoil/Atom';
+import { Time, TitleInput } from './Hooks/Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
 import { collection, addDoc } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
-import Mainpost from './Mainpost/Mainpost';
-import IuputInformation from './Inputinformation/Inputinfomation';
+import Mainpost from './MainPost/MainPost';
+import IuputInformation from './InputInformation/InputInformation';
 import * as S from './Postpage.style';
 
 const PostPage = () => {
@@ -33,13 +30,6 @@ const PostPage = () => {
   const [postAddress, setPostAddress] = useState(''); //만날 위치 시,군,구,단
   const [postCategory, setPostCategory] = useState(''); //카테고리
 
-  //모달 클릭시 지도창 열림
-  const findPwd = (e: any) => {
-    e.preventDefault();
-    setLoginModalopen(true);
-    console.log(loginModalopen);
-  };
-
   //약속 시간
   const meetTime = useRecoilValue(Time);
   const meetTimeObectToString = JSON.stringify(Object.values(meetTime)[2]);
@@ -60,6 +50,8 @@ const PostPage = () => {
   const meetDayMinute = meetTimeObectToString.slice(14, 17); //분
   let meeting =
     `${meetYearMonth}${meetDay}__${meetDayHour}${meetDayMinute}` + ``;
+
+  const Title = useRecoilValue(TitleInput);
 
   /////////
   //현재시간
@@ -100,10 +92,10 @@ const PostPage = () => {
         Nickname: postNickname,
         RsvDate_Posting: postHour,
         TimeStamp_Posting: postTime,
-        // Title_Posting: postdescription,
+        Title_Posting: Title,
         UID: postAuthor,
       });
-      console.log('Document written with ID: 왜안되냐 ', docRef.id);
+      console.log('Document written with ID: ', docRef.id);
       alert('저장완료');
     } catch (e) {
       console.error('Error adding document: ', e);
@@ -115,28 +107,12 @@ const PostPage = () => {
       <S.Boxcontainer>
         <Mainpost />
         <IuputInformation />
-        <PostSubmitBox>
-          <PostSubmitBtn onClick={handleSubmit}>포스팅 하기</PostSubmitBtn>
-        </PostSubmitBox>
+        <S.PostSubmitBox>
+          <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>
+        </S.PostSubmitBox>
       </S.Boxcontainer>
     </>
   );
 };
 
 export default PostPage;
-
-//제출 버튼
-const PostSubmitBox = styled.div`
-  position: relative;
-  width: 100%;
-  height: 10%;
-  background-color: aliceblue;
-`;
-
-const PostSubmitBtn = styled.button`
-  position: relative;
-  left: 800px;
-  width: 200px;
-  height: 50px;
-  font-weight: 700;
-`;
