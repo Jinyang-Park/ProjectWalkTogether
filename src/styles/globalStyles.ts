@@ -2,9 +2,10 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
     *{
-        margin: 0;
         padding: 0;
+        margin: 0;
     }
+
 
     body{
         
@@ -13,6 +14,8 @@ const GlobalStyle = createGlobalStyle`
         sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+
+        
     }
 
     h1,
@@ -88,11 +91,8 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 25px;
     }
     ::-webkit-scrollbar-track{
-    background-color: #00ff0000; // 투명
+    background-color: #00ff0000; 
     }
 `;
 
 export default GlobalStyle;
-
-// 코멘트 배경, 스크롤바색
-// rgb(46, 46, 46);

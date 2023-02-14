@@ -1,5 +1,5 @@
 import * as S from './DetailPage.style';
-import Comments from './CommentsList/Comments';
+import Comments from './Comments/Comments';
 
 const DetailPage = () => {
   return (

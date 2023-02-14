@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Comments.style';
 import { useState } from 'react';
-import { authService, dbService } from './../../../common/firebase';
+import { authService, dbService } from '../../../common/firebase';
 import { useNavigate } from 'react-router-dom';
 import {
   addDoc,
@@ -17,7 +17,7 @@ import {
 import { useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-import Review from './Review/Review';
+import { EditContent } from './../EditForm/EditForm';
 
 const Comments = () => {
   // 댓글 인풋
@@ -25,9 +25,26 @@ const Comments = () => {
   // 댓글 출력
   const [myComment, setMyComment] = useState<any[]>([]);
   // 댓글 수정
-  const [isModifying, setIsModifying] = useState<any[]>([]);
+
+  const [editContent, setEditContent] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
-  const [isTextareaVisible, setIsTextareaVisible] = useState(false);
+
+  console.log('editContent:', editContent);
+
+  const newComments = {
+    UID: authService.currentUser?.uid,
+    // PostingID와 KeyForChat은 글쓰기에서 매개변수로 넘겨줘야된다.
+    PostingID_Posting: '',
+    KeyForChat_Posting: '',
+    //key:Description_Comments,inputComment: value
+    Description_Comments: inputComment,
+    ProfileImg: authService.currentUser?.photoURL,
+    CreatedAt: Date.now(),
+    NickName: authService.currentUser?.displayName ?? '익명',
+    isDone: false,
+    isEdit: false,
+  };
 
   // 댓글 생성
   const addCommentHandler = async (e: React.MouseEvent) => {
@@ -42,6 +59,7 @@ const Comments = () => {
           },
         ],
       });
+      return;
     }
 
     if (!inputComment) {
@@ -50,24 +68,13 @@ const Comments = () => {
         buttons: [
           {
             label: '댓글 입력하기',
-            // 비동기 처리 하기
             onClick: () => 'return false',
           },
         ],
       });
+      return;
     }
-    await addDoc(collection(dbService, 'comments'), {
-      UID: authService.currentUser?.uid,
-      // PostingID와 KeyForChat은 글쓰기에서 매개변수로 넘겨줘야된다.
-      PostingID_Posting: '',
-      KeyForChat_Posting: '',
-      Description_Comments: inputComment,
-      ProfileImg: authService.currentUser?.photoURL,
-      CreatedAt: Date.now(),
-      NickName: authService.currentUser?.displayName ?? '익명',
-      isDone: false,
-      isEdit: false,
-    });
+    await addDoc(collection(dbService, 'comments'), newComments);
     setInputComment('');
   };
 
@@ -88,9 +95,9 @@ const Comments = () => {
     });
   };
 
-  // useEffect 을 쓴 이유
-  // 처음 나타났을때 댓글의 리스트들이 호출이 되고 deps 지정한 값이 바뀔때도 호출이 된다.
-  useEffect(() => {
+  // 파이어베이스에서는 바뀌었는데 웹에서는 인지를 못해서 강제로 한번더 해줌
+  // 모르겠네.. 코멘트를 불러왔다
+  const Reupdate = () => {
     const q = query(
       collection(dbService, 'comments')
       // 밑에 지정해줘야 그 해당된 페이지에 댓글을 달수 있다
@@ -105,10 +112,64 @@ const Comments = () => {
       setMyComment(newComment);
     });
     return getComments;
-    // const tmp = new Array(newComment.length);
-    // setIsModifying(tmp.fill(false));
+  };
+
+  // useEffect 을 쓴 이유
+  // 처음 나타났을때 댓글의 리스트들이 호출이 되고 deps 지정한 값이 바뀔때도 호출이 된다.
+  useEffect(() => {
+    Reupdate();
     // 의존성 배열에는 PostingID_Posting가 들어가야된다.
   }, []);
+
+  // 댓글 수정버튼
+  const EditCommentHandler = async (documentId: any) => {
+    const newComments = [...myComment];
+    //comment.documentId여야된다. 콘솔로그로 찍어봐라
+    const idx = newComments.findIndex(
+      (comment) => comment.documentId === documentId
+    );
+    newComments[idx].isEdit = !newComments[idx].isEdit;
+    setMyComment(newComments);
+    await updateDoc(doc(dbService, 'comments', documentId), {
+      isEdit: !newComments[idx].isEdit,
+    });
+
+    // 이 부분은 댓글 수정을 하면 그 전의 댓글 내용이 나오지 않아 넣어준것이다.
+    // 내가 클릭한 댓글만 Description_Comments의 변경된 텍스트를 setEditContent 넣어준다.
+    // newComments(내가 쓴 댓글들)의 Description_Comments)애들을 setEditContent 넣어준다.
+    setEditContent(newComments[idx].Description_Comments);
+    // console.log(newComments[idx].Description_Comments);
+    // 기본값을 false로 주고 클릭한 댓글을 ture로 바꿔준다.
+    // 그 다음 260번째줄 참고
+    setIsEditing(true);
+  };
+
+  // 댓글 완료 버튼
+  const EditUpdateHandler = async (documentId: any) => {
+    // console.log('editContent:', editContent);
+    await updateDoc(doc(dbService, 'comments', documentId), {
+      // Descripton_Comment의 키값에 editConetnet값을 덮어 씌워줘야된다.
+      Description_Comments: editContent,
+      isEdit: false,
+    });
+    setIsEditing(false);
+    setEditContent('');
+    Reupdate();
+  };
+
+  // 댓글 취소
+  const CancelHandler = (documentId: any) => {
+    const newComments = [...myComment];
+    //comment.documentId여야된다. 콘솔로그로 찍어봐라
+    const idx = newComments.findIndex(
+      (comment) => comment.documentId === documentId
+    );
+    newComments[idx].isEdit = !newComments[idx].isEdit;
+    setMyComment(newComments);
+    setIsEditing(false);
+    // 그 전의 댓글의 값이 살짝 나온다. 그 부분을 초기화시켜준다.
+    setEditContent('');
+  };
 
   // 댓글 삭제
   const DeleteCommentHandler = async (documentId: any) => {
@@ -128,15 +189,6 @@ const Comments = () => {
         },
       ],
     });
-  };
-
-  // 댓글 수정
-  const ModifiedCommentHandler = async (documentId: any) => {
-    await updateDoc(doc(dbService, 'comments', documentId), {
-      inputComment: setInputComment,
-      isEdit: false,
-    });
-    setIsTextareaVisible(true);
   };
 
   return (
@@ -166,7 +218,7 @@ const Comments = () => {
       {/* 리뷰 리스트 */}
       <S.CommentListWrapper>
         {myComment.map((comment: any) => {
-          <Review />;
+          console.log('comment.isEdit:', comment.isEdit);
           return (
             <S.CommentList key={comment.id}>
               {/* 현재 user가 쓴 글인지 판별 */}
@@ -190,8 +242,13 @@ const Comments = () => {
                   <S.CommentWrapper>
                     <S.CommentUserName>{comment.NickName}</S.CommentUserName>
                     <S.CommentBox>
-                      {isTextareaVisible ? (
-                        <></>
+                      {comment.isEdit ? (
+                        <S.Form>
+                          <S.EditForm
+                            onChange={(e) => setEditContent(e.target.value)}
+                            value={editContent}
+                          ></S.EditForm>
+                        </S.Form>
                       ) : (
                         <S.CommentInput>
                           {comment.Description_Comments}
@@ -200,16 +257,44 @@ const Comments = () => {
                       <S.CommentContainer>
                         <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
                         <S.CommentCancelDeleteBtnWrapper>
-                          <S.CommentEditBtn onClick={ModifiedCommentHandler}>
-                            수정하기
-                          </S.CommentEditBtn>
-                          <S.CommentDeleteBtn
-                            onClick={() => {
-                              DeleteCommentHandler(comment.documentId);
-                            }}
-                          >
-                            삭제하기
-                          </S.CommentDeleteBtn>
+                          {comment.isEdit ? (
+                            <S.CommentEditBtn
+                              onClick={() =>
+                                EditUpdateHandler(comment.documentId)
+                              }
+                            >
+                              완료하기
+                            </S.CommentEditBtn>
+                          ) : // isEditing이 false이면 즉 내가 클릭하지 않은 댓글들은 수정하기 버튼이 사라진다.
+                          // 내가 클릭한 댓글이 true가 되면 나머지 댓글들은 수정하기 버튼이 사라진다.
+                          isEditing ? (
+                            <></>
+                          ) : (
+                            <S.CommentEditBtn
+                              onClick={() =>
+                                EditCommentHandler(comment.documentId)
+                              }
+                            >
+                              수정하기
+                            </S.CommentEditBtn>
+                          )}
+                          {comment.isEdit ? (
+                            <S.CommentDeleteBtn
+                              onClick={() => {
+                                CancelHandler(comment.documentId);
+                              }}
+                            >
+                              취소하기
+                            </S.CommentDeleteBtn>
+                          ) : (
+                            <S.CommentDeleteBtn
+                              onClick={() => {
+                                DeleteCommentHandler(comment.documentId);
+                              }}
+                            >
+                              삭제하기
+                            </S.CommentDeleteBtn>
+                          )}
                         </S.CommentCancelDeleteBtnWrapper>
                       </S.CommentContainer>
                     </S.CommentBox>

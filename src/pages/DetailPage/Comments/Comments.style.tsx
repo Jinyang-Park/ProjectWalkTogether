@@ -148,3 +148,14 @@ export const CommentContainer = styled.div`
   padding: 0px 10px 10px 10px;
 `;
 export const CommentCancelDeleteBtnWrapper = styled.div``;
+export const EditForm = styled.input`
+  width: 600px;
+  height: 100px;
+  resize: none;
+  border: 1px solid black;
+`;
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
