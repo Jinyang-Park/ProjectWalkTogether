@@ -6,7 +6,6 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { useMap } from '../../../hooks/useMap'
 import { dbState } from '../../../store/selector'
 
-import styled from 'styled-components'
 import * as S from '../Map/map.style'
 
 import { data } from '../../../dummydata'
