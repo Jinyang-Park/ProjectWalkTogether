@@ -1,12 +1,13 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 // import { Categoryitem, ImgTitle, Img } from '../../components/CategoryAll';
 // import { HeartIcon } from "../DetailPage/DetailPage";
+import CommonStyles from './../../styles/CommonStyles';
 
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 const MainPage = () => {
   return (
-    <>
+    <CommonStyles>
       <Banner src='/assets/thumbnailImg.png'></Banner>
       <StyledMainContainer>
         {/* <Category>
@@ -22,20 +23,20 @@ const MainPage = () => {
                 </Category> */}
 
         <div>
-          <span style={{ fontSize: 20, fontWeight: "bold" }}>신발신는중</span>
+          <span style={{ fontSize: 20, fontWeight: 'bold' }}>신발신는중</span>
           <ContentList>
             <Content>
               <div>사진</div>
 
               <InsideText>
-                <span style={{ fontSize: 15, fontWeight: "bold" }}>타이틀</span>
+                <span style={{ fontSize: 15, fontWeight: 'bold' }}>타이틀</span>
                 <Line></Line>
                 <TwithH>
                   <SecondText>
                     <p
                       style={{
                         fontSize: 13,
-                        fontWeight: "regular",
+                        fontWeight: 'regular',
                       }}
                     >
                       지역
@@ -43,7 +44,7 @@ const MainPage = () => {
                     <p
                       style={{
                         fontSize: 13,
-                        fontWeight: "regular",
+                        fontWeight: 'regular',
                       }}
                     >
                       시간
@@ -57,14 +58,14 @@ const MainPage = () => {
               <div>사진</div>
 
               <InsideText>
-                <span style={{ fontSize: 15, fontWeight: "bold" }}>타이틀</span>
+                <span style={{ fontSize: 15, fontWeight: 'bold' }}>타이틀</span>
                 <Line></Line>
                 <TwithH>
                   <SecondText>
                     <p
                       style={{
                         fontSize: 13,
-                        fontWeight: "regular",
+                        fontWeight: 'regular',
                       }}
                     >
                       지역
@@ -72,7 +73,7 @@ const MainPage = () => {
                     <p
                       style={{
                         fontSize: 13,
-                        fontWeight: "regular",
+                        fontWeight: 'regular',
                       }}
                     >
                       시간
@@ -86,14 +87,14 @@ const MainPage = () => {
               <div>사진</div>
 
               <InsideText>
-                <span style={{ fontSize: 15, fontWeight: "bold" }}>타이틀</span>
+                <span style={{ fontSize: 15, fontWeight: 'bold' }}>타이틀</span>
                 <Line></Line>
                 <TwithH>
                   <SecondText>
                     <p
                       style={{
                         fontSize: 13,
-                        fontWeight: "regular",
+                        fontWeight: 'regular',
                       }}
                     >
                       지역
@@ -101,7 +102,7 @@ const MainPage = () => {
                     <p
                       style={{
                         fontSize: 13,
-                        fontWeight: "regular",
+                        fontWeight: 'regular',
                       }}
                     >
                       시간
@@ -115,14 +116,14 @@ const MainPage = () => {
               <div>사진</div>
 
               <InsideText>
-                <span style={{ fontSize: 15, fontWeight: "bold" }}>타이틀</span>
+                <span style={{ fontSize: 15, fontWeight: 'bold' }}>타이틀</span>
                 <Line></Line>
                 <TwithH>
                   <SecondText>
                     <p
                       style={{
                         fontSize: 13,
-                        fontWeight: "regular",
+                        fontWeight: 'regular',
                       }}
                     >
                       지역
@@ -130,7 +131,7 @@ const MainPage = () => {
                     <p
                       style={{
                         fontSize: 13,
-                        fontWeight: "regular",
+                        fontWeight: 'regular',
                       }}
                     >
                       시간
@@ -143,11 +144,11 @@ const MainPage = () => {
           </ContentList>
         </div>
 
-        <span style={{ fontSize: 20, fontWeight: "bold" }}>뜨거운신발</span>
+        <span style={{ fontSize: 20, fontWeight: 'bold' }}>뜨거운신발</span>
 
-        <span style={{ fontSize: 20, fontWeight: "bold" }}>걷는 중</span>
+        <span style={{ fontSize: 20, fontWeight: 'bold' }}>걷는 중</span>
       </StyledMainContainer>
-    </>
+    </CommonStyles>
   );
 };
 
