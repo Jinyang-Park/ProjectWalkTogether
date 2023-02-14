@@ -2,24 +2,23 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useState } from 'react'
 import LoginModal from '../../components/PostModal/PostModal'
-import UI from './Calendar/MuiCalendar'
-import { Time } from './Rocoil/Atom'
+import UI from './Hooks/Calendar/MuiCalendar'
+import { Time } from './Hooks/Rocoil/Atom'
 import { useRecoilValue } from 'recoil'
 import { getAuth } from 'firebase/auth'
 import { uuidv4 } from '@firebase/util'
 import { collection, addDoc } from 'firebase/firestore'
 import { dbService } from '../../common/firebase'
+import Mainpost from './Mainpost/Mainpost'
+import IuputInformation from './Inputinformation/Inputinfomation'
+import * as S from './Postpage.style'
 
 const PostPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false) //아이디 찾기 모달창
   const [postDb, setPostDb] = useState({}) //파이어베이스DB
-  const [posttitel, Setposttitle] = useState('') //글 제목
-  const [postTag, setPostTag] = useState('') //해쉬태그
-  const [postdescription, SetDescription] = useState('') //글 내용
   const [postHour, setPostHour] = useState('') //약속 시간.날짜
   const [postMinut, setPostMinute] = useState('') //약속 시간.시각
   const [postTime, setPostTime] = useState('') //작성시간
-  const [postPicture, setPostPicture] = useState('') //사진 - firestorage
   const [postLatitude, setPostLtitude] = useState('') //위도
   const [postLongitude, setPostLongitude] = useState('') //경도
   const [postNowLatitude, setPostNowLtitude] = useState('') //현재 위도
@@ -63,19 +62,6 @@ const PostPage = () => {
     `${meetYearMonth}${meetDay}__${meetDayHour}${meetDayMinute}` + ``
 
   /////////
-  // 타이틀
-  ////////
-  const handleChange = (e: any) => {
-    Setposttitle(e.target.value)
-  }
-
-  ////////
-  //글내용
-  const handleChangeText = (e: any) => {
-    SetDescription(e.target.value)
-  }
-
-  /////////
   //현재시간
   /////////
   let today = new Date() // today 객체에 Date()의 결과를 넣어줬다
@@ -96,7 +82,7 @@ const PostPage = () => {
   //콘솔확인용/
   ////////////
   useEffect(() => {
-    console.log('postdescription:', postdescription)
+    console.log('postdescription:')
     setPostTime(timestring) //현재 시간
     setPostHour(meeting) //약속 시간
     setPostNickname(nickname)
@@ -109,12 +95,12 @@ const PostPage = () => {
   const handleSubmit = async () => {
     try {
       const docRef = await addDoc(collection(dbService, 'Post'), {
-        Description_Posting: posttitel,
+        // Description_Posting: posttitel,
         Liked_Posting: false,
         Nickname: postNickname,
         RsvDate_Posting: postHour,
         TimeStamp_Posting: postTime,
-        Title_Posting: postdescription,
+        // Title_Posting: postdescription,
         UID: postAuthor,
       })
       console.log('Document written with ID: 왜안되냐 ', docRef.id)
@@ -125,185 +111,32 @@ const PostPage = () => {
   }
 
   return (
-    <div>
-      {/* {children[3]} */}
-      <Boxcontainer>
-        <Boxcontents>
-          <TittleBox>
-            <InputTitle
-              onChange={handleChange}
-              placeholder='제목을 입력해 주세요'
-            />
-          </TittleBox>
-          <HashtagBox>#해쉬태그</HashtagBox>
-          <UI />
-          <WriteBox>
-            <Textarea onChange={handleChangeText}></Textarea>
-          </WriteBox>
-          <PicMapBox>
-            <PictureBox>
-              사진박스
-              <Picture></Picture>
-            </PictureBox>
-            <BtnBox>
-              <ConfrimText>만날 장소 정하러 가기~</ConfrimText>
-              <ConfirmBtn onClick={findPwd}> 위치 정하기</ConfirmBtn>
-            </BtnBox>
-          </PicMapBox>
-        </Boxcontents>
-        <button onClick={handleSubmit}>완료</button>
-      </Boxcontainer>
-    </div>
+    <>
+      <S.Boxcontainer>
+        <Mainpost />
+        <IuputInformation />
+        <PostSubmitBox>
+          <PostSubmitBtn onClick={handleSubmit}>포스팅 하기</PostSubmitBtn>
+        </PostSubmitBox>
+      </S.Boxcontainer>
+    </>
   )
 }
 
 export default PostPage
 
-//가장바깥 배경
-const Boxcontainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* background-color: blue; */
+//제출 버튼
+const PostSubmitBox = styled.div`
+  position: relative;
   width: 100%;
-  height: 100vh;
+  height: 10%;
+  background-color: aliceblue;
 `
 
-// 글쓰기 최상위 박스
-const Boxcontents = styled.div`
-  border-radius: 20px;
-  /* background-color: wheat; */
-  width: 50%;
-  height: 80%;
-  margin: 10px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  @media screen and (min-width: 767px) {
-  }
-`
-
-//input태그를 감싸는 div
-const TittleBox = styled.div`
-  margin: 10px;
+const PostSubmitBtn = styled.button`
+  position: relative;
+  left: 800px;
+  width: 200px;
   height: 50px;
-  width: 80%;
-  border-bottom: solid 1px black;
-  /* background-color: aqua; */
-`
-
-//제목 입력하는 input
-const InputTitle = styled.input`
-  border: none;
-  height: 30px;
-  width: 70%;
-  margin-top: 10px;
-`
-
-//해쉬태그 박스
-const HashtagBox = styled.div`
-  height: 120px;
-  width: 80%;
-  background-color: darkgray;
-  margin-top: 5px;
-  /* position: relative;
-    bottom: 40px; */
-`
-
-//글쓰기 박스
-const WriteBox = styled.div`
-  width: 80%;
-  height: 30%;
-  background-color: white;
-  /* position: relative; */
-  bottom: 40px;
-  border: 1px solid black;
-  border-radius: 15px;
-`
-
-// 글쓰기 textarea
-const Textarea = styled.textarea`
-  resize: none;
-  outline: none;
-  border: none;
-  position: relative;
-  left: 25px;
-  margin-top: 5px;
-  width: 90%;
-  height: 95%;
-  border-radius: 15px;
-  font-size: 30px;
-`
-
-//맵 사진을 감싸는 박스
-const PicMapBox = styled.div`
-  width: 80%;
-  height: 30%;
-  display: flex;
-`
-
-//사진 박스
-const PictureBox = styled.div`
-  width: 80%;
-  height: 80%;
-  background-color: cadetblue;
-`
-
-// 사진 불러오기
-const Picture = styled.div`
-  background-color: blueviolet;
-  width: 100%;
-  height: 70%;
-`
-
-// 버튼 박스
-const BtnBox = styled.div`
-  width: 80%;
-  height: 80%;
-  background-color: azure;
-
-  justify-content: center;
-`
-
-// 버튼
-
-const ConfirmBtn = styled.button`
-  width: 60%;
-  height: 25%;
-  position: relative;
-  top: 30%;
-  left: 20%;
-  border-radius: 30px;
-  @media screen and (max-width: 1314px) {
-    font-size: 5px;
-    width: 100px;
-    position: relative;
-    left: 20px;
-  }
-  @media screen and (max-width: 480px) {
-    font-size: 10px;
-    width: 80px;
-    top: 40px;
-    left: 15px;
-  }
-`
-
-const ConfrimText = styled.div`
-  width: 250px;
-  position: relative;
-  left: 40px;
-  top: 20px;
-
-  @media screen and (max-width: 1314px) {
-    width: 110px;
-    font-size: 5px;
-    position: relative;
-    top: 20px;
-    left: 20px;
-  }
-  @media screen and (max-width: 480px) {
-    font-size: 10px;
-    position: relative;
-    left: 10px;
-  }
+  font-weight: 700;
 `
