@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { MdLocationOn } from "react-icons/md";
-import { AiOutlineHeart } from "react-icons/ai";
+import styled from 'styled-components';
+import { MdLocationOn } from 'react-icons/md';
+import { AiOutlineHeart } from 'react-icons/ai';
 
 export const DetailWapper = styled.div`
   display: flex;
@@ -130,20 +130,4 @@ export const LoactionTitle = styled.p`
 `;
 export const LoactionMap = styled.img`
   margin-top: 20px;
-`;
-export const DetailCommentsWrapper = styled.div`
-  position: relative;
-  flex-direction: column;
-  display: flex;
-  margin-top: 80px;
-  padding: 40px 40px 0;
-`;
-export const CommentTitle = styled.h1`
-  font-size: 1.75rem;
-`;
-export const DetailCommentContainer = styled.div`
-  display: flex;
-  padding: 40px 40px 0;
-  border-bottom: 1px solid rgb(205, 205, 205);
-  margin-bottom: 50px;
 `;

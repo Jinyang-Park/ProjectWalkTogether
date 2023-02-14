@@ -1,113 +1,145 @@
 import styled from 'styled-components'
 
 export const HeaderLine = styled.span`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  height: 50px;
+  margin-top: 30px;
+  margin-left: 50px;
+  margin-bottom: 10px;
+  @media screen {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
-    height: 50px;
-    margin-top: 30px;
-    margin-left: 50px;
-    margin-bottom: 10px;
-    @media screen {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin: 15px;
-        gap: 20px;
-    }
+    margin: 15px;
+    gap: 20px;
+  }
 `
 export const HeaderLineTitle = styled.span`
-    font-size: 30px;
-    font-weight: 600;
-    @media screen {
-        font-size: Large;
-    }
+  font-size: 30px;
+  font-weight: 600;
+  @media screen {
+    font-size: Large;
+  }
 `
 export const HeaderLineCategory = styled.span`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 120px;
-    height: 40px;
-    @media screen {
-        margin-left: 60px;
-        width: 100px;
-        height: 30px;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 120px;
+  height: 40px;
+  @media screen {
+    margin-left: 60px;
+    width: 100px;
+    height: 30px;
+  }
 `
 export const SearchLine = styled.span`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 `
 export const SearchLineSearchByLocation = styled.span`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: smaller;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: smaller;
 `
 export const SearchLineSearchInputBox = styled.span`
-    width: 100%;
-    height: 15px;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid black;
+  width: 100%;
+  height: 15px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid black;
 `
 export const SearchLineTotalCount = styled.span`
-    font-size: smaller;
-    color: gray; ;
+  font-size: smaller;
+  color: gray;
+  margin-left: 50px;
+  margin-bottom: 100px;
 `
 export const ResultList = styled.span`
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: row;
+  margin-left: 50px;
+  gap: 30px;
 `
 export const ResultListCard = styled.span`
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+`
+
+export const ResultListCardImage = styled.span`
+  width: 100%;
+  height: 96px;
+  margin-bottom: 5px;
 `
 export const ResultListCardTitle = styled.span`
-    font-size: larger;
-    font-weight: 600;
+  font-size: larger;
+  font-weight: 600;
+  margin-bottom: 5px;
 `
 
 export const ResultListCardLocationTimeDateWrapper = styled.span`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    @media screen {
-        display: flex;
-        flex-direction: column;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 180px;
 `
 export const ResultListCardLocation = styled.span`
-    font-size: smaller;
-    color: coral;
+  font-size: smaller;
+  color: coral;
+  width: 180px;
+`
+export const ResultListCardLine = styled.span`
+  width: 180px;
+  height: 1px;
+  background-color: gray;
+`
+export const ResultListCardDateTimeWrapper = styled.span`
+  display: flex;
+  flex-direction: row;
+
+  justify-content: start;
 `
 export const ResultListCardDate = styled.span`
-    font-size: smaller;
+  font-size: smaller;
+  width: 80px;
 `
 export const ResultListCardTime = styled.span`
-    font-size: smaller;
-    margin-right: 150px;
+  font-size: smaller;
+  width: 80px;
 `
 export const ResultListTagList = styled.span`
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    color: gray;
+  display: flex;
+  flex-direction: row;
+  font-size: smaller;
+  gap: 5px;
+  color: gray;
+  margin-top: 5px;
 `
 export const ResultListTag = styled.span``
+
+export const ResultListCardLike = styled.span`
+  margin-left: 20px;
+  color: red;
+`
+
+export const ResultListCardDateTimeLikeWrapper = styled.span`
+  display: flex;
+  flex-direction: row;
+`

@@ -1,12 +1,12 @@
 import React from 'react';
 import * as S from './LoginPage.style';
 import { useState } from 'react';
-import { getAuth, sendSignInLinkToEmail, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, TwitterAuthProvider, FacebookAuthProvider, setPersistence, browserSessionPersistence } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, TwitterAuthProvider, FacebookAuthProvider, setPersistence, browserSessionPersistence } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../../common/firebase';
 import { emailRegex, pwdRegex } from '../../utils/UserInfoRegex';
-
 import PassModal from '../LoginPage/PassModal';
+import CommonStyles from './../../styles/CommonStyles';
 
 const LoginPage = () => {
   authService.tenantId = 'myTenantId1';
@@ -106,48 +106,50 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmitClick}>
-        <S.InputBox>
-          <S.LoginLogo>
-            <h1>같이 걸을래?</h1>
-          </S.LoginLogo>
+    <CommonStyles>
+      <div>
+        <form onSubmit={handleSubmitClick}>
+          <S.InputBox>
+            <S.LoginLogo>
+              <h1>같이 걸을래?</h1>
+            </S.LoginLogo>
 
-          <S.InputBoxContent>
-            <S.Inputholder>
-              <S.Input type="email" name="아이디" placeholder="이메일을 입력해주세요" onChange={onChangeEmail}></S.Input>
-            </S.Inputholder>
-            <S.Inputholder>
-              <S.Input type="password" name="비밀번호" placeholder="비밀번호를 입력해주세요" onChange={onChangePassword}></S.Input>
-            </S.Inputholder>
-          </S.InputBoxContent>
-          <S.ButtonBox>
-            <S.LoginBtn type="submit">로그인</S.LoginBtn>
-          </S.ButtonBox>
-          <S.LineBox>
-            <S.Line />
-            <text>또는</text>
-            <S.Line />
-          </S.LineBox>
+            <S.InputBoxContent>
+              <S.Inputholder>
+                <S.Input type="email" name="아이디" placeholder="이메일을 입력해주세요" onChange={onChangeEmail}></S.Input>
+              </S.Inputholder>
+              <S.Inputholder>
+                <S.Input type="password" name="비밀번호" placeholder="비밀번호를 입력해주세요" onChange={onChangePassword}></S.Input>
+              </S.Inputholder>
+            </S.InputBoxContent>
+            <S.ButtonBox>
+              <S.LoginBtn type="submit">로그인</S.LoginBtn>
+            </S.ButtonBox>
+            <S.LineBox>
+              <S.Line />
+              <text>또는</text>
+              <S.Line />
+            </S.LineBox>
 
-          <S.SocialBox>
-            <S.Facebook onClick={signInWithFacebook} src="/assets/facebook.png" />
-            <S.Google onClick={signInWithGoogle} src="assets/google.png" />
-            <S.Twitter onClick={signInWithTwitter} src="assets/twitter.png" />
-          </S.SocialBox>
-          <S.ThirdBox>
-            <S.RegisterBtn type="button" onClick={() => navigate('/signup')}>
-              회원 가입
-            </S.RegisterBtn>
-            <S.FindBox>
-              <S.RegisterBtn onClick={findPwd}>비밀번호찾기</S.RegisterBtn>
-            </S.FindBox>
-          </S.ThirdBox>
-        </S.InputBox>
-      </form>
+            <S.SocialBox>
+              <S.Facebook onClick={signInWithFacebook} src="/assets/facebook.png" />
+              <S.Google onClick={signInWithGoogle} src="assets/google.png" />
+              <S.Twitter onClick={signInWithTwitter} src="assets/twitter.png" />
+            </S.SocialBox>
+            <S.ThirdBox>
+              <S.RegisterBtn type="button" onClick={() => navigate('/signup')}>
+                회원 가입
+              </S.RegisterBtn>
+              <S.FindBox>
+                <S.RegisterBtn onClick={findPwd}>비밀번호찾기</S.RegisterBtn>
+              </S.FindBox>
+            </S.ThirdBox>
+          </S.InputBox>
+        </form>
 
-      <PassModal open={loginModalopen} setLoginModalopen={setLoginModalopen} onClose={() => setLoginModalopen(false)} />
-    </div>
+        <PassModal open={loginModalopen} setLoginModalopen={setLoginModalopen} onClose={() => setLoginModalopen(false)} />
+      </div>
+    </CommonStyles>
   );
 };
 

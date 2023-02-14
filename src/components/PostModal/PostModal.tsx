@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
-import styled from "styled-components";
-import Map from "./Kakaomap";
+import React, { useState, useRef } from 'react'
+import styled from 'styled-components'
+// import Map from './Kakaomap';
 
 // declare global {
 //     interface Window {
@@ -9,9 +9,9 @@ import Map from "./Kakaomap";
 // }
 
 function LoginModal({ open, onClose, setLoginModalopen }: any | JSX.Element) {
-  const [findPwd, setFindPwd] = useState("");
-  const email = findPwd;
-  const ref = useRef<HTMLDivElement>(null);
+  const [findPwd, setFindPwd] = useState('')
+  const email = findPwd
+  const ref = useRef<HTMLDivElement>(null)
 
   // useEffect(() => {
   //     const options = {
@@ -23,16 +23,16 @@ function LoginModal({ open, onClose, setLoginModalopen }: any | JSX.Element) {
 
   // 인풋값을 저장
   const findPasswordfnc = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFindPwd(e.target.value);
-    console.log(findPwd);
-  };
+    setFindPwd(e.target.value)
+    console.log(findPwd)
+  }
 
   const handleSubmitClick = () => {
-    var i = 0;
-  };
+    var i = 0
+  }
 
   // 모달을 끄고있게 해준다.
-  if (!open) return null;
+  if (!open) return null
 
   return (
     <Overlay>
@@ -41,7 +41,7 @@ function LoginModal({ open, onClose, setLoginModalopen }: any | JSX.Element) {
         <CloseBtn onClick={onClose} className='closeBtn'>
           x
         </CloseBtn>
-        <Map />
+        {/* <Map /> */}
         {/* <StyledContainer id="map" ref={ref} /> */}
 
         <BtnContainer className='btnContainer'>
@@ -56,15 +56,15 @@ function LoginModal({ open, onClose, setLoginModalopen }: any | JSX.Element) {
         {/* </div> */}
       </ModalContainer>
     </Overlay>
-  );
+  )
 }
 
-export default LoginModal;
+export default LoginModal
 
 const StyledContainer = styled.div`
   width: 100%;
   height: 100%;
-`;
+`
 
 // 배경의 색(회색)
 const Overlay = styled.div`
@@ -74,7 +74,7 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
   z-index: 2;
-`;
+`
 
 //모달 박스 (흰색)
 const ModalContainer = styled.div`
@@ -95,7 +95,7 @@ const ModalContainer = styled.div`
     position: relative;
     left: 20%;
   }
-`;
+`
 
 // X버튼
 const CloseBtn = styled.p`
@@ -107,7 +107,7 @@ const CloseBtn = styled.p`
   @media screen and (max-width: 972px) {
     right: 7%;
   }
-`;
+`
 
 const BtnContainer = styled.div`
   position: relative;
@@ -144,7 +144,7 @@ const BtnContainer = styled.div`
   @media screen and (max-width: 315px) {
     left: 8%;
   }
-`;
+`
 
 const Btnprimary = styled.button`
   width: 6.25rem;
@@ -158,10 +158,10 @@ const Btnprimary = styled.button`
   background-color: aliceblue;
   border-radius: 2.1875rem;
   cursor: pointer;
-`;
+`
 
 //버튼 글자
 const Span = styled.span`
   position: relative;
   bottom: 0.5rem;
-`;
+`
