@@ -1,150 +1,86 @@
 import styled from 'styled-components';
 
 //가장바깥 배경
-const Boxcontainer = styled.div`
-  display: flex;
+export const MainPost = styled.div``;
+
+export const Boxcontainer = styled.div`
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   /* background-color: blue; */
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 100px);
 `;
 
-// 글쓰기 최상위 박스
-const Boxcontents = styled.div`
-  border-radius: 20px;
-  /* background-color: wheat; */
-  width: 50%;
-  height: 80%;
-  margin: 10px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  @media screen and (min-width: 767px) {
-  }
-`;
+// //맵 과 사진을 감싸는 박스
+// const PicMapBox = styled.div`
+//   width: 80%;
+//   height: 30%;
+//   display: flex;
+// `;
 
-//input태그를 감싸는 div
-const TittleBox = styled.div`
-  margin: 10px;
-  height: 50px;
-  width: 80%;
-  border-bottom: solid 1px black;
-  /* background-color: aqua; */
-`;
+// //사진 박스
+// const PictureBox = styled.div`
+//   width: 80%;
+//   height: 80%;
+//   background-color: cadetblue;
+// `;
 
-//제목 입력하는 input
-const InputTitle = styled.input`
-  border: none;
-  height: 30px;
-  width: 70%;
-  margin-top: 10px;
-`;
+// // 사진 불러오기
+// const Picture = styled.div`
+//   background-color: blueviolet;
+//   width: 100%;
+//   height: 70%;
+// `;
 
-//해쉬태그 박스
-const HashtagBox = styled.div`
-  height: 120px;
-  width: 80%;
-  background-color: darkgray;
-  margin-top: 5px;
-  /* position: relative;
-    bottom: 40px; */
-`;
+// // 버튼 박스
+// const BtnBox = styled.div`
+//   width: 100%;
+//   height: 10%;
+//   background-color: azure;
 
-//글쓰기 박스
-const WriteBox = styled.div`
-  width: 80%;
-  height: 30%;
-  background-color: white;
-  /* position: relative; */
-  bottom: 40px;
-  border: 1px solid black;
-  border-radius: 15px;
-`;
+//   justify-content: center;
+// `;
 
-// 글쓰기 textarea
-const Textarea = styled.textarea`
-  resize: none;
-  outline: none;
-  border: none;
-  position: relative;
-  left: 25px;
-  margin-top: 5px;
-  width: 90%;
-  height: 95%;
-  border-radius: 15px;
-  font-size: 30px;
-`;
+// // 버튼
 
-//맵 사진을 감싸는 박스
-const PicMapBox = styled.div`
-  width: 80%;
-  height: 30%;
-  display: flex;
-`;
+// const ConfirmBtn = styled.button`
+//   width: 60%;
+//   height: 25%;
+//   position: relative;
+//   top: 30%;
+//   left: 20%;
+//   border-radius: 30px;
+//   @media screen and (max-width: 1314px) {
+//     font-size: 5px;
+//     width: 100px;
+//     position: relative;
+//     left: 20px;
+//   }
+//   @media screen and (max-width: 480px) {
+//     font-size: 10px;
+//     width: 80px;
+//     top: 40px;
+//     left: 15px;
+//   }
+// `;
 
-//사진 박스
-const PictureBox = styled.div`
-  width: 80%;
-  height: 80%;
-  background-color: cadetblue;
-`;
+// const ConfrimText = styled.div`
+//   width: 250px;
+//   position: relative;
+//   left: 40px;
+//   top: 20px;
 
-// 사진 불러오기
-const Picture = styled.div`
-  background-color: blueviolet;
-  width: 100%;
-  height: 70%;
-`;
-
-// 버튼 박스
-const BtnBox = styled.div`
-  width: 80%;
-  height: 80%;
-  background-color: azure;
-
-  justify-content: center;
-`;
-
-// 버튼
-
-const ConfirmBtn = styled.button`
-  width: 60%;
-  height: 25%;
-  position: relative;
-  top: 30%;
-  left: 20%;
-  border-radius: 30px;
-  @media screen and (max-width: 1314px) {
-    font-size: 5px;
-    width: 100px;
-    position: relative;
-    left: 20px;
-  }
-  @media screen and (max-width: 480px) {
-    font-size: 10px;
-    width: 80px;
-    top: 40px;
-    left: 15px;
-  }
-`;
-
-const ConfrimText = styled.div`
-  width: 250px;
-  position: relative;
-  left: 40px;
-  top: 20px;
-
-  @media screen and (max-width: 1314px) {
-    width: 110px;
-    font-size: 5px;
-    position: relative;
-    top: 20px;
-    left: 20px;
-  }
-  @media screen and (max-width: 480px) {
-    font-size: 10px;
-    position: relative;
-    left: 10px;
-  }
-`;
+//   @media screen and (max-width: 1314px) {
+//     width: 110px;
+//     font-size: 5px;
+//     position: relative;
+//     top: 20px;
+//     left: 20px;
+//   }
+//   @media screen and (max-width: 480px) {
+//     font-size: 10px;
+//     position: relative;
+//     left: 10px;
+//   }
+// `;

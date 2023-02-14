@@ -1,7 +1,27 @@
-import React from 'react';
+import * as S from './Inputinfomation.style';
+import MaterialUIPickers from '../Hooks/Calendar/MuiCalendar';
+import MapContainer from '../../MapPage/Map/map';
 
-function Inputinfomation() {
-  return <div>Inputinfomation</div>;
+function PostPageInputinfomation() {
+  return (
+    <S.MapNInputBox>
+      PostPageInputinfomation
+      <S.MapBox>
+        안녕하세요
+        <S.KakaoMap>
+          <MapContainer />
+        </S.KakaoMap>
+      </S.MapBox>
+      <S.InputBox>
+        <S.InputAdressBox>
+          <input />
+        </S.InputAdressBox>
+        <S.InpuTimeBox>
+          <MaterialUIPickers />
+        </S.InpuTimeBox>
+      </S.InputBox>
+    </S.MapNInputBox>
+  );
 }
 
-export default Inputinfomation;
+export default PostPageInputinfomation;
