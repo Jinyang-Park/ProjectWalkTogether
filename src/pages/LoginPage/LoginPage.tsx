@@ -2,14 +2,14 @@ import React from 'react';
 import * as S from './LoginPage.style';
 import { useState } from 'react';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, TwitterAuthProvider, FacebookAuthProvider, setPersistence, browserSessionPersistence } from 'firebase/auth';
+import { doc, setDoc } from '@firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import { authService } from '../../common/firebase';
+import { dbService, authService } from '../../common/firebase';
 import { emailRegex, pwdRegex } from '../../utils/UserInfoRegex';
 import PassModal from '../LoginPage/PassModal';
 import CommonStyles from './../../styles/CommonStyles';
 
 const LoginPage = () => {
-  authService.tenantId = 'myTenantId1';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginModalopen, setLoginModalopen] = useState(false);
@@ -70,11 +70,14 @@ const LoginPage = () => {
   const signInWithFacebook = () => {
     const provider = new FacebookAuthProvider();
     signInWithPopup(authService, provider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        navigate('/', { replace: true });
-        return user;
+      .then((res) => {
+        navigate('/');
+        setDoc(doc(dbService, 'user', res.user.uid), {
+          uid: res.user.uid,
+          email: res.user.email,
+          nickname: res.user.displayName,
+          profileImg: res.user.photoURL,
+        });
       })
       .catch(console.error);
   };
@@ -83,11 +86,14 @@ const LoginPage = () => {
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(authService, provider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        navigate('/', { replace: true });
-        return user;
+      .then((res) => {
+        navigate('/');
+        setDoc(doc(dbService, 'user', res.user.uid), {
+          uid: res.user.uid,
+          email: res.user.email,
+          nickname: res.user.displayName,
+          profileImg: res.user.photoURL,
+        });
       })
       .catch(console.error);
   };
@@ -96,11 +102,14 @@ const LoginPage = () => {
   const signInWithTwitter = () => {
     const provider = new TwitterAuthProvider();
     signInWithPopup(authService, provider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        navigate('/', { replace: true });
-        return user;
+      .then((res) => {
+        navigate('/');
+        setDoc(doc(dbService, 'user', res.user.uid), {
+          uid: res.user.uid,
+          email: res.user.email,
+          nickname: res.user.displayName,
+          profileImg: res.user.photoURL,
+        });
       })
       .catch(console.error);
   };
