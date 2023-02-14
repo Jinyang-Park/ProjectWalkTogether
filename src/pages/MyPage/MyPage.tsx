@@ -12,6 +12,7 @@ import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import { FiCheck } from 'react-icons/fi';
 import { BsFillBrushFill } from 'react-icons/bs';
 import { FaPen } from 'react-icons/fa';
+import CommonStyles from './../../styles/CommonStyles';
 
 interface UserInfoTypes {
   nickname: string | null;
@@ -103,7 +104,7 @@ const MyPage = () => {
     setShowNickNameChangeBtn(false);
   };
   return (
-    <>
+    <CommonStyles>
       <div>
         <BannerImgWrap>
           <BannerImg
@@ -212,7 +213,7 @@ const MyPage = () => {
           </LikedWrapper>
         </MyPageWrapper>
       </div>
-    </>
+    </CommonStyles>
   );
 };
 const ImgNickNameMannerWrap = styled.div``;
