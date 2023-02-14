@@ -1,15 +1,12 @@
-import { RecoilRoot } from "recoil";
-import Router from "./routes/router";
-import GlobalStyle from "./styles/globalStyles";
+import { RecoilRoot } from 'recoil';
+import Router from './routes/router';
 
 function App(): JSX.Element {
-    return (
-        <RecoilRoot>
-            <GlobalStyle />
-
-            <Router />
-        </RecoilRoot>
-    );
+  return (
+    <RecoilRoot>
+      <Router />
+    </RecoilRoot>
+  );
 }
 
 export default App;
