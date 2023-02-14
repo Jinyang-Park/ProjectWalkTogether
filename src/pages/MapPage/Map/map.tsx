@@ -11,14 +11,7 @@ import * as S from '../Map/map.style'
 
 import { data } from '../../../dummydata'
 
-const { kakao } = window
-
 // 카카오 객체를 window 객체의 interface에 추가
-declare global {
-  interface Window {
-    kakao: any
-  }
-}
 
 const MapContainer = () => {
   const mapContainer = useRef(null) // 지도를 담을 영역의 DOM 레퍼런스

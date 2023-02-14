@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import * as S from './MapPage.style'
 import InfoList from './InfoList/InfoList'
 import MapContainer from './Map/map'
+import FilterBar from './Filter/Filter'
 import { currentLocationState } from '../../store/selector'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { RxDividerVertical } from 'react-icons/rx'
@@ -26,6 +27,8 @@ const MapPage = () => {
       <S.MapPageContentsWrapper>
         <S.MapPageTitle>같이 걸을래요?</S.MapPageTitle>
         <S.UserInfoContainer>
+          <FilterBar />
+
           <InfoList />
         </S.UserInfoContainer>
       </S.MapPageContentsWrapper>
