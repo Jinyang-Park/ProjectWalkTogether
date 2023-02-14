@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
-import styled from "styled-components";
-import Map from "./Kakaomap";
+import React, { useState, useRef } from 'react';
+import styled from 'styled-components';
+import Map from './Kakaomap';
 
 // declare global {
 //     interface Window {
@@ -9,7 +9,7 @@ import Map from "./Kakaomap";
 // }
 
 function LoginModal({ open, onClose, setLoginModalopen }: any | JSX.Element) {
-  const [findPwd, setFindPwd] = useState("");
+  const [findPwd, setFindPwd] = useState('');
   const email = findPwd;
   const ref = useRef<HTMLDivElement>(null);
 
@@ -36,21 +36,21 @@ function LoginModal({ open, onClose, setLoginModalopen }: any | JSX.Element) {
 
   return (
     <Overlay>
-      <ModalContainer className='modalContainer'>
+      <ModalContainer className="modalContainer">
         {/* <div className="modalRight"> */}
-        <CloseBtn onClick={onClose} className='closeBtn'>
+        <CloseBtn onClick={onClose} className="closeBtn">
           x
         </CloseBtn>
         <Map />
         {/* <StyledContainer id="map" ref={ref} /> */}
 
-        <BtnContainer className='btnContainer'>
+        <BtnContainer className="btnContainer">
           <Btnprimary
             onClick={handleSubmitClick}
-            type='submit'
-            className='btnprimary'
+            type="submit"
+            className="btnprimary"
           >
-            <Span className='bold'>제 출</Span>
+            <Span className="bold">제 출</Span>
           </Btnprimary>
         </BtnContainer>
         {/* </div> */}
