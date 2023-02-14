@@ -1,20 +1,7 @@
 import React from 'react';
 import * as S from './LoginPage.style';
 import { useState } from 'react';
-import {
-  RecaptchaVerifier,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
-  TwitterAuthProvider,
-  FacebookAuthProvider,
-  setPersistence,
-  browserSessionPersistence,
-  multiFactor,
-  PhoneAuthProvider,
-  PhoneMultiFactorGenerator,
-  getMultiFactorResolver,
-} from 'firebase/auth';
+import { getAuth, sendSignInLinkToEmail, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, TwitterAuthProvider, FacebookAuthProvider, setPersistence, browserSessionPersistence } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../../common/firebase';
 import { emailRegex, pwdRegex } from '../../utils/UserInfoRegex';
@@ -22,6 +9,7 @@ import { emailRegex, pwdRegex } from '../../utils/UserInfoRegex';
 import PassModal from '../LoginPage/PassModal';
 
 const LoginPage = () => {
+  authService.tenantId = 'myTenantId1';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginModalopen, setLoginModalopen] = useState(false);
@@ -45,11 +33,13 @@ const LoginPage = () => {
           .then(() => {
             navigate('/', { replace: true });
           })
+
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode);
             console.log(errorMessage);
+            //auth/invalid-tenant-id
 
             alert('로그인 실패');
             if (email.length === 0) {
@@ -155,6 +145,7 @@ const LoginPage = () => {
           </S.ThirdBox>
         </S.InputBox>
       </form>
+
       <PassModal open={loginModalopen} setLoginModalopen={setLoginModalopen} onClose={() => setLoginModalopen(false)} />
     </div>
   );
