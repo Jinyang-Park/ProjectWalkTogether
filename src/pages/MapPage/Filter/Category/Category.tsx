@@ -1,11 +1,24 @@
 import React from 'react'
 import * as S from './Category.style'
 
+import { useState } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
+
 export const FunctionCategory = () => {
+  // 카테고리 드롭다운 상태
+  const [openCategory, setOpenCategory] = useState<boolean>(false)
+
   return (
     <>
       <S.CategoryWrapper>
-        <S.CategoryButton>카테고리</S.CategoryButton>
+        <S.CategoryButton onClick = {() => setOpenCategory (!openCategory)}>
+          {currentCategory && (
+          <Category 
+          setOpenCategory={setOpenCategory}
+          currentCategory={currentCategory}
+          setCurrentCategory={setCurrentCategory } />
+        )}}
+        </S.CategoryButton>
       </S.CategoryWrapper>
     </>
   )

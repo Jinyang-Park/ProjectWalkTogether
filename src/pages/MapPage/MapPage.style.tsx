@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const MapPageContainer = styled.span`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 200vh;
   margin: 30 auto;
   @media screen and (max-width: 344px) {
     flex-direction: column;
@@ -77,7 +77,7 @@ export const MapPageContentsWrapper = styled.span`
   align-items: left;
   width: 90%;
   height: 100%;
-  gap: 60px;
+  gap: 10px;
   margin-top: 20px;
   @media screen and (max-width: 344px) {
     flex-direction: column;
@@ -87,8 +87,8 @@ export const MapPageContentsWrapper = styled.span`
 export const UserInfoContainer = styled.span`
   display: flex;
   flex-direction: column;
-  width: 35%;
-  height: 85%;
+  width: 95%;
+  height: 100%;
   @media screen and (max-width: 344px) {
     width: 330px;
   }
