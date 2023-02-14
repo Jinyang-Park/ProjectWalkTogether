@@ -17,7 +17,6 @@ import {
 import { useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-import { EditContent } from './../EditForm/EditForm';
 
 const Comments = () => {
   // 댓글 인풋

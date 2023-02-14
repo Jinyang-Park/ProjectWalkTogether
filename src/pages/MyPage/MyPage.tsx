@@ -10,6 +10,7 @@ import { updateProfile } from 'firebase/auth';
 import { useEffect } from 'react';
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import { FiCheck } from 'react-icons/fi';
+import CommonStyles from './../../styles/CommonStyles';
 
 interface UserInfoTypes {
   nickname: string | null;
@@ -75,7 +76,7 @@ const MyPage = () => {
     setShowNickNameChangeBtn(false);
   };
   return (
-    <>
+    <CommonStyles>
       <ImgAndNameWrap>
         <ImgAndNameContainer>
           <ImgWrap>
@@ -163,7 +164,7 @@ const MyPage = () => {
           <WhatIWorte />
         </LikedWrapper>
       </MyPageWrapper>
-    </>
+    </CommonStyles>
   );
 };
 const InputStyle = styled.input`

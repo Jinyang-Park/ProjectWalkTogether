@@ -12,6 +12,7 @@ import { dbService } from '../../common/firebase';
 import Mainpost from './Mainpost/Mainpost';
 import IuputInformation from './Inputinformation/Inputinfomation';
 import * as S from './Postpage.style';
+import CommonStyles from './../../styles/CommonStyles';
 
 const PostPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false); //아이디 찾기 모달창
@@ -111,7 +112,7 @@ const PostPage = () => {
   };
 
   return (
-    <>
+    <CommonStyles>
       <S.Boxcontainer>
         <Mainpost />
         <IuputInformation />
@@ -119,7 +120,7 @@ const PostPage = () => {
           <PostSubmitBtn onClick={handleSubmit}>포스팅 하기</PostSubmitBtn>
         </PostSubmitBox>
       </S.Boxcontainer>
-    </>
+    </CommonStyles>
   );
 };
 
