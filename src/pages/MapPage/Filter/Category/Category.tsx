@@ -1,8 +1,7 @@
 import React from 'react'
 
 export const FunctionCategory = () => {
-  return
-  ;<></>
+  return <></>
 }
 
 export default FunctionCategory
