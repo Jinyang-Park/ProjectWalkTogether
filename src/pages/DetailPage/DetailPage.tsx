@@ -13,11 +13,6 @@ const DetailPage = () => {
             <S.DetailTitle>같이음악 들으면서 걸어요</S.DetailTitle>
             <S.DetailHashTag>#락어때요 #뮤즈가짱이에요 #인디곡</S.DetailHashTag>
             <S.DetailAddressWrapper>
-              <S.DetailAddressContainer>
-                <S.DetailAddressIcon />
-                <S.DetailAddress>서울특별시 강남구 청담동</S.DetailAddress>
-                <S.DetailDate>2/9(목) 19:30</S.DetailDate>
-              </S.DetailAddressContainer>
               <S.HeartIcon />
             </S.DetailAddressWrapper>
           </S.DetailTextWrapper>
@@ -44,12 +39,18 @@ const DetailPage = () => {
             </S.IntroContainer>
           </S.DetailIntroduceArea>
           <S.DetailLoactionWrapper>
-            <S.DeatilLoactionTitle>만나는 장소</S.DeatilLoactionTitle>
+            <S.DeatilLoactionTitle>장소는 이 곳이에요</S.DeatilLoactionTitle>
             <S.DetailLoactionContainer>
-              <S.LoactionTitle>
-                서울특별시 강남구 청담역 12번출구
-              </S.LoactionTitle>
               <S.LoactionMap src='/assets/mapimg.png' />
+              <S.DetailAddressContainer>
+                <S.DetailAddressIcon />
+                <S.DetailAddressBox>
+                  <S.DetailAddress>
+                    서울특별시 강남구 청담동 12번 출구
+                  </S.DetailAddress>
+                  <S.DetailDate>2/9(목) 19:30PM</S.DetailDate>
+                </S.DetailAddressBox>
+              </S.DetailAddressContainer>
             </S.DetailLoactionContainer>
           </S.DetailLoactionWrapper>
           {/* 댓글 */}

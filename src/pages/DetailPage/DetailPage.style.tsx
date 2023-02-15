@@ -4,11 +4,14 @@ import { AiOutlineHeart } from 'react-icons/ai';
 
 export const DetailWapper = styled.div`
   display: flex;
+  width: 100%;
   justify-content: center;
   position: relative;
 `;
 export const DetailContainer = styled.div``;
 export const ThumbnailImg = styled.img`
+  width: 100%;
+  height: 379px;
   background-position: 50%;
   background-size: cover;
   position: relative;
@@ -49,17 +52,21 @@ export const DetailAddressWrapper = styled.div`
 export const DetailAddressContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 24px;
 `;
 export const DetailAddressIcon = styled(MdLocationOn)`
-  margin-right: 0.5rem;
+  width: 44px;
+  height: 44px;
 `;
 export const DetailAddress = styled.h2`
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 500;
   margin-right: 2rem;
 `;
 export const DetailDate = styled.p`
-  font-weight: 700;
+  font-size: 16px;
+  color: #4c7296;
+  font-weight: 500;
 `;
 export const HeartIcon = styled(AiOutlineHeart)`
   font-size: 1.5rem;
@@ -110,16 +117,16 @@ export const IntroContents = styled.p`
   font-size: 20px;
   font-weight: 400;
 `;
-export const DetailLoactionWrapper = styled.div`
-  padding: 40px 40px 0;
-`;
+export const DetailLoactionWrapper = styled.div``;
 export const DeatilLoactionTitle = styled.h1`
-  font-size: 1.75rem;
-  margin-bottom: 10px;
-  border-bottom: 0.0625rem solid #f2efed;
+  font-size: 20px;
+  font-weight: 500;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #cbcbcb;
+  width: 100%;
 `;
 export const DetailLoactionContainer = styled.div`
-  padding: 0px 40px 0;
+  /* padding: 0px 40px 0; */
 `;
 export const LoactionTitle = styled.p`
   margin-top: 20px;
@@ -127,5 +134,11 @@ export const LoactionTitle = styled.p`
   font-weight: 500;
 `;
 export const LoactionMap = styled.img`
-  margin-top: 20px;
+  margin-top: 28px;
+  width: 100%;
+  height: 363px;
+  border-radius: 4px;
+`;
+export const DetailAddressBox = styled.div`
+  margin-left: 8px;
 `;

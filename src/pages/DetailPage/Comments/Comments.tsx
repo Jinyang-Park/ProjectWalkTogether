@@ -194,25 +194,25 @@ const Comments = () => {
 
   return (
     <S.DetailCommentsWrapper>
-      <S.CommentTitle>댓글</S.CommentTitle>
-      <S.CommentCount>{myComment.length}</S.CommentCount>
+      <S.DetailNumberWrapper>
+        <S.CommentTitle>댓글</S.CommentTitle>
+        <S.CommentCount>{myComment.length}</S.CommentCount>
+      </S.DetailNumberWrapper>
       <S.DetailCommentContainer>
         <S.CommentUserImgWrapper>
-          <S.CommentContentsWrapper>
-            <S.CommentContent
-              type='text'
-              placeholder='댓글을 입력하세요.'
-              value={inputComment}
-              onChange={(event) => {
-                setInputComment(event.target.value);
-              }}
-            />
+          <S.CommentContent
+            type='text'
+            placeholder='댓글을 입력하세요.'
+            value={inputComment}
+            onChange={(event) => {
+              setInputComment(event.target.value);
+            }}
+          />
 
-            <S.CommentCancelBtn onClick={CancelCommentHandler}>
-              취소하기
-            </S.CommentCancelBtn>
-            <S.CommentBtn onClick={addCommentHandler}>등록하기</S.CommentBtn>
-          </S.CommentContentsWrapper>
+          <S.CommentCancelBtn onClick={CancelCommentHandler}>
+            취소하기
+          </S.CommentCancelBtn>
+          <S.CommentBtn onClick={addCommentHandler}>등록하기</S.CommentBtn>
         </S.CommentUserImgWrapper>
       </S.DetailCommentContainer>
       {/* 리뷰 리스트 */}
@@ -231,7 +231,9 @@ const Comments = () => {
                       <S.CommentInput>
                         {comment.Description_Comments}
                       </S.CommentInput>
-                      <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
+                      <S.CommentDataWrapper>
+                        <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
+                      </S.CommentDataWrapper>
                     </S.CommentBox>
                   </S.CommentWrapper>
                 </S.CommentLi>
