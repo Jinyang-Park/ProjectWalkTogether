@@ -32,19 +32,44 @@ export const BoxMain = styled.div`
   right: 30px;
   background-color: blanchedalmond;
 `;
+
+// 이미지 컨테이너
 export const BoxPhoto = styled.div`
   width: 25%;
   height: 250px;
-  background-color: yellow;
+  background-color: black;
 `;
 
-export const Photo = styled.input`
+//섬네일이미지
+export const ThumnailPhotoChange = styled.img`
+  cursor: pointer;
+  width: 235px;
+  height: 250px;
+`;
+
+export const ThumnailPhoto = styled.input`
   width: 80%;
   height: 80%;
   position: relative;
   left: 10%;
   top: 5%;
   background-color: crimson;
+`;
+
+//배너 이미지
+export const BannerPhoto = styled.input`
+  width: 80%;
+  height: 80%;
+  position: relative;
+  left: 10%;
+  top: 5%;
+  background-color: crimson;
+`;
+
+export const BannerPhotoChange = styled.img`
+  cursor: pointer;
+  width: 1024px;
+  height: 500px;
 `;
 
 //input태그를 감싸는 div

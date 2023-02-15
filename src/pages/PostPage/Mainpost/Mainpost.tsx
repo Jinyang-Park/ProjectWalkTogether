@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import * as S from './MainPost.style';
 import { useRecoilState } from 'recoil';
 import { TitleInput } from '../Hooks/Rocoil/Atom';
@@ -8,29 +8,39 @@ function MainPost() {
   const [postTag, setPostTag] = useState(''); //해쉬태그
   const [postdescription, SetDescription] = useState(''); //글 내용
   const [postCategory, setPostCategory] = useState(''); //카테고리
-  const [file, setFile] = useState(''); // Handles input change event and updates state
+  const [photoupload, setPhotoupload] = useState<any>(``); // Handles input change event and updates state
+  const [bannerupload, setBanneruploadupload] = useState<any>(``);
 
-  function imageChange(event: any) {
-    setFile(event.target.files[0]);
+  function thumnailimageChange(e: any) {
+    const filelist = e.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setPhotoupload(reader.result);
+    };
+
+    reader.readAsDataURL(filelist);
+    console.log('이미지:', filelist);
+  }
+
+  function bannerimageChange(e: any) {
+    const filelist = e.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setBanneruploadupload(reader.result);
+    };
+
+    reader.readAsDataURL(filelist);
+    console.log('이미지:', filelist);
   }
 
   /////////
   // 타이틀
   ////////
   const handleChange = (e: any) => {
-    const reader = new FileReader();
-
-    if (e.target.files[0]) {
-      reader.readAsDataURL(e.targeet.files[0]);
-    }
-
-    reader.onloadend = () => {
-      const previewImgUrl = reader.result;
-      if (previewImgUrl) {
-        console.log(previewImgUrl, 123);
-      }
-    };
-
     Setposttitle(e.target.value);
   };
 
@@ -42,14 +52,34 @@ function MainPost() {
 
   return (
     <>
-      <S.Bannercontainer></S.Bannercontainer>
+      <S.Bannercontainer>
+        <label htmlFor="banner">
+          <S.BannerPhotoChange
+            src={bannerupload ? bannerupload : '/assets/thumbnailImg.png'}
+          />
+        </label>
+        <S.BannerPhoto
+          type="file"
+          accept="image/*"
+          onChange={bannerimageChange}
+          style={{ display: 'none' }}
+          id="banner"
+        />
+      </S.Bannercontainer>
       <S.Boxcontents>
         <S.BoxPhoto>
-          <S.Photo
+          <label htmlFor="thumnail">
+            <S.ThumnailPhotoChange
+              src={photoupload ? photoupload : '/assets/default_profile.png'}
+            />
+          </label>
+          <S.ThumnailPhoto
             type="file"
             accept="image/*"
-            onChange={imageChange}
-          ></S.Photo>
+            onChange={thumnailimageChange}
+            style={{ display: 'none' }}
+            id="thumnail"
+          />
         </S.BoxPhoto>
         <S.BoxMain>
           <S.TittleBox>

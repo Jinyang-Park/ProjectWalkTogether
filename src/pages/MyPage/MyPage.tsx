@@ -32,9 +32,6 @@ const MyPage = () => {
       photoUrl: user?.photoURL ?? '/assets/default_profile.png',
     });
   };
-  useEffect(() => {
-    getUserInfo();
-  }, []);
 
   const uploadFB = async (e: any) => {
     const file = e.target.files[0];
@@ -80,18 +77,17 @@ const MyPage = () => {
       <ImgAndNameWrap>
         <ImgAndNameContainer>
           <ImgWrap>
-            <label htmlFor='img'>
-              <ImgChange
-                src={photoURL ? photoURL : '/assets/default_profile.png'}
-              />
-              <input
-                type='file'
-                onChange={uploadFB}
-                accept='image/*'
-                id='img'
-                style={{ display: 'none' }}
-              ></input>
-            </label>
+            <label htmlFor="img"> </label>
+            <ImgChange
+              src={photoURL ? photoURL : '/assets/default_profile.png'}
+            />
+            <input
+              type="file"
+              onChange={uploadFB}
+              accept="image/*"
+              id="img"
+              style={{ display: 'none' }}
+            ></input>
           </ImgWrap>
           <NameContainer>
             <NickNameWrap>
@@ -106,8 +102,8 @@ const MyPage = () => {
               {showNickNameChangeBtn === true ? (
                 <>
                   <InputStyle
-                    type='text'
-                    placeholder='변경할 닉네임을 입력해주세요.'
+                    type="text"
+                    placeholder="변경할 닉네임을 입력해주세요."
                     value={text}
                     maxLength={6}
                     onChange={(event) => {
