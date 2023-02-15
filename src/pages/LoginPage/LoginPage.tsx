@@ -1,13 +1,14 @@
 import React from 'react';
 import * as S from './LoginPage.style';
 import { useState } from 'react';
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, TwitterAuthProvider, FacebookAuthProvider, setPersistence, browserSessionPersistence } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, setPersistence, browserSessionPersistence } from 'firebase/auth';
 import { doc, setDoc } from '@firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { dbService, authService } from '../../common/firebase';
 import { emailRegex, pwdRegex } from '../../utils/UserInfoRegex';
 import PassModal from '../LoginPage/PassModal';
 import CommonStyles from './../../styles/CommonStyles';
+import KakaoLoginButton from './KakaoLoginButton';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -98,25 +99,9 @@ const LoginPage = () => {
       .catch(console.error);
   };
 
-  //트위터 로그인
-  const signInWithTwitter = () => {
-    const provider = new TwitterAuthProvider();
-    signInWithPopup(authService, provider)
-      .then((res) => {
-        navigate('/');
-        setDoc(doc(dbService, 'user', res.user.uid), {
-          uid: res.user.uid,
-          email: res.user.email,
-          nickname: res.user.displayName,
-          profileImg: res.user.photoURL,
-        });
-      })
-      .catch(console.error);
-  };
-
   return (
     <CommonStyles>
-      <div>
+      <S.InputLayout>
         <form onSubmit={handleSubmitClick}>
           <S.InputBox>
             <S.LoginLogo>
@@ -143,7 +128,7 @@ const LoginPage = () => {
             <S.SocialBox>
               <S.Facebook onClick={signInWithFacebook} src="/assets/facebook.png" />
               <S.Google onClick={signInWithGoogle} src="assets/google.png" />
-              <S.Twitter onClick={signInWithTwitter} src="assets/twitter.png" />
+              <KakaoLoginButton />
             </S.SocialBox>
             <S.ThirdBox>
               <S.RegisterBtn type="button" onClick={() => navigate('/signup')}>
@@ -157,7 +142,7 @@ const LoginPage = () => {
         </form>
 
         <PassModal open={loginModalopen} setLoginModalopen={setLoginModalopen} onClose={() => setLoginModalopen(false)} />
-      </div>
+      </S.InputLayout>
     </CommonStyles>
   );
 };
