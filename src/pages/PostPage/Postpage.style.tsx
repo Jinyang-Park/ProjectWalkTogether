@@ -6,10 +6,13 @@ export const MainPost = styled.div`
 `;
 
 export const Boxcontainer = styled.div`
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* display: flex;
+  flex-direction: column; */
   /* background-color: blue; */
-  width: 100%;
+  /* width: 100%; */
+  /* width: 1024px; */
   height: calc(100vh - 100px);
 `;
 
