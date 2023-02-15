@@ -24,20 +24,23 @@ function PostapageMiainpost() {
 
   return (
     <>
-      <S.Bannercontainer></S.Bannercontainer>
+      <S.Bannercontainer />
       <S.Boxcontents>
-        <S.BoxPhoto></S.BoxPhoto>
+        <S.ThumbnailImgPorlaroid src={'/assets/polaroid.png'} />
+        {/*이 부분에 프로필 업데이트처럼 썸네일 업로드 로직 들어갈곳 */}
+
         <S.BoxMain>
-          <S.TittleBox>
-            <S.InputTitle
-              onChange={handleChange}
-              placeholder="제목을 입력해 주세요"
-            />
-          </S.TittleBox>
-          <S.HashtagBox>#해쉬태그</S.HashtagBox>
-          <S.WriteBox>
-            <S.Textarea onChange={handleChangeText}></S.Textarea>
-          </S.WriteBox>
+          <S.CalendarIcon src={'/assets/calendar.png'} />
+          <S.CategoryTitle>카테고리</S.CategoryTitle>
+          <S.InputTitle
+            onChange={handleChange}
+            placeholder='제목을 입력해 주세요'
+          />
+          <S.Textarea
+            onChange={handleChangeText}
+            placeholder='당신의 이야기를 적어주세요'
+          ></S.Textarea>
+          <S.HashtagBox>#해쉬태그를 입력해주세요</S.HashtagBox>
         </S.BoxMain>
       </S.Boxcontents>
     </>

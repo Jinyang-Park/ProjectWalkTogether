@@ -1,17 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 // import logoImg from '../../src/assets/shoes.png';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate("login");
+    navigate('login');
   };
   const gotomy = () => {
-    navigate("mypage");
+    navigate('mypage');
   };
 
   return (
@@ -28,9 +28,6 @@ const Header = () => {
         </NavLi>
         <NavLi>
           <NavText to='/chat'>chat</NavText>
-        </NavLi>
-        <NavLi>
-          <NavText to='/category'>카테고리</NavText>
         </NavLi>
         <NavLi>
           <NavText to='/postpage'>글쓰기</NavText>
