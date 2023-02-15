@@ -63,7 +63,31 @@ const MapContainer = (Post) => {
         }}
       >
         {isOpen && (
-          <S.InfoWindow onClick={() => setIsOpen(false)}></S.InfoWindow>
+          <S.InfoWindow onClick={() => setIsOpen(false)}>
+            <S.ResultListCard key={post.PostingID_Posting}>
+              <S.ResultListCardImage></S.ResultListCardImage>
+              <S.ResultListCardTitle>
+                {post.Title_Posting}
+              </S.ResultListCardTitle>
+              <S.ResultListTagList>
+                <S.ResultListTag>#음악</S.ResultListTag>
+                <S.ResultListTag>#락</S.ResultListTag>
+                <S.ResultListTag>#뮤즈파에요</S.ResultListTag>
+              </S.ResultListTagList>
+              <S.ResultListCardLine />
+              <S.ResultListCardLocationTimeDateWrapper>
+                <S.ResultListCardLocation>
+                  서울특별시 강남구 청담동
+                </S.ResultListCardLocation>
+                <S.ResultListCardDateTimeLikeWrapper>
+                  <S.ResultListCardDateTimeWrapper>
+                    <S.ResultListCardDate>2/9 (목)</S.ResultListCardDate>
+                    <S.ResultListCardTime>14:00</S.ResultListCardTime>
+                  </S.ResultListCardDateTimeWrapper>
+                </S.ResultListCardDateTimeLikeWrapper>
+              </S.ResultListCardLocationTimeDateWrapper>
+            </S.ResultListCard>
+          </S.InfoWindow>
         )}
         {/* <div style={{ color: '#000' }} key={post.PostingID_Posting}> */}
         {/* {post.Title_Posting} */}
