@@ -7,9 +7,9 @@ function CommonStyles({ children }: any) {
 export default CommonStyles;
 
 const CommonStyle = styled.div`
-  max-width: 1440px;
+  max-width: 1024px;
   margin: 0 auto;
-  min-width: 1024px;
+  /* min-width: 1024px; */
 
   // SMART_PHONE_MIN_WIDTH
   /* @media screen and (max-width: 344px) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import * as S from './MainPost.style';
+import * as S from './Mainpost.style';
 import { useRecoilState } from 'recoil';
 import { TitleInput } from '../Hooks/Rocoil/Atom';
 
@@ -54,7 +54,7 @@ function MainPost() {
     <>
       <S.Bannercontainer>
         <label htmlFor="banner">
-          <S.BannerPhotoChange
+          <S.ThumbnailImgPorlaroid
             src={bannerupload ? bannerupload : '/assets/thumbnailImg.png'}
           />
         </label>
@@ -70,7 +70,7 @@ function MainPost() {
         <S.BoxPhoto>
           <label htmlFor="thumnail">
             <S.ThumnailPhotoChange
-              src={photoupload ? photoupload : '/assets/default_profile.png'}
+              src={photoupload ? photoupload : '/assets/blackboard.png'}
             />
           </label>
           <S.ThumnailPhoto
@@ -81,17 +81,19 @@ function MainPost() {
             id="thumnail"
           />
         </S.BoxPhoto>
+
         <S.BoxMain>
-          <S.TittleBox>
-            <S.InputTitle
-              onChange={handleChange}
-              placeholder="제목을 입력해 주세요"
-            />
-          </S.TittleBox>
-          <S.HashtagBox>#해쉬태그</S.HashtagBox>
-          <S.WriteBox>
-            <S.Textarea onChange={handleChangeText}></S.Textarea>
-          </S.WriteBox>
+          <S.CalendarIcon src={'/assets/calendar.png'} />
+          <S.CategoryTitle>카테고리</S.CategoryTitle>
+          <S.InputTitle
+            onChange={handleChange}
+            placeholder="제목을 입력해 주세요"
+          />
+          <S.Textarea
+            onChange={handleChangeText}
+            placeholder="당신의 이야기를 적어주세요"
+          ></S.Textarea>
+          <S.HashtagBox>#해쉬태그를 입력해주세요</S.HashtagBox>
         </S.BoxMain>
       </S.Boxcontents>
     </>

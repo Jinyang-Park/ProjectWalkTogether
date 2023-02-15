@@ -49,8 +49,7 @@ const PostPage = () => {
   //시
   const meetDayHour = meetTimeValue[8]; // am의경우 0이 앞에 안 붙는다.
   const meetDayMinute = meetTimeObectToString.slice(14, 17); //분
-  let meeting =
-    `${meetYearMonth}${meetDay}__${meetDayHour}${meetDayMinute}` + ``;
+  let meeting = `${meetYearMonth}${meetDay}${meetDayHour}${meetDayMinute}` + ``;
 
   const Title = useRecoilValue(TitleInput);
 
@@ -75,11 +74,11 @@ const PostPage = () => {
   //콘솔확인용/
   ////////////
   useEffect(() => {
-    console.log('postdescription:');
-    setPostTime(timestring); //현재 시간
-    setPostHour(meeting); //약속 시간
-    setPostNickname(nickname);
-    setPostAuthor(user);
+    console.log('meeting:', meeting);
+    // setPostTime(timestring); //현재 시간
+    // setPostHour(meeting); //약속 시간
+    // setPostNickname(nickname);
+    // setPostAuthor(user);
   });
 
   ////////////
