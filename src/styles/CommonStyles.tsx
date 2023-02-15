@@ -1,17 +1,17 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 function CommonStyles({ children }: any) {
-  return <CommonStyle>{children}</CommonStyle>;
+  return <CommonStyle>{children}</CommonStyle>
 }
 
-export default CommonStyles;
+export default CommonStyles
 
 const CommonStyle = styled.div`
   max-width: 1440px;
   margin: 0 auto;
-
+  min-width: 1024px;
   // SMART_PHONE_MIN_WIDTH
   /* @media screen and (max-width: 344px) {
   } */
   //WEB_MAX_WIDTH
-`;
+`

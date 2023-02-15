@@ -3,48 +3,24 @@ import * as ReactDOMServer from 'react-dom/server'
 import { useParams } from 'react-router-dom'
 
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { useMap } from '../../../hooks/useMap'
-import { dbState } from '../../../store/selector'
+
+// import { dbState } from '../../../store/selector'
 
 import * as S from '../Map/map.style'
 
-import { data } from '../../../dummydata'
-
-// 카카오 객체를 window 객체의 interface에 추가
+import { Map, MapMarker } from '@react-kakao-maps/api'
 
 const MapContainer = () => {
-  const mapContainer = useRef(null) // 지도를 담을 영역의 DOM 레퍼런스
-  const [markerImage, setMarkerImage] = useState<any>(null) // 마커 이미지
-  const [DB] = useRecoilValue<any>(dbState)
-
-  // 전역 DB 불러오기
-
-  // 지도가 표시괼 HTML 요소
-
-  // 현재 클릭한 PostingId를 저장하는 state
-
-  const { makeMap, makeMarkers } = useMap(
-    mapContainer,
-    setMarkerImage,
-    markerImage,
-    data
+  return (
+    <Map
+      center={{ lat: 33.5563, lng: 126.79581 }}
+      style={{ width: '100%', height: '360px' }}
+    >
+      <MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
+        <div style={{ color: '#000' }}>Hello World!</div>
+      </MapMarker>
+    </Map>
   )
-
-  console.log('DB', DB)
-  console.log(Array.isArray(DB))
-  console.log(data)
-
-  // * 첫 렌더링 시 지도 생성
-  useEffect(() => {
-    makeMap()
-  }, [])
-
-  //* DB가 변경되면 마커 생성
-  useEffect(() => {
-    makeMarkers()
-  }, [markerImage])
-
-  return <S.Mapbox ref={mapContainer}></S.Mapbox>
 }
 
 export default MapContainer

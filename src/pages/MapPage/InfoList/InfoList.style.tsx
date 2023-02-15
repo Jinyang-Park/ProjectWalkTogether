@@ -5,10 +5,9 @@ export const HeaderLine = styled.span`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+
   height: 50px;
   margin-top: 30px;
-  margin-left: 50px;
   margin-bottom: 10px;
   @media screen {
     display: flex;
@@ -35,7 +34,6 @@ export const HeaderLineCategory = styled.span`
   width: 120px;
   height: 40px;
   @media screen {
-    margin-left: 60px;
     width: 100px;
     height: 30px;
   }
@@ -66,13 +64,13 @@ export const SearchLineSearchInputBox = styled.span`
 export const SearchLineTotalCount = styled.span`
   font-size: smaller;
   color: gray;
-  margin-left: 50px;
+
   margin-bottom: 100px;
 `
 export const ResultList = styled.span`
   display: flex;
   flex-direction: row;
-  margin-left: 50px;
+
   gap: 30px;
 `
 export const ResultListCard = styled.span`
