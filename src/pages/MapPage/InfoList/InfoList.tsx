@@ -16,7 +16,7 @@ const InfoList = ({ Post }) => {
           return (
             <S.ResultListCard key={post.PostingID_Posting}>
               <S.ResultListCardImage></S.ResultListCardImage>
-              <S.ResultListCardTitle>
+              <S.ResultListCardTitle key={post.PostingID_Posting}>
                 {post.Title_Posting}
               </S.ResultListCardTitle>
               <S.ResultListTagList>

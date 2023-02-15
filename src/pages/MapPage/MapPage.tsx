@@ -45,7 +45,7 @@ const MapPage = () => {
     syncpostingstatewithfirestore()
   }, [])
 
-  console.log('Post', Post)
+  // console.log('Post', Post)
 
   return (
     <CommonStyles>
@@ -59,7 +59,7 @@ const MapPage = () => {
           </S.MapPageSearchBar>
           <S.MapKaKaoMapContainer>
             {/* Map Container */}
-            <MapContainer />
+            <MapContainer Post={Post} />
           </S.MapKaKaoMapContainer>
         </S.MapPageHeader>
 

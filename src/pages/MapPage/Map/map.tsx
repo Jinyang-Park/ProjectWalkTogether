@@ -15,8 +15,10 @@ import {
   MapTypeControl,
 } from 'react-kakao-maps-sdk'
 
-const MapContainer = () => {
+const MapContainer = (Post) => {
+  // 현재 위치를 가져오기 위한 state 생성
   const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 })
+  // 사용자 위치를 가져오기 위한 useEffect
   React.useEffect(() => {
     if (navigator.geolocation) {
       // GeoLocation을 이용해서 접속 위치를 얻어온다
@@ -38,12 +40,25 @@ const MapContainer = () => {
     }
   }, [])
 
+  console.log('Post', Post)
+
+  // db의 Post 컬렉션에서 가져온 데이터를 MapMarker에 넣어주기 위한 배열 생성
+  const PostList = Post.Post.map((post) => {
+    return (
+      <MapMarker
+        position={{
+          lat: post.MeetLatitude_Posting,
+          lng: post.MeetLongitude_Posting,
+        }}
+      >
+        <div style={{ color: '#000' }}>{post.Title_Posting}</div>
+      </MapMarker>
+    )
+  }, [])
+
   return (
     <Map center={myLoca} style={{ width: '100%', height: '100%' }}>
-      <MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
-        <div style={{ color: '#000' }}>Hello World!</div>
-      </MapMarker>
-
+      {PostList}
       <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
       <MapTypeControl position={kakao.maps.ControlPosition.TOPRIGHT} />
     </Map>
