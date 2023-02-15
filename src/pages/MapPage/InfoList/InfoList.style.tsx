@@ -14,8 +14,6 @@ export const HeaderLine = styled.span`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 15px;
-    gap: 20px;
   }
 `
 export const HeaderLineTitle = styled.span`
@@ -71,12 +69,12 @@ export const ResultList = styled.span`
   display: flex;
   flex-direction: row;
 
-  gap: 30px;
+  gap: 50px;
 `
 export const ResultListCard = styled.span`
   display: flex;
   flex-direction: column;
-  margin: 10px;
+
   padding: 10px;
   border: 1px solid black;
 `

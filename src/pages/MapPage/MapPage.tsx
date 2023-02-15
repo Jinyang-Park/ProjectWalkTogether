@@ -36,6 +36,13 @@ const MapPage = () => {
           Description_Posting: doc.data().Description_Posting,
           Category_Posting: doc.data().Category_Posting,
           PostingID_Posting: doc.data().PostingID_Posting,
+          TimeStamp_Posting: doc.data().TimeStamp_Posting,
+          MeetLatitude_Posting: doc.data().MeetLatitude_Posting,
+          MeetLongitude_Posting: doc.data().MeetLongitude_Posting,
+          NowLatitude_Posting: doc.data().NowLatitude_Posting,
+          NowLongitude_Posting: doc.data().NowLongitude_Posting,
+          RsvDate_Posting: doc.data().RsvDate_Posting,
+          Nickname: doc.data().Nickname,
         })
       })
       setPosting(firestorePostingList)
