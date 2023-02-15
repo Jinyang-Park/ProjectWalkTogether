@@ -8,7 +8,7 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 
 import * as S from '../Map/map.style'
 
-import { Map, MapMarker } from '@react-kakao-maps/api'
+import { Map, MapMarker } from 'react-kakao-maps-sdk'
 
 const MapContainer = () => {
   return (
