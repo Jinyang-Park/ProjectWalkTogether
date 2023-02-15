@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export const MapNInputBox = styled.div`
@@ -44,13 +43,3 @@ export const InpuTimeBox = styled.div`
   height: 100%;
   background-color: orange;
 `;
-
-// export const InpuTime = styled.div`
-//   width: 70%;
-//   height: 100%;
-//   background-color: white;
-//   position: relative;
-//   left: 20%;
-// `;
-
-// export const;

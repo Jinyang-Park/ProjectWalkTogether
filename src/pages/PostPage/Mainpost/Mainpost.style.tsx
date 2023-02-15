@@ -21,19 +21,20 @@ export const Boxcontents = styled.div`
   justify-content: center;
   /* align-items: center; */
   flex-wrap: wrap;
-  @media screen and (min-width: 767px) {
+  @media screen and (max-width: 868px) {
   }
 `;
 
 export const BoxMain = styled.div`
   margin-top: 30px;
+  margin-left: 62px;
   width: 80%;
   height: 229px;
 `;
 export const ThumbnailImgPorlaroid = styled.img`
-  width: 183px;
-  height: 240px;
-  margin: 5px 35px 20px 24px;
+  width: 1024px;
+  height: 379px;
+  /* margin: 5px 35px 20px 24px; */
   /* margin-bottom: 20px; */
 `;
 export const CalendarIcon = styled.img`
@@ -44,7 +45,7 @@ export const CalendarIcon = styled.img`
   margin-left: 6px;
 `;
 export const CategoryTitle = styled.button`
-  width: 140px;
+  width: 183px;
   height: 38px;
   border-radius: 4px;
   font-size: 23px;
@@ -100,4 +101,51 @@ export const Textarea = styled.textarea`
   &:focus {
     outline: 2px solid #6a24ff;
   }
+`;
+
+// 이미지 컨테이너
+export const BoxPhoto = styled.div`
+  width: 183px;
+  height: 205px;
+  margin-top: 8px;
+  position: relative;
+  left: 24px;
+  background-color: white;
+`;
+
+// export const BoxPhotoPolaroid = styled.div``;
+
+//섬네일이미지
+export const ThumnailPhotoChange = styled.img`
+  cursor: pointer;
+  width: 159px;
+  height: 158px;
+  margin-left: 12px;
+  margin-top: 10px;
+  border-radius: 4px;
+`;
+
+export const ThumnailPhoto = styled.input`
+  width: 80%;
+  height: 80%;
+  position: relative;
+  left: 10%;
+  top: 5%;
+  background-color: crimson;
+`;
+
+//배너 이미지
+export const BannerPhoto = styled.input`
+  width: 80%;
+  height: 80%;
+  position: relative;
+  left: 10%;
+  top: 5%;
+  background-color: crimson;
+`;
+
+export const BannerPhotoChange = styled.img`
+  cursor: pointer;
+  width: 1024px;
+  height: 500px;
 `;

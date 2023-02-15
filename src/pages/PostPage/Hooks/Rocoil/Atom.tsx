@@ -11,3 +11,9 @@ export const TitleInput = atom<string>({
   // key의 값은 항상 고유값이어야 합니다.
   default: '',
 });
+
+export const DescriptionInput = atom<string>({
+  key: 'DescriptionInput',
+  // key의 값은 항상 고유값이어야 합니다.
+  default: '',
+});
