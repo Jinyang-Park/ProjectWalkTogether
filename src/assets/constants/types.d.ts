@@ -21,6 +21,10 @@ declare interface IdbState {
   ProceedState_Posting: number
 }
 
+export interface DocumentAny {
+  [key: string]: any
+}
+
 declare interface ResultItemProps {
   info: {
     UID: number | string
