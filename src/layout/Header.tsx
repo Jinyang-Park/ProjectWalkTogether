@@ -60,14 +60,13 @@ const Nav = styled.div`
   display: flex;
   margin: auto;
   width: 868px;
-  background-color: green;
+
   align-items: center;
   justify-content: space-between;
 `;
 
 const NavUl = styled.ul`
   display: flex;
-  background-color: orange;
 `;
 
 const NavLi = styled.li`
