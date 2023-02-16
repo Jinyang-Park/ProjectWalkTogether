@@ -6,8 +6,6 @@ export const CategoryWrapper = styled.span`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  margin-left: 50px;
 `
 export const CategoryButton = styled.button`
   width: 100px;

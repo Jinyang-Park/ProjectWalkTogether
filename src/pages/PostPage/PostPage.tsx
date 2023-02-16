@@ -35,20 +35,30 @@ const PostPage = () => {
   //약속 시간
   const meetTime = useRecoilValue(Time);
   const meetTimeObectToString = JSON.stringify(Object.values(meetTime)[2]);
-  const meetTimeValue = Object.values(meetTime);
+  const OTS = Object.values(meetTime)[2].toString();
+  const weeks = OTS.slice(0, 3);
+  var toayweek = '';
+  switch (weeks) {
+    case 'Sun':
+      toayweek = '일';
+      break;
+    case 'Tue':
+      toayweek = '화';
+      break;
+  }
 
-  const navigate = useNavigate();
+  const meetTimeValue = Object.values(meetTime);
+  const weekValue = meetTimeObectToString.slice(1, 9);
   // const meetHour = meetTimeObectToString.slice(12, 19); //시간 이상하게나옴
   const meetYearMonth = meetTimeObectToString.slice(1, 9); //년월
   const meetDay = meetTimeObectToString.slice(9, 11); //일
+  const week = meetTimeObectToString;
   // let meetDayHour = 0;
-  // const meetDayHourfunc = () => {
-  //   if (Number(meetTimeValue[8]) < 10) {
-  //     let meetDayHour = 0 + meetTimeValue[8];
-  //   } else {
-  //     let meetDayHour = meetTimeValue[8];
-  //   }
-  // };
+  // if (Number(meetTimeValue[8]) < 10) {
+  //   const meetDayHourzero = meetTimeValue[8] + 'a';
+  // } else {
+  //   const meetDayHourzero = meetTimeValue[8];
+  // }
   //시
   const meetDayHour = meetTimeValue[8]; // am의경우 0이 앞에 안 붙는다.
   const meetDayMinute = meetTimeObectToString.slice(14, 17); //분
@@ -77,7 +87,7 @@ const PostPage = () => {
   //콘솔확인용/
   ////////////
   useEffect(() => {
-    console.log('meeting:', meeting);
+    console.log('meetTime:', toayweek);
     // setPostTime(timestring); //현재 시간
     // setPostHour(meeting); //약속 시간
     // setPostNickname(nickname);
