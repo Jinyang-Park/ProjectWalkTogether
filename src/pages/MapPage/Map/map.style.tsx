@@ -9,7 +9,7 @@ export const InfoWindow = styled.span`
   display: flex;
   flex-direction: column;
   width: 180px;
-  height: 209px;
+  height: 235px;
   cursor: pointer;
 `
 export const ResultListCard = styled.span`
@@ -17,7 +17,6 @@ export const ResultListCard = styled.span`
   flex-direction: column;
 
   padding: 10px;
-  border: 1px solid black;
 `
 
 export const ResultListCardImage = styled.span`
