@@ -4,9 +4,6 @@ import InfoList from './InfoList/InfoList'
 import MapContainer from './Map/map'
 import FilterBar from './Filter/Filter'
 
-import { AiOutlineSearch } from 'react-icons/ai'
-import { RxDividerVertical } from 'react-icons/rx'
-import { IoMdClose } from 'react-icons/io'
 import CommonStyles from './../../styles/CommonStyles'
 
 import { doc, getDocs, collection, query, orderBy } from 'firebase/firestore'
@@ -58,12 +55,6 @@ const MapPage = () => {
     <CommonStyles>
       <S.MapPageContainer>
         <S.MapPageHeader>
-          <S.MapPageSearchBar>
-            <AiOutlineSearch size={40} />
-            <S.SearchBar placeholder='대화 주제를 검색해 보세요.' />
-            <RxDividerVertical size={36} />
-            <IoMdClose size={40} />
-          </S.MapPageSearchBar>
           <S.MapKaKaoMapContainer>
             {/* Map Container */}
             <MapContainer Post={Post} />

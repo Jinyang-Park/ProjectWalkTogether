@@ -16,7 +16,7 @@ export const MapPageHeader = styled.span`
   flex-direction: column;
   margin-top: 30px;
 `
-export const MapPageSearchBar = styled.span`
+export const MapPageSearchBar = styled.form`
   display: flex;
   flex-direction: row;
   justify-content: start;
