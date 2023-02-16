@@ -17,6 +17,7 @@ import {
 import { useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import dayjs from 'dayjs';
 
 const Comments = () => {
   // 댓글 인풋
@@ -30,6 +31,12 @@ const Comments = () => {
 
   const navigate = useNavigate();
 
+  // 날짜 정보
+  const now = () => {
+    const now = dayjs();
+    return now.format('YYYY.MM.DD HH:mm');
+  };
+
   const newComments = {
     UID: authService.currentUser?.uid,
     // PostingID와 KeyForChat은 글쓰기에서 매개변수로 넘겨줘야된다.
@@ -38,7 +45,7 @@ const Comments = () => {
     //key:Description_Comments,inputComment: value
     Description_Comments: inputComment,
     ProfileImg: authService.currentUser?.photoURL,
-    CreatedAt: Date.now(),
+    CreatedAt: now(),
     NickName: authService.currentUser?.displayName ?? '익명',
     isDone: false,
     isEdit: false,

@@ -13,9 +13,7 @@ function InputInformation() {
         </S.KakaoMap>
       </S.MapBox>
       <S.InputBox>
-        <S.InputAdressBox>
-          <input />
-        </S.InputAdressBox>
+        <S.InputAdressBox></S.InputAdressBox>
         <S.InpuTimeBox>
           <MaterialUIPickers />
         </S.InpuTimeBox>

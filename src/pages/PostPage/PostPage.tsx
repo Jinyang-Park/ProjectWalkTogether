@@ -6,10 +6,11 @@ import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
 import { collection, addDoc } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
-import Mainpost from './MainPost/Mainpost';
 import IuputInformation from './InputInformation/InputInformation';
 import * as S from './Postpage.style';
 import CommonStyles from './../../styles/CommonStyles';
+import MainPost from './Mainpost/Mainpost';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const PostPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false); //아이디 찾기 모달창
@@ -35,6 +36,8 @@ const PostPage = () => {
   const meetTime = useRecoilValue(Time);
   const meetTimeObectToString = JSON.stringify(Object.values(meetTime)[2]);
   const meetTimeValue = Object.values(meetTime);
+
+  const navigate = useNavigate();
   // const meetHour = meetTimeObectToString.slice(12, 19); //시간 이상하게나옴
   const meetYearMonth = meetTimeObectToString.slice(1, 9); //년월
   const meetDay = meetTimeObectToString.slice(9, 11); //일
@@ -100,12 +103,13 @@ const PostPage = () => {
     } catch (e) {
       console.error('Error adding document: ', e);
     }
+    // navigate('/detailpage');
   };
 
   return (
     <CommonStyles>
       <S.Boxcontainer>
-        <Mainpost />
+        <MainPost />
         <IuputInformation />
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>

@@ -73,6 +73,7 @@ export const CommentInput = styled.div`
   flex-direction: row;
   align-items: flex-start;
   padding: 10px 10px 4px;
+  font-size: 16px;
   width: 812px;
 `;
 export const CommentContentsWrapper = styled.label`
@@ -116,8 +117,9 @@ export const CommentBtn = styled.button`
   background: none transparent;
   cursor: pointer;
 `;
-export const CommentDate = styled.div`
-  width: 100px;
+export const CommentDate = styled.p`
+  font-size: 8px;
+  font-weight: 500;
   color: rgb(130, 130, 130);
 `;
 export const CommentDeleteBtn = styled.button`
@@ -155,6 +157,7 @@ export const CommentContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0px 10px 10px 10px;
+  align-items: flex-end;
 `;
 export const CommentCancelDeleteBtnWrapper = styled.div``;
 export const EditForm = styled.input`

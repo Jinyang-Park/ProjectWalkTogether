@@ -111,6 +111,7 @@ export const BoxPhoto = styled.div`
   position: relative;
   left: 24px;
   background-color: white;
+  border-radius: 4px;
 `;
 
 // export const BoxPhotoPolaroid = styled.div``;
