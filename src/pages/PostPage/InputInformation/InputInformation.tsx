@@ -32,6 +32,10 @@ function InputInformation() {
     setSearch(e.target.value)
   }
 
+  // 좌표 - 주소 변환을 위한 State
+  const [address, setAddress] = useState('')
+  const geocoder = new kakao.maps.services.Geocoder()
+
   // 사용자 위치를 가져오기 위한 useEffect
   React.useEffect(() => {
     if (navigator.geolocation) {
