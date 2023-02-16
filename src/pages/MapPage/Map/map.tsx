@@ -166,7 +166,7 @@ const MapContainer = (Post) => {
       >
         <AiOutlineSearch size={40} />
         <S.SearchBar
-          placeholder='대화 주제를 검색해 보세요.'
+          placeholder='약속 장소를 검색해보세요.'
           type={'text'}
           value={search}
           onChange={onChange}
