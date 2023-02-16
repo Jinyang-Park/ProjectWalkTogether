@@ -90,7 +90,7 @@ const LikedListItem = styled.div`
   height: 96px;
 `;
 const ListItemWrapper = styled.div`
-  width: 180px;
+  width: 165px;
   height: 96px;
   margin-bottom: 10px;
 `;
@@ -99,8 +99,7 @@ const ListItemThumnail = styled.img`
   height: 96px;
 `;
 const ListItemThumnailTitle = styled.div`
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
   overflow: hidden;
 `;
 const TagName = styled.div`

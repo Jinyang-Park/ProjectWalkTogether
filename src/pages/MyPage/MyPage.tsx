@@ -243,8 +243,9 @@ const ImgEditBtn = styled(BsFillBrushFill)`
 const ImgChangeBtn = styled(FaPen)`
   position: absolute;
   cursor: pointer;
-  left: 22%;
-  top: 79%;
+  margin-left: 180px;
+  margin-top: -25px;
+  color: red;
 `;
 const AlertPhone = styled.div`
   width: 171px;
