@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Time, TitleInput } from './Hooks/Rocoil/Atom';
+import {
+  Time,
+  TitleInput,
+  DescriptionInput,
+  Bannerupload,
+  Thunmnailupload,
+} from './Hooks/Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
@@ -10,6 +16,8 @@ import Mainpost from './MainPost/Mainpost';
 import IuputInformation from './InputInformation/InputInformation';
 import * as S from './Postpage.style';
 import CommonStyles from './../../styles/CommonStyles';
+import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../common/firebase';
 
 const PostPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false); //아이디 찾기 모달창
@@ -30,6 +38,19 @@ const PostPage = () => {
   const [postNickname, setPostNickname] = useState(''); //사용자 닉네임 => 회원가입시시에 저장해 주거나 로컬에 저장하는 방법을 찾아야될 것 같다.
   const [postAddress, setPostAddress] = useState(''); //만날 위치 시,군,구,단
   const [postCategory, setPostCategory] = useState(''); //카테고리
+
+  //////이미지 받아오기
+  const [getThumbnail, setGetThumbnail] = useState<any>();
+  const [getBanner, setGetBanner] = useState<any>();
+  /////이미지가져오기
+  const banner = useRecoilValue(Bannerupload);
+  const thumbnail = useRecoilValue(Thunmnailupload);
+  ///// firestorage 이미지 불러오기
+  const auth = getAuth();
+  const user = auth.currentUser?.uid;
+  const nickname = auth.currentUser?.displayName;
+  const KeyForChat_Posting = uuidv4();
+  const [PostingID_Posting, setPostingID_Posting] = useState(uuidv4());
 
   //약속 시간
   const meetTime = useRecoilValue(Time);
@@ -61,9 +82,11 @@ const PostPage = () => {
   //시
   const meetDayHour = meetTimeValue[8]; // am의경우 0이 앞에 안 붙는다.
   const meetDayMinute = meetTimeObectToString.slice(14, 17); //분
-  let meeting = `${meetYearMonth}${meetDay}${meetDayHour}${meetDayMinute}` + ``;
+  let meeting =
+    `${meetYearMonth}${meetDay}__${meetDayHour}${meetDayMinute}` + ``;
 
   const Title = useRecoilValue(TitleInput);
+  const Description = useRecoilValue(DescriptionInput);
 
   /////////
   //현재시간
@@ -78,40 +101,85 @@ const PostPage = () => {
   };
   let timestring = `${time.year}/${time.month}/${time.date} ${time.hours}:${time.minutes}`;
 
-  const auth = getAuth();
-  const user = auth.currentUser?.uid;
-  const nickname = auth.currentUser?.displayName;
-
   /////////////
   //콘솔확인용/
   ////////////
   useEffect(() => {
-    console.log('meetTime:', toayweek);
-    // setPostTime(timestring); //현재 시간
-    // setPostHour(meeting); //약속 시간
-    // setPostNickname(nickname);
-    // setPostAuthor(user);
-  });
+    console.log('KeyForChat_Posting:', KeyForChat_Posting);
+    setPostTime(timestring); //현재 시간
+    setPostHour(meeting); //약속 시간
+    setPostNickname(nickname);
+    setPostAuthor(user);
+  }, [KeyForChat_Posting]);
 
   ////////////
   //작성완료//
   ///////////
-  const handleSubmit = async () => {
-    try {
-      const docRef = await addDoc(collection(dbService, 'Post'), {
-        // Description_Posting: posttitel,
-        Liked_Posting: false,
-        Nickname: postNickname,
-        RsvDate_Posting: postHour,
-        TimeStamp_Posting: postTime,
-        Title_Posting: Title,
-        UID: postAuthor,
+  const handleSubmit = async (e: any) => {
+    // e.preventDefault();
+    //////////////////// 썸네일 이미지 전송
+
+    if (thumbnail === null) return alert('이미지 업로드 실패');
+    const imageRef = ref(storage, `postimg/${PostingID_Posting}/thumbnail`); //+${thumbnail}
+    // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
+    await uploadBytes(imageRef, thumbnail).then((snapshot) => {
+      // 업로드 되자마자 뜨게 만들기
+      getDownloadURL(snapshot.ref).then((url) => {
+        alert('썸네일 저장 완료');
+        // setImageList((prev) => [...prev, url]); //이미지리스트에 저장
+        /////////배너이미지 전송
+        if (banner === null) return alert('이미지 업로드 실패');
+        const imageRef = ref(storage, `postimg/${PostingID_Posting}/banner`); //+${thumbnail}
+        // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
+        uploadBytes(imageRef, banner).then((snapshot) => {
+          // 업로드 되자마자 뜨게 만들기
+          getDownloadURL(snapshot.ref).then((url) => {
+            alert('베너 저장 완료');
+            // setImageList((prev) => [...prev, url]);
+          });
+        });
       });
-      console.log('Document written with ID: ', docRef.id);
-      alert('저장완료');
-    } catch (e) {
-      console.error('Error adding document: ', e);
-    }
+    });
+    ///DB에서 URL을 가져온다
+    await getDownloadURL(ref(storage, `postimg/${PostingID_Posting}/thumbnail`))
+      .then((url) => {
+        setGetThumbnail(() => url);
+        console.log('섬네일url', getThumbnail);
+
+        //get썸네일 url
+        getDownloadURL(ref(storage, `postimg/${PostingID_Posting}/banner`))
+          .then((url) => {
+            setGetBanner(() => url);
+            console.log('배너url', getBanner);
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      })
+      .catch((error) => {
+        alert(error);
+      });
+
+    ////////////////////////////////////////////////////////////
+    // try {
+    //   const docRef = addDoc(collection(dbService, 'Post'), {
+    //     Description_Posting: Description,
+    //     Liked_Posting: false,
+    //     Nickname: postNickname,
+    //     RsvDate_Posting: postHour,
+    //     TimeStamp_Posting: postTime,
+    //     Title_Posting: Title,
+    //     UID: postAuthor,
+    //     PostingID_Posting,
+    //     KeyForChat_Posting,
+    //     ThunmnailURL_Posting: getThumbnail,
+    //     BannereURL_Posting: getBanner,
+    //   });
+    //   console.log('Document written with ID: ', docRef);
+    //   alert('저장완료');
+    // } catch (e) {
+    //   console.error('Error adding document: ', e);
+    // }
   };
 
   return (

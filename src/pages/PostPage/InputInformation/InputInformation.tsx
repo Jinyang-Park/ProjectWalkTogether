@@ -16,14 +16,12 @@ function InputInformation() {
         <S.InputAdressBox>
           <input />
         </S.InputAdressBox>
-        <S.InpuDayBox>
-          <BasicDatePicker />
-        </S.InpuDayBox>
+        <S.InpuDayBox>{/* <BasicDatePicker /> */}</S.InpuDayBox>
 
         <S.InputTimeBox>
-          {/* <MaterialUIPickers /> */}
+          <MaterialUIPickers />
 
-          <MuiTime />
+          {/* <MuiTime /> */}
         </S.InputTimeBox>
       </S.InputBox>
     </S.MapNInputBox>

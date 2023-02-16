@@ -1,16 +1,19 @@
 import React, { useEffect, useState, useRef } from 'react';
 import * as S from './Mainpost.style';
 import { useRecoilState } from 'recoil';
-import { TitleInput } from '../Hooks/Rocoil/Atom';
-import { Bannerupload } from '../Hooks/Rocoil/Atom';
+import { TitleInput, DescriptionInput } from '../Hooks/Rocoil/Atom';
+import { Bannerupload, Thunmnailupload } from '../Hooks/Rocoil/Atom';
+import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 
 function MainPost() {
   const [posttitel, Setposttitle] = useRecoilState(TitleInput); //글 제목
   const [postTag, setPostTag] = useState(''); //해쉬태그
-  const [postdescription, SetDescription] = useState(''); //글 내용
+  const [postdescription, SetDescription] = useRecoilState(DescriptionInput); //글 내용
   const [postCategory, setPostCategory] = useState(''); //카테고리
-  const [photoupload, setPhotoupload] = useState<any>(); // Handles input change event and updates state
-  const [bannerupload, setBanneruploadupload] = useState<any>('');
+  const [photoupload, setPhotoupload] = useRecoilState(Thunmnailupload); // Handles input change event and updates state
+  const [bannerupload, setBanneruploadupload] = useRecoilState(Bannerupload);
+  const [thumbnail, setThumbnail] = useState<any>(null); // Handles input change event and updates state
+  const [banner, setBanner] = useState<any>(null);
 
   function thumnailimageChange(e: any) {
     const filelist = e.target.files[0];
@@ -18,11 +21,25 @@ function MainPost() {
     const reader = new FileReader();
 
     reader.onload = () => {
-      setPhotoupload(reader.result);
+      setPhotoupload(filelist);
+      setThumbnail(reader.result);
     };
 
     reader.readAsDataURL(filelist);
-    console.log('이미지:', filelist);
+    console.log('썸네일:', photoupload);
+
+    // if (thumbnail === null) return alert('이미지 업로드 실패');
+    // const imageRef = ref(storage, `postimg/${PostingID_Posting}/thumbnail`); //+${thumbnail}
+    // // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
+    // uploadBytes(imageRef, thumbnail).then((snapshot) => {
+    //   // 업로드 되자마자 뜨게 만들기
+    //   getDownloadURL(snapshot.ref).then((url) => {
+    //     alert('썸네일 저장 완료');
+    //     // setImageList((prev) => [...prev, url]); //이미지리스트에 저장
+    //     ///////////////////////////
+    //     /////////배너이미지 전송
+    //   });
+    // });
   }
 
   function bannerimageChange(e: any) {
@@ -31,11 +48,12 @@ function MainPost() {
     const reader = new FileReader();
 
     reader.onload = () => {
-      setBanneruploadupload(reader.result);
+      setBanneruploadupload(filelist);
+      setBanner(reader.result);
     };
 
     reader.readAsDataURL(filelist);
-    console.log('이미지:', filelist);
+    console.log('배너:', filelist);
   }
 
   /////////
@@ -56,7 +74,7 @@ function MainPost() {
       <S.Bannercontainer>
         <label htmlFor="banner">
           <S.ThumbnailImgPorlaroid
-            src={bannerupload ? bannerupload : '/assets/thumbnailImg.png'}
+            src={banner ? banner : '/assets/thumbnailImg.png'}
           />
         </label>
         <S.BannerPhoto
@@ -71,7 +89,7 @@ function MainPost() {
         <S.BoxPhoto>
           <label htmlFor="thumnail">
             <S.ThumnailPhotoChange
-              src={photoupload ? photoupload : '/assets/blackboard.png'}
+              src={thumbnail ? thumbnail : '/assets/blackboard.png'}
             />
           </label>
           <S.ThumnailPhoto

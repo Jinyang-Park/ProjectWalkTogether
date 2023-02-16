@@ -11,7 +11,7 @@ export default function BasicTimePicker() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <TimePicker
-        label="시간"
+        // label="시간"
         value={value}
         onChange={(newValue) => {
           setValue(newValue);
