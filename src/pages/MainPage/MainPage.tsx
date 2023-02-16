@@ -9,7 +9,7 @@ import CategoryAll from './CategoryAll/CategoryAll';
 const MainPage = () => {
   return (
     <CommonStyles>
-      <Banner src='/assets/thumbnailImg.png'></Banner>
+      <Banner src="/assets/thumbnailImg.png" />
       <StyledMainContainer>
         <CategoryAll />
         <div>
@@ -145,31 +145,32 @@ const MainPage = () => {
 //전체를 감싸는 container 스타일
 
 const StyledMainContainer = styled.div`
-  width: 1350px;
-  margin: auto;
+  margin: 0 auto;
+  width: 868px;
   flex-wrap: wrap;
-
-  @media screen and (max-width: 1400px) {
-    width: 1200px;
-  }
-  @media screen and (max-width: 1300px) {
-    width: 1100px;
-  }
   @media screen and (max-width: 1024px) {
-    width: 90%;
+    width: 868px;
   }
-  @media screen and (max-width: 780px) {
-    width: 95%;
+  @media screen and (max-width: 430px) {
+    width: 364px;
   }
 `;
 
 const Banner = styled.img`
-  width: 100%;
+  display: flex;
+
+  @media screen and (max-width: 1024px) {
+    width: 1024px;
+  }
+  @media screen and (max-width: 430px) {
+    width: 430px;
+  }
 `;
 
 const ContentList = styled.div`
-  flex-wrap: wrap;
   display: flex;
+  flex-wrap: wrap;
+  margin: auto;
 `;
 const Category = styled.div`
   width: 450px;
@@ -179,17 +180,18 @@ const Category = styled.div`
 `;
 
 const Content = styled.div`
-  width: 250px;
-  height: 200px;
-  background-color: orange;
+  margin: 0 auto;
 
-  margin: 40px;
+  width: 180px;
+  height: 180px;
+  background-color: orange;
 `;
 const Line = styled.div`
+  display: flex;
   border-top: 1px solid #444444;
   margin-top: 5px;
   margin-bottom: 3px;
-  width: 230px;
+  width: 170px;
   margin-left: 10px;
 `;
 
