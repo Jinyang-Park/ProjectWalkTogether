@@ -21,10 +21,9 @@ function MainPost() {
     const reader = new FileReader();
 
     reader.onload = () => {
-      setPhotoupload(filelist);
-      setThumbnail(reader.result);
+      setPhotoupload(() => filelist);
+      setThumbnail(() => reader.result);
     };
-
     reader.readAsDataURL(filelist);
     console.log('썸네일:', photoupload);
 
@@ -48,8 +47,8 @@ function MainPost() {
     const reader = new FileReader();
 
     reader.onload = () => {
-      setBanneruploadupload(filelist);
-      setBanner(reader.result);
+      setBanneruploadupload(() => filelist);
+      setBanner(() => reader.result);
     };
 
     reader.readAsDataURL(filelist);

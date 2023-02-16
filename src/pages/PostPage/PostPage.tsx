@@ -124,68 +124,83 @@ const PostPage = () => {
     // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
     await uploadBytes(imageRef, thumbnail).then((snapshot) => {
       // 업로드 되자마자 뜨게 만들기
-      getDownloadURL(snapshot.ref).then((url) => {
-        alert('썸네일 저장 완료');
-        // setImageList((prev) => [...prev, url]); //이미지리스트에 저장
-        /////////배너이미지 전송
-        if (banner === null) return alert('이미지 업로드 실패');
-        const imageRef = ref(storage, `postimg/${PostingID_Posting}/banner`); //+${thumbnail}
-        // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-        uploadBytes(imageRef, banner).then((snapshot) => {
-          // 업로드 되자마자 뜨게 만들기
-          getDownloadURL(snapshot.ref).then((url) => {
-            alert('베너 저장 완료');
-            // setImageList((prev) => [...prev, url]);
-          });
-        });
-      });
-    });
-    ///DB에서 URL을 가져온다
-    await getDownloadURL(ref(storage, `postimg/${PostingID_Posting}/thumbnail`))
-      .then((url) => {
-        setGetThumbnail(() => url);
-        console.log('섬네일url', getThumbnail);
 
-        //get썸네일 url
-        getDownloadURL(ref(storage, `postimg/${PostingID_Posting}/banner`))
+      alert('썸네일 저장 완료');
+      // setImageList((prev) => [...prev, url]); //이미지리스트에 저장
+      /////////배너이미지 전송
+      if (banner === null) return alert('이미지 업로드 실패');
+      const imageRef = ref(storage, `postimg/${PostingID_Posting}/banner`); //+${thumbnail}
+      // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
+      uploadBytes(imageRef, banner).then((snapshot) => {
+        alert('베너 저장 완료');
+        getDownloadURL(ref(storage, `postimg/${PostingID_Posting}/thumbnail`))
           .then((url) => {
-            setGetBanner(() => url);
-            console.log('배너url', getBanner);
+            setGetThumbnail(() => url);
+            console.log('섬네일url', url);
+
+            //get썸네일 url
+            getDownloadURL(ref(storage, `postimg/${PostingID_Posting}/banner`))
+              .then((url) => {
+                setGetBanner(url);
+                console.log('배너url', getBanner);
+              })
+              .catch((error) => {
+                alert(error);
+              });
           })
           .catch((error) => {
             alert(error);
           });
-      })
-      .catch((error) => {
-        alert(error);
+        // setImageList((prev) => [...prev, url]);
       });
+    });
+
+    ///DB에서 URL을 가져온다
+    // getDownloadURL(ref(storage, `postimg/${PostingID_Posting}/thumbnail`))
+    //   .then((url) => {
+    //     setGetThumbnail(() => url);
+    //     console.log('섬네일url', getThumbnail);
+
+    //     //get썸네일 url
+    //     getDownloadURL(ref(storage, `postimg/${PostingID_Posting}/banner`))
+    //       .then((url) => {
+    //         setGetBanner(() => url);
+    //         console.log('배너url', getBanner);
+    //       })
+    //       .catch((error) => {
+    //         alert(error);
+    //       });
+    //   })
+    //   .catch((error) => {
+    //     alert(error);
+    //   });
 
     ////////////////////////////////////////////////////////////
-    // try {
-    //   const docRef = addDoc(collection(dbService, 'Post'), {
-    //     Description_Posting: Description,
-    //     Liked_Posting: false,
-    //     Nickname: postNickname,
-    //     RsvDate_Posting: postHour,
-    //     TimeStamp_Posting: postTime,
-    //     Title_Posting: Title,
-    //     UID: postAuthor,
-    //     PostingID_Posting,
-    //     KeyForChat_Posting,
-    //     ThunmnailURL_Posting: getThumbnail,
-    //     BannereURL_Posting: getBanner,
-    //   });
-    //   console.log('Document written with ID: ', docRef);
-    //   alert('저장완료');
-    // } catch (e) {
-    //   console.error('Error adding document: ', e);
-    // }
+    try {
+      const docRef = addDoc(collection(dbService, 'Post'), {
+        Description_Posting: Description,
+        Liked_Posting: false,
+        Nickname: postNickname,
+        RsvDate_Posting: postHour,
+        TimeStamp_Posting: postTime,
+        Title_Posting: Title,
+        UID: postAuthor,
+        PostingID_Posting,
+        KeyForChat_Posting,
+        ThunmnailURL_Posting: getThumbnail,
+        BannereURL_Posting: getBanner,
+      });
+      console.log('Document written with ID: ', docRef);
+      alert('저장완료');
+    } catch (e) {
+      console.error('Error adding document: ', e);
+    }
   };
 
   return (
     <CommonStyles>
       <S.Boxcontainer>
-        <MainPost />
+        <Mainpost />
         <IuputInformation />
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>
