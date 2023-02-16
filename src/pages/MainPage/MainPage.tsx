@@ -155,8 +155,9 @@ const MainPage = () => {
 //전체를 감싸는 container 스타일
 
 const StyledMainContainer = styled.div`
-  margin: auto;
-
+  margin: 0 auto;
+  width: 868px;
+  flex-wrap: wrap;
   @media screen and (max-width: 1024px) {
     width: 868px;
   }
@@ -189,13 +190,10 @@ const Category = styled.div`
 `;
 
 const Content = styled.div`
-  width: 250px;
-  height: 200px;
-  margin: auto;
+  margin: 0 auto;
 
-  @media screen and (max-width: 1024px) {
-    width: 180px;
-  }
+  width: 180px;
+  height: 180px;
   background-color: orange;
 `;
 const Line = styled.div`
@@ -203,7 +201,7 @@ const Line = styled.div`
   border-top: 1px solid #444444;
   margin-top: 5px;
   margin-bottom: 3px;
-  width: 230px;
+  width: 170px;
   margin-left: 10px;
 `;
 

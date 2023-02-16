@@ -104,40 +104,41 @@ const LoginPage = () => {
       <S.InputLayout>
         <form onSubmit={handleSubmitClick}>
           <S.InputBox>
-            <S.LoginLogo>
-              <h1>같이 걸을래?</h1>
-            </S.LoginLogo>
-
+            <S.leftBox />
             <S.InputBoxContent>
+              <S.LoginLogo>
+                <h1>같이 걸을래?</h1>
+              </S.LoginLogo>
               <S.Inputholder>
                 <S.Input type="email" name="아이디" placeholder="이메일을 입력해주세요" onChange={onChangeEmail}></S.Input>
               </S.Inputholder>
               <S.Inputholder>
                 <S.Input type="password" name="비밀번호" placeholder="비밀번호를 입력해주세요" onChange={onChangePassword}></S.Input>
               </S.Inputholder>
-            </S.InputBoxContent>
-            <S.ButtonBox>
-              <S.LoginBtn type="submit">로그인</S.LoginBtn>
-            </S.ButtonBox>
-            <S.LineBox>
-              <S.Line />
-              <text>또는</text>
-              <S.Line />
-            </S.LineBox>
 
-            <S.SocialBox>
-              <S.Facebook onClick={signInWithFacebook} src="/assets/facebook.png" />
-              <S.Google onClick={signInWithGoogle} src="assets/google.png" />
-              <KakaoLoginButton />
-            </S.SocialBox>
-            <S.ThirdBox>
-              <S.RegisterBtn type="button" onClick={() => navigate('/signup')}>
-                회원 가입
-              </S.RegisterBtn>
-              <S.FindBox>
-                <S.RegisterBtn onClick={findPwd}>비밀번호찾기</S.RegisterBtn>
-              </S.FindBox>
-            </S.ThirdBox>
+              <S.ButtonBox>
+                <S.LoginBtn type="submit">로그인</S.LoginBtn>
+              </S.ButtonBox>
+              <S.LineBox>
+                <S.Line />
+                <S.OrText>또는</S.OrText>
+                <S.Line />
+              </S.LineBox>
+
+              <S.SocialBox>
+                <S.Facebook onClick={signInWithFacebook} src="/assets/facebook.png" />
+                <S.Google onClick={signInWithGoogle} src="assets/google.png" />
+                <KakaoLoginButton />
+              </S.SocialBox>
+              <S.ThirdBox>
+                <S.RegisterBtn type="button" onClick={() => navigate('/signup')}>
+                  회원 가입
+                </S.RegisterBtn>
+                <S.FindBox>
+                  <S.RegisterBtn onClick={findPwd}>비밀번호찾기</S.RegisterBtn>
+                </S.FindBox>
+              </S.ThirdBox>
+            </S.InputBoxContent>
           </S.InputBox>
         </form>
 

@@ -1,25 +1,39 @@
 import styled from 'styled-components';
 
-export const InputLayout = styled.div`
-  // background-color: #b1b1b1;
+export const InputLayout = styled.div``;
+
+export const leftBox = styled.div`
+  background: #adadad;
+  border-radius: 10px;
+  width: 370px;
+  height: 436px;
+  margin: auto;
 `;
 export const InputBox = styled.div`
-  position: relative;
-  width: 360px;
-  height: 640px;
-  margin-left: -180px;
+  display: flex;
+
+  flex-wrap: wrap;
+  width: 868px;
+  height: 532px;
+  background: #efefef;
   margin-top: 80px;
-  left: 50%;
-  border-radius: 30px;
+  margin: auto;
+  border-radius: 10px;
   padding: 5px;
   top: 50px;
-  border: 2px solid #2192ff;
+
   z-index: 1;
 `;
+export const InputBoxContent = styled.div`
+  width: 360px;
+
+  margin: auto;
+`;
+
 // 인풋태그
 export const Input = styled.input`
   border: none;
-  width: 15.625rem;
+  width: 250px;
   height: 2.375rem;
   position: relative;
   left: 1.875rem;
@@ -31,26 +45,24 @@ export const Input = styled.input`
 
 //Input태그의 테두리
 export const Inputholder = styled.div`
+  margin: auto;
   border-radius: 0.625rem;
-  width: 18.75rem;
-  height: 2.8125rem;
-  border: 0.1875rem solid #b2c8df;
+  width: 360px;
+  height: 48px;
+  border: 2px solid #adadad;
   color: #b2c8df;
-  margin-top: 1.5625rem;
+  margin-top: 10px;
 `;
 
 //인풋을 둘러싼 박스
-export const InputBoxContent = styled.div`
-  margin: 1.25rem;
-`;
 
 //잠깐만 !
 export const LoginLogo = styled.div`
   text-align: center;
-  margin-top: 6.875rem;
+  margin-top: 2.875rem;
   margin-bottom: 1.5625rem;
-  font-size: 1.25rem;
-  color: #2192ff;
+  font-size: 32px;
+  color: black;
 `;
 
 export const ButtonBox = styled.div`
@@ -63,11 +75,15 @@ export const Line = styled.div`
   border-top: 0.0625rem solid #444444;
   margin-top: 0.3125rem;
   margin-bottom: 0.1875rem;
-  width: 8.125rem;
+  width: 150px;
   margin: auto;
+`;
+export const OrText = styled.div`
+  font-size: 10px;
 `;
 
 export const SocialBox = styled.div`
+  margin: auto;
   display: flex;
   align-items: center;
   margin-left: 3.125rem;
@@ -77,6 +93,7 @@ export const FindBox = styled.div`
   display: flex;
 `;
 export const LineBox = styled.div`
+  margin: 10px;
   align-items: center;
   display: flex;
 `;
@@ -100,15 +117,15 @@ export const KakaoLoginButton = styled.img`
 `;
 
 export const LoginBtn = styled.button`
-  border-radius: 2.5rem;
-  width: 15.625rem;
+  border-radius: 5px;
+  width: 360px;
   height: 2.5rem;
-  font-size: 1.25rem;
-  color: #2192ff;
+  font-size: 16px;
+  color: black;
   border-color: #2192ff;
-  font-weight: 900;
+  font-weight: 400;
   margin-top: 0.9375rem;
-  background-color: White;
+  background-color: #d1d1d1;
   cursor: pointer;
   &:hover {
     background: cornflowerblue;
@@ -123,12 +140,12 @@ export const ThirdBox = styled.div`
 `;
 
 export const RegisterBtn = styled.button`
-  width: 6.875rem;
+  width: 80px;
   height: 2.5rem;
-  color: #2192ff;
+  color: black;
   border: none;
   margin-top: 0.625rem;
-  background-color: White;
+
   cursor: pointer;
   &:hover {
     color: #816ceb;

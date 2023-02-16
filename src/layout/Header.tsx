@@ -18,9 +18,6 @@ const Header = () => {
     <CommonStyles>
       <NavContainer>
         <Nav>
-          <LeftSection>
-            <Link to="/">{/* <Logo src={logoImg} alt="Logo" /> */}</Link>
-          </LeftSection>
           <NavUl>
             <NavLi>
               <NavText to="/">Home</NavText>
@@ -41,9 +38,10 @@ const Header = () => {
               <NavText to="/detailpage">상세</NavText>
             </NavLi>
           </NavUl>
-          <Profile onClick={gotomy}>닉네임</Profile>
-
-          <LoginButton onClick={handleLogin}>Login/탭</LoginButton>
+          <NavEtc>
+            <Profile onClick={gotomy}>닉네임</Profile>
+            <LoginButton onClick={handleLogin}>Login</LoginButton>
+          </NavEtc>
         </Nav>
       </NavContainer>
     </CommonStyles>
@@ -60,32 +58,22 @@ const NavContainer = styled.div`
 
 const Nav = styled.div`
   display: flex;
+  margin: auto;
+  width: 868px;
+  background-color: green;
   align-items: center;
   justify-content: space-between;
-  @media screen and (max-width: 1440px) {
-    width: 1220px;
-  }
-  @media screen and (max-width: 1024px) {
-    width: 868px;
-  }
-  @media screen and (max-width: 430px) {
-    width: 364px;
-  }
-`;
-
-const LeftSection = styled.div`
-  display: flex;
-  margin: 0px;
 `;
 
 const NavUl = styled.ul`
   display: flex;
-  width: 50%;
+  background-color: orange;
 `;
 
 const NavLi = styled.li`
   list-style: none;
-  margin-right: 3.25rem;
+  margin-right: 2.25rem;
+  margin-top: 10px;
   text-decoration: none;
 `;
 const NavText = styled(Link)`
@@ -94,24 +82,25 @@ const NavText = styled(Link)`
   font-size: 12px;
 `;
 const LoginButton = styled.button`
-  display: flex;
   border: none;
-  padding-left: 1.5625rem;
-  padding-right: 1.5625rem;
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
-  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  border-radius: 5px;
   width: 3.25rem;
-  background: #ff5c00;
-
-  color: white;
+  background: white;
+  font-size: 12px;
+  color: black;
 `;
-
-const Profile = styled.div`
+const NavEtc = styled.div`
   display: flex;
-  height: 2.5rem;
+  margin: 0px;
+`;
+const Profile = styled.div`
   padding-top: 0.625rem;
-  padding-left: 5.5625rem;
+
+  font-size: 12px;
 `;
 const Logo = styled.img`
   height: 3.125rem;
