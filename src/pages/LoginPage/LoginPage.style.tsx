@@ -100,19 +100,19 @@ export const LineBox = styled.div`
 export const Facebook = styled.img`
   margin: 1.25rem;
   width: 2.5rem;
-  heigh: 2.5rem;
+
   cursor: pointer;
 `;
 export const Google = styled.img`
   margin: 1.25rem;
   width: 2.5rem;
-  heigh: 2.5rem;
+
   cursor: pointer;
 `;
 export const KakaoLoginButton = styled.img`
   margin: 1.25rem;
   width: 2.5rem;
-  heigh: 2.5rem;
+
   cursor: pointer;
 `;
 
