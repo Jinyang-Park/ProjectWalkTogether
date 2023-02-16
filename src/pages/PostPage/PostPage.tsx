@@ -101,6 +101,7 @@ const PostPage = () => {
     try {
       const docRef = await addDoc(collection(dbService, 'Post'), {
         // Description_Posting: posttitel,
+
         Liked_Posting: false,
         Nickname: postNickname,
         RsvDate_Posting: postHour,

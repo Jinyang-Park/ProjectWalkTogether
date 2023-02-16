@@ -1,35 +1,43 @@
-export const postList = [
+export const CategorysList = [
   {
     name: '반려동물',
     value: 1,
+    img: '/assets/dog.png',
   },
   {
     name: '독서',
     value: 2,
+    img: '/assets/dog.png',
   },
   {
     name: '음악',
     value: 3,
+    img: '/assets/dog.png',
   },
   {
     name: '고민상담',
     value: 4,
+    img: '/assets/dog.png',
   },
   {
     name: '부동산',
     value: 5,
+    img: '/assets/dog.png',
   },
   {
     name: '영화',
     value: 6,
+    img: '/assets/dog.png',
   },
   {
     name: '운동',
     value: 7,
+    img: '/assets/dog.png',
   },
   {
     name: '음식',
     value: 8,
+    img: '/assets/dog.png',
   },
   {
     name: '연애',

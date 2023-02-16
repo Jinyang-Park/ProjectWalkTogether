@@ -3,7 +3,6 @@ import MaterialUIPickers from '../Hooks/Calendar/MuiCalendar';
 import BasicDatePicker from '../Hooks/Calendar/MuiDate';
 // import MapContainer from '../../MapPage/Map/map';
 import MuiTime from '../Hooks/Calendar/MuiTime';
-
 function InputInformation() {
   return (
     <S.MapNInputBox>
@@ -14,12 +13,13 @@ function InputInformation() {
       </S.MapBox>
       <S.InputBox>
         <S.InputAdressBox></S.InputAdressBox>
-        <S.InpuTimeBox>
+        <S.InpuDayBox>{/* <BasicDatePicker /> */}</S.InpuDayBox>
+        <S.InputTimeBox>
           <MaterialUIPickers />
-        </S.InpuTimeBox>
+          {/* <MuiTime /> */}
+        </S.InputTimeBox>
       </S.InputBox>
     </S.MapNInputBox>
   );
 }
-
 export default InputInformation;
