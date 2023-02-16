@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import * as S from './Mainpost.style';
 import { useRecoilState } from 'recoil';
-import { TitleInput } from '../Hooks/Rocoil/Atom';
-import { Bannerupload } from '../Hooks/Rocoil/Atom';
+import { Bannerupload, TitleInput } from './../Hooks/Rocoil/Atom';
 
 function MainPost() {
   const [posttitel, Setposttitle] = useRecoilState(TitleInput); //글 제목
@@ -10,7 +9,7 @@ function MainPost() {
   const [postdescription, SetDescription] = useState(''); //글 내용
   const [postCategory, setPostCategory] = useState(''); //카테고리
   const [photoupload, setPhotoupload] = useState<any>(); // Handles input change event and updates state
-  const [bannerupload, setBanneruploadupload] = useState<any>('');
+  const [Bannerupload, setBanneruploadupload] = useState<any>('');
 
   function thumnailimageChange(e: any) {
     const filelist = e.target.files[0];
@@ -55,7 +54,7 @@ function MainPost() {
       <S.Bannercontainer>
         <label htmlFor='banner'>
           <S.ThumbnailImgPorlaroid
-            src={bannerupload ? bannerupload : '/assets/thumbnailImg.png'}
+            src={Bannerupload ? Bannerupload : '/assets/thumbnailImg.png'}
           />
         </label>
         <S.BannerPhoto
