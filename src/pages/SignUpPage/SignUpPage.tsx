@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile, RecaptchaVerifier } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../../common/firebase';
 import { emailRegex, nicknameRegex, pwdRegex } from '../../utils/UserInfoRegex';
@@ -87,6 +87,7 @@ const SignUpPage = () => {
   // submit & firebase
   const handleSubmitClick = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     //패스워드와 패스워드 확인이 일치하고 패스워드의 유효성 검사를 통과하고 닉네임을 작성해야만 로그인이 가능하다.
     if (
       nicknameRegex.test(displayname) === true &&
