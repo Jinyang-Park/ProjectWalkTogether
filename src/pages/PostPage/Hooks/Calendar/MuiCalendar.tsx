@@ -10,6 +10,7 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { useRecoilState } from 'recoil';
 import { Time } from '../Rocoil/Atom';
+import 'dayjs/locale/ko';
 
 export default function MaterialUIPickers() {
   const [value, setValue] = React.useState(dayjs(Date()));
@@ -23,10 +24,9 @@ export default function MaterialUIPickers() {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ko">
       <Stack>
         <DateTimePicker
-          label="Date&Time picker"
           value={value}
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}

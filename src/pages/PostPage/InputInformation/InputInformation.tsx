@@ -1,6 +1,8 @@
 import * as S from './InputInformation.style';
 import MaterialUIPickers from '../Hooks/Calendar/MuiCalendar';
+import BasicDatePicker from '../Hooks/Calendar/MuiDate';
 import MapContainer from '../../MapPage/Map/map';
+import MuiTime from '../Hooks/Calendar/MuiTime';
 
 function InputInformation() {
   return (
@@ -16,9 +18,15 @@ function InputInformation() {
         <S.InputAdressBox>
           <input />
         </S.InputAdressBox>
-        <S.InpuTimeBox>
-          <MaterialUIPickers />
-        </S.InpuTimeBox>
+        <S.InpuDayBox>
+          <BasicDatePicker />
+        </S.InpuDayBox>
+
+        <S.InputTimeBox>
+          {/* <MaterialUIPickers /> */}
+
+          <MuiTime />
+        </S.InputTimeBox>
       </S.InputBox>
     </S.MapNInputBox>
   );
