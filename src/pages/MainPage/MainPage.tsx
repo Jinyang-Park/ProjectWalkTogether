@@ -10,8 +10,8 @@ const MainPage = () => {
   return (
     <CommonStyles>
       <Banner src='/assets/thumbnailImg.png'></Banner>
-      <CategoryAll />
       <StyledMainContainer>
+        <CategoryAll />
         <div>
           <span style={{ fontSize: 20, fontWeight: 'bold' }}>신발신는중</span>
           <ContentList>
