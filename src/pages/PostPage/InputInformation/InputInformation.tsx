@@ -1,4 +1,4 @@
-import * as S from './InputInformation.style';
+import * as S from './InputInformation.style'
 // import MapContainer from '../../MapPage/Map/map';
 
 import {
@@ -6,74 +6,73 @@ import {
   MapMarker,
   ZoomControl,
   MapTypeControl,
-} from 'react-kakao-maps-sdk';
-import { useState, useEffect } from 'react';
-import React from 'react';
-import AntCalendar from '../Hooks/Calendar/AntCalendarDate';
-import AntCalendarTime from '../Hooks/Calendar/AntCalendarTime';
+} from 'react-kakao-maps-sdk'
+import { useState, useEffect } from 'react'
+import React from 'react'
+import AntCalendar from '../Hooks/Calendar/AntCalendarDate'
+import AntCalendarTime from '../Hooks/Calendar/AntCalendarTime'
 
 function InputInformation() {
   // 현재 위치를 가져오기 위한 state 생성
-  const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 });
+  const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 })
 
   // 지도 좌표를 저장할 state
-  const [position, setPosition] = useState({ lat: 36.5, lng: 127.8 });
+  const [position, setPosition] = useState({ lat: 36.5, lng: 127.8 })
 
   // 키워드로 장소검색하기를 위한 state
-  const [info, setInfo] = useState<any>();
-  const [markers, setMarkers] = useState([]);
-  const [map, setMap] = useState<any>();
-  const [bounds, setBounds] = useState();
+  const [info, setInfo] = useState<any>()
+  const [markers, setMarkers] = useState([])
+  const [map, setMap] = useState<any>()
+  const [bounds, setBounds] = useState()
 
   // input value 를 가져오기 위한 state
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState('')
 
   const onChange = (e) => {
-    setSearch(e.target.value);
-  };
+    setSearch(e.target.value)
+  }
 
   // 좌표 - 주소 변환을 위한 State
-  const [address, setAddress] = useState('');
-  const geocoder = new kakao.maps.services.Geocoder();
+  const [address, setAddress] = useState('')
+  const geocoder = new kakao.maps.services.Geocoder()
 
   // 사용자 위치를 가져오기 위한 useEffect
   React.useEffect(() => {
     if (navigator.geolocation) {
-      // GeoLocation을 이용해서 접속 위치를 얻어온다
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setMyLoca({
             lat: position.coords.latitude, // 위도
             lng: position.coords.longitude, // 경도
-          });
+          })
         },
         (err) => {
-          alert('현재 위치를 표시할 수 없어요');
+          alert('현재 위치를 표시할 수 없어요')
         },
         { enableHighAccuracy: true } // 위치정보의 정확도를 높이는 옵션
-      );
+      )
     } else {
       // HTML5의 GeoLocation을 사용할 수 없을때
-      alert('현재 위치를 표시할 수 없어요');
+      alert('현재 위치를 표시할 수 없어요')
     }
-  }, []);
+  }, [])
 
   // 키워드로 장소검색하기 위한 useEffect
   useEffect(() => {
-    SearchFunction();
-  }, [map]);
+    SearchFunction()
+  }, [map])
 
   //  // 지도를 불러오기 위한 함수
   const SearchFunction = () => {
-    if (!map) return;
-    const ps = new kakao.maps.services.Places();
+    if (!map) return
+    const ps = new kakao.maps.services.Places()
 
     ps.keywordSearch(search, (data, status, _pagination) => {
       if (status === kakao.maps.services.Status.OK) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
-        const bounds = new kakao.maps.LatLngBounds();
-        let markers = [];
+        const bounds = new kakao.maps.LatLngBounds()
+        let markers = []
 
         for (var i = 0; i < data.length; i++) {
           // @ts-ignore
@@ -85,17 +84,27 @@ function InputInformation() {
           //   content: data[i].place_name,
           // })
           // @ts-ignore
-          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x))
         }
-        setMarkers(markers);
+        setMarkers(markers)
 
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-        map.setBounds(bounds);
+        map.setBounds(bounds)
       }
-    });
-  };
+    })
+  }
 
-  console.log(search);
+  // geocoder를 이용해 좌표 - 주소 변환
+  const convertAddress = () => {
+    geocoder.coord2Address(position.lng, position.lat, (result, status) => {
+      if (status === kakao.maps.services.Status.OK) {
+        setAddress(result[0].address.address_name)
+      }
+    })
+  }
+  convertAddress()
+  console.log(address)
+  console.log(search)
 
   return (
     <S.MapNInputBox>
@@ -146,10 +155,10 @@ function InputInformation() {
       <S.InputBox>
         <S.InputAdressBox
           onSubmit={(e) => {
-            e.preventDefault();
-            SearchFunction();
-            e.preventDefault();
-            SearchFunction();
+            e.preventDefault()
+            SearchFunction()
+            e.preventDefault()
+            SearchFunction()
           }}
         >
           <input
@@ -167,7 +176,7 @@ function InputInformation() {
         </S.InputTimeBox>
       </S.InputBox>
     </S.MapNInputBox>
-  );
+  )
 }
 
-export default InputInformation;
+export default InputInformation

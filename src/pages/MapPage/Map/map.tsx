@@ -111,6 +111,19 @@ const MapContainer = (Post) => {
     // console.log(Post, post.MeetLatitude_Posting)
     // console.log(post.MeetLongitude_Posting)
 
+    // geocoder를 이용해 좌표 - 주소 변환
+    geocoder.coord2Address(
+      post.MeetLongitude_Posting,
+      post.MeetLatitude_Posting,
+      function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          setAddress(result[0].address.address_name)
+        }
+      }
+    )
+
+    console.log('address', address)
+
     return (
       <MapMarker
         position={{
