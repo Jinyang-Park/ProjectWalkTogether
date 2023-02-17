@@ -24,22 +24,22 @@ const Header = () => {
       <S.Nav>
         <S.NavUl>
           <S.NavLi>
-            <S.NavText to="/">Home</S.NavText>
+            <S.NavText to='/'>Home</S.NavText>
           </S.NavLi>
           <S.NavLi>
-            <S.NavText to="/map">Map</S.NavText>
+            <S.NavText to='/map'>Map</S.NavText>
           </S.NavLi>
           <S.NavLi>
-            <S.NavText to="/chat">chat</S.NavText>
+            <S.NavText to='/chat'>chat</S.NavText>
           </S.NavLi>
           <S.NavLi>
-            <S.NavText to="/category">카테고리</S.NavText>
+            <S.NavText to='/category'>카테고리</S.NavText>
           </S.NavLi>
           <S.NavLi>
-            <S.NavText to="/postpage">글쓰기</S.NavText>
+            <S.NavText to='/postpage'>글쓰기</S.NavText>
           </S.NavLi>
           <S.NavLi>
-            <S.NavText to="/detailpage">상세</S.NavText>
+            <S.NavText to='/detailpage'>상세</S.NavText>
           </S.NavLi>
         </S.NavUl>
 
@@ -62,7 +62,7 @@ const Header = () => {
                       <KakaoLogoutButton />
                     </S.Li>
                     <S.Li>
-                      <S.NavText to="/postpage">글쓰기</S.NavText>
+                      <S.NavText to='/postpage'>글쓰기</S.NavText>
                     </S.Li>
                   </S.Ul>
                 </S.DropNav>
