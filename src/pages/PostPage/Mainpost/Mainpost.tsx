@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import * as S from './Mainpost.style';
 import { useRecoilState } from 'recoil';
 import { Bannerupload, TitleInput } from './../Hooks/Rocoil/Atom';
+import DropdownCategory from './../../../common/DropdownCategory/DropdownCategory';
+import useDetectClose from './../../../hooks/useDropdownClose';
 
 function MainPost() {
   const [posttitel, Setposttitle] = useRecoilState(TitleInput); //글 제목
@@ -10,6 +12,8 @@ function MainPost() {
   const [postCategory, setPostCategory] = useState(''); //카테고리
   const [photoupload, setPhotoupload] = useState<any>(); // Handles input change event and updates state
   const [Bannerupload, setBanneruploadupload] = useState<any>('');
+  // const [IsOpen, Ref, Handler] = useDetectClose(false);
+  const [show, setShow] = useState(false);
 
   function thumnailimageChange(e: any) {
     const filelist = e.target.files[0];
@@ -83,7 +87,9 @@ function MainPost() {
 
         <S.BoxMain>
           <S.CalendarIcon src={'/assets/calendar.png'} />
+          {/*카테고리 클릭 시 트루이면 드랍카테고리가 보이고 아니면 숨겨라 삼항연산자 사용하기 */}
           <S.CategoryTitle>카테고리</S.CategoryTitle>
+          <DropdownCategory />
           <S.InputTitle
             onChange={handleChange}
             placeholder='제목을 입력해 주세요'

@@ -11,6 +11,7 @@ import * as S from './Postpage.style';
 import CommonStyles from './../../styles/CommonStyles';
 import MainPost from './Mainpost/Mainpost';
 import { Navigate, useNavigate } from 'react-router-dom';
+import DropdownCategory from './../../common/DropdownCategory/DropdownCategory';
 
 const PostPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false); //아이디 찾기 모달창
@@ -31,7 +32,7 @@ const PostPage = () => {
   const [postNickname, setPostNickname] = useState(''); //사용자 닉네임 => 회원가입시시에 저장해 주거나 로컬에 저장하는 방법을 찾아야될 것 같다.
   const [postAddress, setPostAddress] = useState(''); //만날 위치 시,군,구,단
   const [postCategory, setPostCategory] = useState(''); //카테고리
-
+  const [showCategory, setShowCategory] = useState(false);
   //약속 시간
   const meetTime = useRecoilValue(Time);
   const meetTimeObectToString = JSON.stringify(Object.values(meetTime)[2]);
