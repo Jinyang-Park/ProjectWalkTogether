@@ -25,7 +25,7 @@ function MainPost() {
       setThumbnail(() => reader.result);
     };
     reader.readAsDataURL(filelist);
-    console.log('썸네일:', photoupload);
+    console.log('썸네일 인풋:', photoupload);
 
     // if (thumbnail === null) return alert('이미지 업로드 실패');
     // const imageRef = ref(storage, `postimg/${PostingID_Posting}/thumbnail`); //+${thumbnail}
@@ -52,7 +52,7 @@ function MainPost() {
     };
 
     reader.readAsDataURL(filelist);
-    console.log('배너:', filelist);
+    console.log('배너 인풋:', filelist);
   }
 
   /////////
