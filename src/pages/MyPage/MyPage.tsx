@@ -144,15 +144,6 @@ const MyPage = () => {
             <BannerImg
               src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'}
             />
-            {/* <label htmlFor='back'>
-              <input
-                type='file'
-                onChange={uploadBackImg}
-                style={{ display: 'none' }}
-                accept='image/*'
-                id='back'
-              ></input>
-            </label> */}
             {imgBtn ? (
               <ImgUploadModal>
                 <label htmlFor='back'>
