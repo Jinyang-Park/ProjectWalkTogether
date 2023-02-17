@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import LikePage from './LikePost';
 import WhatIWorte from './WhatIWrote';
@@ -25,13 +25,23 @@ interface UserInfoTypes {
   photoBackImg: string | null;
 }
 const MyPage = () => {
-  const [text, setText] = useState('');
   const user: any = authService.currentUser;
   const [userInfo, setUserInfo] = useState<UserInfoTypes>();
   const [photoURL, setPhotoURL] = useState<any>(user.photoURL);
   const [photoBackImg, setPhotoBackImg] = useState<any>(user.photoURL);
+
+  const [text, setText] = useState('');
   const [newNickName, setNewNickName] = useState(user.displayName);
   const [showNickNameChangeBtn, setShowNickNameChangeBtn] = useState(false);
+
+  const [Introduce, setIntroduce] = useState('');
+  const [newIntroduce, setNewIntroduce] = useState(user.displayName);
+  const [showIntroduceChangeBtn, setShowIntroduceChangeBtn] = useState(false);
+
+  const [showBackImgbtn, setShowBackImgbtn] = useState(false);
+  const [inputConvert, setInputConvert] = useState(false);
+
+  const [imgBtn, setImgBtn] = useState(false);
 
   const getUserInfo = () => {
     setUserInfo({
@@ -104,122 +114,249 @@ const MyPage = () => {
   };
   const handleNickNameBtn = () => {
     editNickName();
-    setText('');
-    setShowNickNameChangeBtn(false);
+    setInputConvert(false);
   };
+
+  const editIntroduce = async () => {
+    setNewIntroduce(Introduce);
+    await updateProfile(user, { displayName: Introduce })
+      .then(() => {
+        alert('자기소개 변경 완료');
+      })
+      .catch((error) => {
+        alert('자기소개 변경 실패');
+      });
+  };
+  const handleIntroduceBtn = () => {
+    editIntroduce();
+    setIntroduce('');
+    setShowIntroduceChangeBtn(false);
+  };
+  const ConvertImgBtn = () => {
+    setImgBtn(!imgBtn);
+  };
+
   return (
     <CommonStyles>
-      <BannerImgWrap>
-        <BannerImg
-          src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'}
-        />
-        <label htmlFor='back'>
-          <input
-            type='file'
-            onChange={uploadBackImg}
-            style={{ display: 'none' }}
-            accept='image/*'
-            id='back'
-          ></input>
-          <ImgEditBtn />
-        </label>
-      </BannerImgWrap>
-      <ImgNickNameMannerWrap>
-        <ImgAndNameWrap>
-          <ImgAndNameContainer>
-            <ImgWrap>
-              <ImgChange
-                src={photoURL ? photoURL : '/assets/default_profile.png'}
-              />
-              <label htmlFor='img'>
-                <input
-                  type='file'
-                  onChange={uploadFB}
-                  accept='image/*'
-                  id='img'
-                  style={{ display: 'none' }}
-                ></input>
-                <ImgChangeBtn />
-              </label>
-            </ImgWrap>
-            <NameContainer>
-              <NickNameWrap>
-                {newNickName ?? '익명'}
-                <EditIcon
-                  onClick={() => {
-                    setShowNickNameChangeBtn(!showNickNameChangeBtn);
-                  }}
-                />
-                <SetNameWrap>
-                  {showNickNameChangeBtn === true ? (
-                    <>
-                      <InputStyle
-                        type='text'
-                        placeholder='변경할 닉네임을 입력해주세요.'
-                        value={text}
-                        maxLength={6}
-                        onChange={(event) => {
-                          setText(event.target.value);
-                        }}
-                      />
-                      <CheckIcon
-                        onClick={() => {
-                          handleNickNameBtn();
-                        }}
-                      >
-                        변경
-                      </CheckIcon>
-                    </>
-                  ) : null}
-                </SetNameWrap>
-                <AlertPhone>xxx-xxxx-xxxx</AlertPhone>
-              </NickNameWrap>
-              <DoneCnt>총 15번의 산책을 완료하셨어요!</DoneCnt>
-              <MyIntroduce>자기소개</MyIntroduce>
-            </NameContainer>
-          </ImgAndNameContainer>
-        </ImgAndNameWrap>
-      </ImgNickNameMannerWrap>
-      <MannerWrap>
-        <MannerContainer>
-          <div>총 20건의 후기를 받으셨어요.</div>
-          {/* <ReceiveManner>받은 매너 평가</ReceiveManner> */}
-          <MannerBox>
-            <MannerDetail>
-              <ThumbUp />
-              <MannerScore>2</MannerScore>
-              <MannerComment>친절하고 매너가 좋아요!</MannerComment>
-            </MannerDetail>
-            <MannerDetail>
-              <HandPeace />
-              <MannerScore>5</MannerScore>
-              <MannerComment>재미있어요!</MannerComment>
-            </MannerDetail>
-            <MannerDetail>
-              <HeartIcon />
-              <MannerScore>1</MannerScore>
-              <MannerComment>자상하고 편안했어요!</MannerComment>
-            </MannerDetail>
-            <MannerDetail>
-              <HandPaper />
-              <MannerScore>2</MannerScore>
-              <MannerComment>친절하고 매너가 좋아요!</MannerComment>
-            </MannerDetail>
-          </MannerBox>
-        </MannerContainer>
-      </MannerWrap>
-      <MyPageWrapper>
-        <ChangePost>
-          <GoMyPost>내가 쓴 글</GoMyPost>
-          <GoLiked>찜</GoLiked>
-        </ChangePost>
-        <LikedWrapper>
-          <LikePage />
-        </LikedWrapper>
-      </MyPageWrapper>
+      {user === user ? (
+        <CommonStyles>
+          <BannerImgWrap>
+            <BannerImg
+              src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'}
+            />
+            {/* <label htmlFor='back'>
+              <input
+                type='file'
+                onChange={uploadBackImg}
+                style={{ display: 'none' }}
+                accept='image/*'
+                id='back'
+              ></input>
+            </label> */}
+            {imgBtn ? (
+              <ImgUploadModal>
+                <label htmlFor='back'>
+                  <input
+                    type='file'
+                    onChange={uploadBackImg}
+                    // style={{ display: 'none' }}
+                    accept='image/*'
+                    id='back'
+                  ></input>
+                  {/* <ImgEditBtn /> */}
+                </label>
+                <div>1500픽셀 이상의 이미지가 가장 이상적입니다.</div>
+              </ImgUploadModal>
+            ) : (
+              <></>
+            )}
+            <ImgEditBtn onClick={ConvertImgBtn} />
+          </BannerImgWrap>
+          <ImgNickNameMannerWrap>
+            <ImgAndNameWrap>
+              <ImgAndNameContainer>
+                <ImgWrap>
+                  <ImgChange
+                    src={photoURL ? photoURL : '/assets/default_profile.png'}
+                  />
+                  <label htmlFor='img'>
+                    <input
+                      type='file'
+                      onChange={uploadFB}
+                      accept='image/*'
+                      id='img'
+                      style={{ display: 'none' }}
+                    ></input>
+                    <ImgChangeBtn />
+                  </label>
+                </ImgWrap>
+                <NameContainer>
+                  <NickNameWrap>
+                    {inputConvert ? (
+                      <>
+                        <InputStyle
+                          type='text'
+                          placeholder='변경할 닉네임을 입력해주세요.'
+                          value={text}
+                          maxLength={6}
+                          onChange={(event) => {
+                            setText(event.target.value);
+                          }}
+                        />
+                        <CheckIcon onClick={handleNickNameBtn}>변경</CheckIcon>
+                      </>
+                    ) : (
+                      <>
+                        {newNickName ?? '익명'}
+                        <EditIcon
+                          onClick={() => {
+                            setInputConvert(!inputConvert);
+                          }}
+                        />
+                      </>
+                    )}
+                    <AlertPhone>xxx-xxxx-xxxx</AlertPhone>
+                  </NickNameWrap>
+                  <DoneCnt>총 15번의 산책을 완료하셨어요!</DoneCnt>
+                  <MyIntroduce>자기소개</MyIntroduce>
+                </NameContainer>
+              </ImgAndNameContainer>
+            </ImgAndNameWrap>
+          </ImgNickNameMannerWrap>
+          <MannerWrap>
+            <MannerContainer>
+              <div>총 20건의 후기를 받으셨어요.</div>
+              {/* <ReceiveManner>받은 매너 평가</ReceiveManner> */}
+              <MannerBox>
+                <MannerDetail>
+                  <ThumbUp />
+                  <MannerScore>2</MannerScore>
+                  <MannerComment>친절하고 매너가 좋아요!</MannerComment>
+                </MannerDetail>
+                <MannerDetail>
+                  <HandPeace />
+                  <MannerScore>5</MannerScore>
+                  <MannerComment>재미있어요!</MannerComment>
+                </MannerDetail>
+                <MannerDetail>
+                  <HeartIcon />
+                  <MannerScore>1</MannerScore>
+                  <MannerComment>자상하고 편안했어요!</MannerComment>
+                </MannerDetail>
+                <MannerDetail>
+                  <HandPaper />
+                  <MannerScore>2</MannerScore>
+                  <MannerComment>친절하고 매너가 좋아요!</MannerComment>
+                </MannerDetail>
+              </MannerBox>
+            </MannerContainer>
+          </MannerWrap>
+          <MyPageWrapper>
+            <ChangePost>
+              <GoMyPost>내가 쓴 글</GoMyPost>
+              <GoLiked>찜</GoLiked>
+            </ChangePost>
+            <LikedWrapper>
+              <LikePage />
+            </LikedWrapper>
+          </MyPageWrapper>
+        </CommonStyles>
+      ) : (
+        <CommonStyles>
+          <BannerImgWrap>
+            <BannerImg
+              src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'}
+            />
+          </BannerImgWrap>
+          <ImgNickNameMannerWrap>
+            <ImgAndNameWrap>
+              <ImgAndNameContainer>
+                <ImgWrap>
+                  <ImgChange
+                    src={photoURL ? photoURL : '/assets/default_profile.png'}
+                  />
+                </ImgWrap>
+                <NameContainer>
+                  <NickNameWrap>
+                    {newNickName ?? '익명'}
+                    <SetNameWrap>
+                      {showNickNameChangeBtn === true ? (
+                        <>
+                          <InputStyle
+                            type='text'
+                            placeholder='변경할 닉네임을 입력해주세요.'
+                            value={text}
+                            maxLength={6}
+                            onChange={(event) => {
+                              setText(event.target.value);
+                            }}
+                          />
+                          <CheckIcon
+                            onClick={() => {
+                              handleNickNameBtn();
+                            }}
+                          >
+                            변경
+                          </CheckIcon>
+                        </>
+                      ) : null}
+                    </SetNameWrap>
+                    <AlertPhone>xxx-xxxx-xxxx</AlertPhone>
+                  </NickNameWrap>
+                  <DoneCnt>총 15번의 산책을 완료하셨어요!</DoneCnt>
+                  <MyIntroduce>자기소개</MyIntroduce>
+                </NameContainer>
+              </ImgAndNameContainer>
+            </ImgAndNameWrap>
+          </ImgNickNameMannerWrap>
+          <MannerWrap>
+            <MannerContainer>
+              <div>총 20건의 후기를 받으셨어요.</div>
+              {/* <ReceiveManner>받은 매너 평가</ReceiveManner> */}
+              <MannerBox>
+                <MannerDetail>
+                  <ThumbUp />
+                  <MannerScore>2</MannerScore>
+                  <MannerComment>친절하고 매너가 좋아요!</MannerComment>
+                </MannerDetail>
+                <MannerDetail>
+                  <HandPeace />
+                  <MannerScore>5</MannerScore>
+                  <MannerComment>재미있어요!</MannerComment>
+                </MannerDetail>
+                <MannerDetail>
+                  <HeartIcon />
+                  <MannerScore>1</MannerScore>
+                  <MannerComment>자상하고 편안했어요!</MannerComment>
+                </MannerDetail>
+                <MannerDetail>
+                  <HandPaper />
+                  <MannerScore>2</MannerScore>
+                  <MannerComment>친절하고 매너가 좋아요!</MannerComment>
+                </MannerDetail>
+              </MannerBox>
+            </MannerContainer>
+          </MannerWrap>
+          <MyPageWrapper>
+            <ChangePost>
+              <GoMyPost>내가 쓴 글</GoMyPost>
+              <GoLiked>찜</GoLiked>
+            </ChangePost>
+            <LikedWrapper>
+              <LikePage />
+            </LikedWrapper>
+          </MyPageWrapper>
+        </CommonStyles>
+      )}
     </CommonStyles>
   );
 };
+const ImgUploadModal = styled.div`
+  margin-left: 650px;
+  margin-top: -100px;
+  position: absolute;
+  background-color: gray;
+`;
 const ImgNickNameMannerWrap = styled.div`
   width: 1024px;
 `;
@@ -250,7 +387,7 @@ const ImgChangeBtn = styled(FaPen)`
 const AlertPhone = styled.div`
   width: 171px;
   height: 19px;
-  margin-left: 300px;
+  margin-left: 100px;
   margin-top: -30px;
   font-family: 'Inter';
   font-style: normal;
@@ -262,8 +399,10 @@ const AlertPhone = styled.div`
 `;
 const DoneCnt = styled.div``;
 const MyIntroduce = styled.div`
+  display: flex;
   width: 653px;
   height: 67px;
+  background-color: #979797;
 `;
 const InputStyle = styled.input`
   padding: 10px;
@@ -281,7 +420,26 @@ const InputStyle = styled.input`
     color: #494848;
   }
 `;
-const SetNameWrap = styled.div``;
+const InputIntroduceStyle = styled.input`
+  padding: 10px;
+
+  background-color: #cab0c0;
+  border-radius: 10px;
+  border-style: none;
+  width: 60px;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  height: 20px;
+
+  ::placeholder {
+    font-size: 13px;
+    color: #494848;
+  }
+`;
+const SetNameWrap = styled.div`
+  display: flex;
+`;
 const CheckIcon = styled(FiCheck)`
   font-size: 30px;
   margin-left: 10px;
@@ -325,6 +483,11 @@ const NameChange = styled.div`
 `;
 const EditIcon = styled(AiFillEdit)`
   font-size: 40px;
+  margin-left: 20px;
+  cursor: pointer;
+`;
+const EditIntroduceIcon = styled(AiFillEdit)`
+  font-size: 35px;
   margin-left: 20px;
   cursor: pointer;
 `;
