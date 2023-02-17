@@ -204,7 +204,6 @@ const PostPage = () => {
             try {
               const docRef = addDoc(collection(dbService, 'test'), {
                 Description_Posting: Description,
-                Liked_Posting: false,
                 Nickname: postNickname,
                 RsvDate_Posting,
                 RsvHour_Posting,
