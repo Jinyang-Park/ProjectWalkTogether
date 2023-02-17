@@ -10,6 +10,7 @@ import MapPage from '../pages/MapPage/MapPage';
 import PostPage from '../pages/PostPage/PostPage';
 import DetailPage from '../pages/DetailPage/DetailPage';
 import ChattingPage from '../pages/ChatPage/ChattingPage';
+//
 import Category from '../pages/CategoryPage/Category';
 
 const Router = () => {

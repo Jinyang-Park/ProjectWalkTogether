@@ -30,6 +30,7 @@ const CategoryAll = () => {
     </Category>
   );
 };
+//
 
 export default CategoryAll;
 

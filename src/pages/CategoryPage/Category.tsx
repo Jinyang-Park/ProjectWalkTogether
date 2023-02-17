@@ -36,7 +36,7 @@ const Category = () => {
     });
   }, []);
   // console.log(postings);
-
+  //
   return (
     <S.LikedListItem>
       {postings.map((post) => {
