@@ -32,7 +32,7 @@ const PostPage = () => {
   const [postNickname, setPostNickname] = useState(''); //사용자 닉네임 => 회원가입시시에 저장해 주거나 로컬에 저장하는 방법을 찾아야될 것 같다.
   const [postAddress, setPostAddress] = useState(''); //만날 위치 시,군,구,단
   const [postCategory, setPostCategory] = useState(''); //카테고리
-  const [showCategory, setShowCategory] = useState(false);
+
   //약속 시간
   const meetTime = useRecoilValue(Time);
   const meetTimeObectToString = JSON.stringify(Object.values(meetTime)[2]);
