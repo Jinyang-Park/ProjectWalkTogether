@@ -20,6 +20,7 @@ const DropdownCategory = ({ setPostCategory }: SetProps) => {
     <DropdownBox>
       <DropdownConatainer>
         <DropdownWapper>
+          <CategoryBtn onClick={Clickhandler}>전체</CategoryBtn>
           <CategoryBtn onClick={Clickhandler}>반려동물</CategoryBtn>
           <CategoryBtn onClick={Clickhandler}>독서</CategoryBtn>
           <CategoryBtn>전체</CategoryBtn>
