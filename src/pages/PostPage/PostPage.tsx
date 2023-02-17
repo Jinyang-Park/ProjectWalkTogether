@@ -18,6 +18,7 @@ import * as S from './Postpage.style';
 import CommonStyles from './../../styles/CommonStyles';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../common/firebase';
+import { ReserveDate } from './Hooks/Rocoil/Atom';
 
 const PostPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false); //아이디 찾기 모달창
@@ -53,9 +54,10 @@ const PostPage = () => {
   const [PostingID_Posting, setPostingID_Posting] = useState(uuidv4());
 
   //약속 시간
-  const meetTime = useRecoilValue(Time);
-  const meetTimeObectToString = JSON.stringify(Object.values(meetTime)[2]);
-  const OTS = Object.values(meetTime)[2].toString();
+  const meetTime = useRecoilValue(ReserveDate);
+  // const d = meetTime[5];  .toString();
+
+  const OTS = meetTime.toString();
   const weeks = OTS.slice(0, 3);
   var toayweek = '';
   switch (weeks) {
@@ -65,25 +67,39 @@ const PostPage = () => {
     case 'Tue':
       toayweek = '화';
       break;
+    case 'Wed':
+      toayweek = '수';
+      break;
+    case 'Thr':
+      toayweek = '목';
+      break;
+    case 'Fri':
+      toayweek = '금';
+      break;
+    case 'Sat':
+      toayweek = '토';
+      break;
   }
 
-  const meetTimeValue = Object.values(meetTime);
-  const weekValue = meetTimeObectToString.slice(1, 9);
-  // const meetHour = meetTimeObectToString.slice(12, 19); //시간 이상하게나옴
-  const meetYearMonth = meetTimeObectToString.slice(1, 9); //년월
-  const meetDay = meetTimeObectToString.slice(9, 11); //일
-  const week = meetTimeObectToString;
-  // let meetDayHour = 0;
-  // if (Number(meetTimeValue[8]) < 10) {
-  //   const meetDayHourzero = meetTimeValue[8] + 'a';
-  // } else {
-  //   const meetDayHourzero = meetTimeValue[8];
+  const meetHour = OTS.slice(16, 19); //시간 이상하게나옴
+  const todayHour = '';
+  // if(meetHour < 10){
   // }
-  //시
-  const meetDayHour = meetTimeValue[8]; // am의경우 0이 앞에 안 붙는다.
-  const meetDayMinute = meetTimeObectToString.slice(14, 17); //분
-  let meeting =
-    `${meetYearMonth}${meetDay}__${meetDayHour}${meetDayMinute}` + ``;
+
+  // // const meetYearMonth = meetTimeObectToString.slice(1, 9); //년월
+  // // const meetDay = meetTimeObectToString.slice(9, 11); //일
+  // // const week = meetTimeObectToString;
+  // // // let meetDayHour = 0;
+  // // // if (Number(meetTimeValue[8]) < 10) {
+  // // //   const meetDayHourzero = meetTimeValue[8] + 'a';
+  // // // } else {
+  // // //   const meetDayHourzero = meetTimeValue[8];
+  // // // }
+  // // //시
+  // // const meetDayHour = meetTimeValue[8]; // am의경우 0이 앞에 안 붙는다.
+  // // const meetDayMinute = meetTimeObectToString.slice(14, 17); //분
+  // // let meeting =
+  // //   `${meetYearMonth}${meetDay}__${meetDayHour}${meetDayMinute}` + ``;
 
   const Title = useRecoilValue(TitleInput);
   const Description = useRecoilValue(DescriptionInput);
@@ -105,12 +121,12 @@ const PostPage = () => {
   //콘솔확인용/
   ////////////
   useEffect(() => {
-    console.log('KeyForChat_Posting:', KeyForChat_Posting);
+    console.log('meetTime:', meetHour);
     setPostTime(timestring); //현재 시간
-    setPostHour(meeting); //약속 시간
+    // setPostHour(meeting); //약속 시간
     setPostNickname(nickname);
     setPostAuthor(user);
-  }, [KeyForChat_Posting]);
+  });
 
   //settimeout test
   const geturl: any = () => {
