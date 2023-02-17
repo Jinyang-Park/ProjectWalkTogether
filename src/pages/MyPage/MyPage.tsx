@@ -334,6 +334,7 @@ const MyPage = () => {
     </CommonStyles>
   );
 };
+const TestStyle = styled.div``;
 const ImgUploadModal = styled.div`
   margin-left: 650px;
   margin-top: -100px;
