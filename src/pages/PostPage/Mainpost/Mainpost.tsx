@@ -4,16 +4,22 @@ import { useRecoilState } from 'recoil';
 import { TitleInput, DescriptionInput } from '../Hooks/Rocoil/Atom';
 import { Bannerupload, Thunmnailupload } from '../Hooks/Rocoil/Atom';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
+import DropdownCategory from './../../../common/DropdownCategory/DropdownCategory';
 
-function MainPost() {
+interface SetProps {
+  setPostCategory: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function MainPost({ setPostCategory }: SetProps) {
   const [posttitel, Setposttitle] = useRecoilState(TitleInput); //글 제목
   const [postTag, setPostTag] = useState(''); //해쉬태그
   const [postdescription, SetDescription] = useRecoilState(DescriptionInput); //글 내용
-  const [postCategory, setPostCategory] = useState(''); //카테고리
+  // const [postCategory, setPostCategory] = useState(''); //카테고리
   const [photoupload, setPhotoupload] = useRecoilState(Thunmnailupload); // Handles input change event and updates state
   const [bannerupload, setBanneruploadupload] = useRecoilState(Bannerupload);
   const [thumbnail, setThumbnail] = useState<any>(null); // Handles input change event and updates state
   const [banner, setBanner] = useState<any>(null);
+  const [show, setShow] = useState(false);
 
   function thumnailimageChange(e: any) {
     const filelist = e.target.files[0];
@@ -54,7 +60,6 @@ function MainPost() {
     reader.readAsDataURL(filelist);
     console.log('배너 인풋:', filelist);
   }
-
   /////////
   // 타이틀
   ////////

@@ -10,6 +10,7 @@ import MapPage from '../pages/MapPage/MapPage';
 import PostPage from '../pages/PostPage/PostPage';
 import DetailPage from '../pages/DetailPage/DetailPage';
 import ChattingPage from '../pages/ChatPage/ChattingPage';
+import Category from '../pages/CategoryPage/Category';
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
         <Route path='/map' element={<MapPage />} />
         <Route path='/mypage' element={<MyPage />} />
         <Route path='/postpage' element={<PostPage />} />
+        <Route path='/category/:category' element={<Category />} />
         <Route path='/detailpage' element={<DetailPage />} />
         <Route path='/chat' element={<ChattingPage />} />
       </Routes>

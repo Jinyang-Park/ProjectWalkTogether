@@ -9,7 +9,8 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { useRecoilState } from 'recoil';
-import { Time } from '../Rocoil/Atom';
+import { Time } from './../Rocoil/Atom';
+
 import 'dayjs/locale/ko';
 
 export default function MaterialUIPickers() {
@@ -24,7 +25,7 @@ export default function MaterialUIPickers() {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ko">
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='ko'>
       <Stack>
         <DateTimePicker
           value={value}

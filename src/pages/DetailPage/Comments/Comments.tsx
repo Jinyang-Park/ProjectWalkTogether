@@ -17,6 +17,7 @@ import {
 import { useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import dayjs from 'dayjs';
 
 const Comments = () => {
   // 댓글 인풋
@@ -30,6 +31,12 @@ const Comments = () => {
 
   const navigate = useNavigate();
 
+  // 날짜 정보
+  const now = () => {
+    const now = dayjs();
+    return now.format('YYYY.MM.DD HH:mm');
+  };
+
   const newComments = {
     UID: authService.currentUser?.uid,
     // PostingID와 KeyForChat은 글쓰기에서 매개변수로 넘겨줘야된다.
@@ -38,7 +45,7 @@ const Comments = () => {
     //key:Description_Comments,inputComment: value
     Description_Comments: inputComment,
     ProfileImg: authService.currentUser?.photoURL,
-    CreatedAt: Date.now(),
+    CreatedAt: now(),
     NickName: authService.currentUser?.displayName ?? '익명',
     isDone: false,
     isEdit: false,
@@ -194,25 +201,25 @@ const Comments = () => {
 
   return (
     <S.DetailCommentsWrapper>
-      <S.CommentTitle>댓글</S.CommentTitle>
-      <S.CommentCount>{myComment.length}</S.CommentCount>
+      <S.DetailNumberWrapper>
+        <S.CommentTitle>댓글</S.CommentTitle>
+        <S.CommentCount>{myComment.length}</S.CommentCount>
+      </S.DetailNumberWrapper>
       <S.DetailCommentContainer>
         <S.CommentUserImgWrapper>
-          <S.CommentContentsWrapper>
-            <S.CommentContent
-              type='text'
-              placeholder='댓글을 입력하세요.'
-              value={inputComment}
-              onChange={(event) => {
-                setInputComment(event.target.value);
-              }}
-            />
+          <S.CommentContent
+            type='text'
+            placeholder='댓글을 입력하세요.'
+            value={inputComment}
+            onChange={(event) => {
+              setInputComment(event.target.value);
+            }}
+          />
 
-            <S.CommentCancelBtn onClick={CancelCommentHandler}>
-              취소하기
-            </S.CommentCancelBtn>
-            <S.CommentBtn onClick={addCommentHandler}>등록하기</S.CommentBtn>
-          </S.CommentContentsWrapper>
+          <S.CommentCancelBtn onClick={CancelCommentHandler}>
+            취소하기
+          </S.CommentCancelBtn>
+          <S.CommentBtn onClick={addCommentHandler}>등록하기</S.CommentBtn>
         </S.CommentUserImgWrapper>
       </S.DetailCommentContainer>
       {/* 리뷰 리스트 */}
@@ -231,7 +238,9 @@ const Comments = () => {
                       <S.CommentInput>
                         {comment.Description_Comments}
                       </S.CommentInput>
-                      <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
+                      <S.CommentDataWrapper>
+                        <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
+                      </S.CommentDataWrapper>
                     </S.CommentBox>
                   </S.CommentWrapper>
                 </S.CommentLi>

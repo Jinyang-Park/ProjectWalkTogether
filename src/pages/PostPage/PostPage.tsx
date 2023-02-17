@@ -6,10 +6,11 @@ import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
 import { collection, addDoc } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
-import MainPost from './Mainpost/Mainpost';
+import Mainpost from './MainPost/Mainpost';
 import IuputInformation from './InputInformation/InputInformation';
 import * as S from './Postpage.style';
 import CommonStyles from './../../styles/CommonStyles';
+import MainPost from './Mainpost/Mainpost';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../common/firebase';
 
@@ -31,7 +32,7 @@ const PostPage = () => {
   const [postAuthor, setPostAuthor] = useState(''); //사용자 파이어베이스 uid
   const [postNickname, setPostNickname] = useState(''); //사용자 닉네임 => 회원가입시시에 저장해 주거나 로컬에 저장하는 방법을 찾아야될 것 같다.
   const [postAddress, setPostAddress] = useState(''); //만날 위치 시,군,구,단
-  const [postCategory, setPostCategory] = useState(''); //카테고리
+  const [postCategory, setPostCategory] = useState<any>(''); //카테고리
 
   //////이미지 받아오기
   const [getThumbnail, setGetThumbnail] = useState<any>();
@@ -130,6 +131,7 @@ const PostPage = () => {
                 UID: postAuthor,
                 PostingID_Posting,
                 KeyForChat_Posting,
+                Category_Posting: postCategory,
                 ThunmnailURL_Posting: getThumbnail,
                 BannereURL_Posting: getBanner,
               });
@@ -179,7 +181,7 @@ const PostPage = () => {
   return (
     <CommonStyles>
       <S.Boxcontainer>
-        <MainPost />
+        <Mainpost />
         <IuputInformation />
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>

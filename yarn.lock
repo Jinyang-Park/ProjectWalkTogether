@@ -8634,6 +8634,11 @@ react-scripts@5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
+react-timestamp@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-timestamp/-/react-timestamp-6.0.0.tgz#ba5bdcbcb716066fcfc946f45b0c6173a79732bd"
+  integrity sha512-ZVyVuVp1MBWQGmcip3Nzb9n1uzAqkyGJgngiAa7WbQbWuw+IS3qlnYBoXThlHAt1Yby9eOuzMZse/jRQfq/LeQ==
+
 react-transition-group@^4.4.5:
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.5.tgz#e53d4e3f3344da8521489fbef8f2581d42becdd1"
