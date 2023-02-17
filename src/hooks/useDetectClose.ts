@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react'
 
 const useDetectClose = (initialState: boolean) => {
@@ -26,3 +27,4 @@ const useDetectClose = (initialState: boolean) => {
 }
 
 export default useDetectClose
+

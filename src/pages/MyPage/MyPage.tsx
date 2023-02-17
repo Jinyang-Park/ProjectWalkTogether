@@ -61,10 +61,7 @@ const MyPage = () => {
     reader.onloadend = () => {
       setPhotoBackImg(reader.result);
     };
-    const uploaded_file = await uploadBytes(
-      ref(storage, `images/${e.target.files[0].name}`),
-      e.target.files[0]
-    );
+    const uploaded_file = await uploadBytes(ref(storage, `images/${e.target.files[0].name}`), e.target.files[0]);
     const file_url = await getDownloadURL(uploaded_file.ref);
     updateProfile(user, {
       photoURL: file_url,
@@ -81,10 +78,7 @@ const MyPage = () => {
     reader.onloadend = () => {
       setPhotoURL(reader.result);
     };
-    const uploaded_file = await uploadBytes(
-      ref(storage, `images/${e.target.files[0].name}`),
-      e.target.files[0]
-    );
+    const uploaded_file = await uploadBytes(ref(storage, `images/${e.target.files[0].name}`), e.target.files[0]);
     const file_url = await getDownloadURL(uploaded_file.ref);
     updateProfile(user, {
       photoURL: file_url,
@@ -133,18 +127,16 @@ const MyPage = () => {
       {user === user ? (
         <CommonStyles>
           <BannerImgWrap>
-            <BannerImg
-              src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'}
-            />
+            <BannerImg src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'} />
             {imgBtn ? (
               <ImgUploadModal>
-                <label htmlFor='back'>
+                <label htmlFor="back">
                   <input
-                    type='file'
+                    type="file"
                     onChange={uploadBackImg}
                     // style={{ display: 'none' }}
-                    accept='image/*'
-                    id='back'
+                    accept="image/*"
+                    id="back"
                   ></input>
                   {/* <ImgEditBtn /> */}
                 </label>
@@ -159,17 +151,9 @@ const MyPage = () => {
             <ImgAndNameWrap>
               <ImgAndNameContainer>
                 <ImgWrap>
-                  <ImgChange
-                    src={photoURL ? photoURL : '/assets/default_profile.png'}
-                  />
-                  <label htmlFor='img'>
-                    <input
-                      type='file'
-                      onChange={uploadFB}
-                      accept='image/*'
-                      id='img'
-                      style={{ display: 'none' }}
-                    ></input>
+                  <ImgChange src={photoURL ? photoURL : '/assets/default_profile.png'} />
+                  <label htmlFor="img">
+                    <input type="file" onChange={uploadFB} accept="image/*" id="img" style={{ display: 'none' }}></input>
                     <ImgChangeBtn />
                   </label>
                 </ImgWrap>
@@ -178,8 +162,8 @@ const MyPage = () => {
                     {inputConvert ? (
                       <>
                         <InputStyle
-                          type='text'
-                          placeholder='변경할 닉네임을 입력해주세요.'
+                          type="text"
+                          placeholder="변경할 닉네임을 입력해주세요."
                           value={text}
                           maxLength={6}
                           onChange={(event) => {
@@ -247,17 +231,13 @@ const MyPage = () => {
       ) : (
         <CommonStyles>
           <BannerImgWrap>
-            <BannerImg
-              src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'}
-            />
+            <BannerImg src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'} />
           </BannerImgWrap>
           <ImgNickNameMannerWrap>
             <ImgAndNameWrap>
               <ImgAndNameContainer>
                 <ImgWrap>
-                  <ImgChange
-                    src={photoURL ? photoURL : '/assets/default_profile.png'}
-                  />
+                  <ImgChange src={photoURL ? photoURL : '/assets/default_profile.png'} />
                 </ImgWrap>
                 <NameContainer>
                   <NickNameWrap>
@@ -266,8 +246,8 @@ const MyPage = () => {
                       {showNickNameChangeBtn === true ? (
                         <>
                           <InputStyle
-                            type='text'
-                            placeholder='변경할 닉네임을 입력해주세요.'
+                            type="text"
+                            placeholder="변경할 닉네임을 입력해주세요."
                             value={text}
                             maxLength={6}
                             onChange={(event) => {
@@ -372,18 +352,14 @@ const ImgChangeBtn = styled(FaPen)`
 const AlertPhone = styled.div`
   width: 171px;
   height: 19px;
-
   margin-left: 100px;
-
   margin-left: 300px;
-
   margin-top: -30px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-
   color: #515151;
 `;
 const DoneCnt = styled.div``;
@@ -409,7 +385,6 @@ const InputStyle = styled.input`
 `;
 const InputIntroduceStyle = styled.input`
   padding: 10px;
-
   background-color: #cab0c0;
   border-radius: 10px;
   border-style: none;
@@ -418,7 +393,6 @@ const InputIntroduceStyle = styled.input`
   font-weight: 700;
   color: white;
   height: 20px;
-
   ::placeholder {
     font-size: 13px;
     color: #494848;
@@ -492,9 +466,7 @@ const MannerBox = styled.div`
 `;
 const MannerDetail = styled.div`
   display: flex;
-
   align-items: center;
-
   margin-bottom: 20px;
   margin-top: 40px;
   border-radius: 40px;
