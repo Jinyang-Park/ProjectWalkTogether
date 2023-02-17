@@ -36,3 +36,16 @@ export const Thunmnailupload = atom<any>({
   // key의 값은 항상 고유값이어야 합니다.
   default: '',
 });
+
+//위치
+export const myLocation = atom<any>({
+  key: 'myLocation',
+  // key의 값은 항상 고유값이어야 합니다.
+  default: { lat: 36.5, lng: 127.8 },
+});
+
+export const selectedAddress = atom<any>({
+  key: 'selectedAddress',
+  // key의 값은 항상 고유값이어야 합니다.
+  default: '',
+});
