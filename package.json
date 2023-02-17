@@ -22,6 +22,7 @@
     "@types/react-icon-base": "^2.1.4",
     "@types/react-icons": "^3.0.0",
     "@types/react-router-dom": "^5.3.3",
+    "antd": "^5.2.1",
     "create-react-app": "^5.0.1",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.7",
