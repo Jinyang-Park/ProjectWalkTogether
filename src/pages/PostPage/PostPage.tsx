@@ -128,6 +128,7 @@ const PostPage = () => {
                 TimeStamp_Posting: postTime,
                 Title_Posting: Title,
                 UID: postAuthor,
+
                 PostingID_Posting,
                 KeyForChat_Posting,
                 Category_Posting: postCategory,
