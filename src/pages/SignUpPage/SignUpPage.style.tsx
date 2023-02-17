@@ -1,14 +1,5 @@
 import styled from 'styled-components';
 
-export const InputLayout = styled.div``;
-
-export const leftBox = styled.div`
-  background: #adadad;
-  border-radius: 10px;
-  width: 370px;
-  height: 436px;
-  margin: auto;
-`;
 export const InputBox = styled.div`
   display: flex;
 
@@ -24,13 +15,16 @@ export const InputBox = styled.div`
 
   z-index: 1;
 `;
-export const InputBoxContent = styled.div`
-  width: 360px;
 
+export const LeftBox = styled.div`
+  background: #adadad;
+  border-radius: 10px;
+  width: 370px;
+  height: 436px;
   margin: auto;
 `;
 
-// 인풋태그
+//Inputholder안의 진짜 input태그
 export const Input = styled.input`
   border: none;
   width: 250px;
@@ -55,11 +49,15 @@ export const Inputholder = styled.div`
 `;
 
 //인풋을 둘러싼 박스
+export const InputBoxContent = styled.div`
+  width: 360px;
+  margin: auto;
+`;
 
 //잠깐만 !
 export const LoginLogo = styled.div`
   text-align: center;
-  margin-top: 2.875rem;
+  margin-top: 0.875rem;
   margin-bottom: 1.5625rem;
   font-size: 32px;
   color: black;
@@ -71,51 +69,7 @@ export const ButtonBox = styled.div`
   align-items: center;
 `;
 
-export const Line = styled.div`
-  border-top: 0.0625rem solid #444444;
-  margin-top: 0.3125rem;
-  margin-bottom: 0.1875rem;
-  width: 150px;
-  margin: auto;
-`;
-export const OrText = styled.div`
-  font-size: 10px;
-`;
-
-export const SocialBox = styled.div`
-  margin: auto;
-  display: flex;
-  align-items: center;
-  margin-left: 3.125rem;
-`;
-
-export const FindBox = styled.div`
-  display: flex;
-`;
-export const LineBox = styled.div`
-  margin: 10px;
-  align-items: center;
-  display: flex;
-`;
-export const Facebook = styled.img`
-  margin: 1.25rem;
-  width: 2.5rem;
-
-  cursor: pointer;
-`;
-export const Google = styled.img`
-  margin: 1.25rem;
-  width: 2.5rem;
-
-  cursor: pointer;
-`;
-export const KakaoLoginButton = styled.img`
-  margin: 1.25rem;
-  width: 2.5rem;
-
-  cursor: pointer;
-`;
-
+//회원 가입 버튼
 export const LoginBtn = styled.button`
   border-radius: 5px;
   width: 360px;
@@ -133,12 +87,12 @@ export const LoginBtn = styled.button`
     transition: 0.5s;
   }
 `;
+
 export const ThirdBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
-
 export const RegisterBtn = styled.button`
   width: 80px;
   height: 2.5rem;
@@ -151,4 +105,20 @@ export const RegisterBtn = styled.button`
     color: #816ceb;
     transition: 0.4s;
   }
+`;
+
+export const FindBox = styled.div`
+  display: flex;
+`;
+
+export const Validityfontbox = styled.div`
+  border: none;
+  width: 330px;
+  font-size: 10px;
+  height: 10px;
+  position: relative;
+  right: 10px;
+  margin-top: 3px;
+  outline: none;
+  color: blue;
 `;

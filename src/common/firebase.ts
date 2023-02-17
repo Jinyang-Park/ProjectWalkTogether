@@ -1,14 +1,9 @@
-import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
-import { getAuth } from 'firebase/auth'
-import { getStorage } from 'firebase/storage'
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 
-import {
-  signInWithPopup,
-  GoogleAuthProvider,
-  signOut,
-  onAuthStateChanged,
-} from 'firebase/auth'
+import { signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'firebase/auth';
 
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -19,31 +14,31 @@ export const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_SENDER_ID,
   measurementId: process.env.REACT_APP_FIREBASE_APP_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
-}
+};
 
-export const app = initializeApp(firebaseConfig)
-export const dbService = getFirestore(app)
-export const authService = getAuth(app)
-export const storage = getStorage(app)
-export const provider = new GoogleAuthProvider()
-
+export const app = initializeApp(firebaseConfig);
+export const dbService = getFirestore(app);
+export const authService = getAuth(app);
+export const storage = getStorage(app);
+export const provider = new GoogleAuthProvider();
+export const apiKey = firebaseConfig.apiKey;
 export async function login() {
   //임시방면
   return signInWithPopup(authService, provider)
     .then((result) => {
-      const user = result.user
-      console.log(user)
-      return user
+      const user = result.user;
+      console.log(user);
+      return user;
     })
-    .catch(console.error)
+    .catch(console.error);
 }
 
 export async function logout() {
-  return signOut(authService).then(() => null)
+  return signOut(authService).then(() => null);
 }
 
 export function onUserStateChange(callback: any) {
   onAuthStateChanged(authService, (user) => {
-    callback(user)
-  })
+    callback(user);
+  });
 }

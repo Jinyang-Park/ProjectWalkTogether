@@ -66,7 +66,11 @@ export default function KakaoLoginButton() {
     getUser();
   }, []);
 
-  return <KakaoLogoButton src="assets/kakao.png" onClick={loginHandler} />;
+  return (
+    <>
+      <KakaoLogoButton src="assets/kakao.png" onClick={loginHandler} />
+    </>
+  );
 }
 
 const KakaoLogoButton = styled.img`
@@ -75,3 +79,4 @@ const KakaoLogoButton = styled.img`
   margin: 1.25rem;
   cursor: pointer;
 `;
+const Logout = styled.div``;
