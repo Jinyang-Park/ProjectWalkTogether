@@ -1,13 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const DropdownCategory = () => {
+// setPostCategory
+interface SetProps {
+  setPostCategory: React.Dispatch<React.SetStateAction<string>>;
+}
+const DropdownCategory = ({ setPostCategory }: SetProps) => {
+  // 임시로 담을 state 만들기
+  // 만들고 선택 했을때 클릭 핸들러에서 이너 텍스트를 임ㅇ시로 만든 셋 스테이트에 담느다
+  // 완료 바튼에 눌렀을때 또 다른 핸들 이벤트가 잇어야된다.
+  // 셋 카테고리에 임시로 만든 스테이트 값을 넣어주고 그 다음에 모달창을 닫으면된다.,
+  // 완료 버튼에는 두번째 함수가 연결되어야된다.
+  const Clickhandler = (e) => {
+    // innerTet를 변경해야된다.
+    // e.cuute.innerText;
+    // const change=
+  };
   return (
     <DropdownBox>
       <DropdownConatainer>
         <DropdownWapper>
-          <CategoryBtn>반려동물</CategoryBtn>
-          <CategoryBtn>독서</CategoryBtn>
+          <CategoryBtn onClick={Clickhandler}>반려동물</CategoryBtn>
+          <CategoryBtn onClick={Clickhandler}>독서</CategoryBtn>
+          <CategoryBtn>전체</CategoryBtn>
           <CategoryBtn>음악</CategoryBtn>
           <CategoryBtn>고민 상담</CategoryBtn>
           <CategoryBtn>부동산</CategoryBtn>
@@ -36,9 +51,9 @@ const DropdownCategory = () => {
 export default DropdownCategory;
 
 export const DropdownBox = styled.div`
-  position: relative;
+  position: absolute;
   z-index: 1000;
-  margin-top: 8px;
+  margin-top: 45px;
 `;
 export const DropdownConatainer = styled.div`
   padding: 10px 10px;

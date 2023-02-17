@@ -99,6 +99,7 @@ const MyPage = () => {
   };
   return (
     <CommonStyles>
+      <div>test</div>
       <BannerImgWrap>
         <BannerImg
           src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'}

@@ -44,13 +44,15 @@ export const CalendarIcon = styled.img`
   top: 52px;
   margin-left: 6px;
 `;
-export const CategoryTitle = styled.button`
-  width: 183px;
-  height: 38px;
-  border-radius: 4px;
+export const CategoryTitle = styled.div`
   font-size: 23px;
   padding: 0px 0px 0px 30px;
   justify-content: center;
+`;
+export const CateogryWrapper = styled.div`
+  width: 183px;
+  height: 38px;
+  border-radius: 4px;
   align-items: center;
   text-align: center;
   color: white;

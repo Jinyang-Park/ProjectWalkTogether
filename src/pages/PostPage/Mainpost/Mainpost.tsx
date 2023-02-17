@@ -1,18 +1,24 @@
 import React, { useEffect, useState, useRef } from 'react';
 import * as S from './Mainpost.style';
 import { useRecoilState } from 'recoil';
-import { Bannerupload, TitleInput } from './../Hooks/Rocoil/Atom';
+import { TitleInput, DescriptionInput } from '../Hooks/Rocoil/Atom';
+import { Bannerupload, Thunmnailupload } from '../Hooks/Rocoil/Atom';
+import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import DropdownCategory from './../../../common/DropdownCategory/DropdownCategory';
-import useDetectClose from './../../../hooks/useDropdownClose';
 
-function MainPost() {
+interface SetProps {
+  setPostCategory: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function MainPost({ setPostCategory }: SetProps) {
   const [posttitel, Setposttitle] = useRecoilState(TitleInput); //글 제목
   const [postTag, setPostTag] = useState(''); //해쉬태그
-  const [postdescription, SetDescription] = useState(''); //글 내용
-  const [postCategory, setPostCategory] = useState(''); //카테고리
-  const [photoupload, setPhotoupload] = useState<any>(); // Handles input change event and updates state
-  const [Bannerupload, setBanneruploadupload] = useState<any>('');
-  // const [IsOpen, Ref, Handler] = useDetectClose(false);
+  const [postdescription, SetDescription] = useRecoilState(DescriptionInput); //글 내용
+  // const [postCategory, setPostCategory] = useState(''); //카테고리
+  const [photoupload, setPhotoupload] = useRecoilState(Thunmnailupload); // Handles input change event and updates state
+  const [bannerupload, setBanneruploadupload] = useRecoilState(Bannerupload);
+  const [thumbnail, setThumbnail] = useState<any>(null); // Handles input change event and updates state
+  const [banner, setBanner] = useState<any>(null);
   const [show, setShow] = useState(false);
 
   function thumnailimageChange(e: any) {
@@ -21,11 +27,24 @@ function MainPost() {
     const reader = new FileReader();
 
     reader.onload = () => {
-      setPhotoupload(reader.result);
+      setPhotoupload(() => filelist);
+      setThumbnail(() => reader.result);
     };
-
     reader.readAsDataURL(filelist);
-    console.log('이미지:', filelist);
+    console.log('썸네일 인풋:', photoupload);
+
+    // if (thumbnail === null) return alert('이미지 업로드 실패');
+    // const imageRef = ref(storage, `postimg/${PostingID_Posting}/thumbnail`); //+${thumbnail}
+    // // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
+    // uploadBytes(imageRef, thumbnail).then((snapshot) => {
+    //   // 업로드 되자마자 뜨게 만들기
+    //   getDownloadURL(snapshot.ref).then((url) => {
+    //     alert('썸네일 저장 완료');
+    //     // setImageList((prev) => [...prev, url]); //이미지리스트에 저장
+    //     ///////////////////////////
+    //     /////////배너이미지 전송
+    //   });
+    // });
   }
 
   function bannerimageChange(e: any) {
@@ -34,11 +53,12 @@ function MainPost() {
     const reader = new FileReader();
 
     reader.onload = () => {
-      setBanneruploadupload(reader.result);
+      setBanneruploadupload(() => filelist);
+      setBanner(() => reader.result);
     };
 
     reader.readAsDataURL(filelist);
-    console.log('이미지:', filelist);
+    console.log('배너 인풋:', filelist);
   }
   /////////
   // 타이틀
@@ -58,7 +78,7 @@ function MainPost() {
       <S.Bannercontainer>
         <label htmlFor='banner'>
           <S.ThumbnailImgPorlaroid
-            src={Bannerupload ? Bannerupload : '/assets/thumbnailImg.png'}
+            src={banner ? banner : '/assets/thumbnailImg.png'}
           />
         </label>
         <S.BannerPhoto
@@ -73,7 +93,7 @@ function MainPost() {
         <S.BoxPhoto>
           <label htmlFor='thumnail'>
             <S.ThumnailPhotoChange
-              src={photoupload ? photoupload : '/assets/blackboard.png'}
+              src={thumbnail ? thumbnail : '/assets/blackboard.png'}
             />
           </label>
           <S.ThumnailPhoto
@@ -86,10 +106,18 @@ function MainPost() {
         </S.BoxPhoto>
 
         <S.BoxMain>
-          <S.CalendarIcon src={'/assets/calendar.png'} />
-          {/*카테고리 클릭 시 트루이면 드랍카테고리가 보이고 아니면 숨겨라 삼항연산자 사용하기 */}
-          <S.CategoryTitle>카테고리</S.CategoryTitle>
-          <DropdownCategory />
+          <S.CateogryWrapper
+            onClick={() => {
+              setShow(true);
+            }}
+          >
+            {show === true ? (
+              <DropdownCategory setPostCategory={setPostCategory} />
+            ) : null}
+            <S.CalendarIcon src={'/assets/calendar.png'} />
+            <S.CategoryTitle>카테고리</S.CategoryTitle>
+          </S.CateogryWrapper>
+
           <S.InputTitle
             onChange={handleChange}
             placeholder='제목을 입력해 주세요'

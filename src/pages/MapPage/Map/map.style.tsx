@@ -1,5 +1,28 @@
 import styled from 'styled-components'
 
+export const MapPageSearchBar = styled.form`
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  padding-left: 15px;
+  height: 50px;
+
+  margin-bottom: 3px;
+  border: 1px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+`
+export const SearchBar = styled.input`
+  width: 85%;
+  height: 50px;
+  font-size: 25px;
+  margin-left: 20px;
+  ::placeholder {
+    color: #bfbfbf;
+  }
+`
+
 export const Mapbox = styled.div`
   width: 100%;
   height: 100%;
