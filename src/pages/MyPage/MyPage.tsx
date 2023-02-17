@@ -181,9 +181,12 @@ const MyPage = () => {
                           type='text'
                           placeholder='변경할 닉네임을 입력해주세요.'
                           onChange={(event) => {
-                            if (text.length > 4) {
-                              alert('6글자 이하 입니다.');
-                              setText('');
+                            if (event.target.value.length > 5) {
+                              alert('5자리 제한');
+                              event.target.value = event.target.value.slice(
+                                0,
+                                5
+                              );
                             }
                             setText(event.target.value);
                           }}
@@ -194,7 +197,7 @@ const MyPage = () => {
                       </>
                     ) : (
                       <>
-                        <div>{newNickName ?? '익명'}</div>
+                        <NewNickName>{text ?? '익명'}</NewNickName>
                         <EditIcon
                           onClick={() => {
                             setInputConvert(!inputConvert);
@@ -212,6 +215,13 @@ const MyPage = () => {
                         placeholder='자기소개를 입력해주세요.'
                         value={Introduce}
                         onChange={(event) => {
+                          if (event.target.value.length > 30) {
+                            alert('30자리 제한');
+                            event.target.value = event.target.value.slice(
+                              0,
+                              30
+                            );
+                          }
                           setIntroduce(event.target.value);
                         }}
                       />
@@ -360,6 +370,7 @@ const MyPage = () => {
     </CommonStyles>
   );
 };
+const NewNickName = styled.div``;
 const IntroduceInput = styled.input`
   width: 600px;
   height: 48px;
@@ -416,7 +427,7 @@ const ImgChangeBtn = styled(FaPen)`
 const AlertPhone = styled.div`
   width: 171px;
   height: 19px;
-  margin-left: 120px;
+  margin-left: 500px;
   margin-top: -30px;
   font-family: 'Inter';
   font-style: normal;
@@ -424,6 +435,7 @@ const AlertPhone = styled.div`
   font-size: 16px;
   line-height: 19px;
   color: #515151;
+  position: absolute;
 `;
 const DoneCnt = styled.div``;
 const MyIntroduce = styled.div`
@@ -510,8 +522,9 @@ const NameChange = styled.div`
 `;
 const EditIcon = styled(AiFillEdit)`
   font-size: 40px;
-  margin-left: 140px;
+  margin-left: 210px;
   cursor: pointer;
+  position: absolute;
 `;
 const EditIntroduceIcon = styled(AiFillEdit)`
   font-size: 30px;
