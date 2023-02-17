@@ -37,9 +37,6 @@ const MyPage = () => {
       photoBackImg: user?.photoBackImg ?? '',
     });
   };
-  useEffect(() => {
-    getUserInfo();
-  }, []);
 
   const uploadBackImg = async (e: any) => {
     const file = e.target.files[0];
@@ -111,13 +108,13 @@ const MyPage = () => {
           <BannerImg
             src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'}
           />
-          <label htmlFor='back'>
+          <label htmlFor="back">
             <input
-              type='file'
+              type="file"
               onChange={uploadBackImg}
               style={{ display: 'none' }}
-              accept='image/*'
-              id='back'
+              accept="image/*"
+              id="back"
             ></input>
             <ImgEditBtn />
           </label>
@@ -129,12 +126,12 @@ const MyPage = () => {
                 <ImgChange
                   src={photoURL ? photoURL : '/assets/default_profile.png'}
                 />
-                <label htmlFor='img'>
+                <label htmlFor="img">
                   <input
-                    type='file'
+                    type="file"
                     onChange={uploadFB}
-                    accept='image/*'
-                    id='img'
+                    accept="image/*"
+                    id="img"
                     style={{ display: 'none' }}
                   ></input>
                   <ImgChangeBtn />
@@ -152,8 +149,8 @@ const MyPage = () => {
                     {showNickNameChangeBtn === true ? (
                       <>
                         <InputStyle
-                          type='text'
-                          placeholder='변경할 닉네임을 입력해주세요.'
+                          type="text"
+                          placeholder="변경할 닉네임을 입력해주세요."
                           value={text}
                           maxLength={6}
                           onChange={(event) => {

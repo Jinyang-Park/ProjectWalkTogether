@@ -6,8 +6,6 @@ export const DetailWapper = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  max-width: 1152px;
-  margin: 0 auto;
 `;
 export const DetailContainer = styled.div``;
 export const ThumbnailImg = styled.img`

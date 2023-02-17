@@ -41,6 +41,7 @@ const Header = () => {
             <NavText to="/detailpage">상세</NavText>
           </NavLi>
         </NavUl>
+
         <NavEtc>
           <Profile onClick={gotomy}>닉네임</Profile>
 
@@ -105,7 +106,7 @@ const NavLi = styled.li`
 const NavText = styled(Link)`
   text-decoration: none;
   color: black;
-  font-size: 12px;
+  font-size: 16px;
 `;
 const LoginButton = styled.button`
   border: none;
