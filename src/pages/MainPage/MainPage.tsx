@@ -3,25 +3,15 @@ import styled from 'styled-components';
 // import { Categoryitem, ImgTitle, Img } from '../../components/CategoryAll';
 // import { HeartIcon } from "../DetailPage/DetailPage";
 import CommonStyles from './../../styles/CommonStyles';
+import CategoryAll from './CategoryAll/CategoryAll';
 
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 const MainPage = () => {
   return (
     <CommonStyles>
-      <Banner src='/assets/thumbnailImg.png'></Banner>
+      <Banner src="/assets/thumbnailImg.png" />
       <StyledMainContainer>
-        {/* <Category>
-                    <Categoryitem>
-                        <Img src="/assets/dog.png"></Img>
-                        <ImgTitle>강아지</ImgTitle>
-                    </Categoryitem>
-
-                    <Categoryitem>
-                        <Img src="/assets/book.png" />
-                        <ImgTitle>책</ImgTitle>
-                    </Categoryitem>
-                </Category> */}
-
+        <CategoryAll />
         <div>
           <span style={{ fontSize: 20, fontWeight: 'bold' }}>신발신는중</span>
           <ContentList>
@@ -155,31 +145,32 @@ const MainPage = () => {
 //전체를 감싸는 container 스타일
 
 const StyledMainContainer = styled.div`
-  width: 1350px;
-  margin: auto;
+  margin: 0 auto;
+  width: 868px;
   flex-wrap: wrap;
-
-  @media screen and (max-width: 1400px) {
-    width: 1200px;
-  }
-  @media screen and (max-width: 1300px) {
-    width: 1100px;
-  }
   @media screen and (max-width: 1024px) {
-    width: 90%;
+    width: 868px;
   }
-  @media screen and (max-width: 780px) {
-    width: 95%;
+  @media screen and (max-width: 430px) {
+    width: 364px;
   }
 `;
 
 const Banner = styled.img`
-  width: 100%;
+  display: flex;
+
+  @media screen and (max-width: 1024px) {
+    width: 1024px;
+  }
+  @media screen and (max-width: 430px) {
+    width: 430px;
+  }
 `;
 
 const ContentList = styled.div`
-  flex-wrap: wrap;
   display: flex;
+  flex-wrap: wrap;
+  margin: auto;
 `;
 const Category = styled.div`
   width: 450px;
@@ -189,17 +180,18 @@ const Category = styled.div`
 `;
 
 const Content = styled.div`
-  width: 250px;
-  height: 200px;
-  background-color: orange;
+  margin: 0 auto;
 
-  margin: 40px;
+  width: 180px;
+  height: 180px;
+  background-color: orange;
 `;
 const Line = styled.div`
+  display: flex;
   border-top: 1px solid #444444;
   margin-top: 5px;
   margin-bottom: 3px;
-  width: 230px;
+  width: 170px;
   margin-left: 10px;
 `;
 
