@@ -15,36 +15,34 @@ const Header = () => {
   };
 
   return (
-    <CommonStyles>
-      <NavContainer>
-        <Nav>
-          <NavUl>
-            <NavLi>
-              <NavText to="/">Home</NavText>
-            </NavLi>
-            <NavLi>
-              <NavText to="/map">Map</NavText>
-            </NavLi>
-            <NavLi>
-              <NavText to="/chat">chat</NavText>
-            </NavLi>
-            <NavLi>
-              <NavText to="/category">카테고리</NavText>
-            </NavLi>
-            <NavLi>
-              <NavText to="/postpage">글쓰기</NavText>
-            </NavLi>
-            <NavLi>
-              <NavText to="/detailpage">상세</NavText>
-            </NavLi>
-          </NavUl>
-          <NavEtc>
-            <Profile onClick={gotomy}>닉네임</Profile>
-            <LoginButton onClick={handleLogin}>Login</LoginButton>
-          </NavEtc>
-        </Nav>
-      </NavContainer>
-    </CommonStyles>
+    <NavContainer>
+      <Nav>
+        <NavUl>
+          <NavLi>
+            <NavText to='/'>Home</NavText>
+          </NavLi>
+          <NavLi>
+            <NavText to='/map'>Map</NavText>
+          </NavLi>
+          <NavLi>
+            <NavText to='/chat'>chat</NavText>
+          </NavLi>
+          <NavLi>
+            <NavText to='/category'>카테고리</NavText>
+          </NavLi>
+          <NavLi>
+            <NavText to='/postpage'>글쓰기</NavText>
+          </NavLi>
+          <NavLi>
+            <NavText to='/detailpage'>상세</NavText>
+          </NavLi>
+        </NavUl>
+        <NavEtc>
+          <Profile onClick={gotomy}>닉네임</Profile>
+          <LoginButton onClick={handleLogin}>Login</LoginButton>
+        </NavEtc>
+      </Nav>
+    </NavContainer>
   );
 };
 
@@ -78,7 +76,7 @@ const NavLi = styled.li`
 const NavText = styled(Link)`
   text-decoration: none;
   color: black;
-  font-size: 12px;
+  font-size: 16px;
 `;
 const LoginButton = styled.button`
   border: none;

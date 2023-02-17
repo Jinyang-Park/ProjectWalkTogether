@@ -14,7 +14,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": ["kakao.maps.d.ts"]
   },
-  "include": ["src", "public/assets/constants/colors.ts"]
+
+  "include": ["src", "public/assets/constants/colors.ts", "Rocoil"]
 }

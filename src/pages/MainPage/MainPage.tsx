@@ -3,6 +3,7 @@ import styled from 'styled-components';
 // import { Categoryitem, ImgTitle, Img } from '../../components/CategoryAll';
 // import { HeartIcon } from "../DetailPage/DetailPage";
 import CommonStyles from './../../styles/CommonStyles';
+import CategoryAll from './CategoryAll/CategoryAll';
 
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 const MainPage = () => {
@@ -10,18 +11,7 @@ const MainPage = () => {
     <CommonStyles>
       <Banner src="/assets/thumbnailImg.png" />
       <StyledMainContainer>
-        {/* <Category>
-                    <Categoryitem>
-                        <Img src="/assets/dog.png"></Img>
-                        <ImgTitle>강아지</ImgTitle>
-                    </Categoryitem>
-
-                    <Categoryitem>
-                        <Img src="/assets/book.png" />
-                        <ImgTitle>책</ImgTitle>
-                    </Categoryitem>
-                </Category> */}
-
+        <CategoryAll />
         <div>
           <span style={{ fontSize: 20, fontWeight: 'bold' }}>신발신는중</span>
           <ContentList>
