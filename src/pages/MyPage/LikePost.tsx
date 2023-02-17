@@ -11,7 +11,8 @@ const LikePage = () => {
               <ListItemThumnail src={'/assets/hodu.jpg'} />
             </ListItemWrapper>
             <ListItemThumnailTitle>
-              같이 음악 들으면서 걸어요
+              <div>같이 음악 들으면서 걸어요</div>
+              <TagName># 케이팝 # 발라드 # 인디</TagName>
             </ListItemThumnailTitle>
             <ListItemContainer>
               <LikedHeartFlex>
@@ -26,7 +27,8 @@ const LikePage = () => {
               <ListItemThumnail src={'/assets/hodu.jpg'} />
             </ListItemWrapper>
             <ListItemThumnailTitle>
-              같이 음악 들으면서 걸어요
+              <div>같이 음악 들으면서 걸어요</div>
+              <TagName># 케이팝 # 발라드 # 인디</TagName>
             </ListItemThumnailTitle>
             <ListItemContainer>
               <LikedHeartFlex>
@@ -41,7 +43,8 @@ const LikePage = () => {
               <ListItemThumnail src={'/assets/hodu.jpg'} />
             </ListItemWrapper>
             <ListItemThumnailTitle>
-              같이 음악 들으면서 걸어요
+              <div>같이 음악 들으면서 걸어요</div>
+              <TagName># 케이팝 # 발라드 # 인디</TagName>
             </ListItemThumnailTitle>
             <ListItemContainer>
               <LikedHeartFlex>
@@ -56,7 +59,8 @@ const LikePage = () => {
               <ListItemThumnail src={'/assets/hodu.jpg'} />
             </ListItemWrapper>
             <ListItemThumnailTitle>
-              같이 음악 들으면서 걸어요
+              <div>같이 음악 들으면서 걸어요</div>
+              <TagName># 케이팝 # 발라드 # 인디</TagName>
             </ListItemThumnailTitle>
             <ListItemContainer>
               <LikedHeartFlex>
@@ -73,10 +77,7 @@ const LikePage = () => {
 };
 
 const MyPageContainer = styled.div`
-  padding: 0 19px;
-  margin: 0 auto;
-  margin-left: 6rem;
-  margin-right: 6rem;
+  margin: auto 40px;
 `;
 const LikedListWapper = styled.div`
   display: flex;
@@ -85,36 +86,25 @@ const LikedListWapper = styled.div`
   justify-content: space-between;
 `;
 const LikedListItem = styled.div`
-  width: 20vw;
-  height: 20vw;
+  width: 180px;
+  height: 96px;
 `;
 const ListItemWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
+  width: 165px;
+  height: 96px;
   margin-bottom: 10px;
-  overflow: hidden;
 `;
 const ListItemThumnail = styled.img`
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 180px;
+  height: 96px;
 `;
-const ListItemThumnailTitle = styled.p`
-  height: 48px;
-  margin: 30px 0 0;
+const ListItemThumnailTitle = styled.div`
+  font-size: 16px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 18px;
-  font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.33;
-  letter-spacing: normal;
-  color: #212121;
+`;
+const TagName = styled.div`
+  font-size: 10px;
+  color: #4389fa;
 `;
 
 const ListItemContainer = styled.div`
@@ -134,10 +124,9 @@ export const LikeBtnLine = styled(AiOutlineHeart)`
   cursor: pointer;
 `;
 const ListItemAddress = styled.p`
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
-  line-height: 19px;
-  letter-spacing: -0.18px;
+
   margin-top: 10px;
   margin-bottom: 5px;
 `;
