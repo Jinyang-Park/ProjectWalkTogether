@@ -58,31 +58,35 @@ const PostPage = () => {
   const meetDate = useRecoilValue(ReserveDate);
   const OTS = meetDate.toString();
   const weeks = OTS.slice(0, 3);
-  let toayweek = '';
+  let todayweek = '';
   switch (
     weeks //요일
   ) {
     case 'Sun':
-      toayweek = '일';
+      todayweek = '(일)';
+      break;
+    case 'Mon':
+      todayweek = '(월)';
       break;
     case 'Tue':
-      toayweek = '화';
+      todayweek = '(화)';
       break;
     case 'Wed':
-      toayweek = '수';
+      todayweek = '(수)';
       break;
-    case 'Thr':
-      toayweek = '목';
+    case 'Thu':
+      todayweek = '(목)';
       break;
     case 'Fri':
-      toayweek = '금';
+      todayweek = '(금)';
       break;
     case 'Sat':
-      toayweek = '토';
+      todayweek = '(토)';
       break;
   }
 
-  const meetMonth = OTS.slice(8, 11); //월
+  //월
+  const meetMonth = OTS.slice(8, 11);
   let todayMonth = '';
   switch (meetMonth) {
     case 'Jan':
@@ -122,6 +126,7 @@ const PostPage = () => {
       todayMonth = '12';
       break;
   }
+  //날자
   let meetDaynum = '';
   const meetDay = OTS.slice(5, 7);
   if (Number(meetDay) < 10) {
@@ -130,14 +135,32 @@ const PostPage = () => {
     meetDaynum = meetDay;
   }
 
+  //시간
   const meetTime = useRecoilValue(Time);
   const meetHour = meetTime.slice(0, 2);
-  let meetHourNum = '';
+  let meetHourNum: any = '';
   if (Number(meetHour) < 10) {
     meetHourNum = meetHour.slice(1, 2);
+  } else if (Number(meetHour) > 12) {
+    meetHourNum = Number(meetHour) - 12;
+  } else if (Number(meetHour) === 0 || Number(meetHour) === 12) {
+    meetHourNum = '0';
   } else {
     meetHourNum = meetHour;
   }
+  //AM/PM
+  let AMPM = '';
+  if (Number(meetHour) >= 12) {
+    AMPM = '오후';
+  } else {
+    AMPM = '오전';
+  }
+
+  const meetMinute = meetTime.slice(3, 5);
+  let meetMinuteNum = Number(meetMinute);
+
+  const RsvDate_Posting = `${todayMonth}/${meetDaynum} ${todayweek}`;
+  const RsvHour_Posting = `${AMPM} ${meetHourNum}:${meetMinute}`;
 
   //타이틀, 글 내용
   const Title = useRecoilValue(TitleInput);
@@ -156,9 +179,8 @@ const PostPage = () => {
 
   /////////////
   //콘솔확인용/
-  ////////////
   useEffect(() => {
-    console.log('meetTime:', meetHourNum);
+    console.log('meetTime:', RsvHour_Posting);
     setPostTime(timestring); //현재 시간
     // setPostHour(meeting); //약속 시간
     setPostNickname(nickname);
@@ -184,7 +206,8 @@ const PostPage = () => {
                 Description_Posting: Description,
                 Liked_Posting: false,
                 Nickname: postNickname,
-                RsvDate_Posting: postHour,
+                RsvDate_Posting,
+                RsvHour_Posting,
                 TimeStamp_Posting: postTime,
                 Title_Posting: Title,
                 UID: postAuthor,
@@ -193,6 +216,8 @@ const PostPage = () => {
                 Category_Posting: postCategory,
                 ThunmnailURL_Posting: getThumbnail,
                 BannereURL_Posting: getBanner,
+                CountLiked_Posting: '0',
+                ProceedState_Posting: '1',
               });
               console.log('글작성완료 ID: ', docRef);
               alert('저장완료');
