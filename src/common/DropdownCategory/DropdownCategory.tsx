@@ -6,6 +6,7 @@ interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 const DropdownCategory = ({ setPostCategory }: SetProps) => {
+  // const [] = useState()
   // 임시로 담을 state 만들기
   // 만들고 선택 했을때 클릭 핸들러에서 이너 텍스트를 임ㅇ시로 만든 셋 스테이트에 담느다
   // 완료 바튼에 눌렀을때 또 다른 핸들 이벤트가 잇어야된다.
