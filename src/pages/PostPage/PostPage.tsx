@@ -1,11 +1,19 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Time, TitleInput, DescriptionInput, Bannerupload, Thunmnailupload } from './Hooks/Rocoil/Atom';
+import {
+  Time,
+  TitleInput,
+  DescriptionInput,
+  Bannerupload,
+  Thunmnailupload,
+  ReserveDate,
+} from './Hooks/Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
 import { collection, addDoc } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
+import Mainpost from './Mainpost/Mainpost';
 import IuputInformation from './InputInformation/InputInformation';
 import * as S from './Postpage.style';
 import CommonStyles from './../../styles/CommonStyles';
@@ -47,43 +55,95 @@ const PostPage = () => {
   const [PostingID_Posting, setPostingID_Posting] = useState(uuidv4());
 
   //약속 시간
-  const meetTime = useRecoilValue(Time);
-  const meetTimeObectToString = JSON.stringify(Object.values(meetTime)[2]);
-  const OTS = Object.values(meetTime)[2].toString();
+  const meetDate = useRecoilValue(ReserveDate);
+  const OTS = meetDate.toString();
   const weeks = OTS.slice(0, 3);
-  var toayweek = '';
-  switch (weeks) {
+  let toayweek = '';
+  switch (
+    weeks //요일
+  ) {
     case 'Sun':
       toayweek = '일';
       break;
     case 'Tue':
       toayweek = '화';
       break;
+    case 'Wed':
+      toayweek = '수';
+      break;
+    case 'Thr':
+      toayweek = '목';
+      break;
+    case 'Fri':
+      toayweek = '금';
+      break;
+    case 'Sat':
+      toayweek = '토';
+      break;
   }
 
-  const meetTimeValue = Object.values(meetTime);
-  const weekValue = meetTimeObectToString.slice(1, 9);
-  // const meetHour = meetTimeObectToString.slice(12, 19); //시간 이상하게나옴
-  const meetYearMonth = meetTimeObectToString.slice(1, 9); //년월
-  const meetDay = meetTimeObectToString.slice(9, 11); //일
-  const week = meetTimeObectToString;
-  // let meetDayHour = 0;
-  // if (Number(meetTimeValue[8]) < 10) {
-  //   const meetDayHourzero = meetTimeValue[8] + 'a';
-  // } else {
-  //   const meetDayHourzero = meetTimeValue[8];
-  // }
-  //시
-  const meetDayHour = meetTimeValue[8]; // am의경우 0이 앞에 안 붙는다.
-  const meetDayMinute = meetTimeObectToString.slice(14, 17); //분
-  let meeting = `${meetYearMonth}${meetDay}__${meetDayHour}${meetDayMinute}` + ``;
+  const meetMonth = OTS.slice(8, 11); //월
+  let todayMonth = '';
+  switch (meetMonth) {
+    case 'Jan':
+      todayMonth = '1';
+      break;
+    case 'Feb':
+      todayMonth = '2';
+      break;
+    case 'Mar':
+      todayMonth = '3';
+      break;
+    case 'Apr':
+      todayMonth = '4';
+      break;
+    case 'May':
+      todayMonth = '5';
+      break;
+    case 'Jun':
+      todayMonth = '6';
+      break;
+    case 'July':
+      todayMonth = '7';
+      break;
+    case 'Aug':
+      todayMonth = '8';
+      break;
+    case 'Sep':
+      todayMonth = '9';
+      break;
+    case 'Oct':
+      todayMonth = '10';
+      break;
+    case 'Nov':
+      todayMonth = '11';
+      break;
+    case 'dec':
+      todayMonth = '12';
+      break;
+  }
+  let meetDaynum = '';
+  const meetDay = OTS.slice(5, 7);
+  if (Number(meetDay) < 10) {
+    meetDaynum = meetDay.slice(1, 2);
+  } else {
+    meetDaynum = meetDay;
+  }
 
+  const meetTime = useRecoilValue(Time);
+  const meetHour = meetTime.slice(0, 2);
+  let meetHourNum = '';
+  if (Number(meetHour) < 10) {
+    meetHourNum = meetHour.slice(1, 2);
+  } else {
+    meetHourNum = meetHour;
+  }
+
+  //타이틀, 글 내용
   const Title = useRecoilValue(TitleInput);
   const Description = useRecoilValue(DescriptionInput);
 
-  /////////
   //현재시간
-  /////////
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
   const time = {
     year: today.getFullYear(), //현재 년도
@@ -98,12 +158,12 @@ const PostPage = () => {
   //콘솔확인용/
   ////////////
   useEffect(() => {
-    console.log('KeyForChat_Posting:', KeyForChat_Posting);
+    console.log('meetTime:', meetHourNum);
     setPostTime(timestring); //현재 시간
-    setPostHour(meeting); //약속 시간
+    // setPostHour(meeting); //약속 시간
     setPostNickname(nickname);
     setPostAuthor(user);
-  }, [KeyForChat_Posting]);
+  });
 
   //settimeout test
   const geturl: any = () => {
@@ -128,7 +188,6 @@ const PostPage = () => {
                 TimeStamp_Posting: postTime,
                 Title_Posting: Title,
                 UID: postAuthor,
-
                 PostingID_Posting,
                 KeyForChat_Posting,
                 Category_Posting: postCategory,
