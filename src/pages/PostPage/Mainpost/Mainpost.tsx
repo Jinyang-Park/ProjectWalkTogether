@@ -72,45 +72,23 @@ function MainPost() {
     <>
       <S.Bannercontainer>
         <label htmlFor="banner">
-          <S.ThumbnailImgPorlaroid
-            src={banner ? banner : '/assets/thumbnailImg.png'}
-          />
+          <S.ThumbnailImgPorlaroid src={banner ? banner : '/assets/thumbnailImg.png'} />
         </label>
-        <S.BannerPhoto
-          type="file"
-          accept="image/*"
-          onChange={bannerimageChange}
-          style={{ display: 'none' }}
-          id="banner"
-        />
+        <S.BannerPhoto type="file" accept="image/*" onChange={bannerimageChange} style={{ display: 'none' }} id="banner" />
       </S.Bannercontainer>
       <S.Boxcontents>
         <S.BoxPhoto>
           <label htmlFor="thumnail">
-            <S.ThumnailPhotoChange
-              src={thumbnail ? thumbnail : '/assets/blackboard.png'}
-            />
+            <S.ThumnailPhotoChange src={thumbnail ? thumbnail : '/assets/blackboard.png'} />
           </label>
-          <S.ThumnailPhoto
-            type="file"
-            accept="image/*"
-            onChange={thumnailimageChange}
-            style={{ display: 'none' }}
-            id="thumnail"
-          />
+          <S.ThumnailPhoto type="file" accept="image/*" onChange={thumnailimageChange} style={{ display: 'none' }} id="thumnail" />
         </S.BoxPhoto>
 
         <S.BoxMain>
           <S.CalendarIcon src={'/assets/calendar.png'} />
           <S.CategoryTitle>카테고리</S.CategoryTitle>
-          <S.InputTitle
-            onChange={handleChange}
-            placeholder="제목을 입력해 주세요"
-          />
-          <S.Textarea
-            onChange={handleChangeText}
-            placeholder="당신의 이야기를 적어주세요"
-          ></S.Textarea>
+          <S.InputTitle onChange={handleChange} placeholder="제목을 입력해 주세요" />
+          <S.Textarea onChange={handleChangeText} placeholder="당신의 이야기를 적어주세요"></S.Textarea>
           <S.HashtagBox>#해쉬태그를 입력해주세요</S.HashtagBox>
         </S.BoxMain>
       </S.Boxcontents>

@@ -1,11 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 // import { Categoryitem, ImgTitle, Img } from '../../components/CategoryAll';
 // import { HeartIcon } from "../DetailPage/DetailPage";
 import CommonStyles from './../../styles/CommonStyles';
+import { dbService } from '../../common/firebase';
+import { query, onSnapshot, collection } from 'firebase/firestore';
 
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 const MainPage = () => {
+  const [testList, setTestList] = useState([1, 2, 3, 4]);
+
   return (
     <CommonStyles>
       <Banner src="/assets/thumbnailImg.png" />

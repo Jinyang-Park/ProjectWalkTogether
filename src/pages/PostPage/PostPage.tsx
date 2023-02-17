@@ -1,18 +1,12 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import {
-  Time,
-  TitleInput,
-  DescriptionInput,
-  Bannerupload,
-  Thunmnailupload,
-} from './Hooks/Rocoil/Atom';
+import { Time, TitleInput, DescriptionInput, Bannerupload, Thunmnailupload } from './Hooks/Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
 import { collection, addDoc } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
-import Mainpost from './MainPost/Mainpost';
+import MainPost from './Mainpost/Mainpost';
 import IuputInformation from './InputInformation/InputInformation';
 import * as S from './Postpage.style';
 import CommonStyles from './../../styles/CommonStyles';
@@ -82,8 +76,7 @@ const PostPage = () => {
   //시
   const meetDayHour = meetTimeValue[8]; // am의경우 0이 앞에 안 붙는다.
   const meetDayMinute = meetTimeObectToString.slice(14, 17); //분
-  let meeting =
-    `${meetYearMonth}${meetDay}__${meetDayHour}${meetDayMinute}` + ``;
+  let meeting = `${meetYearMonth}${meetDay}__${meetDayHour}${meetDayMinute}` + ``;
 
   const Title = useRecoilValue(TitleInput);
   const Description = useRecoilValue(DescriptionInput);
@@ -186,7 +179,7 @@ const PostPage = () => {
   return (
     <CommonStyles>
       <S.Boxcontainer>
-        <Mainpost />
+        <MainPost />
         <IuputInformation />
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>
