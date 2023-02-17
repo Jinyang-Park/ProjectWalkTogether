@@ -24,6 +24,7 @@ export default function KakaoLogoutButton() {
       .then(() => {
         console.log('로그아웃 성공');
         navigate('/');
+        alert('로그아웃 성공');
       })
       .catch((err) => alert(err));
 

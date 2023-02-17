@@ -90,8 +90,16 @@ function MainPost({ setPostCategory }: SetProps) {
         </S.BoxPhoto>
 
         <S.BoxMain>
-          <S.CalendarIcon src={'/assets/calendar.png'} />
-          <S.CategoryTitle>카테고리</S.CategoryTitle>
+          <S.CateogryWrapper
+            onClick={() => {
+              setShow(true);
+            }}
+          >
+            {show === true ? <DropdownCategory setPostCategory={setPostCategory} /> : null}
+            <S.CalendarIcon src={'/assets/calendar.png'} />
+            <S.CategoryTitle>카테고리</S.CategoryTitle>
+          </S.CateogryWrapper>
+
           <S.InputTitle onChange={handleChange} placeholder="제목을 입력해 주세요" />
           <S.Textarea onChange={handleChangeText} placeholder="당신의 이야기를 적어주세요"></S.Textarea>
           <S.HashtagBox>#해쉬태그를 입력해주세요</S.HashtagBox>

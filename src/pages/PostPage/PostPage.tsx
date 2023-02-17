@@ -6,7 +6,6 @@ import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
 import { collection, addDoc } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
-import Mainpost from './MainPost/Mainpost';
 import IuputInformation from './InputInformation/InputInformation';
 import * as S from './Postpage.style';
 import CommonStyles from './../../styles/CommonStyles';
@@ -181,7 +180,7 @@ const PostPage = () => {
   return (
     <CommonStyles>
       <S.Boxcontainer>
-        <Mainpost />
+        <MainPost setPostCategory={setPostCategory} />
         <IuputInformation />
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>
