@@ -7,6 +7,8 @@ import {
   Bannerupload,
   Thunmnailupload,
   ReserveDate,
+  selectedAddress,
+  myLocation,
 } from './Hooks/Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import { getAuth } from 'firebase/auth';
@@ -27,10 +29,10 @@ const PostPage = () => {
   const [postHour, setPostHour] = useState(''); //약속 시간.날짜
   const [postMinut, setPostMinute] = useState(''); //약속 시간.시각
   const [postTime, setPostTime] = useState(''); //작성시간
-  const [postLatitude, setPostLtitude] = useState(''); //위도
-  const [postLongitude, setPostLongitude] = useState(''); //경도
-  const [postNowLatitude, setPostNowLtitude] = useState(''); //현재 위도
-  const [postNowLongitude, setPostNowLongitude] = useState(''); //현재 경도
+  // const [postLatitude, setPostLtitude] = useState(''); //위도
+  // const [postLongitude, setPostLongitude] = useState(''); //경도
+  // const [postNowLatitude, setPostNowLtitude] = useState(''); //현재 위도
+  // const [postNowLongitude, setPostNowLongitude] = useState(''); //현재 경도
   const [postLiked, setPostLiked] = useState(false); //좋아요 여부
   const [postCountLiked, setPostCountLiked] = useState(''); //좋아요 갯수
   const [proceedState, setProceedState] = useState(''); //게시글의 진행사항
@@ -40,6 +42,15 @@ const PostPage = () => {
   const [postNickname, setPostNickname] = useState(''); //사용자 닉네임 => 회원가입시시에 저장해 주거나 로컬에 저장하는 방법을 찾아야될 것 같다.
   const [postAddress, setPostAddress] = useState(''); //만날 위치 시,군,구,단
   const [postCategory, setPostCategory] = useState<any>(''); //카테고리
+
+  //주소 받아오기 myLocation
+  const location = useRecoilValue(myLocation);
+  const adress = useRecoilValue(selectedAddress);
+
+  const MeetLatitude_Posting = location.lat;
+  const MeetLongitude_Posting = location.lng;
+
+  const Address_Posting = adress.slice(0, 10);
 
   //////이미지 받아오기
   const [getThumbnail, setGetThumbnail] = useState<any>();
@@ -180,7 +191,7 @@ const PostPage = () => {
   /////////////
   //콘솔확인용/
   useEffect(() => {
-    console.log('meetTime:', RsvHour_Posting);
+    console.log('location:', Address_Posting);
     setPostTime(timestring); //현재 시간
     // setPostHour(meeting); //약속 시간
     setPostNickname(nickname);
@@ -217,6 +228,9 @@ const PostPage = () => {
                 BannereURL_Posting: getBanner,
                 CountLiked_Posting: '0',
                 ProceedState_Posting: '1',
+                Address_Posting,
+                MeetLongitude_Posting,
+                MeetLatitude_Posting,
               });
               console.log('글작성완료 ID: ', docRef);
               alert('저장완료');

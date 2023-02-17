@@ -1,6 +1,6 @@
 import * as S from './InputInformation.style';
 // import MapContainer from '../../MapPage/Map/map';
-
+import { myLocation, selectedAddress } from '../Hooks/Rocoil/Atom';
 import {
   Map,
   MapMarker,
@@ -11,10 +11,12 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 import AntCalendar from '../Hooks/Calendar/AntCalendarDate';
 import AntCalendarTime from '../Hooks/Calendar/AntCalendarTime';
+import { useRecoilState } from 'recoil';
 
 function InputInformation() {
   // 현재 위치를 가져오기 위한 state 생성
-  const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 });
+  // const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 });
+  const [myLoca, setMyLoca] = useRecoilState(myLocation);
 
   // 지도 좌표를 저장할 state   (o)
   const [position, setPosition] = useState({ lat: 36.5, lng: 127.8 });
@@ -33,7 +35,8 @@ function InputInformation() {
   };
 
   // 좌표 - 주소 변환을 위한 State (0)
-  const [address, setAddress] = useState('');
+  // const [address, setAddress] = useState('');
+  const [address, setAddress] = useRecoilState(selectedAddress);
   const geocoder = new kakao.maps.services.Geocoder();
 
   // 사용자 위치를 가져오기 위한 useEffect
