@@ -19,27 +19,28 @@ const Header = () => {
       <Nav>
         <NavUl>
           <NavLi>
-            <NavText to="/">Home</NavText>
+            <NavText to='/'>Home</NavText>
           </NavLi>
           <NavLi>
-            <NavText to="/map">Map</NavText>
+            <NavText to='/map'>Map</NavText>
           </NavLi>
           <NavLi>
-            <NavText to="/chat">chat</NavText>
+            <NavText to='/chat'>chat</NavText>
           </NavLi>
           <NavLi>
-            <NavText to="/category">카테고리</NavText>
+            <NavText to='/category'>카테고리</NavText>
           </NavLi>
           <NavLi>
-            <NavText to="/postpage">글쓰기</NavText>
+            <NavText to='/postpage'>글쓰기</NavText>
           </NavLi>
           <NavLi>
-            <NavText to="/detailpage">상세</NavText>
+            <NavText to='/detailpage'>상세</NavText>
           </NavLi>
         </NavUl>
-        <Profile onClick={gotomy}>닉네임</Profile>
-
-        <LoginButton onClick={handleLogin}>Login/탭</LoginButton>
+        <NavEtc>
+          <Profile onClick={gotomy}>닉네임</Profile>
+          <LoginButton onClick={handleLogin}>Login</LoginButton>
+        </NavEtc>
       </Nav>
     </NavContainer>
   );

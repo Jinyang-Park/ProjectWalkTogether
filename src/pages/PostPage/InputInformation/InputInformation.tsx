@@ -27,6 +27,7 @@ function InputInformation() {
 
   // input value 를 가져오기 위한 state
   const [search, setSearch] = useState('');
+
   const onChange = (e) => {
     setSearch(e.target.value);
   };
@@ -145,6 +146,8 @@ function InputInformation() {
       <S.InputBox>
         <S.InputAdressBox
           onSubmit={(e) => {
+            e.preventDefault();
+            SearchFunction();
             e.preventDefault();
             SearchFunction();
           }}

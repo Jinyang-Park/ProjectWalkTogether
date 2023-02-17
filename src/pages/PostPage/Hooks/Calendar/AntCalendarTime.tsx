@@ -10,11 +10,11 @@ const AntCalendarTime: React.FC = () => {
   const [reserveTime, setReserveTime] = useRecoilState<string>(Time);
 
   const onChange = (time: Dayjs, timeString: string) => {
-    setReserveTime(() => timeString);
+    setReserveTime(timeString);
     console.log('날짜/시간', reserveTime);
   };
 
-  //   useEffect(() => console.log('날짜/시간', reserveTime))_;
+  //   useEffect(() => console.log('날짜/시간', reserveTime));
 
   return (
     <TimePicker

@@ -6,6 +6,7 @@ import {
   DescriptionInput,
   Bannerupload,
   Thunmnailupload,
+  ReserveDate,
 } from './Hooks/Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import { getAuth } from 'firebase/auth';
@@ -16,9 +17,9 @@ import Mainpost from './Mainpost/Mainpost';
 import IuputInformation from './InputInformation/InputInformation';
 import * as S from './Postpage.style';
 import CommonStyles from './../../styles/CommonStyles';
+import MainPost from './Mainpost/Mainpost';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../common/firebase';
-import { ReserveDate } from './Hooks/Rocoil/Atom';
 
 const PostPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false); //아이디 찾기 모달창
@@ -38,7 +39,7 @@ const PostPage = () => {
   const [postAuthor, setPostAuthor] = useState(''); //사용자 파이어베이스 uid
   const [postNickname, setPostNickname] = useState(''); //사용자 닉네임 => 회원가입시시에 저장해 주거나 로컬에 저장하는 방법을 찾아야될 것 같다.
   const [postAddress, setPostAddress] = useState(''); //만날 위치 시,군,구,단
-  const [postCategory, setPostCategory] = useState(''); //카테고리
+  const [postCategory, setPostCategory] = useState<any>(''); //카테고리
 
   //////이미지 받아오기
   const [getThumbnail, setGetThumbnail] = useState<any>();
@@ -54,13 +55,13 @@ const PostPage = () => {
   const [PostingID_Posting, setPostingID_Posting] = useState(uuidv4());
 
   //약속 시간
-  const meetTime = useRecoilValue(ReserveDate);
-  // const d = meetTime[5];  .toString();
-
-  const OTS = meetTime.toString();
+  const meetDate = useRecoilValue(ReserveDate);
+  const OTS = meetDate.toString();
   const weeks = OTS.slice(0, 3);
-  var toayweek = '';
-  switch (weeks) {
+  let toayweek = '';
+  switch (
+    weeks //요일
+  ) {
     case 'Sun':
       toayweek = '일';
       break;
@@ -81,32 +82,68 @@ const PostPage = () => {
       break;
   }
 
-  const meetHour = OTS.slice(16, 19); //시간 이상하게나옴
-  const todayHour = '';
-  // if(meetHour < 10){
-  // }
+  const meetMonth = OTS.slice(8, 11); //월
+  let todayMonth = '';
+  switch (meetMonth) {
+    case 'Jan':
+      todayMonth = '1';
+      break;
+    case 'Feb':
+      todayMonth = '2';
+      break;
+    case 'Mar':
+      todayMonth = '3';
+      break;
+    case 'Apr':
+      todayMonth = '4';
+      break;
+    case 'May':
+      todayMonth = '5';
+      break;
+    case 'Jun':
+      todayMonth = '6';
+      break;
+    case 'July':
+      todayMonth = '7';
+      break;
+    case 'Aug':
+      todayMonth = '8';
+      break;
+    case 'Sep':
+      todayMonth = '9';
+      break;
+    case 'Oct':
+      todayMonth = '10';
+      break;
+    case 'Nov':
+      todayMonth = '11';
+      break;
+    case 'dec':
+      todayMonth = '12';
+      break;
+  }
+  let meetDaynum = '';
+  const meetDay = OTS.slice(5, 7);
+  if (Number(meetDay) < 10) {
+    meetDaynum = meetDay.slice(1, 2);
+  } else {
+    meetDaynum = meetDay;
+  }
 
-  // // const meetYearMonth = meetTimeObectToString.slice(1, 9); //년월
-  // // const meetDay = meetTimeObectToString.slice(9, 11); //일
-  // // const week = meetTimeObectToString;
-  // // // let meetDayHour = 0;
-  // // // if (Number(meetTimeValue[8]) < 10) {
-  // // //   const meetDayHourzero = meetTimeValue[8] + 'a';
-  // // // } else {
-  // // //   const meetDayHourzero = meetTimeValue[8];
-  // // // }
-  // // //시
-  // // const meetDayHour = meetTimeValue[8]; // am의경우 0이 앞에 안 붙는다.
-  // // const meetDayMinute = meetTimeObectToString.slice(14, 17); //분
-  // // let meeting =
-  // //   `${meetYearMonth}${meetDay}__${meetDayHour}${meetDayMinute}` + ``;
+  const meetTime = useRecoilValue(Time);
+  const meetHour = meetTime.slice(0, 2);
+  let meetHourNum = '';
+  if (Number(meetHour) < 10) {
+    meetHourNum = meetHour.slice(1, 2);
+  } else {
+    meetHourNum = meetHour;
+  }
 
+  //타이틀, 글 내용
   const Title = useRecoilValue(TitleInput);
   const Description = useRecoilValue(DescriptionInput);
 
-  /////////
   //현재시간
-  /////////
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
   const time = {
     year: today.getFullYear(), //현재 년도
@@ -121,7 +158,7 @@ const PostPage = () => {
   //콘솔확인용/
   ////////////
   useEffect(() => {
-    console.log('meetTime:', meetHour);
+    console.log('meetTime:', meetHourNum);
     setPostTime(timestring); //현재 시간
     // setPostHour(meeting); //약속 시간
     setPostNickname(nickname);
@@ -153,6 +190,7 @@ const PostPage = () => {
                 UID: postAuthor,
                 PostingID_Posting,
                 KeyForChat_Posting,
+                Category_Posting: postCategory,
                 ThunmnailURL_Posting: getThumbnail,
                 BannereURL_Posting: getBanner,
               });
@@ -202,7 +240,7 @@ const PostPage = () => {
   return (
     <CommonStyles>
       <S.Boxcontainer>
-        <Mainpost />
+        <MainPost setPostCategory={setPostCategory} />
         <IuputInformation />
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>
