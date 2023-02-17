@@ -43,6 +43,7 @@ const MyPage = () => {
 
   const [imgBtn, setImgBtn] = useState(false);
 
+
   const getUserInfo = () => {
     setUserInfo({
       nickname: user?.displayName ?? '익명',
@@ -54,7 +55,6 @@ const MyPage = () => {
   useEffect(() => {
     getUserInfo();
   }, []);
-
   const uploadBackImg = async (e: any) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -62,14 +62,11 @@ const MyPage = () => {
     reader.onloadend = () => {
       setPhotoBackImg(reader.result);
     };
-
     const uploaded_file = await uploadBytes(
       ref(storage, `images/${e.target.files[0].name}`),
       e.target.files[0]
     );
-
     const file_url = await getDownloadURL(uploaded_file.ref);
-
     updateProfile(user, {
       photoURL: file_url,
     })
@@ -85,14 +82,11 @@ const MyPage = () => {
     reader.onloadend = () => {
       setPhotoURL(reader.result);
     };
-
     const uploaded_file = await uploadBytes(
       ref(storage, `images/${e.target.files[0].name}`),
       e.target.files[0]
     );
-
     const file_url = await getDownloadURL(uploaded_file.ref);
-
     updateProfile(user, {
       photoURL: file_url,
     })
@@ -101,7 +95,6 @@ const MyPage = () => {
         alert('이미지 업로드 실패');
       });
   };
-
   const editNickName = async () => {
     setNewNickName(text);
     await updateProfile(user, { displayName: text })
@@ -138,6 +131,7 @@ const MyPage = () => {
 
   return (
     <CommonStyles>
+
       {user === user ? (
         <CommonStyles>
           <BannerImgWrap>
@@ -348,6 +342,119 @@ const ImgUploadModal = styled.div`
   position: absolute;
   background-color: gray;
 `;
+
+      <div>test</div>
+      <BannerImgWrap>
+        <BannerImg
+          src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'}
+        />
+        <label htmlFor='back'>
+          <input
+            type='file'
+            onChange={uploadBackImg}
+            style={{ display: 'none' }}
+            accept='image/*'
+            id='back'
+          ></input>
+          <ImgEditBtn />
+        </label>
+      </BannerImgWrap>
+      <ImgNickNameMannerWrap>
+        <ImgAndNameWrap>
+          <ImgAndNameContainer>
+            <ImgWrap>
+              <ImgChange
+                src={photoURL ? photoURL : '/assets/default_profile.png'}
+              />
+              <label htmlFor='img'>
+                <input
+                  type='file'
+                  onChange={uploadFB}
+                  accept='image/*'
+                  id='img'
+                  style={{ display: 'none' }}
+                ></input>
+                <ImgChangeBtn />
+              </label>
+            </ImgWrap>
+            <NameContainer>
+              <NickNameWrap>
+                {newNickName ?? '익명'}
+                <EditIcon
+                  onClick={() => {
+                    setShowNickNameChangeBtn(!showNickNameChangeBtn);
+                  }}
+                />
+                <SetNameWrap>
+                  {showNickNameChangeBtn === true ? (
+                    <>
+                      <InputStyle
+                        type='text'
+                        placeholder='변경할 닉네임을 입력해주세요.'
+                        value={text}
+                        maxLength={6}
+                        onChange={(event) => {
+                          setText(event.target.value);
+                        }}
+                      />
+                      <CheckIcon
+                        onClick={() => {
+                          handleNickNameBtn();
+                        }}
+                      >
+                        변경
+                      </CheckIcon>
+                    </>
+                  ) : null}
+                </SetNameWrap>
+                <AlertPhone>xxx-xxxx-xxxx</AlertPhone>
+              </NickNameWrap>
+              <DoneCnt>총 15번의 산책을 완료하셨어요!</DoneCnt>
+              <MyIntroduce>자기소개</MyIntroduce>
+            </NameContainer>
+          </ImgAndNameContainer>
+        </ImgAndNameWrap>
+      </ImgNickNameMannerWrap>
+      <MannerWrap>
+        <MannerContainer>
+          <div>총 20건의 후기를 받으셨어요.</div>
+          {/* <ReceiveManner>받은 매너 평가</ReceiveManner> */}
+          <MannerBox>
+            <MannerDetail>
+              <ThumbUp />
+              <MannerScore>2</MannerScore>
+              <MannerComment>친절하고 매너가 좋아요!</MannerComment>
+            </MannerDetail>
+            <MannerDetail>
+              <HandPeace />
+              <MannerScore>5</MannerScore>
+              <MannerComment>재미있어요!</MannerComment>
+            </MannerDetail>
+            <MannerDetail>
+              <HeartIcon />
+              <MannerScore>1</MannerScore>
+              <MannerComment>자상하고 편안했어요!</MannerComment>
+            </MannerDetail>
+            <MannerDetail>
+              <HandPaper />
+              <MannerScore>2</MannerScore>
+              <MannerComment>친절하고 매너가 좋아요!</MannerComment>
+            </MannerDetail>
+          </MannerBox>
+        </MannerContainer>
+      </MannerWrap>
+      <MyPageWrapper>
+        <ChangePost>
+          <GoMyPost>내가 쓴 글</GoMyPost>
+          <GoLiked>찜</GoLiked>
+        </ChangePost>
+        <LikedWrapper>
+          <LikePage />
+        </LikedWrapper>
+      </MyPageWrapper>
+    </CommonStyles>
+  );
+};
 const ImgNickNameMannerWrap = styled.div`
   width: 1024px;
 `;
@@ -378,7 +485,11 @@ const ImgChangeBtn = styled(FaPen)`
 const AlertPhone = styled.div`
   width: 171px;
   height: 19px;
+
   margin-left: 100px;
+
+  margin-left: 300px;
+
   margin-top: -30px;
   font-family: 'Inter';
   font-style: normal;
@@ -390,14 +501,15 @@ const AlertPhone = styled.div`
 `;
 const DoneCnt = styled.div``;
 const MyIntroduce = styled.div`
+
   display: flex;
   width: 653px;
   height: 67px;
   background-color: #979797;
+
 `;
 const InputStyle = styled.input`
   padding: 10px;
-
   background-color: #cab0c0;
   border-radius: 10px;
   border-style: none;
@@ -405,7 +517,6 @@ const InputStyle = styled.input`
   font-size: 15px;
   font-weight: 700;
   color: white;
-
   ::placeholder {
     font-size: 13px;
     color: #494848;
@@ -435,7 +546,6 @@ const CheckIcon = styled(FiCheck)`
   font-size: 30px;
   margin-left: 10px;
   cursor: pointer;
-
   &:hover {
     color: #ff0098;
   }
@@ -443,7 +553,6 @@ const CheckIcon = styled(FiCheck)`
 const MyPageWrapper = styled.div`
   margin: auto 40px;
 `;
-
 const ImgAndNameContainer = styled.div`
   display: flex;
 `;
@@ -499,7 +608,9 @@ const MannerBox = styled.div`
 const MannerDetail = styled.div`
   display: flex;
 
+
   align-items: center;
+
 
   margin-bottom: 20px;
   margin-top: 40px;
@@ -509,6 +620,7 @@ const MannerDetail = styled.div`
 const ThumbUp = styled(BsFillHandThumbsUpFill)`
   font-size: 30px;
   margin: 10px;
+
 `;
 const HeartIcon = styled(BsFillSuitHeartFill)`
   font-size: 30px;
@@ -521,6 +633,9 @@ const HandPeace = styled(FaHandPeace)`
 const HandPaper = styled(FaHandPaper)`
   font-size: 30px;
   margin: 10px;
+`;
+
+
 `;
 
 const MannerScore = styled.p`
@@ -602,5 +717,4 @@ const LikePostTitle = styled.h1`
   color: #212121;
   padding: 0 1.1875rem;
 `;
-
 export default MyPage;

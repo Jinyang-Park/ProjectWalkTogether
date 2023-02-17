@@ -17,6 +17,7 @@ import {
 import { useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import dayjs from 'dayjs';
 
 const Comments = () => {
   // 댓글 인풋
@@ -24,12 +25,17 @@ const Comments = () => {
   // 댓글 출력
   const [myComment, setMyComment] = useState<any[]>([]);
   // 댓글 수정
-
   const [editContent, setEditContent] = useState('');
+  // 댓글 텍스트 변경
   const [isEditing, setIsEditing] = useState(false);
+
   const navigate = useNavigate();
 
-  console.log('editContent:', editContent);
+  // 날짜 정보
+  const now = () => {
+    const now = dayjs();
+    return now.format('YYYY.MM.DD HH:mm');
+  };
 
   const newComments = {
     UID: authService.currentUser?.uid,
@@ -39,7 +45,7 @@ const Comments = () => {
     //key:Description_Comments,inputComment: value
     Description_Comments: inputComment,
     ProfileImg: authService.currentUser?.photoURL,
-    CreatedAt: Date.now(),
+    CreatedAt: now(),
     NickName: authService.currentUser?.displayName ?? '익명',
     isDone: false,
     isEdit: false,
@@ -58,6 +64,7 @@ const Comments = () => {
           },
         ],
       });
+
       return;
     }
 
@@ -71,6 +78,7 @@ const Comments = () => {
           },
         ],
       });
+
       return;
     }
     await addDoc(collection(dbService, 'comments'), newComments);
@@ -96,6 +104,7 @@ const Comments = () => {
 
   // 파이어베이스에서는 바뀌었는데 웹에서는 인지를 못해서 강제로 한번더 해줌
   // 모르겠네.. 코멘트를 불러왔다
+  // 댓글 출력
   const Reupdate = () => {
     const q = query(
       collection(dbService, 'comments')
@@ -192,26 +201,25 @@ const Comments = () => {
 
   return (
     <S.DetailCommentsWrapper>
-      <S.CommentTitle>댓글</S.CommentTitle>
-      <S.CommentCount>{myComment.length}</S.CommentCount>
+      <S.DetailNumberWrapper>
+        <S.CommentTitle>댓글</S.CommentTitle>
+        <S.CommentCount>{myComment.length}</S.CommentCount>
+      </S.DetailNumberWrapper>
       <S.DetailCommentContainer>
         <S.CommentUserImgWrapper>
-          <S.CommtentUserImg src='/assets/hodu.jpg' />
-          <S.CommentContentsWrapper>
-            <S.CommentContent
-              type='text'
-              placeholder='댓글을 입력하세요.'
-              value={inputComment}
-              onChange={(event) => {
-                setInputComment(event.target.value);
-              }}
-            />
+          <S.CommentContent
+            type='text'
+            placeholder='댓글을 입력하세요.'
+            value={inputComment}
+            onChange={(event) => {
+              setInputComment(event.target.value);
+            }}
+          />
 
-            <S.CommentCancelBtn onClick={CancelCommentHandler}>
-              취소하기
-            </S.CommentCancelBtn>
-            <S.CommentBtn onClick={addCommentHandler}>등록하기</S.CommentBtn>
-          </S.CommentContentsWrapper>
+          <S.CommentCancelBtn onClick={CancelCommentHandler}>
+            취소하기
+          </S.CommentCancelBtn>
+          <S.CommentBtn onClick={addCommentHandler}>등록하기</S.CommentBtn>
         </S.CommentUserImgWrapper>
       </S.DetailCommentContainer>
       {/* 리뷰 리스트 */}
@@ -223,14 +231,16 @@ const Comments = () => {
               {/* 현재 user가 쓴 글인지 판별 */}
               {comment?.UID !== authService.currentUser?.uid ? (
                 <S.CommentLi>
+                  <S.CommentProfileImg src={comment.ProfileImg} />
                   <S.CommentWrapper>
-                    <S.CommentProfileImg src={comment.ProfileImg} />
                     <S.CommentUserName>{comment.NickName}</S.CommentUserName>
                     <S.CommentBox>
                       <S.CommentInput>
                         {comment.Description_Comments}
                       </S.CommentInput>
-                      <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
+                      <S.CommentDataWrapper>
+                        <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
+                      </S.CommentDataWrapper>
                     </S.CommentBox>
                   </S.CommentWrapper>
                 </S.CommentLi>
@@ -266,6 +276,7 @@ const Comments = () => {
                             </S.CommentEditBtn>
                           ) : // isEditing이 false이면 즉 내가 클릭하지 않은 댓글들은 수정하기 버튼이 사라진다.
                           // 내가 클릭한 댓글이 true가 되면 나머지 댓글들은 수정하기 버튼이 사라진다.
+
                           isEditing ? (
                             <></>
                           ) : (

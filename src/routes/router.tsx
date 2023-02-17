@@ -7,10 +7,10 @@ import MyPage from '../pages/MyPage/MyPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import MapPage from '../pages/MapPage/MapPage';
-import CategoryPage from '../pages/CategoryPage/CategoryPage';
 import PostPage from '../pages/PostPage/PostPage';
 import DetailPage from '../pages/DetailPage/DetailPage';
 import ChattingPage from '../pages/ChatPage/ChattingPage';
+import Category from '../pages/CategoryPage/Category';
 
 const Router = () => {
   return (
@@ -22,8 +22,8 @@ const Router = () => {
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/map' element={<MapPage />} />
         <Route path='/mypage' element={<MyPage />} />
-        <Route path='/category' element={<CategoryPage />} />
         <Route path='/postpage' element={<PostPage />} />
+        <Route path='/category/:category' element={<Category />} />
         <Route path='/detailpage' element={<DetailPage />} />
         <Route path='/chat' element={<ChattingPage />} />
       </Routes>

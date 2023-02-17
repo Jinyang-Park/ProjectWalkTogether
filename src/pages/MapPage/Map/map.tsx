@@ -3,48 +3,188 @@ import * as ReactDOMServer from 'react-dom/server'
 import { useParams } from 'react-router-dom'
 
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { useMap } from '../../../hooks/useMap'
-import { dbState } from '../../../store/selector'
+
+import { AiOutlineSearch } from 'react-icons/ai'
+import { RxDividerVertical } from 'react-icons/rx'
+import { IoMdClose } from 'react-icons/io'
+
+// import { dbState } from '../../../store/selector'
 
 import * as S from '../Map/map.style'
 
-import { data } from '../../../dummydata'
+import {
+  Map,
+  MapMarker,
+  ZoomControl,
+  MapTypeControl,
+} from 'react-kakao-maps-sdk'
 
-// 카카오 객체를 window 객체의 interface에 추가
+const MapContainer = (Post) => {
+  // 현재 위치를 가져오기 위한 state 생성
+  const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 })
 
-const MapContainer = () => {
-  const mapContainer = useRef(null) // 지도를 담을 영역의 DOM 레퍼런스
-  const [markerImage, setMarkerImage] = useState<any>(null) // 마커 이미지
-  const [DB] = useRecoilValue<any>(dbState)
+  // 지도 좌표를 저장할 state
+  const [position, setPosition] = useState({ lat: 36.5, lng: 127.8 })
 
-  // 전역 DB 불러오기
+  // 키워드로 장소검색하기를 위한 state
+  const [info, setInfo] = useState<any>()
+  const [markers, setMarkers] = useState([])
+  const [map, setMap] = useState<any>()
+  const [bounds, setBounds] = useState()
 
-  // 지도가 표시괼 HTML 요소
+  // input value 를 가져오기 위한 state
+  const [search, setSearch] = useState('')
+  const onChange = (e) => {
+    setSearch(e.target.value)
+  }
 
-  // 현재 클릭한 PostingId를 저장하는 state
+  // 좌표 - 주소 변환을 위한 State
+  const [address, setAddress] = useState('')
+  const geocoder = new kakao.maps.services.Geocoder()
 
-  const { makeMap, makeMarkers } = useMap(
-    mapContainer,
-    setMarkerImage,
-    markerImage,
-    data
-  )
+  // 인포윈도우 Open 여부를 저장하는 state 입니다.
+  const [isOpen, setIsOpen] = useState(false)
 
-  console.log('DB', DB)
-  console.log(Array.isArray(DB))
-  console.log(data)
-
-  // * 첫 렌더링 시 지도 생성
-  useEffect(() => {
-    makeMap()
+  // 사용자 위치를 가져오기 위한 useEffect
+  React.useEffect(() => {
+    if (navigator.geolocation) {
+      // GeoLocation을 이용해서 접속 위치를 얻어온다
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setMyLoca({
+            lat: position.coords.latitude, // 위도
+            lng: position.coords.longitude, // 경도
+          })
+        },
+        (err) => {
+          alert('현재 위치를 표시할 수 없어요')
+        },
+        { enableHighAccuracy: true } // 위치정보의 정확도를 높이는 옵션
+      )
+    } else {
+      // HTML5의 GeoLocation을 사용할 수 없을때
+      alert('현재 위치를 표시할 수 없어요')
+    }
   }, [])
 
-  //* DB가 변경되면 마커 생성
-  useEffect(() => {
-    makeMarkers()
-  }, [markerImage])
+  console.log(search)
 
-  return <S.Mapbox ref={mapContainer}></S.Mapbox>
+  // 키워드로 장소검색하기 위한 useEffect
+  useEffect(() => {
+    SearchFunction()
+  }, [map])
+
+  //  // 지도를 불러오기 위한 함수
+  const SearchFunction = () => {
+    if (!map) return
+    const ps = new kakao.maps.services.Places()
+
+    ps.keywordSearch(search, (data, status, _pagination) => {
+      if (status === kakao.maps.services.Status.OK) {
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+        // LatLngBounds 객체에 좌표를 추가합니다
+        const bounds = new kakao.maps.LatLngBounds()
+        let markers = []
+
+        for (var i = 0; i < data.length; i++) {
+          // @ts-ignore
+          // markers.push({
+          //   position: {
+          //     lat: data[i].y,
+          //     lng: data[i].x,
+          //   },
+          //   content: data[i].place_name,
+          // })
+          // @ts-ignore
+          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x))
+        }
+        setMarkers(markers)
+
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+        map.setBounds(bounds)
+      }
+    })
+  }
+
+  // db의 Post 컬렉션에서 가져온 데이터를 MapMarker에 넣어주기 위한 배열 생성
+  const Markers = Post.Post.map((post) => {
+    // console.log(Post, post.MeetLatitude_Posting)
+    // console.log(post.MeetLongitude_Posting)
+
+    return (
+      <MapMarker
+        position={{
+          lat: post.MeetLatitude_Posting,
+          lng: post.MeetLongitude_Posting,
+        }}
+        clickable={true} // 마커를 클릭했을 때 클릭 이벤트를 발생시킬지 여부를 지정합니다.
+        onClick={() => {
+          setIsOpen(true)
+        }}
+      >
+        {isOpen && (
+          <S.InfoWindow onClick={() => setIsOpen(false)}>
+            <S.ResultListCard key={post.PostingID_Posting}>
+              <S.ResultListCardImage></S.ResultListCardImage>
+              <S.ResultListCardTitle>
+                {post.Title_Posting}
+              </S.ResultListCardTitle>
+              <S.ResultListTagList>
+                <S.ResultListTag>#음악</S.ResultListTag>
+                <S.ResultListTag>#락</S.ResultListTag>
+                <S.ResultListTag>#뮤즈파에요</S.ResultListTag>
+              </S.ResultListTagList>
+              <S.ResultListCardLine />
+              <S.ResultListCardLocationTimeDateWrapper>
+                <S.ResultListCardLocation>
+                  서울특별시 강남구 청담동
+                </S.ResultListCardLocation>
+                <S.ResultListCardDateTimeLikeWrapper>
+                  <S.ResultListCardDateTimeWrapper>
+                    <S.ResultListCardDate>2/9 (목)</S.ResultListCardDate>
+                    <S.ResultListCardTime>14:00</S.ResultListCardTime>
+                  </S.ResultListCardDateTimeWrapper>
+                </S.ResultListCardDateTimeLikeWrapper>
+              </S.ResultListCardLocationTimeDateWrapper>
+            </S.ResultListCard>
+          </S.InfoWindow>
+        )}
+        {/* <div style={{ color: '#000' }} key={post.PostingID_Posting}> */}
+        {/* {post.Title_Posting} */}
+        {/* </div> */}
+      </MapMarker>
+    )
+  }, [])
+
+  return (
+    <>
+      <S.MapPageSearchBar
+        onSubmit={(e) => {
+          e.preventDefault()
+          SearchFunction()
+        }}
+      >
+        <AiOutlineSearch size={40} />
+        <S.SearchBar
+          placeholder='약속 장소를 검색해보세요.'
+          type={'text'}
+          value={search}
+          onChange={onChange}
+        />
+        <RxDividerVertical size={36} />
+        <IoMdClose size={40} />
+      </S.MapPageSearchBar>
+      <Map
+        center={myLoca}
+        style={{ width: '100%', height: '100%' }}
+        onCreate={setMap}
+      >
+        {Markers}
+        <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
+        <MapTypeControl position={kakao.maps.ControlPosition.TOPRIGHT} />
+      </Map>
+    </>
+  )
 }
 
 export default MapContainer

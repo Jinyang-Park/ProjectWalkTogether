@@ -76,7 +76,7 @@ const NavLi = styled.li`
 const NavText = styled(Link)`
   text-decoration: none;
   color: black;
-  font-size: 12px;
+  font-size: 16px;
 `;
 const LoginButton = styled.button`
   border: none;

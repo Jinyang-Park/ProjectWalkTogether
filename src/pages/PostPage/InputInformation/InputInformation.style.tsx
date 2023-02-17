@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export const MapNInputBox = styled.div`
@@ -14,13 +13,13 @@ export const MapNInputBox = styled.div`
 
 export const InputBox = styled.div`
   background-color: #d07171;
-  width: 65%;
+  width: 863px;
   height: 20%;
   display: flex;
 `;
 
 export const MapBox = styled.div`
-  width: 65%;
+  width: 863px;
   height: 70%;
   background-color: gray;
 `;
@@ -31,26 +30,23 @@ export const KakaoMap = styled.div`
   background-color: white;
 `;
 
-export const InputAdressBox = styled.div`
-  width: 50%;
+export const InputAdressBox = styled.form`
+  width: 384px;
   height: 70%;
   position: relative;
-
   background-color: yellow;
 `;
 
-export const InpuTimeBox = styled.div`
-  width: 60%;
-  height: 100%;
+export const InpuDayBox = styled.div`
+  width: 258px;
+  height: 38px;
   background-color: orange;
+  margin-left: 9px;
+  font-size: 10px;
 `;
 
-// export const InpuTime = styled.div`
-//   width: 70%;
-//   height: 100%;
-//   background-color: white;
-//   position: relative;
-//   left: 20%;
-// `;
-
-// export const;
+export const InputTimeBox = styled.div`
+  width: 227px;
+  height: 100%;
+  margin-left: 9px;
+`;
