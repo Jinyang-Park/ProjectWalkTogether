@@ -8,9 +8,10 @@ import DropdownCategory from './../../../common/DropdownCategory/DropdownCategor
 
 interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
+  postCategory: string;
 }
 
-function MainPost({ setPostCategory }: SetProps) {
+function MainPost({ setPostCategory, postCategory }: SetProps) {
   const [posttitel, Setposttitle] = useRecoilState(TitleInput); //글 제목
   const [postTag, setPostTag] = useState(''); //해쉬태그
   const [postdescription, SetDescription] = useRecoilState(DescriptionInput); //글 내용
@@ -19,7 +20,7 @@ function MainPost({ setPostCategory }: SetProps) {
   const [bannerupload, setBanneruploadupload] = useRecoilState(Bannerupload);
   const [thumbnail, setThumbnail] = useState<any>(null); // Handles input change event and updates state
   const [banner, setBanner] = useState<any>(null);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState<any>(false);
 
   function thumnailimageChange(e: any) {
     const filelist = e.target.files[0];
@@ -76,17 +77,33 @@ function MainPost({ setPostCategory }: SetProps) {
   return (
     <>
       <S.Bannercontainer>
-        <label htmlFor="banner">
-          <S.ThumbnailImgPorlaroid src={banner ? banner : '/assets/thumbnailImg.png'} />
+        <label htmlFor='banner'>
+          <S.ThumbnailImgPorlaroid
+            src={banner ? banner : '/assets/thumbnailImg.png'}
+          />
         </label>
-        <S.BannerPhoto type="file" accept="image/*" onChange={bannerimageChange} style={{ display: 'none' }} id="banner" />
+        <S.BannerPhoto
+          type='file'
+          accept='image/*'
+          onChange={bannerimageChange}
+          style={{ display: 'none' }}
+          id='banner'
+        />
       </S.Bannercontainer>
       <S.Boxcontents>
         <S.BoxPhoto>
-          <label htmlFor="thumnail">
-            <S.ThumnailPhotoChange src={thumbnail ? thumbnail : '/assets/blackboard.png'} />
+          <label htmlFor='thumnail'>
+            <S.ThumnailPhotoChange
+              src={thumbnail ? thumbnail : '/assets/blackboard.png'}
+            />
           </label>
-          <S.ThumnailPhoto type="file" accept="image/*" onChange={thumnailimageChange} style={{ display: 'none' }} id="thumnail" />
+          <S.ThumnailPhoto
+            type='file'
+            accept='image/*'
+            onChange={thumnailimageChange}
+            style={{ display: 'none' }}
+            id='thumnail'
+          />
         </S.BoxPhoto>
 
         <S.BoxMain>
@@ -95,13 +112,24 @@ function MainPost({ setPostCategory }: SetProps) {
               setShow(true);
             }}
           >
-            {show === true ? <DropdownCategory setPostCategory={setPostCategory} /> : null}
             <S.CalendarIcon src={'/assets/calendar.png'} />
-            <S.CategoryTitle>카테고리</S.CategoryTitle>
+            <S.CategoryTitle>{postCategory}</S.CategoryTitle>
           </S.CateogryWrapper>
+          {show && (
+            <DropdownCategory
+              setPostCategory={setPostCategory}
+              setShow={setShow}
+            />
+          )}
 
-          <S.InputTitle onChange={handleChange} placeholder="제목을 입력해 주세요" />
-          <S.Textarea onChange={handleChangeText} placeholder="당신의 이야기를 적어주세요"></S.Textarea>
+          <S.InputTitle
+            onChange={handleChange}
+            placeholder='제목을 입력해 주세요'
+          />
+          <S.Textarea
+            onChange={handleChangeText}
+            placeholder='당신의 이야기를 적어주세요'
+          ></S.Textarea>
           <S.HashtagBox>#해쉬태그를 입력해주세요</S.HashtagBox>
         </S.BoxMain>
       </S.Boxcontents>

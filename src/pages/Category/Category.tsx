@@ -15,7 +15,7 @@ import { dbService } from '../../common/firebase';
 const Category = () => {
   const { category } = useParams();
   const [postings, setPostings] = useState<any>([]);
-  console.log(category);
+  // console.log(category);
 
   useEffect(() => {
     const q = query(
@@ -36,7 +36,7 @@ const Category = () => {
     });
   }, []);
   // console.log(postings);
-  //
+
   return (
     <S.LikedListItem>
       {postings.map((post) => {

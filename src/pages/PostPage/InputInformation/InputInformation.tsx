@@ -1,6 +1,6 @@
 import * as S from './InputInformation.style';
 // import MapContainer from '../../MapPage/Map/map';
-
+import { myLocation, selectedAddress } from '../Hooks/Rocoil/Atom';
 import {
   Map,
   MapMarker,
@@ -11,12 +11,14 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 import AntCalendar from '../Hooks/Calendar/AntCalendarDate';
 import AntCalendarTime from '../Hooks/Calendar/AntCalendarTime';
+import { useRecoilState } from 'recoil';
 
 function InputInformation() {
   // 현재 위치를 가져오기 위한 state 생성
-  const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 });
+  // const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 });
+  const [myLoca, setMyLoca] = useRecoilState(myLocation);
 
-  // 지도 좌표를 저장할 state
+  // 지도 좌표를 저장할 state   (o)
   const [position, setPosition] = useState({ lat: 36.5, lng: 127.8 });
 
   // 키워드로 장소검색하기를 위한 state
@@ -32,14 +34,14 @@ function InputInformation() {
     setSearch(e.target.value);
   };
 
-  // 좌표 - 주소 변환을 위한 State
-  const [address, setAddress] = useState('');
+  // 좌표 - 주소 변환을 위한 State (0)
+  // const [address, setAddress] = useState('');
+  const [address, setAddress] = useRecoilState(selectedAddress);
   const geocoder = new kakao.maps.services.Geocoder();
 
   // 사용자 위치를 가져오기 위한 useEffect
   React.useEffect(() => {
     if (navigator.geolocation) {
-      // GeoLocation을 이용해서 접속 위치를 얻어온다
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setMyLoca({
@@ -95,6 +97,16 @@ function InputInformation() {
     });
   };
 
+  // geocoder를 이용해 좌표 - 주소 변환
+  const convertAddress = () => {
+    geocoder.coord2Address(position.lng, position.lat, (result, status) => {
+      if (status === kakao.maps.services.Status.OK) {
+        setAddress(result[0].address.address_name);
+      }
+    });
+  };
+  convertAddress();
+  console.log(address);
   console.log(search);
 
   return (

@@ -1,50 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { CategorysList } from './../../utils/CategorysList';
 
 // setPostCategory
 interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const DropdownCategory = ({ setPostCategory }: SetProps) => {
-  // 임시로 담을 state 만들기
-  // 만들고 선택 했을때 클릭 핸들러에서 이너 텍스트를 임ㅇ시로 만든 셋 스테이트에 담느다
-  // 완료 바튼에 눌렀을때 또 다른 핸들 이벤트가 잇어야된다.
-  // 셋 카테고리에 임시로 만든 스테이트 값을 넣어주고 그 다음에 모달창을 닫으면된다.,
-  // 완료 버튼에는 두번째 함수가 연결되어야된다.
-  const Clickhandler = (e) => {
-    // innerTet를 변경해야된다.
-    // e.cuute.innerText;
-    // const change=
+const DropdownCategory = ({ setPostCategory, setShow }: SetProps) => {
+  const buttonClickHandler = (event: any) => {
+    //바로 적용이 안된다
+    // setTextChange(event.target.innerText);
+    // 아래부분처럼 해결함
+    setPostCategory(event.target.innerText);
   };
+  //클릭한 버튼의 값이 잘 찍힌다.
+  // console.log(textChange);
+
+  const confirmButtonClickHandler = () => {
+    setShow(false);
+  };
+
+  // CategorysList에서 전체라는 name빼고 detailCategroyFilter 에 넣어준다
+  const detailCategroyFilter = CategorysList.filter((el) => el.name !== '전체');
+
   return (
     <DropdownBox>
       <DropdownConatainer>
         <DropdownWapper>
-          <CategoryBtn onClick={Clickhandler}>전체</CategoryBtn>
-          <CategoryBtn onClick={Clickhandler}>반려동물</CategoryBtn>
-          <CategoryBtn onClick={Clickhandler}>독서</CategoryBtn>
-          <CategoryBtn>전체</CategoryBtn>
-          <CategoryBtn>음악</CategoryBtn>
-          <CategoryBtn>고민 상담</CategoryBtn>
-          <CategoryBtn>부동산</CategoryBtn>
-          <CategoryBtn>영화</CategoryBtn>
-          <CategoryBtn>운동</CategoryBtn>
-          <CategoryBtn>음식</CategoryBtn>
-          <CategoryBtn>연애</CategoryBtn>
-          <CategoryBtn>게임</CategoryBtn>
-          <CategoryBtn>드라마</CategoryBtn>
-          <CategoryBtn>전자기기</CategoryBtn>
-          <CategoryBtn>경제</CategoryBtn>
-          <CategoryBtn>제테크</CategoryBtn>
-          <CategoryBtn>사회</CategoryBtn>
-          <CategoryBtn>세계</CategoryBtn>
-          <CategoryBtn>생활</CategoryBtn>
-          <CategoryBtn>과학</CategoryBtn>
-          <CategoryBtn>정치</CategoryBtn>
-          <CategoryBtn>문화</CategoryBtn>
+          {detailCategroyFilter.map((data) => {
+            return (
+              <CategoryBtn onClick={buttonClickHandler}>
+                {data.name}
+              </CategoryBtn>
+            );
+          })}
         </DropdownWapper>
       </DropdownConatainer>
-      <CategoryConfirmBtn>완료</CategoryConfirmBtn>
+      <CategoryConfirmBtn onClick={() => confirmButtonClickHandler()}>
+        완료
+      </CategoryConfirmBtn>
     </DropdownBox>
   );
 };
@@ -69,7 +64,7 @@ export const DropdownWapper = styled.div`
   grid-gap: 8px;
   gap: 8px;
 `;
-export const CategoryBtn = styled.div`
+export const CategoryBtn = styled.button`
   padding: 10px 10px;
   line-height: 22px;
   color: #6b6766;
@@ -81,6 +76,12 @@ export const CategoryBtn = styled.div`
   border-radius: 4px;
   font-size: 20px;
   font-weight: 500;
+
+  &:focus {
+    color: #ff3b94;
+    border: 1px solid #ff3b94;
+    background-color: #e9e6e6a2;
+  }
 `;
 export const CategoryConfirmBtn = styled.button`
   width: 518px;
@@ -95,3 +96,25 @@ export const CategoryConfirmBtn = styled.button`
   justify-content: center;
   align-items: center;
 `;
+
+{
+  /* <CategoryBtn onClick={buttonClickHandler}>독서</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>음악</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>고민 상담</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>부동산</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>영화</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>운동</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>음식</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>연애</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>게임</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>드라마</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>전자기기</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>경제</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>제테크</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>사회</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>세계</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>생활</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>과학</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>정치</CategoryBtn>
+<CategoryBtn onClick={buttonClickHandler}>문화</CategoryBtn> */
+}

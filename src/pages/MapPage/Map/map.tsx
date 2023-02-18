@@ -23,6 +23,8 @@ const MapContainer = (Post) => {
   // 현재 위치를 가져오기 위한 state 생성
   const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 })
 
+  //! 초기값을 null 로 하고, null 일 때 가가코 지도를 렌더링 하지 않게
+
   // 지도 좌표를 저장할 state
   const [position, setPosition] = useState({ lat: 36.5, lng: 127.8 })
 
@@ -108,8 +110,23 @@ const MapContainer = (Post) => {
 
   // db의 Post 컬렉션에서 가져온 데이터를 MapMarker에 넣어주기 위한 배열 생성
   const Markers = Post.Post.map((post) => {
-    // console.log(Post, post.MeetLatitude_Posting)
-    // console.log(post.MeetLongitude_Posting)
+    console.log(Post, post.MeetLatitude_Posting)
+    console.log(post.MeetLongitude_Posting)
+
+    // geocoder를 이용해 좌표 - 주소 변환
+    // geocoder.coord2Address(
+    //   post.MeetLongitude_Posting,
+    //   post.MeetLatitude_Posting,
+    //   function (result, status) {
+    //     if (status === kakao.maps.services.Status.OK) {
+    //       setAddress(result[0].address.address_name)
+    //     }
+    //   }
+    // )
+
+    // 1. setAddress 를 빼보자 (무한루프)
+
+    console.log('address', address)
 
     return (
       <MapMarker
