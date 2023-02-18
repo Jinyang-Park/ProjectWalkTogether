@@ -50,7 +50,7 @@ export const CategoryTitle = styled.div`
   justify-content: center;
 `;
 export const CateogryWrapper = styled.div`
-  width: 183px;
+  width: 150px;
   height: 38px;
   border-radius: 4px;
   align-items: center;

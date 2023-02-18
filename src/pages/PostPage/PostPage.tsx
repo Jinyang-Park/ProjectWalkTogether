@@ -41,7 +41,7 @@ const PostPage = () => {
   const [postAuthor, setPostAuthor] = useState(''); //사용자 파이어베이스 uid
   const [postNickname, setPostNickname] = useState(''); //사용자 닉네임 => 회원가입시시에 저장해 주거나 로컬에 저장하는 방법을 찾아야될 것 같다.
   const [postAddress, setPostAddress] = useState(''); //만날 위치 시,군,구,단
-  const [postCategory, setPostCategory] = useState<any>(''); //카테고리
+  const [postCategory, setPostCategory] = useState('카테고리'); //카테고리
 
   //주소 받아오기 myLocation
   const location = useRecoilValue(myLocation);
@@ -213,7 +213,7 @@ const PostPage = () => {
             console.log('배너url', typeof getBanner);
 
             try {
-              const docRef = addDoc(collection(dbService, 'test'), {
+              const docRef = addDoc(collection(dbService, 'Post'), {
                 Description_Posting: Description,
                 Nickname: postNickname,
                 RsvDate_Posting,
@@ -274,11 +274,13 @@ const PostPage = () => {
     setTimeout(geturl, 1000);
     // setTimeout(adddoc, 8000);
   };
-
   return (
     <CommonStyles>
       <S.Boxcontainer>
-        <MainPost setPostCategory={setPostCategory} />
+        <MainPost
+          setPostCategory={setPostCategory}
+          postCategory={postCategory}
+        />
         <IuputInformation />
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>
