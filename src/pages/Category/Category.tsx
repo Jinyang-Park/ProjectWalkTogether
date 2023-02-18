@@ -11,6 +11,7 @@ import {
   onSnapshot,
 } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
+import CardSection from './../../common/CardSection/CardSection';
 
 const Category = () => {
   const { category } = useParams();
@@ -39,24 +40,8 @@ const Category = () => {
 
   return (
     <S.LikedListItem>
-      {postings.map((post) => {
-        return (
-          <>
-            <S.ListItemWrapper>
-              <S.ListItemThumnail src={'/assets/hodu.jpg'} />
-            </S.ListItemWrapper>
-            <S.ListItemThumnailTitle>
-              {post.Title_Posting}
-            </S.ListItemThumnailTitle>
-            <S.ListItemContainer>
-              <S.LikedHeartFlex>
-                <S.ListItemAddress>서울특별시 강남구 청담동</S.ListItemAddress>
-                <S.LikeBtnLine />
-              </S.LikedHeartFlex>
-              <S.ListItemDate>2/9(목) 19:40</S.ListItemDate>
-            </S.ListItemContainer>
-          </>
-        );
+      {postings.map((post: any) => {
+        return <CardSection key={post.id} post={post} />;
       })}
     </S.LikedListItem>
   );
