@@ -1,8 +1,44 @@
 import * as S from './DetailPage.style';
 import Comments from './Comments/Comments';
 import CommonStyles from './../../styles/CommonStyles';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { paramsState } from './../PostPage/Hooks/Rocoil/Atom';
+import { useEffect, useState } from 'react';
+import {
+  query,
+  collection,
+  where,
+  orderBy,
+  onSnapshot,
+} from 'firebase/firestore';
+import { dbService } from './../../common/firebase';
 
 const DetailPage = () => {
+  // post.id를 가져오는 부분(댓글과 똑같이 가져옴)
+  const params = useRecoilValue(paramsState);
+  console.log(params);
+  const [getPostings, setGetPostings] = useState<any>([]);
+
+  useEffect(() => {
+    const q = query(
+      collection(dbService, 'Post'),
+      // Category_Posting이 파람스로 넘겨준 애들과 같은 애들만 뿌려줘라
+      where('params', '==', params)
+      // orderBy('CreatedAt', 'desc')
+    );
+    onSnapshot(q, (snapshot) => {
+      const getCategoryList = snapshot.docs.map((doc) => {
+        const CategoryList = {
+          id: doc.id,
+          ...doc.data(),
+        };
+        return CategoryList;
+      });
+      setGetPostings(getCategoryList);
+    });
+  }, []);
+  console.log('getPostings!!!', getPostings);
+
   return (
     <CommonStyles>
       <S.Bannercontainer>

@@ -49,3 +49,8 @@ export const selectedAddress = atom<any>({
   // key의 값은 항상 고유값이어야 합니다.
   default: '',
 });
+
+export const paramsState = atom<any>({
+  key: 'paramsState',
+  default: '',
+});
