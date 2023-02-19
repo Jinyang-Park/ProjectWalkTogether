@@ -7,6 +7,7 @@ import styled from 'styled-components';
 export default function KakaoLoginButton() {
   const location = useLocation();
   const REST_API_KEY = 'f404ec1cc98da21c3bd33a0340e88d16';
+  // 3000/loin을 카카오 디벨로퍼에 사이트 도메인을 동일하게 맞춰줘야된다.(플랫폼)
   const REDIRECT_URI = 'http://localhost:3000/';
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const CLIENT_SECRET = 'SLcokwxfNFtWTzKScRBkkkwVLcyMAL0K';
@@ -68,7 +69,7 @@ export default function KakaoLoginButton() {
 
   return (
     <>
-      <KakaoLogoButton src="assets/kakao.png" onClick={loginHandler} />
+      <KakaoLogoButton src='assets/kakao.png' onClick={loginHandler} />
     </>
   );
 }

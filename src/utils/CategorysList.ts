@@ -30,66 +30,71 @@ export const CategorysList = [
     img: '/assets/dog.png',
   },
   {
-    name: '운동',
+    name: '전체',
     value: 7,
     img: '/assets/dog.png',
   },
   {
-    name: '음식',
+    name: '운동',
     value: 8,
     img: '/assets/dog.png',
   },
   {
-    name: '연애',
+    name: '음식',
     value: 9,
+    img: '/assets/dog.png',
   },
   {
-    name: '게임',
+    name: '연애',
     value: 10,
   },
   {
-    name: '드라마',
+    name: '게임',
     value: 11,
   },
   {
-    name: '전자기기',
+    name: '드라마',
     value: 12,
   },
   {
-    name: '경제',
+    name: '전자기기',
     value: 13,
   },
   {
-    name: '재테크',
+    name: '경제',
     value: 14,
   },
   {
-    name: '사회',
+    name: '재테크',
     value: 15,
   },
   {
-    name: '세계',
+    name: '사회',
     value: 16,
   },
   {
-    name: '생활',
+    name: '세계',
     value: 17,
   },
   {
-    name: 'IT',
+    name: '생활',
     value: 18,
   },
   {
-    name: '과학',
+    name: 'IT',
     value: 19,
   },
   {
-    name: '정치',
+    name: '과학',
     value: 20,
   },
   {
-    name: '문화',
+    name: '정치',
     value: 21,
+  },
+  {
+    name: '문화',
+    value: 22,
   },
 ];
 //

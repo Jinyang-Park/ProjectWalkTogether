@@ -7,6 +7,8 @@ import {
   Bannerupload,
   Thunmnailupload,
   ReserveDate,
+  selectedAddress,
+  myLocation,
 } from './Hooks/Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import { getAuth } from 'firebase/auth';
@@ -27,10 +29,10 @@ const PostPage = () => {
   const [postHour, setPostHour] = useState(''); //약속 시간.날짜
   const [postMinut, setPostMinute] = useState(''); //약속 시간.시각
   const [postTime, setPostTime] = useState(''); //작성시간
-  const [postLatitude, setPostLtitude] = useState(''); //위도
-  const [postLongitude, setPostLongitude] = useState(''); //경도
-  const [postNowLatitude, setPostNowLtitude] = useState(''); //현재 위도
-  const [postNowLongitude, setPostNowLongitude] = useState(''); //현재 경도
+  // const [postLatitude, setPostLtitude] = useState(''); //위도
+  // const [postLongitude, setPostLongitude] = useState(''); //경도
+  // const [postNowLatitude, setPostNowLtitude] = useState(''); //현재 위도
+  // const [postNowLongitude, setPostNowLongitude] = useState(''); //현재 경도
   const [postLiked, setPostLiked] = useState(false); //좋아요 여부
   const [postCountLiked, setPostCountLiked] = useState(''); //좋아요 갯수
   const [proceedState, setProceedState] = useState(''); //게시글의 진행사항
@@ -39,7 +41,16 @@ const PostPage = () => {
   const [postAuthor, setPostAuthor] = useState(''); //사용자 파이어베이스 uid
   const [postNickname, setPostNickname] = useState(''); //사용자 닉네임 => 회원가입시시에 저장해 주거나 로컬에 저장하는 방법을 찾아야될 것 같다.
   const [postAddress, setPostAddress] = useState(''); //만날 위치 시,군,구,단
-  const [postCategory, setPostCategory] = useState<any>(''); //카테고리
+  const [postCategory, setPostCategory] = useState('카테고리'); //카테고리
+
+  //주소 받아오기 myLocation
+  const location = useRecoilValue(myLocation);
+  const adress = useRecoilValue(selectedAddress);
+
+  const MeetLatitude_Posting = location.lat;
+  const MeetLongitude_Posting = location.lng;
+
+  const Address_Posting = adress.slice(0, 10);
 
   //////이미지 받아오기
   const [getThumbnail, setGetThumbnail] = useState<any>();
@@ -58,31 +69,35 @@ const PostPage = () => {
   const meetDate = useRecoilValue(ReserveDate);
   const OTS = meetDate.toString();
   const weeks = OTS.slice(0, 3);
-  let toayweek = '';
+  let todayweek = '';
   switch (
     weeks //요일
   ) {
     case 'Sun':
-      toayweek = '일';
+      todayweek = '(일)';
+      break;
+    case 'Mon':
+      todayweek = '(월)';
       break;
     case 'Tue':
-      toayweek = '화';
+      todayweek = '(화)';
       break;
     case 'Wed':
-      toayweek = '수';
+      todayweek = '(수)';
       break;
-    case 'Thr':
-      toayweek = '목';
+    case 'Thu':
+      todayweek = '(목)';
       break;
     case 'Fri':
-      toayweek = '금';
+      todayweek = '(금)';
       break;
     case 'Sat':
-      toayweek = '토';
+      todayweek = '(토)';
       break;
   }
 
-  const meetMonth = OTS.slice(8, 11); //월
+  //월
+  const meetMonth = OTS.slice(8, 11);
   let todayMonth = '';
   switch (meetMonth) {
     case 'Jan':
@@ -122,6 +137,7 @@ const PostPage = () => {
       todayMonth = '12';
       break;
   }
+  //날자
   let meetDaynum = '';
   const meetDay = OTS.slice(5, 7);
   if (Number(meetDay) < 10) {
@@ -130,14 +146,32 @@ const PostPage = () => {
     meetDaynum = meetDay;
   }
 
+  //시간
   const meetTime = useRecoilValue(Time);
   const meetHour = meetTime.slice(0, 2);
-  let meetHourNum = '';
+  let meetHourNum: any = '';
   if (Number(meetHour) < 10) {
     meetHourNum = meetHour.slice(1, 2);
+  } else if (Number(meetHour) > 12) {
+    meetHourNum = Number(meetHour) - 12;
+  } else if (Number(meetHour) === 0 || Number(meetHour) === 12) {
+    meetHourNum = '0';
   } else {
     meetHourNum = meetHour;
   }
+  //AM/PM
+  let AMPM = '';
+  if (Number(meetHour) >= 12) {
+    AMPM = '오후';
+  } else {
+    AMPM = '오전';
+  }
+
+  const meetMinute = meetTime.slice(3, 5);
+  let meetMinuteNum = Number(meetMinute);
+
+  const RsvDate_Posting = `${todayMonth}/${meetDaynum} ${todayweek}`;
+  const RsvHour_Posting = `${AMPM} ${meetHourNum}:${meetMinute}`;
 
   //타이틀, 글 내용
   const Title = useRecoilValue(TitleInput);
@@ -156,9 +190,8 @@ const PostPage = () => {
 
   /////////////
   //콘솔확인용/
-  ////////////
   useEffect(() => {
-    console.log('meetTime:', meetHourNum);
+    console.log('location:', Address_Posting);
     setPostTime(timestring); //현재 시간
     // setPostHour(meeting); //약속 시간
     setPostNickname(nickname);
@@ -180,11 +213,11 @@ const PostPage = () => {
             console.log('배너url', typeof getBanner);
 
             try {
-              const docRef = addDoc(collection(dbService, 'test'), {
+              const docRef = addDoc(collection(dbService, 'Post'), {
                 Description_Posting: Description,
-                Liked_Posting: false,
                 Nickname: postNickname,
-                RsvDate_Posting: postHour,
+                RsvDate_Posting,
+                RsvHour_Posting,
                 TimeStamp_Posting: postTime,
                 Title_Posting: Title,
                 UID: postAuthor,
@@ -193,6 +226,11 @@ const PostPage = () => {
                 Category_Posting: postCategory,
                 ThunmnailURL_Posting: getThumbnail,
                 BannereURL_Posting: getBanner,
+                CountLiked_Posting: '0',
+                ProceedState_Posting: '1',
+                Address_Posting,
+                MeetLongitude_Posting,
+                MeetLatitude_Posting,
               });
               console.log('글작성완료 ID: ', docRef);
               alert('저장완료');
@@ -208,8 +246,6 @@ const PostPage = () => {
         alert(error);
       });
   };
-
-  // };
 
   ////////////
   //작성완료//
@@ -236,11 +272,13 @@ const PostPage = () => {
     setTimeout(geturl, 1000);
     // setTimeout(adddoc, 8000);
   };
-
   return (
     <CommonStyles>
       <S.Boxcontainer>
-        <MainPost setPostCategory={setPostCategory} />
+        <MainPost
+          setPostCategory={setPostCategory}
+          postCategory={postCategory}
+        />
         <IuputInformation />
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>
