@@ -15,9 +15,9 @@ const InfoList = ({ Post }) => {
         {Post.map((post) => {
           return (
             <S.ResultListCard key={post.PostingID_Posting}>
-              <S.ResultListCardImage>
-                {/* {post.ThunmnailURL_Posting} */}
-              </S.ResultListCardImage>
+              <S.ResultListCardImage
+                src={post.ThunmnailURL_Posting}
+              ></S.ResultListCardImage>
               <S.ResultListCardTitle>
                 {post.Title_Posting}
               </S.ResultListCardTitle>
