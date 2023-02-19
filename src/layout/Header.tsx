@@ -35,9 +35,6 @@ const Header = () => {
           <S.NavLi>
             <S.NavText to='/postpage'>글쓰기</S.NavText>
           </S.NavLi>
-          <S.NavLi>
-            <S.NavText to='/detailpage'>상세</S.NavText>
-          </S.NavLi>
         </S.NavUl>
 
         <S.NavEtc>

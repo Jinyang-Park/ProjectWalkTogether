@@ -1,39 +1,52 @@
 import styled from 'styled-components';
 import { AiOutlineHeart } from 'react-icons/ai';
 
-export const LikedListItem = styled.div`
-  width: 20vw;
-  height: 20vw;
+export const CardBox = styled.div``;
+export const CardSectionWrapper = styled.a`
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  /* width: 180px;
+  min-height: 207px; */
 `;
 export const ListItemWrapper = styled.div`
   position: relative;
-  width: 100%;
-  height: 100%;
-  margin-bottom: 10px;
   overflow: hidden;
+  width: 200px;
+  height: 130px;
+  /* height: 32.8888vw;
+  min-height: 92.44px; */
+  /* width: 100%;
+  height: 100%; */
 `;
 export const ListItemThumnail = styled.img`
   position: absolute;
-  left: 0;
-  right: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 4px;
 `;
 export const ListItemThumnailTitle = styled.p`
-  height: 48px;
-  margin: 30px 0 0;
+  /* height: 48px; */
+  margin: 8px 0px 0px 0px;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.33;
+  line-height: 19.97px;
   letter-spacing: normal;
   color: #212121;
 `;
-
+export const HashTag = styled.p`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 12px 10px 12px 0px;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+`;
 export const ListItemContainer = styled.div`
   border-top: 1px solid #ddd;
   padding-top: 5px;
@@ -45,21 +58,22 @@ export const LikedHeartFlex = styled.div`
 `;
 
 export const LikeBtnLine = styled(AiOutlineHeart)`
-  margin-top: 4px;
-  font-size: 24px;
+  position: absolute;
+  width: 25px;
+  height: 20px;
+  margin-left: 11.5rem;
+  margin-top: 30px;
   cursor: pointer;
 `;
 export const ListItemAddress = styled.p`
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 19px;
-  letter-spacing: -0.18px;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
 `;
 export const ListItemDate = styled.span`
-  font-size: 15px;
-  font-weight: 700;
-  display: block;
+  margin-top: 2px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
 `;
-//
