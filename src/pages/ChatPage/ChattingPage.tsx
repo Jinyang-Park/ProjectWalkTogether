@@ -9,21 +9,30 @@ const ChattingPage = () => {
     <CommonStyles>
       <div>
         <Boxcontainer>
-          <Boxcontents>
-            <TittleBox>
-              <BackBtn>
-                <FiChevronLeft />
-              </BackBtn>
-            </TittleBox>
-            <ChattingBox></ChattingBox>
-            <ChattingInputBox>
-              <PlusBtn>
-                <HiOutlinePlus />
-              </PlusBtn>
-              <ChattingInput placeholder='메세지를 입력해주세요.'></ChattingInput>
-              <SendBtn>▶</SendBtn>
-            </ChattingInputBox>
-          </Boxcontents>
+          <ChattingListBox>
+            <ChattingListMessage></ChattingListMessage>
+            <ChattingListouter>
+              <ChattingUserBox>
+                <ChattingUser></ChattingUser>
+                <ChattingUser></ChattingUser>
+                <ChattingUser></ChattingUser>
+                <ChattingUser></ChattingUser>
+                <ChattingUser></ChattingUser>
+                <ChattingUser></ChattingUser>
+                <ChattingUser></ChattingUser>
+                <ChattingUser></ChattingUser>
+                <ChattingUser></ChattingUser>
+                <ChattingUser></ChattingUser>
+                <ChattingUser></ChattingUser>
+                <ChattingUser></ChattingUser>
+                <ChattingUser></ChattingUser>
+              </ChattingUserBox>
+            </ChattingListouter>
+            <ChattingFooterBox></ChattingFooterBox>
+          </ChattingListBox>
+          <ChattingBox>
+            <ChattingNickname></ChattingNickname>
+          </ChattingBox>
         </Boxcontainer>
       </div>
     </CommonStyles>
@@ -34,92 +43,87 @@ export default ChattingPage;
 const Boxcontainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  /* background-color: blue; */
+
   width: 100%;
   height: 100vh;
 `;
 
-const Boxcontents = styled.div`
-  border-radius: 50px;
-  border: 1px solid black;
-  background-color: #d1d1d1;
-  width: 40%;
-  height: 80%;
-  margin: 10px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  border: none;
+//채팅리스트 박스
+const ChattingListBox = styled.div`
+  border: 1px solid #bec5d7;
+  background-color: white;
+  width: 292px;
+  height: 564px;
+  margin-top: 28px;
+  border-radius: 4px;
 `;
 
-const TittleBox = styled.div`
-  margin: 10px;
-  height: 70px;
-  width: 100%;
-  /* border-bottom: solid 1px black; */
-  font-size: 40px;
+//채팅리스트 메세지 박스
+const ChattingListMessage = styled.div`
+  border-bottom: 1px solid #bec5d7;
+  width: 292px;
+  height: 40px;
+`;
 
-  /* background-color: aqua; */
+const ChattingListouter = styled.div`
+  overflow-y: scroll;
+  width: 292px;
+  height: 509px;
+  position: relative;
+
+  /* background-color: blue; */
+`;
+
+const ChattingFooterBox = styled.div`
+  position: relative;
+  /* top: -1.1px; */
+  height: 15px;
+  width: 280px;
+  border-right: 1px solid #bec5d7;
+  border-top: 1px solid #bec5d7;
+  z-index: 0;
+`;
+
+const ChattingUserBox = styled.div`
+  width: 280px;
+  height: auto;
+  border-right: 1px solid #bec5d7;
+  border-bottom: 1px solid #bec5d7;
+  z-index: 1;
+`;
+
+const ChattingUser = styled.div`
+  border-bottom: 1px solid #bec5d7;
+  border-bottom: 1px solid #bec5d7;
+  width: 280px;
+  height: 63px;
 `;
 
 const ChattingBox = styled.div`
-  width: 100%;
-  height: 70%;
+  border: 1px solid #bec5d7;
+  width: 577px;
+  height: 564px;
   background-color: white;
-  border: 1px solid #d1d1d1;
-  position: relative;
-  //스크롤
-  overflow-y: scroll;
+  margin-top: 28px;
+  border-radius: 4px;
 `;
 
-const ChattingInputBox = styled.div`
-  width: 100%;
-  height: 65px;
-  background-color: gray;
-  position: relative;
-  bottom: 25px;
+const ChattingNickname = styled.div`
+  box-sizing: border-box;
+
+  /* Auto layout */
+
   display: flex;
-`;
+  flex-direction: row;
+  align-items: center;
+  padding: 2px 0px 2px 16px;
+  gap: 8px;
 
-//대화입력창 플러스버튼
-const PlusBtn = styled.button`
-  width: 50px;
-  height: 50px;
-  font-size: 25px;
   position: relative;
-  left: 10%;
-  border: none;
-  top: 6px;
-`;
+  width: 576px;
+  height: 40px;
 
-const ChattingInput = styled.input`
-  width: 65%;
-  height: 48px;
-  left: 10%;
-  position: relative;
-  border: none;
-  top: 6px;
-  outline: none;
-`;
+  /* light blue */
 
-const SendBtn = styled.button`
-  width: 50px;
-  height: 50px;
-  position: relative;
-  left: 10%;
-  border: none;
-  top: 6px;
-  background-color: white;
-`;
-
-const BackBtn = styled.button`
-  width: 80px;
-  height: 80px;
-  position: relative;
-  left: 5px;
-  border: none;
-  top: 10px;
-  background-color: #d1d1d1;
-  font-size: 70px;
+  border-bottom: 1px solid #bec5d7;
 `;

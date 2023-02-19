@@ -28,7 +28,7 @@
     "dayjs": "^1.11.7",
     "firebase": "^9.17.1",
     "luxon": "^3.2.1",
-    "moment": "^2.29.4",
+    "moment": "^22.29.1",
     "moment-jalaali": "^0.9.6",
     "react": "^18.2.0",
     "react-confirm-alert": "^3.0.6",

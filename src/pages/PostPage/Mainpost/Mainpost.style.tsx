@@ -10,7 +10,6 @@ export const Bannercontainer = styled.div`
 
 // 글쓰기 최상위 박스
 export const Boxcontents = styled.div`
-  background-color: #cccccc;
   position: relative;
   flex-direction: column;
   width: 868px;
@@ -21,6 +20,11 @@ export const Boxcontents = styled.div`
   justify-content: center;
   /* align-items: center; */
   flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid #ffffff;
+  box-shadow: 0px 4px 7px rgba(190, 197, 215, 0.81);
+  backdrop-filter: blur(5px);
+
   @media screen and (max-width: 868px) {
   }
 `;
