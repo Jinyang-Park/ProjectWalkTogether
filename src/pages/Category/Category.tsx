@@ -11,7 +11,7 @@ import {
   onSnapshot,
 } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
-import CardSection from './../../common/CardSection/CardSection';
+import CardSection from '../../components/CardSection/CardSection';
 import CommonStyles from '../../styles/CommonStyles';
 
 const Category = () => {
