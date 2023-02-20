@@ -30,66 +30,66 @@ export const Mapbox = styled.div`
 
 export const InfoWindow = styled.span`
   display: flex;
-  flex-direction: column;
-  width: 180px;
-  height: 235px;
+  flex-direction: row;
+  width: 332px;
+  height: 90px;
+  padding: 12px;
   cursor: pointer;
 `
 export const ResultListCard = styled.span`
   display: flex;
   flex-direction: column;
-
-  padding: 10px;
 `
 
-export const ResultListCardImage = styled.span`
-  width: 100%;
-  height: 96px;
-  margin-bottom: 5px;
+export const ResultListCardImage = styled.img`
+  width: 88px;
+  height: 88px;
+  margin-right: 12px;
+  border-radius: 5px;
 `
 export const ResultListCardTitle = styled.span`
-  font-size: larger;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 5px;
 `
 
 export const ResultListCardLocationTimeDateWrapper = styled.span`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 180px;
+  width: 96px;
 `
 export const ResultListCardLocation = styled.span`
   font-size: smaller;
   color: coral;
-  width: 180px;
+  width: 121px;
 `
 export const ResultListCardLine = styled.span`
-  width: 180px;
+  width: 208px;
   height: 1px;
   background-color: gray;
 `
 export const ResultListCardDateTimeWrapper = styled.span`
   display: flex;
   flex-direction: row;
-
-  justify-content: start;
 `
 export const ResultListCardDate = styled.span`
-  font-size: smaller;
+  font-size: 12px;
   width: 80px;
+  height: 12px;
 `
 export const ResultListCardTime = styled.span`
-  font-size: smaller;
-  width: 80px;
+  font-size: 12px;
+
+  width: 90px;
+  height: 12px;
 `
 export const ResultListTagList = styled.span`
   display: flex;
   flex-direction: row;
   font-size: smaller;
-  gap: 5px;
+  width: 139px;
+  height: 27px;
   color: gray;
-  margin-top: 5px;
 `
 export const ResultListTag = styled.span``
 

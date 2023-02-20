@@ -21,12 +21,12 @@ import {
 
 const MapContainer = (Post) => {
   // 현재 위치를 가져오기 위한 state 생성
-  const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 })
+  const [myLoca, setMyLoca] = useState({ lat: null, lng: null })
 
   //! 초기값을 null 로 하고, null 일 때 가가코 지도를 렌더링 하지 않게
 
   // 지도 좌표를 저장할 state
-  const [position, setPosition] = useState({ lat: 36.5, lng: 127.8 })
+  const [position, setPosition] = useState({ lat: null, lng: null })
 
   // 키워드로 장소검색하기를 위한 state
   const [info, setInfo] = useState<any>()
@@ -45,7 +45,7 @@ const MapContainer = (Post) => {
   const geocoder = new kakao.maps.services.Geocoder()
 
   // 인포윈도우 Open 여부를 저장하는 state 입니다.
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState({ lat: '', lng: '', isopen: false })
 
   // 사용자 위치를 가져오기 위한 useEffect
   React.useEffect(() => {
@@ -69,7 +69,7 @@ const MapContainer = (Post) => {
     }
   }, [])
 
-  console.log(search)
+  // console.log(search)
 
   // 키워드로 장소검색하기 위한 useEffect
   useEffect(() => {
@@ -110,9 +110,8 @@ const MapContainer = (Post) => {
 
   // db의 Post 컬렉션에서 가져온 데이터를 MapMarker에 넣어주기 위한 배열 생성
   const Markers = Post.Post.map((post) => {
-    console.log(Post, post.MeetLatitude_Posting)
-    console.log(post.MeetLongitude_Posting)
-
+    // console.log(Post, post.MeetLatitude_Posting)
+    // console.log(post.MeetLongitude_Posting)
     // geocoder를 이용해 좌표 - 주소 변환
     // geocoder.coord2Address(
     //   post.MeetLongitude_Posting,
@@ -126,23 +125,40 @@ const MapContainer = (Post) => {
 
     // 1. setAddress 를 빼보자 (무한루프)
 
-    console.log('address', address)
+    // console.log('address', address)
+    const lat = post.MeetLatitude_Posting
+    const lng = post.MeetLongitude_Posting
 
     return (
       <MapMarker
+        key={post.PostingID_Posting}
         position={{
-          lat: post.MeetLatitude_Posting,
-          lng: post.MeetLongitude_Posting,
+          lat,
+          lng,
         }}
         clickable={true} // 마커를 클릭했을 때 클릭 이벤트를 발생시킬지 여부를 지정합니다.
         onClick={() => {
-          setIsOpen(true)
+          setIsOpen({
+            lat,
+            lng,
+            isopen: true,
+          })
         }}
       >
-        {isOpen && (
-          <S.InfoWindow onClick={() => setIsOpen(false)}>
+        {lat === isOpen.lat && (
+          <S.InfoWindow
+            onClick={() =>
+              setIsOpen({
+                lat: '',
+                lng: '',
+                isopen: false,
+              })
+            }
+          >
+            <S.ResultListCardImage
+              src={post.ThunmnailURL_Posting}
+            ></S.ResultListCardImage>
             <S.ResultListCard key={post.PostingID_Posting}>
-              <S.ResultListCardImage></S.ResultListCardImage>
               <S.ResultListCardTitle>
                 {post.Title_Posting}
               </S.ResultListCardTitle>
@@ -158,8 +174,12 @@ const MapContainer = (Post) => {
                 </S.ResultListCardLocation>
                 <S.ResultListCardDateTimeLikeWrapper>
                   <S.ResultListCardDateTimeWrapper>
-                    <S.ResultListCardDate>2/9 (목)</S.ResultListCardDate>
-                    <S.ResultListCardTime>14:00</S.ResultListCardTime>
+                    <S.ResultListCardDate>
+                      {post.RsvDate_Posting}
+                    </S.ResultListCardDate>
+                    <S.ResultListCardTime>
+                      {post.RsvHour_Posting}
+                    </S.ResultListCardTime>
                   </S.ResultListCardDateTimeWrapper>
                 </S.ResultListCardDateTimeLikeWrapper>
               </S.ResultListCardLocationTimeDateWrapper>
