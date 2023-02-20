@@ -95,153 +95,159 @@ export const LoactionMap = styled.img`
 export const DetailAddressBox = styled.div`
   margin-left: 8px;
 `;
-//배너 상단 박스
-export const Bannercontainer = styled.div`
-  display: flex;
-  background-color: #0000ff19;
-  width: 100%;
-  height: 379px;
+
+// 배너, 썸네일
+
+export const DetailIntroWapper = styled.div``;
+export const BannereURL = styled.img`
+  width: 1024px;
+  height: 293px;
+  left: 0px;
+  top: 56px;
+
+  background: #d1ddf5;
 `;
 
-// 글쓰기 최상위 박스
 export const Boxcontents = styled.div`
-  background-color: #cccccc;
-  position: relative;
-  flex-direction: column;
+  box-sizing: border-box;
+  position: absolute;
   width: 868px;
   height: 289px;
-  bottom: 200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
-  flex-wrap: wrap;
-  @media screen and (max-width: 868px) {
-  }
-`;
-
-export const BoxMain = styled.div`
-  margin-top: 30px;
-  margin-left: 62px;
-  width: 80%;
-  height: 229px;
-`;
-export const ThumbnailImgPorlaroid = styled.img`
-  width: 1024px;
-  height: 379px;
-  /* margin: 5px 35px 20px 24px; */
-  /* margin-bottom: 20px; */
-`;
-export const CalendarIcon = styled.img`
-  position: absolute;
-  width: 26px;
-  height: 26px;
-  top: 52px;
-  margin-left: 6px;
-`;
-export const CategoryTitle = styled.button`
-  width: 183px;
-  height: 38px;
+  margin-left: 75px;
+  top: 280px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid #ffffff;
+  box-shadow: 0px 4px 7px rgba(190, 197, 215, 0.81);
+  backdrop-filter: blur(5px);
   border-radius: 4px;
-  font-size: 23px;
-  padding: 0px 0px 0px 30px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-  background-color: #a7a7a7;
 `;
-
-//제목 입력하는 input
-export const InputTitle = styled.input`
-  border: none;
-  height: 30px;
-  width: 80%;
-  margin-top: 10px;
-  border-radius: 4px;
-  background: none;
-  border: 1px solid #3d3a3a;
-  padding: 2px 15px 0px;
-  margin-bottom: 10px;
-  &:focus {
-    outline: 2px solid #6a24ff;
-  }
-`;
-
-//해쉬태그 박스
-export const HashtagBox = styled.div`
-  /* background-color: darkgray; */
-  margin-top: -4px;
-  /* margin-bottom: 8px; */
-  font-size: 16px;
-`;
-
-// 글쓰기 textarea
-export const Textarea = styled.textarea`
-  position: relative;
-  width: 80%;
-  height: 80px;
-  border-radius: 4px;
-  overflow: hidden;
-  overflow-wrap: break-word;
-  background: none;
-  padding: 8px 15px 9px;
-  font-family: sans-serif;
-  font-size: 15px;
-  line-height: 21px;
-  /* transition: border-color 0.1s, background-color 0.1s; */
-  resize: none;
-  border: 1px solid #3d3a3a;
-
-  &:focus {
-    outline: 2px solid #6a24ff;
-  }
-`;
-
-// 이미지 컨테이너
 export const BoxPhoto = styled.div`
+  margin: 48px 0px 37px 27px;
   width: 183px;
-  height: 205px;
-  margin-top: 8px;
-  position: relative;
-  left: 24px;
-  background-color: white;
+  height: 204px;
+  left: 102px;
+  top: 328px;
+
+  background: #eef1f7;
+  border: 1px solid #ffffff;
   border-radius: 4px;
 `;
-
-// export const BoxPhotoPolaroid = styled.div``;
-
-//섬네일이미지
-export const ThumnailPhotoChange = styled.img`
-  cursor: pointer;
+export const FlexWrapper = styled.div`
+  display: flex;
+`;
+export const ThunmnailURL = styled.img`
+  margin: 10px 12px 0px 12px;
   width: 159px;
   height: 158px;
-  margin-left: 12px;
-  margin-top: 10px;
+  left: 114px;
+  top: 338px;
   border-radius: 4px;
 `;
 
-export const ThumnailPhoto = styled.input`
-  width: 80%;
-  height: 80%;
-  position: relative;
-  left: 10%;
-  top: 5%;
-  background-color: crimson;
+export const DetailUserName = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0 auto;
+  margin-top: 8px;
 `;
+export const DetailIntroWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 248px;
+  top: 48px;
+`;
+export const IntroCategoryTitleBtn = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  // 10px로하면 밑으로 내려간다
+  padding: 4px 7px;
+  gap: 10px;
+  width: 110px;
+  height: 38px;
+  left: 323px;
+  top: 328px;
+  background: #7d8bae;
+  border-radius: 4px;
+  margin-bottom: 16px;
+`;
+export const IntroCategory = styled.span`
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+  color: #ffffff;
+`;
+export const IntroTitle = styled.span`
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 45px;
+  color: #24264e;
+  margin-bottom: 8px;
+`;
+export const IntroHashTag = styled.span`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px 10px 0px 0px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #7d8bae;
+`;
+export const IntroDes = styled.span`
+  margin-top: 12px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #24264e;
+`;
+export const ShareBtn = styled.div`
+  display: flex;
+  position: absolute;
+  width: 234px;
+  height: 29px;
+  left: 620px;
+  bottom: 16px;
+`;
+export const HeartBtn = styled.button`
+  width: 56px;
+  height: 29px;
+  left: 698px;
+  top: 524px;
+  background: #ffe6e6;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  left: 703px;
+  top: 527px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #24264e;
+`;
+export const WalktogetherBtn = styled.button`
+  width: 114px;
+  height: 29px;
+  left: 774px;
+  top: 524px;
+`;
+export const WalktogetherTitle = styled.span`
+  width: 88px;
+  height: 20px;
+  left: 787px;
+  top: 529px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #24264e;
+`;
+// export const StyledMoreIcon = styled(MoreIcon)``;
+export const StyledHeartIcon = styled(AiOutlineHeart)``;
 
-//배너 이미지
-export const BannerPhoto = styled.input`
-  width: 80%;
-  height: 80%;
-  position: relative;
-  left: 10%;
-  top: 5%;
-  background-color: crimson;
-`;
-
-export const BannerPhotoChange = styled.img`
-  cursor: pointer;
-  width: 1024px;
-  height: 500px;
-`;
+export const StyledMoreIcon = styled.img``;

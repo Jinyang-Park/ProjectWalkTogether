@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { TitleInput, DescriptionInput } from '../Hooks/Rocoil/Atom';
 import { Bannerupload, Thunmnailupload } from '../Hooks/Rocoil/Atom';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
-import DropdownCategory from '../../../common/DropdownCategoryForWritePage/DropdownCategory';
+import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
 
 interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
