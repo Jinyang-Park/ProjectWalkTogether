@@ -103,12 +103,12 @@ export const LineBox = styled.div`
   align-items: center;
   display: flex;
 `;
-// export const Facebook = styled.img`
-//   margin: 1.25rem;
-//   width: 2.5rem;
+export const Naver = styled.img`
+  margin: 1.25rem;
+  width: 2.5rem;
 
-//   cursor: pointer;
-// `;
+  cursor: pointer;
+`;
 export const Google = styled.img`
   margin: 1.25rem;
   width: 2.5rem;

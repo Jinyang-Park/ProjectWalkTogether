@@ -154,6 +154,7 @@ const LoginPage = () => {
                 {/*<S.Facebook onClick={signInWithFacebook} src="/assets/facebook.png" />*/}
                 <S.Google onClick={signInWithGoogle} src="assets/google.png" />
                 <KakaoLoginButton />
+                <S.Naver src="assets/naver.png" />
               </S.SocialBox>
               <S.ThirdBox>
                 <S.RegisterBtn type="button" onClick={() => navigate('/signup')}>
