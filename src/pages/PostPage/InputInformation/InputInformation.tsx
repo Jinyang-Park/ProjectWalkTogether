@@ -1,8 +1,5 @@
 import * as S from './InputInformation.style';
-import MaterialUIPickers from '../Hooks/Calendar/MuiCalendar';
-import BasicDatePicker from '../Hooks/Calendar/MuiDate';
 // import MapContainer from '../../MapPage/Map/map';
-import MuiTime from '../Hooks/Calendar/MuiTime';
 
 import {
   Map,
@@ -12,6 +9,8 @@ import {
 } from 'react-kakao-maps-sdk';
 import { useState, useEffect } from 'react';
 import React from 'react';
+import AntCalendar from '../Hooks/Calendar/AntCalendarDate';
+import AntCalendarTime from '../Hooks/Calendar/AntCalendarTime';
 
 function InputInformation() {
   // 현재 위치를 가져오기 위한 state 생성
@@ -28,6 +27,7 @@ function InputInformation() {
 
   // input value 를 가져오기 위한 state
   const [search, setSearch] = useState('');
+
   const onChange = (e) => {
     setSearch(e.target.value);
   };
@@ -119,6 +119,7 @@ function InputInformation() {
             <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
             <MapTypeControl position={kakao.maps.ControlPosition.TOPRIGHT} />
             {position && <MapMarker position={position} />}
+
             {/* {markers.map((marker) => (
               <MapMarker
                 key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
@@ -147,6 +148,8 @@ function InputInformation() {
           onSubmit={(e) => {
             e.preventDefault();
             SearchFunction();
+            e.preventDefault();
+            SearchFunction();
           }}
         >
           <input
@@ -156,12 +159,11 @@ function InputInformation() {
             onChange={onChange}
           />
         </S.InputAdressBox>
-        <S.InpuDayBox>{/* <BasicDatePicker /> */}</S.InpuDayBox>
-
+        <S.InpuDayBox>
+          <AntCalendar />
+        </S.InpuDayBox>
         <S.InputTimeBox>
-          <MaterialUIPickers />
-
-          {/* <MuiTime /> */}
+          <AntCalendarTime />
         </S.InputTimeBox>
       </S.InputBox>
     </S.MapNInputBox>

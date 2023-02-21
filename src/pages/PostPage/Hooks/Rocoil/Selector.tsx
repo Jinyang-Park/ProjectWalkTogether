@@ -5,12 +5,20 @@ import {
   DescriptionInput,
   Bannerupload,
   Thunmnailupload,
+  ReserveDate,
 } from './Atom';
 
 const timeSelector = selector({
   key: 'Time',
   get: ({ get }) => {
     const TimeValue = get(Time);
+  },
+});
+
+const dateSelector = selector({
+  key: 'ReserveDate',
+  get: ({ get }) => {
+    const DateValue = get(ReserveDate);
   },
 });
 
