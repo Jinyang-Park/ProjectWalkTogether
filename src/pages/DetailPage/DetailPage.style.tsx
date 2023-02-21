@@ -227,8 +227,10 @@ export const ShareBtn = styled.div`
   position: absolute;
   width: 234px;
   height: 29px;
-  left: 620px;
   bottom: 16px;
+  right: 35px;
+  justify-content: flex-end;
+  align-items: center;
 `;
 export const LikeWrapper = styled.div`
   width: 56px;
@@ -275,11 +277,11 @@ export const SocialShareBtn = styled(FiShare)`
   width: 24px;
   height: 24px;
   color: black;
-  margin-left: 24px;
+  margin-left: 20px;
 `;
 export const MoreBtn = styled(FiMoreVertical)`
-  position: absolute;
   color: black;
-  bottom: 218px;
+
+  margin-bottom: 218px;
   left: 809px;
 `;

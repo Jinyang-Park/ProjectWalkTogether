@@ -1,35 +1,28 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import * as S from './DropdownCategoryForWrite.style';
+import React from 'react';
 import { CategorysList } from '../../utils/CategorysList';
+import * as S from './DropdownFilterCategory.style';
 
-// setPostCategory
 declare interface SetProps {
-  setPostCategory: React.Dispatch<React.SetStateAction<string>>;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setTextChange: React.Dispatch<React.SetStateAction<string>>;
 }
-const DropdownCategory = ({ setPostCategory, setShow }: SetProps) => {
+
+const DropdownFilterCategory = ({ setShow, setTextChange }: SetProps) => {
   const buttonClickHandler = (event: any) => {
     //바로 적용이 안된다
     // setTextChange(event.target.innerText);
     // 아래부분처럼 해결함
-    setPostCategory(event.target.innerText);
+    setTextChange(event.target.innerText);
   };
-  //클릭한 버튼의 값이 잘 찍힌다.
-  // console.log(textChange);
-
   const confirmButtonClickHandler = () => {
     setShow(false);
   };
-
-  // CategorysList에서 전체라는 name빼고 detailCategroyFilter 에 넣어준다
-  const detailCategroyFilter = CategorysList.filter((el) => el.name !== '전체');
 
   return (
     <S.DropdownBox>
       <S.DropdownConatainer>
         <S.DropdownWapper>
-          {detailCategroyFilter.map((data) => {
+          {CategorysList.map((data) => {
             return (
               <S.CategoryBtn onClick={buttonClickHandler}>
                 {data.name}
@@ -44,5 +37,4 @@ const DropdownCategory = ({ setPostCategory, setShow }: SetProps) => {
     </S.DropdownBox>
   );
 };
-
-export default DropdownCategory;
+export default DropdownFilterCategory;
