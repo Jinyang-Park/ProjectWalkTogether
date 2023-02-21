@@ -18,10 +18,7 @@ const CategoryAll = () => {
       {CategorysList.map((Category) => {
         // console.log(Category.name);
         return (
-          <Categoryitem
-            onClick={() => navigate(`/category/${Category.name}`)}
-            key={Category.name}
-          >
+          <Categoryitem onClick={() => navigate(`/category/${Category.name}`)} key={Category.name}>
             <Img src={Category.img} />
             <ImgTitle>{Category.name}</ImgTitle>
           </Categoryitem>

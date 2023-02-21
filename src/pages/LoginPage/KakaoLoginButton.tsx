@@ -4,10 +4,12 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { useNavigate } from 'react-router-dom';
 export default function KakaoLoginButton() {
   const location = useLocation();
   const REST_API_KEY = 'f404ec1cc98da21c3bd33a0340e88d16';
-  const REDIRECT_URI = 'http://localhost:3000/';
+  const navigate = useNavigate();
+  const REDIRECT_URI = 'http://localhost:3000/login';
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const CLIENT_SECRET = 'SLcokwxfNFtWTzKScRBkkkwVLcyMAL0K';
   const KAKAO_CODE = location.search.split('=')[1];
@@ -38,6 +40,7 @@ export default function KakaoLoginButton() {
       }),
     })
       .then((res) => res.json())
+
       .catch((error) => console.log('error:', error));
 
     console.log('ACCESS_TOKEN1', ACCESS_TOKEN);
@@ -46,7 +49,7 @@ export default function KakaoLoginButton() {
     console.log('ACCESS_TOKEN2', ACCESS_TOKEN.access_token);
     //localStorage에 잘들어가는지 확인해보자
     localStorage.setItem('token_for_kakaotalk', ACCESS_TOKEN.access_token);
-
+    sessionStorage.setItem('token_for_kakaotalk', ACCESS_TOKEN.access_token);
     //kakao user DATA를 get해오자
     const user = await axios.get('https://kapi.kakao.com/v2/user/me', {
       headers: {
@@ -54,11 +57,13 @@ export default function KakaoLoginButton() {
         Authorization: `Bearer ${ACCESS_TOKEN.access_token}`,
       },
     });
+    console.log(user.data.id);
 
     console.log(user);
     //값을가져오면 state에 닉네임과 프로필이미지를 string으로 담아주자
     setNickName(user.data.properties.nickname);
     setProfileImage(user.data.properties.profile_image);
+    navigate('/');
   };
   console.log(nickName, profileImage);
 
