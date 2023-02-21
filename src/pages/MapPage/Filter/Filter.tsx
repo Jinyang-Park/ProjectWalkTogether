@@ -4,6 +4,7 @@ import FunctionCalendar from './Calendar/Calendar';
 import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
 import * as S from './Filter.style';
 import AntCalendarMap from './Calendar/AntCalendarDate';
+import DropdownFilterCategory from './../../../components/DropdownFilterCategory/DropdownFilterCategory';
 
 declare interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
@@ -22,16 +23,11 @@ export const FilterBar = ({
       <S.FilterArea>
         <S.CategoryFilter>
           {/*카테고리영역 */}
-          <S.CategoryFilterWarpper>
-            <S.FilterCategory
-              onClick={() => {
-                setShow(true);
-              }}
-            >
-              카테고리
-            </S.FilterCategory>
+          <S.CategoryFilterWarpper onClick={() => setShow(true)}>
+            <S.FilterCategory>카테고리</S.FilterCategory>
             <S.FilterCalendarIcon />
           </S.CategoryFilterWarpper>
+          {show && <DropdownFilterCategory setShow={setShow} />}
           {/*달력영역 */}
           {/* <S.CategoryFilterWarpper>
             <S.FilterCategory>3월 23일</S.FilterCategory>
