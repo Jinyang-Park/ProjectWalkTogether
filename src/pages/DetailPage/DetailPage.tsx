@@ -20,7 +20,7 @@ const DetailPage = () => {
   const { id } = useParams();
   // console.log(id);
 
-  const [getPostings, setGetPostings] = useState<any>([]);
+  const [getPostings, setGetPostings] = useState<any>({});
   const [showBox, setShowBox] = useState<any>(false);
 
   const getPost = async () => {
@@ -36,7 +36,8 @@ const DetailPage = () => {
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
   // console.log(getPostings.UID);
-
+  console.log(getPostings);
+  console.log(authService.currentUser);
   return (
     <>
       <CommonStyles>
@@ -65,31 +66,31 @@ const DetailPage = () => {
                 <S.StyledHeartIcon />
                 <S.HeartBtn>5</S.HeartBtn>
               </S.LikeWrapper>
-              <S.WalktogetherBtn>
-                <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
-              </S.WalktogetherBtn>
+              {/* 현재 user가 쓴 글인지 판별 */}
+              {getPostings.UID !== authService.currentUser?.uid ? (
+                <S.WalktogetherBtn>
+                  <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
+                </S.WalktogetherBtn>
+              ) : (
+                <S.MoreBtn
+                  onClick={() => {
+                    setShowBox(true);
+                  }}
+                />
+              )}
+              {/*post.id인 id를 DropBox로 넘겨준다*/}
+              {showBox && (
+                <DropBox
+                  setShowBox={setShowBox}
+                  id={id}
+                  getPostings={getPostings}
+                />
+              )}
+
               {/*svg로 갈아끼워야함(SocialShareBtn)*/}
               <S.SocialShareBtn />
               {/*svg로 갈아끼워야함(ShareBtn)*/}
             </S.ShareBtn>
-            {/* 현재 user가 쓴 글인지 판별 */}
-            {getPostings?.UID !== authService.currentUser?.uid ? (
-              <></>
-            ) : (
-              <S.MoreBtn
-                onClick={() => {
-                  setShowBox(true);
-                }}
-              />
-            )}
-            {/*post.id인 id를 DropBox로 넘겨준다*/}
-            {showBox && (
-              <DropBox
-                setShowBox={setShowBox}
-                id={id}
-                getPostings={getPostings}
-              />
-            )}
           </S.BoxPhoto>
         </S.Boxcontents>
         {/*장소*/}

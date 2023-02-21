@@ -17,6 +17,7 @@ export const DropUpdateBtn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ffffff;
 `;
 export const UpdateIcon = styled(HiOutlinePencil)``;
 export const UpdateTitle = styled.div``;
@@ -29,6 +30,7 @@ export const DropCompletBtn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ffffff;
 `;
 export const CompleteIcon = styled(BsCheck2Circle)``;
 export const CompleteTitle = styled.div``;
@@ -41,6 +43,7 @@ export const DropDeleteBtn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ffffff;
 `;
 export const DeleteIcon = styled(MdDelete)`
   /* position: absolute; */
