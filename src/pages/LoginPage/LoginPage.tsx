@@ -12,6 +12,7 @@ import KakaoLoginButton from './KakaoLoginButton';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
+  const [value, setValue] = useState('');
   const [password, setPassword] = useState('');
   const [loginModalopen, setLoginModalopen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -42,7 +43,9 @@ const LoginPage = () => {
     setPersistence(authService, browserSessionPersistence)
       .then(() => {
         return signInWithEmailAndPassword(authService, email, password)
-          .then(() => {
+          .then((data) => {
+            localStorage.setItem('id', data.user.displayName);
+            localStorage.setItem('email', data.user.email);
             navigate('/', { replace: true });
           })
 
@@ -80,42 +83,36 @@ const LoginPage = () => {
 
   //소셜로그인 페이스북
 
-  const signInWithFacebook = () => {
-    setPersistence(authService, browserSessionPersistence)
-      .then(() => {
-        const provider = new FacebookAuthProvider();
-        return signInWithPopup(authService, provider).then((res) => {
-          navigate('/');
-          setDoc(doc(dbService, 'user', res.user.uid), {
-            uid: res.user.uid,
-            email: res.user.email,
-            nickname: res.user.displayName,
-            profileImg: res.user.photoURL,
-            introduce: '',
-          });
-        });
-      })
-      .catch((error) => {
-        // Handle Errors here.
-      });
-    console.log();
-  };
+  // const signInWithFacebook = () => {
+  //   setPersistence(authService, browserSessionPersistence)
+  //     .then(() => {
+  //       const provider = new FacebookAuthProvider();
+  //       return signInWithPopup(authService, provider).then((res) => {
+  //         navigate('/');
+  //         setDoc(doc(dbService, 'user', res.user.uid), {
+  //           uid: res.user.uid,
+  //           email: res.user.email,
+  //           nickname: res.user.displayName,
+  //           profileImg: res.user.photoURL,
+  //           introduce: '',
+  //         });
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       // Handle Errors here.
+  //     });
+  //   console.log();
+  // };
 
   const signInWithGoogle = () => {
     setPersistence(authService, browserSessionPersistence)
       .then(() => {
         const provider = new GoogleAuthProvider();
         const auth = getAuth();
-        return signInWithPopup(authService, provider).then((res) => {
-          setPersistence(auth, browserSessionPersistence);
+        return signInWithPopup(authService, provider).then((data) => {
+          setValue(data.user.email);
+          localStorage.setItem('id', data.user.displayName);
           navigate('/');
-          setDoc(doc(dbService, 'user', res.user.uid), {
-            uid: res.user.uid,
-            email: res.user.email,
-            nickname: res.user.displayName,
-            profileImg: res.user.photoURL,
-            introduce: '',
-          });
         });
       })
       .catch((error) => {
@@ -154,7 +151,7 @@ const LoginPage = () => {
               </S.LineBox>
 
               <S.SocialBox>
-                <S.Facebook onClick={signInWithFacebook} src="/assets/facebook.png" />
+                {/*<S.Facebook onClick={signInWithFacebook} src="/assets/facebook.png" />*/}
                 <S.Google onClick={signInWithGoogle} src="assets/google.png" />
                 <KakaoLoginButton />
               </S.SocialBox>

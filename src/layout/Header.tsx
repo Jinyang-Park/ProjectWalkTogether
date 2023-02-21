@@ -23,10 +23,10 @@ const Header = () => {
     navigate('mypage');
   };
   const localId = localStorage.getItem('id');
-  // console.log(localId);
+  console.log(localId);
 
-  const currentUser = authService.currentUser;
-  const userNickName = currentUser?.displayName;
+  //const currentUser = authService.currentUser;
+  //const userNickName = currentUser?.displayName;
 
   return (
     <S.NavContainer>

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 // import { HeartIcon } from "../DetailPage/DetailPage";
 import CommonStyles from './../../styles/CommonStyles';
 import { dbService } from '../../common/firebase';
-import { query, onSnapshot, collection } from 'firebase/firestore';
+//import { query, onSnapshot, collection } from 'firebase/firestore';
 import { authService } from '../../common/firebase';
 import MainBanner from '../../components/main/banner';
 //import CategoryAll from './CategoryAll/CategoryAll';

@@ -8,13 +8,11 @@ import { useNavigate } from 'react-router-dom';
 export default function KakaoLoginButton() {
   const location = useLocation();
   const REST_API_KEY = 'f404ec1cc98da21c3bd33a0340e88d16';
-<<<<<<< HEAD
   const navigate = useNavigate();
   const REDIRECT_URI = 'http://localhost:3000/login';
-=======
+
   // 3000/loin을 카카오 디벨로퍼에 사이트 도메인을 동일하게 맞춰줘야된다.(플랫폼)
-  const REDIRECT_URI = 'http://localhost:3000/';
->>>>>>> 17ba09ee74b6467bdf6c34f00f4b89a36167eef0
+
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const CLIENT_SECRET = 'SLcokwxfNFtWTzKScRBkkkwVLcyMAL0K';
   const KAKAO_CODE = location.search.split('=')[1];
@@ -78,7 +76,7 @@ export default function KakaoLoginButton() {
 
   return (
     <>
-      <KakaoLogoButton src='assets/kakao.png' onClick={loginHandler} />
+      <KakaoLogoButton src="assets/kakao.png" onClick={loginHandler} />
     </>
   );
 }

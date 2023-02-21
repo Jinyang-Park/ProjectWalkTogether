@@ -8,28 +8,23 @@ import React from 'react';
 import { constSelector } from 'recoil';
 import { CategorysList } from '../../utils/CategorysList';
 import { useNavigate, useParams } from 'react-router-dom';
-import Next from 'assets/arrowleft.svg';
-import Prev from 'assets/arrowleft.svg';
+
+import { MdArrowBackIosNew } from 'react-icons/md';
+import { MdArrowForwardIos } from 'react-icons/md';
+
+//MdArrowForwardIos
 
 function CategorySlide({ Category }) {
   const navigate = useNavigate();
   const settings = {
-    arrows: true,
     dots: false,
-    infinite: false,
+    infinite: true,
+    swipeToSlide: true,
     speed: 500,
     slidesToShow: 7,
     slidesToScroll: 1,
-    nextArrow: (
-      <Div>
-        <Next />
-      </Div>
-    ),
-    prevArrow: (
-      <DivPre>
-        <Prev />
-      </DivPre>
-    ),
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
 
   return (
@@ -49,29 +44,18 @@ function CategorySlide({ Category }) {
   );
 }
 
-const Div = styled.div`
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  right: 16px;
-  z-index: 99;
-  text-align: right;
-  line-height: 30px;
+const PrevArrow = styled(MdArrowBackIosNew)`
+  color: black;
 `;
-const DivPre = styled.div`
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  left: 16px;
-  z-index: 99;
-  text-align: left;
-  line-height: 30px;
+const NextArrow = styled(MdArrowForwardIos)`
+  color: black;
 `;
+
 const StyledSlider = styled(Slider)`
-  padding-top: 50px;
   margin: auto;
   width: 80%; //슬라이드 컨테이너 영역
-
+  padding-top: 60px;
+  padding-bottom: 60px;
   .slick-list {
     //슬라이드 스크린
     width: 100%;
@@ -85,11 +69,10 @@ const StyledSlider = styled(Slider)`
   .slick-track {
     width: 100%;
   }
-  .slick-arrow {
-    width: 50px;
-    height: 50px;
-    z-index: 999;
-    background: black;
+  .slick-prev::before,
+  .slick-next::before {
+    opacity: 0;
+    display: none;
   }
 `;
 

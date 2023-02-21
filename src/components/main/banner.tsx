@@ -24,7 +24,7 @@ const MainBanner = () => {
               <BannerSubTitle>나의 이야기</BannerSubTitle>
             </BannerTitle>
           </BannerTextBox>
-          <BannerFirstImg src="/assets/thumbnailImg.png" />
+          <BannerFirstImg src="/assets/slide01.png" />
         </BannerContainer>
       </SlideWrapper>
       <SlideWrapper>
@@ -78,8 +78,8 @@ const SliderWrapper = styled(Slider)`
     .slick-active {
       button {
         background: '#d7d3ff';
-        width: 0.75rem;
-        height: 0.75rem;
+        width: 0.3rem;
+        height: 0.3rem;
       }
     }
   }
