@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import { Time } from '../Rocoil/Atom';
 import { ConfigProvider } from 'antd';
 import ko_KR from 'antd/locale/ko_KR';
+import { blue } from '@mui/material/colors';
 
 const AntCalendarTime: React.FC = () => {
   const format = 'HH:mm';
@@ -29,10 +30,11 @@ const AntCalendarTime: React.FC = () => {
           width: 219,
           height: 40,
           fontSize: 20,
+          fontWeight: 500,
         }}
         allowClear={false}
         autoFocus={false}
-        //   bordered={false}
+        bordered={false}
         placement="bottomLeft"
       />
     </ConfigProvider>

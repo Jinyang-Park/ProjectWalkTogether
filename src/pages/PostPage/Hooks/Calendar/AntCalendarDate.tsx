@@ -30,6 +30,7 @@ const AntCalendar: React.FC = () => {
           style={{ width: 250, height: 40, fontSize: 20 }}
           allowClear={false}
           placement="bottomRight"
+          bordered={false}
         />
       </Space>
     </ConfigProvider>

@@ -78,9 +78,7 @@ function MainPost({ setPostCategory, postCategory }: SetProps) {
     <>
       <S.Bannercontainer>
         <label htmlFor="banner">
-          <S.ThumbnailImgPorlaroid
-            src={banner ? banner : '/assets/thumbnailImg.png'}
-          />
+          <S.ThumbnailImgPorlaroid src={banner ? banner : '/assets/배너.png'} />
         </label>
         <S.BannerPhoto
           type="file"

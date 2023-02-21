@@ -38,6 +38,7 @@ export const BoxMain = styled.div`
 export const ThumbnailImgPorlaroid = styled.img`
   width: 1024px;
   height: 379px;
+  border: none;
   /* margin: 5px 35px 20px 24px; */
   /* margin-bottom: 20px; */
 `;
@@ -60,7 +61,7 @@ export const CateogryWrapper = styled.div`
   align-items: center;
   text-align: center;
   color: white;
-  background-color: #a7a7a7;
+  background-color: rgba(125, 139, 174, 1);
 `;
 
 //제목 입력하는 input
@@ -71,9 +72,12 @@ export const InputTitle = styled.input`
   margin-top: 10px;
   border-radius: 4px;
   background: none;
-  border: 1px solid #3d3a3a;
+  border: none;
   padding: 2px 15px 0px;
   margin-bottom: 10px;
+  background: #eef1f7;
+  border-radius: 4px;
+
   &:focus {
     outline: 2px solid #6a24ff;
   }
@@ -95,17 +99,20 @@ export const Textarea = styled.textarea`
   border-radius: 4px;
   overflow: hidden;
   overflow-wrap: break-word;
-  background: none;
+  border: none;
   padding: 8px 15px 9px;
   font-family: sans-serif;
   font-size: 15px;
   line-height: 21px;
   /* transition: border-color 0.1s, background-color 0.1s; */
   resize: none;
-  border: 1px solid #3d3a3a;
+  /* border: 1px solid #3d3a3a; */
   &:focus {
     outline: 2px solid #6a24ff;
   }
+
+  background: #eef1f7;
+  border-radius: 4px;
 `;
 
 // 이미지 컨테이너

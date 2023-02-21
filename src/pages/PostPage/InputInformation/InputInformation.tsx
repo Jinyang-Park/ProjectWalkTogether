@@ -111,11 +111,10 @@ function InputInformation() {
 
   return (
     <S.MapNInputBox>
-      PostPageInputinfomation
+      <S.Selection> 장소를 선택해 주세요</S.Selection>
+      <S.borderline></S.borderline>
       <S.MapBox>
-        안녕하세요
         <S.KakaoMap>
-          {' '}
           <Map
             center={myLoca}
             style={{ width: '100%', height: '100%' }}
@@ -164,7 +163,8 @@ function InputInformation() {
             SearchFunction();
           }}
         >
-          <input
+          <S.InputAdress
+            bordered={false}
             type={'text'}
             placeholder={'주소를 입력해주세요'}
             value={search}
