@@ -174,7 +174,7 @@ export const Form = styled.form`
 export const DetailNumberWrapper = styled.div`
   display: flex;
   width: 100%;
-  border-bottom: 2px solid #cbcbcb;
+  border-bottom: 2px solid #bec5d7;
 `;
 export const CommentDataWrapper = styled.div`
   padding: 0px 10px 10px 10px;

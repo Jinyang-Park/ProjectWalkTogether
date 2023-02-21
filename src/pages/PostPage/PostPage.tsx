@@ -159,6 +159,7 @@ const PostPage = () => {
   } else {
     meetHourNum = meetHour;
   }
+
   //AM/PM
   let AMPM = '';
   if (Number(meetHour) >= 12) {
@@ -179,6 +180,7 @@ const PostPage = () => {
 
   //현재시간
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
+
   const time = {
     year: today.getFullYear(), //현재 년도
     month: today.getMonth() + 1, // 현재 월
@@ -218,6 +220,7 @@ const PostPage = () => {
                 Nickname: postNickname,
                 RsvDate_Posting,
                 RsvHour_Posting,
+                createdAt: Date.now(),
                 TimeStamp_Posting: postTime,
                 Title_Posting: Title,
                 UID: postAuthor,

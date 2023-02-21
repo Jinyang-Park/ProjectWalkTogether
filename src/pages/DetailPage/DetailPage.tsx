@@ -5,23 +5,23 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { paramsState } from './../PostPage/Hooks/Rocoil/Atom';
 import { useEffect, useState } from 'react';
 import { getDoc, doc } from 'firebase/firestore';
-import { dbService } from './../../common/firebase';
+import { authService, dbService } from './../../common/firebase';
 import { useParams } from 'react-router-dom';
 import { assert } from 'console';
+import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory';
+import DropBox from './DropBox/DropBox';
 
 const DetailPage = () => {
-  // post.id를 가져오는 부분(댓글과 똑같이 가져옴)
-
   // 아톰은 새로고침하면 초기화가 된다. 앱이 랜더링이 된다.
   // 리코일은 리덕스와 같아서 새로고침하면 날라간다.
-
   // const params = useRecoilValue(paramsState);
 
   // useParams를 사용하여 구조 분해 할당을 하여 사용함
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   const [getPostings, setGetPostings] = useState<any>([]);
+  const [showBox, setShowBox] = useState<any>(false);
 
   const getPost = async () => {
     const q = doc(dbService, 'Post', id);
@@ -33,7 +33,9 @@ const DetailPage = () => {
   useEffect(() => {
     getPost();
   }, []);
-  console.log(getPostings);
+  // console.log(getPostings);
+  // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
+  // console.log(getPostings.UID);
 
   return (
     <>
@@ -58,14 +60,36 @@ const DetailPage = () => {
               <S.IntroDes>{getPostings.Description_Posting}</S.IntroDes>
             </S.DetailIntroWrapper>
             <S.ShareBtn>
-              {/*svg로 갈아끼워야함*/}
-              <S.StyledHeartIcon />
-
-              <S.HeartBtn>5</S.HeartBtn>
+              <S.LikeWrapper>
+                {/*svg로 갈아끼워야함(StyledHeartIcon)*/}
+                <S.StyledHeartIcon />
+                <S.HeartBtn>5</S.HeartBtn>
+              </S.LikeWrapper>
               <S.WalktogetherBtn>
                 <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
               </S.WalktogetherBtn>
+              {/*svg로 갈아끼워야함(SocialShareBtn)*/}
+              <S.SocialShareBtn />
+              {/*svg로 갈아끼워야함(ShareBtn)*/}
             </S.ShareBtn>
+            {/* 현재 user가 쓴 글인지 판별 */}
+            {getPostings?.UID !== authService.currentUser?.uid ? (
+              <></>
+            ) : (
+              <S.MoreBtn
+                onClick={() => {
+                  setShowBox(true);
+                }}
+              />
+            )}
+            {/*post.id인 id를 DropBox로 넘겨준다*/}
+            {showBox && (
+              <DropBox
+                setShowBox={setShowBox}
+                id={id}
+                getPostings={getPostings}
+              />
+            )}
           </S.BoxPhoto>
         </S.Boxcontents>
         {/*장소*/}
@@ -76,10 +100,11 @@ const DetailPage = () => {
             <S.DetailAddressContainer>
               <S.DetailAddressIcon />
               <S.DetailAddressBox>
-                <S.DetailAddress>
-                  서울특별시 강남구 청담동 12번 출구
-                </S.DetailAddress>
-                <S.DetailDate>2/9(목) 19:30PM</S.DetailDate>
+                <S.DetailAddress>{getPostings.Address_Posting}</S.DetailAddress>
+                <S.DetailDateWrapper>
+                  <S.DetailDate>{getPostings.RsvDate_Posting}</S.DetailDate>
+                  <S.DetailTime>{getPostings.RsvHour_Posting}</S.DetailTime>
+                </S.DetailDateWrapper>
               </S.DetailAddressBox>
             </S.DetailAddressContainer>
           </S.DetailLoactionContainer>

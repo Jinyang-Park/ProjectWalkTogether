@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { MdLocationOn } from 'react-icons/md';
 import { AiOutlineHeart } from 'react-icons/ai';
+import { FiShare } from 'react-icons/fi';
+import { FiMoreVertical } from 'react-icons/fi';
+import { FindBox } from './../SignUpPage/SignUpPage.style';
 
 export const DetailAddressContainer = styled.div`
   display: flex;
@@ -16,7 +19,17 @@ export const DetailAddress = styled.h2`
   font-weight: 500;
   margin-right: 2rem;
 `;
+export const DetailDateWrapper = styled.div`
+  display: flex;
+`;
 export const DetailDate = styled.p`
+  font-size: 16px;
+  color: #4c7296;
+  font-weight: 500;
+  margin-right: 8px;
+`;
+
+export const DetailTime = styled.p`
   font-size: 16px;
   color: #4c7296;
   font-weight: 500;
@@ -70,12 +83,14 @@ export const IntroContents = styled.p`
   font-size: 20px;
   font-weight: 400;
 `;
-export const DetailLoactionWrapper = styled.div``;
+export const DetailLoactionWrapper = styled.div`
+  margin-top: 332px;
+`;
 export const DeatilLoactionTitle = styled.h1`
   font-size: 20px;
   font-weight: 500;
   padding-bottom: 12px;
-  border-bottom: 2px solid #cbcbcb;
+  border-bottom: 2px solid #bec5d7;
   width: 100%;
 `;
 export const DetailLoactionContainer = styled.div`
@@ -109,10 +124,8 @@ export const BannereURL = styled.img`
 `;
 
 export const Boxcontents = styled.div`
-  box-sizing: border-box;
   position: absolute;
   width: 868px;
-  height: 289px;
   margin-left: 75px;
   top: 280px;
   background: rgba(255, 255, 255, 0.3);
@@ -120,6 +133,9 @@ export const Boxcontents = styled.div`
   box-shadow: 0px 4px 7px rgba(190, 197, 215, 0.81);
   backdrop-filter: blur(5px);
   border-radius: 4px;
+  /* display: flex; */
+  /* height: 100%; */
+  /* overflow: hidden; */
 `;
 export const BoxPhoto = styled.div`
   margin: 48px 0px 37px 27px;
@@ -174,7 +190,7 @@ export const IntroCategoryTitleBtn = styled.div`
   top: 328px;
   background: #7d8bae;
   border-radius: 4px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 `;
 export const IntroCategory = styled.span`
   font-weight: 400;
@@ -199,7 +215,7 @@ export const IntroHashTag = styled.span`
   line-height: 20px;
   color: #7d8bae;
 `;
-export const IntroDes = styled.span`
+export const IntroDes = styled.p`
   margin-top: 12px;
   font-weight: 400;
   font-size: 16px;
@@ -214,7 +230,7 @@ export const ShareBtn = styled.div`
   left: 620px;
   bottom: 16px;
 `;
-export const HeartBtn = styled.button`
+export const LikeWrapper = styled.div`
   width: 56px;
   height: 29px;
   left: 698px;
@@ -224,30 +240,46 @@ export const HeartBtn = styled.button`
   display: flex;
   flex-direction: row;
   align-items: center;
-  left: 703px;
-  top: 527px;
+  cursor: pointer;
+`;
+export const StyledHeartIcon = styled(AiOutlineHeart)`
+  width: 20px;
+  height: 18px;
+  margin: 5.5px 0px 5.5px 5px;
+`;
+export const HeartBtn = styled.div`
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
   color: #24264e;
+  margin-left: 16px;
 `;
 export const WalktogetherBtn = styled.button`
   width: 114px;
   height: 29px;
-  left: 774px;
-  top: 524px;
+  margin-left: 20px;
+  background: #eef1f7;
+  border-radius: 4px;
 `;
 export const WalktogetherTitle = styled.span`
   width: 88px;
   height: 20px;
-  left: 787px;
-  top: 529px;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   color: #24264e;
+  //13px 주면 글자 짤림
+  padding: 5px 5px;
 `;
-// export const StyledMoreIcon = styled(MoreIcon)``;
-export const StyledHeartIcon = styled(AiOutlineHeart)``;
-
-export const StyledMoreIcon = styled.img``;
+export const SocialShareBtn = styled(FiShare)`
+  width: 24px;
+  height: 24px;
+  color: black;
+  margin-left: 24px;
+`;
+export const MoreBtn = styled(FiMoreVertical)`
+  position: absolute;
+  color: black;
+  bottom: 218px;
+  left: 809px;
+`;
