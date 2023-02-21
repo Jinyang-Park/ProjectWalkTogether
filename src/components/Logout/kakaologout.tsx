@@ -34,7 +34,7 @@ export default function KakaoLogoutButton() {
 
   return (
     <>
-      <KakaoLogout onClick={Logout}>klogout</KakaoLogout>
+      <KakaoLogout onClick={Logout}>logout</KakaoLogout>
     </>
   );
 }

@@ -33,7 +33,7 @@ export const InputBoxContent = styled.div`
 // 인풋태그
 export const Input = styled.input`
   border: none;
-  width: 250px;
+  width: 320px;
   height: 2.375rem;
   position: relative;
   left: 1.875rem;
@@ -43,6 +43,11 @@ export const Input = styled.input`
   }
 `;
 
+export const ResetButton = styled.img`
+  margin: 14px;
+  width: 14px;
+  cursor: pointer;
+`;
 //Input태그의 테두리
 export const Inputholder = styled.div`
   margin: auto;
@@ -67,6 +72,7 @@ export const LoginLogo = styled.div`
 
 export const ButtonBox = styled.div`
   display: flex;
+
   flex-direction: column;
   align-items: center;
 `;
@@ -97,7 +103,7 @@ export const LineBox = styled.div`
   align-items: center;
   display: flex;
 `;
-export const Facebook = styled.img`
+export const Naver = styled.img`
   margin: 1.25rem;
   width: 2.5rem;
 
@@ -151,4 +157,16 @@ export const RegisterBtn = styled.button`
     color: #816ceb;
     transition: 0.4s;
   }
+`;
+
+export const Validityfontbox = styled.div`
+  border: none;
+  width: 330px;
+  font-size: 10px;
+  height: 10px;
+  position: relative;
+  right: 10px;
+  margin-top: 3px;
+  outline: none;
+  color: blue;
 `;

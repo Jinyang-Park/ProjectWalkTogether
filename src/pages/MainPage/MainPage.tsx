@@ -5,18 +5,22 @@ import { useState, useEffect } from 'react';
 // import { HeartIcon } from "../DetailPage/DetailPage";
 import CommonStyles from './../../styles/CommonStyles';
 import { dbService } from '../../common/firebase';
-import { query, onSnapshot, collection } from 'firebase/firestore';
-import CategoryAll from './CategoryAll/CategoryAll';
-
+//import { query, onSnapshot, collection } from 'firebase/firestore';
+import { authService } from '../../common/firebase';
+import MainBanner from '../../components/main/banner';
+//import CategoryAll from './CategoryAll/CategoryAll';
+import CategorySlide from '../../components/main/CategorySlide';
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 const MainPage = () => {
-  const [testList, setTestList] = useState([1, 2, 3, 4]);
+  console.log(authService.currentUser);
 
   return (
     <CommonStyles>
-      <Banner src='/assets/thumbnailImg.png' />
-      <CategoryAll />
+      <MainBanner />
+
       <StyledMainContainer>
+        <CategorySlide Category={Category} />
+
         <div>
           <span style={{ fontSize: 20, fontWeight: 'bold' }}>신발신는중</span>
           <ContentList>
@@ -176,12 +180,7 @@ const ContentList = styled.div`
   flex-wrap: wrap;
   margin: auto;
 `;
-const Category = styled.div`
-  width: 450px;
-  margin: 20px;
-  margin: auto;
-  background-color: orange;
-`;
+const Category = styled.div``;
 
 const Content = styled.div`
   margin: 0 auto;
