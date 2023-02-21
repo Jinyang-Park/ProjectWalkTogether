@@ -2,19 +2,19 @@ import React from 'react';
 import type { DatePickerProps } from 'antd';
 import { DatePicker, Space } from 'antd';
 import { useRecoilState } from 'recoil';
-import { ReserveDate } from '../Rocoil/Atom';
+// import { ReserveDate } from '../Rocoil/Atom';
 import 'moment/locale/ko';
 import locale from 'antd/lib/locale/ko_KR';
 import { ConfigProvider } from 'antd';
 
-const AntCalendar: React.FC = () => {
+const AntCalendarMap: React.FC = () => {
   const format = 'YYYY/MM/DD';
-  const [reserveDate, setReserveDate] = useRecoilState<any>(ReserveDate);
+  // const [reserveDate, setReserveDate] = useRecoilState<any>(ReserveDate);
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     // console.log(date, dateString);
-    setReserveDate(date);
-    console.log('달력/날짜:', reserveDate);
+    // setReserveDate(date);
+    // console.log('달력/날짜:', reserveDate);
   };
 
   // useEffect(() => );
@@ -26,15 +26,15 @@ const AntCalendar: React.FC = () => {
           onChange={onChange}
           inputReadOnly={true}
           format={format}
-          placeholder="날짜를 입력해주세요."
-          style={{ width: 250, height: 40, fontSize: 20 }}
+          placeholder="날짜"
+          style={{ width: 120, height: 30 }}
           allowClear={false}
           placement="bottomRight"
-          bordered={false}
+          // bordered={false}
         />
       </Space>
     </ConfigProvider>
   );
 };
 
-export default AntCalendar;
+export default AntCalendarMap;

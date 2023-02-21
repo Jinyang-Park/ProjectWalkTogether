@@ -21,13 +21,17 @@ export const PostSubmitBox = styled.div`
   position: relative;
   width: 100%;
   height: 10%;
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
 `;
 
 export const PostSubmitBtn = styled.button`
   position: relative;
-  left: 800px;
-  width: 200px;
-  height: 50px;
+  left: 726px;
+  width: 218px;
+  height: 42px;
   font-weight: 700;
+  border-radius: 4px;
+
+  background-color: rgba(125, 139, 174, 1);
+  color: white;
 `;
