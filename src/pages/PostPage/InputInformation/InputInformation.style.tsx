@@ -58,7 +58,7 @@ export const InputAdressBox = styled.form`
   width: 384px;
   height: 36.5px;
   position: relative;
-  border: 2px solid #bec5d7;
+  border: 2px solid #aeb1b7;
   /* background-color: yellow; */
   border-radius: 4px;
 `;
@@ -71,7 +71,7 @@ export const InputAdress = styled(Input)`
   top: 5px;
   left: 10px;
   font-weight: 100;
-  color: #bec5d7;
+  color: #aeb1b7;
 
   input:focus {
     outline: none;
@@ -84,7 +84,7 @@ export const InpuDayBox = styled.div`
   /* background-color: orange; */
   margin-left: 9px;
   font-size: 10px;
-  border: 2px solid #bec5d7;
+  border: 2px solid #aeb1b7;
   border-radius: 4px;
 `;
 
@@ -92,6 +92,6 @@ export const InputTimeBox = styled.div`
   width: 219px;
   height: 40px;
   margin-left: 9px;
-  border: 2px solid #bec5d7;
+  border: 2px solid #aeb1b7;
   border-radius: 4px;
 `;

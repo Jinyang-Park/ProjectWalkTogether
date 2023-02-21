@@ -186,12 +186,13 @@ const PostPage = () => {
     hours: today.getHours(), //현재 시간
     minutes: today.getMinutes(), //현재 분
   };
+
   let timestring = `${time.year}/${time.month}/${time.date} ${time.hours}:${time.minutes}`;
 
   /////////////
   //콘솔확인용/
   useEffect(() => {
-    console.log('location:', location);
+    console.log('timestring:', timestring);
     setPostTime(timestring); //현재 시간
     // setPostHour(meeting); //약속 시간
     setPostNickname(nickname);
