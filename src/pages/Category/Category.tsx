@@ -13,11 +13,13 @@ import {
 import { dbService } from '../../common/firebase';
 import CardSection from '../../components/CardSection/CardSection';
 import CommonStyles from '../../styles/CommonStyles';
+import DropdownFilterCategory from './../../components/DropdownFilterCategory/DropdownFilterCategory';
 
 const Category = () => {
   const { category } = useParams();
   const [postings, setPostings] = useState<any>([]);
   // console.log(category);
+  const [show, setShow] = useState<any>(false);
 
   useEffect(() => {
     const q = query(
@@ -49,10 +51,11 @@ const Category = () => {
       <S.FilterArea>
         <S.CategoryFilter>
           {/*카테고리영역 */}
-          <S.CategoryFilterWarpper>
+          <S.CategoryFilterWarpper onClick={() => setShow(true)}>
             <S.FilterCategory>카테고리</S.FilterCategory>
             <S.FilterCalendarIcon />
           </S.CategoryFilterWarpper>
+          {show && <DropdownFilterCategory setShow={setShow} />}
           {/*달력영역 */}
           <S.CategoryFilterWarpper>
             <S.FilterCategory>3월 23일</S.FilterCategory>
