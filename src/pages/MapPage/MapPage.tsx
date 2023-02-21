@@ -1,32 +1,35 @@
-import React from 'react'
-import * as S from './MapPage.style'
-import InfoList from './InfoList/InfoList'
-import MapContainer from './Map/map'
-import FilterBar from './Filter/Filter'
-import Category from '../Category/Category'
+import React from 'react';
+import * as S from './MapPage.style';
+import InfoList from './InfoList/InfoList';
+import MapContainer from './Map/map';
+import FilterBar from './Filter/Filter';
+import Category from '../Category/Category';
 
-import CommonStyles from './../../styles/CommonStyles'
+import CommonStyles from './../../styles/CommonStyles';
 
-import { doc, getDocs, collection, query, orderBy } from 'firebase/firestore'
-import { dbService } from '../../common/firebase'
-import { useEffect, useState } from 'react'
+import { doc, getDocs, collection, query, orderBy } from 'firebase/firestore';
+import { dbService } from '../../common/firebase';
+import { useEffect, useState } from 'react';
 
-import { useRecoilValue } from 'recoil'
-import type { DocumentAny } from '../../../src/assets/constants/types'
+import { useRecoilValue } from 'recoil';
+import type { DocumentAny } from '../../../src/assets/constants/types';
 
-import useGeolocation from '../../hooks/useGeoLocation'
+import useGeolocation from '../../hooks/useGeoLocation';
 
 const MapPage = () => {
   // firestore에서 데이터 'Post' 가져오기
-  const [Post, setPosting] = useState<DocumentAny[]>([])
+  const [Post, setPosting] = useState<DocumentAny[]>([]);
 
   // firestore에서 데이터 'Post' 가져오기
   const syncpostingstatewithfirestore = () => {
-    const q = query(collection(dbService, 'Post'), orderBy('TimeStamp_Posting'))
+    const q = query(
+      collection(dbService, 'Post'),
+      orderBy('TimeStamp_Posting')
+    );
     getDocs(q).then((querySnapshot) => {
       // DocumentAny[] 는 any 아닌척 하고 싶어서 대신 작성함 types.d.ts
       // 타입 지정은 아래쪽과 같이 해야함
-      const firestorePostingList: DocumentAny[] = []
+      const firestorePostingList: DocumentAny[] = [];
       querySnapshot.forEach((doc) => {
         firestorePostingList.push({
           id: doc.id,
@@ -45,14 +48,14 @@ const MapPage = () => {
           Nickname: doc.data().Nickname,
           Address_Posting: doc.data().Address_Posting,
           ThunmnailURL_Posting: doc.data().ThunmnailURL_Posting,
-        })
-      })
-      setPosting(firestorePostingList)
-    })
-  }
+        });
+      });
+      setPosting(firestorePostingList);
+    });
+  };
   useEffect(() => {
-    syncpostingstatewithfirestore()
-  }, [])
+    syncpostingstatewithfirestore();
+  }, []);
 
   // console.log('Post', Post)
 
@@ -70,14 +73,23 @@ const MapPage = () => {
           <S.MapPageTitle>같이 걸을래요?</S.MapPageTitle>
           <S.UserInfoContainer>
             {/* Filter Bar */}
-            {/* <FilterBar /> */}
+            <FilterBar
+              setPostCategory={function (
+                value: React.SetStateAction<string>
+              ): void {
+                throw new Error('Function not implemented.');
+              }}
+              setShow={function (value: React.SetStateAction<boolean>): void {
+                throw new Error('Function not implemented.');
+              }}
+            />
             {/* Posting List */}
             <InfoList Post={Post} />
           </S.UserInfoContainer>
         </S.MapPageContentsWrapper>
       </S.MapPageContainer>
     </CommonStyles>
-  )
-}
+  );
+};
 
-export default MapPage
+export default MapPage;

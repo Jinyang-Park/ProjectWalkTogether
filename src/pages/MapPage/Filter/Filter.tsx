@@ -1,19 +1,20 @@
-import React, { useState } from 'react'
-import FunctionCategory from './Category/Category'
-import FunctionCalendar from './Calendar/Calendar'
-import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory'
-import * as S from './Filter.style'
+import React, { useState } from 'react';
+import FunctionCategory from './Category/Category';
+import FunctionCalendar from './Calendar/Calendar';
+import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
+import * as S from './Filter.style';
+import AntCalendarMap from './Calendar/AntCalendarDate';
 
 declare interface SetProps {
-  setPostCategory: React.Dispatch<React.SetStateAction<string>>
-  setShow: React.Dispatch<React.SetStateAction<boolean>>
+  setPostCategory: React.Dispatch<React.SetStateAction<string>>;
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const FilterBar = ({
   setPostCategory: string,
   setShow: boolean,
 }: SetProps) => {
-  const [show, setShow] = useState<any>(false)
+  const [show, setShow] = useState<any>(false);
 
   return (
     <>
@@ -24,7 +25,7 @@ export const FilterBar = ({
           <S.CategoryFilterWarpper>
             <S.FilterCategory
               onClick={() => {
-                setShow(true)
+                setShow(true);
               }}
             >
               카테고리
@@ -32,10 +33,11 @@ export const FilterBar = ({
             <S.FilterCalendarIcon />
           </S.CategoryFilterWarpper>
           {/*달력영역 */}
-          <S.CategoryFilterWarpper>
+          {/* <S.CategoryFilterWarpper>
             <S.FilterCategory>3월 23일</S.FilterCategory>
             <S.FilterCalendarIcon />
-          </S.CategoryFilterWarpper>
+          </S.CategoryFilterWarpper> */}
+          <AntCalendarMap />
         </S.CategoryFilter>
         {/*최신순 / 조회순 / 좋아요순*/}
         <S.FilterSortWrapper>
@@ -52,7 +54,7 @@ export const FilterBar = ({
       </S.FilterArea>
       <FunctionCalendar />
     </>
-  )
-}
+  );
+};
 
-export default FilterBar
+export default FilterBar;
