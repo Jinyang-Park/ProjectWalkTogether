@@ -10,11 +10,7 @@ export const FunctionCategory = () => {
 
   return (
     <>
-      <S.CategoryWrapper>
-        <S.CategoryButton
-          onClick={() => setOpenCategory(!openCategory)}
-        ></S.CategoryButton>
-      </S.CategoryWrapper>
+      <S.CategoryWrapper></S.CategoryWrapper>
     </>
   )
 }

@@ -10,7 +10,6 @@ export const Bannercontainer = styled.div`
 
 // 글쓰기 최상위 박스
 export const Boxcontents = styled.div`
-  background-color: #cccccc;
   position: relative;
   flex-direction: column;
   width: 868px;
@@ -21,6 +20,11 @@ export const Boxcontents = styled.div`
   justify-content: center;
   /* align-items: center; */
   flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid #ffffff;
+  box-shadow: 0px 4px 7px rgba(190, 197, 215, 0.81);
+  backdrop-filter: blur(5px);
+
   @media screen and (max-width: 868px) {
   }
 `;
@@ -34,6 +38,7 @@ export const BoxMain = styled.div`
 export const ThumbnailImgPorlaroid = styled.img`
   width: 1024px;
   height: 379px;
+  border: none;
   /* margin: 5px 35px 20px 24px; */
   /* margin-bottom: 20px; */
 `;
@@ -50,13 +55,13 @@ export const CategoryTitle = styled.div`
   justify-content: center;
 `;
 export const CateogryWrapper = styled.div`
-  width: 183px;
+  width: 138px;
   height: 38px;
   border-radius: 4px;
   align-items: center;
   text-align: center;
   color: white;
-  background-color: #a7a7a7;
+  background-color: rgba(125, 139, 174, 1);
 `;
 
 //제목 입력하는 input
@@ -67,9 +72,12 @@ export const InputTitle = styled.input`
   margin-top: 10px;
   border-radius: 4px;
   background: none;
-  border: 1px solid #3d3a3a;
+  border: none;
   padding: 2px 15px 0px;
   margin-bottom: 10px;
+  background: #eef1f7;
+  border-radius: 4px;
+
   &:focus {
     outline: 2px solid #6a24ff;
   }
@@ -91,17 +99,20 @@ export const Textarea = styled.textarea`
   border-radius: 4px;
   overflow: hidden;
   overflow-wrap: break-word;
-  background: none;
+  border: none;
   padding: 8px 15px 9px;
   font-family: sans-serif;
   font-size: 15px;
   line-height: 21px;
   /* transition: border-color 0.1s, background-color 0.1s; */
   resize: none;
-  border: 1px solid #3d3a3a;
+  /* border: 1px solid #3d3a3a; */
   &:focus {
     outline: 2px solid #6a24ff;
   }
+
+  background: #eef1f7;
+  border-radius: 4px;
 `;
 
 // 이미지 컨테이너

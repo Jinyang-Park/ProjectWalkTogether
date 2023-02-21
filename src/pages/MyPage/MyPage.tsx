@@ -17,6 +17,7 @@ import { BsFillSuitHeartFill } from 'react-icons/bs';
 import { BsFillHandThumbsUpFill } from 'react-icons/bs';
 import { FaHandPeace } from 'react-icons/fa';
 import { FaHandPaper } from 'react-icons/fa';
+import { BsFillCloudUploadFill } from 'react-icons/bs';
 
 interface UserInfoTypes {
   nickname: string | null;
@@ -61,7 +62,10 @@ const MyPage = () => {
     reader.onloadend = () => {
       setPhotoBackImg(reader.result);
     };
-    const uploaded_file = await uploadBytes(ref(storage, `images/${e.target.files[0].name}`), e.target.files[0]);
+    const uploaded_file = await uploadBytes(
+      ref(storage, `images/${e.target.files[0].name}`),
+      e.target.files[0]
+    );
     const file_url = await getDownloadURL(uploaded_file.ref);
     updateProfile(user, {
       photoURL: file_url,
@@ -78,7 +82,10 @@ const MyPage = () => {
     reader.onloadend = () => {
       setPhotoURL(reader.result);
     };
-    const uploaded_file = await uploadBytes(ref(storage, `images/${e.target.files[0].name}`), e.target.files[0]);
+    const uploaded_file = await uploadBytes(
+      ref(storage, `images/${e.target.files[0].name}`),
+      e.target.files[0]
+    );
     const file_url = await getDownloadURL(uploaded_file.ref);
     updateProfile(user, {
       photoURL: file_url,
@@ -115,7 +122,6 @@ const MyPage = () => {
   };
   const handleIntroduceBtn = () => {
     editIntroduce();
-    setIntroduce('');
     setShowIntroduceChangeBtn(false);
   };
   const ConvertImgBtn = () => {
@@ -127,18 +133,20 @@ const MyPage = () => {
       {user === user ? (
         <CommonStyles>
           <BannerImgWrap>
-            <BannerImg src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'} />
+            <BannerImg
+              src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'}
+            />
             {imgBtn ? (
               <ImgUploadModal>
-                <label htmlFor="back">
+                <label htmlFor='back'>
                   <input
-                    type="file"
+                    type='file'
                     onChange={uploadBackImg}
-                    // style={{ display: 'none' }}
-                    accept="image/*"
-                    id="back"
+                    style={{ display: 'none' }}
+                    accept='image/*'
+                    id='back'
                   ></input>
-                  {/* <ImgEditBtn /> */}
+                  <UploadImgIcon />
                 </label>
                 <div>1500픽셀 이상의 이미지가 가장 이상적입니다.</div>
               </ImgUploadModal>
@@ -151,9 +159,17 @@ const MyPage = () => {
             <ImgAndNameWrap>
               <ImgAndNameContainer>
                 <ImgWrap>
-                  <ImgChange src={photoURL ? photoURL : '/assets/default_profile.png'} />
-                  <label htmlFor="img">
-                    <input type="file" onChange={uploadFB} accept="image/*" id="img" style={{ display: 'none' }}></input>
+                  <ImgChange
+                    src={photoURL ? photoURL : '/assets/default_profile.png'}
+                  />
+                  <label htmlFor='img'>
+                    <input
+                      type='file'
+                      onChange={uploadFB}
+                      accept='image/*'
+                      id='img'
+                      style={{ display: 'none' }}
+                    ></input>
                     <ImgChangeBtn />
                   </label>
                 </ImgWrap>
@@ -162,19 +178,26 @@ const MyPage = () => {
                     {inputConvert ? (
                       <>
                         <InputStyle
-                          type="text"
-                          placeholder="변경할 닉네임을 입력해주세요."
-                          value={text}
-                          maxLength={6}
+                          type='text'
+                          placeholder='변경할 닉네임을 입력해주세요.'
                           onChange={(event) => {
+                            if (event.target.value.length > 5) {
+                              alert('5자리 제한');
+                              event.target.value = event.target.value.slice(
+                                0,
+                                5
+                              );
+                            }
                             setText(event.target.value);
                           }}
                         />
-                        <CheckIcon onClick={handleNickNameBtn}>변경</CheckIcon>
+                        <NickNameChangeBtn onClick={handleNickNameBtn}>
+                          변경
+                        </NickNameChangeBtn>
                       </>
                     ) : (
                       <>
-                        {newNickName ?? '익명'}
+                        <NewNickName>{text ?? '익명'}</NewNickName>
                         <EditIcon
                           onClick={() => {
                             setInputConvert(!inputConvert);
@@ -185,7 +208,37 @@ const MyPage = () => {
                     <AlertPhone>xxx-xxxx-xxxx</AlertPhone>
                   </NickNameWrap>
                   <DoneCnt>총 15번의 산책을 완료하셨어요!</DoneCnt>
-                  <MyIntroduce>자기소개</MyIntroduce>
+                  {showIntroduceChangeBtn ? (
+                    <>
+                      <IntroduceInput
+                        type='text'
+                        placeholder='자기소개를 입력해주세요.'
+                        value={Introduce}
+                        onChange={(event) => {
+                          if (event.target.value.length > 30) {
+                            alert('30자리 제한');
+                            event.target.value = event.target.value.slice(
+                              0,
+                              30
+                            );
+                          }
+                          setIntroduce(event.target.value);
+                        }}
+                      />
+                      <CheckIcon onClick={handleIntroduceBtn}>변경</CheckIcon>
+                    </>
+                  ) : (
+                    <>
+                      <MyIntroduce>
+                        <div>{newIntroduce ?? '자기소개'}</div>
+                        <EditIntroduceIcon
+                          onClick={() =>
+                            setShowIntroduceChangeBtn(!showIntroduceChangeBtn)
+                          }
+                        />
+                      </MyIntroduce>
+                    </>
+                  )}
                 </NameContainer>
               </ImgAndNameContainer>
             </ImgAndNameWrap>
@@ -231,13 +284,17 @@ const MyPage = () => {
       ) : (
         <CommonStyles>
           <BannerImgWrap>
-            <BannerImg src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'} />
+            <BannerImg
+              src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'}
+            />
           </BannerImgWrap>
           <ImgNickNameMannerWrap>
             <ImgAndNameWrap>
               <ImgAndNameContainer>
                 <ImgWrap>
-                  <ImgChange src={photoURL ? photoURL : '/assets/default_profile.png'} />
+                  <ImgChange
+                    src={photoURL ? photoURL : '/assets/default_profile.png'}
+                  />
                 </ImgWrap>
                 <NameContainer>
                   <NickNameWrap>
@@ -246,10 +303,9 @@ const MyPage = () => {
                       {showNickNameChangeBtn === true ? (
                         <>
                           <InputStyle
-                            type="text"
-                            placeholder="변경할 닉네임을 입력해주세요."
+                            type='text'
+                            placeholder='변경할 닉네임을 입력해주세요.'
                             value={text}
-                            maxLength={6}
                             onChange={(event) => {
                               setText(event.target.value);
                             }}
@@ -314,10 +370,29 @@ const MyPage = () => {
     </CommonStyles>
   );
 };
+const NewNickName = styled.div``;
+const IntroduceInput = styled.input`
+  width: 600px;
+  height: 48px;
+  margin-left: -10px;
+  padding: 10px;
+  border-radius: 10px;
+  border-style: none;
+  font-size: 20px;
+  ::placeholder {
+    font-size: 20px;
+    color: #494848;
+  }
+`;
+const UploadImgIcon = styled(BsFillCloudUploadFill)`
+  font-size: 40px;
+  margin-left: 40%;
+  cursor: pointer;
+`;
 const TestStyle = styled.div``;
 const ImgUploadModal = styled.div`
   margin-left: 650px;
-  margin-top: -100px;
+  margin-top: -120px;
   position: absolute;
   background-color: gray;
 `;
@@ -352,8 +427,7 @@ const ImgChangeBtn = styled(FaPen)`
 const AlertPhone = styled.div`
   width: 171px;
   height: 19px;
-  margin-left: 100px;
-  margin-left: 300px;
+  margin-left: 500px;
   margin-top: -30px;
   font-family: 'Inter';
   font-style: normal;
@@ -361,25 +435,28 @@ const AlertPhone = styled.div`
   font-size: 16px;
   line-height: 19px;
   color: #515151;
+  position: absolute;
 `;
 const DoneCnt = styled.div``;
 const MyIntroduce = styled.div`
+  font-size: 20px;
+  align-items: center;
+  position: relative;
   display: flex;
   width: 653px;
   height: 67px;
   background-color: #979797;
 `;
 const InputStyle = styled.input`
+  width: 200px;
+  height: 48px;
+  margin-left: -10px;
   padding: 10px;
-  background-color: #cab0c0;
   border-radius: 10px;
   border-style: none;
-  width: 180px;
-  font-size: 15px;
-  font-weight: 700;
-  color: white;
+  font-size: 40px;
   ::placeholder {
-    font-size: 13px;
+    font-size: 12px;
     color: #494848;
   }
 `;
@@ -401,9 +478,12 @@ const InputIntroduceStyle = styled.input`
 const SetNameWrap = styled.div`
   display: flex;
 `;
+const NickNameChangeBtn = styled(FiCheck)``;
 const CheckIcon = styled(FiCheck)`
   font-size: 30px;
   margin-left: 10px;
+  margin-top: 30px;
+  position: absolute;
   cursor: pointer;
   &:hover {
     color: #ff0098;
@@ -435,20 +515,23 @@ const NameContainer = styled.div`
 const NickNameWrap = styled.div`
   display: flex;
   align-items: center;
-  font-size: 36px;
+  font-size: 40px;
 `;
 const NameChange = styled.div`
   font-size: 60px;
 `;
 const EditIcon = styled(AiFillEdit)`
   font-size: 40px;
-  margin-left: 20px;
+  margin-left: 210px;
   cursor: pointer;
+  position: absolute;
 `;
 const EditIntroduceIcon = styled(AiFillEdit)`
-  font-size: 35px;
-  margin-left: 20px;
+  font-size: 30px;
+  margin-left: 620px;
+  margin-top: 35px;
   cursor: pointer;
+  position: absolute;
 `;
 const MannerWrap = styled.div`
   margin: auto 40px;

@@ -6,47 +6,62 @@ import {
   Bannerupload,
   Thunmnailupload,
   ReserveDate,
+  myLocation,
 } from './Atom';
 
 const timeSelector = selector({
   key: 'Time',
   get: ({ get }) => {
-    const TimeValue = get(Time);
+    const timeValue = get(Time);
   },
 });
 
 const dateSelector = selector({
   key: 'ReserveDate',
   get: ({ get }) => {
-    const DateValue = get(ReserveDate);
+    const dateValue = get(ReserveDate);
   },
 });
 
 const titleSelector = selector({
   key: 'Title',
   get: ({ get }) => {
-    const TitleValue = get(TitleInput);
+    const titleValue = get(TitleInput);
   },
 });
 
-const DescriptionInputSelector = selector({
+const descriptionInputSelector = selector({
   key: 'Descripttion',
   get: ({ get }) => {
-    const TitleValue = get(DescriptionInput);
+    const descriptionInputValue = get(DescriptionInput);
   },
 });
 
-const BanneruploadSelector = selector({
-  key: 'Descripttion',
+const banneruploadSelector = selector({
+  key: 'Bannerupload',
   get: ({ get }) => {
-    const TitleValue = get(Bannerupload);
+    const banneruploadValue = get(Bannerupload);
   },
 });
 
-const ThunmnailuploadSelector = selector({
-  key: 'Descripttion',
+const thunmnailuploadSelector = selector({
+  key: 'Thunmnailupload',
   get: ({ get }) => {
-    const TitleValue = get(Thunmnailupload);
+    const thunmnailuploadValue = get(Thunmnailupload);
+  },
+});
+
+const myLocaSelector = selector({
+  key: 'myLocation',
+  get: ({ get }) => {
+    const myLocaValue = get(myLocation);
+  },
+});
+
+const address = selector({
+  key: 'address',
+  get: ({ get }) => {
+    const addressValue = get(address);
   },
 });
 

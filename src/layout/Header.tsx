@@ -42,9 +42,6 @@ const Header = () => {
             <S.NavText to="/chat">chat</S.NavText>
           </S.NavLi>
           <S.NavLi>
-            <S.NavText to="/category">카테고리</S.NavText>
-          </S.NavLi>
-          <S.NavLi>
             <S.NavText to="/postpage">글쓰기</S.NavText>
           </S.NavLi>
           <S.NavLi>
