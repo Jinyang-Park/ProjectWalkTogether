@@ -102,3 +102,14 @@ export const ResultListCardDateTimeLikeWrapper = styled.span`
   display: flex;
   flex-direction: row;
 `
+export const CustomZoomControl = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 80px;
+  z-index: 1;
+`
+export const ZoomInButton = styled.span``
+export const ZoomOutButton = styled.span``
+export const FindMyLocationButton = styled.span``
+export const LinkToKaKaoNavibutton = styled.span``

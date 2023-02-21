@@ -1,10 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react'
 import * as ReactDOMServer from 'react-dom/server'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+import { paramsState } from '../../PostPage/Hooks/Rocoil/Atom'
+import { useSetRecoilState } from 'recoil'
 
 import { useRecoilState, useRecoilValue } from 'recoil'
 
-import { AiOutlineSearch } from 'react-icons/ai'
+import {
+  AiOutlineSearch,
+  AiOutlinePlus,
+  AiOutlineMinus,
+  AiOutlineEnvironment,
+  AiOutlineCar,
+} from 'react-icons/ai'
 import { RxDividerVertical } from 'react-icons/rx'
 import { IoMdClose } from 'react-icons/io'
 
@@ -23,7 +31,8 @@ const MapContainer = (Post) => {
   // 현재 위치를 가져오기 위한 state 생성
   const [myLoca, setMyLoca] = useState({ lat: null, lng: null })
 
-  //! 초기값을 null 로 하고, null 일 때 가가코 지도를 렌더링 하지 않게
+  const navigate = useNavigate()
+  const setParams = useSetRecoilState(paramsState)
 
   // 지도 좌표를 저장할 state
   const [position, setPosition] = useState({ lat: null, lng: null })
@@ -69,7 +78,41 @@ const MapContainer = (Post) => {
     }
   }, [])
 
-  // console.log(search)
+  // 커스터마이징 된 지도 컨트롤러
+  const mapRef = useRef(null)
+
+  // 줌인
+  const zoomIn = () => {
+    const mapControl = mapRef.current
+    mapControl.setLevel(map.getLevel() - 1)
+  }
+  // 줌아웃
+  const zoomOut = () => {
+    const mapControl = mapRef.current
+    mapControl.setLevel(map.getLevel() + 1)
+  }
+  // 내위치 찾기
+  const findMyLocation = () => {
+    const mapControl = mapRef.current
+    mapControl.panTo(new kakao.maps.LatLng(myLoca.lat, myLoca.lng))
+  }
+  // 카카오 길찾기 링크로 이동 (내 위치 -> useState Postion에 저장된 위치)
+  const linkToKaKaoNavi = () => {
+    const url = `https://map.kakao.com/link/search/${address}`
+    window.open(url)
+  }
+
+  // geocoder를 이용해 좌표 - 주소 변환
+  const convertAddress = () => {
+    geocoder.coord2Address(position.lng, position.lat, (result, status) => {
+      if (status === kakao.maps.services.Status.OK) {
+        setAddress(result[0].address.address_name)
+      }
+    })
+  }
+  convertAddress()
+  console.log(address)
+  console.log(search)
 
   // 키워드로 장소검색하기 위한 useEffect
   useEffect(() => {
@@ -123,9 +166,6 @@ const MapContainer = (Post) => {
     //   }
     // )
 
-    // 1. setAddress 를 빼보자 (무한루프)
-
-    // console.log('address', address)
     const lat = post.MeetLatitude_Posting
     const lng = post.MeetLongitude_Posting
 
@@ -147,13 +187,15 @@ const MapContainer = (Post) => {
       >
         {lat === isOpen.lat && (
           <S.InfoWindow
-            onClick={() =>
-              setIsOpen({
-                lat: '',
-                lng: '',
-                isopen: false,
-              })
-            }
+            onClick={() => {
+              setParams(post.id)
+              navigate(`/detailpage/${post.id}`)
+              // setIsOpen({
+              //   lat: '',
+              //   lng: '',
+              //   isopen: false,
+              // })
+            }}
           >
             <S.ResultListCardImage
               src={post.ThunmnailURL_Posting}
@@ -211,14 +253,46 @@ const MapContainer = (Post) => {
         <RxDividerVertical size={36} />
         <IoMdClose size={40} />
       </S.MapPageSearchBar>
+
       <Map
         center={myLoca}
         style={{ width: '100%', height: '100%' }}
+        level={4}
         onCreate={setMap}
+        ref={mapRef}
+        onClick={(_t, mouseEvent) => {
+          // if setIsOpen is true, set it to false
+          // else call setPosition
+          if (isOpen.isopen) {
+            setIsOpen({
+              lat: '',
+              lng: '',
+              isopen: false,
+            })
+          } else
+            setPosition({
+              lat: mouseEvent.latLng.getLat(),
+              lng: mouseEvent.latLng.getLng(),
+            })
+        }}
       >
+        {position && <MapMarker position={position} />}
         {Markers}
-        <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
-        <MapTypeControl position={kakao.maps.ControlPosition.TOPRIGHT} />
+        <ZoomControl position={kakao.maps.ControlPosition.BOTTOMRIGHT} />
+        <S.CustomZoomControl className='custom_zoomcontrol'>
+          <S.ZoomInButton onClick={zoomIn}>
+            <AiOutlinePlus size={40} />
+          </S.ZoomInButton>
+          <S.ZoomOutButton onClick={zoomOut}>
+            <AiOutlineMinus size={40} />
+          </S.ZoomOutButton>
+          <S.FindMyLocationButton onClick={findMyLocation}>
+            <AiOutlineEnvironment size={40} />
+          </S.FindMyLocationButton>
+          <S.LinkToKaKaoNavibutton onClick={linkToKaKaoNavi}>
+            <AiOutlineCar size={40} />
+          </S.LinkToKaKaoNavibutton>
+        </S.CustomZoomControl>
       </Map>
     </>
   )

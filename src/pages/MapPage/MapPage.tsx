@@ -3,6 +3,7 @@ import * as S from './MapPage.style'
 import InfoList from './InfoList/InfoList'
 import MapContainer from './Map/map'
 import FilterBar from './Filter/Filter'
+import Category from '../Category/Category'
 
 import CommonStyles from './../../styles/CommonStyles'
 
@@ -28,6 +29,7 @@ const MapPage = () => {
       const firestorePostingList: DocumentAny[] = []
       querySnapshot.forEach((doc) => {
         firestorePostingList.push({
+          id: doc.id,
           UID: doc.data().UID,
           Title_Posting: doc.data().Title_Posting,
           Description_Posting: doc.data().Description_Posting,
@@ -68,8 +70,7 @@ const MapPage = () => {
           <S.MapPageTitle>같이 걸을래요?</S.MapPageTitle>
           <S.UserInfoContainer>
             {/* Filter Bar */}
-            <FilterBar />
-
+            {/* <FilterBar /> */}
             {/* Posting List */}
             <InfoList Post={Post} />
           </S.UserInfoContainer>

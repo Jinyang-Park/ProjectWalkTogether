@@ -5,11 +5,6 @@ import * as S from './InfoList.style'
 const InfoList = ({ Post }) => {
   return (
     <>
-      {/* <S.HeaderLine>
-      { <S.HeaderLineTitle></S.HeaderLineTitle>
-        <S.HeaderLineCategory></S.HeaderLineCategory>
-      </S.HeaderLine> */}
-
       <S.SearchLineTotalCount>총 n 건의 검색결과</S.SearchLineTotalCount>
       <S.ResultList>
         {Post.map((post) => {
