@@ -79,7 +79,7 @@ export const ResultListCard = styled.span`
   border: 1px solid black;
 `
 
-export const ResultListCardImage = styled.span`
+export const ResultListCardImage = styled.img`
   width: 100%;
   height: 96px;
   margin-bottom: 5px;

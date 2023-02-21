@@ -11,7 +11,8 @@ import {
   onSnapshot,
 } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
-import CardSection from './../../common/CardSection/CardSection';
+import CardSection from '../../components/CardSection/CardSection';
+import CommonStyles from '../../styles/CommonStyles';
 
 const Category = () => {
   const { category } = useParams();
@@ -23,7 +24,7 @@ const Category = () => {
       collection(dbService, 'Post'),
       // Category_Posting이 파람스로 넘겨준 애들과 같은 애들만 뿌려줘라
       where('Category_Posting', '==', category),
-      orderBy('RsvDate_Posting', 'desc')
+      orderBy('TimeStamp_Posting', 'desc')
     );
     onSnapshot(q, (snapshot) => {
       const getCategoryList = snapshot.docs.map((doc) => {
@@ -39,11 +40,43 @@ const Category = () => {
   // console.log(postings);
 
   return (
-    <S.LikedListItem>
-      {postings.map((post: any) => {
-        return <CardSection key={post.id} post={post} />;
-      })}
-    </S.LikedListItem>
+    <CommonStyles>
+      <S.CategoryTitleWrapper>
+        <S.CategoryTitle>{category}</S.CategoryTitle>
+        {/* <S.CategoryImg>{category.img}</S.CategoryImg> */}
+      </S.CategoryTitleWrapper>
+      <S.FilterArea>
+        <S.CategoryFilter>
+          {/*카테고리영역 */}
+          <S.CategoryFilterWarpper>
+            <S.FilterCategory>카테고리</S.FilterCategory>
+            <S.FilterCalendarIcon />
+          </S.CategoryFilterWarpper>
+          {/*달력영역 */}
+          <S.CategoryFilterWarpper>
+            <S.FilterCategory>3월 23일</S.FilterCategory>
+            <S.FilterCalendarIcon />
+          </S.CategoryFilterWarpper>
+        </S.CategoryFilter>
+        {/*최신순 / 조회순 / 좋아요순*/}
+        <S.FilterSortWrapper>
+          <S.FilterNewest>
+            최신순
+            <S.FilterAreaLine></S.FilterAreaLine>
+          </S.FilterNewest>
+          <S.FilterNewest>
+            조회순
+            <S.FilterAreaLine></S.FilterAreaLine>
+          </S.FilterNewest>
+          <S.FilterNewest>좋아요순</S.FilterNewest>
+        </S.FilterSortWrapper>
+      </S.FilterArea>
+      <S.LikedListItem>
+        {postings.map((post: any) => {
+          return <CardSection key={post.id} post={post} />;
+        })}
+      </S.LikedListItem>
+    </CommonStyles>
   );
 };
 

@@ -13,13 +13,22 @@ import {
   orderBy,
   query,
   updateDoc,
+  where,
 } from 'firebase/firestore';
 import { useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import dayjs from 'dayjs';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { paramsState } from './../../PostPage/Hooks/Rocoil/Atom';
 
-const Comments = () => {
+interface postProps {
+  param: any;
+}
+const Comments = ({ param }: postProps) => {
+  const params = useRecoilValue(paramsState);
+  // console.log(params);
+
   // 댓글 인풋
   const [inputComment, setInputComment] = useState<string>('');
   // 댓글 출력
@@ -31,6 +40,9 @@ const Comments = () => {
 
   const navigate = useNavigate();
 
+  // posting받아오기
+  // const post = useRecoilState(PostingID_Posting);
+
   // 날짜 정보
   const now = () => {
     const now = dayjs();
@@ -38,6 +50,7 @@ const Comments = () => {
   };
 
   const newComments = {
+    params: params,
     UID: authService.currentUser?.uid,
     // PostingID와 KeyForChat은 글쓰기에서 매개변수로 넘겨줘야된다.
     PostingID_Posting: '',
@@ -107,10 +120,10 @@ const Comments = () => {
   // 댓글 출력
   const Reupdate = () => {
     const q = query(
-      collection(dbService, 'comments')
+      collection(dbService, 'comments'),
       // 밑에 지정해줘야 그 해당된 페이지에 댓글을 달수 있다
-      // where('PostingID_Posting', '==', PostingID_Posting)
-      // orderBy('createdAt', 'desc')
+      where('params', '==', param),
+      orderBy('CreatedAt', 'desc')
     );
     const getComments = onSnapshot(q, (snapshot) => {
       const newComment = snapshot.docs.map((doc) => ({

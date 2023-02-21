@@ -1,10 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react'
 import * as ReactDOMServer from 'react-dom/server'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+import { paramsState } from '../../PostPage/Hooks/Rocoil/Atom'
+import { useSetRecoilState } from 'recoil'
 
 import { useRecoilState, useRecoilValue } from 'recoil'
 
-import { AiOutlineSearch } from 'react-icons/ai'
+import {
+  AiOutlineSearch,
+  AiOutlinePlus,
+  AiOutlineMinus,
+  AiOutlineEnvironment,
+  AiOutlineCar,
+} from 'react-icons/ai'
 import { RxDividerVertical } from 'react-icons/rx'
 import { IoMdClose } from 'react-icons/io'
 
@@ -21,12 +29,13 @@ import {
 
 const MapContainer = (Post) => {
   // 현재 위치를 가져오기 위한 state 생성
-  const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 })
+  const [myLoca, setMyLoca] = useState({ lat: null, lng: null })
 
-  //! 초기값을 null 로 하고, null 일 때 가가코 지도를 렌더링 하지 않게
+  const navigate = useNavigate()
+  const setParams = useSetRecoilState(paramsState)
 
   // 지도 좌표를 저장할 state
-  const [position, setPosition] = useState({ lat: 36.5, lng: 127.8 })
+  const [position, setPosition] = useState({ lat: null, lng: null })
 
   // 키워드로 장소검색하기를 위한 state
   const [info, setInfo] = useState<any>()
@@ -45,7 +54,7 @@ const MapContainer = (Post) => {
   const geocoder = new kakao.maps.services.Geocoder()
 
   // 인포윈도우 Open 여부를 저장하는 state 입니다.
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState({ lat: '', lng: '', isopen: false })
 
   // 사용자 위치를 가져오기 위한 useEffect
   React.useEffect(() => {
@@ -69,6 +78,40 @@ const MapContainer = (Post) => {
     }
   }, [])
 
+  // 커스터마이징 된 지도 컨트롤러
+  const mapRef = useRef(null)
+
+  // 줌인
+  const zoomIn = () => {
+    const mapControl = mapRef.current
+    mapControl.setLevel(map.getLevel() - 1)
+  }
+  // 줌아웃
+  const zoomOut = () => {
+    const mapControl = mapRef.current
+    mapControl.setLevel(map.getLevel() + 1)
+  }
+  // 내위치 찾기
+  const findMyLocation = () => {
+    const mapControl = mapRef.current
+    mapControl.panTo(new kakao.maps.LatLng(myLoca.lat, myLoca.lng))
+  }
+  // 카카오 길찾기 링크로 이동 (내 위치 -> useState Postion에 저장된 위치)
+  const linkToKaKaoNavi = () => {
+    const url = `https://map.kakao.com/link/search/${address}`
+    window.open(url)
+  }
+
+  // geocoder를 이용해 좌표 - 주소 변환
+  const convertAddress = () => {
+    geocoder.coord2Address(position.lng, position.lat, (result, status) => {
+      if (status === kakao.maps.services.Status.OK) {
+        setAddress(result[0].address.address_name)
+      }
+    })
+  }
+  convertAddress()
+  console.log(address)
   console.log(search)
 
   // 키워드로 장소검색하기 위한 useEffect
@@ -84,7 +127,7 @@ const MapContainer = (Post) => {
     ps.keywordSearch(search, (data, status, _pagination) => {
       if (status === kakao.maps.services.Status.OK) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-        // LatLngBounds 객체에 좌표를 추가합니다
+        // LatLngBounds 객체에 좌표를 추가
         const bounds = new kakao.maps.LatLngBounds()
         let markers = []
 
@@ -110,9 +153,8 @@ const MapContainer = (Post) => {
 
   // db의 Post 컬렉션에서 가져온 데이터를 MapMarker에 넣어주기 위한 배열 생성
   const Markers = Post.Post.map((post) => {
-    console.log(Post, post.MeetLatitude_Posting)
-    console.log(post.MeetLongitude_Posting)
-
+    // console.log(Post, post.MeetLatitude_Posting)
+    // console.log(post.MeetLongitude_Posting)
     // geocoder를 이용해 좌표 - 주소 변환
     // geocoder.coord2Address(
     //   post.MeetLongitude_Posting,
@@ -124,25 +166,41 @@ const MapContainer = (Post) => {
     //   }
     // )
 
-    // 1. setAddress 를 빼보자 (무한루프)
-
-    console.log('address', address)
+    const lat = post.MeetLatitude_Posting
+    const lng = post.MeetLongitude_Posting
 
     return (
       <MapMarker
+        key={post.PostingID_Posting}
         position={{
-          lat: post.MeetLatitude_Posting,
-          lng: post.MeetLongitude_Posting,
+          lat,
+          lng,
         }}
         clickable={true} // 마커를 클릭했을 때 클릭 이벤트를 발생시킬지 여부를 지정합니다.
         onClick={() => {
-          setIsOpen(true)
+          setIsOpen({
+            lat,
+            lng,
+            isopen: true,
+          })
         }}
       >
-        {isOpen && (
-          <S.InfoWindow onClick={() => setIsOpen(false)}>
+        {lat === isOpen.lat && (
+          <S.InfoWindow
+            onClick={() => {
+              setParams(post.id)
+              navigate(`/detailpage/${post.id}`)
+              // setIsOpen({
+              //   lat: '',
+              //   lng: '',
+              //   isopen: false,
+              // })
+            }}
+          >
+            <S.ResultListCardImage
+              src={post.ThunmnailURL_Posting}
+            ></S.ResultListCardImage>
             <S.ResultListCard key={post.PostingID_Posting}>
-              <S.ResultListCardImage></S.ResultListCardImage>
               <S.ResultListCardTitle>
                 {post.Title_Posting}
               </S.ResultListCardTitle>
@@ -154,12 +212,16 @@ const MapContainer = (Post) => {
               <S.ResultListCardLine />
               <S.ResultListCardLocationTimeDateWrapper>
                 <S.ResultListCardLocation>
-                  서울특별시 강남구 청담동
+                  {post.Address_Posting}
                 </S.ResultListCardLocation>
                 <S.ResultListCardDateTimeLikeWrapper>
                   <S.ResultListCardDateTimeWrapper>
-                    <S.ResultListCardDate>2/9 (목)</S.ResultListCardDate>
-                    <S.ResultListCardTime>14:00</S.ResultListCardTime>
+                    <S.ResultListCardDate>
+                      {post.RsvDate_Posting}
+                    </S.ResultListCardDate>
+                    <S.ResultListCardTime>
+                      {post.RsvHour_Posting}
+                    </S.ResultListCardTime>
                   </S.ResultListCardDateTimeWrapper>
                 </S.ResultListCardDateTimeLikeWrapper>
               </S.ResultListCardLocationTimeDateWrapper>
@@ -191,14 +253,46 @@ const MapContainer = (Post) => {
         <RxDividerVertical size={36} />
         <IoMdClose size={40} />
       </S.MapPageSearchBar>
+
       <Map
         center={myLoca}
         style={{ width: '100%', height: '100%' }}
+        level={4}
         onCreate={setMap}
+        ref={mapRef}
+        onClick={(_t, mouseEvent) => {
+          // if setIsOpen is true, set it to false
+          // else call setPosition
+          if (isOpen.isopen) {
+            setIsOpen({
+              lat: '',
+              lng: '',
+              isopen: false,
+            })
+          } else
+            setPosition({
+              lat: mouseEvent.latLng.getLat(),
+              lng: mouseEvent.latLng.getLng(),
+            })
+        }}
       >
+        {position && <MapMarker position={position} />}
         {Markers}
-        <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
-        <MapTypeControl position={kakao.maps.ControlPosition.TOPRIGHT} />
+        <ZoomControl position={kakao.maps.ControlPosition.BOTTOMRIGHT} />
+        <S.CustomZoomControl className='custom_zoomcontrol'>
+          <S.ZoomInButton onClick={zoomIn}>
+            <AiOutlinePlus size={40} />
+          </S.ZoomInButton>
+          <S.ZoomOutButton onClick={zoomOut}>
+            <AiOutlineMinus size={40} />
+          </S.ZoomOutButton>
+          <S.FindMyLocationButton onClick={findMyLocation}>
+            <AiOutlineEnvironment size={40} />
+          </S.FindMyLocationButton>
+          <S.LinkToKaKaoNavibutton onClick={linkToKaKaoNavi}>
+            <AiOutlineCar size={40} />
+          </S.LinkToKaKaoNavibutton>
+        </S.CustomZoomControl>
       </Map>
     </>
   )
