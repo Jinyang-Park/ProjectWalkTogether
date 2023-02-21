@@ -24,7 +24,8 @@ const Category = () => {
       collection(dbService, 'Post'),
       // Category_Posting이 파람스로 넘겨준 애들과 같은 애들만 뿌려줘라
       where('Category_Posting', '==', category),
-      orderBy('TimeStamp_Posting', 'desc')
+      orderBy('createdAt', 'desc')
+      // orderBy('TimeStamp_Posting', 'desc')
     );
     onSnapshot(q, (snapshot) => {
       const getCategoryList = snapshot.docs.map((doc) => {

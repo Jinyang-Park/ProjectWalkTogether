@@ -27,23 +27,3 @@ export const authService = getAuth(app);
 export const storage = getStorage(app);
 export const provider = new GoogleAuthProvider();
 export const apiKey = firebaseConfig.apiKey;
-export async function login() {
-  //임시방면
-  return signInWithPopup(authService, provider)
-    .then((result) => {
-      const user = result.user;
-      console.log(user);
-      return user;
-    })
-    .catch(console.error);
-}
-
-export async function logout() {
-  return signOut(authService).then(() => null);
-}
-
-export function onUserStateChange(callback: any) {
-  onAuthStateChanged(authService, (user) => {
-    callback(user);
-  });
-}
