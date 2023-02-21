@@ -20,6 +20,7 @@ const Category = () => {
   const [postings, setPostings] = useState<any>([]);
   // console.log(category);
   const [show, setShow] = useState<any>(false);
+  const [TextChange, setTextChange] = useState('카테고리');
 
   useEffect(() => {
     const q = query(
@@ -52,10 +53,15 @@ const Category = () => {
         <S.CategoryFilter>
           {/*카테고리영역 */}
           <S.CategoryFilterWarpper onClick={() => setShow(true)}>
-            <S.FilterCategory>카테고리</S.FilterCategory>
+            <S.FilterCategory>{TextChange}</S.FilterCategory>
             <S.FilterCalendarIcon />
           </S.CategoryFilterWarpper>
-          {show && <DropdownFilterCategory setShow={setShow} />}
+          {show && (
+            <DropdownFilterCategory
+              setShow={setShow}
+              setTextChange={setTextChange}
+            />
+          )}
           {/*달력영역 */}
           <S.CategoryFilterWarpper>
             <S.FilterCategory>3월 23일</S.FilterCategory>
