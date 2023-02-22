@@ -5,16 +5,24 @@ import * as S from './DropdownFilterCategory.style';
 declare interface SetProps {
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
   setTextChange: React.Dispatch<React.SetStateAction<string>>;
+  setCategory?: React.Dispatch<React.SetStateAction<string>>;
+  TextChange?: string;
 }
 
-const DropdownFilterCategory = ({ setShow, setTextChange }: SetProps) => {
+const DropdownFilterCategory = ({
+  setShow,
+  setTextChange,
+  setCategory,
+  TextChange,
+}: SetProps) => {
   const buttonClickHandler = (event: any) => {
     //바로 적용이 안된다
     // setTextChange(event.target.innerText);
     // 아래부분처럼 해결함
     setTextChange(event.target.innerText);
   };
-  const confirmButtonClickHandler = () => {
+  const confirmButtonClickHandler = (name: string) => {
+    setCategory(name);
     setShow(false);
   };
   console.log(CategorysList);
@@ -31,7 +39,10 @@ const DropdownFilterCategory = ({ setShow, setTextChange }: SetProps) => {
           })}
         </S.DropdownWapper>
       </S.DropdownConatainer>
-      <S.CategoryConfirmBtn onClick={() => confirmButtonClickHandler()}>
+      <S.CategoryConfirmBtn
+        // 24~25
+        onClick={() => confirmButtonClickHandler(TextChange)}
+      >
         완료
       </S.CategoryConfirmBtn>
     </S.DropdownBox>
