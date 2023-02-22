@@ -23,7 +23,7 @@ const Router = () => {
         <Route path='/map' element={<MapPage />} />
         <Route path='/mypage' element={<MyPage />} />
         <Route path='/postpage/' element={<PostPage />} />
-        <Route path='/category/:category' element={<Category />} />
+        <Route path='/category' element={<Category />} />
         <Route path='/detailpage/:id' element={<DetailPage />} />
         <Route path='/chat' element={<ChattingPage />} />
       </Routes>

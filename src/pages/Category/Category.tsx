@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Category.style';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import {
   query,
   collection,
@@ -14,18 +14,23 @@ import { dbService } from '../../common/firebase';
 import CardSection from '../../components/CardSection/CardSection';
 import CommonStyles from '../../styles/CommonStyles';
 import DropdownFilterCategory from './../../components/DropdownFilterCategory/DropdownFilterCategory';
+import AntCalendarMap from './../MapPage/Filter/Calendar/AntCalendarDate';
 
 const Category = () => {
-  const { category } = useParams();
+  //state를 받아옴 필터 네임을 받아ㄴ옴 (초기값)
+  const { state } = useLocation();
   const [postings, setPostings] = useState<any>([]);
   // console.log(category);
   const [show, setShow] = useState<any>(false);
   const [TextChange, setTextChange] = useState('카테고리');
 
+  // 스테이트 하나를 만들었다.
+  const [category, setCategory] = useState(state);
+
   useEffect(() => {
     const q = query(
       collection(dbService, 'Post'),
-      // Category_Posting이 파람스로 넘겨준 애들과 같은 애들만 뿌려줘라
+      // 카테고리를 만들어줌
       where('Category_Posting', '==', category),
       orderBy('createdAt', 'desc')
     );
@@ -39,13 +44,14 @@ const Category = () => {
       });
       setPostings(getCategoryList);
     });
-  }, []);
+  }, [category]);
   // console.log(postings);
 
   return (
     <CommonStyles>
       <S.CategoryTitleWrapper>
-        <S.CategoryTitle>{category}</S.CategoryTitle>
+        <S.CategoryTitle>카테고리</S.CategoryTitle>
+        {/* <S.CategoryTitle>{category}</S.CategoryTitle> */}
         {/* <S.CategoryImg>{category.img}</S.CategoryImg> */}
       </S.CategoryTitleWrapper>
       <S.FilterArea>
@@ -59,13 +65,16 @@ const Category = () => {
             <DropdownFilterCategory
               setShow={setShow}
               setTextChange={setTextChange}
+              setCategory={setCategory}
+              TextChange={TextChange}
             />
           )}
           {/*달력영역 */}
-          <S.CategoryFilterWarpper>
+          {/* <S.CategoryFilterWarpper>
             <S.FilterCategory>3월 23일</S.FilterCategory>
             <S.FilterCalendarIcon />
-          </S.CategoryFilterWarpper>
+          </S.CategoryFilterWarpper> */}
+          <AntCalendarMap />
         </S.CategoryFilter>
         {/*최신순 / 조회순 / 좋아요순*/}
         <S.FilterSortWrapper>

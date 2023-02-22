@@ -3,7 +3,7 @@ import Comments from './Comments/Comments'
 import CommonStyles from './../../styles/CommonStyles'
 import DetailMap from './DetailMap/DetailMap'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { paramsState } from './../../Rocoil/Atom'
+import { paramsState } from '../../Rocoil/Atom'
 import { useEffect, useState } from 'react'
 import { getDoc, doc } from 'firebase/firestore'
 import { authService, dbService } from './../../common/firebase'
@@ -49,13 +49,15 @@ const DetailPage = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     getPost()
   }, [])
+
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
   // console.log(getPostings.UID);
-  console.log(getPostings)
-  console.log(authService.currentUser)
+  // console.log(getPostings);
+  // console.log(authService.currentUser);
   return (
     <>
       <CommonStyles>
@@ -105,11 +107,11 @@ const DetailPage = () => {
                   getPostings={getPostings}
                 />
               )}
-              <S.SocialShareBtn />
-            </S.ShareBtn>
 
-            {/*svg로 갈아끼워야함(SocialShareBtn)*/}
-            {/*svg로 갈아끼워야함(ShareBtn)*/}
+              {/*svg로 갈아끼워야함(SocialShareBtn)*/}
+              <S.SocialShareBtn />
+              {/*svg로 갈아끼워야함(ShareBtn)*/}
+            </S.ShareBtn>
           </S.BoxPhoto>
         </S.Boxcontents>
         {/*장소*/}
