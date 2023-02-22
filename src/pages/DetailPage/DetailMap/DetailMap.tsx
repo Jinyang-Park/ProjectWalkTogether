@@ -56,6 +56,22 @@ const MapContainer = ({ getPostings }: Props) => {
   // 인포윈도우 Open 여부를 저장하는 state 입니다.
   const [isOpen, setIsOpen] = useState({ lat: '', lng: '', isopen: false })
 
+  // 게시글의 위치를 저장하는 state
+  const [postPosition, setPostPosition] = useState({
+    lat: getPostings.MeetLatitude_Posting,
+    lng: getPostings.MeetLongitude_Posting,
+  })
+
+  // 게시글의 위치를 지도에 표시
+  useEffect(() => {
+    setPostPosition({
+      lat: getPostings.MeetLatitude_Posting,
+      lng: getPostings.MeetLongitude_Posting,
+    })
+  }, [getPostings])
+
+  console.log(postPosition)
+
   // 사용자 위치를 가져오기 위한 useEffect
   React.useEffect(() => {
     if (navigator.geolocation) {
@@ -117,26 +133,12 @@ const MapContainer = ({ getPostings }: Props) => {
   console.log(getPostings.MeetLongitude_Posting)
   console.log(getPostings)
 
-  // 게시글의 위치를 저장하는 state
-  const [postPosition, setPostPosition] = useState({
-    lat: getPostings.MeetLatitude_Posting,
-    lng: getPostings.MeetLongitude_Posting,
-  })
-
-  // 게시글의 위치를 지도에 표시
-  useEffect(() => {
-    setPostPosition({
-      lat: getPostings.MeetLatitude_Posting,
-      lng: getPostings.MeetLongitude_Posting,
-    })
-  }, [getPostings])
-
   return (
     <>
       <Map
         center={postPosition}
         style={{ width: '100%', height: '450px' }}
-        level={4}
+        level={3}
         onCreate={setMap}
         ref={mapRef}
         onClick={(_t, mouseEvent) => {

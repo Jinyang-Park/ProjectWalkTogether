@@ -35,11 +35,17 @@ const DetailPage = () => {
   const [getPostings, setGetPostings] = useState<any>({});
   const [showBox, setShowBox] = useState<any>(false);
 
+  // getPost 함수에서 비동기로 데이터를 가져오기 때문에 isLoading을 사용하여 로딩중인지 아닌지를 확인
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const getPost = async () => {
     const q = doc(dbService, 'Post', id);
     const postData = await getDoc(q);
     //비동기
     setGetPostings(postData.data());
+
+    // isLoading 이 false가 되면 로딩이 끝난 것, true면 로딩중으로 isLoading을 관리
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -112,8 +118,15 @@ const DetailPage = () => {
         <S.DetailLoactionWrapper>
           <S.DeatilLoactionTitle>장소는 이 곳이에요</S.DeatilLoactionTitle>
           <S.DetailLoactionContainer>
-            {/* <S.LoactionMap src='/assets/mapimg.png' /> */}
-            <DetailMap getPostings={getPostings} />
+            {/*  지도 들어오는 위치에요 */}
+            {/* isLoading 이 True 이면, Loading... 출력, False면 DetailMap 컴포넌트를 렌더링 한다. */}
+            {isLoading ? ( // isLoading이 true면
+              <S.Loading>로딩중...</S.Loading>
+            ) : (
+              // isLoading이 false면
+              <DetailMap getPostings={getPostings} />
+            )}
+
             <S.DetailAddressContainer>
               <S.DetailAddressIcon />
               <S.DetailAddressBox>
