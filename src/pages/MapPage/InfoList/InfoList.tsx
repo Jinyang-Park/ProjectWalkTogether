@@ -73,43 +73,6 @@ const InfoList = ({ Post }) => {
   //   type="checkbox"
   //   value={location}
   //   onChange={LocationFilter}
-  // />
-
-  // 날짜 정렬
-  const DateSortFunc = () => {
-    setDateSort(!DateSort)
-  }
-  // 날짜 정렬 사용 위치
-  // <S.FilterDateSortButton onClick={DateSortFunc}>
-  //   날짜순
-  // </S.FilterDateSortButton>
-
-  // 조회수 정렬
-  const ViewSortFunc = () => {
-    setViewSort(!ViewSort)
-  }
-  // 조회수 정렬 사용 위치
-  // <S.FilterViewSortButton onClick={ViewSortFunc}>
-  //   조회수순
-  // </S.FilterViewSortButton>
-
-  // 좋아요 정렬
-  const LikeSortFunc = () => {
-    setLikeSort(!LikeSort)
-  }
-  // 좋아요 정렬 사용 위치
-  // <S.FilterLikeSortButton onClick={LikeSortFunc}>
-  //   좋아요순
-  // </S.FilterLikeSortButton>
-
-  // 최신순 정렬
-  const NewSortFunc = () => {
-    setNewSort(!NewSort)
-  }
-  // 최신순 정렬 사용 위치
-  // <S.FilterNewSortButton onClick={NewSortFunc}>
-  //   최신순
-  // </S.FilterNewSortButton>
 
   // 카테고리 필터링
   const CategoryFilterFunc = (post) => {
