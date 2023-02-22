@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { useParams, useNavigate } from 'react-router-dom';
-import { paramsState } from '../../PostPage/Hooks/Rocoil/Atom';
+import { paramsState } from '../../../Rocoil/Atom';
 import { useSetRecoilState } from 'recoil';
 
 import { useRecoilState, useRecoilValue } from 'recoil';
