@@ -4,13 +4,6 @@ import * as S from './InfoList.style'
 import { useSearch } from '../../../hooks/useSearch'
 
 const InfoList = ({ Post }) => {
-  const {
-    handleSubmit,
-    handleResetResult,
-    setCurrentCategory,
-    currentCategory,
-  } = useSearch()
-
   return (
     <>
       <S.SearchLineTotalCount>총 n 건의 검색결과</S.SearchLineTotalCount>
