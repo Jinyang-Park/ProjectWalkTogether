@@ -1,20 +1,119 @@
+import { async } from '@firebase/util';
+import { updateProfile } from 'firebase/auth';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { authService, dbService, storage } from '../../../common/firebase';
 
-const MyPageProfile = () => {
+const MyPageProfile = (props: { uid: string }) => {
+  const uid = props.uid;
+
+  const [newname, setNewname] = useState('');
+  const [newmessage, setNewmessage] = useState('');
+  const [name, setName] = useState('');
+  const [message, setMessage] = useState('');
+
+  const [isediting, setIsEditing] = useState(false);
+
+  const [imageURL, setImageURL] = useState<string>('');
+  useEffect(() => {
+    getImageURL();
+  }, []);
+  const getImageURL = async () => {
+    console.log(uid);
+
+    const docRef = doc(dbService, 'user', uid);
+    const docSnap = await getDoc(docRef);
+
+    setImageURL(docSnap.data().profileImg);
+  };
+  const onImageChange = (
+    e: React.ChangeEvent<EventTarget & HTMLInputElement>
+  ) => {
+    e.preventDefault();
+    const file = e.target.files;
+    if (!file) return null;
+
+    const storageRef = ref(
+      storage,
+      `files/userProfile/${authService.currentUser.uid}`
+    ); //user.uid로 저장
+    const uploadTask = uploadBytes(storageRef, file[0]);
+
+    uploadTask
+      .then((snapshot) => {
+        console.log('a');
+        e.target.value = '';
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+          console.log('b');
+          setImageURL(downloadURL);
+          updateDoc(doc(dbService, 'user', authService.currentUser.uid), {
+            profileImg: downloadURL,
+          });
+          updateProfile(authService.currentUser, {
+            photoURL: downloadURL,
+          });
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const onEditBtn = async () => {
+    if (!isediting) {
+      setNewname(authService.currentUser.displayName);
+      const docSnap = await getDoc(doc(dbService, 'user', uid));
+      setNewmessage(docSnap.data().introduce);
+    } else {
+      updateProfile(authService.currentUser, {
+        displayName: newname,
+      });
+      updateDoc(doc(dbService, 'user', uid), {
+        nickname: newname,
+        introduce: newmessage,
+      });
+    }
+    setIsEditing(!isediting);
+  };
+  const fatchInfo = async () => {
+    const docSnap = await getDoc(doc(dbService, 'user', uid));
+    setName(docSnap.data().nickname);
+    setMessage(docSnap.data().introduce);
+  };
+  useEffect(() => {
+    fatchInfo();
+  }, []);
   return (
     <MyPageProfileWrap>
       <UserProfileContainer>
-        <UserProfileImg />
         <UserProfileImgLabel htmlFor='fileInput'>
+          <UserProfileImg src={imageURL} />
           <UserProfileEditIcon src={'/assets/editicon.png'} />
+          <UserProfileImgBtn
+            type='file'
+            id='fileInput'
+            onChange={onImageChange}
+          />
         </UserProfileImgLabel>
-        <UserProfileImgBtn type='file' id='fileInput' />
       </UserProfileContainer>
 
       <UserProfileInfoContainer>
+        <button onClick={onEditBtn}>
+          {!isediting ? '수정하기' : '수정완료'}
+        </button>
         <UserNickNameBox>
-          <UserNickName>김철수</UserNickName>
-          <UserNickNameBtn />
+          {!isediting ? (
+            <UserNickName>{name}</UserNickName>
+          ) : (
+            <input
+              value={newname}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setNewname(e.currentTarget.value);
+              }}
+            ></input>
+          )}
         </UserNickNameBox>
 
         <UserWalkCountBox>
@@ -25,8 +124,16 @@ const MyPageProfile = () => {
         </UserWalkCountBox>
 
         <UserIntroduceAreaBox>
-          <UserIntroduceText>자기 소개를 입력해주세요</UserIntroduceText>
-          <UserIntroduceBtn />
+          {!isediting ? (
+            <UserIntroduceText>{message}</UserIntroduceText>
+          ) : (
+            <textarea
+              value={newmessage}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                setNewmessage(e.currentTarget.value);
+              }}
+            ></textarea>
+          )}
         </UserIntroduceAreaBox>
       </UserProfileInfoContainer>
     </MyPageProfileWrap>
@@ -78,9 +185,8 @@ const UserProfileInfoContainer = styled.div`
   margin-left: 20px;
 `;
 const UserNickNameBox = styled.div`
-  width: 30%;
+  width: 20%;
 
-  display: flex;
   justify-content: center;
   align-items: center;
 

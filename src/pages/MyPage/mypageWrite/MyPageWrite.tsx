@@ -1,6 +1,21 @@
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { dbService } from '../../../common/firebase';
 
-const MyPageWrite = () => {
+const MyPageWrite = (props: { uid: string }) => {
+  const { uid } = props;
+  const [posts, setPosts] = useState([]);
+  const fetchPosts = async () => {
+    const querySnapshot = await getDocs(
+      query(collection(dbService, 'Post'), where('UID', '==', uid))
+    );
+    setPosts(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
+  };
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
   return (
     <MyPageWriteWrap>
       <MyPageWriteTapContainer>

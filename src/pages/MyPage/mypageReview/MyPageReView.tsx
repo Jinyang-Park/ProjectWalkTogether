@@ -27,7 +27,7 @@ const MyPageReView = () => {
 };
 export default MyPageReView;
 const MyPageReViewWrap = styled.div`
-  width: 868px;
+  width: 835px;
   height: 94px;
 
   margin: 28px auto 0 95px;

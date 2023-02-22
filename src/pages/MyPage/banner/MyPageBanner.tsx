@@ -1,13 +1,64 @@
+import { async } from '@firebase/util';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { storage } from '../../../common/firebase';
+import { dbService, authService } from '../../../common/firebase';
 
-const MyPageBanner = () => {
+const MyPageBanner = (props: { uid: string }) => {
+  const uid = props.uid;
+
+  const [imageURL, setImageURL] = useState<string>('');
+  useEffect(() => {
+    getImageURL();
+  }, []);
+  const getImageURL = async () => {
+    console.log(uid);
+
+    const docRef = doc(dbService, 'user', uid);
+    const docSnap = await getDoc(docRef);
+
+    setImageURL(docSnap.data().bannerImg);
+  };
+  const onImageChange = (
+    e: React.ChangeEvent<EventTarget & HTMLInputElement>
+  ) => {
+    e.preventDefault();
+    const file = e.target.files;
+    if (!file) return null;
+
+    const storageRef = ref(
+      storage,
+      `files/userBanners/${authService.currentUser.uid}`
+    ); //user.uid로 저장
+    const uploadTask = uploadBytes(storageRef, file[0]);
+
+    uploadTask
+      .then((snapshot) => {
+        console.log('a');
+        e.target.value = '';
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+          console.log('b');
+          setImageURL(downloadURL);
+          updateDoc(doc(dbService, 'user', authService.currentUser.uid), {
+            bannerImg: downloadURL,
+          });
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const onBannerClick = () => {};
   return (
-    <BannerWrap>
-      <BannerImg />
+    <BannerWrap onClick={onBannerClick}>
       <BannerImgLabel htmlFor='bannerInput'>
+        <BannerImg src={imageURL} />
         <BannerImgBtn src={'/assets/editicon.png'} />
+        <BannerImgInput type='file' id='bannerInput' onChange={onImageChange} />
       </BannerImgLabel>
-      <BannerImgInput type='file' id='bannerInput' />
     </BannerWrap>
   );
 };
