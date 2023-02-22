@@ -31,6 +31,7 @@ const DetailPage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getPost();
   }, []);
   // console.log(getPostings);
@@ -52,9 +53,7 @@ const DetailPage = () => {
             {/*인트로영역*/}
             <S.DetailIntroWrapper>
               <S.IntroCategoryTitleBtn>
-                <S.IntroCategory>
-                  {getPostings.Category_Posting}
-                </S.IntroCategory>
+                <S.IntroCategory>{getPostings.Category_Posting}</S.IntroCategory>
               </S.IntroCategoryTitleBtn>
               <S.IntroTitle>{getPostings.Title_Posting}</S.IntroTitle>
               <S.IntroHashTag>#케이팝 #발라드 #인디</S.IntroHashTag>
@@ -79,13 +78,7 @@ const DetailPage = () => {
                 />
               )}
               {/*post.id인 id를 DropBox로 넘겨준다*/}
-              {showBox && (
-                <DropBox
-                  setShowBox={setShowBox}
-                  id={id}
-                  getPostings={getPostings}
-                />
-              )}
+              {showBox && <DropBox setShowBox={setShowBox} id={id} getPostings={getPostings} />}
 
               {/*svg로 갈아끼워야함(SocialShareBtn)*/}
               <S.SocialShareBtn />
@@ -97,7 +90,7 @@ const DetailPage = () => {
         <S.DetailLoactionWrapper>
           <S.DeatilLoactionTitle>장소는 이 곳이에요</S.DeatilLoactionTitle>
           <S.DetailLoactionContainer>
-            <S.LoactionMap src='/assets/mapimg.png' />
+            <S.LoactionMap src="/assets/mapimg.png" />
             <S.DetailAddressContainer>
               <S.DetailAddressIcon />
               <S.DetailAddressBox>
