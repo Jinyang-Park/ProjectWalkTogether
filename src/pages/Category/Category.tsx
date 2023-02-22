@@ -14,6 +14,7 @@ import { dbService } from '../../common/firebase';
 import CardSection from '../../components/CardSection/CardSection';
 import CommonStyles from '../../styles/CommonStyles';
 import DropdownFilterCategory from './../../components/DropdownFilterCategory/DropdownFilterCategory';
+import AntCalendarMap from './../MapPage/Filter/Calendar/AntCalendarDate';
 
 const Category = () => {
   const { category } = useParams();
@@ -62,10 +63,11 @@ const Category = () => {
             />
           )}
           {/*달력영역 */}
-          <S.CategoryFilterWarpper>
+          {/* <S.CategoryFilterWarpper>
             <S.FilterCategory>3월 23일</S.FilterCategory>
             <S.FilterCalendarIcon />
-          </S.CategoryFilterWarpper>
+          </S.CategoryFilterWarpper> */}
+          <AntCalendarMap />
         </S.CategoryFilter>
         {/*최신순 / 조회순 / 좋아요순*/}
         <S.FilterSortWrapper>

@@ -17,7 +17,7 @@ const DropdownFilterCategory = ({ setShow, setTextChange }: SetProps) => {
   const confirmButtonClickHandler = () => {
     setShow(false);
   };
-
+  console.log(CategorysList);
   return (
     <S.DropdownBox>
       <S.DropdownConatainer>
