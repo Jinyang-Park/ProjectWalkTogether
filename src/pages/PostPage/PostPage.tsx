@@ -22,6 +22,7 @@ import CommonStyles from './../../styles/CommonStyles';
 import MainPost from './Mainpost/Mainpost';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../common/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const PostPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false); //아이디 찾기 모달창
@@ -64,6 +65,8 @@ const PostPage = () => {
   const nickname = auth.currentUser?.displayName;
   const KeyForChat_Posting = uuidv4();
   const [PostingID_Posting, setPostingID_Posting] = useState(uuidv4());
+  // 페이지 전환
+  const navigate = useNavigate();
 
   //약속 시간
   const meetDate = useRecoilValue(ReserveDate);
@@ -207,7 +210,7 @@ const PostPage = () => {
       .then((url) => {
         const getThumbnail = url;
         console.log('섬네일url', getThumbnail);
-        alert('섬네일url');
+        // alert('섬네일url');
 
         //get썸네일 url
         getDownloadURL(ref(storage, `test/${PostingID_Posting}/banner`))
@@ -237,7 +240,7 @@ const PostPage = () => {
                 MeetLatitude_Posting,
               });
               console.log('글작성완료 ID: ', docRef);
-              alert('저장완료');
+              // alert('저장완료');
             } catch (e) {
               console.error('Error adding document: ', e);
             }
@@ -256,26 +259,30 @@ const PostPage = () => {
   ///////////
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    ////////////////// 썸네일 이미지 전송
+    // 포스팅 클릭하면 해당 카테고리 페이지로 라우터 이동
+    //////////////// 썸네일 이미지 전송
     if (thumbnail === null) return alert('이미지 업로드 실패');
     const imageRef = ref(storage, `test/${PostingID_Posting}/thumbnail`); //+${thumbnail}
     // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
     uploadBytes(imageRef, thumbnail).then((snapshot) => {
       console.log('snapshot', snapshot);
       // 업로드 되자마자 뜨게 만들기
-      alert('썸네일 저장 완료');
+      // alert('썸네일 저장 완료');
     });
     if (banner === null) return alert('이미지 업로드 실패');
     const bannerRef = ref(storage, `test/${PostingID_Posting}/banner`); //+${thumbnail}
     // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
     uploadBytes(bannerRef, banner).then((snapshot) => {
-      alert('베너 저장 완료');
+      // alert('베너 저장 완료');
       console.log('snapshot', snapshot);
     });
     // geturl(); settTimeout이 없으면 에러가 난다.
+    // async await 비동기 처리
     setTimeout(geturl, 1000);
+    navigate(`/category/${postCategory}`);
     // setTimeout(adddoc, 8000);
   };
+  console.log('postCategory', postCategory);
   return (
     <CommonStyles>
       <S.Boxcontainer>
