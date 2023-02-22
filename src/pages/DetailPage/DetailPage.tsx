@@ -50,8 +50,8 @@ const DetailPage = () => {
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
   // console.log(getPostings.UID);
-  console.log(getPostings);
-  console.log(authService.currentUser);
+  // console.log(getPostings);
+  // console.log(authService.currentUser);
   return (
     <>
       <CommonStyles>
@@ -112,7 +112,8 @@ const DetailPage = () => {
         <S.DetailLoactionWrapper>
           <S.DeatilLoactionTitle>장소는 이 곳이에요</S.DeatilLoactionTitle>
           <S.DetailLoactionContainer>
-            <S.LoactionMap src='/assets/mapimg.png' />
+            {/* <S.LoactionMap src='/assets/mapimg.png' /> */}
+            <DetailMap getPostings={getPostings} />
             <S.DetailAddressContainer>
               <S.DetailAddressIcon />
               <S.DetailAddressBox>
