@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import FunctionCategory from './Category/Category'
-import FunctionCalendar from './Calendar/Calendar'
-import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory'
+
+import DropdownCategory from '../../../../components/DropdownCategoryForWritePage/DropdownCategory'
 import * as S from './Filter.style'
-import AntCalendarMap from './Calendar/AntCalendarDate'
-import DropdownFilterCategory from './../../../components/DropdownFilterCategory/DropdownFilterCategory'
+import AntCalendarMap from '../Calendar/AntCalendarDate'
+import DropdownFilterCategory from '../../../../components/DropdownFilterCategory/DropdownFilterCategory'
 import { useRecoilValue } from 'recoil'
 
 declare interface SetProps {
@@ -38,7 +37,6 @@ export const FilterBar = ({
 
   return (
     <>
-      <FunctionCategory />
       <S.FilterArea>
         <S.CategoryFilter>
           {/*카테고리영역 */}
@@ -67,7 +65,6 @@ export const FilterBar = ({
           <S.FilterNewest>좋아요순</S.FilterNewest>
         </S.FilterSortWrapper>
       </S.FilterArea>
-      <FunctionCalendar />
     </>
   )
 }

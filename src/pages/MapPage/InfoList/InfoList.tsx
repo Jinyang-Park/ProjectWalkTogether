@@ -1,30 +1,47 @@
 import React from 'react'
 import * as S from './InfoList.style'
 import { useState } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import {
+  CategoryAllInput,
+  SelectedCategoryInput,
+  DateAllInput,
+  SelectedDateInput,
+  LocationAllInput,
+  SelectedLocationInput,
+  DateSortInput,
+  ViewSortInput,
+  LikeSortInput,
+  NewSortInput,
+} from '../../../Rocoil/Atom'
 
 import { useSearch } from '../../../hooks/useSearch'
 
 const InfoList = ({ Post }) => {
-  const [CategoryAll, setCategoryAll] = useState([]) // 카테고리 전체
-  const [SelectedCategory, setSelectedCategory] = useState([]) // 선택된 카테고리
+  const [CategoryAll, setCategoryAll] = useRecoilState(CategoryAllInput) // 카테고리 전체
+  const [SelectedCategory, setSelectedCategory] = useRecoilState(
+    SelectedCategoryInput
+  ) // 선택된 카테고리
 
-  const [DateAll, setDateAll] = useState([]) // 날짜 전체
-  const [SelectedDate, setSelectedDate] = useState([]) // 선택된 날짜
+  const [DateAll, setDateAll] = useRecoilState(DateAllInput) // 날짜 전체
+  const [SelectedDate, setSelectedDate] = useRecoilState(SelectedDateInput) // 선택된 날짜
 
-  const [LocationAll, setLocationAll] = useState([]) // 위치 전체
-  const [SelectedLocation, setSelectedLocation] = useState([]) // 선택된 위치
+  const [LocationAll, setLocationAll] = useRecoilState(LocationAllInput) // 위치 전체
+  const [SelectedLocation, setSelectedLocation] = useRecoilState(
+    SelectedLocationInput
+  ) // 선택된 위치
 
   // 날짜 순 정렬
-  const [DateSort, setDateSort] = useState(false)
+  const [DateSort, setDateSort] = useRecoilState(DateSortInput)
 
   // 조회수 순 정렬
-  const [ViewSort, setViewSort] = useState(false)
+  const [ViewSort, setViewSort] = useRecoilState(ViewSortInput)
 
   // 좋아요 순 정렬
-  const [LikeSort, setLikeSort] = useState(false)
+  const [LikeSort, setLikeSort] = useRecoilState(LikeSortInput)
 
   // 최신순 정렬
-  const [NewSort, setNewSort] = useState(false)
+  const [NewSort, setNewSort] = useRecoilState(NewSortInput)
 
   // 카테고리 필터링
   const CategoryFilter = (e) => {
@@ -36,12 +53,6 @@ const InfoList = ({ Post }) => {
       )
     }
   }
-  // 카테고리 필터링 사용 위치
-  // <S.FilterCategoryCheckbox
-  //   type="checkbox"
-  //   value={category.CategoryName}
-  //   onChange={CategoryFilter}
-  // />
 
   // 날짜 필터링
   const DateFilter = (e) => {
@@ -128,7 +139,7 @@ const InfoList = ({ Post }) => {
     }
   }
 
-  // 최신순 정렬
+  // 최신순 정렬 (인자에 있는 a, b는 Post의 요소)
   const NewSortFunc = (a, b) => {
     if (NewSort) {
       return a.PostingID_Posting < b.PostingID_Posting ? 1 : -1
@@ -171,6 +182,24 @@ const InfoList = ({ Post }) => {
         setSelectedCategory([...SelectedCategory, item])
       }
     }
+  }
+
+  // 카테고리 Form Submit 함수
+  const CategoryFormSubmit = (e) => {
+    e.preventDefault()
+    console.log(SelectedCategory)
+  }
+
+  // 날짜 Form Submit 함수
+  const DateFormSubmit = (e) => {
+    e.preventDefault()
+    console.log(SelectedDate)
+  }
+
+  // 위치 Form Submit 함수
+  const LocationFormSubmit = (e) => {
+    e.preventDefault()
+    console.log(SelectedLocation)
   }
 
   return (

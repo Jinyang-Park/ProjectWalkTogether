@@ -2,7 +2,7 @@ import React from 'react'
 import * as S from './MapPage.style'
 import InfoList from './InfoList/InfoList'
 import MapContainer from './Map/map'
-import FilterBar from './Filter/Filter'
+import FilterBar from './InfoList/Filter/Filter'
 import Category from '../Category/Category'
 
 import CommonStyles from './../../styles/CommonStyles'
