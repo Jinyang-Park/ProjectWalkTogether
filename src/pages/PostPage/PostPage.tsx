@@ -1,15 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import {
-  Time,
-  TitleInput,
-  DescriptionInput,
-  Bannerupload,
-  Thunmnailupload,
-  ReserveDate,
-  selectedAddress,
-  myLocation,
-} from './Hooks/Rocoil/Atom';
+import { Time, TitleInput, DescriptionInput, Bannerupload, Thunmnailupload, ReserveDate, selectedAddress, myLocation } from './Hooks/Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
@@ -43,6 +34,7 @@ const PostPage = () => {
   const [postNickname, setPostNickname] = useState(''); //사용자 닉네임 => 회원가입시시에 저장해 주거나 로컬에 저장하는 방법을 찾아야될 것 같다.
   const [postAddress, setPostAddress] = useState(''); //만날 위치 시,군,구,단
   const [postCategory, setPostCategory] = useState('카테고리'); //카테고리
+  const [tagItem, setTagIem] = useState('');
 
   //주소 받아오기 myLocation
   const location = useRecoilValue(myLocation);
@@ -238,6 +230,7 @@ const PostPage = () => {
                 Address_Posting,
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
+                HashTag_Posting: tagItem,
               });
               console.log('글작성완료 ID: ', docRef);
               // alert('저장완료');
@@ -286,10 +279,7 @@ const PostPage = () => {
   return (
     <CommonStyles>
       <S.Boxcontainer>
-        <MainPost
-          setPostCategory={setPostCategory}
-          postCategory={postCategory}
-        />
+        <MainPost setPostCategory={setPostCategory} postCategory={postCategory} />
         <IuputInformation />
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>
