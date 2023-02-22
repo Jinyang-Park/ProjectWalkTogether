@@ -11,7 +11,7 @@ import PostPage from '../pages/PostPage/PostPage';
 import DetailPage from '../pages/DetailPage/DetailPage';
 import ChattingPage from '../pages/ChatPage/ChattingPage';
 import Category from './../pages/Category/Category';
-import CollectionNew from '../pages/Collection/CollectionNew';
+
 import Collection from '../pages/Collection/Collection';
 const Router = () => {
   return (
@@ -25,7 +25,6 @@ const Router = () => {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/postpage/" element={<PostPage />} />
         <Route path="/category/:category" element={<Category />} />
-        {/* <Route path="/collection" element={<CollectionNew />} /> */}
         <Route path="/collection/:id" element={<Collection />} />
         <Route path="/detailpage/:id" element={<DetailPage />} />
         <Route path="/chat" element={<ChattingPage />} />

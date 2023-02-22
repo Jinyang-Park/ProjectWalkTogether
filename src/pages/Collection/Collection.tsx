@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { query, collection, where, orderBy, getDocs, onSnapshot } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
 import CommonStyles from '../../styles/CommonStyles';
-import { paramsState } from '../../pages/PostPage/Hooks/Rocoil/Atom';
+import { paramsState } from '../../Rocoil/Atom';
 import * as S from './CardSection.style';
 const Collection = (props: any) => {
   const navigate = useNavigate();

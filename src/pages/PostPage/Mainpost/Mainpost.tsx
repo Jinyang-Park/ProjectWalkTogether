@@ -5,7 +5,6 @@ import { TitleInput, DescriptionInput } from '../../../Rocoil/Atom';
 import { Bannerupload, Thunmnailupload } from '../../../Rocoil/Atom';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
-import Tag from '../../../components/Tag';
 
 interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
@@ -81,38 +80,14 @@ function MainPost({ setPostCategory, postCategory }: SetProps) {
         <label htmlFor="banner">
           <S.ThumbnailImgPorlaroid src={banner ? banner : '/assets/배너.png'} />
         </label>
-<<<<<<< HEAD
         <S.BannerPhoto type="file" accept="image/*" onChange={bannerimageChange} style={{ display: 'none' }} id="banner" />
-=======
-        <S.BannerPhoto
-          type="file"
-          accept="image/*"
-          onChange={bannerimageChange}
-          style={{ display: 'none' }}
-          id="banner"
-        />
->>>>>>> 6112fd5ec47fefc886c8ef767d5570c9df92cd85
       </S.Bannercontainer>
       <S.Boxcontents>
         <S.BoxPhoto>
           <label htmlFor="thumnail">
-<<<<<<< HEAD
             <S.ThumnailPhotoChange src={thumbnail ? thumbnail : '/assets/blackboard.png'} />
           </label>
           <S.ThumnailPhoto type="file" accept="image/*" onChange={thumnailimageChange} style={{ display: 'none' }} id="thumnail" />
-=======
-            <S.ThumnailPhotoChange
-              src={thumbnail ? thumbnail : '/assets/blackboard.png'}
-            />
-          </label>
-          <S.ThumnailPhoto
-            type="file"
-            accept="image/*"
-            onChange={thumnailimageChange}
-            style={{ display: 'none' }}
-            id="thumnail"
-          />
->>>>>>> 6112fd5ec47fefc886c8ef767d5570c9df92cd85
         </S.BoxPhoto>
 
         <S.BoxMain>
@@ -126,21 +101,9 @@ function MainPost({ setPostCategory, postCategory }: SetProps) {
           </S.CateogryWrapper>
           {show && <DropdownCategory setPostCategory={setPostCategory} setShow={setShow} />}
 
-<<<<<<< HEAD
           <S.InputTitle onChange={handleChange} placeholder="제목을 입력해 주세요" />
           <S.Textarea onChange={handleChangeText} placeholder="당신의 이야기를 적어주세요"></S.Textarea>
-          <Tag></Tag>
-=======
-          <S.InputTitle
-            onChange={handleChange}
-            placeholder="제목을 입력해 주세요"
-          />
-          <S.Textarea
-            onChange={handleChangeText}
-            placeholder="당신의 이야기를 적어주세요"
-          ></S.Textarea>
           <S.HashtagBox>#해쉬태그를 입력해주세요</S.HashtagBox>
->>>>>>> 6112fd5ec47fefc886c8ef767d5570c9df92cd85
         </S.BoxMain>
       </S.Boxcontents>
     </>
