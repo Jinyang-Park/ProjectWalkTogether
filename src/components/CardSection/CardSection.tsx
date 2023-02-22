@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import * as S from './CardSection.style';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { paramsState } from '../../pages/PostPage/Hooks/Rocoil/Atom';
+import { paramsState } from '../../Rocoil/Atom';
 
 interface postProps {
   post: any;

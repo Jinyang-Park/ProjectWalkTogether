@@ -97,6 +97,7 @@ const DetailPage = () => {
                 />
               )}
               {/*post.id인 id를 DropBox로 넘겨준다*/}
+
               {showBox && (
                 <DropBox
                   setShowBox={setShowBox}
@@ -104,11 +105,11 @@ const DetailPage = () => {
                   getPostings={getPostings}
                 />
               )}
-
-              {/*svg로 갈아끼워야함(SocialShareBtn)*/}
               <S.SocialShareBtn />
-              {/*svg로 갈아끼워야함(ShareBtn)*/}
             </S.ShareBtn>
+
+            {/*svg로 갈아끼워야함(SocialShareBtn)*/}
+            {/*svg로 갈아끼워야함(ShareBtn)*/}
           </S.BoxPhoto>
         </S.Boxcontents>
         {/*장소*/}
