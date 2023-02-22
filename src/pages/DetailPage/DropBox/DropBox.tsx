@@ -17,6 +17,7 @@ const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
   console.log(id);
   console.log(getPostings.Category_Posting);
   console.log(getPostings);
+
   //삭제 버튼
   const DeletePostHandler = async (id: any) => {
     confirmAlert({

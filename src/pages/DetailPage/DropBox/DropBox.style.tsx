@@ -4,7 +4,7 @@ import { HiOutlinePencil } from 'react-icons/hi';
 import { BsCheck2Circle } from 'react-icons/bs';
 
 export const DropBoxWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   left: 685px;
   top: 76px;
 `;
