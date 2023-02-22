@@ -1,15 +1,27 @@
-import * as S from './DetailPage.style';
-import Comments from './Comments/Comments';
-import CommonStyles from './../../styles/CommonStyles';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { paramsState } from './../PostPage/Hooks/Rocoil/Atom';
-import { useEffect, useState } from 'react';
-import { getDoc, doc } from 'firebase/firestore';
-import { authService, dbService } from './../../common/firebase';
-import { useParams } from 'react-router-dom';
-import { assert } from 'console';
-import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory';
-import DropBox from './DropBox/DropBox';
+import * as S from './DetailPage.style'
+import Comments from './Comments/Comments'
+import CommonStyles from './../../styles/CommonStyles'
+import DetailMap from './DetailMap/DetailMap'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { paramsState } from './../PostPage/Hooks/Rocoil/Atom'
+import { useEffect, useState } from 'react'
+import { getDoc, doc } from 'firebase/firestore'
+import { authService, dbService } from './../../common/firebase'
+import { useParams } from 'react-router-dom'
+import { assert } from 'console'
+import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory'
+import DropBox from './DropBox/DropBox'
+
+interface getPostings {
+  BannereURL_Posting: string
+  Category_Posting: string
+  Description_Posting: string
+  Nickname: string
+  ThunmnailURL_Posting: string
+  Title_Posting: string
+  UID: string
+  children: JSX.Element | JSX.Element[]
+}
 
 const DetailPage = () => {
   // 아톰은 새로고침하면 초기화가 된다. 앱이 랜더링이 된다.
@@ -17,27 +29,27 @@ const DetailPage = () => {
   // const params = useRecoilValue(paramsState);
 
   // useParams를 사용하여 구조 분해 할당을 하여 사용함
-  const { id } = useParams();
+  const { id } = useParams()
   // console.log(id);
 
-  const [getPostings, setGetPostings] = useState<any>({});
-  const [showBox, setShowBox] = useState<any>(false);
+  const [getPostings, setGetPostings] = useState<any>({})
+  const [showBox, setShowBox] = useState<any>(false)
 
   const getPost = async () => {
-    const q = doc(dbService, 'Post', id);
-    const postData = await getDoc(q);
+    const q = doc(dbService, 'Post', id)
+    const postData = await getDoc(q)
     //비동기
-    setGetPostings(postData.data());
-  };
+    setGetPostings(postData.data())
+  }
 
   useEffect(() => {
-    getPost();
-  }, []);
+    getPost()
+  }, [])
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
   // console.log(getPostings.UID);
-  console.log(getPostings);
-  console.log(authService.currentUser);
+  console.log(getPostings)
+  console.log(authService.currentUser)
   return (
     <>
       <CommonStyles>
@@ -74,7 +86,7 @@ const DetailPage = () => {
               ) : (
                 <S.MoreBtn
                   onClick={() => {
-                    setShowBox(true);
+                    setShowBox(true)
                   }}
                 />
               )}
@@ -97,7 +109,8 @@ const DetailPage = () => {
         <S.DetailLoactionWrapper>
           <S.DeatilLoactionTitle>장소는 이 곳이에요</S.DeatilLoactionTitle>
           <S.DetailLoactionContainer>
-            <S.LoactionMap src='/assets/mapimg.png' />
+            {/*  지도 들어오는 위치에요 */}
+            <DetailMap getPostings={getPostings} />
             <S.DetailAddressContainer>
               <S.DetailAddressIcon />
               <S.DetailAddressBox>
@@ -114,7 +127,7 @@ const DetailPage = () => {
         <Comments param={id} />
       </CommonStyles>
     </>
-  );
-};
+  )
+}
 
-export default DetailPage;
+export default DetailPage
