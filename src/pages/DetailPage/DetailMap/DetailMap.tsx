@@ -118,20 +118,20 @@ const MapContainer = ({ getPostings }: Props) => {
     window.open(url)
   }
 
-  // geocoder를 이용해 좌표 - 주소 변환
-  const convertAddress = () => {
-    geocoder.coord2Address(position.lng, position.lat, (result, status) => {
-      if (status === kakao.maps.services.Status.OK) {
-        setAddress(result[0].address.address_name)
+  // geocoder를 이용해 getPostings의 좌표를 주소로 변환
+  useEffect(() => {
+    geocoder.coord2Address(
+      getPostings.MeetLongitude_Posting,
+      getPostings.MeetLatitude_Posting,
+      (result, status) => {
+        if (status === kakao.maps.services.Status.OK) {
+          setAddress(result[0].address.address_name)
+        }
       }
-    })
-  }
-  convertAddress()
+    )
+  }, [getPostings])
 
   console.log(address)
-  console.log(getPostings.MeetLatitude_Posting)
-  console.log(getPostings.MeetLongitude_Posting)
-  console.log(getPostings)
 
   return (
     <>
