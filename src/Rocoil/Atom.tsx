@@ -4,13 +4,13 @@ import { atom } from 'recoil';
 export const Time = atom<string>({
   key: 'Time',
   // key의 값은 항상 고유값이어야 합니다.
-  default: Date(),
+  default: '',
 });
 
 export const ReserveDate = atom<any>({
   key: 'ReserveDate',
   // key의 값은 항상 고유값이어야 합니다.
-  default: Date(),
+  default: '',
 });
 
 export const TitleInput = atom<string>({
@@ -52,5 +52,10 @@ export const selectedAddress = atom<any>({
 
 export const paramsState = atom<any>({
   key: 'paramsState',
+  default: '',
+});
+
+export const chattingusers = atom<any>({
+  key: 'chattingusers',
   default: '',
 });

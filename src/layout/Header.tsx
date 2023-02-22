@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Header.style';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
@@ -8,6 +8,7 @@ import { authService } from '../common/firebase';
 import useLoginState from '../hooks/useLoginState';
 import useDetectClose from '../hooks/useDetectClose';
 import KakaoLogoutButton from '../components/Logout/kakaologout';
+import { Auth, onAuthStateChanged } from 'firebase/auth';
 
 const Header = () => {
   const [userId, setUserId] = useState();
@@ -15,6 +16,7 @@ const Header = () => {
   const history = useNavigate();
   const navigate = useNavigate();
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
+  const [loggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
     navigate('login');
@@ -27,7 +29,20 @@ const Header = () => {
 
   //const currentUser = authService.currentUser;
   //const userNickName = currentUser?.displayName;
+  //localId !== null
 
+  useEffect(() => {
+    authService.onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        // 로그인 된 상태일 경우
+        setIsLoggedIn(true);
+      } else {
+        // 로그아웃 된 상태일 경우
+        setIsLoggedIn(false);
+      }
+    });
+  }, []);
   return (
     <S.NavContainer>
       <S.Nav>
@@ -42,7 +57,18 @@ const Header = () => {
             <S.NavText to="/chat">chat</S.NavText>
           </S.NavLi>
           <S.NavLi>
-            <S.NavText to="/postpage">글쓰기</S.NavText>
+            {loggedIn === false ? (
+              <S.NavText
+                onClick={() => {
+                  alert('로그인을 해주세요!');
+                }}
+                to="/login"
+              >
+                글 쓰기
+              </S.NavText>
+            ) : (
+              <S.NavText to="/postpage">글 쓰기</S.NavText>
+            )}
           </S.NavLi>
           <S.NavLi>
             <S.NavText to="/detailpage">상세</S.NavText>
