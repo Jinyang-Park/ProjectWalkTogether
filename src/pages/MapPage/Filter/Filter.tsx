@@ -5,6 +5,7 @@ import DropdownCategory from '../../../components/DropdownCategoryForWritePage/D
 import * as S from './Filter.style'
 import AntCalendarMap from './Calendar/AntCalendarDate'
 import DropdownFilterCategory from './../../../components/DropdownFilterCategory/DropdownFilterCategory'
+import { useRecoilValue } from 'recoil'
 
 declare interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>
@@ -17,6 +18,23 @@ export const FilterBar = ({
 }: SetProps) => {
   const [show, setShow] = useState<any>(false)
   const [TextChange, setTextChange] = useState('카테고리')
+
+  // 카테고리 필터링 적용 위치 알려주세요
+  // const CategoryFilter = (e) => {
+  //   if (e.target.checked) {
+  //     setSelectedCategory([...SelectedCategory, e.target.value])
+  //   } else {
+  //     setSelectedCategory(
+  //       SelectedCategory.filter((category) => category !== e.target.value)
+  //     )
+  //   }
+  // }
+  // 카테고리 필터링 사용 위치
+  // <S.FilterCategoryCheckbox
+  //   type="checkbox"
+  //   value={category.CategoryName}
+  //   onChange={CategoryFilter}
+  // />
 
   return (
     <>
