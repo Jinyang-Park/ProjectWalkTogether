@@ -18,7 +18,7 @@ import { BsFillHandThumbsUpFill } from 'react-icons/bs';
 import { FaHandPeace } from 'react-icons/fa';
 import { FaHandPaper } from 'react-icons/fa';
 import { BsFillCloudUploadFill } from 'react-icons/bs';
-
+import { useNavigate } from 'react-router-dom';
 interface UserInfoTypes {
   nickname: string | null;
   email: string;
@@ -26,6 +26,7 @@ interface UserInfoTypes {
   photoBackImg: string | null;
 }
 const MyPage = () => {
+  const navigate = useNavigate();
   const user: any = authService.currentUser;
   const [userInfo, setUserInfo] = useState<UserInfoTypes>();
   const [photoURL, setPhotoURL] = useState<any>(user.photoURL);
@@ -62,10 +63,7 @@ const MyPage = () => {
     reader.onloadend = () => {
       setPhotoBackImg(reader.result);
     };
-    const uploaded_file = await uploadBytes(
-      ref(storage, `images/${e.target.files[0].name}`),
-      e.target.files[0]
-    );
+    const uploaded_file = await uploadBytes(ref(storage, `images/${e.target.files[0].name}`), e.target.files[0]);
     const file_url = await getDownloadURL(uploaded_file.ref);
     updateProfile(user, {
       photoURL: file_url,
@@ -82,10 +80,7 @@ const MyPage = () => {
     reader.onloadend = () => {
       setPhotoURL(reader.result);
     };
-    const uploaded_file = await uploadBytes(
-      ref(storage, `images/${e.target.files[0].name}`),
-      e.target.files[0]
-    );
+    const uploaded_file = await uploadBytes(ref(storage, `images/${e.target.files[0].name}`), e.target.files[0]);
     const file_url = await getDownloadURL(uploaded_file.ref);
     updateProfile(user, {
       photoURL: file_url,
@@ -104,6 +99,8 @@ const MyPage = () => {
       .catch((error) => {
         alert('닉네임 변경 실패');
       });
+    localStorage.setItem('id', text);
+    navigate('/mypage');
   };
   const handleNickNameBtn = () => {
     editNickName();
@@ -133,19 +130,11 @@ const MyPage = () => {
       {user === user ? (
         <CommonStyles>
           <BannerImgWrap>
-            <BannerImg
-              src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'}
-            />
+            <BannerImg src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'} />
             {imgBtn ? (
               <ImgUploadModal>
-                <label htmlFor='back'>
-                  <input
-                    type='file'
-                    onChange={uploadBackImg}
-                    style={{ display: 'none' }}
-                    accept='image/*'
-                    id='back'
-                  ></input>
+                <label htmlFor="back">
+                  <input type="file" onChange={uploadBackImg} style={{ display: 'none' }} accept="image/*" id="back"></input>
                   <UploadImgIcon />
                 </label>
                 <div>1500픽셀 이상의 이미지가 가장 이상적입니다.</div>
@@ -159,17 +148,9 @@ const MyPage = () => {
             <ImgAndNameWrap>
               <ImgAndNameContainer>
                 <ImgWrap>
-                  <ImgChange
-                    src={photoURL ? photoURL : '/assets/default_profile.png'}
-                  />
-                  <label htmlFor='img'>
-                    <input
-                      type='file'
-                      onChange={uploadFB}
-                      accept='image/*'
-                      id='img'
-                      style={{ display: 'none' }}
-                    ></input>
+                  <ImgChange src={photoURL ? photoURL : '/assets/default_profile.png'} />
+                  <label htmlFor="img">
+                    <input type="file" onChange={uploadFB} accept="image/*" id="img" style={{ display: 'none' }}></input>
                     <ImgChangeBtn />
                   </label>
                 </ImgWrap>
@@ -178,22 +159,17 @@ const MyPage = () => {
                     {inputConvert ? (
                       <>
                         <InputStyle
-                          type='text'
-                          placeholder='변경할 닉네임을 입력해주세요.'
+                          type="text"
+                          placeholder="변경할 닉네임을 입력해주세요."
                           onChange={(event) => {
                             if (event.target.value.length > 5) {
                               alert('5자리 제한');
-                              event.target.value = event.target.value.slice(
-                                0,
-                                5
-                              );
+                              event.target.value = event.target.value.slice(0, 5);
                             }
                             setText(event.target.value);
                           }}
                         />
-                        <NickNameChangeBtn onClick={handleNickNameBtn}>
-                          변경
-                        </NickNameChangeBtn>
+                        <NickNameChangeBtn onClick={handleNickNameBtn}>변경</NickNameChangeBtn>
                       </>
                     ) : (
                       <>
@@ -211,16 +187,13 @@ const MyPage = () => {
                   {showIntroduceChangeBtn ? (
                     <>
                       <IntroduceInput
-                        type='text'
-                        placeholder='자기소개를 입력해주세요.'
+                        type="text"
+                        placeholder="자기소개를 입력해주세요."
                         value={Introduce}
                         onChange={(event) => {
                           if (event.target.value.length > 30) {
                             alert('30자리 제한');
-                            event.target.value = event.target.value.slice(
-                              0,
-                              30
-                            );
+                            event.target.value = event.target.value.slice(0, 30);
                           }
                           setIntroduce(event.target.value);
                         }}
@@ -231,11 +204,7 @@ const MyPage = () => {
                     <>
                       <MyIntroduce>
                         <div>{newIntroduce ?? '자기소개'}</div>
-                        <EditIntroduceIcon
-                          onClick={() =>
-                            setShowIntroduceChangeBtn(!showIntroduceChangeBtn)
-                          }
-                        />
+                        <EditIntroduceIcon onClick={() => setShowIntroduceChangeBtn(!showIntroduceChangeBtn)} />
                       </MyIntroduce>
                     </>
                   )}
@@ -284,17 +253,13 @@ const MyPage = () => {
       ) : (
         <CommonStyles>
           <BannerImgWrap>
-            <BannerImg
-              src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'}
-            />
+            <BannerImg src={photoBackImg ? photoBackImg : '/assets/thumbnailImg.png'} />
           </BannerImgWrap>
           <ImgNickNameMannerWrap>
             <ImgAndNameWrap>
               <ImgAndNameContainer>
                 <ImgWrap>
-                  <ImgChange
-                    src={photoURL ? photoURL : '/assets/default_profile.png'}
-                  />
+                  <ImgChange src={photoURL ? photoURL : '/assets/default_profile.png'} />
                 </ImgWrap>
                 <NameContainer>
                   <NickNameWrap>
@@ -303,8 +268,8 @@ const MyPage = () => {
                       {showNickNameChangeBtn === true ? (
                         <>
                           <InputStyle
-                            type='text'
-                            placeholder='변경할 닉네임을 입력해주세요.'
+                            type="text"
+                            placeholder="변경할 닉네임을 입력해주세요."
                             value={text}
                             onChange={(event) => {
                               setText(event.target.value);
