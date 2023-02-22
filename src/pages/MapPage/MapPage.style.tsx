@@ -3,11 +3,11 @@ import styled from 'styled-components'
 export const MapPageContainer = styled.span`
   display: flex;
   flex-direction: column;
+  align-items: center;
+
   height: 200vh;
-  @media screen and (max-width: 344px) {
-    flex-direction: column;
-    height: inherit;
-    overflow-y: auto;
+  max-width: 1024px;
+  @media screen {
   }
 `
 
@@ -15,6 +15,7 @@ export const MapPageHeader = styled.span`
   display: flex;
   flex-direction: column;
   margin-top: 30px;
+  width: 868px;
 `
 export const MapPageSearchBar = styled.form`
   display: flex;
@@ -30,7 +31,7 @@ export const MapPageSearchBar = styled.form`
   overflow: hidden;
 `
 export const SearchBar = styled.input`
-  width: 85%;
+  width: 866px;
   height: 50px;
   font-size: 25px;
   margin-left: 20px;
@@ -42,6 +43,8 @@ export const SearchBar = styled.input`
 export const MapKaKaoMapContainer = styled.span`
   display: flex;
   flex-direction: column;
+  width: 868px;
+  height: 536px;
 
   height: 50vh;
   @media screen and (max-width: 344px) {
@@ -50,9 +53,10 @@ export const MapKaKaoMapContainer = styled.span`
   }
 `
 export const MapPageTitle = styled.span`
+  height: 45px;
   display: flex;
 
-  font-size: 40px;
+  font-size: 35px;
 
   margin-top: 50px;
   font-weight: 600;
@@ -73,6 +77,7 @@ export const MapPageContentsWrapper = styled.span`
   align-items: left;
   height: 100%;
   gap: 10px;
+  width: 868px;
   @media screen and (max-width: 344px) {
     flex-direction: column;
   }

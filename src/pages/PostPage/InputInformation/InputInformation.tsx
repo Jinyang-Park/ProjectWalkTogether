@@ -1,6 +1,6 @@
 import * as S from './InputInformation.style';
 // import MapContainer from '../../MapPage/Map/map';
-import { myLocation, selectedAddress } from '../Hooks/Rocoil/Atom';
+import { myLocation, selectedAddress } from '../../../Rocoil/Atom';
 import {
   Map,
   MapMarker,
@@ -15,11 +15,11 @@ import { useRecoilState } from 'recoil';
 
 function InputInformation() {
   // 현재 위치를 가져오기 위한 state 생성
-  // const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 });
-  const [myLoca, setMyLoca] = useRecoilState(myLocation);
+  const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 });
+  // const [myLoca, setMyLoca] = useRecoilState(myLocation);
 
   // 지도 좌표를 저장할 state   (o)
-  const [position, setPosition] = useState({ lat: 36.5, lng: 127.8 });
+  const [position, setPosition] = useRecoilState(myLocation);
 
   // 키워드로 장소검색하기를 위한 state
   const [info, setInfo] = useState<any>();
@@ -111,11 +111,10 @@ function InputInformation() {
 
   return (
     <S.MapNInputBox>
-      PostPageInputinfomation
+      <S.Selection> 장소를 선택해 주세요</S.Selection>
+      <S.borderline></S.borderline>
       <S.MapBox>
-        안녕하세요
         <S.KakaoMap>
-          {' '}
           <Map
             center={myLoca}
             style={{ width: '100%', height: '100%' }}
@@ -164,7 +163,8 @@ function InputInformation() {
             SearchFunction();
           }}
         >
-          <input
+          <S.InputAdress
+            bordered={false}
             type={'text'}
             placeholder={'주소를 입력해주세요'}
             value={search}

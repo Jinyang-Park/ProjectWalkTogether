@@ -2,8 +2,10 @@ import React from 'react';
 import type { DatePickerProps } from 'antd';
 import { DatePicker, Space } from 'antd';
 import { useRecoilState } from 'recoil';
-import { ReserveDate } from '../Rocoil/Atom';
-import { Dayjs } from 'dayjs';
+import { ReserveDate } from '../../../../Rocoil/Atom';
+import 'moment/locale/ko';
+import locale from 'antd/lib/locale/ko_KR';
+import { ConfigProvider } from 'antd';
 
 const AntCalendar: React.FC = () => {
   const format = 'YYYY/MM/DD';
@@ -18,15 +20,20 @@ const AntCalendar: React.FC = () => {
   // useEffect(() => );
 
   return (
-    <Space direction="vertical">
-      <DatePicker
-        onChange={onChange}
-        format={format}
-        placeholder="날짜를 입력해주세요."
-        style={{ width: 250, height: 40, fontSize: 20 }}
-        allowClear={false}
-      />
-    </Space>
+    <ConfigProvider locale={locale}>
+      <Space direction="vertical">
+        <DatePicker
+          onChange={onChange}
+          inputReadOnly={true}
+          format={format}
+          placeholder="날짜를 입력해주세요."
+          style={{ width: 250, height: 40, fontSize: 20 }}
+          allowClear={false}
+          placement="bottomRight"
+          bordered={false}
+        />
+      </Space>
+    </ConfigProvider>
   );
 };
 

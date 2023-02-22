@@ -20,11 +20,15 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import dayjs from 'dayjs';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { paramsState } from './../../PostPage/Hooks/Rocoil/Atom';
+import { paramsState } from '../../../Rocoil/Atom';
 
-const Comments = () => {
+interface postProps {
+  param: any;
+}
+const Comments = ({ param }: postProps) => {
   const params = useRecoilValue(paramsState);
   // console.log(params);
+
   // 댓글 인풋
   const [inputComment, setInputComment] = useState<string>('');
   // 댓글 출력
@@ -118,7 +122,7 @@ const Comments = () => {
     const q = query(
       collection(dbService, 'comments'),
       // 밑에 지정해줘야 그 해당된 페이지에 댓글을 달수 있다
-      where('params', '==', params),
+      where('params', '==', param),
       orderBy('CreatedAt', 'desc')
     );
     const getComments = onSnapshot(q, (snapshot) => {
@@ -217,8 +221,8 @@ const Comments = () => {
       <S.DetailCommentContainer>
         <S.CommentUserImgWrapper>
           <S.CommentContent
-            type='text'
-            placeholder='댓글을 입력하세요.'
+            type="text"
+            placeholder="댓글을 입력하세요."
             value={inputComment}
             onChange={(event) => {
               setInputComment(event.target.value);

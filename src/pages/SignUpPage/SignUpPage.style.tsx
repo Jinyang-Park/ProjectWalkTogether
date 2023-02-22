@@ -122,3 +122,23 @@ export const Validityfontbox = styled.div`
   outline: none;
   color: blue;
 `;
+
+//유효성검사시 글자
+export const ValidityNicnamefont = styled.span<{ validateDisplaynameColor: boolean }>`
+  color: ${(Props) => (Props.validateDisplaynameColor ? 'blue' : 'red')};
+  font-size: 15px;
+`;
+export const ValidityEmailfont = styled.span<{ validateEmailColor: boolean }>`
+  color: ${(Props) => (Props.validateEmailColor ? 'blue' : 'red')};
+  font-size: 15px;
+`;
+export const ValidityPasswordfont = styled.span<{ validatePwColor: boolean }>`
+  color: ${(Props) => (Props.validatePwColor ? 'blue' : 'red')};
+  font-size: 15px;
+`;
+export const ValidityConfirmPwdfont = styled.span<{
+  validatePwconfirmColor: boolean;
+}>`
+  color: ${(Props) => (Props.validatePwconfirmColor ? 'blue' : 'red')};
+  font-size: 15px;
+`;

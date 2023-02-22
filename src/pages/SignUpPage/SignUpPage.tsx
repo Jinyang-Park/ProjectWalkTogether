@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import * as S from './SignUpPage.style';
 
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile, sendSignInLinkToEmail } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../../common/firebase';
 import { emailRegex, nicknameRegex, pwdRegex } from '../../utils/UserInfoRegex';
@@ -17,21 +17,40 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   //유효성검사
   const [validateEmail, setValidateEmail] = useState('');
-
+  const [validateEmailColor, setValidateEmailColor] = useState(false);
   const [validatePw, setValidatePw] = useState('');
-
+  const [validatePwColor, setValidatePwColor] = useState(true);
   const [validatePwconfirm, setValidatePwconfirm] = useState('');
-
+  const [validatePwconfirmColor, setValidatePwconfirmColor] = useState(true);
   const [validateDisplayname, setValidateDisplayname] = useState('');
+  const [validateDisplaynameColor, setValidateDisplayColor] = useState(true);
 
+  const actionCodeSettings = {
+    // URL you want to redirect back to. The domain (www.example.com) for this
+    // URL must be in the authorized domains list in the Firebase Console.
+    url: 'https://domainprojectwalk.page.link/verification',
+    // This must be true.
+    handleCodeInApp: true,
+    iOS: {
+      bundleId: 'com.example.ios',
+    },
+    android: {
+      packageName: 'com.example.android',
+      installApp: true,
+      minimumVersion: '12',
+    },
+    dynamicLinkDomain: 'example.page.link',
+  };
   //onchange로 값을 저장한다.
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     if (email.length > 5) {
       if (emailRegex.test(email) === false) {
-        setErrorMessage('닉네임,아이디 또는 비밀번호를 다시 입력해주세요.');
+        setValidateEmail(' 옳바른 형식을 입력해 주십시오.');
+        setValidateEmailColor(false);
       } else {
         setValidateEmail(' 올바른 형식의 이메일 주소입니다.');
+        setValidateEmailColor(true);
       }
     }
   };
@@ -41,9 +60,11 @@ const SignUpPage = () => {
     //비밀번호 유효성 검사
     if (password.length > 0) {
       if (pwdRegex.test(password) === false) {
-        setErrorMessage('닉네임,아이디 또는 비밀번호를 다시 입력해주세요.');
+        setValidatePw(' 옳바른 형식을 입력해 주십시오.');
+        setValidatePwColor(false);
       } else {
         setValidatePw(' 올바른 형식의 비밀번호 입니다.');
+        setValidatePwColor(true);
       }
     }
   };
@@ -53,8 +74,10 @@ const SignUpPage = () => {
     if (confirmPwd.length > 0) {
       if (password === confirmPwd) {
         setValidatePwconfirm('비밀번호와 일치합니다.');
+        setValidatePwconfirmColor(true);
       } else {
-        setErrorMessage('닉네임,아이디 또는 비밀번호를 다시 입력해주세요.');
+        setValidatePwconfirm('비밀번호와 일치하지 않습니다.');
+        setValidatePwconfirmColor(false);
       }
     }
   }, [confirmPwd]);
@@ -70,8 +93,10 @@ const SignUpPage = () => {
     if (displayname.length > 0) {
       if (nicknameRegex.test(displayname) === false) {
         setValidateDisplayname('한글,영문,숫자 포함 1자 이상 7자 이하로 작성해 주세요.');
+        setValidateDisplayColor(false);
       } else {
         setValidateDisplayname('옳바른 형식의 닉네임 입니다.');
+        setValidateDisplayColor(true);
       }
     }
   };
@@ -83,19 +108,10 @@ const SignUpPage = () => {
     //패스워드와 패스워드 확인이 일치하고 패스워드의 유효성 검사를 통과하고 닉네임을 작성해야만 로그인이 가능하다.
     if (nicknameRegex.test(displayname) === true && password === confirmPwd && pwdRegex.test(password) === true && emailRegex.test(email) === true) {
       await createUserWithEmailAndPassword(authService, email, password)
-        .then((result) => {
-          updateProfile(result.user, {
+        .then(async (response) => {
+          await updateProfile(response.user, {
             displayName: displayname,
-          })
-            .then(() => {
-              console.log('닉네임 입력 성공');
-              alert('회원가입성공');
-              navigate('/login');
-            })
-            .catch((error) => {
-              console.log('에러 발생:', error);
-              alert('에러 발생');
-            });
+          });
         })
         .catch((error) => {
           console.log(error);
@@ -130,19 +146,22 @@ const SignUpPage = () => {
               <S.InputBoxContent>
                 <S.Inputholder>
                   <S.Input type="text" name="닉네임" placeholder="닉네임" onChange={onChangeDisplayname}></S.Input>
+                  <S.Validityfontbox>{<S.ValidityNicnamefont validateDisplaynameColor={validateDisplaynameColor}>{validateDisplayname}</S.ValidityNicnamefont>}</S.Validityfontbox>
                 </S.Inputholder>
                 <S.Inputholder>
                   <S.Input type="email" name="아이디" placeholder="아이디" onChange={onChangeEmail}></S.Input>
+                  <S.Validityfontbox>{<S.ValidityEmailfont validateEmailColor={validateEmailColor}>{validateEmail}</S.ValidityEmailfont>}</S.Validityfontbox>
                 </S.Inputholder>
                 <S.Inputholder>
                   <S.Input type="password" name="비밀번호" placeholder="비밀번호" onChange={onChangePassword} value={password}></S.Input>
+                  <S.Validityfontbox>{<S.ValidityPasswordfont validatePwColor={validatePwColor}>{validatePw}</S.ValidityPasswordfont>}</S.Validityfontbox>
                 </S.Inputholder>
                 <S.Inputholder>
                   <S.Input value={confirmPwd} type="password" name="비밀번호 확인" placeholder="비밀번호 확인" onChange={onChangeconfirmPwd}></S.Input>
+                  <S.Validityfontbox>{<S.ValidityConfirmPwdfont validatePwconfirmColor={validatePwconfirmColor}>{validatePwconfirm}</S.ValidityConfirmPwdfont>}</S.Validityfontbox>
                 </S.Inputholder>
               </S.InputBoxContent>
               <S.ButtonBox>
-                <S.Validityfontbox>{errorMessage}</S.Validityfontbox>
                 <S.LoginBtn type="submit">회원 가입</S.LoginBtn>
               </S.ButtonBox>
               <S.ThirdBox>

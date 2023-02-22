@@ -11,20 +11,23 @@ import {
   onSnapshot,
 } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
-import CardSection from './../../common/CardSection/CardSection';
+import CardSection from '../../components/CardSection/CardSection';
 import CommonStyles from '../../styles/CommonStyles';
+import DropdownFilterCategory from './../../components/DropdownFilterCategory/DropdownFilterCategory';
 
 const Category = () => {
   const { category } = useParams();
   const [postings, setPostings] = useState<any>([]);
   // console.log(category);
+  const [show, setShow] = useState<any>(false);
+  const [TextChange, setTextChange] = useState('카테고리');
 
   useEffect(() => {
     const q = query(
       collection(dbService, 'Post'),
       // Category_Posting이 파람스로 넘겨준 애들과 같은 애들만 뿌려줘라
       where('Category_Posting', '==', category),
-      orderBy('TimeStamp_Posting', 'desc')
+      orderBy('createdAt', 'desc')
     );
     onSnapshot(q, (snapshot) => {
       const getCategoryList = snapshot.docs.map((doc) => {
@@ -48,10 +51,16 @@ const Category = () => {
       <S.FilterArea>
         <S.CategoryFilter>
           {/*카테고리영역 */}
-          <S.CategoryFilterWarpper>
-            <S.FilterCategory>카테고리</S.FilterCategory>
+          <S.CategoryFilterWarpper onClick={() => setShow(true)}>
+            <S.FilterCategory>{TextChange}</S.FilterCategory>
             <S.FilterCalendarIcon />
           </S.CategoryFilterWarpper>
+          {show && (
+            <DropdownFilterCategory
+              setShow={setShow}
+              setTextChange={setTextChange}
+            />
+          )}
           {/*달력영역 */}
           <S.CategoryFilterWarpper>
             <S.FilterCategory>3월 23일</S.FilterCategory>

@@ -1,52 +1,97 @@
 import styled from 'styled-components';
+import { Input } from 'antd';
 
 export const MapNInputBox = styled.div`
   width: 100%;
-  height: 70%;
+  height: 600px;
   display: flex;
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
   position: relative;
-  bottom: 10%;
+  top: -88px;
   flex-direction: column;
   align-items: center;
 `;
 
-export const InputBox = styled.div`
-  background-color: #d07171;
+export const Selection = styled.div`
+  position: relative;
+  /* background-color: blue; */
+  right: 336px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #24264e;
+`;
+
+export const borderline = styled.div`
   width: 863px;
-  height: 20%;
+  height: 27px;
+  border-top: 2px solid #bec5d7;
+  position: relative;
+  top: 1px;
+`;
+
+export const InputBox = styled.div`
+  /* background-color: #d07171; */
+  width: 863px;
+  height: 50px;
   display: flex;
+  position: relative;
+  bottom: 40px;
 `;
 
 export const MapBox = styled.div`
   width: 863px;
-  height: 70%;
-  background-color: gray;
+  height: 436px;
+  /* background-color: gray; */
+  border-top: 1px;
 `;
 
 export const KakaoMap = styled.div`
-  width: 100%;
-  height: 80%;
+  width: 863px;
+  height: 363px;
   background-color: white;
+  position: relative;
+  top: 5px;
 `;
 
+//인풋박스
 export const InputAdressBox = styled.form`
   width: 384px;
-  height: 70%;
+  height: 36.5px;
   position: relative;
-  background-color: yellow;
+  border: 2px solid #aeb1b7;
+  /* background-color: yellow; */
+  border-radius: 4px;
+`;
+
+//인풋창
+export const InputAdress = styled(Input)`
+  width: 334px;
+  height: 20px;
+  position: relative;
+  top: 5px;
+  left: 10px;
+  font-weight: 100;
+  color: #aeb1b7;
+
+  input:focus {
+    outline: none;
+  }
 `;
 
 export const InpuDayBox = styled.div`
-  width: 258px;
-  height: 38px;
-  background-color: orange;
+  width: 250px;
+  height: 40px;
+  /* background-color: orange; */
   margin-left: 9px;
   font-size: 10px;
+  border: 2px solid #aeb1b7;
+  border-radius: 4px;
 `;
 
 export const InputTimeBox = styled.div`
-  width: 227px;
-  height: 100%;
+  width: 219px;
+  height: 40px;
   margin-left: 9px;
+  border: 2px solid #aeb1b7;
+  border-radius: 4px;
 `;

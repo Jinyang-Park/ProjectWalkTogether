@@ -1,99 +1,90 @@
-import React, { useState } from 'react';
-import { collection, query, onSnapshot } from 'firebase/firestore';
+import React, { useState, useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { authService, dbService } from '../../common/firebase';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import * as S from './CardSection.style';
+import { paramsState } from '../../Rocoil/Atom';
+import {
+  query,
+  collection,
+  where,
+  orderBy,
+  getDocs,
+  onSnapshot,
+} from 'firebase/firestore';
+// import { onAuthStateChanged } from 'firebase/auth'
+interface postProps {
+  post: any;
+}
 
-//매칭전 신발신는중
-const FootOning = ({ testList }) => {
+const FootOning = () => {
+  const setParams = useSetRecoilState(paramsState);
   const { id } = useParams();
   const [postList, setPostList] = useState([]);
+
   useEffect(() => {
-    onAuthStateChanged(authService, (user) => {
-      if (user) {
-        const postCollectionRef = collection(dbService, 'Post');
-        const q = query(postCollectionRef);
-        const getPost = onSnapshot(q, (snapshot) => {
-          const testPost = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setPostList(testPost);
-        });
-        return getPost;
-      }
+    const q = query(
+      collection(dbService, 'Post'),
+      // Category_Posting이 파람스로 넘겨준 애들과 같은 애들만 뿌려줘라
+      orderBy('createdAt', 'desc')
+      // orderBy('TimeStamp_Posting', 'desc')
+    );
+    onSnapshot(q, (snapshot) => {
+      const getpostList = snapshot.docs.map((doc) => {
+        const postList = {
+          id: doc.id,
+          ...doc.data(),
+        };
+        return postList;
+      });
+      setPostList(getpostList);
     });
   }, []);
 
+  console.log(postList);
+  // import { useSetRecoilState } from 'recoil
+  const navigate = useNavigate();
+
   return (
     <>
-      {postList
-        .filter((item) => item.id === id)
-        .map((item) => {
-          return (
-            <>
-              <Content>
-                <div>사진</div>
-                <InsideText>
-                  <span style={{ fontSize: 15, fontWeight: 'bold' }}>{item.Title_Posting}</span>
-                  <Line></Line>
-                  <TwithH>
-                    <SecondText>
-                      <p
-                        style={{
-                          fontSize: 13,
-                          fontWeight: 'regular',
-                        }}
-                      >
-                        지역
-                      </p>
-                      <p
-                        style={{
-                          fontSize: 13,
-                          fontWeight: 'regular',
-                        }}
-                      >
-                        {item.TimeStamp_Posting}
-                      </p>
-                    </SecondText>
-                    {/* <HeartIcon>하트</HeartIcon> */}
-                  </TwithH>
-                </InsideText>
-              </Content>
-            </>
-          );
-        })}
+      {postList.map((item) => {
+        return (
+          <>
+            <S.LikedListItem>
+              <S.CardBox>
+                <S.CardSectionWrapper
+                  onClick={() => {
+                    setParams(item.id);
+                    navigate(`/detailpage/${item.id}`);
+                  }}
+                >
+                  <S.ListItemWrapper>
+                    <S.ListItemThumnail src={item.ThunmnailURL_Posting} />
+                  </S.ListItemWrapper>
+                  <S.ListItemThumnailTitle>
+                    {item.Title_Posting}
+                  </S.ListItemThumnailTitle>
+                  <S.HashTag>#케이팝 #발라드</S.HashTag>
+                  <S.ListItemContainer>
+                    <S.LikedHeartFlex>
+                      <S.ListItemAddress>
+                        {item.Address_Posting}
+                      </S.ListItemAddress>
+                      <S.LikeBtnLine />
+                    </S.LikedHeartFlex>
+                    <S.ListItemDate>
+                      {item.RsvDate_Posting}
+                      {item.RsvHour_Posting}
+                    </S.ListItemDate>
+                  </S.ListItemContainer>
+                </S.CardSectionWrapper>
+              </S.CardBox>
+            </S.LikedListItem>
+          </>
+        );
+      })}
     </>
   );
 };
-
 export default FootOning;
-
-const Content = styled.div`
-  margin: 0 auto;
-
-  width: 180px;
-  height: 180px;
-  background-color: orange;
-`;
-const Line = styled.div`
-  display: flex;
-  border-top: 1px solid #444444;
-  margin-top: 5px;
-  margin-bottom: 3px;
-  width: 170px;
-  margin-left: 10px;
-`;
-
-const InsideText = styled.div`
-  margin-top: 70px;
-`;
-
-const TwithH = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-`;
-const SecondText = styled.div``;

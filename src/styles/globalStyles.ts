@@ -93,6 +93,8 @@ const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar-track{
     background-color: #00ff0000; 
     }
+
+  
 `;
 
 export default GlobalStyle;
