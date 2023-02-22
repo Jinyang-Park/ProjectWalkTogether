@@ -2,7 +2,7 @@ import React from 'react';
 import type { DatePickerProps } from 'antd';
 import { DatePicker, Space } from 'antd';
 import { useRecoilState } from 'recoil';
-import { ReserveDate } from '../Rocoil/Atom';
+import { ReserveDate } from '../../../../Rocoil/Atom';
 import 'moment/locale/ko';
 import locale from 'antd/lib/locale/ko_KR';
 import { ConfigProvider } from 'antd';
