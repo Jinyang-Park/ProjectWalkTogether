@@ -11,21 +11,23 @@ import PostPage from '../pages/PostPage/PostPage';
 import DetailPage from '../pages/DetailPage/DetailPage';
 import ChattingPage from '../pages/ChatPage/ChattingPage';
 import Category from './../pages/Category/Category';
+import CollectionNew from '../pages/Collection/CollectionNew';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path='/' element={<MainPage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/signup' element={<SignUpPage />} />
-        <Route path='/map' element={<MapPage />} />
-        <Route path='/mypage' element={<MyPage />} />
-        <Route path='/postpage/' element={<PostPage />} />
-        <Route path='/category/:category' element={<Category />} />
-        <Route path='/detailpage/:id' element={<DetailPage />} />
-        <Route path='/chat' element={<ChattingPage />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/map" element={<MapPage />} />
+        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/postpage/" element={<PostPage />} />
+        <Route path="/category/:category" element={<Category />} />
+        <Route path="/collection/신발신는중" element={<CollectionNew />} />
+        <Route path="/detailpage/:id" element={<DetailPage />} />
+        <Route path="/chat" element={<ChattingPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

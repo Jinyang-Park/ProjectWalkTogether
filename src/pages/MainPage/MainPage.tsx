@@ -8,6 +8,7 @@ import { dbService } from '../../common/firebase';
 //import { query, onSnapshot, collection } from 'firebase/firestore';
 import { authService } from '../../common/firebase';
 import MainBanner from '../../components/main/banner';
+import { useNavigate, useParams } from 'react-router-dom';
 //import CategoryAll from './CategoryAll/CategoryAll';
 import CategorySlide from '../../components/main/CategorySlide';
 import FootOning from './FootOning';
@@ -16,7 +17,7 @@ import * as S from './CardSection.style';
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 const MainPage = () => {
   console.log(authService.currentUser);
-
+  const navigate = useNavigate();
   return (
     <CommonStyles>
       <MainBanner />
@@ -25,6 +26,7 @@ const MainPage = () => {
 
       <div>
         <span style={{ fontSize: 20, fontWeight: 'bold' }}>신발신는중</span>
+        <S.Collection onClick={() => navigate(`/collection/신발신는중`)}>전체보기</S.Collection>
         <S.LikedListItem>
           <FootOning />
         </S.LikedListItem>
