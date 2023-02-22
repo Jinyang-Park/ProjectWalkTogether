@@ -1,6 +1,7 @@
 import * as S from './DetailPage.style';
 import Comments from './Comments/Comments';
 import CommonStyles from './../../styles/CommonStyles';
+import DetailMap from './DetailMap/DetailMap';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { paramsState } from './../PostPage/Hooks/Rocoil/Atom';
 import { useEffect, useState } from 'react';
@@ -10,6 +11,17 @@ import { useParams } from 'react-router-dom';
 import { assert } from 'console';
 import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory';
 import DropBox from './DropBox/DropBox';
+
+interface getPostings {
+  BannereURL_Posting: string;
+  Category_Posting: string;
+  Description_Posting: string;
+  Nickname: string;
+  ThunmnailURL_Posting: string;
+  Title_Posting: string;
+  UID: string;
+  children: JSX.Element | JSX.Element[];
+}
 
 const DetailPage = () => {
   // 아톰은 새로고침하면 초기화가 된다. 앱이 랜더링이 된다.
@@ -34,11 +46,12 @@ const DetailPage = () => {
     window.scrollTo(0, 0);
     getPost();
   }, []);
+
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
   // console.log(getPostings.UID);
-  // console.log(getPostings);
-  // console.log(authService.currentUser);
+  console.log(getPostings);
+  console.log(authService.currentUser);
   return (
     <>
       <CommonStyles>
@@ -53,7 +66,9 @@ const DetailPage = () => {
             {/*인트로영역*/}
             <S.DetailIntroWrapper>
               <S.IntroCategoryTitleBtn>
-                <S.IntroCategory>{getPostings.Category_Posting}</S.IntroCategory>
+                <S.IntroCategory>
+                  {getPostings.Category_Posting}
+                </S.IntroCategory>
               </S.IntroCategoryTitleBtn>
               <S.IntroTitle>{getPostings.Title_Posting}</S.IntroTitle>
               <S.IntroHashTag>#케이팝 #발라드 #인디</S.IntroHashTag>
@@ -86,18 +101,18 @@ const DetailPage = () => {
                   getPostings={getPostings}
                 />
               )}
-     <S.SocialShareBtn />
+
+              {/*svg로 갈아끼워야함(SocialShareBtn)*/}
+              <S.SocialShareBtn />
+              {/*svg로 갈아끼워야함(ShareBtn)*/}
             </S.ShareBtn>
-            
-            {/*svg로 갈아끼워야함(SocialShareBtn)*/}
-            {/*svg로 갈아끼워야함(ShareBtn)*/}
           </S.BoxPhoto>
         </S.Boxcontents>
         {/*장소*/}
         <S.DetailLoactionWrapper>
           <S.DeatilLoactionTitle>장소는 이 곳이에요</S.DeatilLoactionTitle>
           <S.DetailLoactionContainer>
-            <S.LoactionMap src="/assets/mapimg.png" />
+            <S.LoactionMap src='/assets/mapimg.png' />
             <S.DetailAddressContainer>
               <S.DetailAddressIcon />
               <S.DetailAddressBox>
