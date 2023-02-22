@@ -9,7 +9,7 @@ import {
   ReserveDate,
   selectedAddress,
   myLocation,
-} from './Hooks/Rocoil/Atom';
+} from '../../../src/Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';

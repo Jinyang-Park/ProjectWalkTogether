@@ -2,7 +2,7 @@ import * as S from './DetailPage.style';
 import Comments from './Comments/Comments';
 import CommonStyles from './../../styles/CommonStyles';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { paramsState } from './../PostPage/Hooks/Rocoil/Atom';
+import { paramsState } from '../../Rocoil/Atom';
 import { useEffect, useState } from 'react';
 import { getDoc, doc } from 'firebase/firestore';
 import { authService, dbService } from './../../common/firebase';
@@ -53,7 +53,9 @@ const DetailPage = () => {
             {/*인트로영역*/}
             <S.DetailIntroWrapper>
               <S.IntroCategoryTitleBtn>
-                <S.IntroCategory>{getPostings.Category_Posting}</S.IntroCategory>
+                <S.IntroCategory>
+                  {getPostings.Category_Posting}
+                </S.IntroCategory>
               </S.IntroCategoryTitleBtn>
               <S.IntroTitle>{getPostings.Title_Posting}</S.IntroTitle>
               <S.IntroHashTag>#케이팝 #발라드 #인디</S.IntroHashTag>
@@ -86,9 +88,9 @@ const DetailPage = () => {
                   getPostings={getPostings}
                 />
               )}
-     <S.SocialShareBtn />
+              <S.SocialShareBtn />
             </S.ShareBtn>
-            
+
             {/*svg로 갈아끼워야함(SocialShareBtn)*/}
             {/*svg로 갈아끼워야함(ShareBtn)*/}
           </S.BoxPhoto>
