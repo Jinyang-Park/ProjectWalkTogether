@@ -99,7 +99,7 @@ const MyPage = () => {
       .catch((error) => {
         alert('닉네임 변경 실패');
       });
-    localStorage.setItem('id', text);
+    sessionStorage.setItem('id', text);
     navigate('/mypage');
   };
   const handleNickNameBtn = () => {

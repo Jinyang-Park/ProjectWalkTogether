@@ -44,8 +44,8 @@ const LoginPage = () => {
       .then(() => {
         return signInWithEmailAndPassword(authService, email, password)
           .then((data) => {
-            localStorage.setItem('id', data.user.displayName);
-            localStorage.setItem('email', data.user.email);
+            sessionStorage.setItem('id', data.user.displayName);
+            sessionStorage.setItem('email', data.user.email);
             navigate('/', { replace: true });
           })
 
@@ -111,7 +111,7 @@ const LoginPage = () => {
         const auth = getAuth();
         return signInWithPopup(authService, provider).then((data) => {
           setValue(data.user.email);
-          localStorage.setItem('id', data.user.displayName);
+          sessionStorage.setItem('id', data.user.displayName);
           navigate('/');
         });
       })

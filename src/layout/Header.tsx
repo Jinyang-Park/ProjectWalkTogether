@@ -22,8 +22,8 @@ const Header = () => {
   const gotomy = () => {
     navigate('mypage');
   };
-  const localId = localStorage.getItem('id');
-  console.log(localId);
+  const sessionId = sessionStorage.getItem('id');
+  console.log(sessionId);
 
   //const currentUser = authService.currentUser;
   //const userNickName = currentUser?.displayName;
@@ -53,9 +53,9 @@ const Header = () => {
           <S.Profile onClick={gotomy}>닉네임</S.Profile>
 
           <S.MyPageContainer>
-            {localId !== null ? (
+            {sessionId !== null ? (
               <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
-                <S.LoginButton> {localId} </S.LoginButton>
+                <S.LoginButton> {sessionId} </S.LoginButton>
                 <S.DropNav isDropped={myPageIsOpen}>
                   <S.Ul>
                     <S.Li>
