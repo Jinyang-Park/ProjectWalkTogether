@@ -20,7 +20,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import dayjs from 'dayjs';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { paramsState } from './../../PostPage/Hooks/Rocoil/Atom';
+import { paramsState } from '../../../Rocoil/Atom';
 
 interface postProps {
   param: any;
@@ -221,8 +221,8 @@ const Comments = ({ param }: postProps) => {
       <S.DetailCommentContainer>
         <S.CommentUserImgWrapper>
           <S.CommentContent
-            type='text'
-            placeholder='댓글을 입력하세요.'
+            type="text"
+            placeholder="댓글을 입력하세요."
             value={inputComment}
             onChange={(event) => {
               setInputComment(event.target.value);

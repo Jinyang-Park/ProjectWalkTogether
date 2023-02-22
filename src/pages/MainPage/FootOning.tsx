@@ -4,8 +4,15 @@ import { authService, dbService } from '../../common/firebase';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import * as S from './CardSection.style';
-import { paramsState } from '../../pages/PostPage/Hooks/Rocoil/Atom';
-import { query, collection, where, orderBy, getDocs, onSnapshot } from 'firebase/firestore';
+import { paramsState } from '../../Rocoil/Atom';
+import {
+  query,
+  collection,
+  where,
+  orderBy,
+  getDocs,
+  onSnapshot,
+} from 'firebase/firestore';
 // import { onAuthStateChanged } from 'firebase/auth'
 interface postProps {
   post: any;
@@ -55,11 +62,15 @@ const FootOning = () => {
                   <S.ListItemWrapper>
                     <S.ListItemThumnail src={item.ThunmnailURL_Posting} />
                   </S.ListItemWrapper>
-                  <S.ListItemThumnailTitle>{item.Title_Posting}</S.ListItemThumnailTitle>
+                  <S.ListItemThumnailTitle>
+                    {item.Title_Posting}
+                  </S.ListItemThumnailTitle>
                   <S.HashTag>#케이팝 #발라드</S.HashTag>
                   <S.ListItemContainer>
                     <S.LikedHeartFlex>
-                      <S.ListItemAddress>{item.Address_Posting}</S.ListItemAddress>
+                      <S.ListItemAddress>
+                        {item.Address_Posting}
+                      </S.ListItemAddress>
                       <S.LikeBtnLine />
                     </S.LikedHeartFlex>
                     <S.ListItemDate>
