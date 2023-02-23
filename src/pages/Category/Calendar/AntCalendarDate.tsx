@@ -21,15 +21,15 @@ const AntCalendarMap: React.FC = () => {
 
   return (
     <ConfigProvider locale={locale}>
-      <Space direction="vertical">
+      <Space direction='vertical'>
         <DatePicker
           onChange={onChange}
           inputReadOnly={true}
           format={format}
-          placeholder="날짜"
+          placeholder='날짜'
           style={{ width: 120, height: 30 }}
           allowClear={false}
-          placement="bottomRight"
+          placement='bottomRight'
           // bordered={false}
         />
       </Space>

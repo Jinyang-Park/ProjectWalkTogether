@@ -21,8 +21,8 @@ const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
   //삭제 버튼
   const DeletePostHandler = async (id: any) => {
     confirmAlert({
-      title: '정말 댓글을 삭제하시겠습니까?',
-      message: '삭제한 댓글은 되돌릴 수 없습니다.',
+      title: '정말 게시물을 삭제하시겠습니까?',
+      message: '삭제한 게시물은 되돌릴 수 없습니다.',
       buttons: [
         {
           label: '네',
