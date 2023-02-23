@@ -21,7 +21,7 @@ const MainPage = () => {
     <CommonStyles>
       <MainBanner />
 
-      <CategorySlide Category={Category} />
+      <CategorySlide />
 
       <div>
         <span style={{ fontSize: 20, fontWeight: 'bold' }}>신발신는중</span>

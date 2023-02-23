@@ -50,9 +50,9 @@ const Category = () => {
   return (
     <CommonStyles>
       <S.CategoryTitleWrapper>
-        <S.CategoryTitle>카테고리</S.CategoryTitle>
-        {/* <S.CategoryTitle>{category}</S.CategoryTitle> */}
-        {/* <S.CategoryImg>{category.img}</S.CategoryImg> */}
+        <S.CategoryTitle>{category}</S.CategoryTitle>
+        {/*이미지는 DropFilterCategory에서 atom 사용해서 가져와보자! */}
+        <S.CategoryImg>{category.img}</S.CategoryImg>
       </S.CategoryTitleWrapper>
       <S.FilterArea>
         <S.CategoryFilter>
