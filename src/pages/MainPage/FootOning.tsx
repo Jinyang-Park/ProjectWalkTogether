@@ -65,7 +65,7 @@ const FootOning = () => {
                   <S.ListItemThumnailTitle>
                     {item.Title_Posting}
                   </S.ListItemThumnailTitle>
-                  <S.HashTag>#케이팝 #발라드</S.HashTag>
+                  {/* <S.HashTag>#케이팝 #발라드</S.HashTag> */}
                   <S.ListItemContainer>
                     <S.LikedHeartFlex>
                       <S.ListItemAddress>

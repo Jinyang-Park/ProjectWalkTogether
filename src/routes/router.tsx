@@ -12,6 +12,8 @@ import DetailPage from '../pages/DetailPage/DetailPage';
 import ChattingPage from '../pages/ChatPage/ChattingPage';
 import Category from './../pages/Category/Category';
 
+import Collection from '../pages/Collection/Collection';
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -26,6 +28,7 @@ const Router = () => {
         <Route path="/category/:category" element={<Category />} />
         <Route path="/detailpage/:id" element={<DetailPage />} />
         <Route path="/chat" element={<ChattingPage />} />
+        <Route path="/collection/:id" element={<Collection />} />
       </Routes>
       <Footer />
     </BrowserRouter>

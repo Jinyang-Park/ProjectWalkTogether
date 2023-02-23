@@ -58,7 +58,7 @@ const DetailPage = () => {
                 </S.IntroCategory>
               </S.IntroCategoryTitleBtn>
               <S.IntroTitle>{getPostings.Title_Posting}</S.IntroTitle>
-              <S.IntroHashTag>#케이팝 #발라드 #인디</S.IntroHashTag>
+              <S.IntroHashTag></S.IntroHashTag>
               <S.IntroDes>{getPostings.Description_Posting}</S.IntroDes>
             </S.DetailIntroWrapper>
             <S.ShareBtn>

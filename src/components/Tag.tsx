@@ -20,7 +20,9 @@ const Tag = () => {
 
   const deleteTagItem = (e) => {
     const deleteTagItem = e.target.parentElement.firstChild.innerText;
-    const filteredTagList = tagList.filter((tagItem) => tagItem !== deleteTagItem);
+    const filteredTagList = tagList.filter(
+      (tagItem) => tagItem !== deleteTagItem
+    );
     setTagList(filteredTagList);
   };
 
@@ -35,7 +37,14 @@ const Tag = () => {
             </TagItem>
           );
         })}
-        <TagInput type="text" placeholder="Press enter to add tags" tabIndex={2} onChange={(e) => setTagItem(e.target.value)} value={tagItem} onKeyPress={onKeyPress} />
+        <TagInput
+          type="text"
+          placeholder="Press enter to add tags"
+          tabIndex={2}
+          onChange={(e) => setTagItem(e.target.value)}
+          value={tagItem}
+          onKeyPress={onKeyPress}
+        />
       </TagBox>
     </WholeBox>
   );

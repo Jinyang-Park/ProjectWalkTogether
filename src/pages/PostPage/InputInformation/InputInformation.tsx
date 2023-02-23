@@ -143,7 +143,7 @@ function InputInformation() {
               </MapMarker>
             ))} */}
           </Map>
-          {position && (
+          {/* {position && (
             <p>
               {'클릭한 위치의 위도는 ' +
                 position.lat +
@@ -151,7 +151,7 @@ function InputInformation() {
                 position.lng +
                 ' 입니다'}
             </p>
-          )}
+          )} */}
         </S.KakaoMap>
       </S.MapBox>
       <S.InputBox>

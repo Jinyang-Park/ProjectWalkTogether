@@ -18,6 +18,7 @@ import { BsFillHandThumbsUpFill } from 'react-icons/bs';
 import { FaHandPeace } from 'react-icons/fa';
 import { FaHandPaper } from 'react-icons/fa';
 import { BsFillCloudUploadFill } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 interface UserInfoTypes {
   nickname: string | null;
@@ -41,8 +42,9 @@ const MyPage = () => {
 
   const [showBackImgbtn, setShowBackImgbtn] = useState(false);
   const [inputConvert, setInputConvert] = useState(false);
-
   const [imgBtn, setImgBtn] = useState(false);
+
+  const navigate = useNavigate();
 
   const getUserInfo = () => {
     setUserInfo({
@@ -104,6 +106,8 @@ const MyPage = () => {
       .catch((error) => {
         alert('닉네임 변경 실패');
       });
+    sessionStorage.setItem('id', text);
+    navigate('/mypage');
   };
   const handleNickNameBtn = () => {
     editNickName();
@@ -138,13 +142,13 @@ const MyPage = () => {
             />
             {imgBtn ? (
               <ImgUploadModal>
-                <label htmlFor='back'>
+                <label htmlFor="back">
                   <input
-                    type='file'
+                    type="file"
                     onChange={uploadBackImg}
                     style={{ display: 'none' }}
-                    accept='image/*'
-                    id='back'
+                    accept="image/*"
+                    id="back"
                   ></input>
                   <UploadImgIcon />
                 </label>
@@ -162,12 +166,12 @@ const MyPage = () => {
                   <ImgChange
                     src={photoURL ? photoURL : '/assets/default_profile.png'}
                   />
-                  <label htmlFor='img'>
+                  <label htmlFor="img">
                     <input
-                      type='file'
+                      type="file"
                       onChange={uploadFB}
-                      accept='image/*'
-                      id='img'
+                      accept="image/*"
+                      id="img"
                       style={{ display: 'none' }}
                     ></input>
                     <ImgChangeBtn />
@@ -178,8 +182,8 @@ const MyPage = () => {
                     {inputConvert ? (
                       <>
                         <InputStyle
-                          type='text'
-                          placeholder='변경할 닉네임을 입력해주세요.'
+                          type="text"
+                          placeholder="변경할 닉네임을 입력해주세요."
                           onChange={(event) => {
                             if (event.target.value.length > 5) {
                               alert('5자리 제한');
@@ -207,12 +211,12 @@ const MyPage = () => {
                     )}
                     <AlertPhone>xxx-xxxx-xxxx</AlertPhone>
                   </NickNameWrap>
-                  <DoneCnt>총 15번의 산책을 완료하셨어요!</DoneCnt>
+                  {/* <DoneCnt>총 15번의 산책을 완료하셨어요!</DoneCnt> */}
                   {showIntroduceChangeBtn ? (
                     <>
                       <IntroduceInput
-                        type='text'
-                        placeholder='자기소개를 입력해주세요.'
+                        type="text"
+                        placeholder="자기소개를 입력해주세요."
                         value={Introduce}
                         onChange={(event) => {
                           if (event.target.value.length > 30) {
@@ -303,8 +307,8 @@ const MyPage = () => {
                       {showNickNameChangeBtn === true ? (
                         <>
                           <InputStyle
-                            type='text'
-                            placeholder='변경할 닉네임을 입력해주세요.'
+                            type="text"
+                            placeholder="변경할 닉네임을 입력해주세요."
                             value={text}
                             onChange={(event) => {
                               setText(event.target.value);
