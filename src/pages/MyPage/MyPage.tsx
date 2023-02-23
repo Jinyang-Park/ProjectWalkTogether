@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import LikePage from './LikePost';
-import WhatIWorte from './WhatIWrote';
+//import LikePage from './LikePost';
+//import WhatIWorte from './WhatIWrote';
 import { AiFillEdit } from 'react-icons/ai';
 import { MdAccountCircle } from 'react-icons/md';
 import { useState } from 'react';
@@ -245,9 +245,7 @@ const MyPage = () => {
               <GoMyPost>내가 쓴 글</GoMyPost>
               <GoLiked>찜</GoLiked>
             </ChangePost>
-            <LikedWrapper>
-              <LikePage />
-            </LikedWrapper>
+            <LikedWrapper>{/* ..<LikePage /> */}</LikedWrapper>
           </MyPageWrapper>
         </CommonStyles>
       ) : (
@@ -326,9 +324,7 @@ const MyPage = () => {
               <GoMyPost>내가 쓴 글</GoMyPost>
               <GoLiked>찜</GoLiked>
             </ChangePost>
-            <LikedWrapper>
-              <LikePage />
-            </LikedWrapper>
+            <LikedWrapper>{/* <LikePage /> */}</LikedWrapper>
           </MyPageWrapper>
         </CommonStyles>
       )}

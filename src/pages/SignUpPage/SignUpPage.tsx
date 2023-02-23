@@ -112,6 +112,8 @@ const SignUpPage = () => {
           await updateProfile(response.user, {
             displayName: displayname,
           });
+          alert('회원가입 완료');
+          navigate('/login');
         })
         .catch((error) => {
           console.log(error);
