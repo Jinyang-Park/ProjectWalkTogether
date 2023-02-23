@@ -280,8 +280,9 @@ export const SocialShareBtn = styled(FiShare)`
   margin-left: 20px;
 `;
 export const MoreBtn = styled(FiMoreVertical)`
-  position: absolute;
+  position: fixed;
   color: black;
-  bottom: 212px;
-  /* left: 809px; */
+  margin-bottom: 400px;
+  left: 809px;
 `;
+export const Loading = styled.div``;

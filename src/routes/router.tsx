@@ -103,7 +103,7 @@ const Router = () => {
         <Route path='/mypage' element={<MyPage2 />} />
         <Route path='/mypage/:uid' element={<MyPage2 />} />
         <Route path='/postpage/' element={<PostPage />} />
-        <Route path='/category/:category' element={<Category />} />
+        <Route path='/category' element={<Category />} />
         <Route path='/collection/:id' element={<Collection />} />
         <Route path='/detailpage/:id' element={<DetailPage />} />
         <Route path='/chat' element={<ChattingPage />} />

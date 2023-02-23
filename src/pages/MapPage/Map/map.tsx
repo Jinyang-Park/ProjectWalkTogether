@@ -190,11 +190,6 @@ const MapContainer = (Post) => {
             onClick={() => {
               setParams(post.id);
               navigate(`/detailpage/${post.id}`);
-              // setIsOpen({
-              //   lat: '',
-              //   lng: '',
-              //   isopen: false,
-              // })
             }}
           >
             <S.ResultListCardImage
@@ -245,7 +240,7 @@ const MapContainer = (Post) => {
       >
         <AiOutlineSearch size={40} />
         <S.SearchBar
-          placeholder="약속 장소를 검색해보세요."
+          placeholder='약속 장소를 검색해보세요.'
           type={'text'}
           value={search}
           onChange={onChange}
@@ -279,7 +274,7 @@ const MapContainer = (Post) => {
         {position && <MapMarker position={position} />}
         {Markers}
         <ZoomControl position={kakao.maps.ControlPosition.BOTTOMRIGHT} />
-        <S.CustomZoomControl className="custom_zoomcontrol">
+        <S.CustomZoomControl className='custom_zoomcontrol'>
           <S.ZoomInButton onClick={zoomIn}>
             <AiOutlinePlus size={40} />
           </S.ZoomInButton>
