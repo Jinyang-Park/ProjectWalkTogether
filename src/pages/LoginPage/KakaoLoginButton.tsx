@@ -76,7 +76,7 @@ export default function KakaoLoginButton() {
 
   return (
     <>
-      <KakaoLogoButton src="assets/kakao.png" onClick={loginHandler} />
+      <KakaoLogoButton src='assets/kakao.png' onClick={loginHandler} />
     </>
   );
 }

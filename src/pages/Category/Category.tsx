@@ -45,7 +45,7 @@ const Category = () => {
       setPostings(getCategoryList);
     });
   }, [category]);
-  // console.log(postings);
+  // console.log(postings);z
 
   return (
     <CommonStyles>

@@ -279,10 +279,10 @@ const PostPage = () => {
     // geturl(); settTimeout이 없으면 에러가 난다.
     // async await 비동기 처리
     setTimeout(geturl, 1000);
-    navigate(`/category/${postCategory}`);
+    navigate(`/category`, { state: postCategory });
     // setTimeout(adddoc, 8000);
   };
-  console.log('postCategory', postCategory);
+  // console.log('postCategory', postCategory);
   return (
     <CommonStyles>
       <S.Boxcontainer>

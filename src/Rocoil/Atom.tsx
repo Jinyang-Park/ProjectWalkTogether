@@ -54,3 +54,7 @@ export const paramsState = atom<any>({
   key: 'paramsState',
   default: '',
 });
+export const filterDatename = atom<any>({
+  key: 'filterDatename',
+  default: '',
+});
