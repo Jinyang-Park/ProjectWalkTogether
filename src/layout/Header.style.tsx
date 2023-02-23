@@ -34,11 +34,12 @@ export const NavText = styled(Link)`
 export const LoginButton = styled.button`
   border: none;
   margin: 0 auto;
+  padding: 10px;
   margin-top: 10px;
   padding-top: 0.125rem;
   padding-bottom: 0.125rem;
   border-radius: 5px;
-  width: 3.25rem;
+  width: max-content;
   background: white;
   font-size: 12px;
   color: black;

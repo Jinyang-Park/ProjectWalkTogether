@@ -27,9 +27,9 @@ export const ListItemThumnail = styled.img`
   border-radius: 4px;
 `;
 export const ListItemThumnailTitle = styled.p`
-  width: 200px;
+  /* height: 48px; */
   margin: 8px 0px 0px 0px;
-  /* overflow: hidden; */
+  overflow: hidden;
   text-overflow: ellipsis;
   font-size: 16px;
   font-weight: 600;
@@ -86,4 +86,10 @@ export const LikedListItem = styled.div`
   margin-top: 36px;
 `;
 
-export const Collection = styled.div``;
+export const CategoryTitleWrapper = styled.div``;
+export const CategoryTitle = styled.p`
+  margin-top: 64px;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 45px;
+`;
