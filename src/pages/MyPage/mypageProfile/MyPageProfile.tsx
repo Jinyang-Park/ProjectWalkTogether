@@ -5,8 +5,9 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { authService, dbService, storage } from '../../../common/firebase';
-
+import { useNavigate } from 'react-router-dom';
 const MyPageProfile = (props: { uid: string }) => {
+  const navigate = useNavigate();
   const uid = props.uid;
 
   const [newname, setNewname] = useState('');
@@ -28,17 +29,12 @@ const MyPageProfile = (props: { uid: string }) => {
 
     setImageURL(docSnap.data().profileImg);
   };
-  const onImageChange = (
-    e: React.ChangeEvent<EventTarget & HTMLInputElement>
-  ) => {
+  const onImageChange = (e: React.ChangeEvent<EventTarget & HTMLInputElement>) => {
     e.preventDefault();
     const file = e.target.files;
     if (!file) return null;
 
-    const storageRef = ref(
-      storage,
-      `files/userProfile/${authService.currentUser.uid}`
-    ); //user.uid로 저장
+    const storageRef = ref(storage, `files/userProfile/${authService.currentUser.uid}`); //user.uid로 저장
     const uploadTask = uploadBytes(storageRef, file[0]);
 
     uploadTask
@@ -75,6 +71,8 @@ const MyPageProfile = (props: { uid: string }) => {
         introduce: newmessage,
       });
     }
+    sessionStorage.setItem('id', newname);
+    navigate('/mypage');
     setIsEditing(!isediting);
   };
   const fatchInfo = async () => {
@@ -88,21 +86,15 @@ const MyPageProfile = (props: { uid: string }) => {
   return (
     <MyPageProfileWrap>
       <UserProfileContainer>
-        <UserProfileImgLabel htmlFor='fileInput'>
+        <UserProfileImgLabel htmlFor="fileInput">
           <UserProfileImg src={imageURL} />
           <UserProfileEditIcon src={'/assets/editicon.png'} />
-          <UserProfileImgBtn
-            type='file'
-            id='fileInput'
-            onChange={onImageChange}
-          />
+          <UserProfileImgBtn type="file" id="fileInput" onChange={onImageChange} />
         </UserProfileImgLabel>
       </UserProfileContainer>
 
       <UserProfileInfoContainer>
-        <button onClick={onEditBtn}>
-          {!isediting ? '수정하기' : '수정완료'}
-        </button>
+        <button onClick={onEditBtn}>{!isediting ? '수정하기' : '수정완료'}</button>
         <UserNickNameBox>
           {!isediting ? (
             <UserNickName>{name}</UserNickName>
@@ -118,9 +110,7 @@ const MyPageProfile = (props: { uid: string }) => {
 
         <UserWalkCountBox>
           <UserWalkCountIcon>아이콘</UserWalkCountIcon>
-          <UserWalkCountText>
-            총 {20}번의 산책을 완료하셨어요!
-          </UserWalkCountText>
+          <UserWalkCountText>총 {20}번의 산책을 완료하셨어요!</UserWalkCountText>
         </UserWalkCountBox>
 
         <UserIntroduceAreaBox>

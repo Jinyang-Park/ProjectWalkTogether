@@ -18,7 +18,7 @@ const DetailPage = () => {
 
   // useParams를 사용하여 구조 분해 할당을 하여 사용함
   const { id } = useParams();
-  console.log('id', id);
+  // console.log(id);
 
   const [getPostings, setGetPostings] = useState<any>({});
   const [showBox, setShowBox] = useState<any>(false);
@@ -31,14 +31,13 @@ const DetailPage = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     getPost();
   }, []);
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
   // console.log(getPostings.UID);
-  // console.log(getPostings);
-  // console.log(authService.currentUser);
+  console.log(getPostings);
+  console.log(authService.currentUser);
   return (
     <>
       <CommonStyles>
@@ -53,9 +52,7 @@ const DetailPage = () => {
             {/*인트로영역*/}
             <S.DetailIntroWrapper>
               <S.IntroCategoryTitleBtn>
-                <S.IntroCategory>
-                  {getPostings.Category_Posting}
-                </S.IntroCategory>
+                <S.IntroCategory>{getPostings.Category_Posting}</S.IntroCategory>
               </S.IntroCategoryTitleBtn>
               <S.IntroTitle>{getPostings.Title_Posting}</S.IntroTitle>
               <S.IntroHashTag>#케이팝 #발라드 #인디</S.IntroHashTag>
@@ -80,19 +77,12 @@ const DetailPage = () => {
                 />
               )}
               {/*post.id인 id를 DropBox로 넘겨준다*/}
+              {showBox && <DropBox setShowBox={setShowBox} id={id} getPostings={getPostings} />}
 
-              {showBox && (
-                <DropBox
-                  setShowBox={setShowBox}
-                  id={id}
-                  getPostings={getPostings}
-                />
-              )}
+              {/*svg로 갈아끼워야함(SocialShareBtn)*/}
               <S.SocialShareBtn />
+              {/*svg로 갈아끼워야함(ShareBtn)*/}
             </S.ShareBtn>
-
-            {/*svg로 갈아끼워야함(SocialShareBtn)*/}
-            {/*svg로 갈아끼워야함(ShareBtn)*/}
           </S.BoxPhoto>
         </S.Boxcontents>
         {/*장소*/}

@@ -16,11 +16,8 @@ const MyPage2 = () => {
       console.log(authService.currentUser.uid);
       setId(authService.currentUser.uid);
     }
-    setTimeout(() => {
-      console.log(authService.currentUser);
 
-      if (!authService.currentUser.uid) navigate('/login');
-    }, 100);
+    console.log(authService.currentUser);
   }, []);
   return (
     <CommonStyles>
