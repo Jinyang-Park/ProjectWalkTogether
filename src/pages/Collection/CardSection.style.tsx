@@ -86,4 +86,10 @@ export const LikedListItem = styled.div`
   margin-top: 36px;
 `;
 
-export const Collection = styled.div``;
+export const CategoryTitleWrapper = styled.div``;
+export const CategoryTitle = styled.p`
+  margin-top: 64px;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 45px;
+`;

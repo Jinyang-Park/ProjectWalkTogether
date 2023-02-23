@@ -29,6 +29,8 @@ export default function KakaoLogoutButton() {
       .catch((err) => alert(err));
 
     localStorage.clear();
+
+    sessionStorage.clear();
     console.log('isLogout', islogout);
   };
 
