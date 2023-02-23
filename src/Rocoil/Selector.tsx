@@ -4,7 +4,7 @@ import {
   TitleInput,
   DescriptionInput,
   Bannerupload,
-  Thunmnailupload,
+  ThumbnailUpload,
   ReserveDate,
   myLocation,
 } from './Atom';
@@ -47,7 +47,7 @@ const banneruploadSelector = selector({
 const thunmnailuploadSelector = selector({
   key: 'Thunmnailupload',
   get: ({ get }) => {
-    const thunmnailuploadValue = get(Thunmnailupload);
+    const thunmnailuploadValue = get(ThumbnailUpload);
   },
 });
 

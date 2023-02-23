@@ -5,20 +5,29 @@ import MyPageWrite from './mypageWrite/MyPageWrite';
 import CommonStyles from '../../styles/CommonStyles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { authService } from '../../common/firebase';
+import { currentUserUid, isLoggedIn } from '../../Rocoil/Atom';
+import { useRecoilValue } from 'recoil';
+
 const MyPage2 = () => {
   let { uid } = useParams();
   const navigate = useNavigate();
   const [id, setId] = useState<string>(uid || '');
 
-  useEffect(() => {
-    if (authService.currentUser && id === '') {
-      console.log(authService.currentUser.uid);
-      setId(authService.currentUser.uid);
-    }
+  const loggedIn = useRecoilValue(isLoggedIn);
+  const userUid = useRecoilValue(currentUserUid);
 
-    console.log(authService.currentUser);
-  }, []);
+  useEffect(() => {
+    console.log(loggedIn, userUid);
+    if (id === '') {
+      if (loggedIn) {
+        setId(userUid);
+      } else {
+        // 로그아웃 상태 시 로그인 페이지로 보냄
+        // navigate('/login');
+      }
+    }
+  }, [loggedIn]);
+
   return (
     <CommonStyles>
       {id !== '' && (
