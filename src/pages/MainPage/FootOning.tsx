@@ -4,6 +4,7 @@ import { authService, dbService } from '../../common/firebase';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import * as S from './CardSection.style';
+
 import { paramsState } from '../../Rocoil/Atom';
 import {
   query,
@@ -14,6 +15,7 @@ import {
   onSnapshot,
 } from 'firebase/firestore';
 // import { onAuthStateChanged } from 'firebase/auth'
+
 interface postProps {
   post: any;
 }
@@ -22,7 +24,7 @@ const FootOning = () => {
   const setParams = useSetRecoilState(paramsState);
   const { id } = useParams();
   const [postList, setPostList] = useState([]);
-
+  // {value : '신발~' , where :' ' , how:'정렬방법'}
   useEffect(() => {
     const q = query(
       collection(dbService, 'Post'),

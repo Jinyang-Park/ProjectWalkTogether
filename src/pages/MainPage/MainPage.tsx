@@ -9,10 +9,14 @@ import { dbService } from '../../common/firebase';
 import { authService } from '../../common/firebase';
 import MainBanner from '../../components/main/banner';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 //import CategoryAll from './CategoryAll/CategoryAll';
 import CategorySlide from '../../components/main/CategorySlide';
 import FootOning from './FootOning';
 import * as S from './CardSection.style';
+import CollectionAll from '../Collection/CollectionAll';
+import Collection from '../Collection/Collection';
+import { CollecitionList } from '../../utils/CollectionList';
 import CollectionAll from '../Collection/CollectionAll';
 import Collection from '../Collection/Collection';
 import { CollecitionList } from '../../utils/CollectionList';
@@ -21,19 +25,21 @@ import { CollecitionList } from '../../utils/CollectionList';
 
 const MainPage = () => {
   const { collection } = useParams();
+  const { collection } = useParams();
   console.log(authService.currentUser);
+  const navigate = useNavigate();
   const navigate = useNavigate();
   return (
     <CommonStyles>
       <MainBanner />
 
-      <CategorySlide Category={Category} />
+      <CategorySlide />
 
       <div>
         <FirstLayout>
           <span style={{ fontSize: 20, fontWeight: 'bold' }}>신발신는중</span>
           <Button
-            value="1"
+            value='1'
             onClick={(event) =>
               navigate(`/collection/${event.target['value']}`)
             }
@@ -65,6 +71,15 @@ const Button = styled.button`
 const FirstLayout = styled.div`
   justify-content: space-around;
 `;
+const Button = styled.button`
+  float: right;
+  background-color: transparent;
+`;
 
+const FirstLayout = styled.div`
+  justify-content: space-around;
+`;
+
+export const Collectionitem = styled.div``;
 export const Collectionitem = styled.div``;
 export default MainPage;

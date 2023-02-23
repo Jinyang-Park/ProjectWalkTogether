@@ -10,6 +10,15 @@ import {
   browserSessionPersistence,
   getAuth,
 } from 'firebase/auth';
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  setPersistence,
+  browserSessionPersistence,
+  getAuth,
+} from 'firebase/auth';
 import { doc, setDoc } from '@firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { dbService, authService } from '../../common/firebase';
@@ -52,6 +61,8 @@ const LoginPage = () => {
       .then(() => {
         return signInWithEmailAndPassword(authService, email, password)
           .then((data) => {
+            sessionStorage.setItem('id', data.user.displayName);
+            sessionStorage.setItem('email', data.user.email);
             sessionStorage.setItem('id', data.user.displayName);
             sessionStorage.setItem('email', data.user.email);
             navigate('/', { replace: true });
@@ -120,6 +131,7 @@ const LoginPage = () => {
         return signInWithPopup(authService, provider).then((data) => {
           setValue(data.user.email);
           sessionStorage.setItem('id', data.user.displayName);
+          sessionStorage.setItem('id', data.user.displayName);
           navigate('/');
         });
       })
@@ -142,25 +154,25 @@ const LoginPage = () => {
               </S.LoginLogo>
               <S.Inputholder>
                 <S.Input
-                  type="email"
+                  type='email'
                   value={email}
-                  name="아이디"
-                  placeholder="이메일을 입력해주세요"
+                  name='아이디'
+                  placeholder='이메일을 입력해주세요'
                   onChange={onChangeEmail}
                 ></S.Input>
               </S.Inputholder>
               <S.Inputholder>
                 <S.Input
-                  type="password"
+                  type='password'
                   value={password}
-                  name="비밀번호"
-                  placeholder="비밀번호를 입력해주세요"
+                  name='비밀번호'
+                  placeholder='비밀번호를 입력해주세요'
                   onChange={onChangePassword}
                 ></S.Input>
               </S.Inputholder>
 
               <S.ButtonBox>
-                <S.LoginBtn type="submit">로그인</S.LoginBtn>
+                <S.LoginBtn type='submit'>로그인</S.LoginBtn>
 
                 <S.Validityfontbox>{errorMessage}</S.Validityfontbox>
               </S.ButtonBox>
@@ -172,13 +184,13 @@ const LoginPage = () => {
 
               <S.SocialBox>
                 {/*<S.Facebook onClick={signInWithFacebook} src="/assets/facebook.png" />*/}
-                <S.Google onClick={signInWithGoogle} src="assets/google.png" />
+                <S.Google onClick={signInWithGoogle} src='assets/google.png' />
                 <KakaoLoginButton />
-                <S.Naver src="assets/naver.png" />
+                <S.Naver src='assets/naver.png' />
               </S.SocialBox>
               <S.ThirdBox>
                 <S.RegisterBtn
-                  type="button"
+                  type='button'
                   onClick={() => navigate('/signup')}
                 >
                   회원 가입
@@ -191,6 +203,11 @@ const LoginPage = () => {
           </S.InputBox>
         </form>
 
+        <PassModal
+          open={loginModalopen}
+          setLoginModalopen={setLoginModalopen}
+          onClose={() => setLoginModalopen(false)}
+        />
         <PassModal
           open={loginModalopen}
           setLoginModalopen={setLoginModalopen}

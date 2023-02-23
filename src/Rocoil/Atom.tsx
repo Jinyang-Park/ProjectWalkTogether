@@ -32,7 +32,7 @@ export const Bannerupload = atom<any>({
   default: '',
 });
 
-export const Thunmnailupload = atom<any>({
+export const ThumbnailUpload = atom<any>({
   key: 'Thunmnailupload',
   // key의 값은 항상 고유값이어야 합니다.
   default: '',
@@ -109,5 +109,19 @@ export const NewSortInput = atom<any>({
 
 export const chattingusers = atom<any>({
   key: 'chattingusers',
+  default: '',
+});
+
+export const filterDatename = atom<any>({
+  key: 'filterDatename',
+
+
+export const isLoggedIn = atom<boolean>({
+  key: 'isLoggedIn',
+  default: false,
+});
+
+export const currentUserUid = atom<string>({
+  key: 'currentUserUid',
   default: '',
 });

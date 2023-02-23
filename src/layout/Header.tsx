@@ -81,7 +81,9 @@ const Header = () => {
 
           <S.MyPageContainer>
             {sessionId !== null ? (
+            {sessionId !== null ? (
               <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
+                <S.LoginButton> {sessionId} </S.LoginButton>
                 <S.LoginButton> {sessionId} </S.LoginButton>
                 <S.DropNav isDropped={myPageIsOpen}>
                   <S.Ul>
@@ -95,7 +97,7 @@ const Header = () => {
                       <KakaoLogoutButton />
                     </S.Li>
                     <S.Li>
-                      <S.NavText to="/postpage">글쓰기</S.NavText>
+                      <S.NavText to='/postpage'>글쓰기</S.NavText>
                     </S.Li>
                   </S.Ul>
                 </S.DropNav>
