@@ -63,20 +63,19 @@ export const SearchLineTotalCount = styled.span`
   font-size: smaller;
   color: gray;
 
-  margin-bottom: 100px;
+  margin-bottom: 30px;
 `
 export const ResultList = styled.span`
-  display: flex;
-  flex-direction: row;
-
-  gap: 50px;
+  width: 868px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 `
 export const ResultListCard = styled.span`
   display: flex;
   flex-direction: column;
-
-  padding: 10px;
-  border: 1px solid black;
+  grid-gap: 1px;
+  margin: 20px;
 `
 
 export const ResultListCardImage = styled.img`
@@ -85,8 +84,10 @@ export const ResultListCardImage = styled.img`
   margin-bottom: 5px;
 `
 export const ResultListCardTitle = styled.span`
-  font-size: larger;
-  font-weight: 600;
+  width: 180px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 500;
   margin-bottom: 5px;
 `
 
@@ -131,7 +132,7 @@ export const ResultListTagList = styled.span`
 export const ResultListTag = styled.span``
 
 export const ResultListCardLike = styled.span`
-  margin-left: 20px;
+  margin-left: 5px;
   color: red;
 `
 
