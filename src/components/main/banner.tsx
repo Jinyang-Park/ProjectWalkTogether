@@ -55,8 +55,8 @@ const SliderWrapper = styled(Slider)`
     position: absolute;
     bottom: 0;
     color: #d7d7d7;
-    top: 200px;
-    right: 340px;
+    top: 250px;
+    right: 300px;
     margin-right: 20px;
 
     li {

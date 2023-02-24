@@ -41,7 +41,9 @@ const DetailPage = () => {
   const getPost = async () => {
     const q = doc(dbService, 'Post', id);
     const postData = await getDoc(q);
+
     //비동기
+
     setGetPostings(postData.data());
 
     // isLoading 이 false가 되면 로딩이 끝난 것, true면 로딩중으로 isLoading을 관리
@@ -49,6 +51,7 @@ const DetailPage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getPost();
   }, []);
 
@@ -71,10 +74,12 @@ const DetailPage = () => {
             {/*인트로영역*/}
             <S.DetailIntroWrapper>
               <S.IntroCategoryTitleBtn>
-                <S.IntroCategory>{getPostings.Category_Posting}</S.IntroCategory>
+                <S.IntroCategory>
+                  {getPostings.Category_Posting}
+                </S.IntroCategory>
               </S.IntroCategoryTitleBtn>
               <S.IntroTitle>{getPostings.Title_Posting}</S.IntroTitle>
-              <S.IntroHashTag>#케이팝 #발라드 #인디</S.IntroHashTag>
+              <S.IntroHashTag></S.IntroHashTag>
               <S.IntroDes>{getPostings.Description_Posting}</S.IntroDes>
             </S.DetailIntroWrapper>
             <S.ShareBtn>
@@ -92,11 +97,12 @@ const DetailPage = () => {
                 <S.MoreBtn
                   onClick={() => {
                     setShowBox(true);
+                    setShowBox(true);
                   }}
                 />
               )}
               {/*post.id인 id를 DropBox로 넘겨준다*/}
-           
+
               {showBox && (
                 <DropBox
                   setShowBox={setShowBox}

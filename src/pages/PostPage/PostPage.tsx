@@ -197,7 +197,7 @@ const PostPage = () => {
   /////////////
   //콘솔확인용/
   useEffect(() => {
-    console.log('timestring:', timestring);
+    console.log(' Description.length:', Description.length);
     setPostTime(timestring); //현재 시간
     // setPostHour(meeting); //약속 시간
     setPostNickname(nickname);
@@ -260,29 +260,76 @@ const PostPage = () => {
   //작성완료//
   ///////////
   const handleSubmit = (e: any) => {
-    e.preventDefault();
-    // 포스팅 클릭하면 해당 카테고리 페이지로 라우터 이동
-    //////////////// 썸네일 이미지 전송
-    if (thumbnail === null) return alert('이미지 업로드 실패');
-    const imageRef = ref(storage, `test/${PostingID_Posting}/thumbnail`); //+${thumbnail}
-    // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-    uploadBytes(imageRef, thumbnail).then((snapshot) => {
-      console.log('snapshot', snapshot);
-      // 업로드 되자마자 뜨게 만들기
-      // alert('썸네일 저장 완료');
-    });
-    if (banner === null) return alert('이미지 업로드 실패');
-    const bannerRef = ref(storage, `test/${PostingID_Posting}/banner`); //+${thumbnail}
-    // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-    uploadBytes(bannerRef, banner).then((snapshot) => {
-      // alert('베너 저장 완료');
-      console.log('snapshot', snapshot);
-    });
-    // geturl(); settTimeout이 없으면 에러가 난다.
-    // async await 비동기 처리
-    setTimeout(geturl, 1000);
-    navigate(`/category`, { state: postCategory });
-    // setTimeout(adddoc, 8000);
+    if (Title.length !== 0) {
+      if (Title.length! < 20) {
+        if (Description.length !== 0) {
+          if (Description.length! < 200) {
+            if (meetDate !== '') {
+              if (meetTime !== '') {
+                if (thumbnail !== '') {
+                  if (banner !== '') {
+                    if (adress !== '충북 보은군 속리산면 갈목리 산 19-1') {
+                      if (postCategory !== '카테고리') {
+                        if (thumbnail === null)
+                          // 포스팅 클릭하면 해당 카테고리 페이지로 라우터 이동
+                          //////////////// 썸네일 이미지 전송
+                          return alert('이미지 업로드 실패');
+                        const imageRef = ref(
+                          storage,
+                          `test/${PostingID_Posting}/thumbnail`
+                        ); //+${thumbnail}
+                        // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
+                        uploadBytes(imageRef, thumbnail).then((snapshot) => {
+                          console.log('snapshot', snapshot);
+                          // 업로드 되자마자 뜨게 만들기
+                          // alert('썸네일 저장 완료');
+                        });
+                        if (banner === null) return alert('이미지 업로드 실패');
+                        const bannerRef = ref(
+                          storage,
+                          `test/${PostingID_Posting}/banner`
+                        ); //+${thumbnail}
+                        // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
+                        uploadBytes(bannerRef, banner).then((snapshot) => {
+                          // alert('베너 저장 완료');
+                          console.log('snapshot', snapshot);
+                        });
+                        // geturl(); settTimeout이 없으면 에러가 난다.
+                        // async await 비동기 처리
+                        setTimeout(geturl, 1000);
+
+                        navigate(`/category`, { state: postCategory });
+                        // setTimeout(adddoc, 8000);
+                      } else {
+                        alert('카테고리를 선택해 주세요');
+                      }
+                    } else {
+                      alert('지도에서 약속 장소를 선택해 주십시오');
+                    }
+                  } else {
+                    alert('배너사진을 선택해 주세요');
+                  }
+                } else {
+                  alert('섬네일 사진을 선택해 주세요');
+                }
+              } else {
+                alert('시간을 입력해 주세요');
+              }
+            } else {
+              alert('날짜를 입력해 주세요');
+            }
+          } else {
+            alert('최대 200자까지 가능합니다.');
+          }
+        } else {
+          alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
+        }
+      } else {
+        alert('최대 20자만');
+      }
+    } else {
+      alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
+    }
   };
   // console.log('postCategory', postCategory);
   return (
