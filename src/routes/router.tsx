@@ -13,9 +13,43 @@ import MyPage2 from '../pages/MyPage/MyPage2';
 
 import Collection from '../pages/Collection/Collection';
 import AuthStateListener from '../components/AuthStateListener/AuthStateListener';
+import { ManagerWindowAtom } from '../messagewindow/MessageWindow';
+import { useRecoilValue } from 'recoil';
 const Router = () => {
+  const messageWindowManager = useRecoilValue(ManagerWindowAtom);
+
   return (
     <BrowserRouter>
+      <button
+        onClick={() => {
+          messageWindowManager.alert(
+            'Alert 테스트 입니다. 누르면 hello 뜹니다',
+            '확인 test',
+            () => {
+              alert('hello');
+            }
+          );
+        }}
+      >
+        alert 테스트
+      </button>
+      <button
+        onClick={() => {
+          messageWindowManager.confirm(
+            'Confirm 테스트 입니다. 확인 누르면 yes 취소 누르면 no 뜹니다',
+            '확인 test',
+            () => {
+              alert('yes');
+            },
+            '취소 cancel',
+            () => {
+              alert('no');
+            }
+          );
+        }}
+      >
+        confirm test
+      </button>
       <AuthStateListener />
       <Header />
       <Routes>
@@ -28,7 +62,7 @@ const Router = () => {
         <Route path='/postpage/' element={<PostPage />} />
         <Route path='/category' element={<Category />} />
         <Route path='/collection/:id' element={<Collection />} />
-        <Route path='/detailpage/:id' element={<DetailPage />} />
+        {/* <Route path='/detailpage/:id' element={<DetailPage />} /> */}
         <Route path='/chat' element={<ChattingPage />} />
       </Routes>
       <Footer />
