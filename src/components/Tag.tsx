@@ -3,7 +3,8 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { NewpostTag } from '../Rocoil/Atom';
 
-const Tag = () => {
+const Tag = (props: { tagItem: string }) => {
+  const Tag = props.tagItem;
   const [tagItem, setTagItem] = useState('');
   // const [tagList, setTagList] = useState([]);
   const [tagList, setTagList] = useRecoilState(NewpostTag);
@@ -27,6 +28,8 @@ const Tag = () => {
     );
     setTagList(filteredTagList);
   };
+
+  //보여줄때는 props로받아온걸로
 
   return (
     <WholeBox>
@@ -94,7 +97,7 @@ const Button = styled.button`
   margin-left: 5px;
   background-color: white;
   border-radius: 50%;
-  color: tomato;
+  color: #c7d5ff;
 `;
 
 const TagInput = styled.input`
