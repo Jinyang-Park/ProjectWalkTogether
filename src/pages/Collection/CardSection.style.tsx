@@ -11,7 +11,7 @@ export const CardSectionWrapper = styled.a`
 `;
 export const ListItemWrapper = styled.div`
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 200px;
   height: 130px;
   /* height: 32.8888vw;
@@ -28,9 +28,10 @@ export const ListItemThumnail = styled.img`
 `;
 export const ListItemThumnailTitle = styled.p`
   /* height: 48px; */
+  width: 200px;
   margin: 8px 0px 0px 0px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
   font-size: 16px;
   font-weight: 600;
   line-height: 19.97px;
@@ -61,7 +62,7 @@ export const LikeBtnLine = styled(AiOutlineHeart)`
   position: absolute;
   width: 25px;
   height: 20px;
-  margin-left: 11.5rem;
+  margin-left: 9rem;
   margin-top: 30px;
   cursor: pointer;
 `;

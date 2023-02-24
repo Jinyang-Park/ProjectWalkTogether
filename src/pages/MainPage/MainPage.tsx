@@ -32,7 +32,12 @@ const MainPage = () => {
       <div>
         <FirstLayout>
           <span style={{ fontSize: 20, fontWeight: 'bold' }}>신발신는중</span>
-          <Button value="1" onClick={(event) => navigate(`/collection/${event.target['value']}`)}>
+          <Button
+            value='1'
+            onClick={(event) =>
+              navigate(`/collection/${event.target['value']}`)
+            }
+          >
             전체보기
           </Button>
         </FirstLayout>

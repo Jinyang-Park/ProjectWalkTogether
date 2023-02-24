@@ -106,10 +106,30 @@ export const CustomZoomControl = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 80px;
+  top: 350px;
+  left: 1150px;
   z-index: 1;
+  background-color: grey;
+  color: white;
 `
-export const ZoomInButton = styled.span``
-export const ZoomOutButton = styled.span``
-export const FindMyLocationButton = styled.span``
-export const LinkToKaKaoNavibutton = styled.span``
+export const ZoomInButton = styled.svg`
+  width: 40px;
+  height: 40px;
+`
+export const ZoomOutButton = styled.span`
+  width: 40px;
+  height: 40px;
+`
+export const FindMyLocationButton = styled.span`
+  width: 40px;
+  height: 40px;
+`
+export const LinkToKaKaoNavibutton = styled.span`
+  width: 40px;
+  height: 40px;
+`
+
+export const ZoomInSVG = styled.img`
+  width: 40px;
+  height: 40px;
+`

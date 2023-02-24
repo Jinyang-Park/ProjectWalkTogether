@@ -53,6 +53,7 @@ const FootOning = () => {
       {postList.map((item) => {
         return (
           <>
+<<<<<<< HEAD
             <S.CardBox>
               <S.CardSectionWrapper
                 onClick={() => {
@@ -83,6 +84,38 @@ const FootOning = () => {
                 </S.ListItemContainer>
               </S.CardSectionWrapper>
             </S.CardBox>
+=======
+            <S.LikedListItem>
+              <S.CardBox>
+                <S.CardSectionWrapper
+                  onClick={() => {
+                    setParams(item.id);
+                    navigate(`/detailpage/${item.id}`);
+                  }}
+                >
+                  <S.ListItemWrapper>
+                    <S.ListItemThumnail src={item.ThunmnailURL_Posting} />
+                  </S.ListItemWrapper>
+                  <S.ListItemThumnailTitle>
+                    {item.Title_Posting}
+                  </S.ListItemThumnailTitle>
+                  {/* <S.HashTag>#케이팝 #발라드</S.HashTag> */}
+                  <S.ListItemContainer>
+                    <S.LikedHeartFlex>
+                      <S.ListItemAddress>
+                        {item.Address_Posting}
+                      </S.ListItemAddress>
+                      <S.LikeBtnLine />
+                    </S.LikedHeartFlex>
+                    <S.ListItemDate>
+                      {item.RsvDate_Posting}
+                      {item.RsvHour_Posting}
+                    </S.ListItemDate>
+                  </S.ListItemContainer>
+                </S.CardSectionWrapper>
+              </S.CardBox>
+            </S.LikedListItem>
+>>>>>>> 8287ee952e9ab1a6fabaa8e379b5328a30340007
           </>
         );
       })}

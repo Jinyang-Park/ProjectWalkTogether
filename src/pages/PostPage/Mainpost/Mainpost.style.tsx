@@ -122,7 +122,7 @@ export const BoxPhoto = styled.div`
   margin-top: 8px;
   position: relative;
   left: 24px;
-  background-color: white;
+  background-color: #eef1f7;
   border-radius: 4px;
 `;
 

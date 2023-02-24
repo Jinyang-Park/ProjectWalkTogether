@@ -20,7 +20,14 @@ interface getPostings {
   ThunmnailURL_Posting: string;
   Title_Posting: string;
   UID: string;
-  Hashtag_Posting: string;
+  children: JSX.Element | JSX.Element[];
+  BannereURL_Posting: string;
+  Category_Posting: string;
+  Description_Posting: string;
+  Nickname: string;
+  ThunmnailURL_Posting: string;
+  Title_Posting: string;
+  UID: string;
   children: JSX.Element | JSX.Element[];
 }
 
@@ -35,21 +42,30 @@ const DetailPage = () => {
 
   const [getPostings, setGetPostings] = useState<any>({});
   const [showBox, setShowBox] = useState<any>(false);
+  const [getPostings, setGetPostings] = useState<any>({});
+  const [showBox, setShowBox] = useState<any>(false);
 
   // getPost 함수에서 비동기로 데이터를 가져오기 때문에 isLoading을 사용하여 로딩중인지 아닌지를 확인
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const getPost = async () => {
     const q = doc(dbService, 'Post', id);
     const postData = await getDoc(q);
+    const q = doc(dbService, 'Post', id);
+    const postData = await getDoc(q);
     //비동기
+    setGetPostings(postData.data());
     setGetPostings(postData.data());
 
     // isLoading 이 false가 되면 로딩이 끝난 것, true면 로딩중으로 isLoading을 관리
     setIsLoading(false);
   };
+    setIsLoading(false);
+  };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getPost();
   }, []);
 
@@ -75,9 +91,12 @@ const DetailPage = () => {
                 <S.IntroCategory>
                   {getPostings.Category_Posting}
                 </S.IntroCategory>
+                <S.IntroCategory>
+                  {getPostings.Category_Posting}
+                </S.IntroCategory>
               </S.IntroCategoryTitleBtn>
               <S.IntroTitle>{getPostings.Title_Posting}</S.IntroTitle>
-              <S.IntroHashTag>{getPostings.Hashtag_Posting}</S.IntroHashTag>
+              <S.IntroHashTag></S.IntroHashTag>
               <S.IntroDes>{getPostings.Description_Posting}</S.IntroDes>
             </S.DetailIntroWrapper>
             <S.ShareBtn>
@@ -95,10 +114,12 @@ const DetailPage = () => {
                 <S.MoreBtn
                   onClick={() => {
                     setShowBox(true);
+                    setShowBox(true);
                   }}
                 />
               )}
               {/*post.id인 id를 DropBox로 넘겨준다*/}
+
 
               {showBox && (
                 <DropBox
@@ -142,6 +163,8 @@ const DetailPage = () => {
         <Comments param={id} />
       </CommonStyles>
     </>
+  );
+};
   );
 };
 

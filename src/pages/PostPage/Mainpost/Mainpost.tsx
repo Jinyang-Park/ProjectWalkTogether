@@ -138,7 +138,11 @@ function MainPost({
             onChange={handleChangeText}
             placeholder='당신의 이야기를 적어주세요'
           ></S.Textarea>
+<<<<<<< HEAD
           <Tag />
+=======
+          {/* <S.HashtagBox>#해쉬태그를 입력해주세요</S.HashtagBox> */}
+>>>>>>> 8287ee952e9ab1a6fabaa8e379b5328a30340007
         </S.BoxMain>
       </S.Boxcontents>
     </>
