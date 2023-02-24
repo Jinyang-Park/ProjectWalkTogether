@@ -28,8 +28,9 @@ export const ListItemThumnail = styled.img`
 `;
 export const ListItemThumnailTitle = styled.p`
   /* height: 48px; */
+  width: 200px;
   margin: 8px 0px 0px 0px;
-  overflow: hidden;
+  /* overflow: hidden; */
   text-overflow: ellipsis;
   font-size: 16px;
   font-weight: 600;

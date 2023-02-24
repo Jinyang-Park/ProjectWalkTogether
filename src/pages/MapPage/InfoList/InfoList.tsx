@@ -1,6 +1,7 @@
 import React from 'react'
-
 import * as S from './InfoList.style'
+
+import { useSearch } from '../../../hooks/useSearch'
 
 const InfoList = ({ Post }) => {
   return (

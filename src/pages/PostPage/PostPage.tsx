@@ -1,6 +1,15 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Time, TitleInput, DescriptionInput, Bannerupload, Thunmnailupload, ReserveDate, selectedAddress, myLocation } from '../../../src/Rocoil/Atom';
+import {
+  Time,
+  TitleInput,
+  DescriptionInput,
+  Bannerupload,
+  ThumbnailUpload,
+  ReserveDate,
+  selectedAddress,
+  myLocation,
+} from '../../../src/Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
@@ -49,7 +58,7 @@ const PostPage = () => {
   const [getBanner, setGetBanner] = useState<any>();
   /////이미지가져오기
   const banner = useRecoilValue(Bannerupload);
-  const thumbnail = useRecoilValue(Thunmnailupload);
+  const thumbnail = useRecoilValue(ThumbnailUpload);
   ///// firestorage 이미지 불러오기
   const auth = getAuth();
   const user = auth.currentUser?.uid;
@@ -270,14 +279,17 @@ const PostPage = () => {
     // geturl(); settTimeout이 없으면 에러가 난다.
     // async await 비동기 처리
     setTimeout(geturl, 1000);
-    navigate(`/category/${postCategory}`);
+    navigate(`/category`, { state: postCategory });
     // setTimeout(adddoc, 8000);
   };
-  console.log('postCategory', postCategory);
+  // console.log('postCategory', postCategory);
   return (
     <CommonStyles>
       <S.Boxcontainer>
-        <MainPost setPostCategory={setPostCategory} postCategory={postCategory} />
+        <MainPost
+          setPostCategory={setPostCategory}
+          postCategory={postCategory}
+        />
         <IuputInformation />
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>

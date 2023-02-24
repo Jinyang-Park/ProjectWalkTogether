@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import FunctionCategory from './Category/Category';
-import FunctionCalendar from './Calendar/Calendar';
-import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
-import * as S from './Filter.style';
-import AntCalendarMap from './Calendar/AntCalendarDate';
-import DropdownFilterCategory from './../../../components/DropdownFilterCategory/DropdownFilterCategory';
+import React, { useState } from 'react'
+import FunctionCategory from './Category/Category'
+import FunctionCalendar from './Calendar/Calendar'
+import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory'
+import * as S from './Filter.style'
+import AntCalendarMap from './Calendar/AntCalendarDate'
+import DropdownFilterCategory from './../../../components/DropdownFilterCategory/DropdownFilterCategory'
 
 declare interface SetProps {
-  setPostCategory: React.Dispatch<React.SetStateAction<string>>;
-  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setPostCategory: React.Dispatch<React.SetStateAction<string>>
+  setShow: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const FilterBar = ({
   setPostCategory: string,
   setShow: boolean,
 }: SetProps) => {
-  const [show, setShow] = useState<any>(false);
-  const [TextChange, setTextChange] = useState('카테고리');
+  const [show, setShow] = useState<any>(false)
+  const [TextChange, setTextChange] = useState('카테고리')
 
   return (
     <>
@@ -34,11 +34,6 @@ export const FilterBar = ({
               setTextChange={setTextChange}
             />
           )}
-          {/*달력영역 */}
-          {/* <S.CategoryFilterWarpper>
-            <S.FilterCategory>3월 23일</S.FilterCategory>
-            <S.FilterCalendarIcon />
-          </S.CategoryFilterWarpper> */}
           <AntCalendarMap />
         </S.CategoryFilter>
         {/*최신순 / 조회순 / 좋아요순*/}
@@ -56,7 +51,7 @@ export const FilterBar = ({
       </S.FilterArea>
       <FunctionCalendar />
     </>
-  );
-};
+  )
+}
 
-export default FilterBar;
+export default FilterBar

@@ -27,7 +27,7 @@ const MainPage = () => {
     <CommonStyles>
       <MainBanner />
 
-      <CategorySlide Category={Category} />
+      <CategorySlide />
 
       <div>
         <FirstLayout>

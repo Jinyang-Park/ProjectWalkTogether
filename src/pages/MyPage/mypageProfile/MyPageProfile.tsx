@@ -15,12 +15,14 @@ const MyPageProfile = (props: { uid: string }) => {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
 
-  const [isediting, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const [imageURL, setImageURL] = useState<string>('');
+
   useEffect(() => {
     getImageURL();
   }, []);
+
   const getImageURL = async () => {
     console.log(uid);
 
@@ -29,12 +31,17 @@ const MyPageProfile = (props: { uid: string }) => {
 
     setImageURL(docSnap.data().profileImg);
   };
-  const onImageChange = (e: React.ChangeEvent<EventTarget & HTMLInputElement>) => {
+  const onImageChange = (
+    e: React.ChangeEvent<EventTarget & HTMLInputElement>
+  ) => {
     e.preventDefault();
     const file = e.target.files;
     if (!file) return null;
 
-    const storageRef = ref(storage, `files/userProfile/${authService.currentUser.uid}`); //user.uid로 저장
+    const storageRef = ref(
+      storage,
+      `files/userProfile/${authService.currentUser.uid}`
+    ); //user.uid로 저장
     const uploadTask = uploadBytes(storageRef, file[0]);
 
     uploadTask
@@ -58,45 +65,67 @@ const MyPageProfile = (props: { uid: string }) => {
   };
 
   const onEditBtn = async () => {
-    if (!isediting) {
+    if (!isEditing) {
       setNewname(authService.currentUser.displayName);
       const docSnap = await getDoc(doc(dbService, 'user', uid));
-      setNewmessage(docSnap.data().introduce);
+      const msg = docSnap.data().introduce || '';
+      setNewmessage(msg);
     } else {
+      // if (newname === '' || newmessage === '') {
+      //   alert(
+      //     '빈 칸이면 파이어베이스가 발작 일으켜요 제발 내용 채워주세요ㅠㅠ'
+      //   );
+      //   return;
+      // }
+
       updateProfile(authService.currentUser, {
         displayName: newname,
       });
-      updateDoc(doc(dbService, 'user', uid), {
+
+      await updateDoc(doc(dbService, 'user', uid), {
         nickname: newname,
         introduce: newmessage,
       });
+
+      // window.location.reload();
+      setName(newname);
+      setMessage(newmessage);
     }
     sessionStorage.setItem('id', newname);
-    navigate('/mypage');
-    setIsEditing(!isediting);
+    setIsEditing(!isEditing);
   };
-  const fatchInfo = async () => {
+
+  const fetchInfo = async () => {
+    console.log('Attempted to fetch user info ' + uid);
     const docSnap = await getDoc(doc(dbService, 'user', uid));
     setName(docSnap.data().nickname);
     setMessage(docSnap.data().introduce);
   };
+
   useEffect(() => {
-    fatchInfo();
+    fetchInfo();
   }, []);
+
   return (
     <MyPageProfileWrap>
       <UserProfileContainer>
-        <UserProfileImgLabel htmlFor="fileInput">
+        <UserProfileImgLabel htmlFor='fileInput'>
           <UserProfileImg src={imageURL} />
           <UserProfileEditIcon src={'/assets/editicon.png'} />
-          <UserProfileImgBtn type="file" id="fileInput" onChange={onImageChange} />
+          <UserProfileImgBtn
+            type='file'
+            id='fileInput'
+            onChange={onImageChange}
+          />
         </UserProfileImgLabel>
       </UserProfileContainer>
 
       <UserProfileInfoContainer>
-        <button onClick={onEditBtn}>{!isediting ? '수정하기' : '수정완료'}</button>
+        <button onClick={onEditBtn}>
+          {!isEditing ? '수정하기' : '수정완료'}
+        </button>
         <UserNickNameBox>
-          {!isediting ? (
+          {!isEditing ? (
             <UserNickName>{name}</UserNickName>
           ) : (
             <input
@@ -110,11 +139,13 @@ const MyPageProfile = (props: { uid: string }) => {
 
         <UserWalkCountBox>
           <UserWalkCountIcon>아이콘</UserWalkCountIcon>
-          <UserWalkCountText>총 {20}번의 산책을 완료하셨어요!</UserWalkCountText>
+          <UserWalkCountText>
+            총 {20}번의 산책을 완료하셨어요!
+          </UserWalkCountText>
         </UserWalkCountBox>
 
         <UserIntroduceAreaBox>
-          {!isediting ? (
+          {!isEditing ? (
             <UserIntroduceText>{message}</UserIntroduceText>
           ) : (
             <textarea

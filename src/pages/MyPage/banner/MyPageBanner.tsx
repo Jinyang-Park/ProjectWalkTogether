@@ -13,6 +13,7 @@ const MyPageBanner = (props: { uid: string }) => {
   useEffect(() => {
     getImageURL();
   }, []);
+
   const getImageURL = async () => {
     console.log(uid);
 
@@ -21,6 +22,7 @@ const MyPageBanner = (props: { uid: string }) => {
 
     setImageURL(docSnap.data().bannerImg);
   };
+
   const onImageChange = (
     e: React.ChangeEvent<EventTarget & HTMLInputElement>
   ) => {
@@ -62,6 +64,7 @@ const MyPageBanner = (props: { uid: string }) => {
     </BannerWrap>
   );
 };
+
 export default MyPageBanner;
 
 const BannerWrap = styled.div`
