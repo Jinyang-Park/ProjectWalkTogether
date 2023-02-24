@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { authService, dbService, storage } from '../../../common/firebase';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { currentUserUid } from '../../../Rocoil/Atom';
 const MyPageProfile = (props: { uid: string }) => {
   const navigate = useNavigate();
   const uid = props.uid;
@@ -18,6 +20,7 @@ const MyPageProfile = (props: { uid: string }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const [imageURL, setImageURL] = useState<string>('');
+  const userUID = useRecoilValue(currentUserUid);
 
   useEffect(() => {
     getImageURL();
@@ -109,19 +112,25 @@ const MyPageProfile = (props: { uid: string }) => {
       <UserProfileContainer>
         <UserProfileImgLabel htmlFor='fileInput'>
           <UserProfileImg src={imageURL} />
-          <UserProfileEditIcon src={'/assets/editicon.png'} />
-          <UserProfileImgBtn
-            type='file'
-            id='fileInput'
-            onChange={onImageChange}
-          />
+          {uid === userUID && (
+            <>
+              <UserProfileEditIcon src={'/assets/editicon.png'} />
+              <UserProfileImgBtn
+                type='file'
+                id='fileInput'
+                onChange={onImageChange}
+              />
+            </>
+          )}
         </UserProfileImgLabel>
       </UserProfileContainer>
 
       <UserProfileInfoContainer>
-        <button onClick={onEditBtn}>
-          {!isEditing ? '수정하기' : '수정완료'}
-        </button>
+        {uid === userUID && (
+          <button onClick={onEditBtn}>
+            {!isEditing ? '수정하기' : '수정완료'}
+          </button>
+        )}
         <UserNickNameBox>
           {!isEditing ? (
             <UserNickName>{name}</UserNickName>
@@ -129,7 +138,11 @@ const MyPageProfile = (props: { uid: string }) => {
             <input
               value={newname}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setNewname(e.currentTarget.value);
+                if (e.target.value.length > 25) {
+                  alert('25자 글자 초과했습니다');
+                } else {
+                  setNewname(e.currentTarget.value);
+                }
               }}
             ></input>
           )}
