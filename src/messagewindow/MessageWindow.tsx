@@ -17,7 +17,6 @@ import { atom, useRecoilState } from 'recoil';
 // const props = new MessageWindowProperties(
 //     true, // true로 하셔야 창 띄워집니다.
 //     "메시지", // 보여줄 메시지
-//     2, // 버튼 개수
 //     [
 //         {
 //             text: "버튼1에 쓸 텍스트",
@@ -34,7 +33,7 @@ import { atom, useRecoilState } from 'recoil';
 //     ]
 // )
 //
-// MessageWindow.alert(props, setState)
+// MessageWindow.showWindow(props, setState)
 //
 
 export default class MessageWindow {
@@ -76,15 +75,9 @@ export function MessageWindowComponent() {
 }
 
 export class MessageWindowProperties {
-  constructor(
-    isVisible: boolean = false,
-    message: string = '',
-    numberOfButtons = 1,
-    buttons = []
-  ) {
+  constructor(isVisible: boolean = false, message: string = '', buttons = []) {
     this.isVisible = isVisible;
     this.message = message;
-    this.buttonCount = numberOfButtons;
     this.buttons = buttons;
   }
 
