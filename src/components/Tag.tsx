@@ -9,8 +9,17 @@ const Tag = (props: { tagItem: string }) => {
   // const [tagList, setTagList] = useState([]);
   const [tagList, setTagList] = useRecoilState(NewpostTag);
   const onKeyPress = (e) => {
-    if (e.target.value.length !== 0 && e.key === 'Enter') {
+    if (e.target.value.length < 7 && e.key === 'Enter') {
       submitTagItem();
+    }
+
+    if (tagList.length > 4) {
+      window.alert('더이상 태그를 추가할 수 없습니다!');
+      e.target.value = '';
+    }
+    if (tagList.includes(e.target.value)) {
+      window.alert('중복된 태그입니다');
+      return setTagList([...tagList]);
     }
   };
 
@@ -43,6 +52,7 @@ const Tag = (props: { tagItem: string }) => {
           );
         })}
         <TagInput
+          maxLength={6}
           type='text'
           placeholder='Press enter to add tags'
           tabIndex={2}
