@@ -19,8 +19,12 @@ import { useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import dayjs from 'dayjs';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { paramsState } from '../../../Rocoil/Atom';
+import MessageWindow, {
+  MessageWindowProperties,
+  messageWindowPropertiesAtom,
+} from '../../../messagewindow/MessageWindow';
 
 interface postProps {
   param: any;
@@ -39,6 +43,11 @@ const Comments = ({ param }: postProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const navigate = useNavigate();
+
+  // MessageWindow 세팅
+  const setState = useSetRecoilState<MessageWindowProperties>(
+    messageWindowPropertiesAtom
+  );
 
   // posting받아오기
   // const post = useRecoilState(PostingID_Posting);
@@ -100,19 +109,32 @@ const Comments = ({ param }: postProps) => {
 
   // 버튼 취소 시 확인 얼럿창
   const CancelCommentHandler = () => {
-    confirmAlert({
-      message: '댓글을 취소하시겠습니까?',
-      buttons: [
+    // confirmAlert({
+    //   message: '댓글을 취소하시겠습니까?',
+    //   buttons: [
+    //     {
+    //       label: '네',
+    //       onClick: () => setInputComment(''),
+    //     },
+    //     {
+    //       label: '아니오',
+    //       onClick: () => setInputComment,
+    //     },
+    //   ],
+    // });
+    MessageWindow.showWindow(
+      new MessageWindowProperties(true, '댓글을 취소하시겠습니까?', [
         {
-          label: '네',
-          onClick: () => setInputComment(''),
+          text: '네',
+          callback: () => setInputComment(''),
         },
         {
-          label: '아니오',
-          onClick: () => setInputComment,
+          text: '아니오',
+          callback: () => setInputComment,
         },
-      ],
-    });
+      ]),
+      setState
+    );
   };
 
   // 파이어베이스에서는 바뀌었는데 웹에서는 인지를 못해서 강제로 한번더 해줌
@@ -221,8 +243,8 @@ const Comments = ({ param }: postProps) => {
       <S.DetailCommentContainer>
         <S.CommentUserImgWrapper>
           <S.CommentContent
-            type="text"
-            placeholder="댓글을 입력하세요."
+            type='text'
+            placeholder='댓글을 입력하세요.'
             value={inputComment}
             onChange={(event) => {
               setInputComment(event.target.value);
