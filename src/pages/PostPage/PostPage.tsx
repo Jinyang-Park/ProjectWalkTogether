@@ -295,7 +295,8 @@ const PostPage = () => {
                         // geturl(); settTimeout이 없으면 에러가 난다.
                         // async await 비동기 처리
                         setTimeout(geturl, 1000);
-                        navigate(`/category/${postCategory}`);
+
+                        navigate(`/category`, { state: postCategory });
                         // setTimeout(adddoc, 8000);
                       } else {
                         alert('카테고리를 선택해 주세요');
@@ -327,8 +328,6 @@ const PostPage = () => {
     } else {
       alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
     }
-
-    e.preventDefault();
   };
   // console.log('postCategory', postCategory);
   return (

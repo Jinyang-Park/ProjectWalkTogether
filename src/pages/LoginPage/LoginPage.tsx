@@ -10,15 +10,6 @@ import {
   browserSessionPersistence,
   getAuth,
 } from 'firebase/auth';
-import {
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
-  FacebookAuthProvider,
-  setPersistence,
-  browserSessionPersistence,
-  getAuth,
-} from 'firebase/auth';
 import { doc, setDoc } from '@firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { dbService, authService } from '../../common/firebase';

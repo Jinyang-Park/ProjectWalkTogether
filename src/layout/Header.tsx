@@ -49,10 +49,10 @@ const Header = () => {
       <S.Nav>
         <S.NavUl>
           <S.NavLi>
-            <S.NavText to="/">홈</S.NavText>
+            <S.NavText to='/'>홈</S.NavText>
           </S.NavLi>
           <S.NavLi>
-            <S.NavText to="/map">지도</S.NavText>
+            <S.NavText to='/map'>지도</S.NavText>
           </S.NavLi>
           {/* <S.NavLi>
             <S.NavText to="/chat">chat</S.NavText>
@@ -63,12 +63,12 @@ const Header = () => {
                 onClick={() => {
                   alert('로그인을 해주세요!');
                 }}
-                to="/login"
+                to='/login'
               >
                 글 쓰기
               </S.NavText>
             ) : (
-              <S.NavText to="/postpage">글 쓰기</S.NavText>
+              <S.NavText to='/postpage'>글 쓰기</S.NavText>
             )}
           </S.NavLi>
           {/* <S.NavLi>
@@ -81,10 +81,9 @@ const Header = () => {
 
           <S.MyPageContainer>
             {sessionId !== null ? (
-            {sessionId !== null ? (
               <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
                 <S.LoginButton> {sessionId} </S.LoginButton>
-                <S.LoginButton> {sessionId} </S.LoginButton>
+
                 <S.DropNav isDropped={myPageIsOpen}>
                   <S.Ul>
                     <S.Li>

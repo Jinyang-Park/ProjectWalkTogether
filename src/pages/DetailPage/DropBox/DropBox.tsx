@@ -14,9 +14,9 @@ interface DropProps {
 
 const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
   const navigate = useNavigate();
-  console.log(id);
-  console.log(getPostings.Category_Posting);
-  console.log(getPostings);
+  // console.log(id);
+  // console.log(getPostings.Category_Posting);
+  // console.log(getPostings);
 
   //삭제 버튼
   const DeletePostHandler = async (id: any) => {
@@ -29,7 +29,7 @@ const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
           onClick: async () => {
             await deleteDoc(doc(dbService, 'Post', id))
               .then(() => {
-                navigate(`/category/${getPostings.Category_Posting}`);
+                navigate(`/category`, { state: getPostings.Category_Posting });
               })
               // then과 catch 세트이다.
               .catch((error) => {

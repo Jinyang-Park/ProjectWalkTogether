@@ -56,7 +56,6 @@ export const paramsState = atom<any>({
   default: '',
 });
 
-//* ---------------MapPage Catefory------------------ *//
 export const CategoryAllInput = atom<any>({
   key: 'CategoryAllInput',
   default: '',
@@ -111,10 +110,6 @@ export const chattingusers = atom<any>({
   key: 'chattingusers',
   default: '',
 });
-
-export const filterDatename = atom<any>({
-  key: 'filterDatename',
-
 
 export const isLoggedIn = atom<boolean>({
   key: 'isLoggedIn',
