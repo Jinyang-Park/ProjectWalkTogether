@@ -11,29 +11,8 @@ import { useParams } from 'react-router-dom';
 import { assert } from 'console';
 import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory';
 import DropBox from './DropBox/DropBox';
-import * as S from './DetailPage.style';
-import Comments from './Comments/Comments';
-import CommonStyles from './../../styles/CommonStyles';
-import DetailMap from './DetailMap/DetailMap';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { paramsState } from '../../Rocoil/Atom';
-import { useEffect, useState } from 'react';
-import { getDoc, doc } from 'firebase/firestore';
-import { authService, dbService } from './../../common/firebase';
-import { useParams } from 'react-router-dom';
-import { assert } from 'console';
-import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory';
-import DropBox from './DropBox/DropBox';
 
 interface getPostings {
-  BannereURL_Posting: string;
-  Category_Posting: string;
-  Description_Posting: string;
-  Nickname: string;
-  ThunmnailURL_Posting: string;
-  Title_Posting: string;
-  UID: string;
-  children: JSX.Element | JSX.Element[];
   BannereURL_Posting: string;
   Category_Posting: string;
   Description_Posting: string;
@@ -55,25 +34,18 @@ const DetailPage = () => {
 
   const [getPostings, setGetPostings] = useState<any>({});
   const [showBox, setShowBox] = useState<any>(false);
-  const [getPostings, setGetPostings] = useState<any>({});
-  const [showBox, setShowBox] = useState<any>(false);
 
   // getPost 함수에서 비동기로 데이터를 가져오기 때문에 isLoading을 사용하여 로딩중인지 아닌지를 확인
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const getPost = async () => {
     const q = doc(dbService, 'Post', id);
     const postData = await getDoc(q);
-    const q = doc(dbService, 'Post', id);
-    const postData = await getDoc(q);
+
     //비동기
-    setGetPostings(postData.data());
     setGetPostings(postData.data());
 
     // isLoading 이 false가 되면 로딩이 끝난 것, true면 로딩중으로 isLoading을 관리
-    setIsLoading(false);
-  };
     setIsLoading(false);
   };
 
@@ -104,9 +76,6 @@ const DetailPage = () => {
                 <S.IntroCategory>
                   {getPostings.Category_Posting}
                 </S.IntroCategory>
-                <S.IntroCategory>
-                  {getPostings.Category_Posting}
-                </S.IntroCategory>
               </S.IntroCategoryTitleBtn>
               <S.IntroTitle>{getPostings.Title_Posting}</S.IntroTitle>
               <S.IntroHashTag></S.IntroHashTag>
@@ -132,7 +101,6 @@ const DetailPage = () => {
                 />
               )}
               {/*post.id인 id를 DropBox로 넘겨준다*/}
-
 
               {showBox && (
                 <DropBox
@@ -178,8 +146,5 @@ const DetailPage = () => {
     </>
   );
 };
-  );
-};
 
-export default DetailPage;
 export default DetailPage;
