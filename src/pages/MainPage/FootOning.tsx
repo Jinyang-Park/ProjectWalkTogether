@@ -18,12 +18,14 @@ import {
 
 interface postProps {
   post: any;
+  Hashtag_Posting: any;
 }
 
 const FootOning = () => {
   const setParams = useSetRecoilState(paramsState);
   const { id } = useParams();
   const [postList, setPostList] = useState([]);
+
   // {value : '신발~' , where :' ' , how:'정렬방법'}
   useEffect(() => {
     const q = query(
@@ -68,8 +70,16 @@ const FootOning = () => {
                   {item.Title_Posting}
                 </S.ListItemThumnailTitle>
                 <S.HashTag>
-                  {item.Hashtag_Posting.map((tagItem) => {
-                    return <Tag tagItem={String(tagItem)} />;
+                  {item.Hashtag_Posting.map((tagItem, i) => {
+                    return (
+                      <>
+                        {tagItem == '' ? (
+                          <div>&nbsp;</div>
+                        ) : (
+                          <div key={i}>{'#' + tagItem}</div>
+                        )}
+                      </>
+                    );
                   })}
                 </S.HashTag>
                 <S.ListItemContainer>

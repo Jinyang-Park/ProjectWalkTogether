@@ -37,7 +37,7 @@ const Tag = (props: { tagItem: string }) => {
         {tagList.map((tagItem, index) => {
           return (
             <TagItem key={index}>
-              <Text>{'#' + tagItem}</Text>
+              <Text>{tagItem}</Text>
               <Button onClick={deleteTagItem}>X</Button>
             </TagItem>
           );
