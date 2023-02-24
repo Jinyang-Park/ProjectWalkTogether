@@ -8,6 +8,8 @@ import { authService } from '../common/firebase';
 import useLoginState from '../hooks/useLoginState';
 import useDetectClose from '../hooks/useDetectClose';
 import KakaoLogoutButton from '../components/Logout/kakaologout';
+import { useRecoilValue } from 'recoil';
+import { username } from '../Rocoil/Atom';
 
 const Header = () => {
   const [userId, setUserId] = useState();
@@ -22,7 +24,7 @@ const Header = () => {
   const gotomy = () => {
     navigate('mypage');
   };
-  const sessionId = sessionStorage.getItem('id');
+  const sessionId = useRecoilValue(username);
   console.log(sessionId);
 
   //const currentUser = authService.currentUser;
