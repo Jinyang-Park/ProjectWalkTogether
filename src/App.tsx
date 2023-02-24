@@ -1,17 +1,12 @@
 import { RecoilRoot } from 'recoil';
-import {
-  MessageWindow,
-  MessageWindowManagerComponent,
-} from './messagewindow/MessageWindow';
+import { MessageWindowComponent } from './messagewindow/MessageWindow';
 import Router from './routes/router';
 
 function App(): JSX.Element {
   return (
     <RecoilRoot>
+      <MessageWindowComponent />
       <Router />
-      <MessageWindowManagerComponent />
-      <MessageWindow.AlertWindow />
-      <MessageWindow.ConfirmWindow />
     </RecoilRoot>
   );
 }

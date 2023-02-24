@@ -13,42 +13,33 @@ import MyPage2 from '../pages/MyPage/MyPage2';
 
 import Collection from '../pages/Collection/Collection';
 import AuthStateListener from '../components/AuthStateListener/AuthStateListener';
-import { ManagerWindowAtom } from '../messagewindow/MessageWindow';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import MessageWindow, {
+  MessageWindowProperties,
+  messageWindowPropertiesAtom,
+} from '../messagewindow/MessageWindow';
 const Router = () => {
-  const messageWindowManager = useRecoilValue(ManagerWindowAtom);
+  const setState = useSetRecoilState<MessageWindowProperties>(
+    messageWindowPropertiesAtom
+  );
 
   return (
     <BrowserRouter>
       <button
         onClick={() => {
-          messageWindowManager.alert(
-            'Alert 테스트 입니다. 누르면 hello 뜹니다',
-            '확인 test',
-            () => {
-              alert('hello');
-            }
+          setState(
+            new MessageWindowProperties(true, '테스트zz', 1, [
+              {
+                text: '가즈아',
+                callback: () => {
+                  alert('아아아아');
+                },
+              },
+            ])
           );
         }}
       >
-        alert 테스트
-      </button>
-      <button
-        onClick={() => {
-          messageWindowManager.confirm(
-            'Confirm 테스트 입니다. 확인 누르면 yes 취소 누르면 no 뜹니다',
-            '확인 test',
-            () => {
-              alert('yes');
-            },
-            '취소 cancel',
-            () => {
-              alert('no');
-            }
-          );
-        }}
-      >
-        confirm test
+        Let's go!
       </button>
       <AuthStateListener />
       <Header />
