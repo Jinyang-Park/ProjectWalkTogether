@@ -41,7 +41,6 @@ const DetailPage = () => {
   const getPost = async () => {
     const q = doc(dbService, 'Post', id);
     const postData = await getDoc(q);
-
     //비동기
 
     setGetPostings(postData.data());
@@ -58,7 +57,7 @@ const DetailPage = () => {
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
   // console.log(getPostings.UID);
-  console.log(getPostings);
+  // console.log(getPostings);
   console.log(authService.currentUser);
   return (
     <>
