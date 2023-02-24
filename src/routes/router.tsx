@@ -28,7 +28,7 @@ const Router = () => {
       <button
         onClick={() => {
           MessageWindow.showWindow(
-            new MessageWindowProperties(true, '테스트zz', 1, [
+            new MessageWindowProperties(true, '테스트zz', [
               {
                 text: '가즈아',
                 callback: () => {

@@ -84,7 +84,6 @@ export class MessageWindowProperties {
   isVisible: boolean;
   message: string;
 
-  buttonCount: number;
   buttons: {
     text: string;
     callback: () => void;
