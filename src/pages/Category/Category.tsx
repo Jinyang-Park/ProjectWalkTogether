@@ -24,8 +24,10 @@ const Category = () => {
   const [show, setShow] = useState<any>(false);
   const [TextChange, setTextChange] = useState('카테고리');
 
-  // 스테이트 하나를 만들었다.
+  // 카테고리 useState
   const [category, setCategory] = useState(state);
+
+  // 달력 useState
 
   useEffect(() => {
     const q = query(

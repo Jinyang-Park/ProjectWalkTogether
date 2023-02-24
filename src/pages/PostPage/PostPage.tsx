@@ -238,6 +238,8 @@ const PostPage = () => {
                 Address_Posting,
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
+                LikedUsers: [],
+                // Date:getTime(),
               });
               console.log('글작성완료 ID: ', docRef);
               // alert('저장완료');
