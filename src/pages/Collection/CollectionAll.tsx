@@ -17,7 +17,11 @@ const CollectionAll = () => {
     <Collection>
       {CollecitionList.map((Collection) => {
         console.log(Collection);
-        return <Collectionitem onClick={() => navigate(`/collection/${Collection.name}`)}></Collectionitem>;
+        return (
+          <Collectionitem
+            onClick={() => navigate(`/collection/${Collection.name}`)}
+          ></Collectionitem>
+        );
       })}
     </Collection>
   );

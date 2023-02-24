@@ -5,7 +5,14 @@ import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { query, collection, where, orderBy, getDocs, onSnapshot } from 'firebase/firestore';
+import {
+  query,
+  collection,
+  where,
+  orderBy,
+  getDocs,
+  onSnapshot,
+} from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
 import CommonStyles from '../../styles/CommonStyles';
 import { paramsState } from '../../Rocoil/Atom';
@@ -68,11 +75,15 @@ const Collection = (props: any) => {
                     <S.ListItemWrapper>
                       <S.ListItemThumnail src={item.ThunmnailURL_Posting} />
                     </S.ListItemWrapper>
-                    <S.ListItemThumnailTitle>{item.Title_Posting}</S.ListItemThumnailTitle>
-                    <S.HashTag>#케이팝 #발라드</S.HashTag>
+                    <S.ListItemThumnailTitle>
+                      {item.Title_Posting}
+                    </S.ListItemThumnailTitle>
+                    {/* <S.HashTag>#케이팝 #발라드</S.HashTag> */}
                     <S.ListItemContainer>
                       <S.LikedHeartFlex>
-                        <S.ListItemAddress>{item.Address_Posting}</S.ListItemAddress>
+                        <S.ListItemAddress>
+                          {item.Address_Posting}
+                        </S.ListItemAddress>
                         <S.LikeBtnLine />
                       </S.LikedHeartFlex>
                       <S.ListItemDate>

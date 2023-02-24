@@ -128,7 +128,7 @@ function MainPost({ setPostCategory, postCategory }: SetProps) {
             onChange={handleChangeText}
             placeholder='당신의 이야기를 적어주세요'
           ></S.Textarea>
-          <S.HashtagBox>#해쉬태그를 입력해주세요</S.HashtagBox>
+          {/* <S.HashtagBox>#해쉬태그를 입력해주세요</S.HashtagBox> */}
         </S.BoxMain>
       </S.Boxcontents>
     </>
