@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import * as S from './Header.style';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import styled, { css } from 'styled-components';
 // import logoImg from '../../src/assets/shoes.png';
-
+import { useRecoilValue } from 'recoil';
 import { authService } from '../common/firebase';
-import useLoginState from '../hooks/useLoginState';
 import useDetectClose from '../hooks/useDetectClose';
 import KakaoLogoutButton from '../components/Logout/kakaologout';
-import { useRecoilValue } from 'recoil';
+import { isLoggedIn } from '../Rocoil/Atom';
 import { username } from '../Rocoil/Atom';
 
 const Header = () => {
-  const [userId, setUserId] = useState();
   const location = useLocation();
   const history = useNavigate();
   const navigate = useNavigate();
@@ -55,7 +52,7 @@ const Header = () => {
           <S.Profile onClick={gotomy}>닉네임</S.Profile>
 
           <S.MyPageContainer>
-            {sessionId !== null ? (
+            {isLoggedIn ? (
               <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
                 <S.LoginButton> {sessionId} </S.LoginButton>
                 <S.DropNav isDropped={myPageIsOpen}>

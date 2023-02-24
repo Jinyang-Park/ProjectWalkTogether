@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { NewpostTag } from '../Rocoil/Atom';
 
 const Tag = () => {
   const [tagItem, setTagItem] = useState('');
-  const [tagList, setTagList] = useState([]);
-
+  // const [tagList, setTagList] = useState([]);
+  const [tagList, setTagList] = useRecoilState(NewpostTag);
   const onKeyPress = (e) => {
-    if (e.target.value.length !== 0 && e.key === 'Enter' && e.target.value.length < 5) {
+    if (e.target.value.length !== 0 && e.key === 'Enter') {
       submitTagItem();
     }
   };
@@ -20,7 +22,9 @@ const Tag = () => {
 
   const deleteTagItem = (e) => {
     const deleteTagItem = e.target.parentElement.firstChild.innerText;
-    const filteredTagList = tagList.filter((tagItem) => tagItem !== deleteTagItem);
+    const filteredTagList = tagList.filter(
+      (tagItem) => tagItem !== deleteTagItem
+    );
     setTagList(filteredTagList);
   };
 
@@ -35,7 +39,14 @@ const Tag = () => {
             </TagItem>
           );
         })}
-        <TagInput type="text" placeholder="Press enter to add tags" tabIndex={2} onChange={(e) => setTagItem(e.target.value)} value={tagItem} onKeyPress={onKeyPress} />
+        <TagInput
+          type='text'
+          placeholder='Press enter to add tags'
+          tabIndex={2}
+          onChange={(e) => setTagItem(e.target.value)}
+          value={tagItem}
+          onKeyPress={onKeyPress}
+        />
       </TagBox>
     </WholeBox>
   );
@@ -55,7 +66,6 @@ const TagBox = styled.div`
   padding: 0 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-
   &:focus-within {
     border-color: tomato;
   }

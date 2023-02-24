@@ -20,6 +20,7 @@ interface getPostings {
   ThunmnailURL_Posting: string;
   Title_Posting: string;
   UID: string;
+  Hashtag_Posting: string;
   children: JSX.Element | JSX.Element[];
 }
 
@@ -71,10 +72,12 @@ const DetailPage = () => {
             {/*인트로영역*/}
             <S.DetailIntroWrapper>
               <S.IntroCategoryTitleBtn>
-                <S.IntroCategory>{getPostings.Category_Posting}</S.IntroCategory>
+                <S.IntroCategory>
+                  {getPostings.Category_Posting}
+                </S.IntroCategory>
               </S.IntroCategoryTitleBtn>
               <S.IntroTitle>{getPostings.Title_Posting}</S.IntroTitle>
-              <S.IntroHashTag>#케이팝 #발라드 #인디</S.IntroHashTag>
+              <S.IntroHashTag>{getPostings.Hashtag_Posting}</S.IntroHashTag>
               <S.IntroDes>{getPostings.Description_Posting}</S.IntroDes>
             </S.DetailIntroWrapper>
             <S.ShareBtn>
@@ -96,7 +99,7 @@ const DetailPage = () => {
                 />
               )}
               {/*post.id인 id를 DropBox로 넘겨준다*/}
-           
+
               {showBox && (
                 <DropBox
                   setShowBox={setShowBox}
