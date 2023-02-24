@@ -34,25 +34,25 @@ export const CategoryFilter = styled.div`
 export const CategoryFilterWarpper = styled.div`
   display: flex;
   padding: 0px 10px 0px 10px;
-  width: 90px;
-  height: 27px;
+  width: 100px;
+  height: 30px;
   align-items: center;
   border: 1px solid #c7c7c7;
   border-radius: 4px;
   margin-right: 8px;
-  margin-top: 10px;
 `
 export const FilterCategory = styled.p`
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
+  width: 70px;
   color: #a6a6a6;
 `
 export const FilterCalendarIcon = styled(BsCalendar4)`
   width: 11px;
   height: 11px;
   top: 52px;
-  margin-left: 6px;
+  margin-left: 5px;
   color: #a6a6a6;
 `
 

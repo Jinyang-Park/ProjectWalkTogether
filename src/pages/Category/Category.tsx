@@ -14,7 +14,7 @@ import { dbService } from '../../common/firebase';
 import CardSection from '../../components/CardSection/CardSection';
 import CommonStyles from '../../styles/CommonStyles';
 import DropdownFilterCategory from './../../components/DropdownFilterCategory/DropdownFilterCategory';
-import AntCalendarMap from './../MapPage/InfoList/Calendar/AntCalendarDate';
+import AntCalendarMap from './Calendar/AntCalendarDate';
 
 const Category = () => {
   //state를 받아옴 필터 네임을 받아ㄴ옴 (초기값)

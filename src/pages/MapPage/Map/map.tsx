@@ -273,10 +273,11 @@ const MapContainer = (Post) => {
       >
         {position && <MapMarker position={position} />}
         {Markers}
-        <ZoomControl position={kakao.maps.ControlPosition.BOTTOMRIGHT} />
+
         <S.CustomZoomControl className='custom_zoomcontrol'>
           <S.ZoomInButton onClick={zoomIn}>
             <AiOutlinePlus size={40} />
+            <S.ZoomInSVG />
           </S.ZoomInButton>
           <S.ZoomOutButton onClick={zoomOut}>
             <AiOutlineMinus size={40} />
