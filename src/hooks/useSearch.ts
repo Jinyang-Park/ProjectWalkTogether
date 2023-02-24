@@ -4,8 +4,7 @@ export const useSearch = (
   DBDefault: any,
   search: any,
   setDB: any,
-  setSearch: any,
-  openFilterEnum: any
+  setSearch: any
 ) => {
   // 검색 form 제출 핸들링 함수
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

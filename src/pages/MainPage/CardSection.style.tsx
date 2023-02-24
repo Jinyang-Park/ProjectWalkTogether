@@ -61,7 +61,7 @@ export const LikeBtnLine = styled(AiOutlineHeart)`
   position: absolute;
   width: 25px;
   height: 20px;
-  margin-left: 11.5rem;
+  margin-left: 9rem;
   margin-top: 30px;
   cursor: pointer;
 `;

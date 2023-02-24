@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 export const NavContainer = styled.div`
   height: 52px;
-  background-color: #e4e4e4;
+  background-color: white;
   width: 100%;
+  border-bottom: 0.5px solid rgba(190, 197, 215, 1);
 `;
 
 export const Nav = styled.div`
@@ -36,11 +37,12 @@ export const LoginButton = styled.button`
   margin: 0 auto;
   padding: 10px;
   margin-top: 10px;
-  padding-top: 0.125rem;
-  padding-bottom: 0.125rem;
+  padding: 5px;
   border-radius: 5px;
-  width: max-content;
-  background: white;
+  width: 100px;
+  height: 40px;
+
+  /* background: blue; */
   font-size: 12px;
   color: black;
 `;
@@ -51,7 +53,7 @@ export const NavEtc = styled.div`
 export const Profile = styled.div`
   padding-top: 0.625rem;
 
-  font-size: 12px;
+  font-size: 15px;
 `;
 export const Logo = styled.img`
   height: 3.125rem;

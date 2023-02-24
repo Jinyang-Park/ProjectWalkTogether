@@ -11,7 +11,9 @@ export const InputBox = styled.div`
   margin: auto;
   border-radius: 10px;
   padding: 5px;
-  top: 50px;
+  position: relative;
+
+  top: 100px;
 
   z-index: 1;
 `;
@@ -31,6 +33,7 @@ export const Input = styled.input`
   height: 2.375rem;
   position: relative;
   left: 1.875rem;
+  background-color: transparent;
   outline: none;
   :focus-visible {
     outline: none;
@@ -124,7 +127,9 @@ export const Validityfontbox = styled.div`
 `;
 
 //유효성검사시 글자
-export const ValidityNicnamefont = styled.span<{ validateDisplaynameColor: boolean }>`
+export const ValidityNicnamefont = styled.span<{
+  validateDisplaynameColor: boolean;
+}>`
   color: ${(Props) => (Props.validateDisplaynameColor ? 'blue' : 'red')};
   font-size: 15px;
 `;

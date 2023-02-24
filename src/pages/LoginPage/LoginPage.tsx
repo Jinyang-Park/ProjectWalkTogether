@@ -54,6 +54,8 @@ const LoginPage = () => {
           .then((data) => {
             sessionStorage.setItem('id', data.user.displayName);
             sessionStorage.setItem('email', data.user.email);
+            sessionStorage.setItem('id', data.user.displayName);
+            sessionStorage.setItem('email', data.user.email);
             navigate('/', { replace: true });
           })
 
@@ -120,6 +122,7 @@ const LoginPage = () => {
         return signInWithPopup(authService, provider).then((data) => {
           setValue(data.user.email);
           sessionStorage.setItem('id', data.user.displayName);
+          sessionStorage.setItem('id', data.user.displayName);
           navigate('/');
         });
       })
@@ -135,7 +138,7 @@ const LoginPage = () => {
       <S.InputLayout>
         <form onSubmit={handleSubmitClick}>
           <S.InputBox>
-            <S.leftBox />
+            {/* <S.leftBox /> */}
             <S.InputBoxContent>
               <S.LoginLogo>
                 <h1>같이 걸을래?</h1>
@@ -191,6 +194,11 @@ const LoginPage = () => {
           </S.InputBox>
         </form>
 
+        <PassModal
+          open={loginModalopen}
+          setLoginModalopen={setLoginModalopen}
+          onClose={() => setLoginModalopen(false)}
+        />
         <PassModal
           open={loginModalopen}
           setLoginModalopen={setLoginModalopen}
