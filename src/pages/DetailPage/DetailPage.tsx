@@ -21,7 +21,6 @@ interface getPostings {
   Title_Posting: string;
   UID: string;
   children: JSX.Element | JSX.Element[];
-  Hashtag_Posting: string;
 }
 
 const DetailPage = () => {

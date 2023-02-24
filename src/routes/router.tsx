@@ -13,9 +13,35 @@ import MyPage2 from '../pages/MyPage/MyPage2';
 
 import Collection from '../pages/Collection/Collection';
 import AuthStateListener from '../components/AuthStateListener/AuthStateListener';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import MessageWindow, {
+  MessageWindowProperties,
+  messageWindowPropertiesAtom,
+} from '../messagewindow/MessageWindow';
 const Router = () => {
+  const setState = useSetRecoilState<MessageWindowProperties>(
+    messageWindowPropertiesAtom
+  );
+
   return (
     <BrowserRouter>
+      <button
+        onClick={() => {
+          MessageWindow.showWindow(
+            new MessageWindowProperties(true, '테스트zz', [
+              {
+                text: '가즈아',
+                callback: () => {
+                  alert('아아아아');
+                },
+              },
+            ]),
+            setState
+          );
+        }}
+      >
+        Let's go!
+      </button>
       <AuthStateListener />
       <Header />
       <Routes>
@@ -28,7 +54,7 @@ const Router = () => {
         <Route path='/postpage/' element={<PostPage />} />
         <Route path='/category' element={<Category />} />
         <Route path='/collection/:id' element={<Collection />} />
-        <Route path='/detailpage/:id' element={<DetailPage />} />
+        {/* <Route path='/detailpage/:id' element={<DetailPage />} /> */}
         <Route path='/chat' element={<ChattingPage />} />
       </Routes>
       <Footer />
