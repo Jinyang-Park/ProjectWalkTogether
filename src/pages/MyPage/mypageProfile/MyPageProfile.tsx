@@ -87,7 +87,9 @@ const MyPageProfile = (props: { uid: string }) => {
         introduce: newmessage,
       });
 
-      window.location.reload();
+      // window.location.reload();
+      setName(newname);
+      setMessage(newmessage);
     }
     sessionStorage.setItem('id', newname);
     setIsEditing(!isEditing);
