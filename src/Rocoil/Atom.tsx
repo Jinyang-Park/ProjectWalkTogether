@@ -57,7 +57,7 @@ export const paramsState = atom<any>({
 
 export const filterDatename = atom<any>({
   key: 'filterDatename',
-
+});
 
 export const isLoggedIn = atom<boolean>({
   key: 'isLoggedIn',
