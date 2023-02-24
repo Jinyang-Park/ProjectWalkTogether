@@ -27,7 +27,7 @@ const Router = () => {
     <BrowserRouter>
       <button
         onClick={() => {
-          setState(
+          MessageWindow.showWindow(
             new MessageWindowProperties(true, '테스트zz', 1, [
               {
                 text: '가즈아',
@@ -35,7 +35,8 @@ const Router = () => {
                   alert('아아아아');
                 },
               },
-            ])
+            ]),
+            setState
           );
         }}
       >
