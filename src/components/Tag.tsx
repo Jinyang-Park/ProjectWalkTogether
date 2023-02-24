@@ -6,7 +6,7 @@ const Tag = () => {
   const [tagList, setTagList] = useState([]);
 
   const onKeyPress = (e) => {
-    if (e.target.value.length !== 0 && e.key === 'Enter') {
+    if (e.target.value.length !== 0 && e.key === 'Enter' && e.target.value.length < 5) {
       submitTagItem();
     }
   };
@@ -30,7 +30,7 @@ const Tag = () => {
         {tagList.map((tagItem, index) => {
           return (
             <TagItem key={index}>
-              <Text>{tagItem}</Text>
+              <Text>{'#' + tagItem}</Text>
               <Button onClick={deleteTagItem}>X</Button>
             </TagItem>
           );

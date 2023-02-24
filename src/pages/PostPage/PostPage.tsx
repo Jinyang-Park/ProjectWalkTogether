@@ -5,7 +5,7 @@ import {
   TitleInput,
   DescriptionInput,
   Bannerupload,
-  Thunmnailupload,
+  ThumbnailUpload,
   ReserveDate,
   selectedAddress,
   myLocation,
@@ -58,7 +58,7 @@ const PostPage = () => {
   const [getBanner, setGetBanner] = useState<any>();
   /////이미지가져오기
   const banner = useRecoilValue(Bannerupload);
-  const thumbnail = useRecoilValue(Thunmnailupload);
+  const thumbnail = useRecoilValue(ThumbnailUpload);
   ///// firestorage 이미지 불러오기
   const auth = getAuth();
   const user = auth.currentUser?.uid;
