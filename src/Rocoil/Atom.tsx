@@ -120,3 +120,8 @@ export const currentUserUid = atom<string>({
   key: 'currentUserUid',
   default: '',
 });
+
+export const username = atom<string>({
+  key: 'username',
+  default: '',
+});

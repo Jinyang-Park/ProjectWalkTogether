@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { authService, dbService, storage } from '../../../common/firebase';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { username } from '../../../Rocoil/Atom';
 const MyPageProfile = (props: { uid: string }) => {
   const navigate = useNavigate();
   const uid = props.uid;
@@ -14,6 +16,8 @@ const MyPageProfile = (props: { uid: string }) => {
   const [newmessage, setNewmessage] = useState('');
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
+
+  const setUsername = useSetRecoilState(username);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -87,7 +91,10 @@ const MyPageProfile = (props: { uid: string }) => {
         introduce: newmessage,
       });
 
-      window.location.reload();
+      // window.location.reload();
+      setName(newname);
+      setMessage(newmessage);
+      setUsername(newname);
     }
     sessionStorage.setItem('id', newname);
     setIsEditing(!isEditing);

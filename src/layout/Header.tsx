@@ -8,7 +8,8 @@ import { authService } from '../common/firebase';
 import useLoginState from '../hooks/useLoginState';
 import useDetectClose from '../hooks/useDetectClose';
 import KakaoLogoutButton from '../components/Logout/kakaologout';
-import { Auth, onAuthStateChanged } from 'firebase/auth';
+import { useRecoilValue } from 'recoil';
+import { isLoggedIn, username } from '../Rocoil/Atom';
 
 const Header = () => {
   const [userId, setUserId] = useState();
@@ -16,7 +17,7 @@ const Header = () => {
   const history = useNavigate();
   const navigate = useNavigate();
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
-  const [loggedIn, setIsLoggedIn] = useState(false);
+  const loggedIn = useRecoilValue(isLoggedIn);
 
   const handleLogin = () => {
     navigate('login');
@@ -24,25 +25,12 @@ const Header = () => {
   const gotomy = () => {
     navigate('mypage');
   };
-  const sessionId = sessionStorage.getItem('id');
+  const sessionId = useRecoilValue(username);
   console.log(sessionId);
 
   //const currentUser = authService.currentUser;
   //const userNickName = currentUser?.displayName;
   //localId !== null
-
-  useEffect(() => {
-    authService.onAuthStateChanged((user) => {
-      console.log(user);
-      if (user) {
-        // 로그인 된 상태일 경우
-        setIsLoggedIn(true);
-      } else {
-        // 로그아웃 된 상태일 경우
-        setIsLoggedIn(false);
-      }
-    });
-  }, []);
 
   return (
     <S.NavContainer>
@@ -80,7 +68,7 @@ const Header = () => {
           {/* <S.Profile onClick={gotomy}>닉네임</S.Profile> */}
 
           <S.MyPageContainer>
-            {sessionId !== null ? (
+            {loggedIn ? (
               <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
                 <S.LoginButton> {sessionId} </S.LoginButton>
 
@@ -89,9 +77,9 @@ const Header = () => {
                     <S.Li>
                       <S.Profile onClick={gotomy}>마이페이지</S.Profile>
                     </S.Li>
-                    {/* <S.Li>
+                    <S.Li>
                       <S.Profile onClick={gotomy}>닉네임</S.Profile>
-                    </S.Li> */}
+                    </S.Li>
                     <S.Li>
                       <KakaoLogoutButton />
                     </S.Li>

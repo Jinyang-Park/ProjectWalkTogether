@@ -23,7 +23,7 @@ const MyPage2 = () => {
         setId(userUid);
       } else {
         // 로그아웃 상태 시 로그인 페이지로 보냄
-        // navigate('/login');
+        navigate('/login');
       }
     }
   }, [loggedIn]);
