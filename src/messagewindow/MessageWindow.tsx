@@ -51,11 +51,6 @@ export function MessageWindowComponent() {
     messageWindowPropertiesAtom
   );
 
-  useEffect(() => {
-    console.log('==================================');
-    console.log(props.isVisible, props.message);
-  }, []);
-
   return (
     <>
       {props.isVisible && (
