@@ -55,8 +55,59 @@ export const paramsState = atom<any>({
   default: '',
 });
 
-export const filterDatename = atom<any>({
-  key: 'filterDatename',
+export const CategoryAllInput = atom<any>({
+  key: 'CategoryAllInput',
+  default: '',
+});
+
+export const SelectedCategoryInput = atom<any>({
+  key: 'SelectedCategoryInput',
+  default: '',
+});
+
+export const DateAllInput = atom<any>({
+  key: 'DateAllInput',
+  default: '',
+});
+
+export const SelectedDateInput = atom<any>({
+  key: 'SelectedDateInput',
+  default: '',
+});
+
+export const LocationAllInput = atom<any>({
+  key: 'LocationAllInput',
+  default: '',
+});
+
+export const SelectedLocationInput = atom<any>({
+  key: 'SelectedLocationInput',
+  default: '',
+});
+
+export const DateSortInput = atom<any>({
+  key: 'DateSortInput',
+  default: '',
+});
+
+export const ViewSortInput = atom<any>({
+  key: 'ViewSortInput',
+  default: '',
+});
+
+export const LikeSortInput = atom<any>({
+  key: 'LikeSortInput',
+  default: '',
+});
+
+export const NewSortInput = atom<any>({
+  key: 'NewSortInput',
+  default: '',
+});
+
+export const chattingusers = atom<any>({
+  key: 'chattingusers',
+  default: '',
 });
 
 export const isLoggedIn = atom<boolean>({

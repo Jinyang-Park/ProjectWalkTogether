@@ -21,14 +21,6 @@ interface getPostings {
   Title_Posting: string;
   UID: string;
   children: JSX.Element | JSX.Element[];
-  BannereURL_Posting: string;
-  Category_Posting: string;
-  Description_Posting: string;
-  Nickname: string;
-  ThunmnailURL_Posting: string;
-  Title_Posting: string;
-  UID: string;
-  children: JSX.Element | JSX.Element[];
 }
 
 const DetailPage = () => {
@@ -50,12 +42,10 @@ const DetailPage = () => {
     const q = doc(dbService, 'Post', id);
     const postData = await getDoc(q);
     //비동기
-    setGetPostings(postData.data());
+
     setGetPostings(postData.data());
 
     // isLoading 이 false가 되면 로딩이 끝난 것, true면 로딩중으로 isLoading을 관리
-    setIsLoading(false);
-  };
     setIsLoading(false);
   };
 
@@ -86,9 +76,6 @@ const DetailPage = () => {
                 <S.IntroCategory>
                   {getPostings.Category_Posting}
                 </S.IntroCategory>
-                <S.IntroCategory>
-                  {getPostings.Category_Posting}
-                </S.IntroCategory>
               </S.IntroCategoryTitleBtn>
               <S.IntroTitle>{getPostings.Title_Posting}</S.IntroTitle>
               <S.IntroHashTag></S.IntroHashTag>
@@ -114,7 +101,6 @@ const DetailPage = () => {
                 />
               )}
               {/*post.id인 id를 DropBox로 넘겨준다*/}
-
 
               {showBox && (
                 <DropBox
@@ -160,8 +146,5 @@ const DetailPage = () => {
     </>
   );
 };
-  );
-};
 
-export default DetailPage;
 export default DetailPage;
