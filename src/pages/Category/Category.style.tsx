@@ -9,7 +9,8 @@ export const CategoryTitle = styled.p`
   line-height: 45px;
 `;
 export const CategoryImg = styled.img`
-  // 해당 카테고리 사진 넣을곳인데 안될듯하다
+  width: 50px;
+  height: 50px;
 `;
 export const LikedListItem = styled.div`
   display: flex;

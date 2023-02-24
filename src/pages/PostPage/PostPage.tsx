@@ -5,7 +5,7 @@ import {
   TitleInput,
   DescriptionInput,
   Bannerupload,
-  Thunmnailupload,
+  ThumbnailUpload,
   ReserveDate,
   selectedAddress,
   myLocation,
@@ -58,7 +58,7 @@ const PostPage = () => {
   const [getBanner, setGetBanner] = useState<any>();
   /////이미지가져오기
   const banner = useRecoilValue(Bannerupload);
-  const thumbnail = useRecoilValue(Thunmnailupload);
+  const thumbnail = useRecoilValue(ThumbnailUpload);
   ///// firestorage 이미지 불러오기
   const auth = getAuth();
   const user = auth.currentUser?.uid;
@@ -279,10 +279,10 @@ const PostPage = () => {
     // geturl(); settTimeout이 없으면 에러가 난다.
     // async await 비동기 처리
     setTimeout(geturl, 1000);
-    navigate(`/category/${postCategory}`);
+    navigate(`/category`, { state: postCategory });
     // setTimeout(adddoc, 8000);
   };
-  console.log('postCategory', postCategory);
+  // console.log('postCategory', postCategory);
   return (
     <CommonStyles>
       <S.Boxcontainer>

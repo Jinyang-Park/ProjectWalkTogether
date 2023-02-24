@@ -28,9 +28,8 @@ export const ListItemThumnail = styled.img`
 `;
 export const ListItemThumnailTitle = styled.p`
   /* height: 48px; */
-  width: 200px;
   margin: 8px 0px 0px 0px;
-  /* overflow: hidden; */
+  overflow: hidden;
   text-overflow: ellipsis;
   font-size: 16px;
   font-weight: 600;
@@ -77,4 +76,20 @@ export const ListItemDate = styled.span`
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
+`;
+
+export const LikedListItem = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 74.5px;
+  grid-row-gap: 70px;
+  margin-top: 36px;
+`;
+
+export const CategoryTitleWrapper = styled.div``;
+export const CategoryTitle = styled.p`
+  margin-top: 64px;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 45px;
 `;

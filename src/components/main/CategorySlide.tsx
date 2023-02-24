@@ -14,7 +14,7 @@ import { MdArrowForwardIos } from 'react-icons/md';
 
 //MdArrowForwardIos
 
-function CategorySlide({ Category }) {
+function CategorySlide() {
   const navigate = useNavigate();
   const settings = {
     dots: false,
