@@ -80,7 +80,7 @@ const TagBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   &:focus-within {
-    border-color: tomato;
+    border-color: #8ca6bc;
   }
 `;
 
@@ -90,7 +90,7 @@ const TagItem = styled.div`
   justify-content: space-between;
   margin: 5px;
   padding: 5px;
-  background-color: tomato;
+  background-color: #8ca6bc;
   border-radius: 5px;
   color: white;
   font-size: 13px;

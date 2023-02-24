@@ -6,7 +6,7 @@ import LoginPage from '../pages/LoginPage/LoginPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import MapPage from '../pages/MapPage/MapPage';
 import PostPage from '../pages/PostPage/PostPage';
-// import DetailPage from '../pages/DetailPage/DetailPage';
+import DetailPage from '../pages/DetailPage/DetailPage';
 import ChattingPage from '../pages/ChatPage/ChattingPage';
 import Category from './../pages/Category/Category';
 import MyPage2 from '../pages/MyPage/MyPage2';
@@ -28,7 +28,7 @@ const Router = () => {
         <Route path='/postpage/' element={<PostPage />} />
         <Route path='/category' element={<Category />} />
         <Route path='/collection/:id' element={<Collection />} />
-        {/* <Route path='/detailpage/:id' element={<DetailPage/>} /> */}
+        <Route path='/detailpage/:id' element={<DetailPage />} />
         <Route path='/chat' element={<ChattingPage />} />
       </Routes>
       <Footer />
