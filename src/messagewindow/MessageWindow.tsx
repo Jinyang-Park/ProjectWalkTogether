@@ -61,6 +61,30 @@ export default class MessageWindow {
       recoilSetStateFunction
     );
   }
+
+  // Shortcut for two button windows (버튼 2개 알림창 전용)
+  static showConfirmWindow(
+    message: string,
+    yesButtonText: string,
+    yesButtonCallback: () => void,
+    noButtonText: string,
+    noButtonCallback: () => void,
+    recoilSetStateFunction: (arg0: MessageWindowProperties) => void
+  ) {
+    MessageWindow.showWindow(
+      new MessageWindowProperties(true, message, [
+        {
+          text: yesButtonText,
+          callback: yesButtonCallback,
+        },
+        {
+          text: noButtonText,
+          callback: noButtonCallback,
+        },
+      ]),
+      recoilSetStateFunction
+    );
+  }
 }
 
 export function MessageWindowComponent() {
