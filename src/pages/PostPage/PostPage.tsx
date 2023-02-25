@@ -141,12 +141,12 @@ const PostPage = () => {
       break;
   }
   //날자
-  let meetDaynum = '';
+  let meetDaynum: any = '';
   const meetDay = OTS.slice(5, 7);
   if (Number(meetDay) < 10) {
-    meetDaynum = meetDay.slice(1, 2);
+    meetDaynum = Number(meetDay.slice(1, 2)) + 1;
   } else {
-    meetDaynum = meetDay;
+    meetDaynum = Number(meetDay) + 1;
   }
 
   //시간
@@ -239,7 +239,7 @@ const PostPage = () => {
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
                 LikedUsers: [],
-                // Date:getTime(),
+                View: 0,
               });
               console.log('글작성완료 ID: ', docRef);
               // alert('저장완료');

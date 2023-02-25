@@ -5,12 +5,13 @@ import DetailMap from './DetailMap/DetailMap';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { paramsState } from '../../Rocoil/Atom';
 import { useEffect, useState } from 'react';
-import { getDoc, doc } from 'firebase/firestore';
+import { getDoc, doc, updateDoc } from 'firebase/firestore';
 import { authService, dbService } from './../../common/firebase';
 import { useParams } from 'react-router-dom';
 import { assert } from 'console';
 import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory';
 import DropBox from './DropBox/DropBox';
+import { async } from '@firebase/util';
 
 interface getPostings {
   BannereURL_Posting: string;
@@ -43,9 +44,8 @@ const DetailPage = () => {
     const postData = await getDoc(q);
 
     //비동기
-
     setGetPostings(postData.data());
-
+    // isLoading 범인
     // isLoading 이 false가 되면 로딩이 끝난 것, true면 로딩중으로 isLoading을 관리
     setIsLoading(false);
   };
@@ -55,11 +55,26 @@ const DetailPage = () => {
     getPost();
   }, []);
 
+  // !! undfined false 아니면 true
+  // 여기 공부하자!
+  const UpdateView = async () => {
+    const q = doc(dbService, 'Post', id);
+    // dbService에 있는 getPostings.View + 1 를 View 넣어준다.
+    await updateDoc(q, { View: getPostings.View + 1 });
+  };
+  useEffect(() => {
+    // View를 넣어도 되는지 테스트 해보자
+    if (getPostings.View >= 0) {
+      UpdateView();
+    }
+  }, [isLoading]);
+
+  console.log(getPostings.View);
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
   // console.log(getPostings.UID);
-  console.log(getPostings);
-  console.log(authService.currentUser);
+  // console.log(getPostings);
+  // console.log(authService.currentUser);
   return (
     <>
       <CommonStyles>
