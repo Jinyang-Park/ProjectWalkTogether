@@ -43,6 +43,24 @@ export default class MessageWindow {
   ) {
     recoilSetStateFunction(props);
   }
+
+  // Shortcut for one button windows (버튼 1개 알림창 전용)
+  static showAlertWindow(
+    message: string,
+    buttonText: string,
+    buttonCallback: () => void,
+    recoilSetStateFunction: (arg0: MessageWindowProperties) => void
+  ) {
+    MessageWindow.showWindow(
+      new MessageWindowProperties(true, message, [
+        {
+          text: buttonText,
+          callback: buttonCallback,
+        },
+      ]),
+      recoilSetStateFunction
+    );
+  }
 }
 
 export function MessageWindowComponent() {
