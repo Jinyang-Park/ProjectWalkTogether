@@ -15,6 +15,7 @@ import Collection from '../pages/Collection/Collection';
 import AuthStateListener from '../components/AuthStateListener/AuthStateListener';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import MessageWindow, {
+  MessageWindowLogoType,
   MessageWindowProperties,
   messageWindowPropertiesAtom,
 } from '../messagewindow/MessageWindow';
@@ -28,14 +29,19 @@ const Router = () => {
       <button
         onClick={() => {
           MessageWindow.showWindow(
-            new MessageWindowProperties(true, '테스트zz', [
-              {
-                text: '가즈아',
-                callback: () => {
-                  alert('아아아아');
+            new MessageWindowProperties(
+              true,
+              '테스트zz',
+              [
+                {
+                  text: '가즈아',
+                  callback: () => {
+                    alert('아아아아');
+                  },
                 },
-              },
-            ]),
+              ],
+              MessageWindowLogoType.Checkmark
+            ),
             setState
           );
         }}

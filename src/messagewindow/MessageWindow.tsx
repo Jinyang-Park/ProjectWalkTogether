@@ -1,5 +1,16 @@
 import { useEffect } from 'react';
 import { atom, useRecoilState } from 'recoil';
+import styled from 'styled-components';
+
+import checkmark from '../assets/messageWindow/Checkmark.svg';
+import confetti from '../assets/messageWindow/Confetti.svg';
+import cryingFace from '../assets/messageWindow/CryingFace.svg';
+import flower from '../assets/messageWindow/Flower.svg';
+import id from '../assets/messageWindow/ID.svg';
+import perplex from '../assets/messageWindow/Perplex.svg';
+import rocket from '../assets/messageWindow/Rocket.svg';
+import writingHand from '../assets/messageWindow/WritingHand.svg';
+import yellowPencil from '../assets/messageWindow/YellowPencil.svg';
 
 //
 // 사용법
@@ -87,15 +98,69 @@ export default class MessageWindow {
   }
 }
 
+export enum MessageWindowLogoType {
+  None,
+  Checkmark,
+  Confetti,
+  CryingFace,
+  Flower,
+  ID,
+  Perplex,
+  Rocket,
+  WritingHand,
+  YellowPencil,
+}
+
 export function MessageWindowComponent() {
   const [props, setProps] = useRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
 
+  const LogoImg = styled.img`
+    width: 500px;
+  `;
+
+  const renderLogo = () => {
+    switch (props.logoType) {
+      case MessageWindowLogoType.None:
+        return <></>;
+      case MessageWindowLogoType.Checkmark:
+        return <LogoImg src={checkmark} alt='Checkmark' />;
+
+      case MessageWindowLogoType.Confetti:
+        return <LogoImg src={confetti} alt='Confetti' />;
+
+      case MessageWindowLogoType.CryingFace:
+        return <LogoImg src={cryingFace} alt='Crying Face' />;
+
+      case MessageWindowLogoType.Flower:
+        return <LogoImg src={flower} alt='Flower' />;
+
+      case MessageWindowLogoType.ID:
+        return <LogoImg src={id} alt='ID' />;
+
+      case MessageWindowLogoType.Perplex:
+        return <LogoImg src={perplex} alt='Perplex' />;
+
+      case MessageWindowLogoType.Rocket:
+        return <LogoImg src={rocket} alt='Rocket' />;
+
+      case MessageWindowLogoType.WritingHand:
+        return <LogoImg src={writingHand} alt='Writing Hand' />;
+
+      case MessageWindowLogoType.YellowPencil:
+        return <LogoImg src={yellowPencil} alt='Yellow Pencil' />;
+
+      default:
+        return <></>;
+    }
+  };
+
   return (
     <>
       {props.isVisible && (
         <div style={{ border: '1px solid black' }}>
+          {renderLogo()}
           <p>{props.message}</p>
           {props.buttons.map((buttonData) => {
             return (
@@ -117,14 +182,21 @@ export function MessageWindowComponent() {
 }
 
 export class MessageWindowProperties {
-  constructor(isVisible: boolean = false, message: string = '', buttons = []) {
+  constructor(
+    isVisible: boolean = false,
+    message: string = '',
+    buttons = [],
+    logoType: MessageWindowLogoType = MessageWindowLogoType.None
+  ) {
     this.isVisible = isVisible;
     this.message = message;
     this.buttons = buttons;
+    this.logoType = logoType;
   }
 
   isVisible: boolean;
   message: string;
+  logoType: MessageWindowLogoType;
 
   buttons: {
     text: string;
