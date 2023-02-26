@@ -185,7 +185,10 @@ export class MessageWindowProperties {
   constructor(
     isVisible: boolean = false,
     message: string = '',
-    buttons = [],
+    buttons: Array<{
+      text: string;
+      callback: () => void;
+    }> = [],
     logoType: MessageWindowLogoType = MessageWindowLogoType.None
   ) {
     this.isVisible = isVisible;
@@ -198,13 +201,13 @@ export class MessageWindowProperties {
   message: string;
   logoType: MessageWindowLogoType;
 
-  buttons: {
+  buttons: Array<{
     text: string;
     callback: () => void;
-  }[];
+  }>;
 }
 
 export const messageWindowPropertiesAtom = atom({
-  key: 'messageWIndow.properties',
+  key: 'messageWindow.properties',
   default: new MessageWindowProperties(),
 });
