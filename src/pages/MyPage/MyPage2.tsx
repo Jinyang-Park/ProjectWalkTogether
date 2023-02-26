@@ -7,11 +7,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { currentUserUid, isLoggedIn } from '../../Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
+import MypageTabbar from './tabbar/MypageTabbar';
+import MyPageLike from './likepage/MyPageLike';
 
 const MyPage2 = () => {
   let { uid } = useParams();
   const navigate = useNavigate();
+
   const [id, setId] = useState<string>(uid || '');
+  const [currentpage, setCurrentPage] = useState('');
 
   const loggedIn = useRecoilValue(isLoggedIn);
   const userUid = useRecoilValue(currentUserUid);
@@ -28,6 +32,17 @@ const MyPage2 = () => {
     }
   }, [loggedIn]);
 
+  const a = () => {
+    switch (currentpage) {
+      case MyPageName.Post:
+        return <MyPageWrite uid={id} />;
+      case MyPageName.Interest:
+        return <MyPageLike uid={id} />;
+      default:
+        return <>error</>;
+    }
+  };
+
   return (
     <CommonStyles>
       {id !== '' && (
@@ -35,10 +50,21 @@ const MyPage2 = () => {
           <MyPageBanner uid={id} />
           <MyPageProfile uid={id} />
           <MyPageReView />
+          <MypageTabbar
+            currentpage={currentpage}
+            setCurrentPage={setCurrentPage}
+          />
           <MyPageWrite uid={id} />
+          <MyPageLike uid={id} />
+          {a()}
         </>
       )}
     </CommonStyles>
   );
 };
 export default MyPage2;
+
+export enum MyPageName {
+  Post = 'Post',
+  Interest = 'Interest',
+}
