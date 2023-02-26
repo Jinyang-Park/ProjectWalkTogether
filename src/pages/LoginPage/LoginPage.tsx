@@ -182,7 +182,7 @@ const LoginPage = () => {
               <S.ThirdBox>
                 <S.RegisterBtn
                   type='button'
-                  onClick={() => navigate('/signup')}
+                  onClick={() => navigate('/agreement')}
                 >
                   회원 가입
                 </S.RegisterBtn>
