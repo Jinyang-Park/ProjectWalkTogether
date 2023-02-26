@@ -25,6 +25,7 @@ const DropdownFilterCategory = ({
     setCategory(name);
     setShow(false);
   };
+
   // console.log(CategorysList);
   return (
     <S.DropdownBox>

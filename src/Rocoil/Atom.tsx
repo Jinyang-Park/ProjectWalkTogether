@@ -1,17 +1,16 @@
 import { atom } from 'recoil';
-import CategoryAll from '../pages/MainPage/CategoryAll/CategoryAll';
 
 //Date & Time
 export const Time = atom<string>({
   key: 'Time',
   // key의 값은 항상 고유값이어야 합니다.
-  default: '',
+  default: Date(),
 });
 
 export const ReserveDate = atom<any>({
   key: 'ReserveDate',
   // key의 값은 항상 고유값이어야 합니다.
-  default: '',
+  default: Date(),
 });
 
 export const TitleInput = atom<string>({

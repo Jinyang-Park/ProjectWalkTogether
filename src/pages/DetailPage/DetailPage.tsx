@@ -62,6 +62,7 @@ const DetailPage = () => {
     // dbService에 있는 getPostings.View + 1 를 View 넣어준다.
     await updateDoc(q, { View: getPostings.View + 1 });
   };
+
   useEffect(() => {
     // View를 넣어도 되는지 테스트 해보자
     if (getPostings.View >= 0) {
