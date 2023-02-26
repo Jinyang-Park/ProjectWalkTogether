@@ -116,10 +116,68 @@ export function MessageWindowComponent() {
     messageWindowPropertiesAtom
   );
 
-  const LogoImg = styled.img`
-    width: 500px;
+  const AlertWrap = styled.div`
+    width: 343px;
+    height: 400px;
+    padding: 20px 64px;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    background: #ffffff;
+    box-shadow: 0px 0px 10px #bec5d7;
+    border-radius: 4px;
   `;
 
+  const LogoImg = styled.img`
+    width: 172px;
+    height: 172px;
+  `;
+  const AlertTitle = styled.div`
+    width: 275px;
+    height: 36px;
+    line-height: 150.8%;
+    margin-top: 8px;
+
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+  `;
+  const Alertwarning = styled.div`
+    width: 240px;
+    height: 24px;
+    line-height: 150.8%;
+    margin-top: 8px;
+
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+
+    color: #7d8bae;
+  `;
+  const AlertBtn = styled.button`
+    width: 200px;
+    height: 40px;
+
+    background: #7d8bae;
+    border-radius: 32px;
+  `;
+  const PostCancelBtn = styled.button`
+    width: 202px;
+    height: 40px;
+    border-bottom: 20px;
+    margin-top: 8px;
+
+    border-radius: 50px;
+    color: #7d8bae;
+  `;
+  const AlertBtnContainer = styled.div`
+    margin-top: 24px;
+  `;
   const renderLogo = () => {
     switch (props.logoType) {
       case MessageWindowLogoType.None:
@@ -159,23 +217,25 @@ export function MessageWindowComponent() {
   return (
     <>
       {props.isVisible && (
-        <div style={{ border: '1px solid black' }}>
+        <AlertWrap>
           {renderLogo()}
-          <p>{props.message}</p>
-          {props.buttons.map((buttonData) => {
-            return (
-              <button
-                key={buttonData.text}
-                onClick={() => {
-                  setProps(new MessageWindowProperties());
-                  buttonData.callback();
-                }}
-              >
-                {buttonData.text}
-              </button>
-            );
-          })}
-        </div>
+          <AlertTitle>{props.message}</AlertTitle>
+          <AlertBtnContainer>
+            {props.buttons.map((buttonData) => {
+              return (
+                <AlertBtn
+                  key={buttonData.text}
+                  onClick={() => {
+                    setProps(new MessageWindowProperties());
+                    buttonData.callback();
+                  }}
+                >
+                  {buttonData.text}
+                </AlertBtn>
+              );
+            })}
+          </AlertBtnContainer>
+        </AlertWrap>
       )}
     </>
   );
