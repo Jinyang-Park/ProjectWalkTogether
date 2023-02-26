@@ -115,11 +115,24 @@ export function MessageWindowComponent() {
   const [props, setProps] = useRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
+  const ModalBackground = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    backdrop-filter: blur(5px);
+  `;
 
   const AlertWrap = styled.div`
     width: 343px;
     height: 400px;
     padding: 20px 64px;
+
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
 
     display: flex;
     flex-direction: column;
@@ -146,19 +159,7 @@ export function MessageWindowComponent() {
     font-weight: 600;
     font-size: 24px;
   `;
-  const Alertwarning = styled.div`
-    width: 240px;
-    height: 24px;
-    line-height: 150.8%;
-    margin-top: 8px;
 
-    font-family: 'SUIT';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-
-    color: #7d8bae;
-  `;
   const AlertBtn = styled.button`
     width: 200px;
     height: 40px;
@@ -166,15 +167,7 @@ export function MessageWindowComponent() {
     background: #7d8bae;
     border-radius: 32px;
   `;
-  const PostCancelBtn = styled.button`
-    width: 202px;
-    height: 40px;
-    border-bottom: 20px;
-    margin-top: 8px;
 
-    border-radius: 50px;
-    color: #7d8bae;
-  `;
   const AlertBtnContainer = styled.div`
     margin-top: 24px;
   `;
@@ -217,25 +210,27 @@ export function MessageWindowComponent() {
   return (
     <>
       {props.isVisible && (
-        <AlertWrap>
-          {renderLogo()}
-          <AlertTitle>{props.message}</AlertTitle>
-          <AlertBtnContainer>
-            {props.buttons.map((buttonData) => {
-              return (
-                <AlertBtn
-                  key={buttonData.text}
-                  onClick={() => {
-                    setProps(new MessageWindowProperties());
-                    buttonData.callback();
-                  }}
-                >
-                  {buttonData.text}
-                </AlertBtn>
-              );
-            })}
-          </AlertBtnContainer>
-        </AlertWrap>
+        <ModalBackground>
+          <AlertWrap>
+            {renderLogo()}
+            <AlertTitle>{props.message}</AlertTitle>
+            <AlertBtnContainer>
+              {props.buttons.map((buttonData) => {
+                return (
+                  <AlertBtn
+                    key={buttonData.text}
+                    onClick={() => {
+                      setProps(new MessageWindowProperties());
+                      buttonData.callback();
+                    }}
+                  >
+                    {buttonData.text}
+                  </AlertBtn>
+                );
+              })}
+            </AlertBtnContainer>
+          </AlertWrap>
+        </ModalBackground>
       )}
     </>
   );
