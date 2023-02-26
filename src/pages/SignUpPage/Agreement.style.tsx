@@ -45,14 +45,22 @@ export const checkBox_check02 = styled.div`
 export const List = styled.li`
   list-style: none;
 `;
-export const Text = styled.p``;
+export const ListLayout = styled.li`
+  display: flex;
+`;
+
+export const Text = styled.p`
+  padding-left: 10px;
+`;
 
 export const checkAllBtn = styled.div``;
 export const checkBox_check03 = styled.div``;
 
 export const DialogButton = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
+
+  background-size: cover;
 `;
 
 export const Back = styled.div`

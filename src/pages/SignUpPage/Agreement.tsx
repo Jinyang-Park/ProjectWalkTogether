@@ -68,9 +68,10 @@ const Agreement = () => {
             <S.join_box>
               <S.checkBox_check01>
                 <S.Agree01>
-                  <S.List>필수</S.List>
-                  <S.List>이용약관 동의</S.List>
-
+                  <S.ListLayout>
+                    <S.List>필수</S.List>
+                    <S.Text>이용약관 동의</S.Text>
+                  </S.ListLayout>
                   {isOpenModal1 && (
                     <AgreeModal onClickToggleModal={onClickToggleModalA}>
                       <S.ModalTitle>
@@ -116,8 +117,10 @@ const Agreement = () => {
 
               <S.checkBox_check02>
                 <S.Agree01>
-                  <S.List>필수</S.List>
-                  <S.List>개인정보 수집 및 이용 동의</S.List>
+                  <S.ListLayout>
+                    <S.List>필수</S.List>
+                    <S.Text>개인정보 수집 및 이용 동의</S.Text>
+                  </S.ListLayout>
                   {isOpenModal2 && (
                     <AgreeModal onClickToggleModal={onClickToggleModalB}>
                       <S.ModalTitle>
@@ -163,9 +166,10 @@ const Agreement = () => {
 
               <S.checkBox_check03>
                 <S.Agree01>
-                  <S.List>필수</S.List>
-                  <S.List>개인위치 정보처리 동의</S.List>
-
+                  <S.ListLayout>
+                    <S.List>필수</S.List>
+                    <S.Text>개인위치 정보처리 동의</S.Text>
+                  </S.ListLayout>
                   {isOpenModal3 && (
                     <AgreeModal onClickToggleModal={onClickToggleModalC}>
                       <S.ModalTitle>
@@ -211,9 +215,10 @@ const Agreement = () => {
 
               <S.List className='checkBox check03'>
                 <S.Agree01>
-                  <S.List>필수</S.List>
-                  <S.List>서비스 이용약관 동의</S.List>
-
+                  <S.ListLayout>
+                    <S.List>필수</S.List>
+                    <S.Text>서비스 이용약관 동의</S.Text>
+                  </S.ListLayout>
                   {isOpenModal4 && (
                     <AgreeModal onClickToggleModal={onClickToggleModalD}>
                       <S.ModalTitle>
