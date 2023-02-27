@@ -2,9 +2,15 @@ import React, { useEffect } from 'react';
 import * as S from './DropBox.style';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-import { deleteDoc, doc } from 'firebase/firestore';
+import { deleteDoc, doc, documentId } from 'firebase/firestore';
 import { dbService } from './../../../common/firebase';
 import { useNavigate } from 'react-router-dom';
+import MessageWindow, {
+  MessageWindowLogoType,
+  MessageWindowProperties,
+  messageWindowPropertiesAtom,
+} from '../../../messagewindow/MessageWindow';
+import { useSetRecoilState } from 'recoil';
 
 interface DropProps {
   id: any;
@@ -13,37 +19,60 @@ interface DropProps {
 }
 
 const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
+  const setState = useSetRecoilState<MessageWindowProperties>(
+    messageWindowPropertiesAtom
+  );
   const navigate = useNavigate();
-  console.log(id);
-  console.log(getPostings.Category_Posting);
-  console.log(getPostings);
+  // console.log(id);
+  // console.log(getPostings.Category_Posting);
+  // console.log(getPostings);
 
   //삭제 버튼
   const DeletePostHandler = async (id: any) => {
-    confirmAlert({
-      title: '정말 게시물을 삭제하시겠습니까?',
-      message: '삭제한 게시물은 되돌릴 수 없습니다.',
-      buttons: [
-        {
-          label: '네',
-          onClick: async () => {
-            await deleteDoc(doc(dbService, 'Post', id))
-              .then(() => {
-                navigate(`/category/${getPostings.Category_Posting}`);
-              })
-              // then과 catch 세트이다.
-              .catch((error) => {
-                console.log(error);
-              });
+    // confirmAlert({
+    //   title: '정말 게시물을 삭제하시겠습니까?',
+    //   message: '삭제한 게시물은 되돌릴 수 없습니다.',
+    //   buttons: [
+    //     {
+    //       label: '네',
+    //       onClick: async () => {
+    //         await deleteDoc(doc(dbService, 'Post', id))
+    //           .then(() => {
+    //             navigate(`/category`, { state: getPostings.Category_Posting });
+    //           })
+    //           // then과 catch 세트이다.
+    //           .catch((error) => {
+    //             console.log(error);
+    //           });
+    //       },
+    //     },
+    //     {
+    //       label: '아니오',
+    //       onClick: () => 'return false',
+    //     },
+    //   ],
+    // });
+    // return;
+    MessageWindow.showWindow(
+      new MessageWindowProperties(
+        true,
+        '정말 댓글을 삭제하시겠습니까?',
+        [
+          {
+            text: '네',
+            callback: async () => await deleteDoc(doc(dbService, 'Post', id)),
           },
-        },
-        {
-          label: '아니오',
-          onClick: () => 'return false',
-        },
-      ],
-    });
-    return;
+          {
+            text: '아니오',
+            callback: () => {
+              return;
+            },
+          },
+        ],
+        MessageWindowLogoType.Perplex
+      ),
+      setState
+    );
   };
 
   // 이건 안된다.

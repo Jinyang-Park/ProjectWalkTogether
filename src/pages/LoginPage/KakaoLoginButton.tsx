@@ -61,7 +61,6 @@ export default function KakaoLoginButton() {
       },
     });
     console.log(user.data.id);
-
     console.log(user);
     //값을가져오면 state에 닉네임과 프로필이미지를 string으로 담아주자
     setNickName(user.data.properties.nickname);

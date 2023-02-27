@@ -84,12 +84,6 @@ export const InputTitle = styled.input`
 `;
 
 //해쉬태그 박스
-export const HashtagBox = styled.div`
-  /* background-color: darkgray; */
-  margin-top: -4px;
-  /* margin-bottom: 8px; */
-  font-size: 16px;
-`;
 
 // 글쓰기 textarea
 export const Textarea = styled.textarea`
@@ -122,7 +116,7 @@ export const BoxPhoto = styled.div`
   margin-top: 8px;
   position: relative;
   left: 24px;
-  background-color: white;
+  background-color: #eef1f7;
   border-radius: 4px;
 `;
 

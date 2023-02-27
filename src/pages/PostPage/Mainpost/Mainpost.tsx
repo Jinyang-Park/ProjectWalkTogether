@@ -5,15 +5,25 @@ import { TitleInput, DescriptionInput } from '../../../Rocoil/Atom';
 import { Bannerupload, ThumbnailUpload } from '../../../Rocoil/Atom';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
+import Tag from '../../../components/Tag';
 
 interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
   postCategory: string;
 }
+interface SetProps {
+  setTagItem: React.Dispatch<React.SetStateAction<string>>;
+  TagItem: string;
+}
 
-function MainPost({ setPostCategory, postCategory }: SetProps) {
+function MainPost({
+  setTagItem,
+  TagItem,
+  setPostCategory,
+  postCategory,
+}: SetProps) {
   const [posttitel, Setposttitle] = useRecoilState(TitleInput); //글 제목
-  const [postTag, setPostTag] = useState(''); //해쉬태그
+  //const [postTag, setPostTag] = useState(''); //해쉬태그
   const [postdescription, SetDescription] = useRecoilState(DescriptionInput); //글 내용
   // const [postCategory, setPostCategory] = useState(''); //카테고리
   const [photoupload, setPhotoupload] = useRecoilState(ThumbnailUpload); // Handles input change event and updates state
@@ -128,7 +138,7 @@ function MainPost({ setPostCategory, postCategory }: SetProps) {
             onChange={handleChangeText}
             placeholder='당신의 이야기를 적어주세요'
           ></S.Textarea>
-          <S.HashtagBox>#해쉬태그를 입력해주세요</S.HashtagBox>
+          <Tag tagItem='' />
         </S.BoxMain>
       </S.Boxcontents>
     </>

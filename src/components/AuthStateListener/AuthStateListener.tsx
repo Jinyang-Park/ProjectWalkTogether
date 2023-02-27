@@ -74,7 +74,7 @@ export default function AuthStateListener() {
         );
       } else {
         // User is logged out
-        alert('로그아웃되었습니다. 안녕히 잘가세요ㅋ -알레한드로');
+        // alert('로그아웃되었습니다. 안녕히 잘가세요ㅋ -알레한드로');
         setIsLoggedIn(false);
         setCurrentUserUid('');
         setUsername('');

@@ -27,6 +27,7 @@ export default function KakaoLogoutButton() {
         alert('로그아웃 성공');
       })
       .catch((err) => alert(err));
+    sessionStorage.clear();
 
     localStorage.clear();
 
@@ -36,7 +37,7 @@ export default function KakaoLogoutButton() {
 
   return (
     <>
-      <KakaoLogout onClick={Logout}>logout</KakaoLogout>
+      <KakaoLogout onClick={Logout}>로그아웃</KakaoLogout>
     </>
   );
 }

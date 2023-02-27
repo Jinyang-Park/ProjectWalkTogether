@@ -1,5 +1,4 @@
 import { atom } from 'recoil';
-import CategoryAll from '../pages/MainPage/CategoryAll/CategoryAll';
 
 //Date & Time
 export const Time = atom<string>({
@@ -56,7 +55,6 @@ export const paramsState = atom<any>({
   default: '',
 });
 
-//* ---------------MapPage Catefory------------------ *//
 export const CategoryAllInput = atom<any>({
   key: 'CategoryAllInput',
   default: '',
@@ -132,4 +130,10 @@ export const currentUserUid = atom<string>({
 export const username = atom<string>({
   key: 'username',
   default: '',
+});
+
+export const NewpostTag = atom<string[]>({
+  key: 'NewpostTag',
+  // key의 값은 항상 고유값이어야 합니다.
+  default: [],
 });

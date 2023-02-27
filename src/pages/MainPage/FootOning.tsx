@@ -4,19 +4,28 @@ import { authService, dbService } from '../../common/firebase';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import * as S from './CardSection.style';
-
+import Tag from '../../components/Tag';
 import { paramsState } from '../../Rocoil/Atom';
-import { query, collection, where, orderBy, getDocs, onSnapshot } from 'firebase/firestore';
+import {
+  query,
+  collection,
+  where,
+  orderBy,
+  getDocs,
+  onSnapshot,
+} from 'firebase/firestore';
 // import { onAuthStateChanged } from 'firebase/auth'
 
 interface postProps {
   post: any;
+  Hashtag_Posting: any;
 }
 
 const FootOning = () => {
   const setParams = useSetRecoilState(paramsState);
   const { id } = useParams();
   const [postList, setPostList] = useState([]);
+
   // {value : '신발~' , where :' ' , how:'정렬방법'}
   useEffect(() => {
     const q = query(
@@ -44,6 +53,7 @@ const FootOning = () => {
   return (
     <>
       {postList.map((item) => {
+        console.log(item);
         return (
           <>
             <S.CardBox>
@@ -56,11 +66,27 @@ const FootOning = () => {
                 <S.ListItemWrapper>
                   <S.ListItemThumnail src={item.ThunmnailURL_Posting} />
                 </S.ListItemWrapper>
-                <S.ListItemThumnailTitle>{item.Title_Posting}</S.ListItemThumnailTitle>
-                <S.HashTag>#케이팝 #발라드</S.HashTag>
+                <S.ListItemThumnailTitle>
+                  {item.Title_Posting}
+                </S.ListItemThumnailTitle>
+                <S.HashTag>
+                  {/* {item.Hashtag_Posting.map((tagItem, i) => {
+                    return (
+                      <>
+                        {tagItem == '' ? (
+                          <div>&nbsp;</div>
+                        ) : (
+                          <div key={i}>{'#' + tagItem}</div>
+                        )}
+                      </>
+                    );
+                  })} */}
+                </S.HashTag>
                 <S.ListItemContainer>
                   <S.LikedHeartFlex>
-                    <S.ListItemAddress>{item.Address_Posting}</S.ListItemAddress>
+                    <S.ListItemAddress>
+                      {item.Address_Posting}
+                    </S.ListItemAddress>
                     <S.LikeBtnLine />
                   </S.LikedHeartFlex>
                   <S.ListItemDate>

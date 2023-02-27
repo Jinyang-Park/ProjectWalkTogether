@@ -20,7 +20,8 @@ export const InputBox = styled.div`
   margin: auto;
   border-radius: 10px;
   padding: 5px;
-  top: 50px;
+  position: relative;
+  top: 100px;
 
   z-index: 1;
 `;
@@ -38,6 +39,7 @@ export const Input = styled.input`
   position: relative;
   left: 1.875rem;
   outline: none;
+  background-color: transparent;
   :focus-visible {
     outline: none;
   }
@@ -56,6 +58,7 @@ export const Inputholder = styled.div`
   height: 48px;
   border: 2px solid #adadad;
   color: #b2c8df;
+
   margin-top: 10px;
 `;
 
@@ -92,7 +95,7 @@ export const SocialBox = styled.div`
   margin: auto;
   display: flex;
   align-items: center;
-  margin-left: 3.125rem;
+  margin-left: 30px;
 `;
 
 export const FindBox = styled.div`
@@ -109,6 +112,14 @@ export const Naver = styled.img`
 
   cursor: pointer;
 `;
+
+export const Facebook = styled.img`
+  margin: 1.25rem;
+  width: 2.5rem;
+
+  cursor: pointer;
+`;
+
 export const Google = styled.img`
   margin: 1.25rem;
   width: 2.5rem;
@@ -147,10 +158,12 @@ export const ThirdBox = styled.div`
 
 export const RegisterBtn = styled.button`
   width: 80px;
-  height: 2.5rem;
+  height: 35px;
   color: black;
   border: none;
   margin-top: 0.625rem;
+  position: relative;
+  bottom: 10px;
 
   cursor: pointer;
   &:hover {

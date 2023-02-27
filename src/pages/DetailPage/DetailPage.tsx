@@ -42,6 +42,7 @@ const DetailPage = () => {
     const q = doc(dbService, 'Post', id);
     const postData = await getDoc(q);
     //비동기
+
     setGetPostings(postData.data());
 
     // isLoading 이 false가 되면 로딩이 끝난 것, true면 로딩중으로 isLoading을 관리
@@ -49,14 +50,16 @@ const DetailPage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getPost();
   }, []);
 
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
   // console.log(getPostings.UID);
-  console.log(getPostings);
+  // console.log(getPostings);
   console.log(authService.currentUser);
+  console.log(getPostings);
   return (
     <>
       <CommonStyles>
@@ -76,7 +79,20 @@ const DetailPage = () => {
                 </S.IntroCategory>
               </S.IntroCategoryTitleBtn>
               <S.IntroTitle>{getPostings.Title_Posting}</S.IntroTitle>
-              <S.IntroHashTag>#케이팝 #발라드 #인디</S.IntroHashTag>
+              <S.IntroHashTag>
+                {getPostings.Hashtag_Posting &&
+                  getPostings.Hashtag_Posting.map((tagItem, i) => {
+                    return (
+                      <>
+                        {tagItem == '' ? (
+                          <div>&nbsp;</div>
+                        ) : (
+                          <div key={i}>&nbsp;{'#' + tagItem}</div>
+                        )}
+                      </>
+                    );
+                  })}
+              </S.IntroHashTag>
               <S.IntroDes>{getPostings.Description_Posting}</S.IntroDes>
             </S.DetailIntroWrapper>
             <S.ShareBtn>
@@ -93,6 +109,7 @@ const DetailPage = () => {
               ) : (
                 <S.MoreBtn
                   onClick={() => {
+                    setShowBox(true);
                     setShowBox(true);
                   }}
                 />
