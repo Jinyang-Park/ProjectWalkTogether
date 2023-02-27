@@ -23,6 +23,7 @@ export const join_box = styled.div`
   padding-left: 40px;
   padding-right: 40px;
   margin-top: 60px;
+  padding-bottom: 40px;
 `;
 export const Title_head = styled.p`
   font-size: 20px;
@@ -38,6 +39,7 @@ export const Agree01 = styled.div`
   justify-content: space-between;
   padding-bottom: 30px;
 `;
+
 export const checkBox_check02 = styled.div`
   position: relative;
 `;
@@ -72,14 +74,16 @@ export const BackBtn = styled.button`
 `;
 
 export const ModalTitle = styled.div`
-  color: orange;
   margin-top: 30px;
   font-size: 32px;
 `;
 export const ModalContents = styled.div`
-  color: orange;
   margin-top: 10px;
   font-size: 18px;
+  overflow: scroll;
+
+  height: 200px;
+  width: 300px;
 `;
 
 export const CloseButton = styled.button`
@@ -105,7 +109,7 @@ export const CloseButton = styled.button`
 `;
 export const AgreeBox = styled.div`
   display: flex;
-  margin-top: 75px;
+
   display: block;
   width: 100%;
   height: 100%;

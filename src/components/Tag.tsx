@@ -6,20 +6,20 @@ import { NewpostTag } from '../Rocoil/Atom';
 const Tag = (props: { tagItem: string }) => {
   const Tag = props.tagItem;
   const [tagItem, setTagItem] = useState('');
-  // const [tagList, setTagList] = useState([]);
   const [tagList, setTagList] = useRecoilState(NewpostTag);
-  const onKeyPress = (e) => {
-    if (e.target.value.length < 7 && e.key === 'Enter') {
-      submitTagItem();
-    }
 
-    if (tagList.length > 4) {
+  const onKeyPress = (e) => {
+    if (tagList.length >= 3) {
       window.alert('더이상 태그를 추가할 수 없습니다!');
-      e.target.value = '';
+      return;
     }
     if (tagList.includes(e.target.value)) {
       window.alert('중복된 태그입니다');
       return setTagList([...tagList]);
+    }
+
+    if (e.target.value.length < 7 && e.key === 'Enter') {
+      submitTagItem();
     }
   };
 
@@ -46,7 +46,7 @@ const Tag = (props: { tagItem: string }) => {
         {tagList.map((tagItem, index) => {
           return (
             <TagItem key={index}>
-              <Text>{tagItem}</Text>
+              <Text>{'#' + tagItem}</Text>
               <Button onClick={deleteTagItem}>X</Button>
             </TagItem>
           );
@@ -66,7 +66,6 @@ const Tag = (props: { tagItem: string }) => {
 };
 
 const WholeBox = styled.div`
-  padding: 10px;
   height: 100vh;
 `;
 
@@ -74,14 +73,14 @@ const TagBox = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  min-height: 50px;
-  margin: 10px;
+  min-height: 40px;
+  width: 84%;
   padding: 0 10px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+  border-radius: px;
   &:focus-within {
     border-color: #8ca6bc;
   }
+  background: #eef1f7;
 `;
 
 const TagItem = styled.div`
