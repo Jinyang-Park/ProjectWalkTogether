@@ -113,6 +113,11 @@ export const Cetegory = atom<any>({
 
 //* ---------------MapPage Catefory------------------ *//
 
+export const chattingusers = atom<any>({
+  key: 'chattingusers',
+  default: '',
+});
+
 export const filterDatename = atom<any>({
   key: 'filterDatename',
 });
