@@ -29,7 +29,7 @@ const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
           onClick: async () => {
             await deleteDoc(doc(dbService, 'Post', id))
               .then(() => {
-                navigate(`/category`, { state: getPostings.Category_Posting });
+                navigate(`/category/${getPostings.Category_Posting}`);
               })
               // then과 catch 세트이다.
               .catch((error) => {

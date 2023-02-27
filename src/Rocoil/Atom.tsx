@@ -130,3 +130,8 @@ export const FilterSelectedDate = atom<any>({
   // key의 값은 항상 고유값이어야 합니다.
   default: '',
 });
+
+export const lastCategoryAtom = atom<any>({
+  key: 'lastCategory',
+  default: '반려동물',
+});

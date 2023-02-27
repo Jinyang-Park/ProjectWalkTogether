@@ -30,15 +30,15 @@ function CategorySlide() {
   return (
     <div>
       <StyledSlider {...settings}>
-        {CategorysList.map((filterData) => {
+        {CategorysList.map((Category) => {
           return (
             //리액트 라우터 dom state 찾아보기
             <Categoryitem
-              onClick={() => navigate(`/category`, { state: filterData.name })}
-              key={filterData.name}
+              onClick={() => navigate(`/category/${Category.name}`)}
+              key={Category.name}
             >
-              <Img src={filterData.img} />
-              <ImgTitle>{filterData.name}</ImgTitle>
+              <Img src={Category.img} />
+              <ImgTitle>{Category.name}</ImgTitle>
             </Categoryitem>
           );
         })}

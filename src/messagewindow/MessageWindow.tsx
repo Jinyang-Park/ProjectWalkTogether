@@ -133,6 +133,6 @@ export class MessageWindowProperties {
 }
 
 export const messageWindowPropertiesAtom = atom({
-  key: 'messageWIndow.properties',
+  key: 'messageWindow.properties',
   default: new MessageWindowProperties(),
 });

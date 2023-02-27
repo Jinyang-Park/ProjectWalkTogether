@@ -22,8 +22,7 @@ const AntCalendarMap: React.FC = () => {
     // console.log('dateString', dateString);
     // console.log('date', date);
     setfilterSelectedDate(date);
-    // 처음 눌르면 filterSelectedDate 빈 값이 나온다.
-    // 하지만 category 페이지에서는 똑같이 콘솔로그 찍으면 내가 선택한 값이 잘나온다. 왜일까?
+
     console.log(filterSelectedDate);
   };
   // console.log('filterSelectedDate', filterSelectedDate);
