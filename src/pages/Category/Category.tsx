@@ -18,6 +18,9 @@ import AntCalendarMap from './Calendar/AntCalendarDate';
 import { FilterSelectedDate } from '../../Rocoil/Atom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
+// interface Date {
+//   setfilterSelectedDate: React.Dispatch<React.SetStateAction<string>>;
+// }
 const Category = () => {
   //state를 받아옴 필터 네임을 받아ㄴ옴 (초기값)
   const { state } = useLocation();
@@ -32,10 +35,11 @@ const Category = () => {
 
   // 조회순
   const [viewCount, setViewCount] = useState('최신순');
-  const [filteredDate, setFilteredDate] = useState([postings]);
-  //약속 시간
-  const meetDate = useRecoilValue(FilterSelectedDate);
 
+  const [filteredDate, setFilteredDate] = useState('');
+  //약속 시간
+  const [meetDate, setMeetDate] = useRecoilState(FilterSelectedDate);
+  console.log(meetDate);
   const date = (y: number, m: number, d: number) => {
     const D = new Date(y, m, d);
 
@@ -63,7 +67,7 @@ const Category = () => {
   const m = meetDate.$M;
   const d = meetDate.$D;
   const month = meetDate.$M + 1;
-
+  console.log(y, m, d);
   // console.log(FilterSelectedDate);
   // 달력
 
@@ -90,31 +94,28 @@ const Category = () => {
       });
       setPostings(getCategoryList);
     });
+    return () => {
+      setMeetDate('');
+    };
   }, [category]);
 
   console.log(postings);
+
   // console.log(post.RsvDate_Posting.slice(0, 4));
 
   // 클릭한 카테고리 날짜와 내가 클릭한 달력 날짜가 일치하는 친구들만 필터로 걸러준다.
   // FiltetedDate를 가지고 리턴문에서 map을 돌리면 아무것도 뜨지 않는다.
   // SelectedDate과 '/1' 불일치하면 postings.filter((post: any) => post.RsvDate_Posting.slice(0, 4) === SelectedDate) 을 보여주고 아니면 포스팅
   // useEffect(() => {
-  //   SelectedDate !== 'NaN/undefined'
+  //   SelectedDate.length < 14
   //     ? setFilteredDate(
   //         postings.filter((post: any) => post.RsvDate_Posting === SelectedDate)
   //       )
   //     : setFilteredDate(postings);
   //   console.log(filteredDate);
   // }, [SelectedDate]);
-  // let FilteredDate = [];
-  // if (SelectedDate) {
-  //   FilteredDate = postings.filter(
-  //     (post: any) => post.RsvDate_Posting === SelectedDate
-  //   );
-  // } else {
-  //   FilteredDate = postings;
-  // }
-  console.log(SelectedDate.length);
+
+  // console.log(SelectedDate.length);
 
   const FilteredDate =
     // SelectedDate !== 'NaN/undefined'
@@ -122,13 +123,19 @@ const Category = () => {
       ? postings.filter((post: any) => post.RsvDate_Posting === SelectedDate)
       : postings;
 
-  // console.log(SelectedDate !== 'NaN/undefined');
-  // console.log(postings);
-
   const DoubledFilterDate =
     viewCount === '조회순'
       ? [...FilteredDate].sort((a, b) => b.View - a.View)
       : FilteredDate;
+
+  useEffect(() => {
+    setFilteredDate(SelectedDate);
+  }, [postings]);
+
+  console.log(filteredDate);
+  // console.log(SelectedDate !== 'NaN/undefined');
+  // console.log(postings);
+
   // console.log(FilteredDate);
   // console.log(category);
 
