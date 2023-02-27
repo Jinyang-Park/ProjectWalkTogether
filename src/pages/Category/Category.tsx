@@ -105,24 +105,16 @@ const Category = () => {
 
   // 클릭한 카테고리 날짜와 내가 클릭한 달력 날짜가 일치하는 친구들만 필터로 걸러준다.
   // FiltetedDate를 가지고 리턴문에서 map을 돌리면 아무것도 뜨지 않는다.
-  // SelectedDate과 '/1' 불일치하면 postings.filter((post: any) => post.RsvDate_Posting.slice(0, 4) === SelectedDate) 을 보여주고 아니면 포스팅
-  // useEffect(() => {
-  //   SelectedDate.length < 14
-  //     ? setFilteredDate(
-  //         postings.filter((post: any) => post.RsvDate_Posting === SelectedDate)
-  //       )
-  //     : setFilteredDate(postings);
-  //   console.log(filteredDate);
-  // }, [SelectedDate]);
+  //  SelectedDate.length < 14 이면 postings.filter((post: any) => post.RsvDate_Posting.slice(0, 4) === SelectedDate) 을 보여주고 아니면 포스팅
 
-  // console.log(SelectedDate.length);
-
+  // 내가 클릭한 달력의 날짜와 db에 올라간 날짜가 일치하면 FilteredDate 에 할당되는 함수이다.
   const FilteredDate =
-    // SelectedDate !== 'NaN/undefined'
+    // SelectedDate !== 'NaN/undefined'4
     SelectedDate.length < 14
       ? postings.filter((post: any) => post.RsvDate_Posting === SelectedDate)
       : postings;
 
+  // FilteredDate를 가지고 조회순으로 정렬해주는 함수이다.
   const DoubledFilterDate =
     viewCount === '조회순'
       ? [...FilteredDate].sort((a, b) => b.View - a.View)
