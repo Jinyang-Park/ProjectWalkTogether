@@ -47,10 +47,6 @@ function ChattingList() {
   const array = [];
   const test1 = chatList;
 
-  for (var a = 0; a < test1.length; a++) {
-    for (var b = 1; b < test1.length; b++) {}
-  }
-
   console.log('test1:', test1);
 
   return (

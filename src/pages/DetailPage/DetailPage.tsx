@@ -51,6 +51,16 @@ const DetailPage = () => {
 
   // getPost 함수에서 비동기로 데이터를 가져오기 때문에 isLoading을 사용하여 로딩중인지 아닌지를 확인
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  //채팅방중복확인
+  const [isduplication, setIsduplication] = useState(false);
+  const mychatlist = useRecoilValue(currentUserUid);
+  const [chatList, setChatList] = useState<any>([]);
+
+  // 채팅방 만들기
+  const getPostingUID = getPostings.UID;
+  const CurrentUid = UID.useruid;
+  //  동일한 유저이더라도 게시글마다 새로운 채팅방이 생긴다
+  const combineId: any = getPostings.PostingID_Posting + CurrentUid;
 
   const getPost = async () => {
     const q = doc(dbService, 'Post', id);
@@ -63,14 +73,11 @@ const DetailPage = () => {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    getPost();
-  }, []);
+  /////////////////
+  //채팅방 중복확인 중 db에서 데이터 가져오기.
 
-  //채팅방 중복확인
-  const mychatlist = useRecoilValue(currentUserUid);
-  const [chatList, setChatList] = useState<any>([]);
+  // getPost getChattingList  => duplicate
+
   const getChattingList = async () => {
     if (mychatlist === '') {
       return;
@@ -87,60 +94,74 @@ const DetailPage = () => {
       list = [...list, { id: doc.id, ...doc.data() }];
     });
     setChatList(list);
-    console.log('list:', list);
+
+    // console.log('list:', list);
+  };
+
+  const duplicate = () => {
+    for (let a = 0; a < chatList.length; a++) {
+      if (chatList[a].combineId === combineId) {
+        setIsduplication(true);
+      } else {
+      }
+    }
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    getPost();
     getChattingList();
+    // duplicate();
   }, [mychatlist]);
 
-  // 채팅방 만들기
-  const getPostingUID = getPostings.UID;
-  const CurrentUid = UID.useruid;
-  //  동일한 유저이더라도 게시글마다 새로운 채팅방이 생긴다
-  const combineId: any = getPostings.PostingID_Posting + CurrentUid;
+  // 채팅창 중복확인은 getChattingList 이후에 작동되게uesEffect를 사용해주니까 중복확인이 되었다.
+  useEffect(() => {
+    duplicate();
+  }, [getChattingList]);
 
   const goToChat = async () => {
-    alert('채팅창으로 이동합니다.');
+    if (isduplication == true) {
+      alert('이미 채팅이 존재합니다.');
+      navigate('/chat');
+    } else {
+      alert('채팅창으로 이동합니다.');
+      // db에저장된 user의 정보가 저장되는 곳
 
-    // db에저장된 user의 정보가 저장되는 곳
+      //db에저장된 컬렉션 user의 작성자가 가지는 하위컬랙션 chattingroom에 저장되는값들
+      await setDoc(doc(dbService, 'Users', `${getPostingUID}`), {
+        getPostingUID: getPostingUID,
+        // chattingroom: [{ combineId, date }],
+      });
 
-    //db에저장된 컬렉션 user의 작성자가 가지는 하위컬랙션 chattingroom에 저장되는값들
-    await setDoc(doc(dbService, 'Users', `${getPostingUID}`), {
-      getPostingUID: getPostingUID,
-      // chattingroom: [{ combineId, date }],
-    });
+      await addDoc(
+        collection(dbService, 'Users', `${getPostingUID}`, 'chattingroom'),
+        {
+          combineId,
+          profile: UID.myporfile,
+          uid: UID.useruid,
+          nickname: UID.mynickname,
+          createdAt: new Date(),
+        }
+      );
 
-    await addDoc(
-      collection(dbService, 'Users', `${getPostingUID}`, 'chattingroom'),
-      {
-        combineId,
-        profile: UID.myporfile,
-        uid: UID.useruid,
-        nickname: UID.mynickname,
-        createdAt: new Date(),
-      }
-    );
-
-    //db에저장된 컬렉션 user의 상대방이 가지는 하위컬랙션 chattingroom에 저장되는값들
-    await addDoc(
-      collection(dbService, 'Users', `${CurrentUid}`, 'chattingroom'),
-      {
-        combineId,
-        profile: getPostings.ThunmnailURL_Posting,
-        uid: getPostings.UID,
-        nicname: getPostings.Nickname,
-        createdAt: new Date(),
-      }
-    );
-    navigate('/chat');
+      //db에저장된 컬렉션 user의 상대방이 가지는 하위컬랙션 chattingroom에 저장되는값들
+      await addDoc(
+        collection(dbService, 'Users', `${CurrentUid}`, 'chattingroom'),
+        {
+          combineId,
+          profile: getPostings.ThunmnailURL_Posting,
+          uid: getPostings.UID,
+          nicname: getPostings.Nickname,
+          createdAt: new Date(),
+        }
+      );
+      navigate('/chat');
+    }
   };
 
-  // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
-  // console.log(getPostings.UID);
-  console.log('chatList:', chatList);
-  // console.log(authService.currentUser);
+
+  console.log('isduplication:', isduplication);
 
   return (
     <>
