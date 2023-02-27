@@ -3,11 +3,16 @@ import * as S from './ChattingBox.style';
 import { useState } from 'react';
 import { authService, dbService } from '../../../common/firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { chattingusers, currentUserUid } from '../../../Rocoil/Atom';
+import {
+  chattingusers,
+  currentUserUid,
+  tochattingbox,
+} from '../../../Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 
 function ChattingBox() {
   const [message, setMessage] = useState('');
+  const roomId = useRecoilValue(tochattingbox);
 
   const chattinguser = useRecoilValue(currentUserUid);
 
@@ -15,8 +20,9 @@ function ChattingBox() {
   const sendMessage = async (event) => {
     event.preventDefault();
     if (message.trim() === '') {
-      alert('Enter valid message');
+      alert('채팅을 입력해 주세요!');
       return;
+    } else {
     }
   };
   useEffect(() => {}, []);

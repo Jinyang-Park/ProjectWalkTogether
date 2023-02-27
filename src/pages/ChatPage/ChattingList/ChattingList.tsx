@@ -9,14 +9,15 @@ import {
   orderBy,
 } from 'firebase/firestore';
 import { dbService } from '../../../common/firebase';
-import { currentUserUid } from '../../../Rocoil/Atom';
+import { currentUserUid, tochattingbox } from '../../../Rocoil/Atom';
 import { useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 function ChattingList() {
   const mychatlist = useRecoilValue(currentUserUid);
   const [chatList, setChatList] = useState<any>([]);
   const [filtering, setFiltering] = useState([]);
+  const [tochattingBox, SetTochattingBox] = useRecoilState<any>(tochattingbox);
 
   const getChattingList = async () => {
     if (mychatlist === '') {
@@ -42,12 +43,9 @@ function ChattingList() {
   }, [mychatlist]);
 
   const chattingUser = chatList;
+  console.log('tochattingBox', tochattingBox);
 
   // const test2 = test.combineId;
-  const array = [];
-  const test1 = chatList;
-
-  console.log('test1:', test1);
 
   return (
     <>
@@ -62,7 +60,11 @@ function ChattingList() {
           <S.ChattingUserBox>
             {chattingUser.map((user) => {
               return (
-                <S.ChattingUser>
+                <S.ChattingUser
+                  onClick={() => {
+                    SetTochattingBox(() => user.combineId);
+                  }}
+                >
                   {/* <div style={{ backgroundImage: `${user.porfile}` }}></div> */}
                   <S.UserImg src={user.profile} />
 

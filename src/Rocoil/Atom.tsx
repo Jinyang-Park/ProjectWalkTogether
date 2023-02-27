@@ -135,3 +135,8 @@ export const userForChat = atom<any>({
   key: 'userForChat',
   default: '',
 });
+
+export const tochattingbox = atom<string>({
+  key: 'tochattingbox',
+  default: '',
+});
