@@ -70,112 +70,59 @@ const PostPage = () => {
 
   //약속 시간
   const meetDate = useRecoilValue(ReserveDate);
-  const OTS = meetDate.toString();
-  const weeks = OTS.slice(0, 3);
-  let todayweek = '';
-  switch (
-    weeks //요일
-  ) {
-    case 'Sun':
-      todayweek = '(일)';
-      break;
-    case 'Mon':
-      todayweek = '(월)';
-      break;
-    case 'Tue':
-      todayweek = '(화)';
-      break;
-    case 'Wed':
-      todayweek = '(수)';
-      break;
-    case 'Thu':
-      todayweek = '(목)';
-      break;
-    case 'Fri':
-      todayweek = '(금)';
-      break;
-    case 'Sat':
-      todayweek = '(토)';
-      break;
-  }
 
-  //월
-  const meetMonth = OTS.slice(8, 11);
-  let todayMonth = '';
-  switch (meetMonth) {
-    case 'Jan':
-      todayMonth = '1';
-      break;
-    case 'Feb':
-      todayMonth = '2';
-      break;
-    case 'Mar':
-      todayMonth = '3';
-      break;
-    case 'Apr':
-      todayMonth = '4';
-      break;
-    case 'May':
-      todayMonth = '5';
-      break;
-    case 'Jun':
-      todayMonth = '6';
-      break;
-    case 'July':
-      todayMonth = '7';
-      break;
-    case 'Aug':
-      todayMonth = '8';
-      break;
-    case 'Sep':
-      todayMonth = '9';
-      break;
-    case 'Oct':
-      todayMonth = '10';
-      break;
-    case 'Nov':
-      todayMonth = '11';
-      break;
-    case 'dec':
-      todayMonth = '12';
-      break;
-  }
-  //날자
-  let meetDaynum = '';
-  const meetDay = OTS.slice(5, 7);
-  if (Number(meetDay) < 10) {
-    meetDaynum = meetDay.slice(1, 2);
-  } else {
-    meetDaynum = meetDay;
-  }
+  const date = (y: number, m: number, d: number) => {
+    const D = new Date(y, m, d);
+
+    switch (D.getDay()) {
+      case 0:
+        return '(일)';
+      case 1:
+        return '(월)';
+      case 2:
+        return '(화)';
+      case 3:
+        return `(수)`;
+      case 4:
+        return `(목)`;
+      case 5:
+        return '(금)';
+      case 6:
+        return `(토)`;
+      default:
+        return '';
+    }
+  };
+
+  const y = meetDate.$y;
+  const m = meetDate.$M;
+  const d = meetDate.$D;
+  const month = meetDate.$M + 1;
+
+  console.log('date:', date(y, meetDate.$M, d));
 
   //시간
   const meetTime = useRecoilValue(Time);
   const meetHour = meetTime.slice(0, 2);
-  let meetHourNum: any = '';
-  if (Number(meetHour) < 10) {
-    meetHourNum = meetHour.slice(1, 2);
-  } else if (Number(meetHour) > 12) {
-    meetHourNum = Number(meetHour) - 12;
-  } else if (Number(meetHour) === 0 || Number(meetHour) === 12) {
-    meetHourNum = '0';
-  } else {
-    meetHourNum = meetHour;
-  }
+
+  const isPm = Number(meetHour) >= 12;
+
+  const time12 = isPm
+    ? Number(meetHour) === 24
+      ? 0
+      : Number(meetHour) === 12
+      ? 12
+      : Number(meetHour) - 12
+    : Number(meetHour);
 
   //AM/PM
-  let AMPM = '';
-  if (Number(meetHour) >= 12) {
-    AMPM = '오후';
-  } else {
-    AMPM = '오전';
-  }
+  let AMPM = isPm ? '오후' : '오전';
 
   const meetMinute = meetTime.slice(3, 5);
   let meetMinuteNum = Number(meetMinute);
 
-  const RsvDate_Posting = `${todayMonth}/${meetDaynum} ${todayweek}`;
-  const RsvHour_Posting = `${AMPM} ${meetHourNum}:${meetMinute}`;
+  const RsvDate_Posting = `${month}/${d} ${date(y, m, d)}`;
+  const RsvHour_Posting = `${AMPM} ${time12}:${meetMinute}`;
 
   //타이틀, 글 내용
   const Title = useRecoilValue(TitleInput);
@@ -197,7 +144,7 @@ const PostPage = () => {
   /////////////
   //콘솔확인용/
   useEffect(() => {
-    console.log(' Description.length:', Description.length);
+    console.log(' RsvDate_Posting:', RsvDate_Posting);
     setPostTime(timestring); //현재 시간
     // setPostHour(meeting); //약속 시간
     setPostNickname(nickname);

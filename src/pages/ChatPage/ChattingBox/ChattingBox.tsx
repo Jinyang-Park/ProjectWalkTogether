@@ -3,14 +3,13 @@ import * as S from './ChattingBox.style';
 import { useState } from 'react';
 import { authService, dbService } from '../../../common/firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { chattingusers } from '../../../Rocoil/Atom';
+import { chattingusers, currentUserUid } from '../../../Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 
 function ChattingBox() {
   const [message, setMessage] = useState('');
-  const { uid, displayName, photoURL } = authService.currentUser;
 
-  const chattinguser = useRecoilValue(chattingusers);
+  const chattinguser = useRecoilValue(currentUserUid);
 
   //메세지 전송시 함수
   const sendMessage = async (event) => {
@@ -19,17 +18,8 @@ function ChattingBox() {
       alert('Enter valid message');
       return;
     }
-
-    await addDoc(collection(dbService, 'Chat'), {
-      text: message,
-      name: displayName,
-      avatar: photoURL,
-      createdAt: serverTimestamp(),
-      uid,
-    });
-    setMessage('');
   };
-  useEffect(() => console.log('chattinguser:', chattinguser));
+  useEffect(() => {}, []);
 
   return (
     <div>
@@ -107,15 +97,15 @@ function ChattingBox() {
         <S.ChattingInputBox>
           <form
             onSubmit={(event) => sendMessage(event)}
-            className="send-message"
+            className='send-message'
           >
             <S.ChattingInputouter>
               <S.ChattingInput
-                placeholder="채팅을 입력해 주세요"
+                placeholder='채팅을 입력해 주세요'
                 onChange={(e) => setMessage(e.target.value)}
               />
               <S.ChattingButton>
-                <img src="../../../assets/SendBtn.png" />
+                <img src='../../../assets/SendBtn.png' />
               </S.ChattingButton>
             </S.ChattingInputouter>
           </form>

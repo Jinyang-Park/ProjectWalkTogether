@@ -125,3 +125,8 @@ export const username = atom<string>({
   key: 'username',
   default: '',
 });
+
+export const userForChat = atom<any>({
+  key: 'userForChat',
+  default: '',
+});

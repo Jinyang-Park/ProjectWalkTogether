@@ -5,12 +5,22 @@ import DetailMap from './DetailMap/DetailMap';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { paramsState } from '../../Rocoil/Atom';
 import { useEffect, useState } from 'react';
-import { getDoc, doc } from 'firebase/firestore';
+import {
+  getDoc,
+  doc,
+  setDoc,
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  orderBy,
+} from 'firebase/firestore';
 import { authService, dbService } from './../../common/firebase';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { assert } from 'console';
 import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory';
 import DropBox from './DropBox/DropBox';
+import { userForChat, currentUserUid } from '../../Rocoil/Atom';
 
 interface getPostings {
   BannereURL_Posting: string;
@@ -24,6 +34,10 @@ interface getPostings {
 }
 
 const DetailPage = () => {
+  // 현재 유저의 정보
+  const UID = useRecoilValue(userForChat);
+
+  const navigate = useNavigate();
   // 아톰은 새로고침하면 초기화가 된다. 앱이 랜더링이 된다.
   // 리코일은 리덕스와 같아서 새로고침하면 날라간다.
   // const params = useRecoilValue(paramsState);
@@ -54,11 +68,80 @@ const DetailPage = () => {
     getPost();
   }, []);
 
+  //채팅방 중복확인
+  const mychatlist = useRecoilValue(currentUserUid);
+  const [chatList, setChatList] = useState<any>([]);
+  const getChattingList = async () => {
+    if (mychatlist === '') {
+      return;
+    }
+    const querySnapshot = await getDocs(
+      query(
+        collection(dbService, 'Users', `${mychatlist}`, 'chattingroom'),
+        orderBy('createdAt', 'desc')
+      )
+    );
+
+    let list = [];
+    querySnapshot.forEach((doc) => {
+      list = [...list, { id: doc.id, ...doc.data() }];
+    });
+    setChatList(list);
+    console.log('list:', list);
+  };
+
+  useEffect(() => {
+    getChattingList();
+  }, [mychatlist]);
+
+  // 채팅방 만들기
+  const getPostingUID = getPostings.UID;
+  const CurrentUid = UID.useruid;
+  //  동일한 유저이더라도 게시글마다 새로운 채팅방이 생긴다
+  const combineId: any = getPostings.PostingID_Posting + CurrentUid;
+
+  const goToChat = async () => {
+    alert('채팅창으로 이동합니다.');
+
+    // db에저장된 user의 정보가 저장되는 곳
+
+    //db에저장된 컬렉션 user의 작성자가 가지는 하위컬랙션 chattingroom에 저장되는값들
+    await setDoc(doc(dbService, 'Users', `${getPostingUID}`), {
+      getPostingUID: getPostingUID,
+      // chattingroom: [{ combineId, date }],
+    });
+
+    await addDoc(
+      collection(dbService, 'Users', `${getPostingUID}`, 'chattingroom'),
+      {
+        combineId,
+        profile: UID.myporfile,
+        uid: UID.useruid,
+        nickname: UID.mynickname,
+        createdAt: new Date(),
+      }
+    );
+
+    //db에저장된 컬렉션 user의 상대방이 가지는 하위컬랙션 chattingroom에 저장되는값들
+    await addDoc(
+      collection(dbService, 'Users', `${CurrentUid}`, 'chattingroom'),
+      {
+        combineId,
+        profile: getPostings.ThunmnailURL_Posting,
+        uid: getPostings.UID,
+        nicname: getPostings.Nickname,
+        createdAt: new Date(),
+      }
+    );
+    navigate('/chat');
+  };
+
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
   // console.log(getPostings.UID);
-  console.log(getPostings);
-  console.log(authService.currentUser);
+  console.log('chatList:', chatList);
+  // console.log(authService.currentUser);
+
   return (
     <>
       <CommonStyles>
@@ -89,7 +172,7 @@ const DetailPage = () => {
               </S.LikeWrapper>
               {/* 현재 user가 쓴 글인지 판별 */}
               {getPostings.UID !== authService.currentUser?.uid ? (
-                <S.WalktogetherBtn>
+                <S.WalktogetherBtn onClick={goToChat}>
                   <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
                 </S.WalktogetherBtn>
               ) : (
