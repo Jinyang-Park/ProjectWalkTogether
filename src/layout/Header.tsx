@@ -55,6 +55,21 @@ const Header = () => {
               <S.NavText to='/postpage'>글 쓰기</S.NavText>
             )}
           </S.NavLi>
+          <S.NavLi>
+            {loggedIn === false ? (
+              <S.NavText
+                onClick={() => {
+                  alert('로그인을 해주세요!');
+                }}
+                to='/login'
+              >
+                채팅
+              </S.NavText>
+            ) : (
+              <S.NavText to='/chat'>채 팅</S.NavText>
+            )}
+          </S.NavLi>
+
           {/* <S.NavLi>
             <S.NavText to="/detailpage">상세</S.NavText>
           </S.NavLi> */}

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from '../layout/Header';
+import RightSideWeatherCheck from '../layout/WeatherCheck';
 import Footer from '../layout/Footer';
 import MainPage from '../pages/MainPage/MainPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
@@ -19,7 +20,7 @@ import MessageWindow, {
   MessageWindowProperties,
   messageWindowPropertiesAtom,
 } from '../messagewindow/MessageWindow';
-
+import PostEditPage from '../pages/PostEditPage/PostEditPage';
 const Router = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
@@ -29,6 +30,7 @@ const Router = () => {
     <BrowserRouter>
       <AuthStateListener />
       <Header />
+      <RightSideWeatherCheck />
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />
@@ -39,10 +41,8 @@ const Router = () => {
         <Route path='/postpage/' element={<PostPage />} />
         <Route path='/category' element={<Category />} />
         <Route path='/collection/:id' element={<Collection />} />
-
-        <Route path='agreement' element={<Agreement />} />
-
         <Route path='/detailpage/:id' element={<DetailPage />} />
+        <Route path='/edit/:id' element={<PostEditPage />}></Route>
         <Route path='/chat' element={<ChattingPage />} />
       </Routes>
       <Footer />
