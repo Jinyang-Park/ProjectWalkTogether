@@ -20,7 +20,9 @@ export const DropUpdateBtn = styled.div`
   background-color: #ffffff;
 `;
 export const UpdateIcon = styled(HiOutlinePencil)``;
-export const UpdateTitle = styled.div``;
+export const UpdateTitle = styled.div`
+  cursor: pointer;
+`;
 
 export const DropCompletBtn = styled.div`
   width: 148px;

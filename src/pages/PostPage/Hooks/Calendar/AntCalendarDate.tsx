@@ -12,7 +12,7 @@ const AntCalendar: React.FC = () => {
   const [reserveDate, setReserveDate] = useRecoilState<any>(ReserveDate);
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-    // console.log(date, dateString);
+    console.log(date, dateString);
     setReserveDate(date);
     console.log('달력/날짜:', reserveDate);
   };
@@ -21,15 +21,15 @@ const AntCalendar: React.FC = () => {
 
   return (
     <ConfigProvider locale={locale}>
-      <Space direction="vertical">
+      <Space direction='vertical'>
         <DatePicker
           onChange={onChange}
           inputReadOnly={true}
           format={format}
-          placeholder="날짜를 입력해주세요."
+          placeholder='날짜를 입력해주세요.'
           style={{ width: 250, height: 40, fontSize: 20 }}
           allowClear={false}
-          placement="bottomRight"
+          placement='bottomRight'
           bordered={false}
         />
       </Space>
