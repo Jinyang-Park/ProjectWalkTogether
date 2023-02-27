@@ -2,12 +2,15 @@ import { async } from '@firebase/util';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { storage } from '../../../common/firebase';
 import { dbService, authService } from '../../../common/firebase';
+import { currentUserUid } from '../../../Rocoil/Atom';
 
 const MyPageBanner = (props: { uid: string }) => {
   const uid = props.uid;
+  const userUID = useRecoilValue(currentUserUid);
 
   const [imageURL, setImageURL] = useState<string>('');
   useEffect(() => {
@@ -58,8 +61,16 @@ const MyPageBanner = (props: { uid: string }) => {
     <BannerWrap onClick={onBannerClick}>
       <BannerImgLabel htmlFor='bannerInput'>
         <BannerImg src={imageURL} />
-        <BannerImgBtn src={'/assets/editicon.png'} />
-        <BannerImgInput type='file' id='bannerInput' onChange={onImageChange} />
+        {uid === userUID && (
+          <>
+            <BannerImgBtn src={'/assets/editicon.png'} />
+            <BannerImgInput
+              type='file'
+              id='bannerInput'
+              onChange={onImageChange}
+            />
+          </>
+        )}
       </BannerImgLabel>
     </BannerWrap>
   );

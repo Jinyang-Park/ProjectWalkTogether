@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './Header.style';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import styled, { css } from 'styled-components';
 // import logoImg from '../../src/assets/shoes.png';
-
+import { useRecoilValue } from 'recoil';
 import { authService } from '../common/firebase';
-import useLoginState from '../hooks/useLoginState';
 import useDetectClose from '../hooks/useDetectClose';
 import KakaoLogoutButton from '../components/Logout/kakaologout';
-import { useRecoilValue } from 'recoil';
 import { isLoggedIn, username } from '../Rocoil/Atom';
 
 const Header = () => {
-  const [userId, setUserId] = useState();
   const location = useLocation();
   const history = useNavigate();
   const navigate = useNavigate();

@@ -112,6 +112,14 @@ export const Naver = styled.img`
 
   cursor: pointer;
 `;
+
+export const Facebook = styled.img`
+  margin: 1.25rem;
+  width: 2.5rem;
+
+  cursor: pointer;
+`;
+
 export const Google = styled.img`
   margin: 1.25rem;
   width: 2.5rem;

@@ -1,13 +1,13 @@
 import { async } from '@firebase/util';
-import { updateProfile } from 'firebase/auth';
+import { deleteUser, getAuth, updateProfile } from 'firebase/auth';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { authService, dbService, storage } from '../../../common/firebase';
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import { username } from '../../../Rocoil/Atom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { currentUserUid, username } from '../../../Rocoil/Atom';
 const MyPageProfile = (props: { uid: string }) => {
   const navigate = useNavigate();
   const uid = props.uid;
@@ -22,6 +22,10 @@ const MyPageProfile = (props: { uid: string }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const [imageURL, setImageURL] = useState<string>('');
+  const userUID = useRecoilValue(currentUserUid);
+
+  const [nameswitch, setNameSwitch] = useState(false);
+  const [messageswitch, setMessagesSwitch] = useState(false);
 
   useEffect(() => {
     getImageURL();
@@ -67,7 +71,14 @@ const MyPageProfile = (props: { uid: string }) => {
         console.log(error);
       });
   };
-
+  const onDeleteAccount = () => {
+    if (window.confirm('탈퇴하실건가요?')) {
+      deleteUser(getAuth().currentUser).then(() => {
+        alert('탈퇴가 완료 되었습니다.');
+        navigate('/');
+      });
+    }
+  };
   const onEditBtn = async () => {
     if (!isEditing) {
       setNewname(authService.currentUser.displayName);
@@ -81,7 +92,8 @@ const MyPageProfile = (props: { uid: string }) => {
       //   );
       //   return;
       // }
-
+      setNameSwitch(false);
+      setMessagesSwitch(false);
       updateProfile(authService.currentUser, {
         displayName: newname,
       });
@@ -116,31 +128,45 @@ const MyPageProfile = (props: { uid: string }) => {
       <UserProfileContainer>
         <UserProfileImgLabel htmlFor='fileInput'>
           <UserProfileImg src={imageURL} />
-          <UserProfileEditIcon src={'/assets/editicon.png'} />
-          <UserProfileImgBtn
-            type='file'
-            id='fileInput'
-            onChange={onImageChange}
-          />
+          {uid === userUID && (
+            <>
+              <UserProfileEditIcon src={'/assets/editicon.png'} />
+              <UserProfileImgBtn
+                type='file'
+                id='fileInput'
+                onChange={onImageChange}
+              />
+            </>
+          )}
         </UserProfileImgLabel>
       </UserProfileContainer>
 
       <UserProfileInfoContainer>
-        <button onClick={onEditBtn}>
-          {!isEditing ? '수정하기' : '수정완료'}
-        </button>
+        {uid === userUID && (
+          <button onClick={onEditBtn}>
+            {!isEditing ? '수정하기' : '수정완료'}
+          </button>
+        )}
+        <button onClick={onDeleteAccount}>탈퇴하기</button>
         <UserNickNameBox>
           {!isEditing ? (
             <UserNickName>{name}</UserNickName>
           ) : (
-            <input
-              value={newname}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setNewname(e.currentTarget.value);
-              }}
-            ></input>
+            <>
+              <input
+                value={newname}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  if (e.target.value.length > 25) {
+                    setNameSwitch(true);
+                  } else {
+                    setNewname(e.currentTarget.value);
+                  }
+                }}
+              ></input>
+            </>
           )}
         </UserNickNameBox>
+        {nameswitch && <div>닉네임은 25글자를 넘을 수 없습니다.</div>}
 
         <UserWalkCountBox>
           <UserWalkCountIcon>아이콘</UserWalkCountIcon>
@@ -156,11 +182,16 @@ const MyPageProfile = (props: { uid: string }) => {
             <textarea
               value={newmessage}
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                setNewmessage(e.currentTarget.value);
+                if (e.currentTarget.value.length > 200) {
+                  setMessagesSwitch(true);
+                } else {
+                  setNewmessage(e.currentTarget.value);
+                }
               }}
             ></textarea>
           )}
         </UserIntroduceAreaBox>
+        {messageswitch && <div>자기소개는 200글자를 넘을 수 없습니다.</div>}
       </UserProfileInfoContainer>
     </MyPageProfileWrap>
   );

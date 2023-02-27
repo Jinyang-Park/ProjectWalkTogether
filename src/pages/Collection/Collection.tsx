@@ -78,7 +78,19 @@ const Collection = (props: any) => {
                     <S.ListItemThumnailTitle>
                       {item.Title_Posting}
                     </S.ListItemThumnailTitle>
-                    {/* <S.HashTag>#케이팝 #발라드</S.HashTag> */}
+                    <S.HashTag>
+                      {item.Hashtag_Posting.map((tagItem, i) => {
+                        return (
+                          <>
+                            {tagItem == '' ? (
+                              <div>&nbsp;</div>
+                            ) : (
+                              <div key={i}>{'#' + tagItem}</div>
+                            )}
+                          </>
+                        );
+                      })}
+                    </S.HashTag>
                     <S.ListItemContainer>
                       <S.LikedHeartFlex>
                         <S.ListItemAddress>

@@ -9,8 +9,9 @@ import {
   ReserveDate,
   selectedAddress,
   myLocation,
+  NewpostTag,
 } from '../../../src/Rocoil/Atom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
 import { collection, addDoc } from 'firebase/firestore';
@@ -43,6 +44,7 @@ const PostPage = () => {
   const [postNickname, setPostNickname] = useState(''); //사용자 닉네임 => 회원가입시시에 저장해 주거나 로컬에 저장하는 방법을 찾아야될 것 같다.
   const [postAddress, setPostAddress] = useState(''); //만날 위치 시,군,구,단
   const [postCategory, setPostCategory] = useState('카테고리'); //카테고리
+  const [TagItem, setTagItem] = useState('');
 
   //주소 받아오기 myLocation
   const location = useRecoilValue(myLocation);
@@ -128,6 +130,8 @@ const PostPage = () => {
   const Title = useRecoilValue(TitleInput);
   const Description = useRecoilValue(DescriptionInput);
 
+  //해시태그 리코일
+  const Tag = useRecoilValue(NewpostTag);
   //현재시간
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
 
@@ -185,6 +189,7 @@ const PostPage = () => {
                 Address_Posting,
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
+                Hashtag_Posting: Tag,
               });
               console.log('글작성완료 ID: ', docRef);
               // alert('저장완료');
@@ -283,6 +288,9 @@ const PostPage = () => {
         <MainPost
           setPostCategory={setPostCategory}
           postCategory={postCategory}
+          setTagItem={setTagItem}
+          TagItem={TagItem}
+          // onKeyPress={onKeyPress}
         />
         <IuputInformation />
         <S.PostSubmitBox>

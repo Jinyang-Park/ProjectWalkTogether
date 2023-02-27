@@ -93,26 +93,23 @@ const LoginPage = () => {
 
   //소셜로그인 페이스북
 
-  // const signInWithFacebook = () => {
-  //   setPersistence(authService, browserSessionPersistence)
-  //     .then(() => {
-  //       const provider = new FacebookAuthProvider();
-  //       return signInWithPopup(authService, provider).then((res) => {
-  //         navigate('/');
-  //         setDoc(doc(dbService, 'user', res.user.uid), {
-  //           uid: res.user.uid,
-  //           email: res.user.email,
-  //           nickname: res.user.displayName,
-  //           profileImg: res.user.photoURL,
-  //           introduce: '',
-  //         });
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       // Handle Errors here.
-  //     });
-  //   console.log();
-  // };
+  const signInWithFacebook = () => {
+    setPersistence(authService, browserSessionPersistence)
+      .then(() => {
+        const provider = new FacebookAuthProvider();
+        const auth = getAuth();
+        console.log(auth);
+        return signInWithPopup(authService, provider).then((data) => {
+          setValue(data.user.email);
+          sessionStorage.setItem('id', data.user.displayName);
+          console.log(data);
+          navigate('/');
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const signInWithGoogle = () => {
     setPersistence(authService, browserSessionPersistence)
@@ -121,7 +118,6 @@ const LoginPage = () => {
         const auth = getAuth();
         return signInWithPopup(authService, provider).then((data) => {
           setValue(data.user.email);
-          sessionStorage.setItem('id', data.user.displayName);
           sessionStorage.setItem('id', data.user.displayName);
           navigate('/');
         });
@@ -174,15 +170,18 @@ const LoginPage = () => {
               </S.LineBox>
 
               <S.SocialBox>
-                {/*<S.Facebook onClick={signInWithFacebook} src="/assets/facebook.png" />*/}
+                <S.Facebook
+                  onClick={signInWithFacebook}
+                  src='/assets/facebook.png'
+                />
                 <S.Google onClick={signInWithGoogle} src='assets/google.png' />
                 <KakaoLoginButton />
-                <S.Naver src='assets/naver.png' />
+                {/* <S.Naver src='assets/naver.png' /> */}
               </S.SocialBox>
               <S.ThirdBox>
                 <S.RegisterBtn
                   type='button'
-                  onClick={() => navigate('/signup')}
+                  onClick={() => navigate('/agreement')}
                 >
                   회원 가입
                 </S.RegisterBtn>
