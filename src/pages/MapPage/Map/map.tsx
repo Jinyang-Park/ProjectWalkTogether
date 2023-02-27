@@ -273,7 +273,6 @@ const MapContainer = (Post) => {
       >
         {position && <MapMarker position={position} />}
         {Markers}
-
         <S.CustomZoomControl className='custom_zoomcontrol'>
           <S.ZoomInButton onClick={zoomIn}>
             <AiOutlinePlus size={40} />
