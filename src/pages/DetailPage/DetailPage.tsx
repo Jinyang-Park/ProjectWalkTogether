@@ -5,13 +5,24 @@ import DetailMap from './DetailMap/DetailMap';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { paramsState } from '../../Rocoil/Atom';
 import { useEffect, useState } from 'react';
-import { getDoc, doc, updateDoc } from 'firebase/firestore';
+import {
+  getDoc,
+  doc,
+  updateDoc,
+  setDoc,
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  orderBy,
+} from 'firebase/firestore';
 import { authService, dbService } from './../../common/firebase';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { assert } from 'console';
 import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory';
 import DropBox from './DropBox/DropBox';
 import { async } from '@firebase/util';
+import { userForChat, currentUserUid } from '../../Rocoil/Atom';
 
 interface getPostings {
   BannereURL_Posting: string;
@@ -25,6 +36,10 @@ interface getPostings {
 }
 
 const DetailPage = () => {
+  // 현재 유저의 정보
+  const UID = useRecoilValue(userForChat);
+
+  const navigate = useNavigate();
   // 아톰은 새로고침하면 초기화가 된다. 앱이 랜더링이 된다.
   // 리코일은 리덕스와 같아서 새로고침하면 날라간다.
   // const params = useRecoilValue(paramsState);
@@ -38,6 +53,16 @@ const DetailPage = () => {
 
   // getPost 함수에서 비동기로 데이터를 가져오기 때문에 isLoading을 사용하여 로딩중인지 아닌지를 확인
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  //채팅방중복확인
+  const [isduplication, setIsduplication] = useState(false);
+  const mychatlist = useRecoilValue(currentUserUid);
+  const [chatList, setChatList] = useState<any>([]);
+
+  // 채팅방 만들기
+  const getPostingUID = getPostings.UID;
+  const CurrentUid = UID.useruid;
+  //  동일한 유저이더라도 게시글마다 새로운 채팅방이 생긴다
+  const combineId: any = getPostings.PostingID_Posting + CurrentUid;
 
   const getPost = async () => {
     const q = doc(dbService, 'Post', id);
@@ -50,10 +75,91 @@ const DetailPage = () => {
     setIsLoading(false);
   };
 
+  /////////////////
+  //채팅방 중복확인 중 db에서 데이터 가져오기.
+
+  // getPost getChattingList  => duplicate
+
+  const getChattingList = async () => {
+    if (mychatlist === '') {
+      return;
+    }
+    const querySnapshot = await getDocs(
+      query(
+        collection(dbService, 'Users', `${mychatlist}`, 'chattingroom'),
+        orderBy('createdAt', 'desc')
+      )
+    );
+
+    let list = [];
+    querySnapshot.forEach((doc) => {
+      list = [...list, { id: doc.id, ...doc.data() }];
+    });
+    setChatList(list);
+
+    // console.log('list:', list);
+  };
+
+  const duplicate = () => {
+    for (let a = 0; a < chatList.length; a++) {
+      if (chatList[a].combineId === combineId) {
+        setIsduplication(true);
+      } else {
+      }
+    }
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
     getPost();
-  }, []);
+    getChattingList();
+    // duplicate();
+  }, [mychatlist]);
+
+  // 채팅창 중복확인은 getChattingList 이후에 작동되게uesEffect를 사용해주니까 중복확인이 되었다.
+  useEffect(() => {
+    duplicate();
+  }, [getChattingList]);
+
+  const goToChat = async () => {
+    if (isduplication == true) {
+      alert('이미 채팅이 존재합니다.');
+      navigate('/chat');
+    } else {
+      alert('채팅창으로 이동합니다.');
+      // db에저장된 user의 정보가 저장되는 곳
+
+      //db에저장된 컬렉션 user의 작성자가 가지는 하위컬랙션 chattingroom에 저장되는값들
+      await setDoc(doc(dbService, 'Users', `${getPostingUID}`), {
+        getPostingUID: getPostingUID,
+        // chattingroom: [{ combineId, date }],
+      });
+
+      await addDoc(
+        collection(dbService, 'Users', `${getPostingUID}`, 'chattingroom'),
+        {
+          combineId,
+          profile: UID.myporfile,
+          uid: UID.useruid,
+          nickname: UID.mynickname,
+          createdAt: new Date(),
+        }
+      );
+
+      //db에저장된 컬렉션 user의 상대방이 가지는 하위컬랙션 chattingroom에 저장되는값들
+      await addDoc(
+        collection(dbService, 'Users', `${CurrentUid}`, 'chattingroom'),
+        {
+          combineId,
+          profile: getPostings.ThunmnailURL_Posting,
+          uid: getPostings.UID,
+          nicname: getPostings.Nickname,
+          createdAt: new Date(),
+        }
+      );
+      navigate('/chat');
+    }
+  };
 
   // !! undfined false 아니면 true
   // 여기 공부하자!
@@ -73,9 +179,9 @@ const DetailPage = () => {
   console.log(getPostings.View);
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
-  // console.log(getPostings.UID);
-  // console.log(getPostings);
-  // console.log(authService.currentUser);
+
+  console.log('isduplication:', isduplication);
+
   return (
     <>
       <CommonStyles>
@@ -119,7 +225,7 @@ const DetailPage = () => {
               </S.LikeWrapper>
               {/* 현재 user가 쓴 글인지 판별 */}
               {getPostings.UID !== authService.currentUser?.uid ? (
-                <S.WalktogetherBtn>
+                <S.WalktogetherBtn onClick={goToChat}>
                   <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
                 </S.WalktogetherBtn>
               ) : (
