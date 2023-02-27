@@ -17,7 +17,7 @@ import { uuidv4 } from '@firebase/util';
 import { useNavigate } from 'react-router-dom';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage, dbService } from './../../common/firebase';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
 import MainPostEdit from './MainPostEdit/MainPostEdit';
 import InputInformationEdit from './InputInformationEdit/InputInformationEdit';
 
@@ -147,19 +147,17 @@ const PostEditPage = () => {
   //settimeout test
   const geturl: any = () => {
     getDownloadURL(ref(storage, `test/${PostingID_Posting}/thumbnail`))
-      .then((url) => {
-        const getThumbnail = url;
-        console.log('섬네일url', getThumbnail);
-        // alert('섬네일url');
+      .then((thumbnailUrl) => {
+        console.log('섬네일url', thumbnailUrl);
 
-        //get썸네일 url
+        // Get banner url
         getDownloadURL(ref(storage, `test/${PostingID_Posting}/banner`))
-          .then((url) => {
-            const getBanner = url;
-            console.log('배너url', typeof getBanner);
+          .then((bannerUrl) => {
+            console.log('배너url', typeof bannerUrl);
 
             try {
-              const docRef = addDoc(collection(dbService, 'Post'), {
+              const postRef = doc(dbService, 'Post', PostingID_Posting);
+              updateDoc(postRef, {
                 Description_Posting: Description,
                 Nickname: postNickname,
                 RsvDate_Posting,
@@ -171,8 +169,8 @@ const PostEditPage = () => {
                 PostingID_Posting,
                 KeyForChat_Posting,
                 Category_Posting: postCategory,
-                ThunmnailURL_Posting: getThumbnail,
-                BannereURL_Posting: getBanner,
+                ThumbnailURL_Posting: thumbnailUrl,
+                BannerURL_Posting: bannerUrl,
                 CountLiked_Posting: '0',
                 ProceedState_Posting: '1',
                 Address_Posting,
@@ -181,10 +179,9 @@ const PostEditPage = () => {
                 View: 0,
                 Date: new Date(),
               });
-              console.log('글작성완료 ID: ', docRef);
-              // alert('저장완료');
+              console.log('글작성완료 ID: ', PostingID_Posting);
             } catch (e) {
-              console.error('Error adding document: ', e);
+              console.error('Error updating document: ', e);
             }
           })
           .catch((error) => {
