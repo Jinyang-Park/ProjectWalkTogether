@@ -32,93 +32,43 @@ const Category = () => {
 
   // 조회순
   const [viewCount, setViewCount] = useState('최신순');
-
+  const [filteredDate, setFilteredDate] = useState([postings]);
   //약속 시간
   const meetDate = useRecoilValue(FilterSelectedDate);
-  const OTS = meetDate.toString();
-  const weeks = OTS.slice(0, 3);
-  let todayweek = '';
-  switch (
-    weeks //요일
-  ) {
-    case 'Sun':
-      todayweek = '(일)';
-      break;
-    case 'Mon':
-      todayweek = '(월)';
-      break;
-    case 'Tue':
-      todayweek = '(화)';
-      break;
-    case 'Wed':
-      todayweek = '(수)';
-      break;
-    case 'Thu':
-      todayweek = '(목)';
-      break;
-    case 'Fri':
-      todayweek = '(금)';
-      break;
-    case 'Sat':
-      todayweek = '(토)';
-      break;
-  }
 
-  //월
-  const meetMonth = OTS.slice(8, 11);
-  let todayMonth = '';
-  switch (meetMonth) {
-    case 'Jan':
-      todayMonth = '1';
-      break;
-    case 'Feb':
-      todayMonth = '2';
-      break;
-    case 'Mar':
-      todayMonth = '3';
-      break;
-    case 'Apr':
-      todayMonth = '4';
-      break;
-    case 'May':
-      todayMonth = '5';
-      break;
-    case 'Jun':
-      todayMonth = '6';
-      break;
-    case 'July':
-      todayMonth = '7';
-      break;
-    case 'Aug':
-      todayMonth = '8';
-      break;
-    case 'Sep':
-      todayMonth = '9';
-      break;
-    case 'Oct':
-      todayMonth = '10';
-      break;
-    case 'Nov':
-      todayMonth = '11';
-      break;
-    case 'dec':
-      todayMonth = '12';
-      break;
-  }
+  const date = (y: number, m: number, d: number) => {
+    const D = new Date(y, m, d);
 
-  //날자
-  let meetDaynum: any = '';
+    switch (D.getDay()) {
+      case 0:
+        return '(일)';
+      case 1:
+        return '(월)';
+      case 2:
+        return '(화)';
+      case 3:
+        return `(수)`;
+      case 4:
+        return `(목)`;
+      case 5:
+        return '(금)';
+      case 6:
+        return `(토)`;
+      default:
+        return '';
+    }
+  };
 
-  const meetDay = OTS.slice(5, 7);
-  if (Number(meetDay) < 10) {
-    meetDaynum = Number(meetDay.slice(1, 2)) + 1;
-  } else {
-    meetDaynum = Number(meetDay) + 1;
-  }
+  const y = meetDate.$y;
+  const m = meetDate.$M;
+  const d = meetDate.$D;
+  const month = meetDate.$M + 1;
 
   // console.log(FilterSelectedDate);
   // 달력
-  const SelectedDate = `${todayMonth}/${meetDaynum}`;
+
+  const SelectedDate = `${month}/${d} ${date(y, m, d)}`;
+  // const SelectedDate = `${todayMonth}/${meetDaynum}`;
 
   // 내가 필터 달력 클릭한 값이 잘 넘어온다.
   console.log('SelectedDate', SelectedDate);
@@ -142,18 +92,39 @@ const Category = () => {
     });
   }, [category]);
 
-  // console.log(postings);
+  console.log(postings);
   // console.log(post.RsvDate_Posting.slice(0, 4));
-  // 기본값이면 필터를 해주지 말고 기본값이 아니면 필터를 해줘라
+
+  // 클릭한 카테고리 날짜와 내가 클릭한 달력 날짜가 일치하는 친구들만 필터로 걸러준다.
+  // FiltetedDate를 가지고 리턴문에서 map을 돌리면 아무것도 뜨지 않는다.
+  // SelectedDate과 '/1' 불일치하면 postings.filter((post: any) => post.RsvDate_Posting.slice(0, 4) === SelectedDate) 을 보여주고 아니면 포스팅
+  // useEffect(() => {
+  //   SelectedDate !== 'NaN/undefined'
+  //     ? setFilteredDate(
+  //         postings.filter((post: any) => post.RsvDate_Posting === SelectedDate)
+  //       )
+  //     : setFilteredDate(postings);
+  //   console.log(filteredDate);
+  // }, [SelectedDate]);
+  // let FilteredDate = [];
+  // if (SelectedDate) {
+  //   FilteredDate = postings.filter(
+  //     (post: any) => post.RsvDate_Posting === SelectedDate
+  //   );
+  // } else {
+  //   FilteredDate = postings;
+  // }
+  console.log(SelectedDate.length);
 
   const FilteredDate =
-    SelectedDate !== '/1'
-      ? postings.filter(
-          (post: any) => post.RsvDate_Posting.slice(0, 4) === SelectedDate
-        )
+    // SelectedDate !== 'NaN/undefined'
+    SelectedDate.length < 14
+      ? postings.filter((post: any) => post.RsvDate_Posting === SelectedDate)
       : postings;
 
-  // 알고리즘 많이 풀기
+  // console.log(SelectedDate !== 'NaN/undefined');
+  // console.log(postings);
+
   const DoubledFilterDate =
     viewCount === '조회순'
       ? [...FilteredDate].sort((a, b) => b.View - a.View)

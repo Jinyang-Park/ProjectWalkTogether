@@ -12,7 +12,7 @@ const AntCalendar: React.FC = () => {
   const [reserveDate, setReserveDate] = useRecoilState<any>(ReserveDate);
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-    // console.log(date, dateString);
+    console.log(date, dateString);
     setReserveDate(date);
     console.log('달력/날짜:', reserveDate);
   };

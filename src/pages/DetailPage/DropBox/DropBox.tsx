@@ -58,15 +58,13 @@ const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
   // 에러는 온클릭일때 id 필요하다, 전에는 onClick={ DeletePostHandler} 에러 캡처가 난거다.
   //
 
-  const EditPostHandler = async (id: any) => {};
-
   return (
     <>
       <S.DropBoxWrapper>
         {/*수정버튼 영역 */}
         <S.DropUpdateBtn>
           <S.UpdateIcon />
-          <S.UpdateTitle onClick={() => EditPostHandler(id)}>
+          <S.UpdateTitle onClick={() => navigate(`/edit/${id}`)}>
             게시글 수정하기
           </S.UpdateTitle>
         </S.DropUpdateBtn>
