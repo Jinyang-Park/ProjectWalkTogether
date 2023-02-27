@@ -124,3 +124,9 @@ export const username = atom<string>({
   key: 'username',
   default: '',
 });
+
+export const NewpostTag = atom<string[]>({
+  key: 'NewpostTag',
+  // key의 값은 항상 고유값이어야 합니다.
+  default: [],
+});

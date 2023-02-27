@@ -59,6 +59,7 @@ const DetailPage = () => {
   // console.log(getPostings.UID);
   // console.log(getPostings);
   console.log(authService.currentUser);
+  console.log(getPostings);
   return (
     <>
       <CommonStyles>
@@ -78,7 +79,20 @@ const DetailPage = () => {
                 </S.IntroCategory>
               </S.IntroCategoryTitleBtn>
               <S.IntroTitle>{getPostings.Title_Posting}</S.IntroTitle>
-              <S.IntroHashTag></S.IntroHashTag>
+              <S.IntroHashTag>
+                {getPostings.Hashtag_Posting &&
+                  getPostings.Hashtag_Posting.map((tagItem, i) => {
+                    return (
+                      <>
+                        {tagItem == '' ? (
+                          <div>&nbsp;</div>
+                        ) : (
+                          <div key={i}>&nbsp;{'#' + tagItem}</div>
+                        )}
+                      </>
+                    );
+                  })}
+              </S.IntroHashTag>
               <S.IntroDes>{getPostings.Description_Posting}</S.IntroDes>
             </S.DetailIntroWrapper>
             <S.ShareBtn>

@@ -18,5 +18,10 @@
     "types": ["kakao.maps.d.ts"]
   },
 
-  "include": ["src", "public/assets/constants/colors.ts", "Rocoil"]
+  "include": [
+    "src",
+    "public/assets/constants/colors.ts",
+    "src/custom.d.ts",
+    "Rocoil"
+  ]
 }
