@@ -1,6 +1,7 @@
 import React from 'react';
 import { CategorysList } from '../../utils/CategorysList';
 import * as S from './DropdownFilterCategory.style';
+import { useRecoilValue, useRecoilState } from 'recoil';
 
 declare interface SetProps {
   setShow: React.Dispatch<React.SetStateAction<boolean>>;

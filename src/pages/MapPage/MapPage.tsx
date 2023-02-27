@@ -1,33 +1,48 @@
-import React from 'react'
-import * as S from './MapPage.style'
-import InfoList from './InfoList/InfoList'
-import MapContainer from './Map/map'
-import FilterBar from './InfoList/Filter/Filter'
-import Category from '../Category/Category'
+import React from 'react';
+import * as S from './MapPage.style';
+import InfoList from './InfoList/InfoList';
+import MapContainer from '../MyPage/Map/map';
+import FilterBar from './InfoList/Filter/Filter';
+import Category from '../Category/Category';
 
-import CommonStyles from './../../styles/CommonStyles'
+import CommonStyles from './../../styles/CommonStyles';
 
-import { doc, getDocs, collection, query, orderBy } from 'firebase/firestore'
-import { dbService } from '../../common/firebase'
-import { useEffect, useState } from 'react'
+import {
+  doc,
+  getDocs,
+  collection,
+  query,
+  orderBy,
+  where,
+} from 'firebase/firestore';
+import { dbService } from '../../common/firebase';
+import { useEffect, useState } from 'react';
 
-import { useRecoilValue } from 'recoil'
-import type { DocumentAny } from '../../../src/assets/constants/types'
+import { useRecoilValue } from 'recoil';
+import type { DocumentAny } from '../../../src/assets/constants/types';
 
-import useGeolocation from '../../hooks/useGeoLocation'
+import useGeolocation from '../../hooks/useGeoLocation';
+
+import { Cetegory } from '../../Rocoil/Atom';
 
 const MapPage = () => {
   // firestore에서 데이터 'Post' 가져오기
-  const [Post, setPosting] = useState<DocumentAny[]>([])
-  const [AllPost, setAllPosting] = useState<DocumentAny[]>([])
+  const [Post, setPosting] = useState<DocumentAny[]>([]);
+  const [AllPost, setAllPosting] = useState<DocumentAny[]>([]);
+  const cetegory = useRecoilValue(Cetegory);
 
   // firestore에서 데이터 'Post' 가져오기
   const syncpostingstatewithfirestore = () => {
-    const q = query(collection(dbService, 'Post'), orderBy('TimeStamp_Posting'))
+    console.log(cetegory);
+    const q = query(
+      collection(dbService, 'Post'),
+      // where('Category_Posting', '==', cetegory),
+      orderBy('TimeStamp_Posting', 'desc')
+    );
     getDocs(q).then((querySnapshot) => {
       // DocumentAny[] 는 any 아닌척 하고 싶어서 대신 작성함 types.d.ts
       // 타입 지정은 아래쪽과 같이 해야함
-      const firestorePostingList: DocumentAny[] = []
+      const firestorePostingList: DocumentAny[] = [];
       querySnapshot.forEach((doc) => {
         firestorePostingList.push({
           id: doc.id,
@@ -46,19 +61,19 @@ const MapPage = () => {
           Nickname: doc.data().Nickname,
           Address_Posting: doc.data().Address_Posting,
           ThunmnailURL_Posting: doc.data().ThunmnailURL_Posting,
-        })
-      })
-      setPosting(firestorePostingList)
-      setAllPosting(firestorePostingList)
-    })
-  }
+        });
+      });
+      setPosting(firestorePostingList);
+      setAllPosting(firestorePostingList);
+    });
+  };
   useEffect(() => {
-    syncpostingstatewithfirestore()
-  }, [])
+    syncpostingstatewithfirestore();
+  }, [cetegory]);
 
   useEffect(() => {
-    setAllPosting(Post)
-  }, [Post])
+    setAllPosting(Post);
+  }, [Post]);
 
   // console.log('AllPost', AllPost)
   // AllPost 는 전체 포스팅 리스트
@@ -113,10 +128,10 @@ const MapPage = () => {
               setPostCategory={function (
                 value: React.SetStateAction<string>
               ): void {
-                throw new Error('Function not implemented.')
+                throw new Error('Function not implemented.');
               }}
               setShow={function (value: React.SetStateAction<boolean>): void {
-                throw new Error('Function not implemented.')
+                throw new Error('Function not implemented.');
               }}
 
               // 프롭스로 넘겨줄 함수를 만들어서 넘겨줘야함
@@ -127,7 +142,7 @@ const MapPage = () => {
         </S.MapPageContentsWrapper>
       </S.MapPageContainer>
     </CommonStyles>
-  )
-}
+  );
+};
 
-export default MapPage
+export default MapPage;

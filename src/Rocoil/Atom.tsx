@@ -107,6 +107,12 @@ export const NewSortInput = atom<any>({
   default: '',
 });
 
+//* 상권님
+export const Cetegory = atom<any>({
+  key: 'Cetegory',
+  default: '전체',
+});
+
 //* ---------------MapPage Catefory------------------ *//
 
 export const filterDatename = atom<any>({
