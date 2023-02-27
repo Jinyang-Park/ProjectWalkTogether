@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from '../layout/Header';
+import RightSideWeatherCheck from '../layout/WeatherCheck';
 import Footer from '../layout/Footer';
 import MainPage from '../pages/MainPage/MainPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
@@ -29,6 +30,7 @@ const Router = () => {
     <BrowserRouter>
       <AuthStateListener />
       <Header />
+      <RightSideWeatherCheck />
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />
