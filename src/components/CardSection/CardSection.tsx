@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './CardSection.style';
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import { paramsState } from '../../Rocoil/Atom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { currentUserUid, paramsState } from '../../Rocoil/Atom';
+import { async } from '@firebase/util';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { ref } from 'firebase/storage';
+import { dbService } from '../../common/firebase';
 
 interface postProps {
   post: any;
@@ -11,6 +15,8 @@ const CardSection = ({ post }: postProps) => {
   // console.log('post', post.id);
   const navigate = useNavigate();
   const setParams = useSetRecoilState(paramsState);
+  const [likebtn, setLikeBtn] = useState<boolean>(false);
+  const uid = useRecoilValue(currentUserUid);
 
   // post 바뀔때마 실행되는것이다.
   // useEffect(() => {
@@ -24,6 +30,26 @@ const CardSection = ({ post }: postProps) => {
   //         navigate(`/detailpage/${post.id}`);
   //       }}
   //     ></S.CardSectionWrapper>
+  useEffect(() => {
+    setLikeBtn(post.LikedUsers.includes(uid));
+  }, [post]);
+  // 좋아요 하는 거
+  const likepost = async () => {
+    const snap = await getDoc(doc(dbService, 'Post', post.id));
+    snap.data().LikedUsers.push(uid);
+    updateDoc(doc(dbService, 'Post', post.id), {
+      LikedUsers: snap.data().LikedUsers,
+    });
+  };
+
+  // 좋아요 취소
+  const unlikepost = async () => {
+    const snap = await getDoc(doc(dbService, 'Post', post.id));
+    const u = snap.data().LikedUsers.filter((id) => id !== uid);
+    updateDoc(doc(dbService, 'Post', post.id), {
+      LikedUsers: u,
+    });
+  };
 
   return (
     <S.CardBox>

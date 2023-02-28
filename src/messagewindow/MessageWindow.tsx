@@ -11,6 +11,7 @@ import perplex from '../assets/messageWindow/Perplex.svg';
 import rocket from '../assets/messageWindow/Rocket.svg';
 import writingHand from '../assets/messageWindow/WritingHand.svg';
 import yellowPencil from '../assets/messageWindow/YellowPencil.svg';
+import cancelbtn from '../assets/messageWindow/CancelBtn.svg';
 
 //
 // 사용법
@@ -115,24 +116,27 @@ export function MessageWindowComponent() {
   const [props, setProps] = useRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
+  const ModalWrap = styled.div``;
+
   const ModalBackground = styled.div`
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 200%;
-    backdrop-filter: blur(5px);
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
   `;
 
   const AlertWrap = styled.div`
     width: 343px;
     height: 400px;
     padding: 20px 64px;
-
-    position: absolute;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
 
     display: flex;
     flex-direction: column;
@@ -142,6 +146,13 @@ export function MessageWindowComponent() {
     background: #ffffff;
     box-shadow: 0px 0px 10px #bec5d7;
     border-radius: 4px;
+  `;
+  const AlertCancelBtn = styled.button`
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+
+    background-color: transparent;
   `;
 
   const LogoImg = styled.img`
@@ -210,27 +221,36 @@ export function MessageWindowComponent() {
   return (
     <>
       {props.isVisible && (
-        <ModalBackground>
-          <AlertWrap>
-            {renderLogo()}
-            <AlertTitle>{props.message}</AlertTitle>
-            <AlertBtnContainer>
-              {props.buttons.map((buttonData) => {
-                return (
-                  <AlertBtn
-                    key={buttonData.text}
-                    onClick={() => {
-                      setProps(new MessageWindowProperties());
-                      buttonData.callback();
-                    }}
-                  >
-                    {buttonData.text}
-                  </AlertBtn>
-                );
-              })}
-            </AlertBtnContainer>
-          </AlertWrap>
-        </ModalBackground>
+        <ModalWrap>
+          <ModalBackground>
+            <AlertWrap>
+              <AlertCancelBtn
+                onClick={() => {
+                  setProps(new MessageWindowProperties());
+                }}
+              >
+                <img src={cancelbtn}></img>
+              </AlertCancelBtn>
+              {renderLogo()}
+              <AlertTitle>{props.message}</AlertTitle>
+              <AlertBtnContainer>
+                {props.buttons.map((buttonData) => {
+                  return (
+                    <AlertBtn
+                      key={buttonData.text}
+                      onClick={() => {
+                        setProps(new MessageWindowProperties());
+                        buttonData.callback();
+                      }}
+                    >
+                      {buttonData.text}
+                    </AlertBtn>
+                  );
+                })}
+              </AlertBtnContainer>
+            </AlertWrap>
+          </ModalBackground>
+        </ModalWrap>
       )}
     </>
   );

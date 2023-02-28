@@ -11,7 +11,12 @@ import { useNavigate } from 'react-router-dom';
 import { authService } from '../../common/firebase';
 import { emailRegex, nicknameRegex, pwdRegex } from '../../utils/UserInfoRegex';
 import CommonStyles from './../../styles/CommonStyles';
-import { useRecoilValue } from 'recoil';
+import { useSetRecoilState } from 'recoil';
+import MessageWindow, {
+  MessageWindowLogoType,
+  MessageWindowProperties,
+  messageWindowPropertiesAtom,
+} from '../../messagewindow/MessageWindow';
 
 const SignUpPage = () => {
   const [email, setEmail] = useState('');
@@ -29,6 +34,10 @@ const SignUpPage = () => {
   const [validatePwconfirmColor, setValidatePwconfirmColor] = useState(true);
   const [validateDisplayname, setValidateDisplayname] = useState('');
   const [validateDisplaynameColor, setValidateDisplayColor] = useState(true);
+
+  const setState = useSetRecoilState<MessageWindowProperties>(
+    messageWindowPropertiesAtom
+  );
 
   const actionCodeSettings = {
     // URL you want to redirect back to. The domain (www.example.com) for this
@@ -124,8 +133,24 @@ const SignUpPage = () => {
           await updateProfile(response.user, {
             displayName: displayname,
           });
-          alert('회원가입 완료');
-          navigate('/login');
+          // alert('회원가입 완료');
+          // navigate('/login');
+          MessageWindow.showWindow(
+            new MessageWindowProperties(
+              true,
+              '회원가입이 완료되었어요!',
+              [
+                {
+                  text: '로그인 페이지로 돌아가기',
+                  callback: () => {
+                    navigate('/login');
+                  },
+                },
+              ],
+              MessageWindowLogoType.Confetti
+            ),
+            setState
+          );
         })
         .catch((error) => {
           console.log(error);
