@@ -42,7 +42,7 @@ import cancelbtn from '../assets/messageWindow/CancelBtn.svg';
 //                                 // 여기에 할 거 하시면 됩니다.
 //                             }
 //         }
-//     ]
+//     ],MessageWindowLogoType.원하는 이모티콘 넣기
 // )
 //
 // MessageWindow.showWindow(props, setState)
