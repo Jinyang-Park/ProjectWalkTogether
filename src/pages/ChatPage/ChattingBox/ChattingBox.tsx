@@ -15,11 +15,7 @@ import {
   addDoc,
 } from 'firebase/firestore';
 
-import {
-  chattingusers,
-  currentUserUid,
-  tochattingbox,
-} from '../../../Rocoil/Atom';
+import { currentUserUid, tochattingbox } from '../../../Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 
 function ChattingBox() {
