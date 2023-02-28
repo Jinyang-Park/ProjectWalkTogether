@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { authService } from '../../common/firebase';
 import { emailRegex, nicknameRegex, pwdRegex } from '../../utils/UserInfoRegex';
 import CommonStyles from './../../styles/CommonStyles';
+import { useRecoilValue } from 'recoil';
 
 const SignUpPage = () => {
   const [email, setEmail] = useState('');
@@ -162,9 +163,9 @@ const SignUpPage = () => {
               <S.InputBoxContent>
                 <S.Inputholder>
                   <S.Input
-                    type="text"
-                    name="닉네임"
-                    placeholder="닉네임"
+                    type='text'
+                    name='닉네임'
+                    placeholder='닉네임'
                     onChange={onChangeDisplayname}
                   ></S.Input>
                   {/* <S.Validityfontbox>
@@ -179,9 +180,9 @@ const SignUpPage = () => {
                 </S.Inputholder>
                 <S.Inputholder>
                   <S.Input
-                    type="email"
-                    name="아이디"
-                    placeholder="아이디"
+                    type='email'
+                    name='아이디'
+                    placeholder='아이디'
                     onChange={onChangeEmail}
                   ></S.Input>
                   {/* <S.Validityfontbox>
@@ -196,9 +197,9 @@ const SignUpPage = () => {
                 </S.Inputholder>
                 <S.Inputholder>
                   <S.Input
-                    type="password"
-                    name="비밀번호"
-                    placeholder="비밀번호"
+                    type='password'
+                    name='비밀번호'
+                    placeholder='비밀번호'
                     onChange={onChangePassword}
                     value={password}
                   ></S.Input>
@@ -213,9 +214,9 @@ const SignUpPage = () => {
                 <S.Inputholder>
                   <S.Input
                     value={confirmPwd}
-                    type="password"
-                    name="비밀번호 확인"
-                    placeholder="비밀번호 확인"
+                    type='password'
+                    name='비밀번호 확인'
+                    placeholder='비밀번호 확인'
                     onChange={onChangeconfirmPwd}
                   ></S.Input>
                   {/* <S.Validityfontbox>
@@ -230,10 +231,10 @@ const SignUpPage = () => {
                 </S.Inputholder>
               </S.InputBoxContent>
               <S.ButtonBox>
-                <S.LoginBtn type="submit">회원 가입</S.LoginBtn>
+                <S.LoginBtn type='submit'>회원 가입</S.LoginBtn>
               </S.ButtonBox>
               <S.ThirdBox>
-                <S.RegisterBtn type="button" onClick={() => navigate('/login')}>
+                <S.RegisterBtn type='button' onClick={() => navigate('/login')}>
                   돌아가기
                 </S.RegisterBtn>
               </S.ThirdBox>

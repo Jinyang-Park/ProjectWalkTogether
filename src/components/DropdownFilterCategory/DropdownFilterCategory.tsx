@@ -3,6 +3,7 @@ import { CategorysList } from '../../utils/CategorysList';
 import * as S from './DropdownFilterCategory.style';
 import { useNavigate } from 'react-router-dom';
 
+
 declare interface SetProps {
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
   setTextChange: React.Dispatch<React.SetStateAction<string>>;

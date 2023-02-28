@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from '../layout/Header';
+import RightSideWeatherCheck from '../layout/WeatherCheck';
 import Footer from '../layout/Footer';
 import MainPage from '../pages/MainPage/MainPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
@@ -10,11 +11,12 @@ import DetailPage from '../pages/DetailPage/DetailPage';
 import ChattingPage from '../pages/ChatPage/ChattingPage';
 import Category from './../pages/Category/Category';
 import MyPage2 from '../pages/MyPage/MyPage2';
-
+import Agreement from '../pages/SignUpPage/Agreement';
 import Collection from '../pages/Collection/Collection';
 import AuthStateListener from '../components/AuthStateListener/AuthStateListener';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import MessageWindow, {
+  MessageWindowLogoType,
   MessageWindowProperties,
   messageWindowPropertiesAtom,
 } from '../messagewindow/MessageWindow';
@@ -27,25 +29,9 @@ const Router = () => {
 
   return (
     <BrowserRouter>
-      <button
-        onClick={() => {
-          MessageWindow.showWindow(
-            new MessageWindowProperties(true, '테스트zz', [
-              {
-                text: '가즈아',
-                callback: () => {
-                  alert('아아아아');
-                },
-              },
-            ]),
-            setState
-          );
-        }}
-      >
-        Let's go!
-      </button>
       <AuthStateListener />
       <Header />
+      <RightSideWeatherCheck />
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />
