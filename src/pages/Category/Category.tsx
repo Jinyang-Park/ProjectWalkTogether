@@ -18,25 +18,24 @@ import AntCalendarMap from './Calendar/AntCalendarDate';
 import { FilterSelectedDate } from '../../Rocoil/Atom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
+// 즐
+// - 알레한드로
+
 // interface Date {
 //   setfilterSelectedDate: React.Dispatch<React.SetStateAction<string>>;
 // }
 const Category = () => {
   //state를 받아옴 필터 네임을 받아ㄴ옴 (초기값)
-  const { state } = useLocation();
+  // const { state } = useLocation();
+  const { category } = useParams();
   const [postings, setPostings] = useState<any>([]);
   // console.log(category);
   const [show, setShow] = useState<any>(false);
   const [TextChange, setTextChange] = useState('카테고리');
 
-  // const [Date, setDate] = useRecoilState<any>(FilterDate);
-  // 카테고리 useState
-  const [category, setCategory] = useState(state);
-
   // 조회순
   const [viewCount, setViewCount] = useState('최신순');
 
-  const [filteredDate, setFilteredDate] = useState('');
   //약속 시간
   const [meetDate, setMeetDate] = useRecoilState(FilterSelectedDate);
   console.log(meetDate);
@@ -78,65 +77,99 @@ const Category = () => {
   console.log('SelectedDate', SelectedDate);
 
   useEffect(() => {
-    const q = query(
-      collection(dbService, 'Post'),
-      // 카테고리를 만들어줌
-      where('Category_Posting', '==', category),
-      orderBy('createdAt', 'desc')
-    );
+    const isAll = category === '전체';
+
+    // 카테고리에서 전체를 클릭했을때 where 없애는 코드문
+    const c = collection(dbService, 'Post');
+    const w = where('Category_Posting', '==', category);
+    const o = orderBy('createdAt', 'desc');
+    const q = isAll ? query(c, o) : query(c, w, o);
+
     onSnapshot(q, (snapshot) => {
       const getCategoryList = snapshot.docs.map((doc) => {
         const CategoryList = {
           id: doc.id,
           ...doc.data(),
         };
+
         return CategoryList;
       });
-      setPostings(getCategoryList);
+
+      // 필터링 필요한지 아닌지
+      const isDateSpecified = meetDate !== '';
+
+      // getCategoryList를 리턴함. 필터링할 필요가 있으면 필터링해줌.
+      const getListFilteredIfNecessary = () => {
+        if (isDateSpecified)
+          return getCategoryList.filter(
+            (post: any) => post.RsvDate_Posting === SelectedDate
+          );
+
+        return getCategoryList;
+      };
+
+      // getCategoryList() 호출해서 setPostings()함
+      setPostings(getListFilteredIfNecessary());
+
+      // setPostings (
+      //   isDateSpecified === true => 필터 else 전체
+      // )
+
+      // if (meetDate !== '') {
+      //   setPostings(
+      //     getCategoryList.filter(
+      //       (post: any) => post.RsvDate_Posting === SelectedDate
+      //     )
+      //   );
+      // } else setPostings(getCategoryList);
     });
-    return () => {
-      setMeetDate('');
-    };
+
+    // 카테고리에서 다른 카테고리를 클릭할때도 초기화가 된다. 즉, 내가 클릭한 달력날짜도 초기화가 되는 문제가 있다.
+    // return () => {
+    //   setMeetDate('');
+    // };
   }, [category]);
 
-  console.log(postings);
+  // 즐거운 변수놀이 -알레한드로
 
-  // console.log(post.RsvDate_Posting.slice(0, 4));
-
-  // 클릭한 카테고리 날짜와 내가 클릭한 달력 날짜가 일치하는 친구들만 필터로 걸러준다.
-  // FiltetedDate를 가지고 리턴문에서 map을 돌리면 아무것도 뜨지 않는다.
-  //  SelectedDate.length < 14 이면 postings.filter((post: any) => post.RsvDate_Posting.slice(0, 4) === SelectedDate) 을 보여주고 아니면 포스팅
-
-  // 내가 클릭한 달력의 날짜와 db에 올라간 날짜가 일치하면 FilteredDate 에 할당되는 함수이다.
+  // FilterDate는 DoubleFilterDate를 위해 쓰는 코드이다.
   const FilteredDate =
-    // SelectedDate !== 'NaN/undefined'4
     SelectedDate.length < 14
       ? postings.filter((post: any) => post.RsvDate_Posting === SelectedDate)
       : postings;
 
   // FilteredDate를 가지고 조회순으로 정렬해주는 함수이다.
-  const DoubledFilterDate =
-    viewCount === '조회순'
-      ? [...FilteredDate].sort((a, b) => b.View - a.View)
-      : FilteredDate;
+  // const DoubledFilterDate =
+  //   viewCount === '조회순'
+  //     ? [...FilteredDate].sort((a, b) => b.View - a.View)
+  //     : viewCount === '좋아요순'
+  //     ? [...FilteredDate].sort(
+  //         (a, b) => b.LikedUsers.length - a.LikedUsers.length
+  //       )
+  //     : FilteredDate;
 
-  useEffect(() => {
-    setFilteredDate(SelectedDate);
-  }, [postings]);
+  // switch문 찾아보기
+  const DoubleFilteredDateFunction = () => {
+    switch (viewCount) {
+      case '조회순':
+        return [...FilteredDate].sort((a, b) => b.View - a.View);
+      case '좋아요순':
+        return [...FilteredDate].sort(
+          (a, b) => b.LikedUsers.length - a.LikedUsers.length
+        );
+      default:
+        return FilteredDate;
+    }
+  };
 
-  console.log(filteredDate);
-  // console.log(SelectedDate !== 'NaN/undefined');
-  // console.log(postings);
-
-  // console.log(FilteredDate);
-  // console.log(category);
+  const DoubledFilterDate = DoubleFilteredDateFunction();
 
   return (
     <CommonStyles>
       <S.CategoryTitleWrapper>
         <S.CategoryTitle>{category}</S.CategoryTitle>
-        {/*이미지는 DropFilterCategory에서 atom 사용해서 가져와보자! */}
-        <S.CategoryImg>{category.img}</S.CategoryImg>
+        {/*이FilterCategory에서 atom 사용해서 가져와보자! */}
+        <S.CategoryImg>이미지</S.CategoryImg>
       </S.CategoryTitleWrapper>
       <S.FilterArea>
         <S.CategoryFilter>
@@ -149,7 +182,6 @@ const Category = () => {
             <DropdownFilterCategory
               setShow={setShow}
               setTextChange={setTextChange}
-              setCategory={setCategory}
               TextChange={TextChange}
             />
           )}
@@ -170,7 +202,9 @@ const Category = () => {
             조회순
             <S.FilterAreaLine></S.FilterAreaLine>
           </S.FilterNewest>
-          <S.FilterNewest>좋아요순</S.FilterNewest>
+          <S.FilterNewest onClick={() => setViewCount('좋아요순')}>
+            좋아요순
+          </S.FilterNewest>
         </S.FilterSortWrapper>
       </S.FilterArea>
       <S.LikedListItem>

@@ -8,9 +8,9 @@ export const CategoryTitle = styled.p`
   font-size: 36px;
   line-height: 45px;
 `;
-export const CategoryImg = styled.img`
-  width: 50px;
-  height: 50px;
+export const CategoryImg = styled.div`
+  /* width: 50px;
+  height: 50px; */
 `;
 export const LikedListItem = styled.div`
   display: flex;
