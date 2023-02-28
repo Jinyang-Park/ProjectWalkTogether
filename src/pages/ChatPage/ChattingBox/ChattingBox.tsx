@@ -112,7 +112,7 @@ function ChattingBox() {
             ) : (
               <S.ChattingTextBoxLeft>
                 <S.ChattingImg></S.ChattingImg>
-                <S.ChattingTextLeft>잘 나오나? inlineblock</S.ChattingTextLeft>
+                <S.ChattingTextLeft>{ars.message}</S.ChattingTextLeft>
                 <S.ChattingTime>10:30</S.ChattingTime>
               </S.ChattingTextBoxLeft>
             );
