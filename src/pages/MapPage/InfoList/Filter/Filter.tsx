@@ -20,10 +20,6 @@ export const FilterBar = ({
   const [show, setShow] = useState<any>(false);
   const [TextChange, setTextChange] = useState('카테고리');
 
-  const [Category, setCatefory] = useRecoilState(Cetegory);
-
-  console.log(Category);
-
   return (
     <>
       <S.FilterArea>
@@ -37,7 +33,6 @@ export const FilterBar = ({
             <DropdownFilterCategory
               setShow={setShow}
               setTextChange={setTextChange}
-              setCategory={setCatefory}
               TextChange={TextChange}
             />
           )}
