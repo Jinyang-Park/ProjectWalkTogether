@@ -11,6 +11,12 @@ import { useNavigate } from 'react-router-dom';
 import { authService } from '../../common/firebase';
 import { emailRegex, nicknameRegex, pwdRegex } from '../../utils/UserInfoRegex';
 import CommonStyles from './../../styles/CommonStyles';
+import { useSetRecoilState } from 'recoil';
+import MessageWindow, {
+  MessageWindowLogoType,
+  MessageWindowProperties,
+  messageWindowPropertiesAtom,
+} from '../../messagewindow/MessageWindow';
 
 const SignUpPage = () => {
   const [email, setEmail] = useState('');
@@ -28,6 +34,10 @@ const SignUpPage = () => {
   const [validatePwconfirmColor, setValidatePwconfirmColor] = useState(true);
   const [validateDisplayname, setValidateDisplayname] = useState('');
   const [validateDisplaynameColor, setValidateDisplayColor] = useState(true);
+
+  const setState = useSetRecoilState<MessageWindowProperties>(
+    messageWindowPropertiesAtom
+  );
 
   const actionCodeSettings = {
     // URL you want to redirect back to. The domain (www.example.com) for this
@@ -123,8 +133,24 @@ const SignUpPage = () => {
           await updateProfile(response.user, {
             displayName: displayname,
           });
-          alert('회원가입 완료');
-          navigate('/login');
+          // alert('회원가입 완료');
+          // navigate('/login');
+          MessageWindow.showWindow(
+            new MessageWindowProperties(
+              true,
+              '회원가입이 완료되었어요!',
+              [
+                {
+                  text: '로그인 페이지로 돌아가기',
+                  callback: () => {
+                    navigate('/login');
+                  },
+                },
+              ],
+              MessageWindowLogoType.Confetti
+            ),
+            setState
+          );
         })
         .catch((error) => {
           console.log(error);
@@ -162,9 +188,9 @@ const SignUpPage = () => {
               <S.InputBoxContent>
                 <S.Inputholder>
                   <S.Input
-                    type="text"
-                    name="닉네임"
-                    placeholder="닉네임"
+                    type='text'
+                    name='닉네임'
+                    placeholder='닉네임'
                     onChange={onChangeDisplayname}
                   ></S.Input>
                   {/* <S.Validityfontbox>
@@ -179,9 +205,9 @@ const SignUpPage = () => {
                 </S.Inputholder>
                 <S.Inputholder>
                   <S.Input
-                    type="email"
-                    name="아이디"
-                    placeholder="아이디"
+                    type='email'
+                    name='아이디'
+                    placeholder='아이디'
                     onChange={onChangeEmail}
                   ></S.Input>
                   {/* <S.Validityfontbox>
@@ -196,9 +222,9 @@ const SignUpPage = () => {
                 </S.Inputholder>
                 <S.Inputholder>
                   <S.Input
-                    type="password"
-                    name="비밀번호"
-                    placeholder="비밀번호"
+                    type='password'
+                    name='비밀번호'
+                    placeholder='비밀번호'
                     onChange={onChangePassword}
                     value={password}
                   ></S.Input>
@@ -213,9 +239,9 @@ const SignUpPage = () => {
                 <S.Inputholder>
                   <S.Input
                     value={confirmPwd}
-                    type="password"
-                    name="비밀번호 확인"
-                    placeholder="비밀번호 확인"
+                    type='password'
+                    name='비밀번호 확인'
+                    placeholder='비밀번호 확인'
                     onChange={onChangeconfirmPwd}
                   ></S.Input>
                   {/* <S.Validityfontbox>
@@ -230,10 +256,10 @@ const SignUpPage = () => {
                 </S.Inputholder>
               </S.InputBoxContent>
               <S.ButtonBox>
-                <S.LoginBtn type="submit">회원 가입</S.LoginBtn>
+                <S.LoginBtn type='submit'>회원 가입</S.LoginBtn>
               </S.ButtonBox>
               <S.ThirdBox>
-                <S.RegisterBtn type="button" onClick={() => navigate('/login')}>
+                <S.RegisterBtn type='button' onClick={() => navigate('/login')}>
                   돌아가기
                 </S.RegisterBtn>
               </S.ThirdBox>
