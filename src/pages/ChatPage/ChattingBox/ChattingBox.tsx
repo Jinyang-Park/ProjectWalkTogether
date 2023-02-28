@@ -29,7 +29,7 @@ function ChattingBox() {
 
   //메세지 전송시 함수
   const sendMessage = async (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     if (message.trim() === '') {
       alert('채팅을 입력해 주세요!');
       return;
@@ -52,7 +52,8 @@ function ChattingBox() {
 
     const q = query(
       collection(dbService, 'Chatting'),
-      where('chattingRoomId', '==', roomId)
+      where('chattingRoomId', '==', roomId),
+      orderBy('createdAt', 'desc')
     );
     onSnapshot(q, (querySnapshot) => {
       const getChatList = querySnapshot.docs.map((doc) => {
