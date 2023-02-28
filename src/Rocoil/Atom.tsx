@@ -169,3 +169,13 @@ export const tochattingbox = atom<string>({
   key: 'tochattingbox',
   default: '',
 });
+
+export const ReserveEditDate = atom<any>({
+  key: 'ReserveEditDate',
+  default: '',
+});
+
+export const TimeEdit = atom<any>({
+  key: 'TimeEdit',
+  default: '',
+});

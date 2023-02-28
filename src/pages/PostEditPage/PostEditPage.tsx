@@ -11,6 +11,7 @@ import {
   Time,
   TitleInput,
   DescriptionInput,
+  ReserveEditDate,
 } from './../../Rocoil/Atom';
 import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
@@ -155,7 +156,7 @@ const PostEditPage = () => {
             console.log('배너url', typeof bannerUrl);
 
             try {
-              const postRef = doc(dbService, 'Post', PostingID_Posting);
+              const postRef = doc(dbService, 'Post', id);
               updateDoc(postRef, {
                 Description_Posting: Description,
                 RsvDate_Posting,
@@ -168,7 +169,7 @@ const PostEditPage = () => {
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
               });
-              console.log('글작성완료 ID: ', PostingID_Posting);
+              console.log('글작성완료 ID: ', postRef);
             } catch (e) {
               console.error('Error updating document: ', e);
             }
