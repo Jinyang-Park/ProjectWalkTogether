@@ -1,4 +1,13 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
+
+const sessionStorage =
+  typeof window !== 'undefined' ? window.sessionStorage : undefined;
+
+const { persistAtom } = recoilPersist({
+  key: '',
+  storage: sessionStorage,
+});
 
 //Date & Time
 export const Time = atom<string>({
@@ -146,6 +155,13 @@ export const currentKakaoId = atom<string>({
 export const kakaoState = atom({
   key: 'kakaoState',
   default: '',
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const kakaoUserState = atom({
+  key: 'kakaoUserState',
+  default: [],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const FilterSelectedDate = atom<any>({

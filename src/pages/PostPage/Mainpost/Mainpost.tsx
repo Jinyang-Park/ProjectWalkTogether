@@ -123,6 +123,7 @@ function MainPost({
             <S.CalendarIcon src={'/assets/calendar.png'} />
             <S.CategoryTitle>{postCategory}</S.CategoryTitle>
           </S.CateogryWrapper>
+
           {show && (
             <DropdownCategory
               setPostCategory={setPostCategory}
@@ -138,7 +139,6 @@ function MainPost({
             onChange={handleChangeText}
             placeholder='당신의 이야기를 적어주세요'
           ></S.Textarea>
-          <Tag tagItem='' />
         </S.BoxMain>
       </S.Boxcontents>
     </>

@@ -7,10 +7,14 @@ import { collection, addDoc, setDoc, doc } from '@firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { dbService } from '../../common/firebase';
 import { useRecoilState } from 'recoil';
-import { kakaoState } from '../../Rocoil/Atom';
-
+import { kakaoState, kakaoUserState } from '../../Rocoil/Atom';
+import { useSetRecoilState } from 'recoil';
 export default function KakaoLoginButton() {
-  const [res, setRes] = useRecoilState(kakaoState);
+  // const setKakaoUser = useRecoilState(kakaoUserState);
+  const setKakao = useSetRecoilState(kakaoUserState);
+  const [userId, setUserId] = useState();
+
+  const [profileImage, setProfileImage] = useState();
   const loginHandler = () => {
     window.location.replace(link);
   };
@@ -84,10 +88,12 @@ export default function KakaoLoginButton() {
             ? null
             : res.kakao_account.profile.profile_image_url;
 
-        sessionStorage.setItem('이름', nickname);
-        sessionStorage.setItem('id', kakaoId);
-        sessionStorage.setItem('login', String(true));
+        sessionStorage.setItem('id', res.kakao_account.profile.nickname);
+        setProfileImage(res.kakao_account.profile.is_default_imagee);
+        sessionStorage.setItem('uid', res.id);
         console.log(res);
+        setKakao(res.kakao_account.profile.nickname);
+        // setKakaoUser(res.nickname);
 
         await setDoc(doc(dbService, 'kakaoData', `${kakaoId}`), {
           login: true,
@@ -101,7 +107,6 @@ export default function KakaoLoginButton() {
         //res를 state에 저장한다.
 
         navigate('/');
-        setRes(res);
       });
   };
 

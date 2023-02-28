@@ -6,7 +6,12 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { authService } from '../common/firebase';
 import useDetectClose from '../hooks/useDetectClose';
 import KakaoLogoutButton from '../components/Logout/kakaologout';
-import { isLoggedIn, kakaoState, username } from '../Rocoil/Atom';
+import {
+  isLoggedIn,
+  kakaoState,
+  kakaoUserState,
+  username,
+} from '../Rocoil/Atom';
 
 const Header = () => {
   const location = useLocation();
@@ -30,8 +35,11 @@ const Header = () => {
   const gotomy = () => {
     navigate('mypage');
   };
+
+  // const kakaoUser = sessionStorage.getItem('id');
+  const kakaoUser = useRecoilValue(kakaoUserState);
   const sessionId = useRecoilValue(username);
-  console.log(sessionId);
+  console.log(kakaoUser);
   getKakaoCode();
   //const currentUser = authService.currentUser;
   //const userNickName = currentUser?.displayName;
@@ -51,7 +59,7 @@ const Header = () => {
             <S.NavText to="/chat">chat</S.NavText>
           </S.NavLi> */}
           <S.NavLi>
-            {loggedIn === false ? (
+            {loggedIn || kakaoCode === false ? (
               <S.NavText
                 onClick={() => {
                   alert('로그인을 해주세요!');
@@ -65,7 +73,7 @@ const Header = () => {
             )}
           </S.NavLi>
           <S.NavLi>
-            {loggedIn === false ? (
+            {loggedIn || kakaoCode === false ? (
               <S.NavText
                 onClick={() => {
                   alert('로그인을 해주세요!');
@@ -90,7 +98,9 @@ const Header = () => {
           <S.MyPageContainer>
             {loggedIn || kakaoCode ? (
               <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
-                <S.LoginButton> {sessionId} </S.LoginButton>
+                <S.LoginButton>
+                  <div>{sessionId || kakaoUser}님</div>
+                </S.LoginButton>
 
                 <S.DropNav isDropped={myPageIsOpen}>
                   <S.Ul>
