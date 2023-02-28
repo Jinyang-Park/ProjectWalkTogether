@@ -105,9 +105,16 @@ export const NewSortInput = atom<any>({
   default: '',
 });
 
-export const chattingusers = atom<any>({
-  key: 'chattingusers',
-  default: '',
+//* 상권님
+export const Cetegory = atom<any>({
+  key: 'Cetegory',
+  default: '전체',
+});
+
+//* ---------------MapPage Catefory------------------ *//
+
+export const filterDatename = atom<any>({
+  key: 'filterDatename',
 });
 
 export const isLoggedIn = atom<boolean>({
@@ -122,5 +129,33 @@ export const currentUserUid = atom<string>({
 
 export const username = atom<string>({
   key: 'username',
+  default: '',
+});
+
+export const NewpostTag = atom<string[]>({
+  key: 'NewpostTag',
+  // key의 값은 항상 고유값이어야 합니다.
+  default: [],
+});
+
+export const FilterSelectedDate = atom<any>({
+  key: 'FilterSelectedDate',
+  // key의 값은 항상 고유값이어야 합니다.
+  default: '',
+});
+
+
+export const lastCategoryAtom = atom<any>({
+  key: 'lastCategory',
+  default: '반려동물',
+
+export const userForChat = atom<any>({
+  key: 'userForChat',
+  default: '',
+});
+
+//채팅리스트에서 채팅박스로 채팅방id를 보냄
+export const tochattingbox = atom<string>({
+  key: 'tochattingbox',
   default: '',
 });

@@ -38,7 +38,7 @@ const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
           onClick: async () => {
             await deleteDoc(doc(dbService, 'Post', id))
               .then(() => {
-                navigate(`/category`, { state: getPostings.Category_Posting });
+                navigate(`/category/${getPostings.Category_Posting}`);
               })
               // then과 catch 세트이다.
               .catch((error) => {
@@ -73,7 +73,9 @@ const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
         {/*수정버튼 영역 */}
         <S.DropUpdateBtn>
           <S.UpdateIcon />
-          <S.UpdateTitle>게시글 수정하기</S.UpdateTitle>
+          <S.UpdateTitle onClick={() => navigate(`/edit/${id}`)}>
+            게시글 수정하기
+          </S.UpdateTitle>
         </S.DropUpdateBtn>
         {/*산책버튼 영역 */}
         <S.DropCompletBtn>

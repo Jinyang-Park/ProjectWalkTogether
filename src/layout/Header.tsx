@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './Header.style';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import styled, { css } from 'styled-components';
 // import logoImg from '../../src/assets/shoes.png';
-
+import { useRecoilValue } from 'recoil';
 import { authService } from '../common/firebase';
-import useLoginState from '../hooks/useLoginState';
 import useDetectClose from '../hooks/useDetectClose';
 import KakaoLogoutButton from '../components/Logout/kakaologout';
-import { useRecoilValue } from 'recoil';
 import { isLoggedIn, username } from '../Rocoil/Atom';
 
 const Header = () => {
-  const [userId, setUserId] = useState();
   const location = useLocation();
   const history = useNavigate();
   const navigate = useNavigate();
@@ -59,6 +55,21 @@ const Header = () => {
               <S.NavText to='/postpage'>글 쓰기</S.NavText>
             )}
           </S.NavLi>
+          <S.NavLi>
+            {loggedIn === false ? (
+              <S.NavText
+                onClick={() => {
+                  alert('로그인을 해주세요!');
+                }}
+                to='/login'
+              >
+                채팅
+              </S.NavText>
+            ) : (
+              <S.NavText to='/chat'>채 팅</S.NavText>
+            )}
+          </S.NavLi>
+
           {/* <S.NavLi>
             <S.NavText to="/detailpage">상세</S.NavText>
           </S.NavLi> */}
