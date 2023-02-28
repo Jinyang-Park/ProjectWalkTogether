@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 import * as S from '../ChattingList/ChattingList.style';
-import {
-  doc,
-  onSnapshot,
-  query,
-  collection,
-  getDocs,
-  orderBy,
-} from 'firebase/firestore';
+import { query, collection, getDocs, orderBy } from 'firebase/firestore';
 import { dbService } from '../../../common/firebase';
 import { currentUserUid, tochattingbox } from '../../../Rocoil/Atom';
 import { useEffect } from 'react';

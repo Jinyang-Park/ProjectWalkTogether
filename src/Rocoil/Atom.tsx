@@ -154,6 +154,7 @@ export const userForChat = atom<any>({
   default: '',
 });
 
+//채팅리스트에서 채팅박스로 채팅방id를 보냄
 export const tochattingbox = atom<string>({
   key: 'tochattingbox',
   default: '',
