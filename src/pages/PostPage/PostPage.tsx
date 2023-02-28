@@ -249,7 +249,7 @@ const PostPage = () => {
                         // async await 비동기 처리
                         setTimeout(geturl, 1000);
 
-                        navigate(`/category`, { state: postCategory });
+                        navigate(`/category/${postCategory}`);
                         // setTimeout(adddoc, 8000);
                       } else {
                         alert('카테고리를 선택해 주세요');
