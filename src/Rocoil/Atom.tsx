@@ -138,6 +138,16 @@ export const NewpostTag = atom<string[]>({
   default: [],
 });
 
+export const currentKakaoId = atom<string>({
+  key: 'currentKakaoId',
+  default: '',
+});
+
+export const kakaoState = atom({
+  key: 'kakaoState',
+  default: '',
+});
+
 export const FilterSelectedDate = atom<any>({
   key: 'FilterSelectedDate',
   // key의 값은 항상 고유값이어야 합니다.
