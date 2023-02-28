@@ -58,13 +58,22 @@ export const LikedHeartFlex = styled.div`
   justify-content: space-between;
 `;
 
-export const LikeBtnLine = styled(AiOutlineHeart)`
+export const LikeBtnLine = styled.img`
   position: absolute;
   width: 25px;
   height: 20px;
   margin-left: 9rem;
   margin-top: 30px;
   cursor: pointer;
+`;
+export const LikeBtnFill = styled.img`
+  position: absolute;
+  width: 25px;
+  height: 20px;
+  margin-left: 9rem;
+  margin-top: 30px;
+  cursor: pointer;
+  object-fit: contain;
 `;
 export const ListItemAddress = styled.p`
   margin-top: 5px;

@@ -186,12 +186,12 @@ const DetailPage = () => {
     <>
       <CommonStyles>
         <S.DetailIntroWapper>
-          <S.BannereURL src={getPostings.BannereURL_Posting} />
+          <S.BannereURL src={getPostings.BannerURL_Posting} />
         </S.DetailIntroWapper>
         <S.Boxcontents>
           <S.BoxPhoto>
             {/*썸네일*/}
-            <S.ThunmnailURL src={getPostings.ThunmnailURL_Posting} />
+            <S.ThunmnailURL src={getPostings.ThumbnailURL_Posting} />
             <S.DetailUserName>{getPostings.Nickname}</S.DetailUserName>
             {/*인트로영역*/}
             <S.DetailIntroWrapper>

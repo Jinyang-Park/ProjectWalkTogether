@@ -264,8 +264,8 @@ const PostEditPage = () => {
         <MainPostEdit
           setPostCategory={setPostCategory}
           postCategory={postCategory}
-          thumbnailimg={state.ThunmnailURL_Posting}
-          bannerimg={state.BannereURL_Posting}
+          thumbnailimg={state.ThumbnailURL_Posting}
+          bannerimg={state.BannerURL_Posting}
         />
         <InputInformationEdit
           addressEdit={state.Address_Posting}

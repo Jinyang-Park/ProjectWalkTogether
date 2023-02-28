@@ -7,6 +7,7 @@ import { async } from '@firebase/util';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { ref } from 'firebase/storage';
 import { dbService } from '../../common/firebase';
+import { red } from '@mui/material/colors';
 
 interface postProps {
   post: any;
@@ -67,18 +68,30 @@ const CardSection = ({ post }: postProps) => {
       <S.CardSectionWrapper
         onClick={() => {
           setParams(post.id);
-          // navigate(`/detailpage/${post.id}`);
+          navigate(`/detailpage/${post.id}`);
         }}
       >
         <S.ListItemWrapper>
-          <S.ListItemThumnail src={post.ThunmnailURL_Posting} />
+          <S.ListItemThumnail src={post.ThumbnailURL_Posting} />
         </S.ListItemWrapper>
         <S.ListItemThumnailTitle>{post.Title_Posting}</S.ListItemThumnailTitle>
-        {/* <S.HashTag>#케이팝 #발라드</S.HashTag> */}
+        <S.HashTag>
+          {post.Hashtag_Posting.map((tagItem, i) => {
+            return (
+              <>
+                {tagItem == '' ? (
+                  <div>&nbsp;</div>
+                ) : (
+                  <div key={i}>{'#' + tagItem}</div>
+                )}
+              </>
+            );
+          })}
+        </S.HashTag>
         <S.ListItemContainer>
+          <S.ListItemAddress>{post.Address_Posting}</S.ListItemAddress>
           <S.LikedHeartFlex>
-            <S.ListItemAddress>{post.Address_Posting}</S.ListItemAddress>
-            {likebtn ? (
+            {/* {likebtn ? (
               <button
                 style={{ position: 'absolute' }}
                 onClick={() => {
@@ -97,8 +110,25 @@ const CardSection = ({ post }: postProps) => {
               >
                 좋아요하기
               </button>
+            )} */}
+
+            {likebtn ? (
+              // LikeBtnFill부분만 svg가 안된다...
+              <S.LikeBtnFill
+                src={require('../../assets/HeartFill5.png')}
+                onClick={() => {
+                  unlikepost();
+                }}
+              />
+            ) : (
+              <S.LikeBtnLine
+                src={'/assets/HeartLine.svg'}
+                onClick={() => {
+                  likepost();
+                  console.log('좋아요');
+                }}
+              />
             )}
-            <S.LikeBtnLine />
           </S.LikedHeartFlex>
           <S.ListItemDate>
             {post.RsvDate_Posting}
