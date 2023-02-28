@@ -1,39 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import DropdownCategory from '../../../../components/DropdownCategoryForWritePage/DropdownCategory'
-import * as S from './Filter.style'
-import AntCalendarMap from '../Calendar/AntCalendarDate'
-import DropdownFilterCategory from '../../../../components/DropdownFilterCategory/DropdownFilterCategory'
-import { useRecoilValue } from 'recoil'
+import DropdownCategory from '../../../../components/DropdownCategoryForWritePage/DropdownCategory';
+import * as S from './Filter.style';
+import AntCalendarMap from '../Calendar/AntCalendarDate';
+import DropdownFilterCategory from '../../../../components/DropdownFilterCategory/DropdownFilterCategory';
+import { useRecoilValue, useRecoilState } from 'recoil';
+
+import { Cetegory } from '../../../../Rocoil/Atom';
 
 declare interface SetProps {
-  setPostCategory: React.Dispatch<React.SetStateAction<string>>
-  setShow: React.Dispatch<React.SetStateAction<boolean>>
+  setPostCategory: React.Dispatch<React.SetStateAction<string>>;
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const FilterBar = ({
   setPostCategory: string,
   setShow: boolean,
 }: SetProps) => {
-  const [show, setShow] = useState<any>(false)
-  const [TextChange, setTextChange] = useState('카테고리')
+  const [show, setShow] = useState<any>(false);
+  const [TextChange, setTextChange] = useState('카테고리');
 
-  // 카테고리 필터링 적용 위치 알려주세요
-  // const CategoryFilter = (e) => {
-  //   if (e.target.checked) {
-  //     setSelectedCategory([...SelectedCategory, e.target.value])
-  //   } else {
-  //     setSelectedCategory(
-  //       SelectedCategory.filter((category) => category !== e.target.value)
-  //     )
-  //   }
-  // }
-  // 카테고리 필터링 사용 위치
-  // <S.FilterCategoryCheckbox
-  //   type="checkbox"
-  //   value={category.CategoryName}
-  //   onChange={CategoryFilter}
-  // />
+  const [Category, setCatefory] = useRecoilState(Cetegory);
+
+  console.log(Category);
 
   return (
     <>
@@ -48,6 +37,8 @@ export const FilterBar = ({
             <DropdownFilterCategory
               setShow={setShow}
               setTextChange={setTextChange}
+              setCategory={setCatefory}
+              TextChange={TextChange}
             />
           )}
           <AntCalendarMap />
@@ -66,7 +57,7 @@ export const FilterBar = ({
         </S.FilterSortWrapper>
       </S.FilterArea>
     </>
-  )
-}
+  );
+};
 
-export default FilterBar
+export default FilterBar;

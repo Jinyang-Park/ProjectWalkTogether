@@ -22,9 +22,11 @@ import dayjs from 'dayjs';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { paramsState } from '../../../Rocoil/Atom';
 import MessageWindow, {
+  MessageWindowLogoType,
   MessageWindowProperties,
   messageWindowPropertiesAtom,
 } from '../../../messagewindow/MessageWindow';
+import { message } from 'antd';
 
 interface postProps {
   param: any;
@@ -123,16 +125,21 @@ const Comments = ({ param }: postProps) => {
     //   ],
     // });
     MessageWindow.showWindow(
-      new MessageWindowProperties(true, '댓글을 취소하시겠습니까?', [
-        {
-          text: '네',
-          callback: () => setInputComment(''),
-        },
-        {
-          text: '아니오',
-          callback: () => setInputComment,
-        },
-      ]),
+      new MessageWindowProperties(
+        true,
+        '댓글을 취소하시겠습니까?',
+        [
+          {
+            text: '네',
+            callback: () => setInputComment(''),
+          },
+          {
+            text: '아니오',
+            callback: () => setInputComment,
+          },
+        ],
+        MessageWindowLogoType.Confetti
+      ),
       setState
     );
   };
@@ -216,22 +223,43 @@ const Comments = ({ param }: postProps) => {
 
   // 댓글 삭제
   const DeleteCommentHandler = async (documentId: any) => {
-    confirmAlert({
-      title: '정말 댓글을 삭제하시겠습니까?',
-      message: '삭제한 댓글은 되돌릴 수 없습니다.',
-      buttons: [
-        {
-          label: '네',
-          onClick: async () => {
-            await deleteDoc(doc(dbService, 'comments', documentId));
+    // confirmAlert({
+    //   title: '정말 댓글을 삭제하시겠습니까?',
+    //   message: '삭제한 댓글은 되돌릴 수 없습니다.',
+    //   buttons: [
+    //     {
+    //       label: '네',
+    //       onClick: async () => {
+    //         await deleteDoc(doc(dbService, 'comments', documentId));
+    //       },
+    //     },
+    //     {
+    //       label: '아니오',
+    //       onClick: () => setMyComment,
+    //     },
+    //   ],
+    // });
+    MessageWindow.showWindow(
+      new MessageWindowProperties(
+        true,
+        '정말 댓글을 삭제하시겠습니까?',
+        [
+          {
+            text: '네',
+            callback: async () =>
+              await deleteDoc(doc(dbService, 'comments', documentId)),
           },
-        },
-        {
-          label: '아니오',
-          onClick: () => setMyComment,
-        },
-      ],
-    });
+          {
+            text: '아니오',
+            callback: () => {
+              return;
+            },
+          },
+        ],
+        MessageWindowLogoType.Perplex
+      ),
+      setState
+    );
   };
 
   return (

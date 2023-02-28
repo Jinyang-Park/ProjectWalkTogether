@@ -105,9 +105,16 @@ export const NewSortInput = atom<any>({
   default: '',
 });
 
-export const chattingusers = atom<any>({
-  key: 'chattingusers',
-  default: '',
+//* 상권님
+export const Cetegory = atom<any>({
+  key: 'Cetegory',
+  default: '전체',
+});
+
+//* ---------------MapPage Catefory------------------ *//
+
+export const filterDatename = atom<any>({
+  key: 'filterDatename',
 });
 
 export const isLoggedIn = atom<boolean>({
@@ -129,6 +136,12 @@ export const NewpostTag = atom<string[]>({
   key: 'NewpostTag',
   // key의 값은 항상 고유값이어야 합니다.
   default: [],
+});
+
+export const FilterSelectedDate = atom<any>({
+  key: 'FilterSelectedDate',
+  // key의 값은 항상 고유값이어야 합니다.
+  default: '',
 });
 
 export const userForChat = atom<any>({
