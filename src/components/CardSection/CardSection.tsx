@@ -63,7 +63,19 @@ const CardSection = ({ post }: postProps) => {
           <S.ListItemThumnail src={post.ThunmnailURL_Posting} />
         </S.ListItemWrapper>
         <S.ListItemThumnailTitle>{post.Title_Posting}</S.ListItemThumnailTitle>
-        {/* <S.HashTag>#케이팝 #발라드</S.HashTag> */}
+        <S.HashTag>
+          {post.Hashtag_Posting.map((tagItem, i) => {
+            return (
+              <>
+                {tagItem == '' ? (
+                  <div>&nbsp;</div>
+                ) : (
+                  <div key={i}>{'#' + tagItem}</div>
+                )}
+              </>
+            );
+          })}
+        </S.HashTag>
         <S.ListItemContainer>
           <S.LikedHeartFlex>
             <S.ListItemAddress>{post.Address_Posting}</S.ListItemAddress>

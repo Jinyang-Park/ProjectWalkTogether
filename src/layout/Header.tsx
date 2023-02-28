@@ -59,7 +59,7 @@ const Header = () => {
             <S.NavText to="/chat">chat</S.NavText>
           </S.NavLi> */}
           <S.NavLi>
-            {loggedIn || kakaoCode === false ? (
+            {loggedIn === false ? (
               <S.NavText
                 onClick={() => {
                   alert('로그인을 해주세요!');
@@ -73,7 +73,7 @@ const Header = () => {
             )}
           </S.NavLi>
           <S.NavLi>
-            {loggedIn || kakaoCode === false ? (
+            {loggedIn === false ? (
               <S.NavText
                 onClick={() => {
                   alert('로그인을 해주세요!');
