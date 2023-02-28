@@ -29,50 +29,30 @@ const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
 
   //삭제 버튼
   const DeletePostHandler = async (id: any) => {
-    // confirmAlert({
-    //   title: '정말 게시물을 삭제하시겠습니까?',
-    //   message: '삭제한 게시물은 되돌릴 수 없습니다.',
-    //   buttons: [
-    //     {
-    //       label: '네',
-    //       onClick: async () => {
-    //         await deleteDoc(doc(dbService, 'Post', id))
-    //           .then(() => {
-    //             navigate(`/category`, { state: getPostings.Category_Posting });
-    //           })
-    //           // then과 catch 세트이다.
-    //           .catch((error) => {
-    //             console.log(error);
-    //           });
-    //       },
-    //     },
-    //     {
-    //       label: '아니오',
-    //       onClick: () => 'return false',
-    //     },
-    //   ],
-    // });
-    // return;
-    MessageWindow.showWindow(
-      new MessageWindowProperties(
-        true,
-        '정말 댓글을 삭제하시겠습니까?',
-        [
-          {
-            text: '네',
-            callback: async () => await deleteDoc(doc(dbService, 'Post', id)),
+confirmAlert({
+      title: '정말 게시물을 삭제하시겠습니까?',
+      message: '삭제한 게시물은 되돌릴 수 없습니다.',
+      buttons: [
+        {
+          label: '네',
+          onClick: async () => {
+            await deleteDoc(doc(dbService, 'Post', id))
+              .then(() => {
+                navigate(`/category/${getPostings.Category_Posting}`);
+              })
+              // then과 catch 세트이다.
+              .catch((error) => {
+                console.log(error);
+              });
           },
-          {
-            text: '아니오',
-            callback: () => {
-              return;
-            },
-          },
-        ],
-        MessageWindowLogoType.Perplex
-      ),
-      setState
-    );
+        },
+        {
+          label: '아니오',
+          onClick: () => 'return false',
+        },
+      ],
+    });
+    return;
   };
 
   // 이건 안된다.
@@ -93,7 +73,9 @@ const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
         {/*수정버튼 영역 */}
         <S.DropUpdateBtn>
           <S.UpdateIcon />
-          <S.UpdateTitle>게시글 수정하기</S.UpdateTitle>
+          <S.UpdateTitle onClick={() => navigate(`/edit/${id}`)}>
+            게시글 수정하기
+          </S.UpdateTitle>
         </S.DropUpdateBtn>
         {/*산책버튼 영역 */}
         <S.DropCompletBtn>

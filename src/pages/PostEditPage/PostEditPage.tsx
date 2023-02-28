@@ -1,40 +1,32 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import CommonStyles from './../../styles/CommonStyles';
+import * as S from './PostEditPage.style';
+import { useRecoilValue } from 'recoil';
 import {
-  Time,
-  TitleInput,
-  DescriptionInput,
+  myLocation,
+  selectedAddress,
   Bannerupload,
   ThumbnailUpload,
   ReserveDate,
-  selectedAddress,
-  myLocation,
-  NewpostTag,
-} from '../../../src/Rocoil/Atom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+  Time,
+  TitleInput,
+  DescriptionInput,
+} from './../../Rocoil/Atom';
 import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
-import { collection, addDoc } from 'firebase/firestore';
-import { dbService } from '../../common/firebase';
-import Mainpost from './Mainpost/Mainpost';
-import IuputInformation from './InputInformation/InputInformation';
-import * as S from './Postpage.style';
-import CommonStyles from './../../styles/CommonStyles';
-import MainPost from './Mainpost/Mainpost';
-import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
-import { storage } from '../../common/firebase';
 import { useNavigate } from 'react-router-dom';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { storage, dbService } from './../../common/firebase';
+import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
+import MainPostEdit from './MainPostEdit/MainPostEdit';
+import InputInformationEdit from './InputInformationEdit/InputInformationEdit';
 
-const PostPage = () => {
+const PostEditPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false); //아이디 찾기 모달창
   const [postDb, setPostDb] = useState({}); //파이어베이스DB
   const [postHour, setPostHour] = useState(''); //약속 시간.날짜
   const [postMinut, setPostMinute] = useState(''); //약속 시간.시각
   const [postTime, setPostTime] = useState(''); //작성시간
-  // const [postLatitude, setPostLtitude] = useState(''); //위도
-  // const [postLongitude, setPostLongitude] = useState(''); //경도
-  // const [postNowLatitude, setPostNowLtitude] = useState(''); //현재 위도
-  // const [postNowLongitude, setPostNowLongitude] = useState(''); //현재 경도
   const [postLiked, setPostLiked] = useState(false); //좋아요 여부
   const [postCountLiked, setPostCountLiked] = useState(''); //좋아요 갯수
   const [proceedState, setProceedState] = useState(''); //게시글의 진행사항
@@ -44,7 +36,6 @@ const PostPage = () => {
   const [postNickname, setPostNickname] = useState(''); //사용자 닉네임 => 회원가입시시에 저장해 주거나 로컬에 저장하는 방법을 찾아야될 것 같다.
   const [postAddress, setPostAddress] = useState(''); //만날 위치 시,군,구,단
   const [postCategory, setPostCategory] = useState('카테고리'); //카테고리
-  const [TagItem, setTagItem] = useState('');
 
   //주소 받아오기 myLocation
   const location = useRecoilValue(myLocation);
@@ -130,8 +121,6 @@ const PostPage = () => {
   const Title = useRecoilValue(TitleInput);
   const Description = useRecoilValue(DescriptionInput);
 
-  //해시태그 리코일
-  const Tag = useRecoilValue(NewpostTag);
   //현재시간
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
 
@@ -148,7 +137,7 @@ const PostPage = () => {
   /////////////
   //콘솔확인용/
   useEffect(() => {
-    console.log(' RsvDate_Posting:', RsvDate_Posting);
+    console.log(' Description.length:', Description.length);
     setPostTime(timestring); //현재 시간
     // setPostHour(meeting); //약속 시간
     setPostNickname(nickname);
@@ -158,19 +147,17 @@ const PostPage = () => {
   //settimeout test
   const geturl: any = () => {
     getDownloadURL(ref(storage, `test/${PostingID_Posting}/thumbnail`))
-      .then((url) => {
-        const getThumbnail = url;
-        console.log('섬네일url', getThumbnail);
-        // alert('섬네일url');
+      .then((thumbnailUrl) => {
+        console.log('섬네일url', thumbnailUrl);
 
-        //get썸네일 url
+        // Get banner url
         getDownloadURL(ref(storage, `test/${PostingID_Posting}/banner`))
-          .then((url) => {
-            const getBanner = url;
-            console.log('배너url', typeof getBanner);
+          .then((bannerUrl) => {
+            console.log('배너url', typeof bannerUrl);
 
             try {
-              const docRef = addDoc(collection(dbService, 'Post'), {
+              const postRef = doc(dbService, 'Post', PostingID_Posting);
+              updateDoc(postRef, {
                 Description_Posting: Description,
                 Nickname: postNickname,
                 RsvDate_Posting,
@@ -182,20 +169,19 @@ const PostPage = () => {
                 PostingID_Posting,
                 KeyForChat_Posting,
                 Category_Posting: postCategory,
-                ThunmnailURL_Posting: getThumbnail,
-                BannereURL_Posting: getBanner,
+                ThumbnailURL_Posting: thumbnailUrl,
+                BannerURL_Posting: bannerUrl,
                 CountLiked_Posting: '0',
                 ProceedState_Posting: '1',
                 Address_Posting,
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
-                LikedUsers: [],
                 View: 0,
+                Date: new Date(),
               });
-              console.log('글작성완료 ID: ', docRef);
-              // alert('저장완료');
+              console.log('글작성완료 ID: ', PostingID_Posting);
             } catch (e) {
-              console.error('Error adding document: ', e);
+              console.error('Error updating document: ', e);
             }
           })
           .catch((error) => {
@@ -282,24 +268,20 @@ const PostPage = () => {
       alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
     }
   };
-  // console.log('postCategory', postCategory);
   return (
     <CommonStyles>
       <S.Boxcontainer>
-        <MainPost
+        <MainPostEdit
           setPostCategory={setPostCategory}
           postCategory={postCategory}
-          setTagItem={setTagItem}
-          TagItem={TagItem}
-          // onKeyPress={onKeyPress}
         />
-        <IuputInformation />
+        <InputInformationEdit />
         <S.PostSubmitBox>
-          <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>
+          <S.PostSubmitBtn onClick={handleSubmit}>수정하기</S.PostSubmitBtn>
         </S.PostSubmitBox>
       </S.Boxcontainer>
     </CommonStyles>
   );
 };
 
-export default PostPage;
+export default PostEditPage;

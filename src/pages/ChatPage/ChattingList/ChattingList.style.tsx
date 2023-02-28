@@ -77,10 +77,24 @@ export const ChattingUserBox = styled.div`
 `;
 
 export const ChattingUser = styled.div`
+  display: flex;
   border-bottom: 1px solid #bec5d7;
   border-bottom: 1px solid #bec5d7;
   width: 280px;
   height: 63px;
+`;
+
+export const UserImg = styled.img`
+  width: 40px;
+  height: 40px;
+  position: relative;
+  border-radius: 30px;
+  margin: 12px;
+`;
+
+export const UserName = styled.div`
+  position: relative;
+  top: 15px;
 `;
 
 export const ChattingBox = styled.div`

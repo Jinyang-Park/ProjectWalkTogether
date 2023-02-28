@@ -6,6 +6,7 @@ import {
   currentUserUid,
   isLoggedIn,
   username,
+  userForChat,
 } from '../../Rocoil/Atom';
 import {
   addDoc,
@@ -22,12 +23,16 @@ export default function AuthStateListener() {
   const setIsLoggedIn = useSetRecoilState(isLoggedIn);
   const setCurrentUserUid = useSetRecoilState(currentUserUid);
   const setUsername = useSetRecoilState(username);
+
   const setCurrentKakaoId = useSetRecoilState(currentKakaoId);
+
+  const setUserForChat = useSetRecoilState(userForChat);
 
   const cacheDataToUserDatabase = async (
     kakaoId: string,
     uid: string,
     email: string,
+
     nickname: string,
     profileImg: string
   ) => {
@@ -94,9 +99,19 @@ export default function AuthStateListener() {
         console.log(user);
 
         // alert('로그인되었습니다. -알레한드로');
+        const useruid = user.uid;
+        const myporfile = user.photoURL;
+        const mynickname = user.displayName;
+        const nowuser: any = {
+          useruid,
+          myporfile,
+          mynickname,
+        };
+
         setIsLoggedIn(true);
         setCurrentUserUid(user.uid);
         setUsername(user.displayName);
+        setUserForChat(nowuser);
 
         cacheDataToUserDatabase(
           user.kakaoId,

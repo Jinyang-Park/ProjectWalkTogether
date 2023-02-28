@@ -13,6 +13,7 @@ import {
   ViewSortInput,
   LikeSortInput,
   NewSortInput,
+  Cetegory,
 } from '../../../Rocoil/Atom';
 
 import { useSearch } from '../../../hooks/useSearch';
@@ -24,6 +25,12 @@ import { useSetRecoilState } from 'recoil';
 const InfoList = ({ Post }) => {
   const navigate = useNavigate();
   const setParams = useSetRecoilState(paramsState);
+
+  const Category = useRecoilValue(Cetegory);
+  const postpostpost =
+    Category !== '전체'
+      ? Post.filter((x) => x.Category_Posting === Category)
+      : Post;
 
   const [CategoryAll, setCategoryAll] = useRecoilState(CategoryAllInput); // 카테고리 전체
   const [SelectedCategory, setSelectedCategory] = useRecoilState(
@@ -46,6 +53,8 @@ const InfoList = ({ Post }) => {
 
   // 최신순 정렬
   const [NewSort, setNewSort] = useRecoilState(NewSortInput);
+
+  //! 함수를 리코일에 담기 위해서는 Selector를 사용해야 한다.
 
   // 카테고리 필터링
   const CategoryFilter = (e) => {
@@ -185,7 +194,7 @@ const InfoList = ({ Post }) => {
     <>
       <S.SearchLineTotalCount>총 n 건의 검색결과</S.SearchLineTotalCount>
       <S.ResultList>
-        {Post.map((post) => {
+        {postpostpost.map((post) => {
           return (
             <S.ResultListCard
               key={post.PostingID_Posting}
