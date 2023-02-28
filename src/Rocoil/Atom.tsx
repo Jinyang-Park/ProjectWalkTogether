@@ -130,3 +130,13 @@ export const NewpostTag = atom<string[]>({
   // key의 값은 항상 고유값이어야 합니다.
   default: [],
 });
+
+export const currentKakaoId = atom<string>({
+  key: 'currentKakaoId',
+  default: '',
+});
+
+export const kakaoState = atom({
+  key: 'kakaoState',
+  default: '',
+});

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import * as S from './Header.style';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 // import logoImg from '../../src/assets/shoes.png';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { authService } from '../common/firebase';
 import useDetectClose from '../hooks/useDetectClose';
 import KakaoLogoutButton from '../components/Logout/kakaologout';
-import { isLoggedIn, username } from '../Rocoil/Atom';
+import { isLoggedIn, kakaoState, username } from '../Rocoil/Atom';
 
 const Header = () => {
   const location = useLocation();
@@ -14,6 +14,15 @@ const Header = () => {
   const navigate = useNavigate();
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
   const loggedIn = useRecoilValue(isLoggedIn);
+  const [kakaoCode, setKakaoCode] = useRecoilState(kakaoState);
+
+  const getKakaoCode = () => {
+    const code = new URL(window.location.href).searchParams.get('code');
+    if (code) {
+      setKakaoCode(code);
+      console.log(code);
+    }
+  };
 
   const handleLogin = () => {
     navigate('login');
@@ -23,7 +32,7 @@ const Header = () => {
   };
   const sessionId = useRecoilValue(username);
   console.log(sessionId);
-
+  getKakaoCode();
   //const currentUser = authService.currentUser;
   //const userNickName = currentUser?.displayName;
   //localId !== null
@@ -64,7 +73,7 @@ const Header = () => {
           {/* <S.Profile onClick={gotomy}>닉네임</S.Profile> */}
 
           <S.MyPageContainer>
-            {loggedIn ? (
+            {loggedIn || kakaoCode ? (
               <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
                 <S.LoginButton> {sessionId} </S.LoginButton>
 

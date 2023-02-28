@@ -1,7 +1,12 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { currentUserUid, isLoggedIn, username } from '../../Rocoil/Atom';
+import {
+  currentKakaoId,
+  currentUserUid,
+  isLoggedIn,
+  username,
+} from '../../Rocoil/Atom';
 import {
   addDoc,
   collection,
@@ -17,14 +22,18 @@ export default function AuthStateListener() {
   const setIsLoggedIn = useSetRecoilState(isLoggedIn);
   const setCurrentUserUid = useSetRecoilState(currentUserUid);
   const setUsername = useSetRecoilState(username);
+  const setCurrentKakaoId = useSetRecoilState(currentKakaoId);
 
   const cacheDataToUserDatabase = async (
+    kakaoId: string,
     uid: string,
     email: string,
     nickname: string,
     profileImg: string
   ) => {
     const docSnap = await getDoc(doc(dbService, 'user', uid));
+    const kakaoSnap = await getDoc(doc(dbService, 'kakaoData', `${kakaoId}`));
+
     if (docSnap.exists()) {
       // Already exists
       const res = await updateDoc(doc(dbService, 'user', uid), {
@@ -33,6 +42,7 @@ export default function AuthStateListener() {
         profileImg: profileImg,
         uid: uid,
       });
+
       console.log(res);
     } else {
       const res = await setDoc(doc(dbService, 'user', uid), {
@@ -44,7 +54,26 @@ export default function AuthStateListener() {
       });
       console.log(res);
     }
+
+    if (kakaoSnap.exists()) {
+      // Already exists
+      const res = await updateDoc(doc(dbService, 'kakaoData', `${kakaoId}`), {
+        email: email,
+        nickname: nickname,
+        profileImg: profileImg,
+      });
+
+      console.log(res);
+    }
   };
+
+  // await setDoc(doc(dbService, 'kakaoData', `${kakaoId}`), {
+  //   login: true,
+  //   name: nickname,
+  //   date: connectedAt,
+  //   email: email,
+  //   image: image,
+  // });
 
   // 최상위에 있는 이유
   //
@@ -58,15 +87,19 @@ export default function AuthStateListener() {
   const auth = getAuth();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
+      console.log(user);
       // console.log('AuthState observer has been called');
       if (user) {
         // User is logged in
+        console.log(user);
+
         // alert('로그인되었습니다. -알레한드로');
         setIsLoggedIn(true);
         setCurrentUserUid(user.uid);
         setUsername(user.displayName);
 
         cacheDataToUserDatabase(
+          user.kakaoId,
           user.uid,
           user.email,
           user.displayName,
@@ -77,6 +110,7 @@ export default function AuthStateListener() {
         // alert('로그아웃되었습니다. 안녕히 잘가세요ㅋ -알레한드로');
         setIsLoggedIn(false);
         setCurrentUserUid('');
+        setCurrentKakaoId('');
         setUsername('');
       }
     });
