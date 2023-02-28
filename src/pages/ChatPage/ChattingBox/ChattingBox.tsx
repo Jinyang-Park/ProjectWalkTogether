@@ -53,19 +53,36 @@ function ChattingBox() {
     if (chattinguser === '') {
       return;
     }
-    const querySnapshot = await getDocs(
-      query(
-        collection(dbService, 'Chatting'),
-        where('chattingRoomId', '==', roomId)
-        // orderBy('createdAt', 'desc')
-      )
+
+    const q = query(
+      collection(dbService, 'Chatting'),
+      where('chattingRoomId', '==', roomId)
     );
-    let list = [];
-    querySnapshot.forEach((doc) => {
-      list = [...list, { id: doc.id, ...doc.data() }];
+    onSnapshot(q, (querySnapshot) => {
+      const getChatList = querySnapshot.docs.map((doc) => {
+        const chatList = {
+          id: doc.id,
+          ...doc.data(),
+        };
+        return chatList;
+      });
+      setGetMessage(getChatList);
+      console.log('chatList:', getChatList);
+
+      // const querySnapshot = await getDocs(
+      //   query(
+      //     collection(dbService, 'Chatting'),
+      //     where('chattingRoomId', '==', roomId)
+      //     // orderBy('createdAt', 'desc')
+      //   )
+      // );
+      // let list = [];
+      // querySnapshot.forEach((doc) => {
+      //   list = [...list, { id: doc.id, ...doc.data() }];
+      // });
+      // setGetMessage(list);
+      // console.log('list:', list);
     });
-    setGetMessage(list);
-    console.log('list:', list);
   };
 
   useEffect(() => {
