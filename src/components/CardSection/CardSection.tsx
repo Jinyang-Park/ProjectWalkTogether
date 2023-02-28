@@ -18,6 +18,8 @@ const CardSection = ({ post }: postProps) => {
   const [likebtn, setLikeBtn] = useState<boolean>(false);
   const uid = useRecoilValue(currentUserUid);
 
+  console.log(post);
+
   // post 바뀔때마 실행되는것이다.
   // useEffect(() => {
   //   setParams(post.id);
@@ -33,19 +35,28 @@ const CardSection = ({ post }: postProps) => {
   useEffect(() => {
     setLikeBtn(post.LikedUsers.includes(uid));
   }, [post]);
+
   // 좋아요 하는 거
   const likepost = async () => {
-    const snap = await getDoc(doc(dbService, 'Post', post.id));
-    snap.data().LikedUsers.push(uid);
+    console.log(post.id);
+    let p = post;
+    p.LikedUsers.push(uid);
+
+    // doc = getDocs(Post 중에 PostingID_Posting === post.PostingID_Posting인 것들)[0]
+    // updateDoc(doc, likderifjsif)
+
     updateDoc(doc(dbService, 'Post', post.id), {
-      LikedUsers: snap.data().LikedUsers,
-    });
+      LikedUsers: p.LikedUsers,
+    })
+      .then((s) => console.log('succes', s))
+      .catch((e) => console.log(e));
   };
 
   // 좋아요 취소
   const unlikepost = async () => {
-    const snap = await getDoc(doc(dbService, 'Post', post.id));
-    const u = snap.data().LikedUsers.filter((id) => id !== uid);
+    console.log(post.id);
+
+    const u = post.LikedUsers.filter((id: string) => id !== uid);
     updateDoc(doc(dbService, 'Post', post.id), {
       LikedUsers: u,
     });
@@ -56,7 +67,7 @@ const CardSection = ({ post }: postProps) => {
       <S.CardSectionWrapper
         onClick={() => {
           setParams(post.id);
-          navigate(`/detailpage/${post.id}`);
+          // navigate(`/detailpage/${post.id}`);
         }}
       >
         <S.ListItemWrapper>
@@ -79,6 +90,26 @@ const CardSection = ({ post }: postProps) => {
         <S.ListItemContainer>
           <S.LikedHeartFlex>
             <S.ListItemAddress>{post.Address_Posting}</S.ListItemAddress>
+            {likebtn ? (
+              <button
+                style={{ position: 'absolute' }}
+                onClick={() => {
+                  unlikepost();
+                }}
+              >
+                좋아요 해재하기
+              </button>
+            ) : (
+              <button
+                style={{ position: 'absolute' }}
+                onClick={() => {
+                  likepost();
+                  console.log('좋아요');
+                }}
+              >
+                좋아요하기
+              </button>
+            )}
             <S.LikeBtnLine />
           </S.LikedHeartFlex>
           <S.ListItemDate>
