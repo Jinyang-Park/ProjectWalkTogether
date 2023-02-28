@@ -31,10 +31,6 @@ const PostPage = () => {
   const [postHour, setPostHour] = useState(''); //약속 시간.날짜
   const [postMinut, setPostMinute] = useState(''); //약속 시간.시각
   const [postTime, setPostTime] = useState(''); //작성시간
-  // const [postLatitude, setPostLtitude] = useState(''); //위도
-  // const [postLongitude, setPostLongitude] = useState(''); //경도
-  // const [postNowLatitude, setPostNowLtitude] = useState(''); //현재 위도
-  // const [postNowLongitude, setPostNowLongitude] = useState(''); //현재 경도
   const [postLiked, setPostLiked] = useState(false); //좋아요 여부
   const [postCountLiked, setPostCountLiked] = useState(''); //좋아요 갯수
   const [proceedState, setProceedState] = useState(''); //게시글의 진행사항
@@ -191,6 +187,7 @@ const PostPage = () => {
                 MeetLatitude_Posting,
                 LikedUsers: [],
                 View: 0,
+                Hashtag_Posting: Tag,
               });
               console.log('글작성완료 ID: ', docRef);
               // alert('저장완료');

@@ -154,10 +154,10 @@ export const FilterSelectedDate = atom<any>({
   default: '',
 });
 
-export const lastCategoryAtom = atom<any>({
-  key: 'lastCategory',
-  default: '반려동물',
-});
+// export const lastCategoryAtom = atom<any>({
+//   key: 'lastCategory',
+//   default: '반려동물',
+// });
 
 export const userForChat = atom<any>({
   key: 'userForChat',

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import * as S from './DropdownCategoryForWrite.style';
 import { CategorysList } from '../../utils/CategorysList';
+import { useParams } from 'react-router-dom';
 
 // setPostCategory
 declare interface SetProps {
