@@ -86,7 +86,12 @@ const DetailPage = () => {
     }
     const querySnapshot = await getDocs(
       query(
-        collection(dbService, 'Users', `${mychatlist}`, 'chattingListroom'),
+        collection(
+          dbService,
+          'ChattingUsers',
+          `${mychatlist}`,
+          'chattingListroom'
+        ),
         orderBy('createdAt', 'desc')
       )
     );
@@ -136,7 +141,12 @@ const DetailPage = () => {
       // });
 
       await addDoc(
-        collection(dbService, 'Users', `${getPostingUID}`, 'chattingListroom'),
+        collection(
+          dbService,
+          'ChattingUsers',
+          `${getPostingUID}`,
+          'chattingListroom'
+        ),
         {
           combineId,
           profile: UID.myporfile,
@@ -146,14 +156,19 @@ const DetailPage = () => {
         }
       );
 
-      //db에저장된 컬렉션 user의 상대방이 가지는 하위컬랙션 chattingroom에 저장되는값들
+      // 채팅의 상대방(게시글주인) chattingroom에 저장되는값들
       await addDoc(
-        collection(dbService, 'Users', `${CurrentUid}`, 'chattingListroom'),
+        collection(
+          dbService,
+          'ChattingUsers',
+          `${CurrentUid}`,
+          'chattingListroom'
+        ),
         {
           combineId,
           profile: getPostings.ThunmnailURL_Posting,
           uid: getPostings.UID,
-          nicname: getPostings.Nickname,
+          nickname: getPostings.Nickname,
           createdAt: new Date(),
         }
       );
@@ -180,7 +195,7 @@ const DetailPage = () => {
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
 
-  console.log('chatList:', chatList);
+  console.log('getPostings:', getPostings);
 
   return (
     <>
