@@ -28,7 +28,9 @@ export const CategoryImg = styled.div`
 export const LikedListItem = styled.div`
   display: flex;
   flex-wrap: wrap;
-  grid-gap: 49.3px;
+  grid-gap: 70px 49.3px;
+  /* grid-template-rows: 49.3px; */
+
   margin-top: 36px;
 `;
 export const FilterArea = styled.div`
