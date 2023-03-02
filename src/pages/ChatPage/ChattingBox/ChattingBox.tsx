@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+  import React, { useEffect } from 'react';
 import * as S from './ChattingBox.style';
 import { useState } from 'react';
 import { dbService } from '../../../common/firebase';
@@ -26,6 +26,9 @@ import { useRecoilValue } from 'recoil';
 function ChattingBox() {
   const [message, setMessage] = useState('');
   const [getmessage, setGetMessage] = useState<any>([]);
+  //인풋값 초기화
+  const [text, setText] = useState('');
+  //ChattingList에서 받아오는값들
   const roomId = useRecoilValue(tochattingboxroomid);
   const nickname = useRecoilValue(tochattingboxnickname);
   const profileImg = useRecoilValue(tochattingboxprofileimg);
@@ -51,10 +54,12 @@ function ChattingBox() {
           user: chattinguser,
           createdAt: new Date(),
           nowchattime: nowchattime,
-          nickname: nickname,
+          // nickname: nickname,
           profileImg: profileImg,
         }
       );
+
+      setMessage('');
 
       console.log('docRef:', docRef);
     }
@@ -79,7 +84,7 @@ function ChattingBox() {
         return chat;
       });
       setGetMessage(getChat);
-      console.log('chatList:', getChat);
+      console.log('chatList:', profileImg);
     });
 
     // const querySnapshot = await getDocs(
@@ -103,16 +108,27 @@ function ChattingBox() {
 
   const nowmessage = getmessage;
 
-  console.log('getmessage:', getmessage);
+  console.log('nickname', nickname);
 
   return (
     <div>
       <S.ChattingBox>
         <S.ChattingNickname>
           <S.ChattingNicknamePhoto>
-            <img src={require('../../../assets/man.png')} />
+            {profileImg === '' ? (
+              <S.ChattingBoxheaderImgCover>
+                <S.ChattingBoxheaderImg
+                  src={require('../../../assets/man.png')}
+                />
+              </S.ChattingBoxheaderImgCover>
+            ) : (
+              <S.ChattingBoxheaderImgCover>
+                {' '}
+                <S.ChattingBoxheaderImg src={profileImg} />
+              </S.ChattingBoxheaderImgCover>
+            )}
           </S.ChattingNicknamePhoto>
-          <S.ChattingNicknameto>여기가 닉네임입니다.</S.ChattingNicknameto>
+          <S.ChattingNicknameto>{nickname} 님</S.ChattingNicknameto>
         </S.ChattingNickname>
         <S.ChattingContent>
           {/* 글 들어가는 곳 */}
@@ -124,7 +140,11 @@ function ChattingBox() {
               </S.ChattingTextBox>
             ) : (
               <S.ChattingTextBoxLeft>
-                <S.ChattingImg></S.ChattingImg>
+                <S.ChattingImg>
+                  <S.ChattingBoxheaderImgCover>
+                    <S.ChattingBoxheaderImg src={profileImg} />
+                  </S.ChattingBoxheaderImgCover>
+                </S.ChattingImg>
                 <S.ChattingTextLeft>{ars.message}</S.ChattingTextLeft>
 
                 <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
@@ -142,6 +162,7 @@ function ChattingBox() {
               <S.ChattingInput
                 placeholder='채팅을 입력해 주세요'
                 onChange={(e) => setMessage(e.target.value)}
+                value={message}
               />
               <S.ChattingButton>
                 <img src='../../../assets/SendBtn.png' />

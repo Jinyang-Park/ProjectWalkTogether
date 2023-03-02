@@ -36,17 +36,17 @@ function ChattingList() {
     }
 
     const q = query(
-      collection(dbService, 'Users', mychatlist, 'chattingListroom')
+      collection(dbService, 'ChattingUsers', mychatlist, 'chattingListroom')
       // where('chattingRoomId', '==', roomId)
       // orderBy('createdAt', 'desc')
     );
     onSnapshot(q, (querySnapshot) => {
       const getChatList = querySnapshot.docs.map((doc) => {
-        const chatList = {
+        const nowList = {
           id: doc.id,
           ...doc.data(),
         };
-        return chatList;
+        return nowList;
       });
       setChatList(getChatList);
       console.log('chatList:', getChatList);
@@ -72,7 +72,7 @@ function ChattingList() {
   }, [mychatlist]);
 
   const chattingUser = chatList;
-  console.log('getChatList', chatList);
+  console.log('chatList', chatList);
 
   // const test2 = test.combineId;
 
@@ -92,12 +92,16 @@ function ChattingList() {
                 <S.ChattingUser
                   onClick={() => {
                     SetTochattingBoxRoomId(user.combineId);
+                    SetTochattingBoxNickname(user.nickname);
+                    SetTochattingBoxProfileImg(user.profile);
                   }}
                 >
                   {/* <div style={{ backgroundImage: `${user.porfile}` }}></div> */}
-                  <S.UserImg src={user.profile} />
+                  <S.UserImgCover>
+                    <S.UserImg src={user.profile} />
+                  </S.UserImgCover>
 
-                  <S.UserName>{user.nicname}</S.UserName>
+                  <S.UserName>{user.nickname}</S.UserName>
                 </S.ChattingUser>
               );
             })}
