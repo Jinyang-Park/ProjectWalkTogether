@@ -63,6 +63,7 @@ const DetailPage = () => {
   const CurrentUid = UID.useruid;
   //  동일한 유저이더라도 게시글마다 새로운 채팅방이 생긴다
   const combineId: any = getPostings.PostingID_Posting + CurrentUid;
+  const getPostingsThumbnail = getPostings.ThumbnailURL_Posting;
 
   const getPost = async () => {
     const q = doc(dbService, 'Post', id);
@@ -166,7 +167,7 @@ const DetailPage = () => {
         ),
         {
           combineId,
-          profile: getPostings.ThunmnailURL_Posting,
+          profile: getPostingsThumbnail,
           uid: getPostings.UID,
           nickname: getPostings.Nickname,
           createdAt: new Date(),
@@ -195,7 +196,7 @@ const DetailPage = () => {
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
 
-  console.log('getPostings:', getPostings);
+  console.log('chatList', chatList);
 
   return (
     <>

@@ -1,4 +1,4 @@
-  import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as S from './ChattingBox.style';
 import { useState } from 'react';
 import { dbService } from '../../../common/firebase';
@@ -148,7 +148,6 @@ function ChattingBox() {
                 <S.ChattingTextLeft>{ars.message}</S.ChattingTextLeft>
 
                 <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
-
               </S.ChattingTextBoxLeft>
             );
           })}

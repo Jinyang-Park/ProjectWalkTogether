@@ -49,7 +49,7 @@ function ChattingList() {
         return nowList;
       });
       setChatList(getChatList);
-      console.log('chatList:', getChatList);
+      console.log('chatList:', chatList);
     });
 
     // const querySnapshot = await getDocs(
