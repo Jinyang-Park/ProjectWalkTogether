@@ -189,6 +189,7 @@ const PostPage = () => {
                 Address_Posting,
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
+                Hashtag_Posting: Tag,
                 LikedUsers: [],
                 View: 0,
               });
