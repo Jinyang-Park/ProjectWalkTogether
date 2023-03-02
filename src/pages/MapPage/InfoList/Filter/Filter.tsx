@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import DropdownCategory from '../../../../components/DropdownCategoryForWritePage/DropdownCategory';
 import * as S from './Filter.style';
 import AntCalendarMap from '../Calendar/AntCalendarDate';
-import DropdownFilterCategory from '../../../../components/DropdownFilterCategory/DropdownFilterCategory';
+import DropdownFilterCategoryForMapPage from '../../../../components/DropDownCategoryForMapPage/DropDownCategoryForMapPage';
 import { useRecoilValue, useRecoilState } from 'recoil';
 
 import { Cetegory } from '../../../../Rocoil/Atom';
@@ -19,6 +19,7 @@ export const FilterBar = ({
 }: SetProps) => {
   const [show, setShow] = useState<any>(false);
   const [TextChange, setTextChange] = useState('카테고리');
+  const [Category, setCatefory] = useRecoilState(Cetegory);
 
   return (
     <>
@@ -30,7 +31,8 @@ export const FilterBar = ({
             <S.FilterCalendarIcon />
           </S.CategoryFilterWarpper>
           {show && (
-            <DropdownFilterCategory
+            <DropdownFilterCategoryForMapPage
+              setCategory={setCatefory}
               setShow={setShow}
               setTextChange={setTextChange}
               TextChange={TextChange}

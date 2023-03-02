@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 export const notyet = () => {
-  return <></>
-}
+  return <></>;
+};
 
-export default notyet
+export default notyet;

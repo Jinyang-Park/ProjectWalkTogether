@@ -1,23 +1,21 @@
-import React from 'react'
-import type { DatePickerProps } from 'antd'
-import { DatePicker, Space } from 'antd'
-import { useRecoilState } from 'recoil'
+import React from 'react';
+import type { DatePickerProps } from 'antd';
+import { DatePicker, Space } from 'antd';
+import { useRecoilState } from 'recoil';
 // import { ReserveDate } from '../Rocoil/Atom';
-import 'moment/locale/ko'
-import locale from 'antd/lib/locale/ko_KR'
-import { ConfigProvider } from 'antd'
+import 'moment/locale/ko';
+import locale from 'antd/lib/locale/ko_KR';
+import { ConfigProvider } from 'antd';
 
 const AntCalendarMap: React.FC = () => {
-  const format = 'YYYY/MM/DD'
+  const format = 'YYYY/MM/DD';
   // const [reserveDate, setReserveDate] = useRecoilState<any>(ReserveDate);
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     // console.log(date, dateString);
     // setReserveDate(date);
     // console.log('달력/날짜:', reserveDate);
-  }
-
-  // useEffect(() => );
+  };
 
   return (
     <ConfigProvider locale={locale}>
@@ -34,7 +32,7 @@ const AntCalendarMap: React.FC = () => {
         />
       </Space>
     </ConfigProvider>
-  )
-}
+  );
+};
 
-export default AntCalendarMap
+export default AntCalendarMap;

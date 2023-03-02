@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 export const funtionCalendar = () => {
-  return <></>
-}
+  return <></>;
+};
 
-export default funtionCalendar
+export default funtionCalendar;
