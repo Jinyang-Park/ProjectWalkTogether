@@ -60,7 +60,10 @@ const MapPage = () => {
           RsvHour_Posting: doc.data().RsvHour_Posting,
           Nickname: doc.data().Nickname,
           Address_Posting: doc.data().Address_Posting,
-          ThunmnailURL_Posting: doc.data().ThunmnailURL_Posting,
+          ThumbnailURL_Posting: doc.data().ThumbnailURL_Posting,
+          LikedUsers: doc.data().LikedUsers,
+          Hashtag_Posting: doc.data().Hashtag_Posting,
+          View: doc.data().View,
         });
       });
       setPosting(firestorePostingList);

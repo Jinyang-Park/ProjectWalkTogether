@@ -38,7 +38,7 @@ const PostEditPage = () => {
   const { id } = useParams();
   const { state } = useLocation();
   // console.log(id);
-  console.log(state);
+  // console.log(state);
 
   // 카테고리 값값
   const [postCategory, setPostCategory] = useState(state.Category_Posting);

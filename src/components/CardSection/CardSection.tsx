@@ -101,7 +101,7 @@ const CardSection = ({ post }: postProps) => {
         {likebtn ? (
           // LikeBtnFill부분만 svg가 안된다...
           <S.LikeBtnFill
-            src={require('../../assets/HeartFill5.png')}
+            src={require('../../assets/HeartFill2.svg').default}
             onClick={() => {
               unlikepost();
             }}
