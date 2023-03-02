@@ -13,13 +13,13 @@ const { persistAtom } = recoilPersist({
 export const Time = atom<string>({
   key: 'Time',
   // key의 값은 항상 고유값이어야 합니다.
-  default: Date(),
+  default: '',
 });
 
 export const ReserveDate = atom<any>({
   key: 'ReserveDate',
   // key의 값은 항상 고유값이어야 합니다.
-  default: Date(),
+  default: '',
 });
 
 export const TitleInput = atom<string>({
@@ -181,8 +181,20 @@ export const userForChat = atom<any>({
 });
 
 //채팅리스트에서 채팅박스로 채팅방id를 보냄
-export const tochattingbox = atom<string>({
-  key: 'tochattingbox',
+export const tochattingboxroomid = atom<string>({
+  key: 'tochattingboxroomid',
+  default: '',
+});
+
+//채팅리스트에서 채팅박스로 채팅방 닉네임을 보냄
+export const tochattingboxnickname = atom<string>({
+  key: 'tochattingboxnickname',
+  default: '',
+});
+
+//채팅리스트에서 채팅박스로 채팅방 닉네임을 보냄
+export const tochattingboxprofileimg = atom<string>({
+  key: 'tochattingboxprofileimg',
   default: '',
 });
 
