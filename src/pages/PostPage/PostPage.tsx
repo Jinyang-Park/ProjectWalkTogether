@@ -11,9 +11,9 @@ import {
   myLocation,
   NewpostTag,
 } from '../../../src/Rocoil/Atom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { getAuth } from 'firebase/auth';
-import { uuidv4 } from '@firebase/util';
+import { uuidv4, async } from '@firebase/util';
 import { collection, addDoc } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
 import Mainpost from './Mainpost/Mainpost';
@@ -24,6 +24,11 @@ import MainPost from './Mainpost/Mainpost';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../common/firebase';
 import { useNavigate } from 'react-router-dom';
+import MessageWindow, {
+  MessageWindowLogoType,
+  MessageWindowProperties,
+  messageWindowPropertiesAtom,
+} from '../../messagewindow/MessageWindow';
 
 const PostPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false); //아이디 찾기 모달창
@@ -100,7 +105,9 @@ const PostPage = () => {
   // console.log('date:', date(y, meetDate.$M, d));
 
   //시간
-  const meetTime = useRecoilValue(Time);
+  const meetTime = useRecoilValue<string>(Time);
+  const setMeetTime = useSetRecoilState<string>(Time);
+
   const meetHour = meetTime.slice(0, 2);
 
   const isPm = Number(meetHour) >= 12;
@@ -123,16 +130,18 @@ const PostPage = () => {
   const RsvHour_Posting = `${AMPM} ${time12}:${meetMinute}`;
 
   //타이틀, 글 내용
-  const Title = useRecoilValue(TitleInput);
-  console.log(TitleInput);
-  console.log(Title);
-  const Description = useRecoilValue(DescriptionInput);
-  console.log(DescriptionInput);
-  console.log(Description);
+  const Title = useRecoilValue<string>(TitleInput);
+  const setTitle = useSetRecoilState<string>(TitleInput);
+
+  const Description = useRecoilValue<string>(DescriptionInput);
+  const setDescription = useSetRecoilState<string>(DescriptionInput);
+
+  const setState = useSetRecoilState<MessageWindowProperties>(
+    messageWindowPropertiesAtom
+  );
 
   //해시태그 리코일
   const Tag = useRecoilValue(NewpostTag);
-  const [tagList, setTagList] = useRecoilState(NewpostTag);
   //현재시간
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
 
@@ -157,7 +166,7 @@ const PostPage = () => {
   });
 
   //settimeout test
-  const geturl: any = () => {
+  const geturl: any = (callback: () => void = () => {}) => {
     getDownloadURL(ref(storage, `test/${PostingID_Posting}/thumbnail`))
       .then((url) => {
         const getThumbnail = url;
@@ -193,8 +202,10 @@ const PostPage = () => {
                 Hashtag_Posting: Tag,
                 LikedUsers: [],
                 View: 0,
+              }).then(() => {
+                callback();
               });
-              console.log('글작성완료 ID: ', docRef);
+
               // alert('저장완료');
             } catch (e) {
               console.error('Error adding document: ', e);
@@ -212,46 +223,12 @@ const PostPage = () => {
   ////////////
   //작성완료//
   ///////////
-  const handleSubmit = (e: any) => {
-    if (Title.length !== 0) {
-      if (Title.length! < 20) {
-        if (Description.length !== 0) {
-          if (Description.length! < 200) {
-            if (meetDate !== '') {
-              if (meetTime !== '') {
-                if (thumbnail !== '') {
-                  if (banner !== '') {
-                    if (adress !== '충북 보은군 속리산면 갈목리 산 19-1') {
-                      if (postCategory !== '카테고리') {
-                        if (thumbnail === null)
-                          // 포스팅 클릭하면 해당 카테고리 페이지로 라우터 이동
-                          //////////////// 썸네일 이미지 전송
-                          return alert('이미지 업로드 실패');
-                        const imageRef = ref(
-                          storage,
-                          `test/${PostingID_Posting}/thumbnail`
-                        ); //+${thumbnail}
-                        // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-                        uploadBytes(imageRef, thumbnail).then((snapshot) => {
-                          console.log('snapshot', snapshot);
-                          // 업로드 되자마자 뜨게 만들기
-                          // alert('썸네일 저장 완료');
-                        });
-                        if (banner === null) return alert('이미지 업로드 실패');
-                        const bannerRef = ref(
-                          storage,
-                          `test/${PostingID_Posting}/banner`
-                        ); //+${thumbnail}
-                        // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-                        uploadBytes(bannerRef, banner).then((snapshot) => {
-                          // alert('베너 저장 완료');
-                          console.log('snapshot', snapshot);
-                        });
-                        // geturl(); settTimeout이 없으면 에러가 난다.
-                        // async await 비동기 처리
-                        setTimeout(geturl, 1000);
+  const handleSubmit = async (e: any) => {
+    if (Title.length < 1 || Title.length > 20) {
+      alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
+      return;
+    }
 
-                        setTagList([]);
                         navigate(`/category/${postCategory}`);
                         // setTimeout(adddoc, 8000);
                       } else {
@@ -284,6 +261,48 @@ const PostPage = () => {
     } else {
       alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
     }
+
+    const bannerRef = ref(storage, `test/${PostingID_Posting}/banner`); //+${thumbnail}
+
+    // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
+    /////////////////////////////////////////////////////////
+    // 업로드중입니다 로더 넣기
+
+    // alert('업로드중입니다.');
+
+    // 업로드 시작 확정 시 로딩창 띄워줌
+    MessageWindow.showWindow(
+      new MessageWindowProperties(
+        true,
+        '업로드 중입니다. 조금만 기다려주세요!',
+        [],
+        MessageWindowLogoType.CryingFace
+      ),
+      setState
+    );
+
+    ///////////////////////////////////////////////////////
+    await uploadBytes(bannerRef, banner);
+
+    // geturl(); settTimeout이 없으면 에러가 난다.
+    // async await 비동기 처리
+
+    geturl(() => {
+      // MessageWindow 닫는 코드
+      MessageWindow.showWindow(new MessageWindowProperties(), setState);
+
+      // Recoil은 useState와 다르게 창이 닫혀도 초기화가 안 됨.
+      // 수동으로 클리어해줘야 초기화됨.
+      setTitle('');
+      setDescription('');
+
+      setTag([]);
+      setMeetTime('');
+
+      navigate(`/category/${postCategory}`);
+    });
+
+    // setTimeout(adddoc, 8000);
   };
   // console.log('postCategory', postCategory);
   return (

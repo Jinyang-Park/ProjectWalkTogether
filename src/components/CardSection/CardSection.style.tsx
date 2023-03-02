@@ -4,6 +4,7 @@ import { AiOutlineHeart } from 'react-icons/ai';
 export const CardBox = styled.div`
   width: 180px;
   height: 207px;
+  margin-bottom: 70px;
 `;
 export const CardSectionWrapper = styled.div`
   cursor: pointer;
@@ -23,18 +24,19 @@ export const ListItemThumnail = styled.img`
   border-radius: 4px;
 `;
 export const ListItemThumnailTitle = styled.p`
-  /* height: 48px; */
-  /* width: 200px; */
+  width: 165px;
   margin: 8px 0px 0px 0px;
   /* overflow: hidden; */
-  text-overflow: ellipsis;
+  object-fit: contain;
   font-size: 16px;
+  font-family: 'SUITERegular';
   font-weight: 600;
-  line-height: 19.97px;
-  letter-spacing: normal;
+  line-height: 20px;
+  letter-spacing: -2px;
   color: #212121;
 `;
 export const HashTag = styled.p`
+  font-family: 'SUITERegular';
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -42,11 +44,15 @@ export const HashTag = styled.p`
   gap: 8px;
   font-weight: 500;
   font-size: 12px;
-  line-height: 15px;
+  line-height: 21px;
 `;
 export const ListItemContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
   border-top: 1px solid #ddd;
-  padding-top: 5px;
+  padding-top: 8px;
 `;
 export const LikedHeartFlex = styled.div`
   display: flex;
@@ -55,7 +61,6 @@ export const LikedHeartFlex = styled.div`
 `;
 
 export const LikeBtnLine = styled.img`
-  position: absolute;
   width: 25px;
   height: 20px;
   margin-left: 9rem;
@@ -63,7 +68,6 @@ export const LikeBtnLine = styled.img`
   cursor: pointer;
 `;
 export const LikeBtnFill = styled.img`
-  position: absolute;
   width: 25px;
   height: 20px;
   margin-left: 9rem;
@@ -72,12 +76,25 @@ export const LikeBtnFill = styled.img`
   object-fit: contain;
 `;
 export const ListItemAddress = styled.p`
-  margin-top: 5px;
+  font-family: 'SUITERegular';
+  /* margin-top: 5px; */
   font-weight: 400;
+  letter-spacing: -0.1px;
   font-size: 12px;
   line-height: 15px;
 `;
 export const ListItemDate = styled.span`
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
+  margin-top: 2px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  margin-right: 3px;
+`;
+export const ListItemHour = styled.span`
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
   margin-top: 2px;
   font-weight: 400;
   font-size: 12px;
