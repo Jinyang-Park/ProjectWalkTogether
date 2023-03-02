@@ -126,7 +126,9 @@ const ChangePassword = () => {
         placeholder='새로운 비밀번호를 입력해주세요'
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setHasUserChangedNewPassword(true);
+          setIsNewPasswordValid(e.currentTarget.value !== '');
           setNewPassword(e.currentTarget.value);
+          setDoNewPasswordsMatch(e.currentTarget.value === checkpassword);
         }}
       ></input>
       {hasUserChangedNewPassword && !isNewPasswordValid && (
@@ -138,6 +140,7 @@ const ChangePassword = () => {
         type='password'
         placeholder='새로운 비밀번호를 재입력 해주세요'
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          setDoNewPasswordsMatch(e.currentTarget.value === newpassword);
           setCheckPassword(e.currentTarget.value);
         }}
       ></input>
