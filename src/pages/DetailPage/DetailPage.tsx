@@ -57,13 +57,13 @@ const DetailPage = () => {
   const [isduplication, setIsduplication] = useState(false);
   const mychatlist = useRecoilValue(currentUserUid);
   const [chatList, setChatList] = useState<any>([]);
-
+ 
   // 채팅방 만들기
   const getPostingUID = getPostings.UID;
   const CurrentUid = UID.useruid;
   //  동일한 유저이더라도 게시글마다 새로운 채팅방이 생긴다
   const combineId: any = getPostings.PostingID_Posting + CurrentUid;
-  const getPostingsThumbnail = getPostings.ThumbnailURL_Posting;
+  // const getPostingsThumbnail = getPostings.ThumbnailURL_Posting;
 
   const getPost = async () => {
     const q = doc(dbService, 'Post', id);
@@ -167,7 +167,7 @@ const DetailPage = () => {
         ),
         {
           combineId,
-          profile: getPostingsThumbnail,
+          profile: getPostings.ThumbnailURL_Posting,
           uid: getPostings.UID,
           nickname: getPostings.Nickname,
           createdAt: new Date(),
@@ -196,7 +196,10 @@ const DetailPage = () => {
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
 
-  console.log('chatList', chatList);
+  console.log(
+    'getPostings.ThumbnailURL_Posting',
+    getPostings.ThumbnailURL_Posting
+  );
 
   return (
     <>
