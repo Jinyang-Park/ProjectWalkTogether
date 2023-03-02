@@ -15,17 +15,26 @@ import {
   addDoc,
 } from 'firebase/firestore';
 
-import { currentUserUid, tochattingbox } from '../../../Rocoil/Atom';
+import {
+  currentUserUid,
+  tochattingboxroomid,
+  tochattingboxnickname,
+  tochattingboxprofileimg,
+} from '../../../Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 
 function ChattingBox() {
   const [message, setMessage] = useState('');
   const [getmessage, setGetMessage] = useState<any>([]);
-  const roomId = useRecoilValue(tochattingbox);
+  const roomId = useRecoilValue(tochattingboxroomid);
+  const nickname = useRecoilValue(tochattingboxnickname);
+  const profileImg = useRecoilValue(tochattingboxprofileimg);
+
+  // const roomId = userInfo.roomId;
 
   const chattinguser = useRecoilValue(currentUserUid);
 
-  // const chattime = Date();
+  const nowchattime = Date().slice(16, 21);
 
   //메세지 전송시 함수
   const sendMessage = async (event) => {
@@ -34,12 +43,18 @@ function ChattingBox() {
       alert('채팅을 입력해 주세요!');
       return;
     } else {
-      const docRef = await addDoc(collection(dbService, 'Chatting'), {
-        chattingRoomId: roomId,
-        message: message,
-        user: chattinguser,
-        createdAt: new Date(),
-      });
+      const docRef = await addDoc(
+        collection(dbService, 'Chatting', roomId, 'message'),
+        {
+          chattingRoomId: roomId,
+          message: message,
+          user: chattinguser,
+          createdAt: new Date(),
+          nowchattime: nowchattime,
+          nickname: nickname,
+          profileImg: profileImg,
+        }
+      );
 
       console.log('docRef:', docRef);
     }
@@ -51,35 +66,35 @@ function ChattingBox() {
     }
 
     const q = query(
-      collection(dbService, 'Chatting'),
+      collection(dbService, 'Chatting', roomId, 'message'),
       where('chattingRoomId', '==', roomId),
       orderBy('createdAt', 'desc')
     );
     onSnapshot(q, (querySnapshot) => {
-      const getChatList = querySnapshot.docs.map((doc) => {
-        const chatList = {
+      const getChat = querySnapshot.docs.map((doc) => {
+        const chat = {
           id: doc.id,
           ...doc.data(),
         };
-        return chatList;
+        return chat;
       });
-      setGetMessage(getChatList);
-      console.log('chatList:', getChatList);
-
-      // const querySnapshot = await getDocs(
-      //   query(
-      //     collection(dbService, 'Chatting'),
-      //     where('chattingRoomId', '==', roomId)
-      //     // orderBy('createdAt', 'desc')
-      //   )
-      // );
-      // let list = [];
-      // querySnapshot.forEach((doc) => {
-      //   list = [...list, { id: doc.id, ...doc.data() }];
-      // });
-      // setGetMessage(list);
-      // console.log('list:', list);
+      setGetMessage(getChat);
+      console.log('chatList:', getChat);
     });
+
+    // const querySnapshot = await getDocs(
+    //   query(
+    //     collection(dbService, 'Chatting'),
+    //     where('chattingRoomId', '==', roomId),
+    //     orderBy('createdAt', 'desc')
+    //   )
+    // );
+    // let list = [];
+    // querySnapshot.forEach((doc) => {
+    //   list = [...list, { id: doc.id, ...doc.data() }];
+    // });
+    // setGetMessage(list);
+    // console.log('list:', list);
   };
 
   useEffect(() => {
@@ -88,9 +103,7 @@ function ChattingBox() {
 
   const nowmessage = getmessage;
 
-  console.log('chattime:');
-
-  console.log('nowmessage:', nowmessage);
+  console.log('getmessage:', getmessage);
 
   return (
     <div>
@@ -107,13 +120,15 @@ function ChattingBox() {
             return ars.user === chattinguser ? (
               <S.ChattingTextBox>
                 <S.ChattingText>{ars.message}</S.ChattingText>
-                <S.ChattingTime>10:50</S.ChattingTime>
+                <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
               </S.ChattingTextBox>
             ) : (
               <S.ChattingTextBoxLeft>
                 <S.ChattingImg></S.ChattingImg>
                 <S.ChattingTextLeft>{ars.message}</S.ChattingTextLeft>
-                <S.ChattingTime>10:30</S.ChattingTime>
+
+                <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
+
               </S.ChattingTextBoxLeft>
             );
           })}

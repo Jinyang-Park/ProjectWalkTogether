@@ -86,7 +86,7 @@ const DetailPage = () => {
     }
     const querySnapshot = await getDocs(
       query(
-        collection(dbService, 'Users', `${mychatlist}`, 'chattingroom'),
+        collection(dbService, 'Users', `${mychatlist}`, 'chattingListroom'),
         orderBy('createdAt', 'desc')
       )
     );
@@ -130,13 +130,13 @@ const DetailPage = () => {
       // db에저장된 user의 정보가 저장되는 곳
 
       //db에저장된 컬렉션 user의 작성자가 가지는 하위컬랙션 chattingroom에 저장되는값들
-      await setDoc(doc(dbService, 'Users', `${getPostingUID}`), {
-        getPostingUID: getPostingUID,
-        // chattingroom: [{ combineId, date }],
-      });
+      // await setDoc(doc(dbService, 'Users', `${getPostingUID}`), {
+      //   getPostingUID: getPostingUID,
+      //   // chattingroom: [{ combineId, date }],
+      // });
 
       await addDoc(
-        collection(dbService, 'Users', `${getPostingUID}`, 'chattingroom'),
+        collection(dbService, 'Users', `${getPostingUID}`, 'chattingListroom'),
         {
           combineId,
           profile: UID.myporfile,
@@ -148,7 +148,7 @@ const DetailPage = () => {
 
       //db에저장된 컬렉션 user의 상대방이 가지는 하위컬랙션 chattingroom에 저장되는값들
       await addDoc(
-        collection(dbService, 'Users', `${CurrentUid}`, 'chattingroom'),
+        collection(dbService, 'Users', `${CurrentUid}`, 'chattingListroom'),
         {
           combineId,
           profile: getPostings.ThunmnailURL_Posting,
@@ -180,7 +180,7 @@ const DetailPage = () => {
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
 
-  console.log('isduplication:', isduplication);
+  console.log('chatList:', chatList);
 
   return (
     <>

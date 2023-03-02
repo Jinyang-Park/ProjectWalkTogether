@@ -71,7 +71,7 @@ export const ChattingFooterBox = styled.div`
 export const ChattingUserBox = styled.div`
   width: 280px;
   height: auto;
-  border-right: 1px solid #bec5d7;
+  /* border-right: 1px solid #bec5d7; */
   border-bottom: 1px solid #bec5d7;
   z-index: 1;
 `;
