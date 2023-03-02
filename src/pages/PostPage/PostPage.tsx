@@ -181,7 +181,7 @@ const PostPage = () => {
             console.log('배너url', typeof getBanner);
 
             try {
-              const docRef = addDoc(collection(dbService, 'Post'), {
+              addDoc(collection(dbService, 'Post'), {
                 Description_Posting: Description,
                 Nickname: postNickname,
                 RsvDate_Posting,
@@ -195,8 +195,8 @@ const PostPage = () => {
                 Category_Posting: postCategory,
                 ThumbnailURL_Posting: getThumbnail,
                 BannerURL_Posting: getBanner,
-                CountLiked_Posting: '0',
-                ProceedState_Posting: '1',
+                CountLiked_Posting: 0,
+                ProceedState_Posting: 1,
                 Address_Posting,
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
@@ -224,16 +224,22 @@ const PostPage = () => {
   ////////////
   //작성완료//
   ///////////
+
   const handleSubmit = async (e: any) => {
     if (Title.length < 1 || Title.length > 20) {
       alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
       return;
     }
 
+    // UNHAPPY FIRST
+    //
     if (Description.length < 1 || Description.length > 200) {
       alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
       return;
     }
+
+    // HAPPY FIRST
+    //
     // if (meetDate !== '') {
     //   if (meetTime !== '') {
     //     if (thumbnail !== '') {
