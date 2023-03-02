@@ -108,6 +108,7 @@ export const ChattingInput = styled.input`
   flex: none;
   order: 0;
   flex-grow: 0;
+  outline: none;
 `;
 
 export const ChattingButton = styled.button`

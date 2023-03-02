@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+  import React, { useEffect } from 'react';
 import * as S from './ChattingBox.style';
 import { useState } from 'react';
 import { dbService } from '../../../common/firebase';
@@ -26,6 +26,9 @@ import { useRecoilValue } from 'recoil';
 function ChattingBox() {
   const [message, setMessage] = useState('');
   const [getmessage, setGetMessage] = useState<any>([]);
+  //인풋값 초기화
+  const [text, setText] = useState('');
+  //ChattingList에서 받아오는값들
   const roomId = useRecoilValue(tochattingboxroomid);
   const nickname = useRecoilValue(tochattingboxnickname);
   const profileImg = useRecoilValue(tochattingboxprofileimg);
@@ -55,6 +58,8 @@ function ChattingBox() {
           profileImg: profileImg,
         }
       );
+
+      setMessage('');
 
       console.log('docRef:', docRef);
     }
@@ -155,6 +160,7 @@ function ChattingBox() {
               <S.ChattingInput
                 placeholder='채팅을 입력해 주세요'
                 onChange={(e) => setMessage(e.target.value)}
+                value={message}
               />
               <S.ChattingButton>
                 <img src='../../../assets/SendBtn.png' />
