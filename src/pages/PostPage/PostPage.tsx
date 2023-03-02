@@ -141,7 +141,8 @@ const PostPage = () => {
   );
 
   //해시태그 리코일
-  const Tag = useRecoilValue(NewpostTag);
+  const Tag = useRecoilValue<Array<string>>(NewpostTag);
+  const setTag = useSetRecoilState<Array<string>>(NewpostTag);
   //현재시간
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
 
@@ -229,37 +230,62 @@ const PostPage = () => {
       return;
     }
 
-                        navigate(`/category/${postCategory}`);
-                        // setTimeout(adddoc, 8000);
-                      } else {
-                        alert('카테고리를 선택해 주세요');
-                      }
-                    } else {
-                      alert('지도에서 약속 장소를 선택해 주십시오');
-                    }
-                  } else {
-                    alert('배너사진을 선택해 주세요');
-                  }
-                } else {
-                  alert('섬네일 사진을 선택해 주세요');
-                }
-              } else {
-                alert('시간을 입력해 주세요');
-              }
-            } else {
-              alert('날짜를 입력해 주세요');
-            }
-          } else {
-            alert('최대 200자까지 가능합니다.');
-          }
-        } else {
-          alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
-        }
-      } else {
-        alert('최대 20자만');
-      }
-    } else {
-      alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
+    if (Description.length < 1 || Description.length > 200) {
+      alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
+      return;
+    }
+    // if (meetDate !== '') {
+    //   if (meetTime !== '') {
+    //     if (thumbnail !== '') {
+    //       if (banner !== '') {
+    //         if (adress !== '충북 보은군 속리산면 갈목리 산 19-1') {
+    //           if (postCategory !== '카테고리') {
+
+    if (meetDate === '') {
+      alert('날짜를 입력해 주세요');
+      return;
+    }
+
+    if (meetTime === '') {
+      alert('시간을 입력해 주세요');
+      return;
+    }
+
+    if (thumbnail === '') {
+      alert('섬네일 사진을 선택해 주세요');
+      return;
+    }
+
+    if (banner === '') {
+      alert('배너사진을 선택해 주세요');
+      return;
+    }
+
+    if (adress === '충북 보은군 속리산면 갈목리 산 19-1') {
+      alert('지도에서 약속 장소를 선택해 주십시오');
+      return;
+    }
+
+    if (postCategory === '카테고리') {
+      alert('카테고리를 선택해 주세요');
+      return;
+    }
+
+    if (thumbnail === null) {
+      // 포스팅 클릭하면 해당 카테고리 페이지로 라우터 이동
+      //////////////// 썸네일 이미지 전송
+      alert('이미지 업로드 실패');
+      return;
+    }
+
+    const imageRef = ref(storage, `test/${PostingID_Posting}/thumbnail`); //+${thumbnail}
+
+    // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
+    await uploadBytes(imageRef, thumbnail);
+
+    if (banner === null) {
+      alert('이미지 업로드 실패');
+      return;
     }
 
     const bannerRef = ref(storage, `test/${PostingID_Posting}/banner`); //+${thumbnail}
