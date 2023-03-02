@@ -86,7 +86,12 @@ const DetailPage = () => {
     }
     const querySnapshot = await getDocs(
       query(
-        collection(dbService, 'Users', `${mychatlist}`, 'chattingroom'),
+        collection(
+          dbService,
+          'ChattingUsers',
+          `${mychatlist}`,
+          'chattingListroom'
+        ),
         orderBy('createdAt', 'desc')
       )
     );
@@ -130,13 +135,18 @@ const DetailPage = () => {
       // db에저장된 user의 정보가 저장되는 곳
 
       //db에저장된 컬렉션 user의 작성자가 가지는 하위컬랙션 chattingroom에 저장되는값들
-      await setDoc(doc(dbService, 'Users', `${getPostingUID}`), {
-        getPostingUID: getPostingUID,
-        // chattingroom: [{ combineId, date }],
-      });
+      // await setDoc(doc(dbService, 'Users', `${getPostingUID}`), {
+      //   getPostingUID: getPostingUID,
+      //   // chattingroom: [{ combineId, date }],
+      // });
 
       await addDoc(
-        collection(dbService, 'Users', `${getPostingUID}`, 'chattingroom'),
+        collection(
+          dbService,
+          'ChattingUsers',
+          `${getPostingUID}`,
+          'chattingListroom'
+        ),
         {
           combineId,
           profile: UID.myporfile,
@@ -146,14 +156,19 @@ const DetailPage = () => {
         }
       );
 
-      //db에저장된 컬렉션 user의 상대방이 가지는 하위컬랙션 chattingroom에 저장되는값들
+      // 채팅의 상대방(게시글주인) chattingroom에 저장되는값들
       await addDoc(
-        collection(dbService, 'Users', `${CurrentUid}`, 'chattingroom'),
+        collection(
+          dbService,
+          'ChattingUsers',
+          `${CurrentUid}`,
+          'chattingListroom'
+        ),
         {
           combineId,
           profile: getPostings.ThunmnailURL_Posting,
           uid: getPostings.UID,
-          nicname: getPostings.Nickname,
+          nickname: getPostings.Nickname,
           createdAt: new Date(),
         }
       );
@@ -180,18 +195,18 @@ const DetailPage = () => {
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
 
-  console.log('isduplication:', isduplication);
+  console.log('getPostings:', getPostings);
 
   return (
     <>
       <CommonStyles>
         <S.DetailIntroWapper>
-          <S.BannereURL src={getPostings.BannereURL_Posting} />
+          <S.BannereURL src={getPostings.BannerURL_Posting} />
         </S.DetailIntroWapper>
         <S.Boxcontents>
           <S.BoxPhoto>
             {/*썸네일*/}
-            <S.ThunmnailURL src={getPostings.ThunmnailURL_Posting} />
+            <S.ThunmnailURL src={getPostings.ThumbnailURL_Posting} />
             <S.DetailUserName>{getPostings.Nickname}</S.DetailUserName>
             {/*인트로영역*/}
             <S.DetailIntroWrapper>

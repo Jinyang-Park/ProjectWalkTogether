@@ -108,6 +108,7 @@ export const ChattingInput = styled.input`
   flex: none;
   order: 0;
   flex-grow: 0;
+  outline: none;
 `;
 
 export const ChattingButton = styled.button`
@@ -190,6 +191,26 @@ export const ChattingImg = styled.div`
   position: relative;
   width: 24px;
   height: 24px;
-  background-color: black;
+  /* background-color: black; */
   margin: 12px 0px 12px 12px;
+`;
+
+//채팅창 상당의 프로필 이미지
+export const ChattingBoxheaderImg = styled.img`
+  width: 21.33px;
+  height: 21.33px;
+  border-radius: 30px;
+`;
+
+export const ChattingBoxheaderImgCover = styled.div`
+  width: 24px;
+  height: 24px;
+  border-radius: 30px;
+
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(53, 100, 187, 0.25);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

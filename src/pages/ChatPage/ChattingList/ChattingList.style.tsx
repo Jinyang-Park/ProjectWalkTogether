@@ -71,7 +71,7 @@ export const ChattingFooterBox = styled.div`
 export const ChattingUserBox = styled.div`
   width: 280px;
   height: auto;
-  border-right: 1px solid #bec5d7;
+  /* border-right: 1px solid #bec5d7; */
   border-bottom: 1px solid #bec5d7;
   z-index: 1;
 `;
@@ -85,11 +85,24 @@ export const ChattingUser = styled.div`
 `;
 
 export const UserImg = styled.img`
+  width: 35.56px;
+  height: 35.56px;
+  position: relative;
+  border-radius: 30px;
+`;
+
+export const UserImgCover = styled.div`
   width: 40px;
   height: 40px;
   position: relative;
   border-radius: 30px;
   margin: 12px;
+
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(53, 100, 187, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const UserName = styled.div`

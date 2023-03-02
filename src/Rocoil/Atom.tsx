@@ -1,16 +1,25 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
+
+const sessionStorage =
+  typeof window !== 'undefined' ? window.sessionStorage : undefined;
+
+const { persistAtom } = recoilPersist({
+  key: '',
+  storage: sessionStorage,
+});
 
 //Date & Time
 export const Time = atom<string>({
   key: 'Time',
   // key의 값은 항상 고유값이어야 합니다.
-  default: Date(),
+  default: '',
 });
 
 export const ReserveDate = atom<any>({
   key: 'ReserveDate',
   // key의 값은 항상 고유값이어야 합니다.
-  default: Date(),
+  default: '',
 });
 
 export const TitleInput = atom<string>({
@@ -146,6 +155,13 @@ export const currentKakaoId = atom<string>({
 export const kakaoState = atom({
   key: 'kakaoState',
   default: '',
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const kakaoUserState = atom({
+  key: 'kakaoUserState',
+  default: [],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const FilterSelectedDate = atom<any>({
@@ -154,10 +170,10 @@ export const FilterSelectedDate = atom<any>({
   default: '',
 });
 
-export const lastCategoryAtom = atom<any>({
-  key: 'lastCategory',
-  default: '반려동물',
-});
+// export const lastCategoryAtom = atom<any>({
+//   key: 'lastCategory',
+//   default: '반려동물',
+// });
 
 export const userForChat = atom<any>({
   key: 'userForChat',
@@ -165,7 +181,29 @@ export const userForChat = atom<any>({
 });
 
 //채팅리스트에서 채팅박스로 채팅방id를 보냄
-export const tochattingbox = atom<string>({
-  key: 'tochattingbox',
+export const tochattingboxroomid = atom<string>({
+  key: 'tochattingboxroomid',
+  default: '',
+});
+
+//채팅리스트에서 채팅박스로 채팅방 닉네임을 보냄
+export const tochattingboxnickname = atom<string>({
+  key: 'tochattingboxnickname',
+  default: '',
+});
+
+//채팅리스트에서 채팅박스로 채팅방 닉네임을 보냄
+export const tochattingboxprofileimg = atom<string>({
+  key: 'tochattingboxprofileimg',
+  default: '',
+});
+
+export const ReserveEditDate = atom<any>({
+  key: 'ReserveEditDate',
+  default: '',
+});
+
+export const TimeEdit = atom<any>({
+  key: 'TimeEdit',
   default: '',
 });

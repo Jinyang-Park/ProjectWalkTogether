@@ -31,10 +31,6 @@ const PostPage = () => {
   const [postHour, setPostHour] = useState(''); //약속 시간.날짜
   const [postMinut, setPostMinute] = useState(''); //약속 시간.시각
   const [postTime, setPostTime] = useState(''); //작성시간
-  // const [postLatitude, setPostLtitude] = useState(''); //위도
-  // const [postLongitude, setPostLongitude] = useState(''); //경도
-  // const [postNowLatitude, setPostNowLtitude] = useState(''); //현재 위도
-  // const [postNowLongitude, setPostNowLongitude] = useState(''); //현재 경도
   const [postLiked, setPostLiked] = useState(false); //좋아요 여부
   const [postCountLiked, setPostCountLiked] = useState(''); //좋아요 갯수
   const [proceedState, setProceedState] = useState(''); //게시글의 진행사항
@@ -101,7 +97,7 @@ const PostPage = () => {
   const d = meetDate.$D;
   const month = meetDate.$M + 1;
 
-  console.log('date:', date(y, meetDate.$M, d));
+  // console.log('date:', date(y, meetDate.$M, d));
 
   //시간
   const meetTime = useRecoilValue(Time);
@@ -128,7 +124,11 @@ const PostPage = () => {
 
   //타이틀, 글 내용
   const Title = useRecoilValue(TitleInput);
+  console.log(TitleInput);
+  console.log(Title);
   const Description = useRecoilValue(DescriptionInput);
+  console.log(DescriptionInput);
+  console.log(Description);
 
   //해시태그 리코일
   const Tag = useRecoilValue(NewpostTag);
@@ -182,8 +182,8 @@ const PostPage = () => {
                 PostingID_Posting,
                 KeyForChat_Posting,
                 Category_Posting: postCategory,
-                ThunmnailURL_Posting: getThumbnail,
-                BannereURL_Posting: getBanner,
+                ThumbnailURL_Posting: getThumbnail,
+                BannerURL_Posting: getBanner,
                 CountLiked_Posting: '0',
                 ProceedState_Posting: '1',
                 Address_Posting,

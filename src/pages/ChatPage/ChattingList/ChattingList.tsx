@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
 import * as S from '../ChattingList/ChattingList.style';
-import { query, collection, getDocs, orderBy } from 'firebase/firestore';
+import {
+  query,
+  collection,
+  getDocs,
+  orderBy,
+  where,
+  onSnapshot,
+} from 'firebase/firestore';
 import { dbService } from '../../../common/firebase';
-import { currentUserUid, tochattingbox } from '../../../Rocoil/Atom';
+import {
+  currentUserUid,
+  tochattingboxroomid,
+  tochattingboxprofileimg,
+  tochattingboxnickname,
+} from '../../../Rocoil/Atom';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
@@ -10,25 +22,49 @@ function ChattingList() {
   const mychatlist = useRecoilValue(currentUserUid);
   const [chatList, setChatList] = useState<any>([]);
   const [filtering, setFiltering] = useState([]);
-  const [tochattingBox, SetTochattingBox] = useRecoilState<any>(tochattingbox);
+  const [tochattingBoxRoomId, SetTochattingBoxRoomId] =
+    useRecoilState<any>(tochattingboxroomid);
+  const [tochattingBoxNickname, SetTochattingBoxNickname] = useRecoilState<any>(
+    tochattingboxnickname
+  );
+  const [tochattingBoxProfileImg, SetTochattingBoxProfileImg] =
+    useRecoilState<any>(tochattingboxprofileimg);
 
   const getChattingList = async () => {
     if (mychatlist === '') {
       return;
     }
-    const querySnapshot = await getDocs(
-      query(
-        collection(dbService, 'Users', `${mychatlist}`, 'chattingroom'),
-        orderBy('createdAt', 'desc')
-      )
-    );
 
-    let list = [];
-    querySnapshot.forEach((doc) => {
-      list = [...list, { id: doc.id, ...doc.data() }];
+    const q = query(
+      collection(dbService, 'ChattingUsers', mychatlist, 'chattingListroom')
+      // where('chattingRoomId', '==', roomId)
+      // orderBy('createdAt', 'desc')
+    );
+    onSnapshot(q, (querySnapshot) => {
+      const getChatList = querySnapshot.docs.map((doc) => {
+        const nowList = {
+          id: doc.id,
+          ...doc.data(),
+        };
+        return nowList;
+      });
+      setChatList(getChatList);
+      console.log('chatList:', getChatList);
     });
-    setChatList(list);
-    console.log('list:', list);
+
+    // const querySnapshot = await getDocs(
+    //   query(
+    //     collection(dbService, 'Users', `${mychatlist}`, 'chattingroom'),
+    //     orderBy('createdAt', 'desc')
+    //   )
+    // );
+
+    // let list = [];
+    // querySnapshot.forEach((doc) => {
+    //   list = [...list, { id: doc.id, ...doc.data() }];
+    // });
+    // setChatList(list);
+    // console.log('list:', list);
   };
 
   useEffect(() => {
@@ -36,7 +72,7 @@ function ChattingList() {
   }, [mychatlist]);
 
   const chattingUser = chatList;
-  console.log('tochattingBox', tochattingBox);
+  console.log('chatList', chatList);
 
   // const test2 = test.combineId;
 
@@ -55,13 +91,17 @@ function ChattingList() {
               return (
                 <S.ChattingUser
                   onClick={() => {
-                    SetTochattingBox(() => user.combineId);
+                    SetTochattingBoxRoomId(user.combineId);
+                    SetTochattingBoxNickname(user.nickname);
+                    SetTochattingBoxProfileImg(user.profile);
                   }}
                 >
                   {/* <div style={{ backgroundImage: `${user.porfile}` }}></div> */}
-                  <S.UserImg src={user.profile} />
+                  <S.UserImgCover>
+                    <S.UserImg src={user.profile} />
+                  </S.UserImgCover>
 
-                  <S.UserName>{user.nicname}</S.UserName>
+                  <S.UserName>{user.nickname}</S.UserName>
                 </S.ChattingUser>
               );
             })}
