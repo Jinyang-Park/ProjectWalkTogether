@@ -17,7 +17,7 @@ import {
   orderBy,
 } from 'firebase/firestore';
 import { authService, dbService } from './../../common/firebase';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { assert } from 'console';
 import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory';
 import DropBox from './DropBox/DropBox';

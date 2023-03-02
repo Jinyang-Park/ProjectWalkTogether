@@ -19,7 +19,12 @@ import { FilterSelectedDate } from '../../Rocoil/Atom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 const Category = () => {
+  // 카테고리 이미지 받기위해 state 사용
+  const { state: item } = useLocation();
+  console.log(item);
+
   const { category } = useParams();
+
   const [postings, setPostings] = useState<any>([]);
   // console.log(category);
   const [show, setShow] = useState<any>(false);
@@ -166,16 +171,17 @@ const Category = () => {
     <CommonStyles>
       <S.CategoryWrapper>
         <S.CategoryTitleWrapper>
+          <S.CategoryImg src={item.img} />
           <S.CategoryTitle>{category}</S.CategoryTitle>
-          {/*이FilterCategory에서 atom 사용해서 가져와보자! */}
-          <S.CategoryImg>이미지</S.CategoryImg>
         </S.CategoryTitleWrapper>
         <S.FilterArea>
           <S.CategoryFilter>
             {/*카테고리영역 */}
             <S.CategoryFilterWarpper onClick={() => setShow(true)}>
               <S.FilterCategory>{TextChange}</S.FilterCategory>
-              <S.FilterCalendarIcon />
+              <S.FilterCalendarIcon
+                src={require('../../assets/CategoryIcon2.svg').default}
+              />
             </S.CategoryFilterWarpper>
             {show && (
               <DropdownFilterCategory
@@ -185,10 +191,6 @@ const Category = () => {
               />
             )}
             {/*달력영역 */}
-            {/* <S.CategoryFilterWarpper>
-            <S.FilterCategory>3월 23일</S.FilterCategory>
-            <S.FilterCalendarIcon />
-          </S.CategoryFilterWarpper> */}
             <AntCalendarMap />
           </S.CategoryFilter>
           {/*최신순 / 조회순 / 좋아요순*/}

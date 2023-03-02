@@ -10,6 +10,7 @@ import { FilterSelectedDate } from '../../../Rocoil/Atom';
 import { query, collection, where, onSnapshot } from 'firebase/firestore';
 import { dbService } from './../../../common/firebase';
 import useDetectClose from './../../../hooks/useDetectClose';
+import { padding } from '@mui/system';
 
 const AntCalendarMap: React.FC = () => {
   const format = 'YYYY/MM/DD';
@@ -35,7 +36,13 @@ const AntCalendarMap: React.FC = () => {
           inputReadOnly={true}
           format={format}
           placeholder='날짜'
-          style={{ width: 120, height: 30 }}
+          style={{
+            width: 79,
+            height: 27,
+            marginRight: 8,
+            marginTop: 10,
+            fontSize: 12,
+          }}
           allowClear={false}
           placement='bottomRight'
           // bordered={false}
