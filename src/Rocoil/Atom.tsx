@@ -154,10 +154,10 @@ export const FilterSelectedDate = atom<any>({
   default: '',
 });
 
-export const lastCategoryAtom = atom<any>({
-  key: 'lastCategory',
-  default: '반려동물',
-});
+// export const lastCategoryAtom = atom<any>({
+//   key: 'lastCategory',
+//   default: '반려동물',
+// });
 
 export const userForChat = atom<any>({
   key: 'userForChat',
@@ -167,5 +167,15 @@ export const userForChat = atom<any>({
 //채팅리스트에서 채팅박스로 채팅방id를 보냄
 export const tochattingbox = atom<string>({
   key: 'tochattingbox',
+  default: '',
+});
+
+export const ReserveEditDate = atom<any>({
+  key: 'ReserveEditDate',
+  default: '',
+});
+
+export const TimeEdit = atom<any>({
+  key: 'TimeEdit',
   default: '',
 });

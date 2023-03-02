@@ -5,20 +5,30 @@ import { TitleInput, DescriptionInput } from '../../../Rocoil/Atom';
 import { Bannerupload, ThumbnailUpload } from '../../../Rocoil/Atom';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
+import { useParams } from 'react-router-dom';
+import { doc, getDoc } from '@firebase/firestore';
+import { dbService } from './../../../common/firebase';
 
 interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
   postCategory: string;
+  thumbnailimg: string;
+  bannerimg: string;
 }
-function MainPostEdit({ setPostCategory, postCategory }: SetProps) {
+function MainPostEdit({
+  setPostCategory,
+  postCategory,
+  thumbnailimg,
+  bannerimg,
+}: SetProps) {
   const [posttitel, Setposttitle] = useRecoilState(TitleInput); //글 제목
   const [postTag, setPostTag] = useState(''); //해쉬태그
   const [postdescription, SetDescription] = useRecoilState(DescriptionInput); //글 내용
   // const [postCategory, setPostCategory] = useState(''); //카테고리
   const [photoupload, setPhotoupload] = useRecoilState(ThumbnailUpload); // Handles input change event and updates state
   const [bannerupload, setBanneruploadupload] = useRecoilState(Bannerupload);
-  const [thumbnail, setThumbnail] = useState<any>(null); // Handles input change event and updates state
-  const [banner, setBanner] = useState<any>(null);
+  const [thumbnail, setThumbnail] = useState<any>(thumbnailimg);
+  const [banner, setBanner] = useState<any>(bannerimg);
   const [show, setShow] = useState<any>(false);
 
   function thumnailimageChange(e: any) {
@@ -32,19 +42,6 @@ function MainPostEdit({ setPostCategory, postCategory }: SetProps) {
     };
     reader.readAsDataURL(filelist);
     console.log('썸네일 인풋:', photoupload);
-
-    // if (thumbnail === null) return alert('이미지 업로드 실패');
-    // const imageRef = ref(storage, `postimg/${PostingID_Posting}/thumbnail`); //+${thumbnail}
-    // // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-    // uploadBytes(imageRef, thumbnail).then((snapshot) => {
-    //   // 업로드 되자마자 뜨게 만들기
-    //   getDownloadURL(snapshot.ref).then((url) => {
-    //     alert('썸네일 저장 완료');
-    //     // setImageList((prev) => [...prev, url]); //이미지리스트에 저장
-    //     ///////////////////////////
-    //     /////////배너이미지 전송
-    //   });
-    // });
   }
 
   function bannerimageChange(e: any) {
@@ -121,10 +118,12 @@ function MainPostEdit({ setPostCategory, postCategory }: SetProps) {
 
           <S.InputTitle
             onChange={handleChange}
+            value={posttitel}
             placeholder='제목을 입력해 주세요'
           />
           <S.Textarea
             onChange={handleChangeText}
+            value={postdescription}
             placeholder='당신의 이야기를 적어주세요'
           ></S.Textarea>
           {/* <S.HashtagBox>#해쉬태그를 입력해주세요</S.HashtagBox> */}
