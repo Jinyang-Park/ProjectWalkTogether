@@ -14,11 +14,11 @@ const MyPageLike = (props: { uid: string }) => {
         where('LikedUsers', 'array-contains', uid)
       )
     );
-    setPosts(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
+    setPosts(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
   };
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [posts]);
 
   return (
     <MyPageWriteWrap>

@@ -164,6 +164,7 @@ const Comments = ({ param }: postProps) => {
     return getComments;
   };
 
+  console.log(params);
   // useEffect 을 쓴 이유
   // 처음 나타났을때 댓글의 리스트들이 호출이 되고 deps 지정한 값이 바뀔때도 호출이 된다.
   useEffect(() => {
