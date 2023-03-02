@@ -166,7 +166,7 @@ const DetailPage = () => {
         ),
         {
           combineId,
-          profile: getPostings.ThunmnailURL_Posting,
+          profile: getPostings.ThumbnailURL_Posting,
           uid: getPostings.UID,
           nickname: getPostings.Nickname,
           createdAt: new Date(),
@@ -191,12 +191,12 @@ const DetailPage = () => {
     }
   }, [isLoading]);
 
-  console.log(getPostings.View);
+  // console.log(getPostings.View);
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
 
-  console.log('getPostings:', getPostings);
-
+  // console.log(getPostings.ThunmnailURL_Posting);
+  // console.log(getPostings);
   return (
     <>
       <CommonStyles>

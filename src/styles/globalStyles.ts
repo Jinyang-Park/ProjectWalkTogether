@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
+// import SUITEBold from '../fonts/SUITEBold.woff2';
+// import SUITERegular from '../fonts/SUITERegular.woff2';
+// import SUITESemiBold from '../fonts/SUITESemiBold.woff2';
 
 const GlobalStyle = createGlobalStyle`
+
     *{
         padding: 0;
         margin: 0;
@@ -9,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
 
     body{
         
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        font-family: 'SUITEBold','SUITERegular','SUITESemiBold', 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -93,6 +97,17 @@ const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar-track{
     background-color: #00ff0000; 
     }
+    @font-face {
+    font-family: 'SUITEBold';
+    src: url('../fonts/SUITEBold.woff2') format('web open font format');
+}@font-face {
+    font-family: 'SUITERegular';
+    src: url('../fonts/SUITERegular.woff2') format('web open font format');
+}
+@font-face {
+    font-family: 'SUITESemiBold';
+    src: url('../fonts/SUITESemiBold.woff2') format('web open font format');
+}
 
   
 `;

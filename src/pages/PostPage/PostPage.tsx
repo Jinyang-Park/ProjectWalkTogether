@@ -13,7 +13,7 @@ import {
 } from '../../../src/Rocoil/Atom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { getAuth } from 'firebase/auth';
-import { uuidv4 } from '@firebase/util';
+import { uuidv4, async } from '@firebase/util';
 import { collection, addDoc } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
 import Mainpost from './Mainpost/Mainpost';
@@ -156,7 +156,7 @@ const PostPage = () => {
   });
 
   //settimeout test
-  const geturl: any = () => {
+  const geturl: any = (callback: () => void) => {
     getDownloadURL(ref(storage, `test/${PostingID_Posting}/thumbnail`))
       .then((url) => {
         const getThumbnail = url;
@@ -193,7 +193,9 @@ const PostPage = () => {
                 LikedUsers: [],
                 View: 0,
               });
+
               console.log('글작성완료 ID: ', docRef);
+              callback();
               // alert('저장완료');
             } catch (e) {
               console.error('Error adding document: ', e);
@@ -211,7 +213,7 @@ const PostPage = () => {
   ////////////
   //작성완료//
   ///////////
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     if (Title.length !== 0) {
       if (Title.length! < 20) {
         if (Description.length !== 0) {
@@ -231,26 +233,23 @@ const PostPage = () => {
                           `test/${PostingID_Posting}/thumbnail`
                         ); //+${thumbnail}
                         // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-                        uploadBytes(imageRef, thumbnail).then((snapshot) => {
-                          console.log('snapshot', snapshot);
-                          // 업로드 되자마자 뜨게 만들기
-                          // alert('썸네일 저장 완료');
-                        });
+                        await uploadBytes(imageRef, thumbnail);
+
                         if (banner === null) return alert('이미지 업로드 실패');
                         const bannerRef = ref(
                           storage,
                           `test/${PostingID_Posting}/banner`
                         ); //+${thumbnail}
                         // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-                        uploadBytes(bannerRef, banner).then((snapshot) => {
-                          // alert('베너 저장 완료');
-                          console.log('snapshot', snapshot);
-                        });
+                        /////////////////////////////////////////////////////////
+                        // 업로드중입니다 로더 넣기
+                        alert('업로드중입니다.');
+                        ///////////////////////////////////////////////////////
+                        await uploadBytes(bannerRef, banner);
                         // geturl(); settTimeout이 없으면 에러가 난다.
                         // async await 비동기 처리
-                        setTimeout(geturl, 1000);
+                        geturl(() => navigate(`/category/${postCategory}`));
 
-                        navigate(`/category/${postCategory}`);
                         // setTimeout(adddoc, 8000);
                       } else {
                         alert('카테고리를 선택해 주세요');
