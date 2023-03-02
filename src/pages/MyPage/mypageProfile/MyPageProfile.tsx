@@ -147,6 +147,13 @@ const MyPageProfile = (props: { uid: string }) => {
             {!isEditing ? '수정하기' : '수정완료'}
           </button>
         )}
+        <button
+          onClick={() => {
+            navigate('/changepassword');
+          }}
+        >
+          비밀번호 변경
+        </button>
         <button onClick={onDeleteAccount}>탈퇴하기</button>
         <UserNickNameBox>
           {!isEditing ? (

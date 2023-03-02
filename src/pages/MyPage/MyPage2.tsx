@@ -5,7 +5,7 @@ import MyPageWrite from './mypageWrite/MyPageWrite';
 import CommonStyles from '../../styles/CommonStyles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { currentUserUid, isLoggedIn } from '../../Rocoil/Atom';
+import { kakaoUserState, currentUserUid, isLoggedIn } from '../../Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import MypageTabbar from './tabbar/MypageTabbar';
 import MyPageLike from './likepage/MyPageLike';
@@ -15,8 +15,9 @@ const MyPage2 = () => {
   const navigate = useNavigate();
 
   const [id, setId] = useState<string>(uid || '');
-  const [currentpage, setCurrentPage] = useState('');
+  const [currentpage, setCurrentPage] = useState('Post');
 
+  const kakaoUser = useRecoilValue(kakaoUserState);
   const loggedIn = useRecoilValue(isLoggedIn);
   const userUid = useRecoilValue(currentUserUid);
 
@@ -39,7 +40,7 @@ const MyPage2 = () => {
       case MyPageName.Interest:
         return <MyPageLike uid={id} />;
       default:
-        return <>error</>;
+        return <MyPageWrite uid={id} />;
     }
   };
 
@@ -54,8 +55,7 @@ const MyPage2 = () => {
             currentpage={currentpage}
             setCurrentPage={setCurrentPage}
           />
-          <MyPageWrite uid={id} />
-          <MyPageLike uid={id} />
+
           {a()}
         </>
       )}

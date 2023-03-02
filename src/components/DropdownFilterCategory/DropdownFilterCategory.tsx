@@ -1,19 +1,18 @@
 import React from 'react';
 import { CategorysList } from '../../utils/CategorysList';
 import * as S from './DropdownFilterCategory.style';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+
 
 declare interface SetProps {
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
   setTextChange: React.Dispatch<React.SetStateAction<string>>;
-  setCategory?: React.Dispatch<React.SetStateAction<string>>;
   TextChange?: string;
 }
 
 const DropdownFilterCategory = ({
   setShow,
   setTextChange,
-  setCategory,
   TextChange,
 }: SetProps) => {
   const buttonClickHandler = (event: any) => {
@@ -22,8 +21,11 @@ const DropdownFilterCategory = ({
     // 아래부분처럼 해결함
     setTextChange(event.target.innerText);
   };
-  const confirmButtonClickHandler = (name: string) => {
-    setCategory(name);
+
+  const navigate = useNavigate();
+
+  const confirmButtonClickHandler = () => {
+    navigate('/category/' + TextChange);
     setShow(false);
   };
 
@@ -43,7 +45,7 @@ const DropdownFilterCategory = ({
       </S.DropdownConatainer>
       <S.CategoryConfirmBtn
         // 24~25
-        onClick={() => confirmButtonClickHandler(TextChange)}
+        onClick={() => confirmButtonClickHandler()}
       >
         완료
       </S.CategoryConfirmBtn>

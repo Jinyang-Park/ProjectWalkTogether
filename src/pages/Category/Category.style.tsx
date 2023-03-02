@@ -1,22 +1,36 @@
 import styled from 'styled-components';
 import { BsCalendar4 } from 'react-icons/bs';
 
-export const CategoryTitleWrapper = styled.div``;
+export const CategoryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 868px;
+  margin: auto;
+`;
+export const CategoryTitleWrapper = styled.div`
+  /* display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  height: 200vh;
+  max-width: 1024px; */
+`;
 export const CategoryTitle = styled.p`
-  margin-top: 64px;
+  margin-top: 84px;
   font-weight: 500;
   font-size: 36px;
   line-height: 45px;
 `;
-export const CategoryImg = styled.img`
-  width: 50px;
-  height: 50px;
+export const CategoryImg = styled.div`
+  /* width: 50px;
+  height: 50px; */
 `;
 export const LikedListItem = styled.div`
   display: flex;
   flex-wrap: wrap;
-  grid-gap: 74.5px;
-  grid-row-gap: 70px;
+  grid-gap: 70px 49.3px;
+  /* grid-template-rows: 49.3px; */
+
   margin-top: 36px;
 `;
 export const FilterArea = styled.div`

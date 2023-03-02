@@ -21,6 +21,9 @@ import MessageWindow, {
   messageWindowPropertiesAtom,
 } from '../messagewindow/MessageWindow';
 import PostEditPage from '../pages/PostEditPage/PostEditPage';
+import MeetDateInitializer from './../components/MeetDateInitializer/MeetDateInitializer';
+import ChangePassword from '../pages/ChangePassword/ChangePassword';
+
 const Router = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
@@ -38,12 +41,15 @@ const Router = () => {
         <Route path='/mypage' element={<MyPage2 />} />
         <Route path='/mypage/:uid' element={<MyPage2 />} />
         <Route path='/postpage/' element={<PostPage />} />
-        <Route path='/category' element={<Category />} />
+        <Route path='/category/:category' element={<Category />} />
         <Route path='/collection/:id' element={<Collection />} />
         <Route path='/detailpage/:id' element={<DetailPage />} />
+        <Route path='agreement' element={<Agreement />} />
         <Route path='/edit/:id' element={<PostEditPage />}></Route>
         <Route path='/chat' element={<ChattingPage />} />
+        <Route path='/changepassword' element={<ChangePassword />} />
       </Routes>
+      <MeetDateInitializer />
       <Footer />
     </BrowserRouter>
   );

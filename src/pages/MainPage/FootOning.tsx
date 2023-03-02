@@ -14,6 +14,8 @@ import {
   getDocs,
   onSnapshot,
 } from 'firebase/firestore';
+import CommonStyles from '../../styles/CommonStyles';
+import CardSection from '../../components/CardSection/CardSection';
 // import { onAuthStateChanged } from 'firebase/auth'
 
 interface postProps {
@@ -51,55 +53,13 @@ const FootOning = () => {
   const navigate = useNavigate();
 
   return (
-    <>
-      {postList.map((item) => {
-        console.log(item);
-        return (
-          <>
-            <S.CardBox>
-              <S.CardSectionWrapper
-                onClick={() => {
-                  setParams(item.id);
-                  navigate(`/detailpage/${item.id}`);
-                }}
-              >
-                <S.ListItemWrapper>
-                  <S.ListItemThumnail src={item.ThunmnailURL_Posting} />
-                </S.ListItemWrapper>
-                <S.ListItemThumnailTitle>
-                  {item.Title_Posting}
-                </S.ListItemThumnailTitle>
-                <S.HashTag>
-                  {/* {item.Hashtag_Posting.map((tagItem, i) => {
-                    return (
-                      <>
-                        {tagItem == '' ? (
-                          <div>&nbsp;</div>
-                        ) : (
-                          <div key={i}>{'#' + tagItem}</div>
-                        )}
-                      </>
-                    );
-                  })} */}
-                </S.HashTag>
-                <S.ListItemContainer>
-                  <S.LikedHeartFlex>
-                    <S.ListItemAddress>
-                      {item.Address_Posting}
-                    </S.ListItemAddress>
-                    <S.LikeBtnLine />
-                  </S.LikedHeartFlex>
-                  <S.ListItemDate>
-                    {item.RsvDate_Posting}
-                    {item.RsvHour_Posting}
-                  </S.ListItemDate>
-                </S.ListItemContainer>
-              </S.CardSectionWrapper>
-            </S.CardBox>
-          </>
-        );
-      })}
-    </>
+    <CommonStyles>
+      <S.LikedListItem>
+        {postList.slice(0, 8).map((post: any) => {
+          return <CardSection key={post.id} post={post} />;
+        })}
+      </S.LikedListItem>
+    </CommonStyles>
   );
 };
 export default FootOning;

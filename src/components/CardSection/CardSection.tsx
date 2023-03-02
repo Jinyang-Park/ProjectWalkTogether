@@ -1,8 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './CardSection.style';
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import { paramsState } from '../../Rocoil/Atom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { currentUserUid, paramsState } from '../../Rocoil/Atom';
+import { async } from '@firebase/util';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { ref } from 'firebase/storage';
+import { dbService } from '../../common/firebase';
+import { red } from '@mui/material/colors';
+import CommonStyles from './../../styles/CommonStyles';
 
 interface postProps {
   post: any;
@@ -11,6 +17,10 @@ const CardSection = ({ post }: postProps) => {
   // console.log('post', post.id);
   const navigate = useNavigate();
   const setParams = useSetRecoilState(paramsState);
+  const [likebtn, setLikeBtn] = useState<boolean>(false);
+  const uid = useRecoilValue(currentUserUid);
+
+  // console.log(post);
 
   // post 바뀔때마 실행되는것이다.
   // useEffect(() => {
@@ -24,6 +34,35 @@ const CardSection = ({ post }: postProps) => {
   //         navigate(`/detailpage/${post.id}`);
   //       }}
   //     ></S.CardSectionWrapper>
+  useEffect(() => {
+    setLikeBtn(post.LikedUsers.includes(uid));
+  }, [post]);
+
+  // 좋아요 하는 거
+  const likepost = async () => {
+    console.log(post.id);
+    let p = post;
+    p.LikedUsers.push(uid);
+
+    // doc = getDocs(Post 중에 PostingID_Posting === post.PostingID_Posting인 것들)[0]
+    // updateDoc(doc, likderifjsif)
+
+    updateDoc(doc(dbService, 'Post', post.id), {
+      LikedUsers: p.LikedUsers,
+    })
+      .then((s) => console.log('succes', s))
+      .catch((e) => console.log(e));
+  };
+
+  // 좋아요 취소
+  const unlikepost = async () => {
+    console.log(post.id);
+
+    const u = post.LikedUsers.filter((id: string) => id !== uid);
+    updateDoc(doc(dbService, 'Post', post.id), {
+      LikedUsers: u,
+    });
+  };
 
   return (
     <S.CardBox>
@@ -34,21 +73,49 @@ const CardSection = ({ post }: postProps) => {
         }}
       >
         <S.ListItemWrapper>
-          <S.ListItemThumnail src={post.ThunmnailURL_Posting} />
+          <S.ListItemThumnail src={post.ThumbnailURL_Posting} />
         </S.ListItemWrapper>
         <S.ListItemThumnailTitle>{post.Title_Posting}</S.ListItemThumnailTitle>
-        {/* <S.HashTag>#케이팝 #발라드</S.HashTag> */}
+        <S.HashTag>
+          {post.Hashtag_Posting.map((tagItem, i) => {
+            return (
+              <>
+                {tagItem == '' ? (
+                  <div>&nbsp;</div>
+                ) : (
+                  <div key={i}>{'#' + tagItem}</div>
+                )}
+              </>
+            );
+          })}
+        </S.HashTag>
         <S.ListItemContainer>
-          <S.LikedHeartFlex>
+          <S.AddressDateHourWrapper>
             <S.ListItemAddress>{post.Address_Posting}</S.ListItemAddress>
-            <S.LikeBtnLine />
-          </S.LikedHeartFlex>
-          <S.ListItemDate>
-            {post.RsvDate_Posting}
-            {post.RsvHour_Posting}
-          </S.ListItemDate>
+            <S.ListItemDate>{post.RsvDate_Posting}</S.ListItemDate>
+            <S.ListItemHour>{post.RsvHour_Posting}</S.ListItemHour>
+          </S.AddressDateHourWrapper>
         </S.ListItemContainer>
       </S.CardSectionWrapper>
+      <S.LikedHeartFlex>
+        {likebtn ? (
+          // LikeBtnFill부분만 svg가 안된다...
+          <S.LikeBtnFill
+            src={require('../../assets/HeartFill5.png')}
+            onClick={() => {
+              unlikepost();
+            }}
+          />
+        ) : (
+          <S.LikeBtnLine
+            src={'/assets/HeartLine.svg'}
+            onClick={() => {
+              likepost();
+              console.log('좋아요');
+            }}
+          />
+        )}
+      </S.LikedHeartFlex>
     </S.CardBox>
   );
 };

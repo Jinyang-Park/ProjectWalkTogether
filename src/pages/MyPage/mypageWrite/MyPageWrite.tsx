@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { dbService } from '../../../common/firebase';
 import MypageTabbar from '../tabbar/MypageTabbar';
+import CardSection from '../../../components/CardSection/CardSection';
 
 const MyPageWrite = (props: { uid: string }) => {
   const { uid } = props;
@@ -11,16 +12,21 @@ const MyPageWrite = (props: { uid: string }) => {
     const querySnapshot = await getDocs(
       query(collection(dbService, 'Post'), where('UID', '==', uid))
     );
-    setPosts(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
+    console.log(querySnapshot.docs[0].data());
+    setPosts(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
   };
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [posts]);
 
   return (
     <MyPageWriteWrap>
-      <MyPageWriteTapContainer>writepost</MyPageWriteTapContainer>
-      <div></div>
+      <MyPageWriteTapContainer></MyPageWriteTapContainer>
+      <div>
+        {posts.map((post, i) => {
+          return <CardSection post={post} key={i} />;
+        })}
+      </div>
     </MyPageWriteWrap>
   );
 };

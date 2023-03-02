@@ -257,7 +257,6 @@ const Agreement = () => {
               <S.AgreeBtn
                 type='submit'
                 disabled={disabled}
-                // state={buttonColor}
                 onClick={() => navigate('/signup')}
               >
                 약관 전체 동의
