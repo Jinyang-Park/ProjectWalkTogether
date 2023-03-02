@@ -18,15 +18,7 @@ import AntCalendarMap from './Calendar/AntCalendarDate';
 import { FilterSelectedDate } from '../../Rocoil/Atom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-// 즐
-// - 알레한드로
-
-// interface Date {
-//   setfilterSelectedDate: React.Dispatch<React.SetStateAction<string>>;
-// }
 const Category = () => {
-  //state를 받아옴 필터 네임을 받아ㄴ옴 (초기값)
-  // const { state } = useLocation();
   const { category } = useParams();
   const [postings, setPostings] = useState<any>([]);
   // console.log(category);
@@ -74,7 +66,7 @@ const Category = () => {
   // const SelectedDate = `${todayMonth}/${meetDaynum}`;
 
   // 내가 필터 달력 클릭한 값이 잘 넘어온다.
-  console.log('SelectedDate', SelectedDate);
+  // console.log('SelectedDate', SelectedDate);
 
   useEffect(() => {
     const isAll = category === '전체';
@@ -164,56 +156,64 @@ const Category = () => {
 
   const DoubledFilterDate = DoubleFilteredDateFunction();
 
+  // display: flex;
+
+  // flex-direction: column;
+  // align-items: center;
+  // height: 200vh;
+  // max-width: 1024px;
   return (
     <CommonStyles>
-      <S.CategoryTitleWrapper>
-        <S.CategoryTitle>{category}</S.CategoryTitle>
-        {/*이FilterCategory에서 atom 사용해서 가져와보자! */}
-        <S.CategoryImg>이미지</S.CategoryImg>
-      </S.CategoryTitleWrapper>
-      <S.FilterArea>
-        <S.CategoryFilter>
-          {/*카테고리영역 */}
-          <S.CategoryFilterWarpper onClick={() => setShow(true)}>
-            <S.FilterCategory>{TextChange}</S.FilterCategory>
-            <S.FilterCalendarIcon />
-          </S.CategoryFilterWarpper>
-          {show && (
-            <DropdownFilterCategory
-              setShow={setShow}
-              setTextChange={setTextChange}
-              TextChange={TextChange}
-            />
-          )}
-          {/*달력영역 */}
-          {/* <S.CategoryFilterWarpper>
+      <S.CategoryWrapper>
+        <S.CategoryTitleWrapper>
+          <S.CategoryTitle>{category}</S.CategoryTitle>
+          {/*이FilterCategory에서 atom 사용해서 가져와보자! */}
+          <S.CategoryImg>이미지</S.CategoryImg>
+        </S.CategoryTitleWrapper>
+        <S.FilterArea>
+          <S.CategoryFilter>
+            {/*카테고리영역 */}
+            <S.CategoryFilterWarpper onClick={() => setShow(true)}>
+              <S.FilterCategory>{TextChange}</S.FilterCategory>
+              <S.FilterCalendarIcon />
+            </S.CategoryFilterWarpper>
+            {show && (
+              <DropdownFilterCategory
+                setShow={setShow}
+                setTextChange={setTextChange}
+                TextChange={TextChange}
+              />
+            )}
+            {/*달력영역 */}
+            {/* <S.CategoryFilterWarpper>
             <S.FilterCategory>3월 23일</S.FilterCategory>
             <S.FilterCalendarIcon />
           </S.CategoryFilterWarpper> */}
-          <AntCalendarMap />
-        </S.CategoryFilter>
-        {/*최신순 / 조회순 / 좋아요순*/}
-        <S.FilterSortWrapper>
-          <S.FilterNewest onClick={() => setViewCount('최신순')}>
-            최신순
-            <S.FilterAreaLine></S.FilterAreaLine>
-          </S.FilterNewest>
-          <S.FilterNewest onClick={() => setViewCount('조회순')}>
-            조회순
-            <S.FilterAreaLine></S.FilterAreaLine>
-          </S.FilterNewest>
-          <S.FilterNewest onClick={() => setViewCount('좋아요순')}>
-            좋아요순
-          </S.FilterNewest>
-        </S.FilterSortWrapper>
-      </S.FilterArea>
-      <S.LikedListItem>
-        {/* 여기서 내가 클릭한 filter나 if문을 사용해된다. */}
+            <AntCalendarMap />
+          </S.CategoryFilter>
+          {/*최신순 / 조회순 / 좋아요순*/}
+          <S.FilterSortWrapper>
+            <S.FilterNewest onClick={() => setViewCount('최신순')}>
+              최신순
+              <S.FilterAreaLine></S.FilterAreaLine>
+            </S.FilterNewest>
+            <S.FilterNewest onClick={() => setViewCount('조회순')}>
+              조회순
+              <S.FilterAreaLine></S.FilterAreaLine>
+            </S.FilterNewest>
+            <S.FilterNewest onClick={() => setViewCount('좋아요순')}>
+              좋아요순
+            </S.FilterNewest>
+          </S.FilterSortWrapper>
+        </S.FilterArea>
+        <S.LikedListItem>
+          {/* 여기서 내가 클릭한 filter나 if문을 사용해된다. */}
 
-        {DoubledFilterDate.map((post: any) => {
-          return <CardSection key={post.id} post={post} />;
-        })}
-      </S.LikedListItem>
+          {DoubledFilterDate.map((post: any) => {
+            return <CardSection key={post.id} post={post} />;
+          })}
+        </S.LikedListItem>
+      </S.CategoryWrapper>
     </CommonStyles>
   );
 };

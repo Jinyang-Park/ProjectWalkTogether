@@ -73,7 +73,9 @@ const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
         {/*수정버튼 영역 */}
         <S.DropUpdateBtn>
           <S.UpdateIcon />
-          <S.UpdateTitle onClick={() => navigate(`/edit/${id}`)}>
+          <S.UpdateTitle
+            onClick={() => navigate(`/edit/${id}`, { state: getPostings })}
+          >
             게시글 수정하기
           </S.UpdateTitle>
         </S.DropUpdateBtn>

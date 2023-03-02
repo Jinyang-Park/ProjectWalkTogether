@@ -13,14 +13,26 @@ import { useRecoilState } from 'recoil';
 import AntCalendar from '../../PostPage/Hooks/Calendar/AntCalendarDate';
 import AntCalendarTime from '../../PostPage/Hooks/Calendar/AntCalendarTime';
 
-function InputInformationEdit() {
+interface Edit {
+  addressEdit: string;
+  lat: number;
+  lng: number;
+}
+function InputInformationEdit({ addressEdit, lat, lng }: Edit) {
   // 현재 위치를 가져오기 위한 state 생성
-  const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 });
+  const [myLoca, setMyLoca] = useState({ lat, lng });
+  console.log(myLoca);
   // const [myLoca, setMyLoca] = useRecoilState(myLocation);
 
   // 지도 좌표를 저장할 state   (o)
   const [position, setPosition] = useRecoilState(myLocation);
 
+  // db에 올라간 위치가 불러질때 myloca(db에 올라간 위치)를 setPostiton 함수에 넣는 로직
+  useEffect(() => {
+    setPosition(myLoca);
+  }, [myLoca]);
+
+  console.log(position);
   // 키워드로 장소검색하기를 위한 state
   const [info, setInfo] = useState<any>();
   const [markers, setMarkers] = useState([]);
@@ -29,7 +41,7 @@ function InputInformationEdit() {
 
   // input value 를 가져오기 위한 state
   const [search, setSearch] = useState('');
-
+  // console.log(addressEdit);
   const onChange = (e) => {
     setSearch(e.target.value);
   };
@@ -39,26 +51,27 @@ function InputInformationEdit() {
   const [address, setAddress] = useRecoilState(selectedAddress);
   const geocoder = new kakao.maps.services.Geocoder();
 
+  // 내위치로 찍혀서 이거 삭제하면된다
   // 사용자 위치를 가져오기 위한 useEffect
-  React.useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setMyLoca({
-            lat: position.coords.latitude, // 위도
-            lng: position.coords.longitude, // 경도
-          });
-        },
-        (err) => {
-          alert('현재 위치를 표시할 수 없어요');
-        },
-        { enableHighAccuracy: true } // 위치정보의 정확도를 높이는 옵션
-      );
-    } else {
-      // HTML5의 GeoLocation을 사용할 수 없을때
-      alert('현재 위치를 표시할 수 없어요');
-    }
-  }, []);
+  // React.useEffect(() => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         setMyLoca({
+  //           lat: position.coords.latitude, // 위도
+  //           lng: position.coords.longitude, // 경도
+  //         });
+  //       },
+  //       (err) => {
+  //         alert('현재 위치를 표시할 수 없어요');
+  //       },
+  //       { enableHighAccuracy: true } // 위치정보의 정확도를 높이는 옵션
+  //     );
+  //   } else {
+  //     // HTML5의 GeoLocation을 사용할 수 없을때
+  //     alert('현재 위치를 표시할 수 없어요');
+  //   }
+  // }, []);
 
   // 키워드로 장소검색하기 위한 useEffect
   useEffect(() => {

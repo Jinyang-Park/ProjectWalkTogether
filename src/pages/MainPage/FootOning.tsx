@@ -64,7 +64,7 @@ const FootOning = () => {
                 }}
               >
                 <S.ListItemWrapper>
-                  <S.ListItemThumnail src={item.ThunmnailURL_Posting} />
+                  <S.ListItemThumnail src={item.ThumbnailURL_Posting} />
                 </S.ListItemWrapper>
                 <S.ListItemThumnailTitle>
                   {item.Title_Posting}
