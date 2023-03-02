@@ -38,7 +38,7 @@ const PostEditPage = () => {
   const { id } = useParams();
   const { state } = useLocation();
   // console.log(id);
-  // console.log(state);
+  console.log(state);
 
   // 카테고리 값값
   const [postCategory, setPostCategory] = useState(state.Category_Posting);
@@ -182,7 +182,7 @@ const PostEditPage = () => {
       : setMeetTimeEdit;
 
   //settimeout test
-  const geturl: any = () => {
+  const geturl: any = (callback: () => void) => {
     getDownloadURL(ref(storage, `test/${PostingID_Posting}/thumbnail`))
       .then((thumbnailUrl) => {
         console.log('섬네일url', thumbnailUrl);
@@ -208,6 +208,7 @@ const PostEditPage = () => {
                 createdAt: Date.now(),
               });
               console.log('글작성완료 ID: ', postRef);
+              callback();
             } catch (e) {
               console.error('Error updating document: ', e);
             }
@@ -224,12 +225,12 @@ const PostEditPage = () => {
   ////////////
   //작성완료//
   ///////////
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     if (Title.length !== 0) {
       if (Title.length! < 20) {
         if (Description.length !== 0) {
           if (Description.length! < 200) {
-            if (meetEditDate !== '') {
+            if (meetTimeEdit !== '') {
               if (meetTimeEdit !== '') {
                 if (thumbnail !== '') {
                   if (banner !== '') {
@@ -244,26 +245,23 @@ const PostEditPage = () => {
                           `test/${PostingID_Posting}/thumbnail`
                         ); //+${thumbnail}
                         // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-                        uploadBytes(imageRef, thumbnail).then((snapshot) => {
-                          console.log('snapshot', snapshot);
-                          // 업로드 되자마자 뜨게 만들기
-                          // alert('썸네일 저장 완료');
-                        });
+                        await uploadBytes(imageRef, thumbnail);
+
                         if (banner === null) return alert('이미지 업로드 실패');
                         const bannerRef = ref(
                           storage,
                           `test/${PostingID_Posting}/banner`
                         ); //+${thumbnail}
                         // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-                        uploadBytes(bannerRef, banner).then((snapshot) => {
-                          // alert('베너 저장 완료');
-                          console.log('snapshot', snapshot);
-                        });
+                        /////////////////////////////////////////////////////////
+                        // 업로드중입니다 로더 넣기
+                        alert('업로드중입니다.');
+                        ///////////////////////////////////////////////////////
+                        await uploadBytes(bannerRef, banner);
                         // geturl(); settTimeout이 없으면 에러가 난다.
                         // async await 비동기 처리
-                        setTimeout(geturl, 1000);
+                        geturl(() => navigate(`/category/${postCategory}`));
 
-                        navigate(`/category/${postCategory}`);
                         // setTimeout(adddoc, 8000);
                       } else {
                         alert('카테고리를 선택해 주세요');
@@ -296,7 +294,7 @@ const PostEditPage = () => {
       alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
     }
   };
-  console.log(state);
+
   return (
     <CommonStyles>
       <S.Boxcontainer>
