@@ -52,7 +52,7 @@ const FootOning = () => {
 
   return (
     <>
-      {postList.map((item) => {
+      {postList.slice(0, 8).map((item) => {
         console.log(item);
         return (
           <>
@@ -70,7 +70,7 @@ const FootOning = () => {
                   {item.Title_Posting}
                 </S.ListItemThumnailTitle>
                 <S.HashTag>
-                  {/* {item.Hashtag_Posting.map((tagItem, i) => {
+                  {item.Hashtag_Posting.map((tagItem, i) => {
                     return (
                       <>
                         {tagItem == '' ? (
@@ -80,7 +80,7 @@ const FootOning = () => {
                         )}
                       </>
                     );
-                  })} */}
+                  })}
                 </S.HashTag>
                 <S.ListItemContainer>
                   <S.LikedHeartFlex>

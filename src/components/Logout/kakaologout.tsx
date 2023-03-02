@@ -13,14 +13,13 @@ export default function KakaoLogoutButton() {
   const Logout = async () => {
     if (kakaoCode) {
       setKakaoCode('');
-      navigate('/');
+      sessionStorage.clear();
+      localStorage.clear();
       alert('로그아웃성공!');
+      navigate('/');
     } else {
       authService.signOut();
     }
-    window.location.reload();
-    sessionStorage.clear();
-    localStorage.clear();
 
     // 새로고침 하지않으면 네이버로그인 버튼이 사라짐. 렌더링문제인듯함
   };

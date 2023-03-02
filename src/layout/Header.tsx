@@ -40,6 +40,7 @@ const Header = () => {
   const kakaoUser = useRecoilValue(kakaoUserState);
   const sessionId = useRecoilValue(username);
   console.log(kakaoUser);
+  console.log(kakaoCode);
   getKakaoCode();
   //const currentUser = authService.currentUser;
   //const userNickName = currentUser?.displayName;
@@ -59,7 +60,7 @@ const Header = () => {
             <S.NavText to="/chat">chat</S.NavText>
           </S.NavLi> */}
           <S.NavLi>
-            {loggedIn === false ? (
+            {!loggedIn && !kakaoCode ? (
               <S.NavText
                 onClick={() => {
                   alert('로그인을 해주세요!');
@@ -73,7 +74,7 @@ const Header = () => {
             )}
           </S.NavLi>
           <S.NavLi>
-            {loggedIn === false ? (
+            {!loggedIn && !kakaoCode ? (
               <S.NavText
                 onClick={() => {
                   alert('로그인을 해주세요!');
