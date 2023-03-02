@@ -20,6 +20,10 @@ const Tag = (props: { tagItem: string }) => {
 
     if (e.target.value.length < 7 && e.key === 'Enter') {
       submitTagItem();
+    } else if (e.key === 'Backspace') {
+      let size = tagList.length;
+      setTagList([...tagList.slice(0, size - 1)]);
+      // deleteClick(tagList);
     }
   };
 
@@ -30,12 +34,10 @@ const Tag = (props: { tagItem: string }) => {
     setTagItem('');
   };
 
-  const deleteTagItem = (e) => {
-    const deleteTagItem = e.target.parentElement.firstChild.innerText;
-    const filteredTagList = tagList.filter(
-      (tagItem) => tagItem !== deleteTagItem
-    );
-    setTagList(filteredTagList);
+  const deleteClick = (index: number) => {
+    // console.log(index);
+    // console.log('click delete');
+    setTagList([...tagList.slice(0, index), ...tagList.slice(index + 1)]);
   };
 
   //보여줄때는 props로받아온걸로
@@ -47,7 +49,7 @@ const Tag = (props: { tagItem: string }) => {
           return (
             <TagItem key={index}>
               <Text>{'#' + tagItem}</Text>
-              <Button onClick={deleteTagItem}>X</Button>
+              <Button onClick={() => deleteClick(index)}>X</Button>
             </TagItem>
           );
         })}
@@ -73,7 +75,7 @@ const TagBox = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  min-height: 40px;
+  height: 35px;
   width: 84%;
   padding: 0 10px;
   border-radius: px;
@@ -92,7 +94,7 @@ const TagItem = styled.div`
   background-color: #8ca6bc;
   border-radius: 5px;
   color: white;
-  font-size: 13px;
+  font-size: 10px;
 `;
 
 const Text = styled.span``;

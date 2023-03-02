@@ -1,4 +1,13 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
+
+const sessionStorage =
+  typeof window !== 'undefined' ? window.sessionStorage : undefined;
+
+const { persistAtom } = recoilPersist({
+  key: '',
+  storage: sessionStorage,
+});
 
 //Date & Time
 export const Time = atom<string>({
@@ -146,6 +155,13 @@ export const currentKakaoId = atom<string>({
 export const kakaoState = atom({
   key: 'kakaoState',
   default: '',
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const kakaoUserState = atom({
+  key: 'kakaoUserState',
+  default: [],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const FilterSelectedDate = atom<any>({
@@ -154,10 +170,10 @@ export const FilterSelectedDate = atom<any>({
   default: '',
 });
 
-export const lastCategoryAtom = atom<any>({
-  key: 'lastCategory',
-  default: '반려동물',
-});
+// export const lastCategoryAtom = atom<any>({
+//   key: 'lastCategory',
+//   default: '반려동물',
+// });
 
 export const userForChat = atom<any>({
   key: 'userForChat',
@@ -179,5 +195,15 @@ export const tochattingboxnickname = atom<string>({
 //채팅리스트에서 채팅박스로 채팅방 닉네임을 보냄
 export const tochattingboxprofileimg = atom<string>({
   key: 'tochattingboxprofileimg',
+  default: '',
+});
+
+export const ReserveEditDate = atom<any>({
+  key: 'ReserveEditDate',
+  default: '',
+});
+
+export const TimeEdit = atom<any>({
+  key: 'TimeEdit',
   default: '',
 });

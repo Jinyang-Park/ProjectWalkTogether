@@ -3,36 +3,25 @@ import styled from 'styled-components';
 import { authService } from '../../common/firebase';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { kakaoState } from '../../Rocoil/Atom';
+
 export default function KakaoLogoutButton() {
   const navigate = useNavigate();
-  const REST_API_KEY = '06264d97cddc6d0d5ef77a0f28d69af9';
-  const REDIRECT_URI = 'http://localhost:3000/';
-  const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+  const [kakaoCode, setKakaoCode] = useRecoilState(kakaoState);
 
   const Logout = async () => {
-    const AccessToken = window.localStorage.getItem('token_for_kakaotalk');
-    console.log(AccessToken);
-    const islogout = await fetch('https://kapi.kakao.com/v1/user/logout', {
-      headers: {
-        Authorization: `Bearer ${AccessToken}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      method: 'POST',
-    }).then((res) => res.json());
+    if (kakaoCode) {
+      setKakaoCode('');
+      sessionStorage.clear();
+      localStorage.clear();
+      alert('로그아웃성공!');
+      navigate('/');
+    } else {
+      authService.signOut();
+    }
 
-    signOut(authService)
-      .then(() => {
-        console.log('로그아웃 성공');
-        navigate('/');
-        alert('로그아웃 성공');
-      })
-      .catch((err) => alert(err));
-    sessionStorage.clear();
-
-    localStorage.clear();
-
-    sessionStorage.clear();
-    console.log('isLogout', islogout);
+    // 새로고침 하지않으면 네이버로그인 버튼이 사라짐. 렌더링문제인듯함
   };
 
   return (

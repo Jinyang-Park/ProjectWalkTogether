@@ -146,7 +146,9 @@ function ChattingBox() {
                   </S.ChattingBoxheaderImgCover>
                 </S.ChattingImg>
                 <S.ChattingTextLeft>{ars.message}</S.ChattingTextLeft>
+
                 <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
+
               </S.ChattingTextBoxLeft>
             );
           })}

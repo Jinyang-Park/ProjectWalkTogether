@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CommonStyles from './../../styles/CommonStyles';
 import * as S from './PostEditPage.style';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import {
   myLocation,
   selectedAddress,
@@ -11,31 +11,38 @@ import {
   Time,
   TitleInput,
   DescriptionInput,
+  ReserveEditDate,
+  TimeEdit,
 } from './../../Rocoil/Atom';
 import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage, dbService } from './../../common/firebase';
-import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  doc,
+  updateDoc,
+  onSnapshot,
+  getDoc,
+  query,
+  where,
+  orderBy,
+} from 'firebase/firestore';
 import MainPostEdit from './MainPostEdit/MainPostEdit';
 import InputInformationEdit from './InputInformationEdit/InputInformationEdit';
 
 const PostEditPage = () => {
-  const [loginModalopen, setLoginModalopen] = useState(false); //아이디 찾기 모달창
-  const [postDb, setPostDb] = useState({}); //파이어베이스DB
-  const [postHour, setPostHour] = useState(''); //약속 시간.날짜
-  const [postMinut, setPostMinute] = useState(''); //약속 시간.시각
-  const [postTime, setPostTime] = useState(''); //작성시간
-  const [postLiked, setPostLiked] = useState(false); //좋아요 여부
-  const [postCountLiked, setPostCountLiked] = useState(''); //좋아요 갯수
-  const [proceedState, setProceedState] = useState(''); //게시글의 진행사항
-  const [keyForChat, setKeyForChat] = useState(''); //채팅을 위해 생성한 id
-  const [postId, setPostId] = useState(''); //포스팅 id 고유값
-  const [postAuthor, setPostAuthor] = useState(''); //사용자 파이어베이스 uid
-  const [postNickname, setPostNickname] = useState(''); //사용자 닉네임 => 회원가입시시에 저장해 주거나 로컬에 저장하는 방법을 찾아야될 것 같다.
-  const [postAddress, setPostAddress] = useState(''); //만날 위치 시,군,구,단
-  const [postCategory, setPostCategory] = useState('카테고리'); //카테고리
+  // 해당 글 id, db 정보
+  const { id } = useParams();
+  const { state } = useLocation();
+  // console.log(id);
+  // console.log(state);
+
+  // 카테고리 값값
+  const [postCategory, setPostCategory] = useState(state.Category_Posting);
+  // console.log(postCategory);
 
   //주소 받아오기 myLocation
   const location = useRecoilValue(myLocation);
@@ -58,11 +65,19 @@ const PostEditPage = () => {
   const nickname = auth.currentUser?.displayName;
   const KeyForChat_Posting = uuidv4();
   const [PostingID_Posting, setPostingID_Posting] = useState(uuidv4());
-  // 페이지 전환
+
+  //타이틀, 글 내용
+  const [Title, setTitle] = useRecoilState(TitleInput);
+  const [Description, setDescription] = useRecoilState(DescriptionInput);
+
+  //
+  // 포스팅 출력
+  const [myPost, setMyPost] = useState<any>({}); // 페이지 전환
   const navigate = useNavigate();
 
   //약속 시간
-  const meetDate = useRecoilValue(ReserveDate);
+  const [meetEditDate, setMeetEditDate] = useRecoilState(ReserveEditDate);
+  console.log(meetEditDate);
 
   const date = (y: number, m: number, d: number) => {
     const D = new Date(y, m, d);
@@ -87,16 +102,17 @@ const PostEditPage = () => {
     }
   };
 
-  const y = meetDate.$y;
-  const m = meetDate.$M;
-  const d = meetDate.$D;
-  const month = meetDate.$M + 1;
+  const y = meetEditDate.$y;
+  const m = meetEditDate.$M;
+  const d = meetEditDate.$D;
+  const month = meetEditDate.$M + 1;
 
-  console.log('date:', date(y, meetDate.$M, d));
+  console.log('date:', date(y, meetEditDate.$M, d));
 
   //시간
-  const meetTime = useRecoilValue(Time);
-  const meetHour = meetTime.slice(0, 2);
+  const [meetTimeEdit, setMeetTimeEdit] = useRecoilState(TimeEdit);
+  console.log(meetTimeEdit);
+  const meetHour = meetTimeEdit.slice(0, 2);
 
   const isPm = Number(meetHour) >= 12;
 
@@ -111,16 +127,13 @@ const PostEditPage = () => {
   //AM/PM
   let AMPM = isPm ? '오후' : '오전';
 
-  const meetMinute = meetTime.slice(3, 5);
+  const meetMinute = meetTimeEdit.slice(3, 5);
   let meetMinuteNum = Number(meetMinute);
 
   const RsvDate_Posting = `${month}/${d} ${date(y, m, d)}`;
+  console.log(RsvDate_Posting);
   const RsvHour_Posting = `${AMPM} ${time12}:${meetMinute}`;
-
-  //타이틀, 글 내용
-  const Title = useRecoilValue(TitleInput);
-  const Description = useRecoilValue(DescriptionInput);
-
+  console.log(RsvHour_Posting.length);
   //현재시간
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
 
@@ -134,15 +147,39 @@ const PostEditPage = () => {
 
   let timestring = `${time.year}/${time.month}/${time.date} ${time.hours}:${time.minutes}`;
 
-  /////////////
-  //콘솔확인용/
+  // // 데이터 불러오는 부분
+  // const Editupdate = async () => {
+  //   const q = doc(dbService, 'Post', id);
+  //   const EditPost = await getDoc(q);
+
+  //   setMyPost(EditPost.data());
+  // };
+
+  // //Editupdate가 호출됨
+  // useEffect(() => {
+  //   Editupdate();
+  // }, []);
+
+  //수정
   useEffect(() => {
-    console.log(' Description.length:', Description.length);
-    setPostTime(timestring); //현재 시간
-    // setPostHour(meeting); //약속 시간
-    setPostNickname(nickname);
-    setPostAuthor(user);
-  });
+    if (state) {
+      setTitle(state.Title_Posting);
+      setDescription(state.Description_Posting);
+    }
+    // GetPreviousMeetDate();
+    // GetPreviousMeetTime();
+  }, [state]);
+
+  // 만약 달력과 시간을 선택하지 않았을때
+  const GetPreviousMeetDate =
+    meetEditDate.length < 14
+      ? setMeetEditDate(state.RsvDate_Posting)
+      : setMeetEditDate;
+
+  const GetPreviousMeetTime =
+    meetTimeEdit.length < 9
+      ? setMeetTimeEdit(state.RsvHour_Posting)
+      : setMeetTimeEdit;
 
   //settimeout test
   const geturl: any = () => {
@@ -156,30 +193,21 @@ const PostEditPage = () => {
             console.log('배너url', typeof bannerUrl);
 
             try {
-              const postRef = doc(dbService, 'Post', PostingID_Posting);
+              const postRef = doc(dbService, 'Post', id);
               updateDoc(postRef, {
                 Description_Posting: Description,
-                Nickname: postNickname,
                 RsvDate_Posting,
                 RsvHour_Posting,
-                createdAt: Date.now(),
-                TimeStamp_Posting: postTime,
                 Title_Posting: Title,
-                UID: postAuthor,
-                PostingID_Posting,
-                KeyForChat_Posting,
                 Category_Posting: postCategory,
                 ThumbnailURL_Posting: thumbnailUrl,
                 BannerURL_Posting: bannerUrl,
-                CountLiked_Posting: '0',
-                ProceedState_Posting: '1',
                 Address_Posting,
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
-                View: 0,
-                Date: new Date(),
+                createdAt: Date.now(),
               });
-              console.log('글작성완료 ID: ', PostingID_Posting);
+              console.log('글작성완료 ID: ', postRef);
             } catch (e) {
               console.error('Error updating document: ', e);
             }
@@ -201,8 +229,8 @@ const PostEditPage = () => {
       if (Title.length! < 20) {
         if (Description.length !== 0) {
           if (Description.length! < 200) {
-            if (meetDate !== '') {
-              if (meetTime !== '') {
+            if (meetEditDate !== '') {
+              if (meetTimeEdit !== '') {
                 if (thumbnail !== '') {
                   if (banner !== '') {
                     if (adress !== '충북 보은군 속리산면 갈목리 산 19-1') {
@@ -235,7 +263,7 @@ const PostEditPage = () => {
                         // async await 비동기 처리
                         setTimeout(geturl, 1000);
 
-                        navigate(`/category`, { state: postCategory });
+                        navigate(`/category/${postCategory}`);
                         // setTimeout(adddoc, 8000);
                       } else {
                         alert('카테고리를 선택해 주세요');
@@ -268,14 +296,21 @@ const PostEditPage = () => {
       alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
     }
   };
+  console.log(state);
   return (
     <CommonStyles>
       <S.Boxcontainer>
         <MainPostEdit
           setPostCategory={setPostCategory}
           postCategory={postCategory}
+          thumbnailimg={state.ThumbnailURL_Posting}
+          bannerimg={state.BannerURL_Posting}
         />
-        <InputInformationEdit />
+        <InputInformationEdit
+          addressEdit={state.Address_Posting}
+          lat={state.MeetLatitude_Posting}
+          lng={state.MeetLongitude_Posting}
+        />
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>수정하기</S.PostSubmitBtn>
         </S.PostSubmitBox>
