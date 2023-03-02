@@ -97,7 +97,7 @@ const PostPage = () => {
   const d = meetDate.$D;
   const month = meetDate.$M + 1;
 
-  console.log('date:', date(y, meetDate.$M, d));
+  // console.log('date:', date(y, meetDate.$M, d));
 
   //시간
   const meetTime = useRecoilValue(Time);
@@ -124,7 +124,11 @@ const PostPage = () => {
 
   //타이틀, 글 내용
   const Title = useRecoilValue(TitleInput);
+  console.log(TitleInput);
+  console.log(Title);
   const Description = useRecoilValue(DescriptionInput);
+  console.log(DescriptionInput);
+  console.log(Description);
 
   //해시태그 리코일
   const Tag = useRecoilValue(NewpostTag);

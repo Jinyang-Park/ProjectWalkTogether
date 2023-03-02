@@ -10,16 +10,15 @@ import { ReserveEditDate } from '../../../Rocoil/Atom';
 
 const AntCalendarEdit: React.FC = () => {
   const format = 'YYYY/MM/DD';
-  const [reserveDate, setReserveDate] = useRecoilState<any>(ReserveEditDate);
+  const [reserveEditDate, setReserveEditDate] =
+    useRecoilState<any>(ReserveEditDate);
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-    console.log(date, dateString);
-    setReserveDate(date);
-    console.log('달력/날짜:', reserveDate);
+    // console.log(date, dateString);
+    setReserveEditDate(date);
+    console.log('달력/날짜:', reserveEditDate);
   };
-
-  // useEffect(() => );
-
+  console.log('달력/날짜:', reserveEditDate);
   return (
     <ConfigProvider locale={locale}>
       <Space direction='vertical'>

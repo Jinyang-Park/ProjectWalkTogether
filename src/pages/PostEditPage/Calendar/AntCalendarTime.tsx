@@ -18,8 +18,6 @@ const AntCalendarTime: React.FC = () => {
     console.log('날짜/시간', reserveTime);
   };
 
-  //   useEffect(() => console.log('날짜/시간', reserveTime));
-
   return (
     <ConfigProvider locale={ko_KR}>
       <TimePicker

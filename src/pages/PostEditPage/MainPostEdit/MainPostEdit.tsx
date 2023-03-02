@@ -27,7 +27,7 @@ function MainPostEdit({
   // const [postCategory, setPostCategory] = useState(''); //카테고리
   const [photoupload, setPhotoupload] = useRecoilState(ThumbnailUpload); // Handles input change event and updates state
   const [bannerupload, setBanneruploadupload] = useRecoilState(Bannerupload);
-  const [thumbnail, setThumbnail] = useState<any>(thumbnailimg); // Handles input change event and updates state
+  const [thumbnail, setThumbnail] = useState<any>(thumbnailimg);
   const [banner, setBanner] = useState<any>(bannerimg);
   const [show, setShow] = useState<any>(false);
 

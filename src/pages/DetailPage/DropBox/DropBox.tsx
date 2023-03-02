@@ -55,7 +55,6 @@ const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
     return;
   };
 
-  const EditPostHandler = () => {};
   // 이건 안된다.
   // useEffect(() => {
   //   DeletePostHandler(id);

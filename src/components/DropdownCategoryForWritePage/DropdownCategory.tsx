@@ -25,7 +25,7 @@ const DropdownCategory = ({ setPostCategory, setShow }: SetProps) => {
 
   // CategorysList에서 전체라는 name빼고 detailCategroyFilter 에 넣어준다
   const detailCategroyFilter = CategorysList.filter((el) => el.name !== '전체');
-  console.log(detailCategroyFilter);
+  // console.log(detailCategroyFilter);
 
   return (
     <S.DropdownBox>

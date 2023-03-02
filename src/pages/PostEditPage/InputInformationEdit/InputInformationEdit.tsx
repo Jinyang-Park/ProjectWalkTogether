@@ -21,15 +21,18 @@ interface Edit {
 function InputInformationEdit({ addressEdit, lat, lng }: Edit) {
   // 현재 위치를 가져오기 위한 state 생성
   const [myLoca, setMyLoca] = useState({ lat, lng });
+  console.log(myLoca);
   // const [myLoca, setMyLoca] = useRecoilState(myLocation);
 
   // 지도 좌표를 저장할 state   (o)
   const [position, setPosition] = useRecoilState(myLocation);
 
+  // db에 올라간 위치가 불러질때 myloca(db에 올라간 위치)를 setPostiton 함수에 넣는 로직
   useEffect(() => {
     setPosition(myLoca);
   }, [myLoca]);
 
+  console.log(position);
   // 키워드로 장소검색하기를 위한 state
   const [info, setInfo] = useState<any>();
   const [markers, setMarkers] = useState([]);
@@ -37,8 +40,8 @@ function InputInformationEdit({ addressEdit, lat, lng }: Edit) {
   const [bounds, setBounds] = useState();
 
   // input value 를 가져오기 위한 state
-  const [search, setSearch] = useState(addressEdit);
-
+  const [search, setSearch] = useState('');
+  // console.log(addressEdit);
   const onChange = (e) => {
     setSearch(e.target.value);
   };

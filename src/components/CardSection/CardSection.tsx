@@ -8,6 +8,7 @@ import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { ref } from 'firebase/storage';
 import { dbService } from '../../common/firebase';
 import { red } from '@mui/material/colors';
+import CommonStyles from './../../styles/CommonStyles';
 
 interface postProps {
   post: any;
@@ -19,7 +20,7 @@ const CardSection = ({ post }: postProps) => {
   const [likebtn, setLikeBtn] = useState<boolean>(false);
   const uid = useRecoilValue(currentUserUid);
 
-  console.log(post);
+  // console.log(post);
 
   // post 바뀔때마 실행되는것이다.
   // useEffect(() => {
@@ -91,27 +92,6 @@ const CardSection = ({ post }: postProps) => {
         <S.ListItemContainer>
           <S.ListItemAddress>{post.Address_Posting}</S.ListItemAddress>
           <S.LikedHeartFlex>
-            {/* {likebtn ? (
-              <button
-                style={{ position: 'absolute' }}
-                onClick={() => {
-                  unlikepost();
-                }}
-              >
-                좋아요 해재하기
-              </button>
-            ) : (
-              <button
-                style={{ position: 'absolute' }}
-                onClick={() => {
-                  likepost();
-                  console.log('좋아요');
-                }}
-              >
-                좋아요하기
-              </button>
-            )} */}
-
             {likebtn ? (
               // LikeBtnFill부분만 svg가 안된다...
               <S.LikeBtnFill
