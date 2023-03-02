@@ -132,6 +132,7 @@ const PostPage = () => {
 
   //해시태그 리코일
   const Tag = useRecoilValue(NewpostTag);
+  const [tagList, setTagList] = useRecoilState(NewpostTag);
   //현재시간
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
 
@@ -250,6 +251,7 @@ const PostPage = () => {
                         // async await 비동기 처리
                         setTimeout(geturl, 1000);
 
+                        setTagList([]);
                         navigate(`/category/${postCategory}`);
                         // setTimeout(adddoc, 8000);
                       } else {

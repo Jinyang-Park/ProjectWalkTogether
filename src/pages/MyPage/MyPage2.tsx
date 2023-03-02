@@ -5,7 +5,7 @@ import MyPageWrite from './mypageWrite/MyPageWrite';
 import CommonStyles from '../../styles/CommonStyles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { currentUserUid, isLoggedIn } from '../../Rocoil/Atom';
+import { kakaoUserState, currentUserUid, isLoggedIn } from '../../Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import MypageTabbar from './tabbar/MypageTabbar';
 import MyPageLike from './likepage/MyPageLike';
@@ -17,6 +17,7 @@ const MyPage2 = () => {
   const [id, setId] = useState<string>(uid || '');
   const [currentpage, setCurrentPage] = useState('Post');
 
+  const kakaoUser = useRecoilValue(kakaoUserState);
   const loggedIn = useRecoilValue(isLoggedIn);
   const userUid = useRecoilValue(currentUserUid);
 
