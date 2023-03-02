@@ -88,7 +88,7 @@ export const Ul = styled.ul`
 export const Li = styled.li``;
 
 export const DropNav = styled.nav<{ isDropped: boolean }>`
-  background: #60a5f8;
+  background: #b8c0d1;
   position: absolute;
   top: 52px;
   left: 50%;
@@ -109,7 +109,7 @@ export const DropNav = styled.nav<{ isDropped: boolean }>`
     top: -3px;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 12px solid transparent;
+
     border-top-width: 0;
     border-bottom-color: #60a5f8;
   }

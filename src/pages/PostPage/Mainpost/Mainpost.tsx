@@ -123,6 +123,7 @@ function MainPost({
             <S.CalendarIcon src={'/assets/calendar.png'} />
             <S.CategoryTitle>{postCategory}</S.CategoryTitle>
           </S.CateogryWrapper>
+
           {show && (
             <DropdownCategory
               setPostCategory={setPostCategory}

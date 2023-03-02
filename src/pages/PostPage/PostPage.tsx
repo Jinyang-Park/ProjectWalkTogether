@@ -189,9 +189,9 @@ const PostPage = () => {
                 Address_Posting,
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
+                Hashtag_Posting: Tag,
                 LikedUsers: [],
                 View: 0,
-                Hashtag_Posting: Tag,
               });
               console.log('글작성완료 ID: ', docRef);
               // alert('저장완료');

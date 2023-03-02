@@ -52,7 +52,7 @@ const FootOning = () => {
 
   return (
     <>
-      {postList.map((item) => {
+      {postList.slice(0, 8).map((item) => {
         console.log(item);
         return (
           <>
