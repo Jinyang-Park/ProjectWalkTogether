@@ -6,7 +6,7 @@ export const MapPageSearchBar = styled.form`
   justify-content: start;
   align-items: center;
   padding-left: 15px;
-  height: 50px;
+  height: 48px;
 
   margin-bottom: 3px;
   border: 1px solid black;
@@ -15,9 +15,18 @@ export const MapPageSearchBar = styled.form`
 `;
 export const SearchBar = styled.input`
   width: 85%;
-  height: 50px;
-  font-size: 25px;
+  height: 45px;
+  font-size: 20px;
+  font-weight: 500;
   margin-left: 20px;
+  border: none;
+  border-right: 0px;
+  border-left: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+  :focus {
+    outline: none;
+  }
   ::placeholder {
     color: #bfbfbf;
   }
