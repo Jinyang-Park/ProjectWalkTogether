@@ -120,6 +120,11 @@ export const Cetegory = atom<any>({
   default: '전체',
 });
 
+export const FilterSelectedDateForMapPage = atom<any>({
+  key: 'FilterSelectedDateForMapPage',
+  default: '',
+});
+
 //* ---------------MapPage Catefory------------------ *//
 
 export const chattingusers = atom<any>({
