@@ -57,7 +57,7 @@ const DetailPage = () => {
   const [isduplication, setIsduplication] = useState(false);
   const mychatlist = useRecoilValue(currentUserUid);
   const [chatList, setChatList] = useState<any>([]);
- 
+
   // 채팅방 만들기
   const getPostingUID = getPostings.UID;
   const CurrentUid = UID.useruid;
@@ -192,7 +192,7 @@ const DetailPage = () => {
     }
   }, [isLoading]);
 
-  console.log(getPostings.View);
+  // console.log(getPostings.View);
   // console.log(getPostings);
   // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
 

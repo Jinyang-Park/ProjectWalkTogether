@@ -39,8 +39,7 @@ const Header = () => {
   // const kakaoUser = sessionStorage.getItem('id');
   const kakaoUser = useRecoilValue(kakaoUserState);
   const sessionId = useRecoilValue(username);
-  console.log(kakaoUser);
-  console.log(kakaoCode);
+
   getKakaoCode();
   //const currentUser = authService.currentUser;
   //const userNickName = currentUser?.displayName;

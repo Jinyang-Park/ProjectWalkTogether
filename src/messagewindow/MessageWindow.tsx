@@ -11,7 +11,7 @@ import perplex from '../assets/messageWindow/Perplex.svg';
 import rocket from '../assets/messageWindow/Rocket.svg';
 import writingHand from '../assets/messageWindow/WritingHand.svg';
 import yellowPencil from '../assets/messageWindow/YellowPencil.svg';
-import cancelbtn from '../assets/messageWindow/CancelBtn.svg';
+import CloseButton from '../assets/messageWindow/CancelBtn.svg';
 
 //
 // 사용법
@@ -50,8 +50,8 @@ import cancelbtn from '../assets/messageWindow/CancelBtn.svg';
 
 export default class MessageWindow {
   static showWindow(
-    props: MessageWindowProperties,
-    recoilSetStateFunction: (arg0: MessageWindowProperties) => void
+    props: MessageWindowProperties = new MessageWindowProperties(false),
+    recoilSetStateFunction: (arg0: MessageWindowProperties) => void = () => {}
   ) {
     recoilSetStateFunction(props);
   }
@@ -147,7 +147,7 @@ export function MessageWindowComponent() {
     box-shadow: 0px 0px 10px #bec5d7;
     border-radius: 4px;
   `;
-  const AlertCancelBtn = styled.button`
+  const AlertCloseButton = styled.button`
     width: 20px;
     height: 20px;
     margin-left: auto;
@@ -171,7 +171,7 @@ export function MessageWindowComponent() {
     font-size: 24px;
   `;
 
-  const AlertBtn = styled.button`
+  const AlertButton = styled.button`
     width: 200px;
     height: 40px;
 
@@ -179,7 +179,7 @@ export function MessageWindowComponent() {
     border-radius: 32px;
   `;
 
-  const AlertBtnContainer = styled.div`
+  const AlertButtonContainer = styled.div`
     margin-top: 24px;
   `;
   const renderLogo = () => {
@@ -224,19 +224,19 @@ export function MessageWindowComponent() {
         <ModalWrap>
           <ModalBackground>
             <AlertWrap>
-              <AlertCancelBtn
+              <AlertCloseButton
                 onClick={() => {
                   setProps(new MessageWindowProperties());
                 }}
               >
-                <img src={cancelbtn}></img>
-              </AlertCancelBtn>
+                <img src={CloseButton} alt='Close Button'></img>
+              </AlertCloseButton>
               {renderLogo()}
               <AlertTitle>{props.message}</AlertTitle>
-              <AlertBtnContainer>
+              <AlertButtonContainer>
                 {props.buttons.map((buttonData) => {
                   return (
-                    <AlertBtn
+                    <AlertButton
                       key={buttonData.text}
                       onClick={() => {
                         setProps(new MessageWindowProperties());
@@ -244,10 +244,10 @@ export function MessageWindowComponent() {
                       }}
                     >
                       {buttonData.text}
-                    </AlertBtn>
+                    </AlertButton>
                   );
                 })}
-              </AlertBtnContainer>
+              </AlertButtonContainer>
             </AlertWrap>
           </ModalBackground>
         </ModalWrap>

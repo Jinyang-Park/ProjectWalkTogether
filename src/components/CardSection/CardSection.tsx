@@ -91,6 +91,8 @@ const CardSection = ({ post }: postProps) => {
         </S.HashTag>
         <S.ListItemContainer>
           <S.ListItemAddress>{post.Address_Posting}</S.ListItemAddress>
+          <S.ListItemDate>{post.RsvDate_Posting}</S.ListItemDate>
+          <S.ListItemHour>{post.RsvHour_Posting}</S.ListItemHour>
           <S.LikedHeartFlex>
             {likebtn ? (
               // LikeBtnFill부분만 svg가 안된다...
@@ -110,10 +112,6 @@ const CardSection = ({ post }: postProps) => {
               />
             )}
           </S.LikedHeartFlex>
-          <S.ListItemDate>
-            {post.RsvDate_Posting}
-            {post.RsvHour_Posting}
-          </S.ListItemDate>
         </S.ListItemContainer>
       </S.CardSectionWrapper>
     </S.CardBox>

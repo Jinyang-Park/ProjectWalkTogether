@@ -5,7 +5,7 @@ import * as S from './SignUpPage.style';
 import {
   createUserWithEmailAndPassword,
   updateProfile,
-  sendSignInLinkToEmail,
+  sendEmailVerification,
 } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../../common/firebase';
@@ -152,6 +152,7 @@ const SignUpPage = () => {
             setState
           );
         })
+
         .catch((error) => {
           console.log(error);
 

@@ -29,7 +29,7 @@ export default function AuthStateListener() {
   const setUserForChat = useSetRecoilState(userForChat);
 
   const cacheDataToUserDatabase = async (
-    kakaoId: string,
+    // kakaoId: string,
     uid: string,
     email: string,
 
@@ -37,7 +37,7 @@ export default function AuthStateListener() {
     profileImg: string
   ) => {
     const docSnap = await getDoc(doc(dbService, 'user', uid));
-    const kakaoSnap = await getDoc(doc(dbService, 'kakaoData', `${kakaoId}`));
+    // const kakaoSnap = await getDoc(doc(dbService, 'kakaoData', `${kakaoId}`));
 
     if (docSnap.exists()) {
       // Already exists
@@ -57,17 +57,6 @@ export default function AuthStateListener() {
         uid: uid,
         id: uid,
       });
-      console.log(res);
-    }
-
-    if (kakaoSnap.exists()) {
-      // Already exists
-      const res = await updateDoc(doc(dbService, 'kakaoData', `${kakaoId}`), {
-        email: email,
-        nickname: nickname,
-        profileImg: profileImg,
-      });
-
       console.log(res);
     }
   };
@@ -114,7 +103,7 @@ export default function AuthStateListener() {
         setUserForChat(nowuser);
 
         cacheDataToUserDatabase(
-          user.kakaoId,
+          // user.kakaoId,
           user.uid,
           user.email,
           user.displayName,
@@ -125,7 +114,7 @@ export default function AuthStateListener() {
         // alert('로그아웃되었습니다. 안녕히 잘가세요ㅋ -알레한드로');
         setIsLoggedIn(false);
         setCurrentUserUid('');
-        setCurrentKakaoId('');
+        // setCurrentKakaoId('');
         setUsername('');
       }
     });
