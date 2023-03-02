@@ -53,12 +53,9 @@ const PostEditPage = () => {
 
   const Address_Posting = adress.slice(0, 10);
 
-  //////이미지 받아오기
-  const [getThumbnail, setGetThumbnail] = useState<any>();
-  const [getBanner, setGetBanner] = useState<any>();
   /////이미지가져오기
-  const banner = useRecoilValue(Bannerupload);
-  const thumbnail = useRecoilValue(ThumbnailUpload);
+  const [banner, setBanner] = useRecoilState(Bannerupload);
+  const [thumbnail, setThumbnail] = useRecoilState(ThumbnailUpload);
   ///// firestorage 이미지 불러오기
   const auth = getAuth();
   const user = auth.currentUser?.uid;
@@ -163,8 +160,11 @@ const PostEditPage = () => {
   //수정
   useEffect(() => {
     if (state) {
+      console.log(state);
       setTitle(state.Title_Posting);
       setDescription(state.Description_Posting);
+      // setBanner(state.BannerURL_Posting);
+      // setThumbnail(state.ThumbnailURL_Posting);
     }
     // GetPreviousMeetDate();
     // GetPreviousMeetTime();
@@ -193,6 +193,14 @@ const PostEditPage = () => {
             console.log('배너url', typeof bannerUrl);
 
             try {
+              const updateBanner: { BannerURL_Posting: string } = {
+                BannerURL_Posting: bannerUrl,
+              };
+
+              const updateThumbnail: { ThumbnailURL_Posting: string } = {
+                ThumbnailURL_Posting: thumbnailUrl,
+              };
+
               const postRef = doc(dbService, 'Post', id);
               updateDoc(postRef, {
                 Description_Posting: Description,
@@ -200,8 +208,6 @@ const PostEditPage = () => {
                 RsvHour_Posting,
                 Title_Posting: Title,
                 Category_Posting: postCategory,
-                ThumbnailURL_Posting: thumbnailUrl,
-                BannerURL_Posting: bannerUrl,
                 Address_Posting,
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
