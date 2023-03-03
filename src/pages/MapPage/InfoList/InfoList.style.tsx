@@ -71,7 +71,7 @@ export const LikedListItem = styled.div`
   grid-gap: 70px 49.3px;
   /* grid-template-rows: 49.3px; */
 
-  margin-top: 36px;
+  margin-top: 46px;
 `;
 
 export const ResultList = styled.span`

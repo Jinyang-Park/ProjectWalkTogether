@@ -3,7 +3,6 @@ import { CategorysList } from '../../utils/CategorysList';
 import * as S from './DropdownFilterCategory.style';
 import { useNavigate } from 'react-router-dom';
 
-
 declare interface SetProps {
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
   setTextChange: React.Dispatch<React.SetStateAction<string>>;
@@ -42,13 +41,13 @@ const DropdownFilterCategory = ({
             );
           })}
         </S.DropdownWapper>
+        <S.CategoryConfirmBtn
+          // 24~25
+          onClick={() => confirmButtonClickHandler()}
+        >
+          선택 완료
+        </S.CategoryConfirmBtn>
       </S.DropdownConatainer>
-      <S.CategoryConfirmBtn
-        // 24~25
-        onClick={() => confirmButtonClickHandler()}
-      >
-        완료
-      </S.CategoryConfirmBtn>
     </S.DropdownBox>
   );
 };

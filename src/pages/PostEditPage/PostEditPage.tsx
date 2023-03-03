@@ -193,11 +193,13 @@ const PostEditPage = () => {
             console.log('배너url', typeof bannerUrl);
 
             try {
-              const updateBanner: { BannerURL_Posting: string } = {
+              console.log(bannerUrl);
+              console.log(thumbnailUrl);
+              const updateBanner: { BannerURL_Posting } = {
                 BannerURL_Posting: bannerUrl,
               };
 
-              const updateThumbnail: { ThumbnailURL_Posting: string } = {
+              const updateThumbnail: { ThumbnailURL_Posting } = {
                 ThumbnailURL_Posting: thumbnailUrl,
               };
 

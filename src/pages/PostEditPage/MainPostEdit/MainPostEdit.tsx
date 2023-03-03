@@ -39,6 +39,7 @@ function MainPostEdit({
     reader.onload = () => {
       setPhotoupload(() => filelist);
       setThumbnail(() => reader.result);
+      console.log(filelist)
     };
     reader.readAsDataURL(filelist);
     console.log('썸네일 인풋:', photoupload);
