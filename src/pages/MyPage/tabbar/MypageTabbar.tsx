@@ -7,7 +7,7 @@ const MypageTabbar = (props: {
   const { currentpage, setCurrentPage } = props;
 
   return (
-    <>
+    <TabbarWrap>
       <UserWriteBtn
         onClick={() => {
           setCurrentPage('Post');
@@ -22,10 +22,16 @@ const MypageTabbar = (props: {
       >
         찜
       </UserInterest>
-    </>
+    </TabbarWrap>
   );
 };
 export default MypageTabbar;
+
+const TabbarWrap = styled.div`
+  width: 100%;
+  border-bottom: 3px solid #cbcbcb;
+  margin-bottom: 50px;
+`;
 
 const UserWriteBtn = styled.button`
   width: 90px;
