@@ -8,14 +8,15 @@ import DropdownCategory from '../../../components/DropdownCategoryForWritePage/D
 import { useParams } from 'react-router-dom';
 import { doc, getDoc } from '@firebase/firestore';
 import { dbService } from './../../../common/firebase';
+import Tag from './../../../components/Tag';
 
 interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
   postCategory: string;
   thumbnailimg: string;
   bannerimg: string;
-  setHasEditedBanner: (arg0: boolean) => void;
-  setHasEditedThumbnail: (arg0: boolean) => void;
+  setHasEditedBanner: React.Dispatch<React.SetStateAction<boolean>>;
+  setHasEditedThumbnail: React.Dispatch<React.SetStateAction<boolean>>;
 }
 function MainPostEdit({
   setPostCategory,
@@ -44,7 +45,7 @@ function MainPostEdit({
     reader.onload = () => {
       setPhotoupload(filelist);
       setThumbnail(() => reader.result);
-      console.log(filelist)
+      console.log(filelist);
     };
     reader.readAsDataURL(filelist);
     console.log('썸네일 인풋:', photoupload);
@@ -52,9 +53,7 @@ function MainPostEdit({
 
   function bannerimageChange(e: any) {
     setHasEditedBanner(true);
-    console.log(
-      '배너 이미자가 변경되었습니다. zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz'
-    );
+    console.log('배너 이미자가 변경되었습니다.');
     const filelist = e.target.files[0];
 
     const reader = new FileReader();
@@ -136,7 +135,7 @@ function MainPostEdit({
             value={postdescription}
             placeholder='당신의 이야기를 적어주세요'
           ></S.Textarea>
-          {/* <S.HashtagBox>#해쉬태그를 입력해주세요</S.HashtagBox> */}
+          <Tag tagItem='' />
         </S.BoxMain>
       </S.Boxcontents>
     </>
