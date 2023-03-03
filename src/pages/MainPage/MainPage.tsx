@@ -16,6 +16,7 @@ import * as S from './CardSection.style';
 import CollectionAll from '../Collection/CollectionAll';
 import Collection from '../Collection/Collection';
 import { CollecitionList } from '../../utils/CollectionList';
+import LikesComponent from './LikeComponent';
 
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 
@@ -26,14 +27,37 @@ const MainPage = () => {
   return (
     <CommonStyles>
       <MainBanner />
+      <CategoryWrapper>
+        <CategorySlide />
 
-      <CategorySlide />
+        <div>
+          <TextTitle style={{ fontSize: 20, fontWeight: 'bold' }}>
+            신발신는중
+          </TextTitle>
+          <FirstLayout>
+            <InsideText>현재 이루어지고 있는 산책들이에요</InsideText>
+            <Button
+              value='1'
+              onClick={(event) =>
+                navigate(`/collection/${event.target['value']}`)
+              }
+            >
+              전체보기
+            </Button>
+          </FirstLayout>
 
-      <div>
+          <S.LikedListItem>
+            <FootOning />
+          </S.LikedListItem>
+        </div>
+
+        <TextTitle style={{ fontSize: 20, fontWeight: 'bold' }}>
+          뜨거운신발
+        </TextTitle>
         <FirstLayout>
-          <span style={{ fontSize: 20, fontWeight: 'bold' }}>신발신는중</span>
+          <InsideText>현재 인기가 많은 산책들이에요</InsideText>
           <Button
-            value='1'
+            value='2'
             onClick={(event) =>
               navigate(`/collection/${event.target['value']}`)
             }
@@ -41,15 +65,12 @@ const MainPage = () => {
             전체보기
           </Button>
         </FirstLayout>
+        <S.LikedListItem>{/* <LikesComponent /> */}</S.LikedListItem>
 
-        <S.LikedListItem>
-          <FootOning />
-        </S.LikedListItem>
-      </div>
-
-      <span style={{ fontSize: 20, fontWeight: 'bold' }}>뜨거운신발</span>
-
-      <span style={{ fontSize: 20, fontWeight: 'bold' }}>걷는 중</span>
+        <TextTitle style={{ fontSize: 20, fontWeight: 'bold' }}>
+          걷는 중
+        </TextTitle>
+      </CategoryWrapper>
     </CommonStyles>
   );
 };
@@ -60,10 +81,29 @@ const Category = styled.div``;
 const Button = styled.button`
   float: right;
   background-color: transparent;
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
+`;
+const InsideText = styled.p`
+  font-family: 'SUITERegular';
+  letter-spacing: -2px;
+
+  width: 300px;
+`;
+const TextTitle = styled.p`
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
+`;
+export const CategoryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 868px;
+  margin: auto;
 `;
 
 const FirstLayout = styled.div`
-  justify-content: space-around;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Collectionitem = styled.div``;

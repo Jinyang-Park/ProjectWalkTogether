@@ -9,7 +9,6 @@ export const InputLayout = styled.div`
   position: relative;
 `;
 export const InputBox = styled.div`
-  border: 1px solid #ddd;
   border-radius: 30px;
 
   width: 460px;
@@ -17,7 +16,8 @@ export const InputBox = styled.div`
   margin: 0 auto;
   position: relative;
   top: 100px;
-  box-shadow: black;
+
+  box-shadow: 0 0 10px #bec5d7;
 `;
 export const join_box = styled.div`
   padding-left: 40px;

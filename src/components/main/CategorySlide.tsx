@@ -115,6 +115,9 @@ export const Img = styled.img`
 export const ImgTitle = styled.p`
   text-align: center;
   margin: 0 auto;
+  font-family: 'SUITERegular';
+  letter-spacing: -2px;
+  padding-top: 10px;
 `;
 
 export default CategorySlide;

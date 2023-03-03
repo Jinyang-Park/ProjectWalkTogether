@@ -30,6 +30,9 @@ export const NavLi = styled.li`
 export const NavText = styled(Link)`
   text-decoration: none;
   color: black;
+
+  font-family: 'SUITERegular';
+  letter-spacing: -2px;
   font-size: 16px;
 `;
 export const LoginButton = styled.button`
@@ -39,6 +42,8 @@ export const LoginButton = styled.button`
   margin-top: 10px;
   padding: 5px;
   border-radius: 5px;
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
   width: 100px;
   height: 40px;
 
@@ -94,6 +99,7 @@ export const DropNav = styled.nav<{ isDropped: boolean }>`
   left: 50%;
   width: 100px;
   text-align: center;
+  font-family: 'SUITERegular';
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   opacity: 0;
@@ -108,7 +114,6 @@ export const DropNav = styled.nav<{ isDropped: boolean }>`
     position: absolute;
     top: -3px;
     left: 50%;
-    transform: translate(-50%, -50%);
 
     border-top-width: 0;
     border-bottom-color: #60a5f8;

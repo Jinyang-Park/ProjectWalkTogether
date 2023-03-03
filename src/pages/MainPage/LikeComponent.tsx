@@ -23,7 +23,7 @@ interface postProps {
   Hashtag_Posting: any;
 }
 
-const FootOning = () => {
+const LikesComponent = () => {
   const setParams = useSetRecoilState(paramsState);
   const { id } = useParams();
   const [postList, setPostList] = useState([]);
@@ -52,6 +52,7 @@ const FootOning = () => {
   // import { useSetRecoilState } from 'recoil
   const navigate = useNavigate();
 
+  [...postList].sort((a, b) => b.LikedUsers.length - a.LikedUsers.length);
   return (
     <CommonStyles>
       <S.LikedListItem>
@@ -62,4 +63,4 @@ const FootOning = () => {
     </CommonStyles>
   );
 };
-export default FootOning;
+export default LikesComponent;

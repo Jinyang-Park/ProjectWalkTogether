@@ -49,6 +49,7 @@ const Collection = (props: any) => {
       console.log(shoes);
     }
     if (id === '뜨거운신발') {
+      console.log(shoes);
     }
     if (id === '걷는중') {
     }
