@@ -7,10 +7,13 @@ const MypageTabbar = (props: {
   const { currentpage, setCurrentPage } = props;
 
   return (
-    <>
+    <TabbarWrap>
       <UserWriteBtn
         onClick={() => {
           setCurrentPage('Post');
+        }}
+        style={{
+          fontWeight: currentpage === 'Post' ? 'bold' : 'normal',
         }}
       >
         내가 쓴 글
@@ -19,13 +22,24 @@ const MypageTabbar = (props: {
         onClick={() => {
           setCurrentPage('Interest');
         }}
+        style={{
+          fontWeight: currentpage === 'Interest' ? 'bold' : 'normal',
+        }}
       >
         찜
       </UserInterest>
-    </>
+    </TabbarWrap>
   );
 };
 export default MypageTabbar;
+
+const TabbarWrap = styled.div`
+  width: 100%;
+  border-bottom: 3px solid #cbcbcb;
+  margin-bottom: 50px;
+
+  margin-top: 50px;
+`;
 
 const UserWriteBtn = styled.button`
   width: 90px;

@@ -14,14 +14,18 @@ interface SetProps {
   postCategory: string;
   thumbnailimg: string;
   bannerimg: string;
+  setHasEditedBanner: (arg0: boolean) => void;
+  setHasEditedThumbnail: (arg0: boolean) => void;
 }
 function MainPostEdit({
   setPostCategory,
   postCategory,
   thumbnailimg,
   bannerimg,
+  setHasEditedBanner,
+  setHasEditedThumbnail,
 }: SetProps) {
-  const [posttitel, Setposttitle] = useRecoilState(TitleInput); //글 제목
+  const [postTitle, setPostTitle] = useRecoilState(TitleInput); //글 제목
   const [postTag, setPostTag] = useState(''); //해쉬태그
   const [postdescription, SetDescription] = useRecoilState(DescriptionInput); //글 내용
   // const [postCategory, setPostCategory] = useState(''); //카테고리
@@ -32,12 +36,13 @@ function MainPostEdit({
   const [show, setShow] = useState<any>(false);
 
   function thumnailimageChange(e: any) {
+    setHasEditedThumbnail(true);
     const filelist = e.target.files[0];
 
     const reader = new FileReader();
 
     reader.onload = () => {
-      setPhotoupload(() => filelist);
+      setPhotoupload(filelist);
       setThumbnail(() => reader.result);
       console.log(filelist)
     };
@@ -46,12 +51,16 @@ function MainPostEdit({
   }
 
   function bannerimageChange(e: any) {
+    setHasEditedBanner(true);
+    console.log(
+      '배너 이미자가 변경되었습니다. zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz'
+    );
     const filelist = e.target.files[0];
 
     const reader = new FileReader();
 
     reader.onload = () => {
-      setBanneruploadupload(() => filelist);
+      setBanneruploadupload(filelist);
       setBanner(() => reader.result);
     };
 
@@ -62,7 +71,7 @@ function MainPostEdit({
   // 타이틀
   ////////
   const handleChange = (e: any) => {
-    Setposttitle(e.target.value);
+    setPostTitle(e.target.value);
   };
 
   ////////
@@ -119,7 +128,7 @@ function MainPostEdit({
 
           <S.InputTitle
             onChange={handleChange}
-            value={posttitel}
+            value={postTitle}
             placeholder='제목을 입력해 주세요'
           />
           <S.Textarea
