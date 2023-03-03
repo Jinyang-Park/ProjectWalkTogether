@@ -169,15 +169,15 @@ const PostPage = () => {
   //settimeout test
   const geturl: any = (callback: () => void = () => {}) => {
     getDownloadURL(ref(storage, `test/${PostingID_Posting}/thumbnail`))
-      .then((url) => {
-        const getThumbnail = url;
+      .then((ThumbnailUrl) => {
+        const getThumbnail = ThumbnailUrl;
         console.log('섬네일url', getThumbnail);
         // alert('섬네일url');
 
         //get썸네일 url
         getDownloadURL(ref(storage, `test/${PostingID_Posting}/banner`))
-          .then((url) => {
-            const getBanner = url;
+          .then((bannerUrl) => {
+            const getBanner = bannerUrl;
             console.log('배너url', typeof getBanner);
 
             try {

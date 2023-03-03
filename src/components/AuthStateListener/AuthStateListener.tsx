@@ -1,12 +1,13 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   currentKakaoId,
   currentUserUid,
   isLoggedIn,
   username,
   userForChat,
+  ThumbnailUpload,
 } from '../../Rocoil/Atom';
 import {
   addDoc,
@@ -23,6 +24,12 @@ export default function AuthStateListener() {
   const setIsLoggedIn = useSetRecoilState(isLoggedIn);
   const setCurrentUserUid = useSetRecoilState(currentUserUid);
   const setUsername = useSetRecoilState(username);
+
+  // 테스트용
+  const a = useRecoilValue(ThumbnailUpload);
+  useEffect(() => {
+    console.log('썸네일이 변경되없습니다', a);
+  }, [a]);
 
   const setCurrentKakaoId = useSetRecoilState(currentKakaoId);
 
