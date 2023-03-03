@@ -15,6 +15,7 @@ import {
   getDocs,
   query,
   orderBy,
+  onSnapshot,
 } from 'firebase/firestore';
 import { authService, dbService } from './../../common/firebase';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -38,6 +39,9 @@ interface getPostings {
 const DetailPage = () => {
   // 현재 유저의 정보
   const UID = useRecoilValue(userForChat);
+
+  // 페이지 업데이트용
+  const [post, setPost] = useState<any>({});
 
   const navigate = useNavigate();
   // 아톰은 새로고침하면 초기화가 된다. 앱이 랜더링이 된다.
@@ -197,6 +201,77 @@ const DetailPage = () => {
 
   // console.log(getPostings.ThunmnailURL_Posting);
   // console.log(getPostings);
+
+  const [hasUserLikedThisPost, setHasUserLikedThisPost] =
+    useState<boolean>(false);
+
+  const hasUserLikedPost = async () => {
+    const snap = await getDoc(doc(dbService, 'Post', id));
+    if (snap.exists() && snap.data()) {
+      return snap.data().LikedUsers.includes(userUid);
+    }
+
+    return false;
+  };
+
+  useEffect(() => {
+    hasUserLikedPost().then((value) => setHasUserLikedThisPost(value));
+  }, [id, currentUserUid, post]);
+
+  const [likeCount, setLikeCount] = useState<number>(0);
+
+  const getLikeCount = async () => {
+    const snap = await getDoc(doc(dbService, 'Post', id));
+    if (snap.exists() && snap.data()) {
+      return snap.data().LikedUsers.length;
+    }
+
+    return 0;
+  };
+  const userUid = useRecoilValue<string>(currentUserUid);
+
+  useEffect(() => {
+    getLikeCount().then((count) => setLikeCount(count));
+  }, [id, userUid, post]);
+
+  // 좋아요 하는 거
+  const likepost = async () => {
+    const snap = await getDoc(doc(dbService, 'Post', id));
+    const post = snap.data();
+
+    let p = post;
+    p.LikedUsers.push(userUid);
+
+    // doc = getDocs(Post 중에 PostingID_Posting === post.PostingID_Posting인 것들)[0]
+    // updateDoc(doc, likderifjsif)
+
+    updateDoc(doc(dbService, 'Post', id), {
+      LikedUsers: p.LikedUsers,
+    });
+  };
+
+  useEffect(() => {
+    if (!id || id === '') return;
+    onSnapshot(doc(dbService, 'Post', id), (doc) => {
+      setPost(doc.data());
+    });
+  }, [id]);
+
+  useEffect(() => {
+    console.log(post);
+  }, [post]);
+
+  // 좋아요 취소
+  const unlikepost = async () => {
+    const snap = await getDoc(doc(dbService, 'Post', id));
+    const post = snap.data();
+
+    const u = post.LikedUsers.filter((id: string) => id !== userUid);
+    updateDoc(doc(dbService, 'Post', id), {
+      LikedUsers: u,
+    });
+  };
+
   return (
     <>
       <CommonStyles>
@@ -236,7 +311,12 @@ const DetailPage = () => {
               <S.LikeWrapper>
                 {/*svg로 갈아끼워야함(StyledHeartIcon)*/}
                 <S.StyledHeartIcon />
-                <S.HeartBtn>5</S.HeartBtn>
+                <S.HeartBtn>{`${likeCount}`}</S.HeartBtn>
+                {hasUserLikedThisPost ? (
+                  <button onClick={unlikepost}>좋아요 해제</button>
+                ) : (
+                  <button onClick={likepost}>좋아요</button>
+                )}
               </S.LikeWrapper>
               {/* 현재 user가 쓴 글인지 판별 */}
               {getPostings.UID !== authService.currentUser?.uid ? (

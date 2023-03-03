@@ -53,18 +53,18 @@ const PostEditPage = () => {
 
   const Address_Posting = adress.slice(0, 10);
 
-  //////이미지 받아오기
-  const [getThumbnail, setGetThumbnail] = useState<any>();
-  const [getBanner, setGetBanner] = useState<any>();
   /////이미지가져오기
-  const banner = useRecoilValue(Bannerupload);
-  const thumbnail = useRecoilValue(ThumbnailUpload);
+  const [banner, setBanner] = useRecoilState(Bannerupload);
+  const [thumbnail, setThumbnail] = useRecoilState(ThumbnailUpload);
   ///// firestorage 이미지 불러오기
   const auth = getAuth();
   const user = auth.currentUser?.uid;
   const nickname = auth.currentUser?.displayName;
   const KeyForChat_Posting = uuidv4();
   const [PostingID_Posting, setPostingID_Posting] = useState(uuidv4());
+
+  const [hasEditedBanner, setHasEditedBanner] = useState<boolean>(false);
+  const [hasEditedThumbnail, setHasEditedThumbnail] = useState<boolean>(false);
 
   //타이틀, 글 내용
   const [Title, setTitle] = useRecoilState(TitleInput);
@@ -163,12 +163,17 @@ const PostEditPage = () => {
   //수정
   useEffect(() => {
     if (state) {
+      console.log(state);
       setTitle(state.Title_Posting);
       setDescription(state.Description_Posting);
+      setThumbnail(state.ThumbnailURL_Posting);
+      setBanner(state.BannerURL_Posting)
     }
     // GetPreviousMeetDate();
     // GetPreviousMeetTime();
   }, [state]);
+
+  console.log('asddddddddddddddddddddddddddddddddd', state);
 
   // 만약 달력과 시간을 선택하지 않았을때
   const GetPreviousMeetDate =
@@ -193,6 +198,14 @@ const PostEditPage = () => {
             console.log('배너url', typeof bannerUrl);
 
             try {
+              const updateBanner: { BannerURL_Posting: string } = {
+                BannerURL_Posting: bannerUrl,
+              };
+
+              const updateThumbnail: { ThumbnailURL_Posting: string } = {
+                ThumbnailURL_Posting: thumbnailUrl,
+              };
+
               const postRef = doc(dbService, 'Post', id);
               updateDoc(postRef, {
                 Description_Posting: Description,
@@ -200,8 +213,11 @@ const PostEditPage = () => {
                 RsvHour_Posting,
                 Title_Posting: Title,
                 Category_Posting: postCategory,
-                ThumbnailURL_Posting: thumbnailUrl,
-                BannerURL_Posting: bannerUrl,
+                // 사진 없데이트 안했을 경우 기존 이미지 링크 업로드
+                ThumbnailURL_Posting: hasEditedThumbnail
+                  ? thumbnailUrl
+                  : thumbnail,
+                BannerURL_Posting: hasEditedBanner ? bannerUrl : banner,
                 Address_Posting,
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
@@ -303,6 +319,8 @@ const PostEditPage = () => {
           postCategory={postCategory}
           thumbnailimg={state.ThumbnailURL_Posting}
           bannerimg={state.BannerURL_Posting}
+          setHasEditedBanner={setHasEditedBanner}
+          setHasEditedThumbnail={setHasEditedThumbnail}
         />
         <InputInformationEdit
           addressEdit={state.Address_Posting}
