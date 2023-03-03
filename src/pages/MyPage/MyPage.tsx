@@ -10,7 +10,7 @@ import { useRecoilValue } from 'recoil';
 import MypageTabbar from './tabbar/MypageTabbar';
 import MyPageLike from './likepage/MyPageLike';
 
-const MyPage2 = () => {
+const MyPage = () => {
   let { uid } = useParams();
   const navigate = useNavigate();
 
@@ -61,7 +61,7 @@ const MyPage2 = () => {
     </CommonStyles>
   );
 };
-export default MyPage2;
+export default MyPage;
 
 export enum MyPageName {
   Post = 'Post',
