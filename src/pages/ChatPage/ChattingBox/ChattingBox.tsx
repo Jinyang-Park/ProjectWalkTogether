@@ -1,4 +1,4 @@
-  import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as S from './ChattingBox.style';
 import { useState } from 'react';
 import { dbService } from '../../../common/firebase';
@@ -84,7 +84,7 @@ function ChattingBox() {
         return chat;
       });
       setGetMessage(getChat);
-      console.log('chatList:', profileImg);
+      console.log('chatList:', getChat);
     });
 
     // const querySnapshot = await getDocs(
@@ -118,7 +118,7 @@ function ChattingBox() {
             {profileImg === '' ? (
               <S.ChattingBoxheaderImgCover>
                 <S.ChattingBoxheaderImg
-                  src={require('../../../assets/man.png')}
+                  src={require('../../../assets/avatar.svg').default}
                 />
               </S.ChattingBoxheaderImgCover>
             ) : (
@@ -148,7 +148,6 @@ function ChattingBox() {
                 <S.ChattingTextLeft>{ars.message}</S.ChattingTextLeft>
 
                 <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
-
               </S.ChattingTextBoxLeft>
             );
           })}
@@ -165,7 +164,7 @@ function ChattingBox() {
                 value={message}
               />
               <S.ChattingButton>
-                <img src='../../../assets/SendBtn.png' />
+                <img src={require('../../../assets/plane.svg').default} />
               </S.ChattingButton>
             </S.ChattingInputouter>
           </form>
