@@ -53,9 +53,6 @@ const PostEditPage = () => {
 
   const Address_Posting = adress.slice(0, 10);
 
-  //////이미지 받아오기
-  const [getThumbnail, setGetThumbnail] = useState<any>();
-  const [getBanner, setGetBanner] = useState<any>();
   /////이미지가져오기
   const [banner, setBanner] = useRecoilState(Bannerupload);
   const [thumbnail, setThumbnail] = useRecoilState(ThumbnailUpload);
@@ -166,10 +163,11 @@ const PostEditPage = () => {
   //수정
   useEffect(() => {
     if (state) {
+      console.log(state);
       setTitle(state.Title_Posting);
       setDescription(state.Description_Posting);
       setThumbnail(state.ThumbnailURL_Posting);
-      setBanner(state.BannerURL_Posting);
+      setBanner(state.BannerURL_Posting)
     }
     // GetPreviousMeetDate();
     // GetPreviousMeetTime();
@@ -200,6 +198,14 @@ const PostEditPage = () => {
             console.log('배너url', typeof bannerUrl);
 
             try {
+              const updateBanner: { BannerURL_Posting: string } = {
+                BannerURL_Posting: bannerUrl,
+              };
+
+              const updateThumbnail: { ThumbnailURL_Posting: string } = {
+                ThumbnailURL_Posting: thumbnailUrl,
+              };
+
               const postRef = doc(dbService, 'Post', id);
               updateDoc(postRef, {
                 Description_Posting: Description,
