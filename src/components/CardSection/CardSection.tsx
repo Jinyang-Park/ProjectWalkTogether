@@ -90,30 +90,32 @@ const CardSection = ({ post }: postProps) => {
           })}
         </S.HashTag>
         <S.ListItemContainer>
-          <S.ListItemAddress>{post.Address_Posting}</S.ListItemAddress>
-          <S.ListItemDate>{post.RsvDate_Posting}</S.ListItemDate>
-          <S.ListItemHour>{post.RsvHour_Posting}</S.ListItemHour>
-          <S.LikedHeartFlex>
-            {likebtn ? (
-              // LikeBtnFill부분만 svg가 안된다...
-              <S.LikeBtnFill
-                src={require('../../assets/HeartFill5.png')}
-                onClick={() => {
-                  unlikepost();
-                }}
-              />
-            ) : (
-              <S.LikeBtnLine
-                src={'/assets/HeartLine.svg'}
-                onClick={() => {
-                  likepost();
-                  console.log('좋아요');
-                }}
-              />
-            )}
-          </S.LikedHeartFlex>
+          <S.AddressDateHourWrapper>
+            <S.ListItemAddress>{post.Address_Posting}</S.ListItemAddress>
+            <S.ListItemDate>{post.RsvDate_Posting}</S.ListItemDate>
+            <S.ListItemHour>{post.RsvHour_Posting}</S.ListItemHour>
+          </S.AddressDateHourWrapper>
         </S.ListItemContainer>
       </S.CardSectionWrapper>
+      <S.LikedHeartFlex>
+        {likebtn ? (
+          // LikeBtnFill부분만 svg가 안된다...
+          <S.LikeBtnFill
+            src={require('../../assets/HeartFill5.png')}
+            onClick={() => {
+              unlikepost();
+            }}
+          />
+        ) : (
+          <S.LikeBtnLine
+            src={'/assets/HeartLine.svg'}
+            onClick={() => {
+              likepost();
+              console.log('좋아요');
+            }}
+          />
+        )}
+      </S.LikedHeartFlex>
     </S.CardBox>
   );
 };

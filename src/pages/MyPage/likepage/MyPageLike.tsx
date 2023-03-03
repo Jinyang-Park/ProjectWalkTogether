@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { dbService } from '../../../common/firebase';
 import CardSection from '../../../components/CardSection/CardSection';
 
+import S from '../MyPageSharedStyles';
+
 const MyPageLike = (props: { uid: string }) => {
   const { uid } = props;
   const [posts, setPosts] = useState([]);
@@ -22,26 +24,17 @@ const MyPageLike = (props: { uid: string }) => {
 
   return (
     <MyPageWriteWrap>
-      <MyPageWriteTapContainer></MyPageWriteTapContainer>
-      <div>
+      <S.PostListWrap>
         {posts.map((post, i) => {
           return <CardSection post={post} key={i} />;
         })}
-      </div>
+      </S.PostListWrap>
     </MyPageWriteWrap>
   );
 };
 export default MyPageLike;
 
 const MyPageWriteWrap = styled.div`
-  width: 868px;
-  height: 735px;
-  margin: 0 auto 0 95px;
-`;
-const MyPageWriteTapContainer = styled.div`
   width: 100%;
-  height: 50px;
-  margin-top: 40px;
-
-  border-bottom: 3px solid #cbcbcb;
+  height: 735px;
 `;
