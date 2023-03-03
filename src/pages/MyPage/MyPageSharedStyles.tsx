@@ -9,7 +9,8 @@ export default class MyPageSharedSytles {
     flex-wrap: wrap;
 
     & > * {
-      width: 25% !important;
+      width: 21% !important;
+      margin: 0 2%;
     }
   `;
 }
