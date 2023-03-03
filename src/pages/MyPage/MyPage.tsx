@@ -9,6 +9,7 @@ import { kakaoUserState, currentUserUid, isLoggedIn } from '../../Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import MypageTabbar from './tabbar/MypageTabbar';
 import MyPageLike from './likepage/MyPageLike';
+import styled from 'styled-components';
 
 const MyPage = () => {
   let { uid } = useParams();
@@ -46,7 +47,7 @@ const MyPage = () => {
   return (
     <CommonStyles>
       {id !== '' && (
-        <>
+        <MyPageWrap>
           <MyPageBanner uid={id} />
           <MyPageProfile uid={id} />
           <MyPageReview />
@@ -56,12 +57,17 @@ const MyPage = () => {
           />
 
           <TabContent />
-        </>
+        </MyPageWrap>
       )}
     </CommonStyles>
   );
 };
 export default MyPage;
+
+const MyPageWrap = styled.div`
+  width: 868px;
+  margin: auto;
+`;
 
 export enum MyPageName {
   Post = 'Post',

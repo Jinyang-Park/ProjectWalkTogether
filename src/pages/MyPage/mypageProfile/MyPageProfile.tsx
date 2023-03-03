@@ -206,7 +206,7 @@ const MyPageProfile = (props: { uid: string }) => {
 export default MyPageProfile;
 
 const MyPageProfileWrap = styled.div`
-  width: 835px;
+  width: 100%;
   height: 203px;
   margin: 15px auto 0 auto;
 

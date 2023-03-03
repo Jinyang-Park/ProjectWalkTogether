@@ -13,12 +13,13 @@ export const CardSectionWrapper = styled.div`
 export const ListItemWrapper = styled.div`
   /* position: relative; */
   /* overflow: hidden; */
-  width: 180px;
+  width: 100%;
   height: 96px;
 `;
 export const ListItemThumnail = styled.img`
   /* width: 100%;
   height: 100%; */
+  width: 100%;
   object-fit: cover;
   border-radius: 4px;
 `;
