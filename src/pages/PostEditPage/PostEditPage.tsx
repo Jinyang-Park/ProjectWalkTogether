@@ -128,9 +128,10 @@ const PostEditPage = () => {
   let meetMinuteNum = Number(meetMinute);
 
   const RsvDate_Posting = `${month}/${d} ${date(y, m, d)}`;
-  console.log(RsvDate_Posting);
+  // console.log(RsvDate_Posting);
   const RsvHour_Posting = `${AMPM} ${time12}:${meetMinute}`;
-  console.log(RsvHour_Posting.length);
+  // console.log(RsvHour_Posting.length);
+
   //현재시간
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
 
