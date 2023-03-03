@@ -173,6 +173,19 @@ const DetailPage = () => {
           createdAt: new Date(),
         }
       );
+
+      //알람기능을 위해 게시글 작성자에게 보내지는 알람
+      await addDoc(
+        collection(dbService, 'ChattingUsers', `${getPostingUID}`, 'Alarm'),
+        {
+          profile: UID.myporfile,
+          uid: UID.useruid,
+          nickname: UID.mynickname,
+          createdAt: new Date(),
+          createdAT: Date(),
+        }
+      );
+
       navigate('/chat');
     }
   };

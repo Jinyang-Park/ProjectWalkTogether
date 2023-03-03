@@ -5,7 +5,7 @@ import { HiOutlinePlus } from 'react-icons/hi';
 import CommonStyles from './../../styles/CommonStyles';
 import ChattingList from './ChattingList/ChattingList';
 import ChattingBox from './ChattingBox/ChattingBox';
-import MyChattingList from '../Chatlist/ChattingList';
+
 import { useNavigate } from 'react-router-dom';
 
 const ChattingPage = () => {
