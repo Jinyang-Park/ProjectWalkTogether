@@ -1,6 +1,6 @@
 import MyPageBanner from './banner/MyPageBanner';
 import MyPageProfile from './mypageProfile/MyPageProfile';
-import MyPageReView from './mypageReview/MyPageReView';
+import MyPageReview from './mypageReview/MyPageReView';
 import MyPageWrite from './mypageWrite/MyPageWrite';
 import CommonStyles from '../../styles/CommonStyles';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -15,14 +15,13 @@ const MyPage2 = () => {
   const navigate = useNavigate();
 
   const [id, setId] = useState<string>(uid || '');
-  const [currentpage, setCurrentPage] = useState('Post');
+  const [currentPage, setCurrentPage] = useState('Post');
 
   const kakaoUser = useRecoilValue(kakaoUserState);
   const loggedIn = useRecoilValue(isLoggedIn);
   const userUid = useRecoilValue(currentUserUid);
 
   useEffect(() => {
-    console.log(loggedIn, userUid);
     if (id === '') {
       if (loggedIn) {
         setId(userUid);
@@ -33,8 +32,8 @@ const MyPage2 = () => {
     }
   }, [loggedIn]);
 
-  const a = () => {
-    switch (currentpage) {
+  const TabContent = () => {
+    switch (currentPage) {
       case MyPageName.Post:
         return <MyPageWrite uid={id} />;
       case MyPageName.Interest:
@@ -50,13 +49,13 @@ const MyPage2 = () => {
         <>
           <MyPageBanner uid={id} />
           <MyPageProfile uid={id} />
-          <MyPageReView />
+          <MyPageReview />
           <MypageTabbar
-            currentpage={currentpage}
+            currentpage={currentPage}
             setCurrentPage={setCurrentPage}
           />
 
-          {a()}
+          <TabContent />
         </>
       )}
     </CommonStyles>
