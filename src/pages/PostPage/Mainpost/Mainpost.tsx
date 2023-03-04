@@ -43,19 +43,6 @@ function MainPost({
     };
     reader.readAsDataURL(filelist);
     console.log('썸네일 인풋:', photoupload);
-
-    // if (thumbnail === null) return alert('이미지 업로드 실패');
-    // const imageRef = ref(storage, `postimg/${PostingID_Posting}/thumbnail`); //+${thumbnail}
-    // // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-    // uploadBytes(imageRef, thumbnail).then((snapshot) => {
-    //   // 업로드 되자마자 뜨게 만들기
-    //   getDownloadURL(snapshot.ref).then((url) => {
-    //     alert('썸네일 저장 완료');
-    //     // setImageList((prev) => [...prev, url]); //이미지리스트에 저장
-    //     ///////////////////////////
-    //     /////////배너이미지 전송
-    //   });
-    // });
   }
 
   function bannerimageChange(e: any) {

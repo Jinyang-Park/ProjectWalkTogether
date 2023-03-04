@@ -8,7 +8,6 @@ import locale from 'antd/lib/locale/ko_KR';
 import { ConfigProvider } from 'antd';
 import { ReserveEditDate } from '../../../Rocoil/Atom';
 import { useLocation } from 'react-router-dom';
-// import { typeDayjs } from 'dayjs';
 import moment from 'moment';
 import dayjs from 'dayjs';
 
@@ -20,6 +19,7 @@ const AntCalendarEdit: React.FC = () => {
   // db 날짜 가져오기
   const { state } = useLocation();
 
+  // db에 가공된 약속 날짜를 달력 defaulValue를 넣어주기 위한 코드
   const year = state.TimeStamp_Posting.slice(0, 4);
   // console.log(year);
   const postingDate = state.RsvDate_Posting.split('/');
@@ -30,19 +30,16 @@ const AntCalendarEdit: React.FC = () => {
   // console.log(day);
   const PreviousDate = `${year}/${month}/${day}`;
 
-  console.log(dayjs(PreviousDate));
+  // console.log(PreviousDate);
+  // console.log(dayjs(PreviousDate));
 
+  // 달력 클릭한 값이 setReserveEditDate에 저장
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-    console.log('date~~~~~~~~~~', date);
     setReserveEditDate(date);
   };
-  console.log('달력/날짜~~~~:', reserveEditDate);
+  // console.log('달력/날짜~~~~:', reserveEditDate);
 
-  // 수정이다.
-  // 수정하기 전의 초기값이 있어야된다.
-  // 빈문자열이였다 기본값이 reserverEdit
-  // 들어오자마자 빈 문자열이니 기존의 값으로 바꿔준거다
-
+  // 수정하기 전의 초기값이 빈 문자열을 기존의 값으로 바꿔주는 부분
   useEffect(() => {
     if (PreviousDate) {
       setReserveEditDate(dayjs(PreviousDate));

@@ -43,8 +43,8 @@ const PostEditPage = () => {
   // 해당 글 id, db 정보
   const { id } = useParams();
   const { state } = useLocation();
-  // console.log(id);
-  console.log(state);
+  // 글 수정 후 페이지 이동
+  const navigate = useNavigate();
 
   // 카테고리 값값
   const [postCategory, setPostCategory] = useState(state.Category_Posting);
@@ -70,6 +70,7 @@ const PostEditPage = () => {
   const KeyForChat_Posting = uuidv4();
   const [PostingID_Posting, setPostingID_Posting] = useState(uuidv4());
 
+  // 썸네일과 배너 수정했는지 안헀는지에 대한 useState
   const [hasEditedBanner, setHasEditedBanner] = useState<boolean>(false);
   const [hasEditedThumbnail, setHasEditedThumbnail] = useState<boolean>(false);
 
@@ -77,10 +78,8 @@ const PostEditPage = () => {
   const [Title, setTitle] = useRecoilState(TitleInput);
   const [Description, setDescription] = useRecoilState(DescriptionInput);
 
-  //
   // 포스팅 출력
-  const [myPost, setMyPost] = useState<any>({}); // 페이지 전환
-  const navigate = useNavigate();
+  // const [myPost, setMyPost] = useState<any>({});
 
   // 커스텀 얼럿창
   const setState = useSetRecoilState<MessageWindowProperties>(
@@ -88,15 +87,7 @@ const PostEditPage = () => {
   );
 
   //해시태그 리코일
-  const Tag = useRecoilValue<Array<string>>(NewpostTag);
-  const setTag = useSetRecoilState<Array<string>>(NewpostTag);
-
-  // 달력 db 올라간
-  // const [PreviousMeetDate, setPreviousMeetDate] = useRecoilState(ReserveDate);
-  // console.log('PreviousMeetDate~~~', PreviousMeetDate);
-  // // 시간 db 올라간
-  // const [PreviousTimeHour, setPreviousTimeHour] = useRecoilState(Time);
-  // console.log('PreviousTimeHour~~~~', PreviousTimeHour);
+  const [Tag, setTag] = useRecoilState<Array<string>>(NewpostTag);
 
   //약속 시간
   const [meetEditDate, setMeetEditDate] = useRecoilState(ReserveEditDate);
@@ -129,12 +120,8 @@ const PostEditPage = () => {
   const d = meetEditDate.$D;
   const month = meetEditDate.$M + 1;
 
-  // console.log('date:', date(y, meetEditDate.$M, d));
-
   //시간
   const [meetTimeEdit, setMeetTimeEdit] = useRecoilState(TimeEdit);
-  console.log(meetTimeEdit);
-
   const meetHour = meetTimeEdit?.slice(0, 2);
 
   const isPm = Number(meetHour) >= 12;
@@ -153,8 +140,10 @@ const PostEditPage = () => {
   const meetMinute = meetTimeEdit.slice(3, 5);
   let meetMinuteNum = Number(meetMinute);
 
+  // 가공된 날짜와 시간을 db RsvDate_Posting,RsvHour_Posting 할당
   const RsvDate_Posting = `${month}/${d} ${date(y, m, d)}`;
   const RsvHour_Posting = `${AMPM} ${time12}:${meetMinute}`;
+  console.log(RsvHour_Posting);
 
   //현재시간
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
@@ -181,7 +170,7 @@ const PostEditPage = () => {
   //     : setMeetTimeEdit(RsvHour_Posting);
   // };
 
-  // NaN/undefined가 뜬 이유다.
+  // // NaN/undefined가 뜬 이유다.
   // console.log(state.RsvHour_Posting);
   // useEffect(() => {
   //   GetPreviousMeetDate();
@@ -195,14 +184,12 @@ const PostEditPage = () => {
       setDescription(state.Description_Posting);
       setThumbnail(state.ThumbnailURL_Posting);
       setBanner(state.BannerURL_Posting);
+      setTag(state.Hashtag_Posting);
       // setMeetEditDate(state.RsvDate_Posting);
       // setMeetTimeEdit(state.RsvHour_Posting);
     }
   }, [state]);
 
-  // 만약 달력과 시간을 선택하지 않았을때
-
-  //settimeout test
   const geturl: any = (callback: () => void) => {
     getDownloadURL(ref(storage, `test/${PostingID_Posting}/thumbnail`))
       .then((thumbnailUrl) => {
@@ -214,13 +201,13 @@ const PostEditPage = () => {
             console.log('배너url', typeof bannerUrl);
 
             try {
-              const updateBanner: { BannerURL_Posting } = {
-                BannerURL_Posting: bannerUrl,
-              };
+              // const updateBanner: { BannerURL_Posting } = {
+              //   BannerURL_Posting: bannerUrl,
+              // };
 
-              const updateThumbnail: { ThumbnailURL_Posting } = {
-                ThumbnailURL_Posting: thumbnailUrl,
-              };
+              // const updateThumbnail: { ThumbnailURL_Posting } = {
+              //   ThumbnailURL_Posting: thumbnailUrl,
+              // };
 
               const postRef = doc(dbService, 'Post', id);
               updateDoc(postRef, {
@@ -229,7 +216,7 @@ const PostEditPage = () => {
                 RsvHour_Posting,
                 Title_Posting: Title,
                 Category_Posting: postCategory,
-                // 사진 없데이트 안했을 경우 기존 이미지 링크 업로드
+                // 사진 업데이트 안했을 경우 기존 이미지 링크 업로드
                 ThumbnailURL_Posting: hasEditedThumbnail
                   ? thumbnailUrl
                   : thumbnail,
@@ -238,6 +225,7 @@ const PostEditPage = () => {
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
                 createdAt: Date.now(),
+                Hashtag_Posting: Tag,
               });
               console.log('글작성완료 ID: ', postRef);
               callback();
@@ -264,8 +252,6 @@ const PostEditPage = () => {
       return;
     }
 
-    // UNHAPPY FIRST
-    //
     if (Description.length < 1 || Description.length > 200) {
       alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
       return;
@@ -277,15 +263,11 @@ const PostEditPage = () => {
     }
 
     if (thumbnail === null) {
-      // 포스팅 클릭하면 해당 카테고리 페이지로 라우터 이동
-      //////////////// 썸네일 이미지 전송
       alert('이미지 업로드 실패');
       return;
     }
 
-    const imageRef = ref(storage, `test/${PostingID_Posting}/thumbnail`); //+${thumbnail}
-
-    // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
+    const imageRef = ref(storage, `test/${PostingID_Posting}/thumbnail`);
     await uploadBytes(imageRef, thumbnail);
 
     if (banner === null) {
@@ -293,15 +275,8 @@ const PostEditPage = () => {
       return;
     }
 
-    const bannerRef = ref(storage, `test/${PostingID_Posting}/banner`); //+${thumbnail}
+    const bannerRef = ref(storage, `test/${PostingID_Posting}/banner`);
 
-    // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-    /////////////////////////////////////////////////////////
-    // 업로드중입니다 로더 넣기
-
-    // alert('업로드중입니다.');
-
-    // 업로드 시작 확정 시 로딩창 띄워줌
     MessageWindow.showWindow(
       new MessageWindowProperties(
         true,
@@ -312,98 +287,13 @@ const PostEditPage = () => {
       setState
     );
 
-    ///////////////////////////////////////////////////////
     await uploadBytes(bannerRef, banner);
-
-    // geturl(); settTimeout이 없으면 에러가 난다.
-    // async await 비동기 처리
-
     geturl(() => {
       // MessageWindow 닫는 코드
       MessageWindow.showWindow(new MessageWindowProperties(), setState);
-
-      // Recoil은 useState와 다르게 창이 닫혀도 초기화가 안 됨.
-      // 수동으로 클리어해줘야 초기화됨.
-      // setTitle('');
-      // setDescription('');
-
-      // setTag([]);
-      // setMeetTime('');
-
       navigate(`/category/${postCategory}`);
     });
-
-    // setTimeout(adddoc, 8000);
   };
-  // const handleSubmit = async (e: any) => {
-  //   if (Title.length !== 0) {
-  //     if (Title.length! < 20) {
-  //       if (Description.length !== 0) {
-  //         if (Description.length! < 200) {
-  //           if (meetTimeEdit !== '') {
-  //             if (meetTimeEdit !== '') {
-  //               if (thumbnail !== '') {
-  //                 if (banner !== '') {
-  //                   if (adress !== '충북 보은군 속리산면 갈목리 산 19-1') {
-  //                     if (postCategory !== '카테고리') {
-  //                       if (thumbnail === null)
-  //                         // 포스팅 클릭하면 해당 카테고리 페이지로 라우터 이동
-  //                         //////////////// 썸네일 이미지 전송
-  //                         return alert('이미지 업로드 실패');
-  //                       const imageRef = ref(
-  //                         storage,
-  //                         `test/${PostingID_Posting}/thumbnail`
-  //                       ); //+${thumbnail}
-  //                       // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-  //                       await uploadBytes(imageRef, thumbnail);
-
-  //                       if (banner === null) return alert('이미지 업로드 실패');
-  //                       const bannerRef = ref(
-  //                         storage,
-  //                         `test/${PostingID_Posting}/banner`
-  //                       ); //+${thumbnail}
-  //                       // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-  //                       /////////////////////////////////////////////////////////
-  //                       // 업로드중입니다 로더 넣기
-  //                       alert('업로드중입니다.');
-  //                       ///////////////////////////////////////////////////////
-  //                       await uploadBytes(bannerRef, banner);
-  //                       // geturl(); settTimeout이 없으면 에러가 난다.
-  //                       // async await 비동기 처리
-  //                       geturl(() => navigate(`/category/${postCategory}`));
-
-  //                       // setTimeout(adddoc, 8000);
-  //                     } else {
-  //                       alert('카테고리를 선택해 주세요');
-  //                     }
-  //                   } else {
-  //                     alert('지도에서 약속 장소를 선택해 주십시오');
-  //                   }
-  //                 } else {
-  //                   alert('배너사진을 선택해 주세요');
-  //                 }
-  //               } else {
-  //                 alert('섬네일 사진을 선택해 주세요');
-  //               }
-  //             } else {
-  //               alert('시간을 입력해 주세요');
-  //             }
-  //           } else {
-  //             alert('날짜를 입력해 주세요');
-  //           }
-  //         } else {
-  //           alert('최대 200자까지 가능합니다.');
-  //         }
-  //       } else {
-  //         alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
-  //       }
-  //     } else {
-  //       alert('최대 20자만');
-  //     }
-  //   } else {
-  //     alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
-  //   }
-  // };
 
   return (
     <CommonStyles>
