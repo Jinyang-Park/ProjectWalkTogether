@@ -12,6 +12,8 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import AntCalendar from '../../PostPage/Hooks/Calendar/AntCalendarDate';
 import AntCalendarTime from '../../PostPage/Hooks/Calendar/AntCalendarTime';
+import AntCalendarEdit from '../Calendar/AntCalendarDateEdit';
+import AntCalendarTimeEdit from '../Calendar/AntCalendarTimeEdit';
 
 interface Edit {
   addressEdit: string;
@@ -185,10 +187,10 @@ function InputInformationEdit({ addressEdit, lat, lng }: Edit) {
           />
         </S.InputAdressBox>
         <S.InpuDayBox>
-          <AntCalendar />
+          <AntCalendarEdit />
         </S.InpuDayBox>
         <S.InputTimeBox>
-          <AntCalendarTime />
+          <AntCalendarTimeEdit />
         </S.InputTimeBox>
       </S.InputBox>
     </S.MapNInputBox>

@@ -21,6 +21,8 @@ import { useSearch } from '../../../hooks/useSearch';
 import { useParams, useNavigate } from 'react-router-dom';
 import { paramsState } from '../../../Rocoil/Atom';
 import { useSetRecoilState } from 'recoil';
+import CommonStyles from './../../../styles/CommonStyles';
+import CardSection from './../../../components/CardSection/CardSection';
 
 const InfoList = ({ Post }) => {
   const navigate = useNavigate();
@@ -191,51 +193,14 @@ const InfoList = ({ Post }) => {
   };
 
   return (
-    <>
+    <CommonStyles>
       <S.SearchLineTotalCount>총 n 건의 검색결과</S.SearchLineTotalCount>
-      <S.ResultList>
-        {postpostpost.map((post) => {
-          return (
-            <S.ResultListCard
-              key={post.PostingID_Posting}
-              onClick={() => {
-                setParams(post.id);
-                navigate(`/detailpage/${post.id}`);
-              }}
-            >
-              <S.ResultListCardImage
-                src={post.ThunmnailURL_Posting}
-              ></S.ResultListCardImage>
-              <S.ResultListCardTitle>
-                {post.Title_Posting}
-              </S.ResultListCardTitle>
-              <S.ResultListTagList>
-                <S.ResultListTag>#음악</S.ResultListTag>
-                <S.ResultListTag>#락</S.ResultListTag>
-                <S.ResultListTag>#뮤즈파에요</S.ResultListTag>
-              </S.ResultListTagList>
-              <S.ResultListCardLine />
-              <S.ResultListCardLocationTimeDateWrapper>
-                <S.ResultListCardLocation>
-                  {post.Address_Posting}
-                </S.ResultListCardLocation>
-                <S.ResultListCardDateTimeLikeWrapper>
-                  <S.ResultListCardDateTimeWrapper>
-                    <S.ResultListCardDate>
-                      {post.RsvDate_Posting}
-                    </S.ResultListCardDate>
-                    <S.ResultListCardTime>
-                      {post.RsvHour_Posting}
-                    </S.ResultListCardTime>
-                  </S.ResultListCardDateTimeWrapper>
-                  <S.ResultListCardLike>♡</S.ResultListCardLike>
-                </S.ResultListCardDateTimeLikeWrapper>
-              </S.ResultListCardLocationTimeDateWrapper>
-            </S.ResultListCard>
-          );
+      <S.LikedListItem>
+        {postpostpost.map((post: any) => {
+          return <CardSection key={post.id} post={post} />;
         })}
-      </S.ResultList>
-    </>
+      </S.LikedListItem>
+    </CommonStyles>
   );
 };
 

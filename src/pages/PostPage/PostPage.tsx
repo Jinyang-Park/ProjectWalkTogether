@@ -224,22 +224,16 @@ const PostPage = () => {
   ////////////
   //작성완료//
   ///////////
-
   const handleSubmit = async (e: any) => {
     if (Title.length < 1 || Title.length > 20) {
       alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
       return;
     }
 
-    // UNHAPPY FIRST
-    //
     if (Description.length < 1 || Description.length > 200) {
       alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
       return;
     }
-
-    // HAPPY FIRST
-    //
     // if (meetDate !== '') {
     //   if (meetTime !== '') {
     //     if (thumbnail !== '') {

@@ -8,22 +8,22 @@ export const CategoryWrapper = styled.div`
   margin: auto;
 `;
 export const CategoryTitleWrapper = styled.div`
-  /* display: flex;
-
-  flex-direction: column;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  height: 200vh;
-  max-width: 1024px; */
+  margin-top: 84px;
 `;
 export const CategoryTitle = styled.p`
-  margin-top: 84px;
+  font-family: 'SUITERegular';
+  margin-left: 12px;
   font-weight: 500;
   font-size: 36px;
   line-height: 45px;
 `;
-export const CategoryImg = styled.div`
-  /* width: 50px;
-  height: 50px; */
+export const CategoryImg = styled.img`
+  width: 64px;
+  height: 64px;
+  border-radius: 4px;
 `;
 export const LikedListItem = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ export const LikedListItem = styled.div`
   grid-gap: 70px 49.3px;
   /* grid-template-rows: 49.3px; */
 
-  margin-top: 36px;
+  margin-top: 46px;
 `;
 export const FilterArea = styled.div`
   /* margin-bottom: -26px; */
@@ -46,7 +46,8 @@ export const CategoryFilter = styled.div`
 export const CategoryFilterWarpper = styled.div`
   display: flex;
   padding: 0px 10px 0px 10px;
-  width: 90px;
+  // 텍스트 길이에 따라 width 자동조절
+  width: auto;
   height: 27px;
   align-items: center;
   border: 1px solid #c7c7c7;
@@ -55,30 +56,40 @@ export const CategoryFilterWarpper = styled.div`
   margin-top: 10px;
 `;
 export const FilterCategory = styled.p`
+  width: auto;
+  font-family: 'SUITERegular';
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
   color: #a6a6a6;
+  margin-right: 4px;
 `;
-export const FilterCalendarIcon = styled(BsCalendar4)`
-  width: 11px;
-  height: 11px;
-  top: 52px;
-  margin-left: 6px;
-  color: #a6a6a6;
+export const FilterCalendarIcon = styled.img`
+  width: 10px;
+  height: 10px;
+  object-fit: contain;
+
+  /* margin-left: 6px; */
+
+  /* color: #a6a6a6; */
 `;
 export const FilterSortWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
-export const FilterNewest = styled.div`
+export const FilterNewest = styled.p`
+  font-family: 'SUITERegular';
   display: inline-flex;
   align-items: center;
-  cursor: pointer;
   color: #524f4d;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 12px;
   line-height: 15px;
+  letter-spacing: -1.5px;
+  &:hover {
+    cursor: pointer;
+    font-weight: 600;
+  }
 `;
 export const FilterAreaLine = styled.span`
   margin: 1px 8px 0;
