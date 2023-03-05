@@ -179,7 +179,10 @@ const Category = () => {
                 style={{
                   display: TextChange === '카테고리' ? 'block' : 'none',
                 }}
-                src={require('../../assets/CategoryIcon2.svg').default}
+                src={
+                  require('../../assets/CategoryPageIcon/CategoryIcon2.svg')
+                    .default
+                }
               />
             </S.CategoryFilterWarpper>
             {show && (

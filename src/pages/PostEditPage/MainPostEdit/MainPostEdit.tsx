@@ -93,6 +93,12 @@ function MainPostEdit({
           id='banner'
         />
       </S.Bannercontainer>
+      <S.PolaroidFolerIcon
+        src={
+          require('../../../assets/PostEditPageIcon/PolaroidFolderIcon.svg')
+            .default
+        }
+      />
       <S.Boxcontents>
         <S.BoxPhoto>
           <label htmlFor='thumnail'>
@@ -115,7 +121,12 @@ function MainPostEdit({
               setShow(true);
             }}
           >
-            <S.CalendarIcon src={'/assets/calendar.png'} />
+            {/* <S.CalendarIcon
+              src={
+                require('../../../assets/PostEditPageIcon/CategoryListIconForWritPage.svg')
+                  .default
+              }
+            /> */}
             <S.CategoryTitle>{postCategory}</S.CategoryTitle>
           </S.CateogryWrapper>
           {show && (
@@ -130,12 +141,12 @@ function MainPostEdit({
             value={postTitle}
             placeholder='제목을 입력해 주세요'
           />
+          <Tag tagItem='' />
           <S.Textarea
             onChange={handleChangeText}
             value={postdescription}
             placeholder='당신의 이야기를 적어주세요'
           ></S.Textarea>
-          <Tag tagItem='' />
         </S.BoxMain>
       </S.Boxcontents>
     </>

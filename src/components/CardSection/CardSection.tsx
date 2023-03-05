@@ -99,7 +99,6 @@ const CardSection = ({ post }: postProps) => {
       </S.CardSectionWrapper>
       <S.LikedHeartFlex>
         {likebtn ? (
-          // LikeBtnFill부분만 svg가 안된다...
           <S.LikeBtnFill
             src={require('../../assets/HeartFill2.svg').default}
             onClick={() => {

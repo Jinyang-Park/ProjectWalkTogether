@@ -3,11 +3,11 @@ import { Input } from 'antd';
 
 export const MapNInputBox = styled.div`
   width: 100%;
-  height: 600px;
   display: flex;
   /* background-color: antiquewhite; */
   position: relative;
-  top: -88px;
+  top: -67px;
+  margin-top: 112px;
   flex-direction: column;
   align-items: center;
 `;
