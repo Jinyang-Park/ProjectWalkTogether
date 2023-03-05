@@ -108,7 +108,41 @@ export const UserImgCover = styled.div`
 
 export const UserName = styled.div`
   position: relative;
-  top: 15px;
+  top: 13.5px;
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  /* identical to box height */
+
+  /* Dark blue */
+
+  color: #24264e;
+`;
+
+export const NickNMessage = styled.div`
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  /* background-color: blue; */
+`;
+
+export const LastConversation = styled.div`
+  position: relative;
+  top: 12px;
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  /* identical to box height */
+
+  /* blue */
+
+  color: #7d8bae;
 `;
 
 export const ChattingBox = styled.div`

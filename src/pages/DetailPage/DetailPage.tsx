@@ -175,6 +175,7 @@ const DetailPage = () => {
           uid: getPostings.UID,
           nickname: getPostings.Nickname,
           createdAt: new Date(),
+          opponentUserUid: CurrentUid,
         }
       );
 
@@ -187,6 +188,7 @@ const DetailPage = () => {
           nickname: UID.mynickname,
           createdAt: new Date(),
           createdAT: Date(),
+          opponentUserUid: getPostingUID,
         }
       );
 

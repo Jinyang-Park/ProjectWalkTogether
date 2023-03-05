@@ -18,17 +18,24 @@ import {
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-function ChattingList() {
+interface SetProps {
+  SetTochattingBoxUid: React.Dispatch<React.SetStateAction<string>>;
+  SetTochattingBoxRoomIndex: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function ChattingList({
+  SetTochattingBoxUid,
+  SetTochattingBoxRoomIndex,
+}: SetProps) {
   const mychatlist = useRecoilValue(currentUserUid);
   const [chatList, setChatList] = useState<any>([]);
   const [filtering, setFiltering] = useState([]);
   const [tochattingBoxRoomId, SetTochattingBoxRoomId] =
-    useRecoilState<any>(tochattingboxroomid);
-  const [tochattingBoxNickname, SetTochattingBoxNickname] = useRecoilState<any>(
-    tochattingboxnickname
-  );
+    useRecoilState<string>(tochattingboxroomid);
+  const [tochattingBoxNickname, SetTochattingBoxNickname] =
+    useRecoilState<string>(tochattingboxnickname);
   const [tochattingBoxProfileImg, SetTochattingBoxProfileImg] =
-    useRecoilState<any>(tochattingboxprofileimg);
+    useRecoilState<string>(tochattingboxprofileimg);
 
   const getChattingList = async () => {
     if (mychatlist === '') {
@@ -51,20 +58,6 @@ function ChattingList() {
       setChatList(getChatList);
       console.log('chatList:', chatList);
     });
-
-    // const querySnapshot = await getDocs(
-    //   query(
-    //     collection(dbService, 'Users', `${mychatlist}`, 'chattingroom'),
-    //     orderBy('createdAt', 'desc')
-    //   )
-    // );
-
-    // let list = [];
-    // querySnapshot.forEach((doc) => {
-    //   list = [...list, { id: doc.id, ...doc.data() }];
-    // });
-    // setChatList(list);
-    // console.log('list:', list);
   };
 
   useEffect(() => {
@@ -72,7 +65,7 @@ function ChattingList() {
   }, [mychatlist]);
 
   const chattingUser = chatList;
-  console.log('chatList', chatList);
+  console.log('mychatlist', mychatlist);
 
   // const test2 = test.combineId;
 
@@ -94,14 +87,20 @@ function ChattingList() {
                     SetTochattingBoxRoomId(user.combineId);
                     SetTochattingBoxNickname(user.nickname);
                     SetTochattingBoxProfileImg(user.profile);
+                    // SetTochattingBoxUid(user.Uid);
+                    SetTochattingBoxRoomIndex(user.id);
                   }}
                 >
                   {/* <div style={{ backgroundImage: `${user.porfile}` }}></div> */}
                   <S.UserImgCover>
                     <S.UserImg src={user.profile} />
                   </S.UserImgCover>
-
-                  <S.UserName>{user.nickname}</S.UserName>
+                  <S.NickNMessage>
+                    <S.UserName>{user.nickname}</S.UserName>
+                    <S.LastConversation>
+                      {user.lastConversation}
+                    </S.LastConversation>
+                  </S.NickNMessage>
                 </S.ChattingUser>
               );
             })}

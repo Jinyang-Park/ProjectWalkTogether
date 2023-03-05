@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FiChevronLeft } from 'react-icons/fi';
 import { HiOutlinePlus } from 'react-icons/hi';
@@ -9,20 +9,22 @@ import ChattingBox from './ChattingBox/ChattingBox';
 import { useNavigate } from 'react-router-dom';
 
 const ChattingPage = () => {
-  // const navigate = useNavigate();
+  const [tochattingBoxUid, SetTochattingBoxUid] = useState<string>('');
+  const [tochattingBoxRoomIndex, SetTochattingBoxRoomIndex] =
+    useState<string>('');
 
-  // useEffect(() => {
-  //   const re = () => {
-  //     navigate('/chat');
-  //     re();
-  //   };
-  // }, []);
   return (
     <CommonStyles>
       <div>
         <Boxcontainer>
-          <ChattingList />
-          <ChattingBox />
+          <ChattingList
+            SetTochattingBoxUid={SetTochattingBoxUid}
+            SetTochattingBoxRoomIndex={SetTochattingBoxRoomIndex}
+          />
+          <ChattingBox
+            tochattingBoxUid={tochattingBoxUid}
+            tochattingBoxRoomIndex={tochattingBoxRoomIndex}
+          />
         </Boxcontainer>
       </div>
     </CommonStyles>
