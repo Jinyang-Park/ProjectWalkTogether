@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { doc, getDoc } from '@firebase/firestore';
 import { dbService } from './../../../common/firebase';
 import Tag from './../../../components/Tag';
+import useDetectClose from './../../../hooks/useDetectClose';
 
 interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
@@ -26,6 +27,8 @@ function MainPostEdit({
   setHasEditedBanner,
   setHasEditedThumbnail,
 }: SetProps) {
+  // 모달 외부 클릭 시 닫기 customhook
+  const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
   const [postTitle, setPostTitle] = useRecoilState(TitleInput); //글 제목
   const [postTag, setPostTag] = useState(''); //해쉬태그
   const [postdescription, SetDescription] = useRecoilState(DescriptionInput); //글 내용
@@ -116,26 +119,30 @@ function MainPostEdit({
         </S.BoxPhoto>
 
         <S.BoxMain>
-          <S.CateogryWrapper
-            onClick={() => {
-              setShow(true);
-            }}
-          >
-            {/* <S.CalendarIcon
+          {/*모달 외부 클릭 시 닫힘*/}
+          <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
+            <S.CateogryWrapper
+              onClick={() => {
+                setShow(true);
+              }}
+            >
+              {/* <S.CalendarIcon
               src={
                 require('../../../assets/PostEditPageIcon/CategoryListIconForWritPage.svg')
                   .default
               }
             /> */}
-            <S.CategoryTitle>{postCategory}</S.CategoryTitle>
-          </S.CateogryWrapper>
-          {show && (
+              <S.CategoryTitle>{postCategory}</S.CategoryTitle>
+            </S.CateogryWrapper>
+          </S.DropdownButton>
+          {myPageIsOpen && (
             <DropdownCategory
+              isDropped={myPageIsOpen}
               setPostCategory={setPostCategory}
               setShow={setShow}
             />
           )}
-
+          {/*모달 외부 클릭 시 닫힘*/}
           <S.InputTitle
             onChange={handleChange}
             value={postTitle}

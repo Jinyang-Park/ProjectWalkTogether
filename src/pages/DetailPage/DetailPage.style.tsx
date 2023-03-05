@@ -10,11 +10,13 @@ export const DetailAddressContainer = styled.div`
   align-items: center;
   margin-top: 24px;
 `;
-export const DetailAddressIcon = styled(MdLocationOn)`
+export const DetailAddressIcon = styled.img`
   width: 44px;
   height: 44px;
+  object-fit: contain;
 `;
 export const DetailAddress = styled.h2`
+  font-family: 'SUITERegular';
   font-size: 16px;
   font-weight: 500;
   margin-right: 2rem;
@@ -23,15 +25,17 @@ export const DetailDateWrapper = styled.div`
   display: flex;
 `;
 export const DetailDate = styled.p`
+  font-family: 'SUITERegular';
   font-size: 16px;
-  color: #4c7296;
+  color: #7d8bae;
   font-weight: 500;
   margin-right: 8px;
 `;
 
 export const DetailTime = styled.p`
+  font-family: 'SUITERegular';
   font-size: 16px;
-  color: #4c7296;
+  color: #7d8bae;
   font-weight: 500;
 `;
 export const HeartIcon = styled(AiOutlineHeart)`
@@ -45,6 +49,7 @@ export const DetailIntroduceArea = styled.div`
   display: flex;
 `;
 export const IntroImgWrapper = styled.span`
+  font-family: 'SUITERegular';
   /* position: relative; */
   cursor: pointer;
   background: #fafafa;
@@ -68,6 +73,7 @@ export const IntroUserNickNameArea = styled.div`
   margin-bottom: 8px;
 `;
 export const IntroUserNickName = styled.p`
+  font-family: 'SUITERegular';
   cursor: pointer;
   font-weight: 700;
   display: inline-flex;
@@ -80,6 +86,7 @@ export const IntroContentsWrapper = styled.div`
   white-space: pre-wrap;
 `;
 export const IntroContents = styled.p`
+  font-family: 'SUITERegular';
   font-size: 20px;
   font-weight: 400;
 `;
@@ -87,16 +94,19 @@ export const DetailLoactionWrapper = styled.div`
   margin-top: 332px;
 `;
 export const DeatilLoactionTitle = styled.h1`
+  font-family: 'SUITERegular';
   font-size: 20px;
   font-weight: 500;
   padding-bottom: 12px;
   border-bottom: 2px solid #bec5d7;
   width: 100%;
+  margin-bottom: 28px;
 `;
 export const DetailLoactionContainer = styled.div`
   /* padding: 0px 40px 0; */
 `;
 export const LoactionTitle = styled.p`
+  font-family: 'SUITERegular';
   margin-top: 20px;
   font-size: 20px;
   font-weight: 500;
@@ -127,7 +137,7 @@ export const Boxcontents = styled.div`
   position: absolute;
   width: 868px;
   height: 289px;
-  margin-left: 75px;
+  margin-left: 78px;
   top: 280px;
   background: rgba(255, 255, 255, 0.3);
   border: 1px solid #ffffff;
@@ -162,6 +172,7 @@ export const ThunmnailURL = styled.img`
 `;
 
 export const DetailUserName = styled.span`
+  font-family: 'SUITERegular';
   display: flex;
   align-items: center;
   justify-content: center;
@@ -179,6 +190,7 @@ export const DetailIntroWrapper = styled.div`
   top: 48px;
 `;
 export const IntroCategoryTitleBtn = styled.div`
+  font-family: 'SUITERegular';
   width: fit-content;
   height: 38px;
   padding: 4px 10px;
@@ -198,12 +210,14 @@ export const IntroCategoryTitleBtn = styled.div`
   margin-bottom: 12px;
 `;
 export const IntroCategory = styled.span`
+  font-family: 'SUITERegular';
   font-weight: 400;
   font-size: 24px;
   line-height: 30px;
   color: #ffffff;
 `;
 export const IntroTitle = styled.span`
+  font-family: 'SUITERegular';
   font-weight: 500;
   font-size: 36px;
   line-height: 45px;
@@ -211,6 +225,7 @@ export const IntroTitle = styled.span`
   margin-bottom: 8px;
 `;
 export const IntroHashTag = styled.span`
+  font-family: 'SUITERegular';
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -221,11 +236,13 @@ export const IntroHashTag = styled.span`
   color: #7d8bae;
 `;
 export const IntroDes = styled.p`
+  font-family: 'SUITERegular';
   margin-top: 12px;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
   color: #24264e;
+  width: 80%;
 `;
 export const ShareBtn = styled.div`
   display: flex;
@@ -248,13 +265,15 @@ export const LikeWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   cursor: pointer;
+  padding: 3px 5px;
 `;
 export const StyledHeartIcon = styled(AiOutlineHeart)`
   width: 20px;
   height: 18px;
   margin: 5.5px 0px 5.5px 5px;
 `;
-export const HeartBtn = styled.div`
+export const HeartBtn = styled.p`
+  font-family: 'SUITERegular';
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
@@ -262,6 +281,7 @@ export const HeartBtn = styled.div`
   margin-left: 16px;
 `;
 export const WalktogetherBtn = styled.button`
+  font-family: 'SUITERegular';
   width: 114px;
   height: 29px;
   margin-left: 20px;
@@ -269,6 +289,7 @@ export const WalktogetherBtn = styled.button`
   border-radius: 4px;
 `;
 export const WalktogetherTitle = styled.span`
+  font-family: 'SUITERegular';
   width: 88px;
   height: 20px;
   font-weight: 400;
@@ -287,7 +308,31 @@ export const SocialShareBtn = styled(FiShare)`
 export const MoreBtn = styled(FiMoreVertical)`
   position: fixed;
   color: black;
-  margin-bottom: 400px;
-  left: 809px;
+  left: 820px;
+  bottom: 220px;
 `;
 export const Loading = styled.div``;
+export const PolaroidFolerIcon = styled.img`
+  z-index: 1;
+  /* left: 189px; */
+  margin-left: 185px;
+  top: 300px;
+  position: absolute;
+  width: 36.64px;
+  height: 47px;
+`;
+export const DropdownButton = styled.div``;
+export const LikeBtnLine = styled.img`
+  width: 20px;
+  height: 18px;
+  object-fit: contain;
+`;
+export const LikeBtnFill = styled.img`
+  width: 20px;
+  height: 18px;
+  object-fit: contain;
+`;
+export const DetailpageWrapper = styled.div`
+  margin-left: 78px;
+  margin-right: 78px;
+`;

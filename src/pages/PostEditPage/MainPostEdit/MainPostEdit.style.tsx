@@ -55,7 +55,7 @@ export const CalendarIcon = styled.img`
 `;
 export const CategoryTitle = styled.div`
   font-size: 23px;
-  padding: 0px 0px 0px 30px;
+  /* padding: 0px 0px 0px 30px; */
   justify-content: center;
 `;
 export const CateogryWrapper = styled.div`
@@ -110,6 +110,7 @@ export const Textarea = styled.textarea`
   font-family: sans-serif;
   font-size: 15px;
   line-height: 21px;
+  overflow: auto;
   /* transition: border-color 0.1s, background-color 0.1s; */
   resize: none;
   /* border: 1px solid #3d3a3a; */
@@ -179,3 +180,4 @@ export const BannerPhotoChange = styled.img`
   width: 1024px;
   height: 500px;
 `;
+export const DropdownButton = styled.div``;
