@@ -15,7 +15,7 @@ import CardSection from '../../components/CardSection/CardSection';
 import CommonStyles from '../../styles/CommonStyles';
 import DropdownFilterCategory from './../../components/DropdownFilterCategory/DropdownFilterCategory';
 import AntCalendarMap from './Calendar/AntCalendarDate';
-import { FilterSelectedDate } from '../../Rocoil/Atom';
+import { Cetegory, FilterSelectedDate } from '../../Rocoil/Atom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { fontWeight } from '@mui/system';
 import { CategorysList } from '../../utils/CategorysList';
@@ -212,9 +212,16 @@ const Category = () => {
           </S.FilterSortWrapper>
         </S.FilterArea>
         <S.LikedListItem>
-          {DoubledFilterDate.map((post: any) => {
-            return <CardSection key={post.id} post={post} />;
-          })}
+          {/*검색 조건에 맞는 데이터가 없을 경우*/}
+          {DoubledFilterDate.length === 0 ? (
+            <S.NoResult>
+              <S.NoResultTitle>아쉽지만 해당 게시글이 없어요</S.NoResultTitle>
+            </S.NoResult>
+          ) : (
+            DoubledFilterDate.map((post: any) => {
+              return <CardSection key={post.id} post={post} />;
+            })
+          )}
         </S.LikedListItem>
       </S.CategoryWrapper>
     </CommonStyles>
