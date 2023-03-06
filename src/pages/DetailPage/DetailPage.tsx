@@ -4,7 +4,7 @@ import CommonStyles from './../../styles/CommonStyles';
 import DetailMap from './DetailMap/DetailMap';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { paramsState } from '../../Rocoil/Atom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import {
   getDoc,
   doc,
@@ -25,6 +25,7 @@ import DropBox from './DropBox/DropBox';
 import { async, uuidv4 } from '@firebase/util';
 
 import { userForChat, currentUserUid } from '../../Rocoil/Atom';
+import useDetectClose from './../../hooks/useDetectClose';
 
 interface getPostings {
   BannereURL_Posting: string;
@@ -38,12 +39,15 @@ interface getPostings {
 }
 
 const DetailPage = () => {
+  // 모달 외부 클릭 시 닫기 customhook
+  const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
   // 현재 유저의 정보
   const UID = useRecoilValue(userForChat);
 
   // 페이지 업데이트용
   const [post, setPost] = useState<any>({});
 
+  // 채팅방으로 이동
   const navigate = useNavigate();
   // 아톰은 새로고침하면 초기화가 된다. 앱이 랜더링이 된다.
   // 리코일은 리덕스와 같아서 새로고침하면 날라간다.
@@ -51,13 +55,15 @@ const DetailPage = () => {
 
   // useParams를 사용하여 구조 분해 할당을 하여 사용함
   const { id } = useParams();
-  // console.log(id);
 
   const [getPostings, setGetPostings] = useState<any>({});
+
+  // 모달창
   const [showBox, setShowBox] = useState<any>(false);
 
   // getPost 함수에서 비동기로 데이터를 가져오기 때문에 isLoading을 사용하여 로딩중인지 아닌지를 확인
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
   //채팅방중복확인
   const [isduplication, setIsduplication] = useState(false);
   const mychatlist = useRecoilValue(currentUserUid);
@@ -66,6 +72,7 @@ const DetailPage = () => {
   // 채팅방 만들기
   const getPostingUID = getPostings.UID;
   const CurrentUid = UID.useruid;
+
   //  동일한 유저이더라도 게시글마다 새로운 채팅방이 생긴다
   const combineId: any = getPostings.PostingID_Posting + CurrentUid;
   // const getPostingsThumbnail = getPostings.ThumbnailURL_Posting;
@@ -73,6 +80,7 @@ const DetailPage = () => {
   const posterChatroomId = uuidv4();
   const applicantChatroomId = uuidv4();
 
+  // 게시글 id db 가져오기
   const getPost = async () => {
     const q = doc(dbService, 'Post', id);
     const postData = await getDoc(q);
@@ -295,6 +303,12 @@ const DetailPage = () => {
         <S.DetailIntroWapper>
           <S.BannereURL src={getPostings.BannerURL_Posting} />
         </S.DetailIntroWapper>
+        <S.PolaroidFolerIcon
+          src={
+            require('../../assets/PostEditPageIcon/PolaroidFolderIcon.svg')
+              .default
+          }
+        />
         <S.Boxcontents>
           <S.BoxPhoto>
             {/*썸네일*/}
@@ -327,13 +341,24 @@ const DetailPage = () => {
             <S.ShareBtn>
               <S.LikeWrapper>
                 {/*svg로 갈아끼워야함(StyledHeartIcon)*/}
-                <S.StyledHeartIcon />
-                <S.HeartBtn>{`${likeCount}`}</S.HeartBtn>
+
                 {hasUserLikedThisPost ? (
-                  <button onClick={unlikepost}>좋아요 해제</button>
+                  <S.LikeBtnFill
+                    src={require('../../assets/HeartFill2.svg').default}
+                    onClick={() => {
+                      unlikepost();
+                    }}
+                  />
                 ) : (
-                  <button onClick={likepost}>좋아요</button>
+                  <S.LikeBtnLine
+                    src={'/assets/HeartLine.svg'}
+                    onClick={() => {
+                      likepost();
+                      console.log('좋아요');
+                    }}
+                  />
                 )}
+                <S.HeartBtn>{`${likeCount}`}</S.HeartBtn>
               </S.LikeWrapper>
               {/* 현재 user가 쓴 글인지 판별 */}
               {getPostings.UID !== authService.currentUser?.uid ? (
@@ -341,55 +366,61 @@ const DetailPage = () => {
                   <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
                 </S.WalktogetherBtn>
               ) : (
-                <S.MoreBtn
-                  onClick={() => {
-                    setShowBox(true);
-                    setShowBox(true);
-                  }}
-                />
+                <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
+                  <S.MoreBtn
+                    onClick={() => {
+                      setShowBox(true);
+                    }}
+                  />
+                </S.DropdownButton>
               )}
               {/*post.id인 id를 DropBox로 넘겨준다*/}
-
-              {showBox && (
+              {myPageIsOpen && (
                 <DropBox
+                  isDropped={myPageIsOpen}
                   setShowBox={setShowBox}
                   id={id}
                   getPostings={getPostings}
                 />
               )}
-              {/*svg로 갈아끼워야함(SocialShareBtn)*/}
-              <S.SocialShareBtn />
-              {/*svg로 갈아끼워야함(ShareBtn)*/}
             </S.ShareBtn>
           </S.BoxPhoto>
         </S.Boxcontents>
         {/*장소*/}
-        <S.DetailLoactionWrapper>
-          <S.DeatilLoactionTitle>장소는 이 곳이에요</S.DeatilLoactionTitle>
-          <S.DetailLoactionContainer>
-            {/*  지도 들어오는 위치에요 */}
-            {/* isLoading 이 True 이면, Loading... 출력, False면 DetailMap 컴포넌트를 렌더링 한다. */}
-            {isLoading ? ( // isLoading이 true면
-              <S.Loading>로딩중...</S.Loading>
-            ) : (
-              // isLoading이 false면
-              <DetailMap getPostings={getPostings} />
-            )}
+        <S.DetailpageWrapper>
+          <S.DetailLoactionWrapper>
+            <S.DeatilLoactionTitle>장소는 이 곳이에요</S.DeatilLoactionTitle>
+            <S.DetailLoactionContainer>
+              {/*  지도 들어오는 위치에요 */}
+              {/* isLoading 이 True 이면, Loading... 출력, False면 DetailMap 컴포넌트를 렌더링 한다. */}
+              {isLoading ? ( // isLoading이 true면
+                <S.Loading>로딩중...</S.Loading>
+              ) : (
+                // isLoading이 false면
+                <DetailMap getPostings={getPostings} />
+              )}
 
-            <S.DetailAddressContainer>
-              <S.DetailAddressIcon />
-              <S.DetailAddressBox>
-                <S.DetailAddress>{getPostings.Address_Posting}</S.DetailAddress>
-                <S.DetailDateWrapper>
-                  <S.DetailDate>{getPostings.RsvDate_Posting}</S.DetailDate>
-                  <S.DetailTime>{getPostings.RsvHour_Posting}</S.DetailTime>
-                </S.DetailDateWrapper>
-              </S.DetailAddressBox>
-            </S.DetailAddressContainer>
-          </S.DetailLoactionContainer>
-        </S.DetailLoactionWrapper>
-        {/* 댓글 */}
-        <Comments param={id} />
+              <S.DetailAddressContainer>
+                <S.DetailAddressIcon
+                  src={
+                    require('../../assets/DetailPageIcon/pinIcon.svg').default
+                  }
+                />
+                <S.DetailAddressBox>
+                  <S.DetailAddress>
+                    {getPostings.Address_Posting}
+                  </S.DetailAddress>
+                  <S.DetailDateWrapper>
+                    <S.DetailDate>{getPostings.RsvDate_Posting}</S.DetailDate>
+                    <S.DetailTime>{getPostings.RsvHour_Posting}</S.DetailTime>
+                  </S.DetailDateWrapper>
+                </S.DetailAddressBox>
+              </S.DetailAddressContainer>
+            </S.DetailLoactionContainer>
+          </S.DetailLoactionWrapper>
+          {/* 댓글 */}
+          <Comments param={id} />
+        </S.DetailpageWrapper>
       </CommonStyles>
     </>
   );

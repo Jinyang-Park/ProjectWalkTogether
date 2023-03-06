@@ -6,6 +6,7 @@ export const CategoryWrapper = styled.div`
   flex-direction: column;
   width: 868px;
   margin: auto;
+  margin-bottom: 80px;
 `;
 export const CategoryTitleWrapper = styled.div`
   display: flex;
@@ -97,4 +98,14 @@ export const FilterAreaLine = styled.span`
   height: 16px;
   background-color: #e7e3e2;
   display: inline-block;
+`;
+export const NoResult = styled.div``;
+
+export const NoResultTitle = styled.p`
+  font-family: 'SUITERegular';
+  margin-top: -30px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 45px;
+  /* color: #7d8bae; */
 `;
