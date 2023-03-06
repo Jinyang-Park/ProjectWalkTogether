@@ -79,32 +79,47 @@ const Comments = ({ param }: postProps) => {
   const addCommentHandler = async (e: React.MouseEvent) => {
     e.preventDefault();
     if (!authService.currentUser) {
-      confirmAlert({
-        message: '댓글은 로그인 후 작성이 가능합니다.',
-        buttons: [
-          {
-            label: '로그인하러 가기',
-            onClick: () => navigate('/login'),
-          },
-        ],
-      });
+      MessageWindow.showWindow(
+        new MessageWindowProperties(
+          true,
+          '댓글은 로그인 후 작성이 가능합니다',
+          '',
+          [
+            {
+              text: '로그인하러 가기',
+              callback: () => navigate('/login'),
+            },
+          ],
+          MessageWindowLogoType.Flower
+        ),
+        setState
+      );
+      // confirmAlert({
+      //   message: '댓글은 로그인 후 작성이 가능합니다.',
+      //   buttons: [
+      //     {
+      //       label: '로그인하러 가기',
+      //       onClick: () => navigate('/login'),
+      //     },
+      //   ],
+      // });
 
-      return;
+      // return;
     }
 
-    if (!inputComment) {
-      confirmAlert({
-        message: '댓글을 입력해주세요.',
-        buttons: [
-          {
-            label: '댓글 입력하기',
-            onClick: () => 'return false',
-          },
-        ],
-      });
+    // if (!inputComment) {
+    //   confirmAlert({
+    //     message: '댓글을 입력해주세요.',
+    //     buttons: [
+    //       {
+    //         label: '댓글 입력하기',
+    //         onClick: () => 'return false',
+    //       },
+    //     ],
+    //   });
 
-      return;
-    }
+    //   return;
+    // }
     await addDoc(collection(dbService, 'comments'), newComments);
     setInputComment('');
   };
@@ -128,6 +143,7 @@ const Comments = ({ param }: postProps) => {
       new MessageWindowProperties(
         true,
         '댓글을 취소하시겠습니까?',
+        '',
         [
           {
             text: '네',
@@ -138,7 +154,7 @@ const Comments = ({ param }: postProps) => {
             callback: () => setInputComment,
           },
         ],
-        MessageWindowLogoType.Confetti
+        MessageWindowLogoType.Perplex
       ),
       setState
     );
@@ -244,15 +260,16 @@ const Comments = ({ param }: postProps) => {
     MessageWindow.showWindow(
       new MessageWindowProperties(
         true,
-        '정말 댓글을 삭제하시겠습니까?',
+        '댓글을 삭제하실 건가요?',
+        '삭제한 댓글을 되돌릴 수 없어요',
         [
           {
-            text: '네',
+            text: '댓글 삭제하기',
             callback: async () =>
               await deleteDoc(doc(dbService, 'comments', documentId)),
           },
           {
-            text: '아니오',
+            text: '취소하기',
             callback: () => {
               return;
             },
@@ -280,10 +297,20 @@ const Comments = ({ param }: postProps) => {
             }}
           />
 
-          <S.CommentCancelBtn onClick={CancelCommentHandler}>
+          <S.CommentCancelBtn
+            onClick={CancelCommentHandler}
+            //댓글이 0일때 버튼 비활성화
+            disabled={inputComment.length === 0}
+          >
             취소하기
           </S.CommentCancelBtn>
-          <S.CommentBtn onClick={addCommentHandler}>등록하기</S.CommentBtn>
+          <S.CommentBtn
+            onClick={addCommentHandler}
+            //댓글이 0일때 버튼 비활성화
+            disabled={inputComment.length === 0}
+          >
+            등록하기
+          </S.CommentBtn>
         </S.CommentUserImgWrapper>
       </S.DetailCommentContainer>
       {/* 리뷰 리스트 */}

@@ -34,6 +34,7 @@ const CardSection = ({ post }: postProps) => {
   //         navigate(`/detailpage/${post.id}`);
   //       }}
   //     ></S.CardSectionWrapper>
+
   useEffect(() => {
     setLikeBtn(post.LikedUsers.includes(uid));
   }, [post]);

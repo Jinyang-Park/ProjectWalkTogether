@@ -135,9 +135,9 @@ function MainPostEdit({
               <S.CategoryTitle>{postCategory}</S.CategoryTitle>
             </S.CateogryWrapper>
           </S.DropdownButton>
-          {myPageIsOpen && (
+          {show && (
             <DropdownCategory
-              isDropped={myPageIsOpen}
+              // isDropped={myPageIsOpen}
               setPostCategory={setPostCategory}
               setShow={setShow}
             />
