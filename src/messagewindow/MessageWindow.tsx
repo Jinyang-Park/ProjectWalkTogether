@@ -28,6 +28,7 @@ import CloseButton from '../assets/messageWindow/CancelBtn.svg';
 //
 // const props = new MessageWindowProperties(
 //     true, // true로 하셔야 창 띄워집니다.
+//     "제목", // 보여줄 제목
 //     "메시지", // 보여줄 메시지
 //     [
 //         {
