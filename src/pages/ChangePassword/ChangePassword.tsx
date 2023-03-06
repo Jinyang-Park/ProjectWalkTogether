@@ -41,6 +41,7 @@ const ChangePassword = () => {
   const props = new MessageWindowProperties(
     true, // true로 하셔야 창 띄워집니다.
     '비밀번호가 변경되었어요!', // 보여줄 메시지
+    '', // 보여줄 메시지
     [
       {
         text: '이전으로 돌아가기',

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import * as S from './Mainpost.style';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { TitleInput, DescriptionInput } from '../../../Rocoil/Atom';
 import { Bannerupload, ThumbnailUpload } from '../../../Rocoil/Atom';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
@@ -116,9 +116,9 @@ function MainPost({
               <S.CategoryTitle>{postCategory}</S.CategoryTitle>
             </S.CateogryWrapper>
           </S.DropdownButton>
-          {myPageIsOpen && (
+          {show && (
             <DropdownCategory
-              isDropped={myPageIsOpen}
+              // isDropped={myPageIsOpen}
               setPostCategory={setPostCategory}
               setShow={setShow}
             />
