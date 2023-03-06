@@ -5,6 +5,8 @@ export const MapPageContainer = styled.span`
   flex-direction: column;
   align-items: center;
 
+  margin-top: 20px;
+
   height: 200vh;
   max-width: 1024px;
   @media screen {
@@ -30,6 +32,7 @@ export const MapPageSearchBar = styled.form`
   border-radius: 5px;
   overflow: hidden;
 `;
+
 export const SearchBar = styled.input`
   width: 866px;
   height: 45px;

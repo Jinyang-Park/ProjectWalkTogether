@@ -5,11 +5,11 @@ export const MapPageSearchBar = styled.form`
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  padding-left: 15px;
+  padding-left: 5px;
   height: 48px;
 
-  margin-bottom: 3px;
-  border: 1px solid black;
+  margin-bottom: 0px;
+  border: 1px solid #bfbfbf;
   border-radius: 5px;
   overflow: hidden;
 `;
@@ -18,7 +18,7 @@ export const SearchBar = styled.input`
   height: 45px;
   font-size: 20px;
   font-weight: 500;
-  margin-left: 20px;
+  margin-left: 10px;
   border: none;
   border-right: 0px;
   border-left: 0px;
@@ -32,6 +32,11 @@ export const SearchBar = styled.input`
   }
 `;
 
+export const MapAndControlContainer = styled.span`
+  width: 100%;
+  height: 536px;
+  position: relative;
+`;
 export const Mapbox = styled.div`
   width: 100%;
   height: 100%;
@@ -112,16 +117,17 @@ export const ResultListCardDateTimeLikeWrapper = styled.span`
   flex-direction: row;
 `;
 export const CustomZoomControl = styled.div`
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
-  top: 350px;
-  left: 1150px;
+  bottom: 180px;
+  left: 818px;
   z-index: 1;
-  background-color: grey;
+  gap: 3px;
+
   color: white;
 `;
-export const ZoomInButton = styled.svg`
+export const ZoomInButton = styled.span`
   width: 40px;
   height: 40px;
 `;
@@ -139,6 +145,26 @@ export const LinkToKaKaoNavibutton = styled.span`
 `;
 
 export const ZoomInSVG = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
+export const ZoomOutSVG = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
+export const FindMyLocationSVG = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
+export const LinkToKaKaoNaviSVG = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
+export const SearchSVG = styled.img`
   width: 40px;
   height: 40px;
 `;
