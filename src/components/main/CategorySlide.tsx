@@ -47,13 +47,14 @@ function CategorySlide() {
 const StyledSlider = styled(Slider)`
   margin: auto;
   width: 80%; //슬라이드 컨테이너 영역
-  padding-top: 45px;
+  padding-top: 37px;
 
   .slick-list {
     //슬라이드 스크린
-    width: 85%;
+    width: 90%;
     height: 100px;
     margin: auto;
+    background-color: pink;
   }
   .slick-slide div {
     /* cursor: pointer; */
@@ -67,7 +68,7 @@ const StyledSlider = styled(Slider)`
     width: 26px;
     height: 26px;
     top: 60%;
-    left: 10px;
+    left: -3px;
     cursor: pointer;
     position: absolute;
   }
@@ -84,10 +85,11 @@ const StyledSlider = styled(Slider)`
     width: 26px;
     height: 26px;
     cursor: pointer;
-    right: 10px;
+    right: -3px;
     position: absolute;
     top: 60%;
   }
+
   .slick-next:before {
     width: 26px;
     height: 26px;

@@ -12,6 +12,7 @@ export const OllaeLogo = styled.img`
   width: 35px;
   height: 35px;
 
+  padding-right: 6px;
   image: url(${ComeLogo});
 `;
 export const OllaeBox = styled.div`
@@ -31,20 +32,27 @@ export const Nav = styled.div`
   justify-content: space-between;
 `;
 
+export const SideOllae = styled.div`
+  margin-right: 380px;
+`;
+
 export const NavUl = styled.ul`
   display: flex;
 `;
 
 export const NavLi = styled.li`
   list-style: none;
-  margin-right: 2.25rem;
-  margin-top: 10px;
+  margin-right: 40px;
+  margin-top: 8px;
   text-decoration: none;
 `;
 export const NavText = styled(Link)`
   text-decoration: none;
   font-family: 'SUITERegular';
   letter-spacing: -2px;
+  padding-top: 0px;
+
+  font-size: 12px;
 `;
 export const LoginButton = styled.div`
   border: none;
@@ -53,7 +61,7 @@ export const LoginButton = styled.div`
   margin-top: 10px;
 
   border-radius: 5px;
-  width: 100px;
+  width: 78px;
   height: 30px;
   /* background: blue; */
   font-size: 12px;
@@ -66,7 +74,6 @@ export const LoginButton = styled.div`
 export const LoginLayout = styled.div`
   margin-left: 30px;
   margin: auto;
-  m
 `;
 export const LoginText = styled.p`
   margin-right: 10px;
@@ -105,6 +112,7 @@ export const Ul = styled.ul`
   padding: 0;
   margin: 0;
   display: flex;
+
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -117,7 +125,7 @@ export const LoginDropNav = styled.nav<{ isPropped: boolean }>`
   position: absolute;
   top: 40px;
 
-  width: 100px;
+  width: 78px;
   text-align: center;
   border-radius: 3px;
 
@@ -201,7 +209,7 @@ export const LoginImg = styled.img`
   height: 15px;
   position: relative;
   z-index: 1;
-  left: 70px;
+  left: 55px;
   bottom: 16px;
 `;
 

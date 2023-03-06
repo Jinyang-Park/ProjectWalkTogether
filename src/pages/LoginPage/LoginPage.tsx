@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from './LoginPage.style';
 import { useState } from 'react';
 import {
+  signInWithEmailAndPassword,
   isSignInWithEmailLink,
   onAuthStateChanged,
   sendSignInLinkToEmail,
@@ -51,34 +52,42 @@ const LoginPage = () => {
   //firebase
   const handleSubmitClick = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('ddd');
-    const actionCodeSettings = {
-      // URL you want to redirect back to. The domain (www.example.com) for this
-      // URL must be in the authorized domains list in the Firebase Console.
-      url: 'https://domainprojectwalk.page.link/verification',
-      // This must be true.
-      handleCodeInApp: true,
-    };
-    sendSignInLinkToEmail(authService, email, actionCodeSettings)
+
+    setPersistence(authService, browserSessionPersistence)
       .then(() => {
-        // The link was successfully sent. Inform the user.
-        // Save the email locally so you don't need to ask the user for it again
-        // if they open the link on the same device.
-        window.localStorage.setItem('emailForSignIn', email);
-        alert('이메일 인증링크를 전송하였습니다.');
-        // ...
+        return signInWithEmailAndPassword(authService, email, password)
+          .then((data) => {
+            sessionStorage.setItem('id', data.user.displayName);
+            sessionStorage.setItem('email', data.user.email);
+            sessionStorage.setItem('id', data.user.displayName);
+            sessionStorage.setItem('email', data.user.email);
+            navigate('/', { replace: true });
+          })
+
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+            //auth/invalid-tenant-id
+
+            alert('로그인 실패');
+            if (email.length === 0) {
+              alert('이메일을 입력해 주세요');
+            } else if (emailRegex.test(email) === false) {
+              alert('이메일을 정확히 입력해 주세요');
+            } else if (password.length === 0) {
+              alert('비밀번호를 입력해 주세요');
+            } else if (pwdRegex.test(password) === false) {
+              alert('비밀번호를 정확히 입력해 주세요 ');
+            }
+          });
       })
+
       .catch((error) => {
-        console.log(error);
-        const errorCode = error.code;
         const errorMessage = error.message;
-        // ...
+        alert(errorMessage);
       });
-    //내가로그인이 된 상태인지 체크하는 api
-    //로그인 알
-    onAuthStateChanged(authService, (currentUser) => {
-      setUser(currentUser);
-    });
   };
 
   //비밀번호 찾기

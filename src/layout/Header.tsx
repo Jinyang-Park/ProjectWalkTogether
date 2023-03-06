@@ -57,55 +57,53 @@ const Header = () => {
   return (
     <S.NavContainer>
       <S.Nav>
-        <S.NavUl>
-          <S.NavLi>
-            <S.OllaeBox onClick={home}>
-              <S.OllaeLogo
-                src={require('../../src/assets/ollaelogo.svg').default}
-              />
-              <S.OllaeText>올래</S.OllaeText>
-            </S.OllaeBox>
-          </S.NavLi>
+        <S.NavLi>
+          <S.OllaeBox onClick={home}>
+            <S.OllaeLogo
+              src={require('../../src/assets/ollaelogo.svg').default}
+            />
+            <S.OllaeText>올래</S.OllaeText>
+          </S.OllaeBox>
+        </S.NavLi>
 
-          {/* <S.NavLi>
+        {/* <S.NavLi>
             <S.NavText to="/chat">chat</S.NavText>
           </S.NavLi> */}
-          <S.NavLi>
-            {loggedIn === false ? (
-              <S.NavText
-                onClick={() => {
-                  alert('로그인을 해주세요!');
-                }}
-                to='/login'
-              >
-                글 쓰기
-              </S.NavText>
-            ) : (
-              <S.NavText to='/postpage'>글 쓰기</S.NavText>
-            )}
-          </S.NavLi>
-          <S.NavLi>
-            {loggedIn === false ? (
-              <S.NavText
-                onClick={() => {
-                  alert('로그인을 해주세요!');
-                }}
-                to='/login'
-              >
-                채팅
-              </S.NavText>
-            ) : (
-              <S.NavText to='/chat'>채 팅</S.NavText>
-            )}
-          </S.NavLi>
-          <S.NavLi>
-            <S.NavText to='/map'>지도뷰</S.NavText>
-          </S.NavLi>
-          {/* <S.NavLi>
-            <S.NavText to="/detailpage">상세</S.NavText>
-          </S.NavLi> */}
-        </S.NavUl>
-
+        <S.SideOllae>
+          <S.NavUl>
+            <S.NavLi>
+              {loggedIn === false ? (
+                <S.NavText
+                  onClick={() => {
+                    alert('로그인을 해주세요!');
+                  }}
+                  to='/login'
+                >
+                  글 쓰기
+                </S.NavText>
+              ) : (
+                <S.NavText to='/postpage'>글 쓰기</S.NavText>
+              )}
+            </S.NavLi>
+            <S.NavLi>
+              {loggedIn === false ? (
+                <S.NavText
+                  onClick={() => {
+                    alert('로그인을 해주세요!');
+                  }}
+                  to='/login'
+                >
+                  채팅
+                </S.NavText>
+              ) : (
+                <S.NavText to='/chat'>채 팅</S.NavText>
+              )}
+            </S.NavLi>
+            <S.NavLi>
+              <S.NavText to='/map'>지도뷰</S.NavText>
+            </S.NavLi>
+          </S.NavUl>
+        </S.SideOllae>
         <S.NavEtc>
           {/* <S.Profile onClick={gotomy}>닉네임</S.Profile> */}
           <S.AlarmContainer>
