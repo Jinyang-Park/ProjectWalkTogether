@@ -7,6 +7,8 @@ import {
   orderBy,
   where,
   onSnapshot,
+  doc,
+  updateDoc,
 } from 'firebase/firestore';
 import { dbService } from '../../../common/firebase';
 import {
@@ -18,17 +20,42 @@ import {
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-function ChattingList() {
+interface SetProps {
+  SetTochattingBoxUid: React.Dispatch<React.SetStateAction<string>>;
+  SetTochattingBoxRoomIndex: React.Dispatch<React.SetStateAction<string>>;
+  SetTochattingBoxOpponenRoomIndex: React.Dispatch<
+    React.SetStateAction<string>
+  >;
+  tochattingBoxRoomIndex: string;
+  tochattingBoxOpponentRoomIndex: string;
+  tochattingBoxUid: string;
+}
+
+function ChattingList({
+  SetTochattingBoxUid,
+  SetTochattingBoxRoomIndex,
+  SetTochattingBoxOpponenRoomIndex,
+  tochattingBoxRoomIndex,
+  tochattingBoxUid,
+  tochattingBoxOpponentRoomIndex,
+}: SetProps) {
   const mychatlist = useRecoilValue(currentUserUid);
   const [chatList, setChatList] = useState<any>([]);
+  const [isAcitList, SetIsActivList] = useState<boolean>(false);
   const [filtering, setFiltering] = useState([]);
   const [tochattingBoxRoomId, SetTochattingBoxRoomId] =
-    useRecoilState<any>(tochattingboxroomid);
-  const [tochattingBoxNickname, SetTochattingBoxNickname] = useRecoilState<any>(
-    tochattingboxnickname
-  );
+    useRecoilState<string>(tochattingboxroomid);
+
+  const [tochattingBoxNickname, SetTochattingBoxNickname] =
+    useRecoilState<string>(tochattingboxnickname);
   const [tochattingBoxProfileImg, SetTochattingBoxProfileImg] =
-    useRecoilState<any>(tochattingboxprofileimg);
+    useRecoilState<string>(tochattingboxprofileimg);
+
+  // 채팅리스트 클릭시 Chattingbox로 이동하는 데이터를 ChattingList 로 다시 옮긴다.
+  // const opponentuid = tochattingBoxUid;
+  const myRoomIndex = tochattingBoxRoomIndex;
+  // const opponentRoomIndex = tochattingBoxOpponentRoomIndex;
+  const currentUid = useRecoilValue(currentUserUid);
 
   const getChattingList = async () => {
     if (mychatlist === '') {
@@ -51,20 +78,31 @@ function ChattingList() {
       setChatList(getChatList);
       console.log('chatList:', chatList);
     });
+  };
 
-    // const querySnapshot = await getDocs(
-    //   query(
-    //     collection(dbService, 'Users', `${mychatlist}`, 'chattingroom'),
-    //     orderBy('createdAt', 'desc')
-    //   )
+  const isActiveUpdate = async () => {
+    const updatMyDoc = doc(
+      dbService,
+      'ChattingUsers',
+      currentUid,
+      'chattingListroom',
+      myRoomIndex
+    );
+    // const updatYourDoc = doc(
+    //   dbService,
+    //   'ChattingUsers',
+    //   opponentuid,
+    //   'chattingListroom',
+    //   opponentRoomIndex
     // );
-
-    // let list = [];
-    // querySnapshot.forEach((doc) => {
-    //   list = [...list, { id: doc.id, ...doc.data() }];
+    updateDoc(updatMyDoc, {
+      isActive: 'empty',
+      createdAt: new Date(),
+    });
+    // updateDoc(updatYourDoc, {
+    //   isActive: 'empty',
+    //   createdAt: new Date(),
     // });
-    // setChatList(list);
-    // console.log('list:', list);
   };
 
   useEffect(() => {
@@ -72,7 +110,7 @@ function ChattingList() {
   }, [mychatlist]);
 
   const chattingUser = chatList;
-  console.log('chatList', chatList);
+  console.log('chattingUser', chattingUser);
 
   // const test2 = test.combineId;
 
@@ -94,14 +132,32 @@ function ChattingList() {
                     SetTochattingBoxRoomId(user.combineId);
                     SetTochattingBoxNickname(user.nickname);
                     SetTochattingBoxProfileImg(user.profile);
+
+                    SetTochattingBoxUid(user.opponentUserUid);
+                    SetTochattingBoxRoomIndex(user.myRoomId);
+                    SetTochattingBoxOpponenRoomIndex(user.posterChatroomId);
+
+                    isActiveUpdate();
+
+                    // SetIsActivList(false);
                   }}
                 >
-                  {/* <div style={{ backgroundImage: `${user.porfile}` }}></div> */}
-                  <S.UserImgCover>
-                    <S.UserImg src={user.profile} />
-                  </S.UserImgCover>
-
-                  <S.UserName>{user.nickname}</S.UserName>
+                  <S.ChattingUserContents>
+                    <S.UserImgCover>
+                      <S.UserImg src={user.profile} />
+                    </S.UserImgCover>
+                    <S.NickNMessage>
+                      <S.UserName>{user.nickname}</S.UserName>
+                      <S.LastConversation>
+                        {user.lastConversation}
+                      </S.LastConversation>
+                    </S.NickNMessage>
+                  </S.ChattingUserContents>
+                  {user.isActive === 'filled' ? (
+                    <S.GreenLight></S.GreenLight>
+                  ) : (
+                    <></>
+                  )}
                 </S.ChattingUser>
               );
             })}

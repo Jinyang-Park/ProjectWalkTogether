@@ -22,7 +22,8 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { assert } from 'console';
 import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory';
 import DropBox from './DropBox/DropBox';
-import { async } from '@firebase/util';
+import { async, uuidv4 } from '@firebase/util';
+
 import { userForChat, currentUserUid } from '../../Rocoil/Atom';
 import useDetectClose from './../../hooks/useDetectClose';
 
@@ -78,6 +79,10 @@ const DetailPage = () => {
   //  동일한 유저이더라도 게시글마다 새로운 채팅방이 생긴다
   const combineId: any = getPostings.PostingID_Posting + CurrentUid;
   // const getPostingsThumbnail = getPostings.ThumbnailURL_Posting;
+  //게시글작성자의 chattingListroom의 doc id
+  const posterChatroomId = uuidv4();
+  //현재 유저의 chattingListroom의 doc id
+  const applicantChatroomId = uuidv4();
 
   // 게시글 id db 가져오기
   const getPost = async () => {
@@ -163,36 +168,44 @@ const DetailPage = () => {
       //   // chattingroom: [{ combineId, date }],
       // });
 
-      await addDoc(
-        collection(
+      // 게시글주인 chattingroom에 저장되는값들
+      await setDoc(
+        doc(
           dbService,
           'ChattingUsers',
           `${getPostingUID}`,
-          'chattingListroom'
+          'chattingListroom',
+          posterChatroomId
         ),
         {
           combineId,
           profile: UID.myporfile,
-          uid: UID.useruid,
           nickname: UID.mynickname,
           createdAt: new Date(),
+          uid: getPostings.UID,
+          opponentUserUid: UID.useruid,
+          posterChatroomId: applicantChatroomId,
+          myRoomId: posterChatroomId,
         }
       );
-
-      // 채팅의 상대방(게시글주인) chattingroom에 저장되는값들
-      await addDoc(
-        collection(
+      //현재 유저의 chattingroom에 저장되는 값들
+      await setDoc(
+        doc(
           dbService,
           'ChattingUsers',
           `${CurrentUid}`,
-          'chattingListroom'
+          'chattingListroom',
+          applicantChatroomId
         ),
         {
           combineId,
           profile: getPostings.ThumbnailURL_Posting,
-          uid: getPostings.UID,
           nickname: getPostings.Nickname,
           createdAt: new Date(),
+          uid: CurrentUid,
+          opponentUserUid: getPostings.UID,
+          posterChatroomId: posterChatroomId,
+          myRoomId: applicantChatroomId,
         }
       );
 
