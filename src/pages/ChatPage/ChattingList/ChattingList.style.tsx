@@ -72,9 +72,15 @@ export const ChattingFooterBox = styled.div`
 export const ChattingUserBox = styled.div`
   width: 280px;
   height: auto;
-  /* border-right: 1px solid #bec5d7; */
+  border-right: 1px solid #bec5d7;
   border-bottom: 1px solid #bec5d7;
   z-index: 1;
+`;
+
+export const ChattingUserContents = styled.div`
+  width: 280px;
+  height: auto;
+  display: flex;
 `;
 
 export const ChattingUser = styled.div`
@@ -107,8 +113,44 @@ export const UserImgCover = styled.div`
 `;
 
 export const UserName = styled.div`
+  /* position: relative;
+  top: 13.5px; */
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  /* identical to box height */
+
+  /* Dark blue */
+
+  color: #24264e;
+`;
+
+export const NickNMessage = styled.div`
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  /* background-color: blue; */
   position: relative;
-  top: 15px;
+  top: 14px;
+`;
+
+export const LastConversation = styled.div`
+  /* position: relative;
+  top: 12px; */
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  /* identical to box height */
+
+  /* blue */
+
+  color: #7d8bae;
 `;
 
 export const ChattingBox = styled.div`
@@ -118,4 +160,14 @@ export const ChattingBox = styled.div`
   background-color: white;
   margin-top: 28px;
   border-radius: 4px;
+`;
+
+export const GreenLight = styled.div`
+  background-color: #1be08d;
+  width: 8px;
+  height: 8px;
+  position: relative;
+  right: 30px;
+  top: 25px;
+  border-radius: 30px;
 `;

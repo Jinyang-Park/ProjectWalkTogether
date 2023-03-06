@@ -13,6 +13,7 @@ import {
   getDocs,
   onSnapshot,
   addDoc,
+  updateDoc,
 } from 'firebase/firestore';
 
 import {
@@ -23,7 +24,17 @@ import {
 } from '../../../Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 
-function ChattingBox() {
+interface SetProps {
+  tochattingBoxUid: string;
+  tochattingBoxRoomIndex: string;
+  tochattingBoxOpponentRoomIndex: string;
+}
+
+function ChattingBox({
+  tochattingBoxUid,
+  tochattingBoxRoomIndex,
+  tochattingBoxOpponentRoomIndex,
+}: SetProps) {
   const [message, setMessage] = useState('');
   const [getmessage, setGetMessage] = useState<any>([]);
   //인풋값 초기화
@@ -32,6 +43,10 @@ function ChattingBox() {
   const roomId = useRecoilValue(tochattingboxroomid);
   const nickname = useRecoilValue(tochattingboxnickname);
   const profileImg = useRecoilValue(tochattingboxprofileimg);
+  const opponentuid = tochattingBoxUid;
+  const myRoomIndex = tochattingBoxRoomIndex;
+  const opponentRoomIndex = tochattingBoxOpponentRoomIndex;
+  const currentUid = useRecoilValue(currentUserUid);
 
   // const roomId = userInfo.roomId;
 
@@ -57,8 +72,33 @@ function ChattingBox() {
           // nickname: nickname,
           profileImg: profileImg,
         }
-      );
+      ).then(() => {
+        const updatMyDoc = doc(
+          dbService,
+          'ChattingUsers',
+          currentUid,
+          'chattingListroom',
+          myRoomIndex
+        );
+        const updatYourDoc = doc(
+          dbService,
+          'ChattingUsers',
+          opponentuid,
+          'chattingListroom',
+          opponentRoomIndex
+        );
+        updateDoc(updatMyDoc, {
+          isActive: 'empty',
+          lastConversation: message,
+          createdAt: new Date(),
+        });
 
+        updateDoc(updatYourDoc, {
+          isActive: 'filled',
+          lastConversation: message,
+          createdAt: new Date(),
+        });
+      });
       setMessage('');
 
       console.log('docRef:', docRef);
@@ -84,22 +124,8 @@ function ChattingBox() {
         return chat;
       });
       setGetMessage(getChat);
-      console.log('chatList:', getChat);
+      console.log('tochattingBoxUid:', tochattingBoxUid);
     });
-
-    // const querySnapshot = await getDocs(
-    //   query(
-    //     collection(dbService, 'Chatting'),
-    //     where('chattingRoomId', '==', roomId),
-    //     orderBy('createdAt', 'desc')
-    //   )
-    // );
-    // let list = [];
-    // querySnapshot.forEach((doc) => {
-    //   list = [...list, { id: doc.id, ...doc.data() }];
-    // });
-    // setGetMessage(list);
-    // console.log('list:', list);
   };
 
   useEffect(() => {
@@ -108,7 +134,7 @@ function ChattingBox() {
 
   const nowmessage = getmessage;
 
-  console.log('nickname', nickname);
+  console.log('opponentuid', opponentuid);
 
   return (
     <div>
