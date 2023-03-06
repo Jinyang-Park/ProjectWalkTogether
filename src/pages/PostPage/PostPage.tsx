@@ -47,9 +47,6 @@ const PostPage = () => {
   const [postCategory, setPostCategory] = useState('카테고리'); //카테고리
   const [TagItem, setTagItem] = useState('');
 
-  // 산책완료 변경
-  const [posting, setPosting] = useState('posting');
-
   //주소 받아오기 myLocation
   const location = useRecoilValue(myLocation);
   const adress = useRecoilValue(selectedAddress);
@@ -199,7 +196,7 @@ const PostPage = () => {
                 ThumbnailURL_Posting: getThumbnail,
                 BannerURL_Posting: getBanner,
                 CountLiked_Posting: 0,
-                ProceedState_Posting: posting,
+                ProceedState_Posting: 1,
                 Address_Posting,
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
@@ -233,7 +230,7 @@ const PostPage = () => {
       return;
     }
 
-    if (Description.length < 1 || Description.length > 150) {
+    if (Description.length < 1 || Description.length > 200) {
       alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
       return;
     }
