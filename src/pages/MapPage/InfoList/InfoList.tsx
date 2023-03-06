@@ -14,6 +14,7 @@ import {
   LikeSortInput,
   NewSortInput,
   Cetegory,
+  FilterSelectedDateForMapPage,
 } from '../../../Rocoil/Atom';
 
 import { useSearch } from '../../../hooks/useSearch';
@@ -27,6 +28,9 @@ import CardSection from './../../../components/CardSection/CardSection';
 const InfoList = ({ Post }) => {
   const navigate = useNavigate();
   const setParams = useSetRecoilState(paramsState);
+  // recoilvalue 로 FilterSelectedDateForMapPage 를 받아온다.
+  const FilterSelectedDate = useRecoilValue(FilterSelectedDateForMapPage);
+  console.log('FilterSelectedDate', FilterSelectedDate);
 
   const Category = useRecoilValue(Cetegory);
   const postpostpost =
@@ -55,142 +59,6 @@ const InfoList = ({ Post }) => {
 
   // 최신순 정렬
   const [NewSort, setNewSort] = useRecoilState(NewSortInput);
-
-  //! 함수를 리코일에 담기 위해서는 Selector를 사용해야 한다.
-
-  // 카테고리 필터링
-  const CategoryFilter = (e) => {
-    if (e.target.checked) {
-      setSelectedCategory([...SelectedCategory, e.target.value]);
-    } else {
-      setSelectedCategory(
-        SelectedCategory.filter((category) => category !== e.target.value)
-      );
-    }
-  };
-
-  // 날짜 필터링
-  const DateFilter = (e) => {
-    if (e.target.checked) {
-      setSelectedDate([...SelectedDate, e.target.value]);
-    } else {
-      setSelectedDate(SelectedDate.filter((date) => date !== e.target.value));
-    }
-  };
-
-  // 위치 필터링
-  const LocationFilter = (e) => {
-    if (e.target.checked) {
-      setSelectedLocation([...SelectedLocation, e.target.value]);
-    } else {
-      setSelectedLocation(
-        SelectedLocation.filter((location) => location !== e.target.value)
-      );
-    }
-  };
-
-  // 카테고리 필터링
-  const CategoryFilterFunc = (post) => {
-    if (SelectedCategory.length === 0) {
-      return true;
-    } else {
-      return SelectedCategory.includes(post.CategoryName_Posting);
-    }
-  };
-
-  // 날짜 필터링
-  const DateFilterFunc = (post) => {
-    if (SelectedDate.length === 0) {
-      return true;
-    } else {
-      return SelectedDate.includes(post.Date_Posting);
-    }
-  };
-
-  // 위치 필터링
-  const LocationFilterFunc = (post) => {
-    if (SelectedLocation.length === 0) {
-      return true;
-    } else {
-      return SelectedLocation.includes(post.Location_Posting);
-    }
-  };
-
-  // 날짜 정렬
-  const DateSortFunc = (a, b) => {
-    if (DateSort) {
-      return a.Date_Posting < b.Date_Posting ? 1 : -1;
-    } else {
-      return a.Date_Posting > b.Date_Posting ? 1 : -1;
-    }
-  };
-
-  // 조회수 정렬
-  const ViewSortFunc = (a, b) => {
-    if (ViewSort) {
-      return a.View_Posting < b.View_Posting ? 1 : -1;
-    } else {
-      return a.View_Posting > b.View_Posting ? 1 : -1;
-    }
-  };
-
-  // 최신순 정렬 (인자에 있는 a, b는 Post의 요소)
-  const NewSortFunc = (a, b) => {
-    if (NewSort) {
-      return a.PostingID_Posting < b.PostingID_Posting ? 1 : -1;
-    } else {
-      return a.PostingID_Posting > b.PostingID_Posting ? 1 : -1;
-    }
-  };
-
-  // 필터링
-  const FilterFunc = (post) => {
-    return (
-      CategoryFilterFunc(post) &&
-      DateFilterFunc(post) &&
-      LocationFilterFunc(post)
-    );
-  };
-
-  // 정렬
-  const SortFunc = (a, b) => {
-    return DateSortFunc(a, b) || ViewSortFunc(a, b) || NewSortFunc(a, b);
-  };
-
-  // 검색결과
-  const Result = Post.filter(FilterFunc).sort(SortFunc);
-
-  //필터링을 위한 함수
-  const Item = ({ item }) => {
-    const [isSelected, setIsSelected] = useState(false);
-
-    const handlePress = () => {
-      setIsSelected(!isSelected);
-      if (isSelected) {
-        setSelectedCategory(SelectedCategory.filter((e) => e !== item));
-      } else {
-        setSelectedCategory([...SelectedCategory, item]);
-      }
-    };
-  };
-
-  // 카테고리 Form Submit 함수
-  const CategoryFormSubmit = (e) => {
-    e.preventDefault();
-    console.log(SelectedCategory);
-  };
-
-  // 날짜 Form Submit 함수
-  const DateFormSubmit = (e) => {
-    e.preventDefault();
-    console.log(SelectedDate);
-  };
-
-  // 위치 Form Submit 함수
-  const LocationFormSubmit = (e) => {
-    e.preventDefault();
-    console.log(SelectedLocation);
-  };
 
   return (
     <CommonStyles>

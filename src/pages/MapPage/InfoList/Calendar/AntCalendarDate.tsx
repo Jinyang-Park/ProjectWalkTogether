@@ -12,16 +12,15 @@ const AntCalendarMap: React.FC = () => {
   const format = 'YYYY/MM/DD';
   const [selectedDateForMapPage, setselectedDateForMapPage] =
     useRecoilState<any>(FilterSelectedDateForMapPage);
+  const [meetDateForMapPage, setMeetDateForMapPage] = useRecoilState(
+    FilterSelectedDateForMapPage
+  );
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     // console.log(date, dateString);
     setselectedDateForMapPage(date);
     // console.log('달력/날짜:', reserveDate);
   };
-
-  const [meetDateForMapPage, setMeetDateForMapPage] = useRecoilState(
-    FilterSelectedDateForMapPage
-  );
 
   const date = (y: number, m: number, d: number) => {
     const D = new Date(y, m, d);
@@ -50,10 +49,10 @@ const AntCalendarMap: React.FC = () => {
   const m = meetDateForMapPage.$M;
   const d = meetDateForMapPage.$D;
   const month = meetDateForMapPage.$M + 1;
-  console.log(y, m, d);
+  // console.log(y, m, d);
 
   const SelectedDate = `${month}/${d} ${date(y, m, d)}`;
-  console.log(SelectedDate);
+  // console.log(SelectedDate);
 
   return (
     <ConfigProvider locale={locale}>
