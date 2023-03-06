@@ -63,8 +63,6 @@ export const CompleteTitle = styled.p`
   width: 102px;
   height: 20px;
   letter-spacing: -2.1px;
-  font-family: 'SUIT';
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
