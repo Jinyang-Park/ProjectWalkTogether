@@ -150,3 +150,14 @@ export const ResultListCardDateTimeLikeWrapper = styled.span`
   display: flex;
   flex-direction: row;
 `;
+
+export const NoResult = styled.div``;
+
+export const NoResultTitle = styled.p`
+  font-family: 'SUITERegular';
+  margin-top: -30px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 45px;
+  /* color: #7d8bae; */
+`;
