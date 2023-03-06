@@ -56,7 +56,7 @@ const Tag = (props: { tagItem: string }) => {
         <TagInput
           maxLength={6}
           type='text'
-          placeholder='Press enter to add tags'
+          placeholder='#해쉬태그를 입력해주세요'
           tabIndex={2}
           onChange={(e) => setTagItem(e.target.value)}
           value={tagItem}
@@ -68,29 +68,30 @@ const Tag = (props: { tagItem: string }) => {
 };
 
 const WholeBox = styled.div`
-  height: 100vh;
+  /* height: 100vh; */
 `;
 
 const TagBox = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  height: 35px;
+  /* height: 20px; */
   width: 84%;
-  padding: 0 10px;
-  border-radius: px;
-  &:focus-within {
+  margin-bottom: 10px;
+  /* padding: 0 10px; */
+  /* border-radius: px; */
+  /* &:focus-within {
     border-color: #8ca6bc;
   }
-  background: #eef1f7;
+  background: #eef1f7; */
 `;
 
 const TagItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 5px;
-  padding: 5px;
+  padding: 2px;
+  margin-right: 4px;
   background-color: #8ca6bc;
   border-radius: 5px;
   color: white;
@@ -113,11 +114,13 @@ const Button = styled.button`
 
 const TagInput = styled.input`
   display: inline-flex;
-  min-width: 150px;
+  min-width: 200px;
   background: transparent;
   border: none;
   outline: none;
   cursor: text;
+  font-size: 16px;
+  font-family: 'SUITERegular';
 `;
 
 export default Tag;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Textarea } from './../../PostPage/Mainpost/Mainpost.style';
 
 export const DetailCommentsWrapper = styled.div`
   position: relative;
@@ -80,7 +81,8 @@ export const CommentContentsWrapper = styled.label`
   width: 100%;
   position: relative;
 `;
-export const CommentContent = styled.input`
+export const CommentContent = styled.textarea`
+  font-family: 'SUITERegular';
   color: black;
   border-radius: 4px;
   border: 1px solid #aaa;
@@ -160,12 +162,30 @@ export const CommentContainer = styled.div`
   align-items: flex-end;
 `;
 export const CommentCancelDeleteBtnWrapper = styled.div``;
-export const EditForm = styled.input`
-  width: 600px;
-  height: 100px;
-  resize: none;
-  border: 1px solid black;
+export const EditForm = styled.textarea`
+  font-family: 'SUITERegular';
+  color: black;
+  height: fit-content;
+  width: 80%;
+  margin: 16px;
+  /* padding: 16px 30px 30px 17px; */
+  border: 0px solid transparent;
+  /* margin-top: 16px; */
+  background: none;
+
+  /* 
+  padding: 10px 10px 4px;
+  width: 792px;
+  height: 50px;
+  border: 0px solid transparent;
+  background: none;
+  white-space: pre-wrap; */
+
+  &:focus {
+    outline: none;
+  }
 `;
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;

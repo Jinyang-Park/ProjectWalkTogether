@@ -6,6 +6,7 @@ import { Bannerupload, ThumbnailUpload } from '../../../Rocoil/Atom';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
 import Tag from '../../../components/Tag';
+import useDetectClose from './../../../hooks/useDetectClose';
 
 interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
@@ -22,6 +23,8 @@ function MainPost({
   setPostCategory,
   postCategory,
 }: SetProps) {
+  // 모달 외부 클릭 시 닫기 customhook
+  const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
   const [posttitel, Setposttitle] = useRecoilState(TitleInput); //글 제목
   //const [postTag, setPostTag] = useState(''); //해쉬태그
   const [postdescription, SetDescription] = useRecoilState(DescriptionInput); //글 내용
@@ -43,19 +46,6 @@ function MainPost({
     };
     reader.readAsDataURL(filelist);
     console.log('썸네일 인풋:', photoupload);
-
-    // if (thumbnail === null) return alert('이미지 업로드 실패');
-    // const imageRef = ref(storage, `postimg/${PostingID_Posting}/thumbnail`); //+${thumbnail}
-    // // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-    // uploadBytes(imageRef, thumbnail).then((snapshot) => {
-    //   // 업로드 되자마자 뜨게 만들기
-    //   getDownloadURL(snapshot.ref).then((url) => {
-    //     alert('썸네일 저장 완료');
-    //     // setImageList((prev) => [...prev, url]); //이미지리스트에 저장
-    //     ///////////////////////////
-    //     /////////배너이미지 전송
-    //   });
-    // });
   }
 
   function bannerimageChange(e: any) {
@@ -102,7 +92,7 @@ function MainPost({
         <S.BoxPhoto>
           <label htmlFor='thumnail'>
             <S.ThumnailPhotoChange
-              src={thumbnail ? thumbnail : '/assets/blackboard.png'}
+              src={thumbnail ? thumbnail : 'assets/blackboard.png'}
             />
           </label>
           <S.ThumnailPhoto
@@ -115,22 +105,25 @@ function MainPost({
         </S.BoxPhoto>
 
         <S.BoxMain>
-          <S.CateogryWrapper
-            onClick={() => {
-              setShow(true);
-            }}
-          >
-            <S.CalendarIcon src={'/assets/calendar.png'} />
-            <S.CategoryTitle>{postCategory}</S.CategoryTitle>
-          </S.CateogryWrapper>
-
-          {show && (
+          {/*모달 외부 클릭 시 닫힘*/}
+          <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
+            <S.CateogryWrapper
+              onClick={() => {
+                setShow(true);
+              }}
+            >
+              <S.CalendarIcon src={'/assets/calendar.png'} />
+              <S.CategoryTitle>{postCategory}</S.CategoryTitle>
+            </S.CateogryWrapper>
+          </S.DropdownButton>
+          {myPageIsOpen && (
             <DropdownCategory
+              isDropped={myPageIsOpen}
               setPostCategory={setPostCategory}
               setShow={setShow}
             />
           )}
-
+          {/*모달 외부 클릭 시 닫힘*/}
           <S.InputTitle
             onChange={handleChange}
             placeholder='제목을 입력해 주세요'

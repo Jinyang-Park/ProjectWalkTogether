@@ -31,7 +31,9 @@ function CategorySlide() {
           return (
             //리액트 라우터 dom state 찾아보기
             <Categoryitem
-              onClick={() => navigate(`/category/${Category.name}`)}
+              onClick={() =>
+                navigate(`/category/${Category.name}`, { state: Category })
+              }
               key={Category.name}
             >
               <Img src={Category.img} />

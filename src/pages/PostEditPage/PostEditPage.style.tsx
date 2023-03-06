@@ -6,21 +6,13 @@ export const MainPost = styled.div`
 `;
 
 export const Boxcontainer = styled.div`
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* display: flex;
-  flex-direction: column; */
-  /* background-color: blue; */
-  /* width: 100%; */
-  /* width: 1024px; */
-  height: calc(100vh - 100px);
+  margin-bottom: 100px;
+  /* height: calc(100vh - 500px); */
 `;
 
 //제출 버튼
 export const PostSubmitBox = styled.div`
-  position: relative;
-  width: 100%;
-  height: 10%;
+  margin-top: -115px;
   /* background-color: aliceblue; */
 `;
 
@@ -31,6 +23,7 @@ export const PostSubmitBtn = styled.button`
   height: 42px;
   font-weight: 700;
   border-radius: 4px;
+  margin-top: 64px;
 
   background-color: rgba(125, 139, 174, 1);
   color: white;

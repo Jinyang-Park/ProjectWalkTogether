@@ -65,6 +65,15 @@ export const SearchLineTotalCount = styled.span`
 
   margin-bottom: 30px;
 `;
+export const LikedListItem = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 70px 49.3px;
+  /* grid-template-rows: 49.3px; */
+
+  margin-top: 46px;
+`;
+
 export const ResultList = styled.span`
   width: 868px;
   display: grid;

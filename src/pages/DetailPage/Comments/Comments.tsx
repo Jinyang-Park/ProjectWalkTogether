@@ -273,7 +273,6 @@ const Comments = ({ param }: postProps) => {
       <S.DetailCommentContainer>
         <S.CommentUserImgWrapper>
           <S.CommentContent
-            type='text'
             placeholder='댓글을 입력하세요.'
             value={inputComment}
             onChange={(event) => {

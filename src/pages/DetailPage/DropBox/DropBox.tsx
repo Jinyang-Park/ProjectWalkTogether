@@ -16,12 +16,10 @@ interface DropProps {
   id: any;
   getPostings: any;
   setShowBox: React.Dispatch<React.SetStateAction<boolean>>;
+  isDropped: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
-  const setState = useSetRecoilState<MessageWindowProperties>(
-    messageWindowPropertiesAtom
-  );
   const navigate = useNavigate();
   // console.log(id);
   // console.log(getPostings.Category_Posting);
@@ -72,7 +70,11 @@ const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
       <S.DropBoxWrapper>
         {/*수정버튼 영역 */}
         <S.DropUpdateBtn>
-          <S.UpdateIcon />
+          <S.UpdateIcon
+            src={
+              require('../../../assets/DetailPageIcon/ModifyIcon.svg').default
+            }
+          />
           <S.UpdateTitle
             onClick={() => navigate(`/edit/${id}`, { state: getPostings })}
           >
@@ -81,13 +83,21 @@ const DropBox = ({ setShowBox, id, getPostings }: DropProps) => {
         </S.DropUpdateBtn>
         {/*산책버튼 영역 */}
         <S.DropCompletBtn>
-          <S.CompleteIcon />
+          <S.CompleteIcon
+            src={
+              require('../../../assets/DetailPageIcon/completeIcon.svg').default
+            }
+          />
           <S.CompleteTitle>산책 완료하기</S.CompleteTitle>
         </S.DropCompletBtn>
         {/*삭제버튼 영역 */}
         <S.DropDeleteBtn onClick={() => DeletePostHandler(id)}>
-          <S.DeleteIcon />
-          <S.DeleteTitle>삭제하기</S.DeleteTitle>
+          <S.DeleteIcon
+            src={
+              require('../../../assets/DetailPageIcon/trashIcon.svg').default
+            }
+          />
+          <S.DeleteTitle>게시글 삭제하기</S.DeleteTitle>
         </S.DropDeleteBtn>
       </S.DropBoxWrapper>
     </>

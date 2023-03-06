@@ -7,22 +7,22 @@ export const CategorysList = [
   {
     name: '반려동물',
     value: 2,
-    img: '/assets/dog.png',
+    img: '/assets/book.png',
   },
   {
     name: '독서',
     value: 3,
-    img: '/assets/dog.png',
+    img: '/assets/calendar.png',
   },
   {
     name: '음악',
     value: 4,
-    img: '/assets/dog.png',
+    img: '/assets/career.png',
   },
   {
     name: '고민상담',
     value: 5,
-    img: '/assets/dog.png',
+    img: '/assets/finance.png',
   },
   {
     name: '부동산',

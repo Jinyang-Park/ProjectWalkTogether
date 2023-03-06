@@ -15,18 +15,21 @@ import CardSection from '../../components/CardSection/CardSection';
 import CommonStyles from '../../styles/CommonStyles';
 import DropdownFilterCategory from './../../components/DropdownFilterCategory/DropdownFilterCategory';
 import AntCalendarMap from './Calendar/AntCalendarDate';
-import { FilterSelectedDate } from '../../Rocoil/Atom';
+import { Cetegory, FilterSelectedDate } from '../../Rocoil/Atom';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { fontWeight } from '@mui/system';
+import { CategorysList } from '../../utils/CategorysList';
 
 const Category = () => {
   const { category } = useParams();
+  console.log(category);
   const [postings, setPostings] = useState<any>([]);
   // console.log(category);
   const [show, setShow] = useState<any>(false);
   const [TextChange, setTextChange] = useState('카테고리');
 
   // 조회순
-  const [viewCount, setViewCount] = useState('최신순');
+  const [viewCount, setViewCount] = useState('최신 등록순');
 
   //약속 시간
   const [meetDate, setMeetDate] = useRecoilState(FilterSelectedDate);
@@ -122,8 +125,6 @@ const Category = () => {
     // };
   }, [category]);
 
-  // 즐거운 변수놀이 -알레한드로
-
   // FilterDate는 DoubleFilterDate를 위해 쓰는 코드이다.
   const FilteredDate =
     SelectedDate.length < 14
@@ -145,7 +146,7 @@ const Category = () => {
     switch (viewCount) {
       case '조회순':
         return [...FilteredDate].sort((a, b) => b.View - a.View);
-      case '좋아요순':
+      case '좋아요 순':
         return [...FilteredDate].sort(
           (a, b) => b.LikedUsers.length - a.LikedUsers.length
         );
@@ -156,26 +157,33 @@ const Category = () => {
 
   const DoubledFilterDate = DoubleFilteredDateFunction();
 
-  // display: flex;
-
-  // flex-direction: column;
-  // align-items: center;
-  // height: 200vh;
-  // max-width: 1024px;
   return (
     <CommonStyles>
       <S.CategoryWrapper>
         <S.CategoryTitleWrapper>
+          {/*useParams 받아온 카테고리 이름과 같으면 해당 img 보여줌*/}
+          {CategorysList.map((item) => {
+            if (category === item.name) {
+              return <S.CategoryImg src={item.img} />;
+            }
+          })}
           <S.CategoryTitle>{category}</S.CategoryTitle>
-          {/*이FilterCategory에서 atom 사용해서 가져와보자! */}
-          <S.CategoryImg>이미지</S.CategoryImg>
         </S.CategoryTitleWrapper>
         <S.FilterArea>
           <S.CategoryFilter>
             {/*카테고리영역 */}
             <S.CategoryFilterWarpper onClick={() => setShow(true)}>
               <S.FilterCategory>{TextChange}</S.FilterCategory>
-              <S.FilterCalendarIcon />
+              {/*카테고리이면 아이콘 보여주고 아니면 block*/}
+              <S.FilterCalendarIcon
+                style={{
+                  display: TextChange === '카테고리' ? 'block' : 'none',
+                }}
+                src={
+                  require('../../assets/CategoryPageIcon/CategoryIcon2.svg')
+                    .default
+                }
+              />
             </S.CategoryFilterWarpper>
             {show && (
               <DropdownFilterCategory
@@ -185,33 +193,35 @@ const Category = () => {
               />
             )}
             {/*달력영역 */}
-            {/* <S.CategoryFilterWarpper>
-            <S.FilterCategory>3월 23일</S.FilterCategory>
-            <S.FilterCalendarIcon />
-          </S.CategoryFilterWarpper> */}
             <AntCalendarMap />
           </S.CategoryFilter>
           {/*최신순 / 조회순 / 좋아요순*/}
+
           <S.FilterSortWrapper>
-            <S.FilterNewest onClick={() => setViewCount('최신순')}>
-              최신순
+            <S.FilterNewest onClick={() => setViewCount('최신 등록순')}>
+              최신 등록순
               <S.FilterAreaLine></S.FilterAreaLine>
             </S.FilterNewest>
             <S.FilterNewest onClick={() => setViewCount('조회순')}>
               조회순
               <S.FilterAreaLine></S.FilterAreaLine>
             </S.FilterNewest>
-            <S.FilterNewest onClick={() => setViewCount('좋아요순')}>
-              좋아요순
+            <S.FilterNewest onClick={() => setViewCount('좋아요 순')}>
+              좋아요 순
             </S.FilterNewest>
           </S.FilterSortWrapper>
         </S.FilterArea>
         <S.LikedListItem>
-          {/* 여기서 내가 클릭한 filter나 if문을 사용해된다. */}
-
-          {DoubledFilterDate.map((post: any) => {
-            return <CardSection key={post.id} post={post} />;
-          })}
+          {/*검색 조건에 맞는 데이터가 없을 경우*/}
+          {DoubledFilterDate.length === 0 ? (
+            <S.NoResult>
+              <S.NoResultTitle>아쉽지만 해당 게시글이 없어요</S.NoResultTitle>
+            </S.NoResult>
+          ) : (
+            DoubledFilterDate.map((post: any) => {
+              return <CardSection key={post.id} post={post} />;
+            })
+          )}
         </S.LikedListItem>
       </S.CategoryWrapper>
     </CommonStyles>
