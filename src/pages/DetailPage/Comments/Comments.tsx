@@ -289,7 +289,6 @@ const Comments = ({ param }: postProps) => {
       {/* 리뷰 리스트 */}
       <S.CommentListWrapper>
         {myComment.map((comment: any) => {
-          console.log('comment.isEdit:', comment.isEdit);
           return (
             <S.CommentList key={comment.id}>
               {/* 현재 user가 쓴 글인지 판별 */}
@@ -311,7 +310,20 @@ const Comments = ({ param }: postProps) => {
               ) : (
                 //현재 유저가 쓴 글이면 수정, 삭제 버튼까지 보여준다.
                 <S.CommentLi>
-                  <S.CommentProfileImg src={comment.ProfileImg} />
+                  {comment.ProfileImg === null ? (
+                    <S.CommentProfilediv>
+                      <S.CommentProfileImg
+                        src={
+                          require('../../../assets/DetailPageIcon/profileIcon.svg')
+                            .default
+                        }
+                      />
+                    </S.CommentProfilediv>
+                  ) : (
+                    <S.CommentProfilediv>
+                      <S.CommentProfileImg src={comment.ProfileImg} />
+                    </S.CommentProfilediv>
+                  )}
                   <S.CommentWrapper>
                     <S.CommentUserName>{comment.NickName}</S.CommentUserName>
                     <S.CommentBox>
