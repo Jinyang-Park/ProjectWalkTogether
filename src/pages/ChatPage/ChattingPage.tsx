@@ -20,6 +20,7 @@ const ChattingPage = () => {
           <ChattingList
             SetTochattingBoxUid={SetTochattingBoxUid}
             SetTochattingBoxRoomIndex={SetTochattingBoxRoomIndex}
+            tochattingBoxRoomIndex={tochattingBoxRoomIndex}
           />
           <ChattingBox
             tochattingBoxUid={tochattingBoxUid}

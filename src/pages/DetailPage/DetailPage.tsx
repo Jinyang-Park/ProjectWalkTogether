@@ -22,7 +22,8 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { assert } from 'console';
 import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory';
 import DropBox from './DropBox/DropBox';
-import { async } from '@firebase/util';
+import { async, uuidv4 } from '@firebase/util';
+
 import { userForChat, currentUserUid } from '../../Rocoil/Atom';
 
 interface getPostings {
@@ -68,6 +69,9 @@ const DetailPage = () => {
   //  동일한 유저이더라도 게시글마다 새로운 채팅방이 생긴다
   const combineId: any = getPostings.PostingID_Posting + CurrentUid;
   // const getPostingsThumbnail = getPostings.ThumbnailURL_Posting;
+  //게시글작성자의 chattingListroom의 doc id
+  const posterChatroomId = uuidv4();
+  const applicantChatroomId = uuidv4();
 
   const getPost = async () => {
     const q = doc(dbService, 'Post', id);
@@ -145,12 +149,14 @@ const DetailPage = () => {
       //   // chattingroom: [{ combineId, date }],
       // });
 
-      await addDoc(
-        collection(
+      // 게시글주인 chattingroom에 저장되는값들
+      await setDoc(
+        doc(
           dbService,
           'ChattingUsers',
           `${getPostingUID}`,
-          'chattingListroom'
+          'chattingListroom',
+          posterChatroomId
         ),
         {
           combineId,
@@ -158,17 +164,12 @@ const DetailPage = () => {
           uid: UID.useruid,
           nickname: UID.mynickname,
           createdAt: new Date(),
+          opponentUserUid: getPostingUID,
         }
       );
-
-      // 채팅의 상대방(게시글주인) chattingroom에 저장되는값들
-      await addDoc(
-        collection(
-          dbService,
-          'ChattingUsers',
-          `${CurrentUid}`,
-          'chattingListroom'
-        ),
+      //현재 유저의 chattingroom에 저장되는 값들
+      await setDoc(
+        doc(dbService, 'ChattingUsers', `${CurrentUid}`, 'chattingListroom'),
         {
           combineId,
           profile: getPostings.ThumbnailURL_Posting,
@@ -176,6 +177,7 @@ const DetailPage = () => {
           nickname: getPostings.Nickname,
           createdAt: new Date(),
           opponentUserUid: CurrentUid,
+          posterChatroomId: posterChatroomId,
         }
       );
 
@@ -188,7 +190,6 @@ const DetailPage = () => {
           nickname: UID.mynickname,
           createdAt: new Date(),
           createdAT: Date(),
-          opponentUserUid: getPostingUID,
         }
       );
 

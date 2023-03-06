@@ -38,7 +38,7 @@ function ChattingBox({ tochattingBoxUid, tochattingBoxRoomIndex }: SetProps) {
   const roomId = useRecoilValue(tochattingboxroomid);
   const nickname = useRecoilValue(tochattingboxnickname);
   const profileImg = useRecoilValue(tochattingboxprofileimg);
-  // const Uid = tochattingBoxUid;
+  const opponentuid = tochattingBoxUid;
   const roomIndex = tochattingBoxRoomIndex;
   const currentUid = useRecoilValue(currentUserUid);
 
@@ -67,18 +67,31 @@ function ChattingBox({ tochattingBoxUid, tochattingBoxRoomIndex }: SetProps) {
           profileImg: profileImg,
         }
       ).then(() => {
-        const updatDoc = doc(
+        const updatMyDoc = doc(
           dbService,
           'ChattingUsers',
           currentUid,
           'chattingListroom',
           roomIndex
         );
-        updateDoc(updatDoc, {
-          isActive: true,
+        // const updatYourDoc = doc(
+        //   dbService,
+        //   'ChattingUsers',
+        //   opponentuid,
+        //   'chattingListroom',
+        //   roomIndex
+        // );
+        updateDoc(updatMyDoc, {
+          isActive: 'filled',
           lastConversation: message,
           createdAt: new Date(),
         });
+
+        // updateDoc(updatYourDoc, {
+        //   isActive: 'filled',
+        //   lastConversation: message,
+        //   createdAt: new Date(),
+        // });
       });
       setMessage('');
 
@@ -115,7 +128,7 @@ function ChattingBox({ tochattingBoxUid, tochattingBoxRoomIndex }: SetProps) {
 
   const nowmessage = getmessage;
 
-  console.log('roomIndex', roomIndex);
+  console.log('opponentuid', opponentuid);
 
   return (
     <div>

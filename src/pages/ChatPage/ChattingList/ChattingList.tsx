@@ -7,6 +7,8 @@ import {
   orderBy,
   where,
   onSnapshot,
+  doc,
+  updateDoc,
 } from 'firebase/firestore';
 import { dbService } from '../../../common/firebase';
 import {
@@ -21,14 +23,17 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 interface SetProps {
   SetTochattingBoxUid: React.Dispatch<React.SetStateAction<string>>;
   SetTochattingBoxRoomIndex: React.Dispatch<React.SetStateAction<string>>;
+  tochattingBoxRoomIndex: string;
 }
 
 function ChattingList({
   SetTochattingBoxUid,
   SetTochattingBoxRoomIndex,
+  tochattingBoxRoomIndex,
 }: SetProps) {
   const mychatlist = useRecoilValue(currentUserUid);
   const [chatList, setChatList] = useState<any>([]);
+  const [isAcitList, SetIsActivList] = useState<boolean>(false);
   const [filtering, setFiltering] = useState([]);
   const [tochattingBoxRoomId, SetTochattingBoxRoomId] =
     useRecoilState<string>(tochattingboxroomid);
@@ -36,6 +41,8 @@ function ChattingList({
     useRecoilState<string>(tochattingboxnickname);
   const [tochattingBoxProfileImg, SetTochattingBoxProfileImg] =
     useRecoilState<string>(tochattingboxprofileimg);
+
+  const RoomIndex = tochattingBoxRoomIndex;
 
   const getChattingList = async () => {
     if (mychatlist === '') {
@@ -60,12 +67,25 @@ function ChattingList({
     });
   };
 
+  // const isActiveUpdate = async () => {
+  //   const updatDoc = doc(
+  //     dbService,
+  //     'ChattingUsers',
+  //     mychatlist,
+  //     'chattingListroom',
+  //     RoomIndex
+  //   );
+  //   updateDoc(updatDoc, {
+  //     isActive: false,
+  //   });
+  // };
+
   useEffect(() => {
     getChattingList();
   }, [mychatlist]);
 
   const chattingUser = chatList;
-  console.log('mychatlist', mychatlist);
+  console.log('chattingUser', chattingUser);
 
   // const test2 = test.combineId;
 
@@ -87,20 +107,30 @@ function ChattingList({
                     SetTochattingBoxRoomId(user.combineId);
                     SetTochattingBoxNickname(user.nickname);
                     SetTochattingBoxProfileImg(user.profile);
-                    // SetTochattingBoxUid(user.Uid);
+                    SetTochattingBoxUid(user.opponentUserUid);
                     SetTochattingBoxRoomIndex(user.id);
+                    // isActiveUpdate();
+                    SetIsActivList(user.id);
                   }}
                 >
-                  {/* <div style={{ backgroundImage: `${user.porfile}` }}></div> */}
-                  <S.UserImgCover>
-                    <S.UserImg src={user.profile} />
-                  </S.UserImgCover>
-                  <S.NickNMessage>
-                    <S.UserName>{user.nickname}</S.UserName>
-                    <S.LastConversation>
-                      {user.lastConversation}
-                    </S.LastConversation>
-                  </S.NickNMessage>
+                  <S.ChattingUserContents>
+                    <S.UserImgCover>
+                      <S.UserImg src={user.profile} />
+                    </S.UserImgCover>
+                    <S.NickNMessage>
+                      <S.UserName>{user.nickname}</S.UserName>
+                      <S.LastConversation>
+                        {user.lastConversation}
+                      </S.LastConversation>
+                    </S.NickNMessage>
+                  </S.ChattingUserContents>
+                  {isAcitList === user.id ? (
+                    <></>
+                  ) : user.isActive === 'filled' ? (
+                    <S.GreenLight></S.GreenLight>
+                  ) : (
+                    <></>
+                  )}
                 </S.ChattingUser>
               );
             })}
