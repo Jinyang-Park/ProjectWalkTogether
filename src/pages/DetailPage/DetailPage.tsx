@@ -60,6 +60,9 @@ const DetailPage = () => {
   // 모달창
   const [showBox, setShowBox] = useState<any>(false);
 
+  //산책 완료 버튼
+  const [complete, setComplete] = useState<any>(false);
+
   // getPost 함수에서 비동기로 데이터를 가져오기 때문에 isLoading을 사용하여 로딩중인지 아닌지를 확인
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -77,16 +80,22 @@ const DetailPage = () => {
   // const getPostingsThumbnail = getPostings.ThumbnailURL_Posting;
 
   // 게시글 id db 가져오기
-  const getPost = async () => {
-    const q = doc(dbService, 'Post', id);
-    const postData = await getDoc(q);
+  // onsnapshot으로 바꾸기 상태를 바라보고 db가 바뀌면 상태를 최신화해준다. 동적데이터는 onsnapshot이 좋다.
+  // const getPost = async () => {
+  //   const q = doc(dbService, 'Post', id);
+  //   const postData = await getDoc(q);
 
-    //비동기
+  //   //비동기
+  //   setGetPostings(postData.data());
+  //   // isLoading 범인
+  //   // isLoading 이 false가 되면 로딩이 끝난 것, true면 로딩중으로 isLoading을 관리
+  //   setIsLoading(false);
+  // };
+
+  const getPost = onSnapshot(doc(dbService, 'Post', id), (postData) => {
     setGetPostings(postData.data());
-    // isLoading 범인
-    // isLoading 이 false가 되면 로딩이 끝난 것, true면 로딩중으로 isLoading을 관리
     setIsLoading(false);
-  };
+  });
 
   /////////////////
   //채팅방 중복확인 중 db에서 데이터 가져오기.
@@ -127,9 +136,10 @@ const DetailPage = () => {
     }
   };
 
+  // complete 넣기 만약 온스냅샷으로 바뀌면  getPost(),complete 없어도된다.
   useEffect(() => {
     window.scrollTo(0, 0);
-    getPost();
+    // getPost();
     getChattingList();
     // duplicate();
   }, [mychatlist]);
@@ -337,8 +347,6 @@ const DetailPage = () => {
             </S.DetailIntroWrapper>
             <S.ShareBtn>
               <S.LikeWrapper>
-                {/*svg로 갈아끼워야함(StyledHeartIcon)*/}
-
                 {hasUserLikedThisPost ? (
                   <S.LikeBtnFill
                     src={require('../../assets/HeartFill2.svg').default}
@@ -362,6 +370,9 @@ const DetailPage = () => {
                 <S.WalktogetherBtn onClick={goToChat}>
                   <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
                 </S.WalktogetherBtn>
+              ) : // 자바스크립트 문법이라서 중괄호가 필요가 없다
+              getPostings.ProceedState_Posting === 'postingDone' ? (
+                <div>산책완료</div>
               ) : (
                 <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
                   <S.MoreBtn
@@ -378,6 +389,7 @@ const DetailPage = () => {
                   setShowBox={setShowBox}
                   id={id}
                   getPostings={getPostings}
+                  setComplete={setComplete}
                 />
               )}
             </S.ShareBtn>
