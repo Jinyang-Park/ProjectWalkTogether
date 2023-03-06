@@ -114,10 +114,8 @@ export const DropNav = styled.nav<{ isDropped: boolean }>`
     position: absolute;
     top: -3px;
     left: 50%;
+    transform: translate(-50%, -50%);
 
-    border-top-width: 0;
-    border-bottom-color: #60a5f8;
-  }
   ${({ isDropped }) =>
     isDropped &&
     css`
@@ -127,4 +125,53 @@ export const DropNav = styled.nav<{ isDropped: boolean }>`
       left: 50%;
     `};
 `;
+
+export const AlarmContainer = styled(DropdownContainer)`
+  position: relative;
+  right: 10px;
+  top: 10px;
+`;
+
+export const AlarmButton = styled.button`
+  border: none;
+  border-radius: 5px;
+  width: 100px;
+  height: 40px;
+
+  background: blue;
+`;
+
+export const NotificationsBox = styled.div`
+  background: white;
+  position: absolute;
+  right: -100px;
+  width: 210px;
+
+  text-align: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transform: translate(-50%, -20px);
+
+  /* opacity: 0; */
+`;
+
+export const Reddot = styled.div`
+  background-color: red;
+  border-radius: 30px;
+  width: 4px;
+  height: 4px;
+  position: relative;
+  bottom: 24px;
+  left: 25px;
+  z-index: 2;
+`;
+
+export const Img = styled.img`
+  width: 16px;
+  height: 20px;
+  position: relative;
+  left: 5px;
+  z-index: 1;
+`;
+
 export const Logout = styled.div``;
