@@ -140,6 +140,11 @@ export const dateType2ForMapPage = atom<any>({
   default: '',
 });
 
+export const viewCountForMapPage = atom<any>({
+  key: 'viewCountForMapPage',
+  default: '최신순',
+});
+
 //* ---------------MapPage Catefory------------------ *//
 
 export const chattingusers = atom<any>({

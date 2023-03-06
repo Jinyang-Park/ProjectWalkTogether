@@ -16,6 +16,7 @@ import {
   Cetegory,
   FilterSelectedDateForMapPage,
   dateType1ForMapPage,
+  viewCountForMapPage,
 } from '../../../Rocoil/Atom';
 
 import { useSearch } from '../../../hooks/useSearch';
@@ -39,10 +40,10 @@ const InfoList = ({ Post }) => {
   const navigate = useNavigate();
   const setParams = useSetRecoilState(paramsState);
   const [postings, setPostings] = useState<any>([]);
-  // 조회순
-  const [viewCount, setViewCount] = useState('최신 등록순');
-  // recoilvalue 로 FilterSelectedDateForMapPage 를 받아온다.
+
   const FilterSelectedDate = useRecoilValue(FilterSelectedDateForMapPage);
+  // recoilvalue 로 viewCountForMapPage 를 받아온다.
+  const viewCount = useRecoilValue(viewCountForMapPage);
 
   const DateType1 = useRecoilValue(dateType1ForMapPage);
   console.log('DateType1', DateType1);
@@ -112,7 +113,7 @@ const InfoList = ({ Post }) => {
     switch (viewCount) {
       case '조회순':
         return [...FilteredDate].sort((a, b) => b.View - a.View);
-      case '좋아요 순':
+      case '좋아요순':
         return [...FilteredDate].sort(
           (a, b) => b.LikedUsers.length - a.LikedUsers.length
         );
@@ -126,7 +127,9 @@ const InfoList = ({ Post }) => {
 
   return (
     <CommonStyles>
-      <S.SearchLineTotalCount>총 n 건의 검색결과</S.SearchLineTotalCount>
+      <S.SearchLineTotalCount>
+        총 {DoubledFilterDate.length} 건의 검색결과
+      </S.SearchLineTotalCount>
       <S.LikedListItem>
         {/*검색 조건에 맞는 데이터가 없을 경우*/}
         {DoubledFilterDate.length === 0 ? (
