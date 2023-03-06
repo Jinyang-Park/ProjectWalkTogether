@@ -7,20 +7,25 @@ import 'moment/locale/ko';
 import locale from 'antd/lib/locale/ko_KR';
 import { ConfigProvider } from 'antd';
 import { FilterSelectedDateForMapPage } from '../../../../Rocoil/Atom';
+import {
+  dateType1ForMapPage,
+  dateType2ForMapPage,
+} from '../../../../Rocoil/Atom';
 
 const AntCalendarMap: React.FC = () => {
   const format = 'YYYY/MM/DD';
   const [selectedDateForMapPage, setselectedDateForMapPage] =
     useRecoilState<any>(FilterSelectedDateForMapPage);
-  const [meetDateForMapPage, setMeetDateForMapPage] = useRecoilState(
-    FilterSelectedDateForMapPage
-  );
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     // console.log(date, dateString);
     setselectedDateForMapPage(date);
     // console.log('달력/날짜:', reserveDate);
   };
+
+  const [meetDateForMapPage, setMeetDateForMapPage] = useRecoilState(
+    FilterSelectedDateForMapPage
+  );
 
   const date = (y: number, m: number, d: number) => {
     const D = new Date(y, m, d);
@@ -53,6 +58,14 @@ const AntCalendarMap: React.FC = () => {
 
   const SelectedDate = `${month}/${d} ${date(y, m, d)}`;
   // console.log(SelectedDate);
+
+  const dateType1 = useRecoilState(dateType1ForMapPage);
+  const dateType2 = useRecoilState(dateType2ForMapPage);
+
+  // SelectedDate 를 dateType1ForMapPage 에 넣어준다.
+  dateType1[1](SelectedDate);
+
+  // console.log(dateType1);
 
   return (
     <ConfigProvider locale={locale}>
