@@ -8,20 +8,28 @@ import DropdownCategory from '../../../components/DropdownCategoryForWritePage/D
 import { useParams } from 'react-router-dom';
 import { doc, getDoc } from '@firebase/firestore';
 import { dbService } from './../../../common/firebase';
+import Tag from './../../../components/Tag';
+import useDetectClose from './../../../hooks/useDetectClose';
 
 interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
   postCategory: string;
   thumbnailimg: string;
   bannerimg: string;
+  setHasEditedBanner: React.Dispatch<React.SetStateAction<boolean>>;
+  setHasEditedThumbnail: React.Dispatch<React.SetStateAction<boolean>>;
 }
 function MainPostEdit({
   setPostCategory,
   postCategory,
   thumbnailimg,
   bannerimg,
+  setHasEditedBanner,
+  setHasEditedThumbnail,
 }: SetProps) {
-  const [posttitel, Setposttitle] = useRecoilState(TitleInput); //글 제목
+  // 모달 외부 클릭 시 닫기 customhook
+  const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
+  const [postTitle, setPostTitle] = useRecoilState(TitleInput); //글 제목
   const [postTag, setPostTag] = useState(''); //해쉬태그
   const [postdescription, SetDescription] = useRecoilState(DescriptionInput); //글 내용
   // const [postCategory, setPostCategory] = useState(''); //카테고리
@@ -32,25 +40,29 @@ function MainPostEdit({
   const [show, setShow] = useState<any>(false);
 
   function thumnailimageChange(e: any) {
+    setHasEditedThumbnail(true);
     const filelist = e.target.files[0];
 
     const reader = new FileReader();
 
     reader.onload = () => {
-      setPhotoupload(() => filelist);
+      setPhotoupload(filelist);
       setThumbnail(() => reader.result);
+      console.log(filelist);
     };
     reader.readAsDataURL(filelist);
     console.log('썸네일 인풋:', photoupload);
   }
 
   function bannerimageChange(e: any) {
+    setHasEditedBanner(true);
+    console.log('배너 이미자가 변경되었습니다.');
     const filelist = e.target.files[0];
 
     const reader = new FileReader();
 
     reader.onload = () => {
-      setBanneruploadupload(() => filelist);
+      setBanneruploadupload(filelist);
       setBanner(() => reader.result);
     };
 
@@ -61,7 +73,7 @@ function MainPostEdit({
   // 타이틀
   ////////
   const handleChange = (e: any) => {
-    Setposttitle(e.target.value);
+    setPostTitle(e.target.value);
   };
 
   ////////
@@ -84,6 +96,12 @@ function MainPostEdit({
           id='banner'
         />
       </S.Bannercontainer>
+      <S.PolaroidFolerIcon
+        src={
+          require('../../../assets/PostEditPageIcon/PolaroidFolderIcon.svg')
+            .default
+        }
+      />
       <S.Boxcontents>
         <S.BoxPhoto>
           <label htmlFor='thumnail'>
@@ -101,32 +119,41 @@ function MainPostEdit({
         </S.BoxPhoto>
 
         <S.BoxMain>
-          <S.CateogryWrapper
-            onClick={() => {
-              setShow(true);
-            }}
-          >
-            <S.CalendarIcon src={'/assets/calendar.png'} />
-            <S.CategoryTitle>{postCategory}</S.CategoryTitle>
-          </S.CateogryWrapper>
-          {show && (
+          {/*모달 외부 클릭 시 닫힘*/}
+          <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
+            <S.CateogryWrapper
+              onClick={() => {
+                setShow(true);
+              }}
+            >
+              {/* <S.CalendarIcon
+              src={
+                require('../../../assets/PostEditPageIcon/CategoryListIconForWritPage.svg')
+                  .default
+              }
+            /> */}
+              <S.CategoryTitle>{postCategory}</S.CategoryTitle>
+            </S.CateogryWrapper>
+          </S.DropdownButton>
+          {myPageIsOpen && (
             <DropdownCategory
+              isDropped={myPageIsOpen}
               setPostCategory={setPostCategory}
               setShow={setShow}
             />
           )}
-
+          {/*모달 외부 클릭 시 닫힘*/}
           <S.InputTitle
             onChange={handleChange}
-            value={posttitel}
+            value={postTitle}
             placeholder='제목을 입력해 주세요'
           />
+          <Tag tagItem='' />
           <S.Textarea
             onChange={handleChangeText}
             value={postdescription}
             placeholder='당신의 이야기를 적어주세요'
           ></S.Textarea>
-          {/* <S.HashtagBox>#해쉬태그를 입력해주세요</S.HashtagBox> */}
         </S.BoxMain>
       </S.Boxcontents>
     </>

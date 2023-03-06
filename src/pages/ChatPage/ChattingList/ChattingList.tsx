@@ -36,9 +36,9 @@ function ChattingList() {
     }
 
     const q = query(
-      collection(dbService, 'ChattingUsers', mychatlist, 'chattingListroom')
+      collection(dbService, 'ChattingUsers', mychatlist, 'chattingListroom'),
       // where('chattingRoomId', '==', roomId)
-      // orderBy('createdAt', 'desc')
+      orderBy('createdAt', 'desc')
     );
     onSnapshot(q, (querySnapshot) => {
       const getChatList = querySnapshot.docs.map((doc) => {
@@ -49,7 +49,7 @@ function ChattingList() {
         return nowList;
       });
       setChatList(getChatList);
-      console.log('chatList:', getChatList);
+      console.log('chatList:', chatList);
     });
 
     // const querySnapshot = await getDocs(
@@ -82,7 +82,7 @@ function ChattingList() {
         <S.ChattingListMessage>
           <S.ChattingListMessageWord>메세지</S.ChattingListMessageWord>
           <S.ChattingListMessagePhoto>
-            <img src={require('../../../assets/pungsun.png')} />
+            <img src={require('../../../assets/ballon.svg').default} />
           </S.ChattingListMessagePhoto>
         </S.ChattingListMessage>
         <S.ChattingListouter>

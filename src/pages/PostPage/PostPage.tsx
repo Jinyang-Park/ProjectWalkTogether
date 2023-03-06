@@ -47,6 +47,9 @@ const PostPage = () => {
   const [postCategory, setPostCategory] = useState('카테고리'); //카테고리
   const [TagItem, setTagItem] = useState('');
 
+  // 산책완료 변경
+  const [posting, setPosting] = useState('posting');
+
   //주소 받아오기 myLocation
   const location = useRecoilValue(myLocation);
   const adress = useRecoilValue(selectedAddress);
@@ -169,15 +172,15 @@ const PostPage = () => {
   //settimeout test
   const geturl: any = (callback: () => void = () => {}) => {
     getDownloadURL(ref(storage, `test/${PostingID_Posting}/thumbnail`))
-      .then((url) => {
-        const getThumbnail = url;
+      .then((ThumbnailUrl) => {
+        const getThumbnail = ThumbnailUrl;
         console.log('섬네일url', getThumbnail);
         // alert('섬네일url');
 
         //get썸네일 url
         getDownloadURL(ref(storage, `test/${PostingID_Posting}/banner`))
-          .then((url) => {
-            const getBanner = url;
+          .then((bannerUrl) => {
+            const getBanner = bannerUrl;
             console.log('배너url', typeof getBanner);
 
             try {
@@ -196,7 +199,7 @@ const PostPage = () => {
                 ThumbnailURL_Posting: getThumbnail,
                 BannerURL_Posting: getBanner,
                 CountLiked_Posting: 0,
-                ProceedState_Posting: 1,
+                ProceedState_Posting: posting,
                 Address_Posting,
                 MeetLongitude_Posting,
                 MeetLatitude_Posting,
@@ -224,22 +227,16 @@ const PostPage = () => {
   ////////////
   //작성완료//
   ///////////
-
   const handleSubmit = async (e: any) => {
     if (Title.length < 1 || Title.length > 20) {
       alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
       return;
     }
 
-    // UNHAPPY FIRST
-    //
-    if (Description.length < 1 || Description.length > 200) {
+    if (Description.length < 1 || Description.length > 150) {
       alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
       return;
     }
-
-    // HAPPY FIRST
-    //
     // if (meetDate !== '') {
     //   if (meetTime !== '') {
     //     if (thumbnail !== '') {

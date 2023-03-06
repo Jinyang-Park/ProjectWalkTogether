@@ -44,7 +44,7 @@ const AntCalendarMap: React.FC = () => {
             fontSize: 12,
           }}
           allowClear={false}
-          placement='bottomRight'
+          // placement='bottomRight'
           // bordered={false}
         />
       </Space>

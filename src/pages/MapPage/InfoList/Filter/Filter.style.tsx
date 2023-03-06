@@ -19,7 +19,7 @@ export const LikedListItem = styled.div`
   flex-wrap: wrap;
   grid-gap: 74.5px;
   grid-row-gap: 70px;
-  margin-top: 36px;
+  margin-top: 46px;
 `;
 export const FilterArea = styled.div`
   /* margin-bottom: -26px; */

@@ -13,6 +13,7 @@ export const ChattingListBox = styled.div`
 //채팅리스트 메세지 박스
 export const ChattingListMessage = styled.div`
   border-bottom: 1px solid #bec5d7;
+  /* border-collapse: collapse; */
   /* background-color: blue; */
   width: 292px;
   height: 40px;

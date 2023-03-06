@@ -176,6 +176,7 @@ const Comments = ({ param }: postProps) => {
   const EditCommentHandler = async (documentId: any) => {
     const newComments = [...myComment];
     //comment.documentId여야된다. 콘솔로그로 찍어봐라
+    console.log('newComments:', newComments);
     const idx = newComments.findIndex(
       (comment) => comment.documentId === documentId
     );
@@ -272,7 +273,6 @@ const Comments = ({ param }: postProps) => {
       <S.DetailCommentContainer>
         <S.CommentUserImgWrapper>
           <S.CommentContent
-            type='text'
             placeholder='댓글을 입력하세요.'
             value={inputComment}
             onChange={(event) => {

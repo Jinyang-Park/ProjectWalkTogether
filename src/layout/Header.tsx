@@ -12,14 +12,17 @@ import {
   kakaoUserState,
   username,
 } from '../Rocoil/Atom';
+import HeaderAlarm from '../components/HeaderAlarm/HeaderAlarm';
 
 const Header = () => {
   const location = useLocation();
   const history = useNavigate();
   const navigate = useNavigate();
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
+  const [alarmIsOpen, alarmRef, alarmHandler] = useDetectClose(false);
   const loggedIn = useRecoilValue(isLoggedIn);
   const [kakaoCode, setKakaoCode] = useRecoilState(kakaoState);
+  const [alarm, setAlarm] = useState(0);
 
   const getKakaoCode = () => {
     const code = new URL(window.location.href).searchParams.get('code');
@@ -39,6 +42,8 @@ const Header = () => {
   // const kakaoUser = sessionStorage.getItem('id');
   const kakaoUser = useRecoilValue(kakaoUserState);
   const sessionId = useRecoilValue(username);
+
+  console.log('alarm:', alarm);
 
   getKakaoCode();
   //const currentUser = authService.currentUser;
@@ -94,6 +99,27 @@ const Header = () => {
 
         <S.NavEtc>
           {/* <S.Profile onClick={gotomy}>닉네임</S.Profile> */}
+          <S.AlarmContainer>
+            {loggedIn || kakaoCode ? (
+              <S.DropdownButton onClick={alarmHandler} ref={alarmRef}>
+                <S.AlarmContainer>
+                  <S.Img
+                    src={require('../../src/assets/bell.svg').default}
+                  ></S.Img>
+                  {alarm > 0 ? <S.Reddot></S.Reddot> : <div></div>}
+                </S.AlarmContainer>
+
+                <S.DropNav isDropped={alarmIsOpen}>
+                  <S.NotificationsBox>
+                    <div>알림</div>
+                    <HeaderAlarm setAlarm={setAlarm}></HeaderAlarm>
+                  </S.NotificationsBox>
+                </S.DropNav>
+              </S.DropdownButton>
+            ) : (
+              <div></div>
+            )}
+          </S.AlarmContainer>
 
           <S.MyPageContainer>
             {loggedIn || kakaoCode ? (
