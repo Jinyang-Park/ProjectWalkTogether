@@ -30,10 +30,8 @@ const MainPage = () => {
       <CategoryWrapper>
         <CategorySlide />
 
-        <div>
-          <TextTitle style={{ fontSize: 20, fontWeight: 'bold' }}>
-            신발신는중
-          </TextTitle>
+        <ContentLayout>
+          <TextTitle>신발 신는 중</TextTitle>
           <FirstLayout>
             <InsideText>현재 이루어지고 있는 산책들이에요</InsideText>
             <Button
@@ -49,27 +47,33 @@ const MainPage = () => {
           <S.LikedListItem>
             <FootOning />
           </S.LikedListItem>
-        </div>
+          <Line />
+        </ContentLayout>
 
-        <TextTitle style={{ fontSize: 20, fontWeight: 'bold' }}>
-          뜨거운신발
-        </TextTitle>
-        <FirstLayout>
-          <InsideText>현재 인기가 많은 산책들이에요</InsideText>
-          <Button
-            value='2'
-            onClick={(event) =>
-              navigate(`/collection/${event.target['value']}`)
-            }
-          >
-            전체보기
-          </Button>
-        </FirstLayout>
-        <S.LikedListItem>{/* <LikesComponent /> */}</S.LikedListItem>
+        <ContentLayout>
+          <TextTitle>뜨거운 신발</TextTitle>
+          <FirstLayout>
+            <InsideText>현재 인기가 많은 산책들이에요</InsideText>
+            <Button
+              value='2'
+              onClick={(event) =>
+                navigate(`/collection/${event.target['value']}`)
+              }
+            >
+              전체보기
+            </Button>
+          </FirstLayout>
+          <S.LikedListItem>
+            <LikesComponent />
+          </S.LikedListItem>
+          <Line />
+        </ContentLayout>
 
-        <TextTitle style={{ fontSize: 20, fontWeight: 'bold' }}>
-          걷는 중
-        </TextTitle>
+        <ContentLayout>
+          <TextTitle style={{ fontSize: 20, fontWeight: 'bold' }}>
+            걷는 중
+          </TextTitle>
+        </ContentLayout>
       </CategoryWrapper>
     </CommonStyles>
   );
@@ -86,13 +90,14 @@ const Button = styled.button`
 `;
 const InsideText = styled.p`
   font-family: 'SUITERegular';
-  letter-spacing: -2px;
-
+  letter-spacing: -1px;
+  color: #7d8bae;
   width: 300px;
 `;
 const TextTitle = styled.p`
-  font-family: 'SUITERegular';
-  letter-spacing: -0.1px;
+  font-family: 'SUITEBold';
+  letter-spacing: -3px;
+  font-size: 36px;
 `;
 export const CategoryWrapper = styled.div`
   display: flex;
@@ -106,5 +111,15 @@ const FirstLayout = styled.div`
   justify-content: space-between;
 `;
 
+const Line = styled.div`
+  height: 32px;
+  background-color: white;
+  width: 100%;
+  border-bottom: 2px solid #bec5d7;
+`;
+
+const ContentLayout = styled.div`
+  padding-top: 66px;
+`;
 export const Collectionitem = styled.div``;
 export default MainPage;

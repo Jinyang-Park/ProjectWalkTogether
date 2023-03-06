@@ -51,7 +51,6 @@ export const HashTag = styled.p`
   line-height: 15px;
 `;
 export const ListItemContainer = styled.div`
-  border-top: 1px solid #ddd;
   padding-top: 5px;
 `;
 export const LikedHeartFlex = styled.div`

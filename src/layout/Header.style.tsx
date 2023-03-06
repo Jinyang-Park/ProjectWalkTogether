@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import ComeLogo from '../../src/assets/logobyollae.svg';
 
 export const NavContainer = styled.div`
   height: 52px;
@@ -7,12 +8,25 @@ export const NavContainer = styled.div`
   width: 100%;
   border-bottom: 0.5px solid rgba(190, 197, 215, 1);
 `;
+export const OllaeLogo = styled.img`
+  width: 35px;
+  height: 35px;
+
+  image: url(${ComeLogo});
+`;
+export const OllaeBox = styled.div`
+  display: flex;
+`;
+
+export const OllaeText = styled.p`
+  font-size: 20px;
+  font-family: 'SUITEBold';
+`;
 
 export const Nav = styled.div`
   display: flex;
   margin: auto;
   width: 868px;
-
   align-items: center;
   justify-content: space-between;
 `;
@@ -29,11 +43,8 @@ export const NavLi = styled.li`
 `;
 export const NavText = styled(Link)`
   text-decoration: none;
-  color: black;
-
   font-family: 'SUITERegular';
   letter-spacing: -2px;
-  font-size: 16px;
 `;
 export const LoginButton = styled.button`
   border: none;
@@ -42,14 +53,13 @@ export const LoginButton = styled.button`
   margin-top: 10px;
   padding: 5px;
   border-radius: 5px;
-  font-family: 'SUITERegular';
-  letter-spacing: -0.1px;
   width: 100px;
   height: 40px;
-
   /* background: blue; */
   font-size: 12px;
   color: black;
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
 `;
 export const NavEtc = styled.div`
   display: flex;
@@ -57,7 +67,6 @@ export const NavEtc = styled.div`
 `;
 export const Profile = styled.div`
   padding-top: 0.625rem;
-
   font-size: 15px;
 `;
 export const Logo = styled.img`
@@ -99,7 +108,6 @@ export const DropNav = styled.nav<{ isDropped: boolean }>`
   left: 50%;
   width: 100px;
   text-align: center;
-  font-family: 'SUITERegular';
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   opacity: 0;
@@ -107,15 +115,6 @@ export const DropNav = styled.nav<{ isDropped: boolean }>`
   transform: translate(-50%, -20px);
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
   z-index: 9;
-  &:after {
-    content: '';
-    height: 0;
-    width: 0;
-    position: absolute;
-    top: -3px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
   ${({ isDropped }) =>
     isDropped &&
     css`
@@ -137,7 +136,6 @@ export const AlarmButton = styled.button`
   border-radius: 5px;
   width: 100px;
   height: 40px;
-
   background: blue;
 `;
 
@@ -146,12 +144,10 @@ export const NotificationsBox = styled.div`
   position: absolute;
   right: -100px;
   width: 210px;
-
   text-align: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   transform: translate(-50%, -20px);
-
   /* opacity: 0; */
 `;
 

@@ -23,6 +23,7 @@ interface postProps {
   Hashtag_Posting: any;
 }
 
+//뜨거운 신발
 const LikesComponent = () => {
   const setParams = useSetRecoilState(paramsState);
   const { id } = useParams();
@@ -52,13 +53,27 @@ const LikesComponent = () => {
   // import { useSetRecoilState } from 'recoil
   const navigate = useNavigate();
 
-  [...postList].sort((a, b) => b.LikedUsers.length - a.LikedUsers.length);
+  //// FilteredDate를 가지고 조회순으로 정렬해주는 함수이다.
+  // const DoubledFilterDate =
+  //   viewCount === '조회순'
+  //     ? [...FilteredDate].sort((a, b) => b.View - a.View)
+  //     : viewCount === '좋아요순'
+  //     ? [...FilteredDate].sort(
+  //         (a, b) => b.LikedUsers.length - a.LikedUsers.length
+  //       )
+  //     : FilteredDate;
+
+  // switch문 찾아보기
+
   return (
     <CommonStyles>
       <S.LikedListItem>
-        {postList.slice(0, 8).map((post: any) => {
-          return <CardSection key={post.id} post={post} />;
-        })}
+        {postList
+          .slice(0, 8)
+          .sort((a, b) => b.View - a.View)
+          .map((post: any) => {
+            return <CardSection key={post.id} post={post} />;
+          })}
       </S.LikedListItem>
     </CommonStyles>
   );

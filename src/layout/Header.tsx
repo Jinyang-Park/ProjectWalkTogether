@@ -24,13 +24,13 @@ const Header = () => {
   const [kakaoCode, setKakaoCode] = useRecoilState(kakaoState);
   const [alarm, setAlarm] = useState(0);
 
-  const getKakaoCode = () => {
-    const code = new URL(window.location.href).searchParams.get('code');
-    if (code) {
-      setKakaoCode(code);
-      console.log(code);
-    }
-  };
+  // const getKakaoCode = () => {
+  //   const code = new URL(window.location.href).searchParams.get('code');
+  //   if (code) {
+  //     setKakaoCode(code);
+  //     console.log(code);
+  //   }
+  // };
 
   const handleLogin = () => {
     navigate('login');
@@ -38,14 +38,17 @@ const Header = () => {
   const gotomy = () => {
     navigate('mypage');
   };
+  const home = () => {
+    navigate('/');
+  };
 
   // const kakaoUser = sessionStorage.getItem('id');
-  const kakaoUser = useRecoilValue(kakaoUserState);
+
   const sessionId = useRecoilValue(username);
 
   console.log('alarm:', alarm);
 
-  getKakaoCode();
+  // getKakaoCode();
   //const currentUser = authService.currentUser;
   //const userNickName = currentUser?.displayName;
   //localId !== null
@@ -55,16 +58,17 @@ const Header = () => {
       <S.Nav>
         <S.NavUl>
           <S.NavLi>
-            <S.NavText to='/'>홈</S.NavText>
+            <S.OllaeBox onClick={home}>
+              <S.OllaeLogo />
+              <S.OllaeText>올래</S.OllaeText>
+            </S.OllaeBox>
           </S.NavLi>
-          <S.NavLi>
-            <S.NavText to='/map'>지도</S.NavText>
-          </S.NavLi>
+
           {/* <S.NavLi>
             <S.NavText to="/chat">chat</S.NavText>
           </S.NavLi> */}
           <S.NavLi>
-            {!loggedIn && !kakaoCode ? (
+            {loggedIn === false ? (
               <S.NavText
                 onClick={() => {
                   alert('로그인을 해주세요!');
@@ -78,7 +82,7 @@ const Header = () => {
             )}
           </S.NavLi>
           <S.NavLi>
-            {!loggedIn && !kakaoCode ? (
+            {loggedIn === false ? (
               <S.NavText
                 onClick={() => {
                   alert('로그인을 해주세요!');
@@ -91,7 +95,9 @@ const Header = () => {
               <S.NavText to='/chat'>채 팅</S.NavText>
             )}
           </S.NavLi>
-
+          <S.NavLi>
+            <S.NavText to='/map'>지도뷰</S.NavText>
+          </S.NavLi>
           {/* <S.NavLi>
             <S.NavText to="/detailpage">상세</S.NavText>
           </S.NavLi> */}
@@ -100,7 +106,7 @@ const Header = () => {
         <S.NavEtc>
           {/* <S.Profile onClick={gotomy}>닉네임</S.Profile> */}
           <S.AlarmContainer>
-            {loggedIn || kakaoCode ? (
+            {loggedIn ? (
               <S.DropdownButton onClick={alarmHandler} ref={alarmRef}>
                 <S.AlarmContainer>
                   <S.Img
@@ -122,10 +128,10 @@ const Header = () => {
           </S.AlarmContainer>
 
           <S.MyPageContainer>
-            {loggedIn || kakaoCode ? (
+            {loggedIn ? (
               <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
                 <S.LoginButton>
-                  <div>{sessionId || kakaoUser}님</div>
+                  <div>{sessionId}님</div>
                 </S.LoginButton>
 
                 <S.DropNav isDropped={myPageIsOpen}>
