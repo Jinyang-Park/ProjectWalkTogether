@@ -23,13 +23,21 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 interface SetProps {
   SetTochattingBoxUid: React.Dispatch<React.SetStateAction<string>>;
   SetTochattingBoxRoomIndex: React.Dispatch<React.SetStateAction<string>>;
+  SetTochattingBoxOpponenRoomIndex: React.Dispatch<
+    React.SetStateAction<string>
+  >;
   tochattingBoxRoomIndex: string;
+  tochattingBoxOpponentRoomIndex: string;
+  tochattingBoxUid: string;
 }
 
 function ChattingList({
   SetTochattingBoxUid,
   SetTochattingBoxRoomIndex,
+  SetTochattingBoxOpponenRoomIndex,
   tochattingBoxRoomIndex,
+  tochattingBoxUid,
+  tochattingBoxOpponentRoomIndex,
 }: SetProps) {
   const mychatlist = useRecoilValue(currentUserUid);
   const [chatList, setChatList] = useState<any>([]);
@@ -37,12 +45,17 @@ function ChattingList({
   const [filtering, setFiltering] = useState([]);
   const [tochattingBoxRoomId, SetTochattingBoxRoomId] =
     useRecoilState<string>(tochattingboxroomid);
+
   const [tochattingBoxNickname, SetTochattingBoxNickname] =
     useRecoilState<string>(tochattingboxnickname);
   const [tochattingBoxProfileImg, SetTochattingBoxProfileImg] =
     useRecoilState<string>(tochattingboxprofileimg);
 
-  const RoomIndex = tochattingBoxRoomIndex;
+  // 채팅리스트 클릭시 Chattingbox로 이동하는 데이터를 ChattingList 로 다시 옮긴다.
+  // const opponentuid = tochattingBoxUid;
+  const myRoomIndex = tochattingBoxRoomIndex;
+  // const opponentRoomIndex = tochattingBoxOpponentRoomIndex;
+  const currentUid = useRecoilValue(currentUserUid);
 
   const getChattingList = async () => {
     if (mychatlist === '') {
@@ -67,18 +80,30 @@ function ChattingList({
     });
   };
 
-  // const isActiveUpdate = async () => {
-  //   const updatDoc = doc(
-  //     dbService,
-  //     'ChattingUsers',
-  //     mychatlist,
-  //     'chattingListroom',
-  //     RoomIndex
-  //   );
-  //   updateDoc(updatDoc, {
-  //     isActive: false,
-  //   });
-  // };
+  const isActiveUpdate = async () => {
+    const updatMyDoc = doc(
+      dbService,
+      'ChattingUsers',
+      currentUid,
+      'chattingListroom',
+      myRoomIndex
+    );
+    // const updatYourDoc = doc(
+    //   dbService,
+    //   'ChattingUsers',
+    //   opponentuid,
+    //   'chattingListroom',
+    //   opponentRoomIndex
+    // );
+    updateDoc(updatMyDoc, {
+      isActive: 'empty',
+      createdAt: new Date(),
+    });
+    // updateDoc(updatYourDoc, {
+    //   isActive: 'empty',
+    //   createdAt: new Date(),
+    // });
+  };
 
   useEffect(() => {
     getChattingList();
@@ -107,10 +132,14 @@ function ChattingList({
                     SetTochattingBoxRoomId(user.combineId);
                     SetTochattingBoxNickname(user.nickname);
                     SetTochattingBoxProfileImg(user.profile);
+
                     SetTochattingBoxUid(user.opponentUserUid);
-                    SetTochattingBoxRoomIndex(user.id);
-                    // isActiveUpdate();
-                    SetIsActivList(user.id);
+                    SetTochattingBoxRoomIndex(user.myRoomId);
+                    SetTochattingBoxOpponenRoomIndex(user.posterChatroomId);
+
+                    isActiveUpdate();
+
+                    // SetIsActivList(false);
                   }}
                 >
                   <S.ChattingUserContents>
@@ -124,9 +153,7 @@ function ChattingList({
                       </S.LastConversation>
                     </S.NickNMessage>
                   </S.ChattingUserContents>
-                  {isAcitList === user.id ? (
-                    <></>
-                  ) : user.isActive === 'filled' ? (
+                  {user.isActive === 'filled' ? (
                     <S.GreenLight></S.GreenLight>
                   ) : (
                     <></>

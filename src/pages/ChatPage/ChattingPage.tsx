@@ -12,6 +12,8 @@ const ChattingPage = () => {
   const [tochattingBoxUid, SetTochattingBoxUid] = useState<string>('');
   const [tochattingBoxRoomIndex, SetTochattingBoxRoomIndex] =
     useState<string>('');
+  const [tochattingBoxOpponentRoomIndex, SetTochattingBoxOpponenRoomIndex] =
+    useState<string>('');
 
   return (
     <CommonStyles>
@@ -20,11 +22,15 @@ const ChattingPage = () => {
           <ChattingList
             SetTochattingBoxUid={SetTochattingBoxUid}
             SetTochattingBoxRoomIndex={SetTochattingBoxRoomIndex}
+            SetTochattingBoxOpponenRoomIndex={SetTochattingBoxOpponenRoomIndex}
             tochattingBoxRoomIndex={tochattingBoxRoomIndex}
+            tochattingBoxUid={tochattingBoxUid}
+            tochattingBoxOpponentRoomIndex={tochattingBoxOpponentRoomIndex}
           />
           <ChattingBox
             tochattingBoxUid={tochattingBoxUid}
             tochattingBoxRoomIndex={tochattingBoxRoomIndex}
+            tochattingBoxOpponentRoomIndex={tochattingBoxOpponentRoomIndex}
           />
         </Boxcontainer>
       </div>

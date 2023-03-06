@@ -27,9 +27,14 @@ import { useRecoilValue } from 'recoil';
 interface SetProps {
   tochattingBoxUid: string;
   tochattingBoxRoomIndex: string;
+  tochattingBoxOpponentRoomIndex: string;
 }
 
-function ChattingBox({ tochattingBoxUid, tochattingBoxRoomIndex }: SetProps) {
+function ChattingBox({
+  tochattingBoxUid,
+  tochattingBoxRoomIndex,
+  tochattingBoxOpponentRoomIndex,
+}: SetProps) {
   const [message, setMessage] = useState('');
   const [getmessage, setGetMessage] = useState<any>([]);
   //인풋값 초기화
@@ -39,7 +44,8 @@ function ChattingBox({ tochattingBoxUid, tochattingBoxRoomIndex }: SetProps) {
   const nickname = useRecoilValue(tochattingboxnickname);
   const profileImg = useRecoilValue(tochattingboxprofileimg);
   const opponentuid = tochattingBoxUid;
-  const roomIndex = tochattingBoxRoomIndex;
+  const myRoomIndex = tochattingBoxRoomIndex;
+  const opponentRoomIndex = tochattingBoxOpponentRoomIndex;
   const currentUid = useRecoilValue(currentUserUid);
 
   // const roomId = userInfo.roomId;
@@ -72,26 +78,26 @@ function ChattingBox({ tochattingBoxUid, tochattingBoxRoomIndex }: SetProps) {
           'ChattingUsers',
           currentUid,
           'chattingListroom',
-          roomIndex
+          myRoomIndex
         );
-        // const updatYourDoc = doc(
-        //   dbService,
-        //   'ChattingUsers',
-        //   opponentuid,
-        //   'chattingListroom',
-        //   roomIndex
-        // );
+        const updatYourDoc = doc(
+          dbService,
+          'ChattingUsers',
+          opponentuid,
+          'chattingListroom',
+          opponentRoomIndex
+        );
         updateDoc(updatMyDoc, {
-          isActive: 'filled',
+          isActive: 'empty',
           lastConversation: message,
           createdAt: new Date(),
         });
 
-        // updateDoc(updatYourDoc, {
-        //   isActive: 'filled',
-        //   lastConversation: message,
-        //   createdAt: new Date(),
-        // });
+        updateDoc(updatYourDoc, {
+          isActive: 'filled',
+          lastConversation: message,
+          createdAt: new Date(),
+        });
       });
       setMessage('');
 

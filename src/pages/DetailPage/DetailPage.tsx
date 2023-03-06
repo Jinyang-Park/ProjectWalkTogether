@@ -78,6 +78,7 @@ const DetailPage = () => {
   // const getPostingsThumbnail = getPostings.ThumbnailURL_Posting;
   //게시글작성자의 chattingListroom의 doc id
   const posterChatroomId = uuidv4();
+  //현재 유저의 chattingListroom의 doc id
   const applicantChatroomId = uuidv4();
 
   // 게시글 id db 가져오기
@@ -169,23 +170,32 @@ const DetailPage = () => {
         {
           combineId,
           profile: UID.myporfile,
-          uid: UID.useruid,
           nickname: UID.mynickname,
           createdAt: new Date(),
-          opponentUserUid: getPostingUID,
+          uid: getPostings.UID,
+          opponentUserUid: UID.useruid,
+          posterChatroomId: applicantChatroomId,
+          myRoomId: posterChatroomId,
         }
       );
       //현재 유저의 chattingroom에 저장되는 값들
       await setDoc(
-        doc(dbService, 'ChattingUsers', `${CurrentUid}`, 'chattingListroom'),
+        doc(
+          dbService,
+          'ChattingUsers',
+          `${CurrentUid}`,
+          'chattingListroom',
+          applicantChatroomId
+        ),
         {
           combineId,
           profile: getPostings.ThumbnailURL_Posting,
-          uid: getPostings.UID,
           nickname: getPostings.Nickname,
           createdAt: new Date(),
-          opponentUserUid: CurrentUid,
+          uid: CurrentUid,
+          opponentUserUid: getPostings.UID,
           posterChatroomId: posterChatroomId,
+          myRoomId: applicantChatroomId,
         }
       );
 
