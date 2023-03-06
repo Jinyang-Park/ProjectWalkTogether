@@ -79,32 +79,47 @@ const Comments = ({ param }: postProps) => {
   const addCommentHandler = async (e: React.MouseEvent) => {
     e.preventDefault();
     if (!authService.currentUser) {
-      confirmAlert({
-        message: '댓글은 로그인 후 작성이 가능합니다.',
-        buttons: [
-          {
-            label: '로그인하러 가기',
-            onClick: () => navigate('/login'),
-          },
-        ],
-      });
+      MessageWindow.showWindow(
+        new MessageWindowProperties(
+          true,
+          '댓글은 로그인 후 작성이 가능합니다',
+          '',
+          [
+            {
+              text: '로그인하러 가기',
+              callback: () => navigate('/login'),
+            },
+          ],
+          MessageWindowLogoType.Flower
+        ),
+        setState
+      );
+      // confirmAlert({
+      //   message: '댓글은 로그인 후 작성이 가능합니다.',
+      //   buttons: [
+      //     {
+      //       label: '로그인하러 가기',
+      //       onClick: () => navigate('/login'),
+      //     },
+      //   ],
+      // });
 
-      return;
+      // return;
     }
 
-    if (!inputComment) {
-      confirmAlert({
-        message: '댓글을 입력해주세요.',
-        buttons: [
-          {
-            label: '댓글 입력하기',
-            onClick: () => 'return false',
-          },
-        ],
-      });
+    // if (!inputComment) {
+    //   confirmAlert({
+    //     message: '댓글을 입력해주세요.',
+    //     buttons: [
+    //       {
+    //         label: '댓글 입력하기',
+    //         onClick: () => 'return false',
+    //       },
+    //     ],
+    //   });
 
-      return;
-    }
+    //   return;
+    // }
     await addDoc(collection(dbService, 'comments'), newComments);
     setInputComment('');
   };
@@ -128,6 +143,7 @@ const Comments = ({ param }: postProps) => {
       new MessageWindowProperties(
         true,
         '댓글을 취소하시겠습니까?',
+        '',
         [
           {
             text: '네',
@@ -138,7 +154,7 @@ const Comments = ({ param }: postProps) => {
             callback: () => setInputComment,
           },
         ],
-        MessageWindowLogoType.Confetti
+        MessageWindowLogoType.Perplex
       ),
       setState
     );
@@ -244,15 +260,16 @@ const Comments = ({ param }: postProps) => {
     MessageWindow.showWindow(
       new MessageWindowProperties(
         true,
-        '정말 댓글을 삭제하시겠습니까?',
+        '댓글을 삭제하실 건가요?',
+        '삭제한 댓글을 되돌릴 수 없어요',
         [
           {
-            text: '네',
+            text: '댓글 삭제하기',
             callback: async () =>
               await deleteDoc(doc(dbService, 'comments', documentId)),
           },
           {
-            text: '아니오',
+            text: '취소하기',
             callback: () => {
               return;
             },
@@ -280,117 +297,142 @@ const Comments = ({ param }: postProps) => {
             }}
           />
 
-          <S.CommentCancelBtn onClick={CancelCommentHandler}>
+          <S.CommentCancelBtn
+            onClick={CancelCommentHandler}
+            //댓글이 0일때 버튼 비활성화
+            disabled={inputComment.length === 0}
+          >
             취소하기
           </S.CommentCancelBtn>
-          <S.CommentBtn onClick={addCommentHandler}>등록하기</S.CommentBtn>
+          <S.CommentBtn
+            onClick={addCommentHandler}
+            //댓글이 0일때 버튼 비활성화
+            disabled={inputComment.length === 0}
+          >
+            등록하기
+          </S.CommentBtn>
         </S.CommentUserImgWrapper>
       </S.DetailCommentContainer>
       {/* 리뷰 리스트 */}
-      <S.CommentListWrapper>
-        {myComment.map((comment: any) => {
-          return (
-            <S.CommentList key={comment.id}>
-              {/* 현재 user가 쓴 글인지 판별 */}
-              {comment?.UID !== authService.currentUser?.uid ? (
-                <S.CommentLi>
-                  <S.CommentProfileImg src={comment.ProfileImg} />
-                  <S.CommentWrapper>
-                    <S.CommentUserName>{comment.NickName}</S.CommentUserName>
-                    <S.CommentBox>
-                      <S.CommentInput>
-                        {comment.Description_Comments}
-                      </S.CommentInput>
-                      <S.CommentDataWrapper>
-                        <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
-                      </S.CommentDataWrapper>
-                    </S.CommentBox>
-                  </S.CommentWrapper>
-                </S.CommentLi>
-              ) : (
-                //현재 유저가 쓴 글이면 수정, 삭제 버튼까지 보여준다.
-                <S.CommentLi>
-                  {comment.ProfileImg === null ? (
-                    <S.CommentProfilediv>
-                      <S.CommentProfileImg
-                        src={
-                          require('../../../assets/DetailPageIcon/profileIcon.svg')
-                            .default
-                        }
-                      />
-                    </S.CommentProfilediv>
-                  ) : (
-                    <S.CommentProfilediv>
-                      <S.CommentProfileImg src={comment.ProfileImg} />
-                    </S.CommentProfilediv>
-                  )}
-                  <S.CommentWrapper>
-                    <S.CommentUserName>{comment.NickName}</S.CommentUserName>
-                    <S.CommentBox>
-                      {comment.isEdit ? (
-                        <S.Form>
-                          <S.EditForm
-                            onChange={(e) => setEditContent(e.target.value)}
-                            value={editContent}
-                          ></S.EditForm>
-                        </S.Form>
-                      ) : (
+      {myComment.length > 0 && (
+        <S.CommentListWrapper>
+          {myComment.map((comment: any) => {
+            return (
+              <S.CommentList key={comment.id}>
+                {/* 현재 user가 쓴 글인지 판별 */}
+                {comment?.UID !== authService.currentUser?.uid ? (
+                  <S.CommentLi>
+                    {!comment.ProfileImg ? (
+                      <S.CommentProfilediv>
+                        <S.CommentProfileIcon
+                          src={
+                            require('../../../assets/DetailPageIcon/profileIcon.svg')
+                              .default
+                          }
+                        />
+                      </S.CommentProfilediv>
+                    ) : (
+                      <S.CommentProfilediv>
+                        <S.CommentProfileImg src={comment.ProfileImg} />
+                      </S.CommentProfilediv>
+                    )}
+                    <S.CommentWrapper>
+                      <S.CommentUserName>{comment.NickName}</S.CommentUserName>
+                      <S.CommentBox>
                         <S.CommentInput>
                           {comment.Description_Comments}
                         </S.CommentInput>
-                      )}
-                      <S.CommentContainer>
-                        <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
-                        <S.CommentCancelDeleteBtnWrapper>
-                          {comment.isEdit ? (
-                            <S.CommentEditBtn
-                              onClick={() =>
-                                EditUpdateHandler(comment.documentId)
-                              }
-                            >
-                              완료하기
-                            </S.CommentEditBtn>
-                          ) : // isEditing이 false이면 즉 내가 클릭하지 않은 댓글들은 수정하기 버튼이 사라진다.
-                          // 내가 클릭한 댓글이 true가 되면 나머지 댓글들은 수정하기 버튼이 사라진다.
+                        <S.CommentDataWrapper>
+                          <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
+                        </S.CommentDataWrapper>
+                      </S.CommentBox>
+                    </S.CommentWrapper>
+                  </S.CommentLi>
+                ) : (
+                  //현재 유저가 쓴 글이면 수정, 삭제 버튼까지 보여준다.
+                  <S.CommentLi>
+                    {!comment.ProfileImg ? (
+                      <S.CommentProfilediv>
+                        <S.CommentProfileIcon
+                          src={
+                            require('../../../assets/DetailPageIcon/profileIcon.svg')
+                              .default
+                          }
+                        />
+                      </S.CommentProfilediv>
+                    ) : (
+                      <S.CommentProfilediv>
+                        <S.CommentProfileImg src={comment.ProfileImg} />
+                      </S.CommentProfilediv>
+                    )}
+                    <S.CommentWrapper>
+                      <S.CommentUserName>{comment.NickName}</S.CommentUserName>
+                      <S.CommentBox>
+                        {comment.isEdit ? (
+                          <S.Form>
+                            <S.EditForm
+                              onChange={(e) => setEditContent(e.target.value)}
+                              value={editContent}
+                            ></S.EditForm>
+                          </S.Form>
+                        ) : (
+                          <S.CommentInput>
+                            {comment.Description_Comments}
+                          </S.CommentInput>
+                        )}
+                        <S.CommentContainer>
+                          <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
+                          <S.CommentCancelDeleteBtnWrapper>
+                            {comment.isEdit ? (
+                              <S.CommentEditBtn
+                                onClick={() =>
+                                  EditUpdateHandler(comment.documentId)
+                                }
+                              >
+                                완료하기
+                              </S.CommentEditBtn>
+                            ) : // isEditing이 false이면 즉 내가 클릭하지 않은 댓글들은 수정하기 버튼이 사라진다.
+                            // 내가 클릭한 댓글이 true가 되면 나머지 댓글들은 수정하기 버튼이 사라진다.
 
-                          isEditing ? (
-                            <></>
-                          ) : (
-                            <S.CommentEditBtn
-                              onClick={() =>
-                                EditCommentHandler(comment.documentId)
-                              }
-                            >
-                              수정하기
-                            </S.CommentEditBtn>
-                          )}
-                          {comment.isEdit ? (
-                            <S.CommentDeleteBtn
-                              onClick={() => {
-                                CancelHandler(comment.documentId);
-                              }}
-                            >
-                              취소하기
-                            </S.CommentDeleteBtn>
-                          ) : (
-                            <S.CommentDeleteBtn
-                              onClick={() => {
-                                DeleteCommentHandler(comment.documentId);
-                              }}
-                            >
-                              삭제하기
-                            </S.CommentDeleteBtn>
-                          )}
-                        </S.CommentCancelDeleteBtnWrapper>
-                      </S.CommentContainer>
-                    </S.CommentBox>
-                  </S.CommentWrapper>
-                </S.CommentLi>
-              )}
-            </S.CommentList>
-          );
-        })}
-      </S.CommentListWrapper>
+                            isEditing ? (
+                              <></>
+                            ) : (
+                              <S.CommentEditBtn
+                                onClick={() =>
+                                  EditCommentHandler(comment.documentId)
+                                }
+                              >
+                                수정하기
+                              </S.CommentEditBtn>
+                            )}
+                            {comment.isEdit ? (
+                              <S.CommentDeleteBtn
+                                onClick={() => {
+                                  CancelHandler(comment.documentId);
+                                }}
+                              >
+                                취소하기
+                              </S.CommentDeleteBtn>
+                            ) : (
+                              <S.CommentDeleteBtn
+                                onClick={() => {
+                                  DeleteCommentHandler(comment.documentId);
+                                }}
+                              >
+                                삭제하기
+                              </S.CommentDeleteBtn>
+                            )}
+                          </S.CommentCancelDeleteBtnWrapper>
+                        </S.CommentContainer>
+                      </S.CommentBox>
+                    </S.CommentWrapper>
+                  </S.CommentLi>
+                )}
+              </S.CommentList>
+            );
+          })}
+        </S.CommentListWrapper>
+      )}
     </S.DetailCommentsWrapper>
   );
 };

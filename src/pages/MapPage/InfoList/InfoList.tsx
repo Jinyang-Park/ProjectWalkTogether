@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './InfoList.style';
 import { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -14,9 +14,21 @@ import {
   LikeSortInput,
   NewSortInput,
   Cetegory,
+  FilterSelectedDateForMapPage,
+  dateType1ForMapPage,
+  viewCountForMapPage,
 } from '../../../Rocoil/Atom';
 
 import { useSearch } from '../../../hooks/useSearch';
+import {
+  query,
+  collection,
+  where,
+  orderBy,
+  getDocs,
+  onSnapshot,
+} from 'firebase/firestore';
+import { dbService } from '../../../common/firebase';
 
 import { useParams, useNavigate } from 'react-router-dom';
 import { paramsState } from '../../../Rocoil/Atom';
@@ -27,6 +39,20 @@ import CardSection from './../../../components/CardSection/CardSection';
 const InfoList = ({ Post }) => {
   const navigate = useNavigate();
   const setParams = useSetRecoilState(paramsState);
+  const [postings, setPostings] = useState<any>([]);
+
+  const FilterSelectedDate = useRecoilValue(FilterSelectedDateForMapPage);
+  // recoilvalue 로 viewCountForMapPage 를 받아온다.
+  const viewCount = useRecoilValue(viewCountForMapPage);
+
+  const DateType1 = useRecoilValue(dateType1ForMapPage);
+  console.log('DateType1', DateType1);
+  const [SelectedDate, setSelectedDate] = useState('');
+  // DateType1 을 받아와서 SelectedDate 에 넣어준다.
+  useEffect(() => {
+    setSelectedDate(DateType1);
+  }, [DateType1]);
+  console.log('SelectedDate', SelectedDate);
 
   const Category = useRecoilValue(Cetegory);
   const postpostpost =
@@ -34,171 +60,90 @@ const InfoList = ({ Post }) => {
       ? Post.filter((x) => x.Category_Posting === Category)
       : Post;
 
-  const [CategoryAll, setCategoryAll] = useRecoilState(CategoryAllInput); // 카테고리 전체
-  const [SelectedCategory, setSelectedCategory] = useRecoilState(
-    SelectedCategoryInput
-  ); // 선택된 카테고리
+  // 필터링 필요한지 아닌지
+  const [meetDate, setMeetDate] = useRecoilState(FilterSelectedDateForMapPage);
+  const isDateSpecified = meetDate !== '';
 
-  const [DateAll, setDateAll] = useRecoilState(DateAllInput); // 날짜 전체
-  const [SelectedDate, setSelectedDate] = useRecoilState(SelectedDateInput); // 선택된 날짜
+  //! 여기부터 Category에서 가져옴
+  useEffect(() => {
+    const isAll = Category === '전체';
 
-  const [LocationAll, setLocationAll] = useRecoilState(LocationAllInput); // 위치 전체
-  const [SelectedLocation, setSelectedLocation] = useRecoilState(
-    SelectedLocationInput
-  ); // 선택된 위치
+    // 카테고리에서 전체를 클릭했을때 where 없애는 코드문
+    const c = collection(dbService, 'Post');
+    const w = where('Category_Posting', '==', Category);
+    const o = orderBy('createdAt', 'desc');
+    const q = isAll ? query(c, o) : query(c, w, o);
 
-  // 날짜 순 정렬
-  const [DateSort, setDateSort] = useRecoilState(DateSortInput);
+    onSnapshot(q, (snapshot) => {
+      const getCategoryList = snapshot.docs.map((doc) => {
+        const CategoryList = {
+          id: doc.id,
+          ...doc.data(),
+        };
 
-  // 조회수 순 정렬
-  const [ViewSort, setViewSort] = useRecoilState(ViewSortInput);
+        return CategoryList;
+      });
 
-  // 최신순 정렬
-  const [NewSort, setNewSort] = useRecoilState(NewSortInput);
+      // 필터링 필요한지 아닌지
+      const isDateSpecified = meetDate !== '';
 
-  //! 함수를 리코일에 담기 위해서는 Selector를 사용해야 한다.
+      // getCategoryList를 리턴함. 필터링할 필요가 있으면 필터링해줌.
+      const getListFilteredIfNecessary = () => {
+        if (isDateSpecified)
+          return getCategoryList.filter(
+            (post: any) => post.RsvDate_Posting === SelectedDate
+          );
 
-  // 카테고리 필터링
-  const CategoryFilter = (e) => {
-    if (e.target.checked) {
-      setSelectedCategory([...SelectedCategory, e.target.value]);
-    } else {
-      setSelectedCategory(
-        SelectedCategory.filter((category) => category !== e.target.value)
-      );
+        return getCategoryList;
+      };
+
+      // getCategoryList() 호출해서 setPostings()함
+      setPostings(getListFilteredIfNecessary());
+    });
+  }, [Category]);
+
+  // FilterDate는 DoubleFilterDate를 위해 쓰는 코드이다.
+  const FilteredDate =
+    SelectedDate.length < 14
+      ? postings.filter((post: any) => post.RsvDate_Posting === SelectedDate)
+      : postings;
+
+  // switch문 찾아보기
+  const DoubleFilteredDateFunction = () => {
+    switch (viewCount) {
+      case '조회순':
+        return [...FilteredDate].sort((a, b) => b.View - a.View);
+      case '좋아요순':
+        return [...FilteredDate].sort(
+          (a, b) => b.LikedUsers.length - a.LikedUsers.length
+        );
+      default:
+        return FilteredDate;
     }
   };
 
-  // 날짜 필터링
-  const DateFilter = (e) => {
-    if (e.target.checked) {
-      setSelectedDate([...SelectedDate, e.target.value]);
-    } else {
-      setSelectedDate(SelectedDate.filter((date) => date !== e.target.value));
-    }
-  };
-
-  // 위치 필터링
-  const LocationFilter = (e) => {
-    if (e.target.checked) {
-      setSelectedLocation([...SelectedLocation, e.target.value]);
-    } else {
-      setSelectedLocation(
-        SelectedLocation.filter((location) => location !== e.target.value)
-      );
-    }
-  };
-
-  // 카테고리 필터링
-  const CategoryFilterFunc = (post) => {
-    if (SelectedCategory.length === 0) {
-      return true;
-    } else {
-      return SelectedCategory.includes(post.CategoryName_Posting);
-    }
-  };
-
-  // 날짜 필터링
-  const DateFilterFunc = (post) => {
-    if (SelectedDate.length === 0) {
-      return true;
-    } else {
-      return SelectedDate.includes(post.Date_Posting);
-    }
-  };
-
-  // 위치 필터링
-  const LocationFilterFunc = (post) => {
-    if (SelectedLocation.length === 0) {
-      return true;
-    } else {
-      return SelectedLocation.includes(post.Location_Posting);
-    }
-  };
-
-  // 날짜 정렬
-  const DateSortFunc = (a, b) => {
-    if (DateSort) {
-      return a.Date_Posting < b.Date_Posting ? 1 : -1;
-    } else {
-      return a.Date_Posting > b.Date_Posting ? 1 : -1;
-    }
-  };
-
-  // 조회수 정렬
-  const ViewSortFunc = (a, b) => {
-    if (ViewSort) {
-      return a.View_Posting < b.View_Posting ? 1 : -1;
-    } else {
-      return a.View_Posting > b.View_Posting ? 1 : -1;
-    }
-  };
-
-  // 최신순 정렬 (인자에 있는 a, b는 Post의 요소)
-  const NewSortFunc = (a, b) => {
-    if (NewSort) {
-      return a.PostingID_Posting < b.PostingID_Posting ? 1 : -1;
-    } else {
-      return a.PostingID_Posting > b.PostingID_Posting ? 1 : -1;
-    }
-  };
-
-  // 필터링
-  const FilterFunc = (post) => {
-    return (
-      CategoryFilterFunc(post) &&
-      DateFilterFunc(post) &&
-      LocationFilterFunc(post)
-    );
-  };
-
-  // 정렬
-  const SortFunc = (a, b) => {
-    return DateSortFunc(a, b) || ViewSortFunc(a, b) || NewSortFunc(a, b);
-  };
-
-  // 검색결과
-  const Result = Post.filter(FilterFunc).sort(SortFunc);
-
-  //필터링을 위한 함수
-  const Item = ({ item }) => {
-    const [isSelected, setIsSelected] = useState(false);
-
-    const handlePress = () => {
-      setIsSelected(!isSelected);
-      if (isSelected) {
-        setSelectedCategory(SelectedCategory.filter((e) => e !== item));
-      } else {
-        setSelectedCategory([...SelectedCategory, item]);
-      }
-    };
-  };
-
-  // 카테고리 Form Submit 함수
-  const CategoryFormSubmit = (e) => {
-    e.preventDefault();
-    console.log(SelectedCategory);
-  };
-
-  // 날짜 Form Submit 함수
-  const DateFormSubmit = (e) => {
-    e.preventDefault();
-    console.log(SelectedDate);
-  };
-
-  // 위치 Form Submit 함수
-  const LocationFormSubmit = (e) => {
-    e.preventDefault();
-    console.log(SelectedLocation);
-  };
+  const DoubledFilterDate = DoubleFilteredDateFunction();
+  //! 여기까지 Category에서 가져옴
 
   return (
     <CommonStyles>
-      <S.SearchLineTotalCount>총 n 건의 검색결과</S.SearchLineTotalCount>
+      <S.SearchLineTotalCount>
+        총 {DoubledFilterDate.length} 건의 검색결과
+      </S.SearchLineTotalCount>
       <S.LikedListItem>
-        {postpostpost.map((post: any) => {
+        {/*검색 조건에 맞는 데이터가 없을 경우*/}
+        {DoubledFilterDate.length === 0 ? (
+          <S.NoResult>
+            <S.NoResultTitle>아쉽지만 해당 게시글이 없어요</S.NoResultTitle>
+          </S.NoResult>
+        ) : (
+          DoubledFilterDate.map((post: any) => {
+            return <CardSection key={post.id} post={post} />;
+          })
+        )}
+        {/* {postpostpost.map((post: any) => {
           return <CardSection key={post.id} post={post} />;
-        })}
+        })} */}
       </S.LikedListItem>
     </CommonStyles>
   );

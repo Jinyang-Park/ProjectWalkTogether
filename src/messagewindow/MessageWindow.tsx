@@ -55,48 +55,6 @@ export default class MessageWindow {
   ) {
     recoilSetStateFunction(props);
   }
-
-  // Shortcut for one button windows (버튼 1개 알림창 전용)
-  static showAlertWindow(
-    message: string,
-    buttonText: string,
-    buttonCallback: () => void,
-    recoilSetStateFunction: (arg0: MessageWindowProperties) => void
-  ) {
-    MessageWindow.showWindow(
-      new MessageWindowProperties(true, message, [
-        {
-          text: buttonText,
-          callback: buttonCallback,
-        },
-      ]),
-      recoilSetStateFunction
-    );
-  }
-
-  // Shortcut for two button windows (버튼 2개 알림창 전용)
-  static showConfirmWindow(
-    message: string,
-    yesButtonText: string,
-    yesButtonCallback: () => void,
-    noButtonText: string,
-    noButtonCallback: () => void,
-    recoilSetStateFunction: (arg0: MessageWindowProperties) => void
-  ) {
-    MessageWindow.showWindow(
-      new MessageWindowProperties(true, message, [
-        {
-          text: yesButtonText,
-          callback: yesButtonCallback,
-        },
-        {
-          text: noButtonText,
-          callback: noButtonCallback,
-        },
-      ]),
-      recoilSetStateFunction
-    );
-  }
 }
 
 export enum MessageWindowLogoType {
@@ -151,7 +109,6 @@ export function MessageWindowComponent() {
     width: 20px;
     height: 20px;
     margin-left: auto;
-
     background-color: transparent;
   `;
 
@@ -160,23 +117,41 @@ export function MessageWindowComponent() {
     height: 172px;
   `;
   const AlertTitle = styled.div`
+    letter-spacing: -2px;
     width: 275px;
     height: 36px;
     line-height: 150.8%;
     margin-top: 8px;
-
-    font-family: 'SUIT';
-    font-style: normal;
+    font-family: 'SUITERegular';
     font-weight: 600;
     font-size: 24px;
+    margin-bottom: 8px;
+  `;
+
+  const AlertMessage = styled.div`
+    letter-spacing: -2px;
+    font-family: 'SUITERegular';
+    height: 24px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150.8%;
+    text-align: center;
+    color: #7d8bae;
   `;
 
   const AlertButton = styled.button`
     width: 200px;
     height: 40px;
-
-    background: #7d8bae;
     border-radius: 32px;
+    border: 1px solid #bec5d7;
+    border-radius: 32px;
+    margin-bottom: 8px;
+    background: #ffffff;
+    color: #7d8bae;
+    &:hover {
+      background: #7d8bae;
+      color: #eef1f7;
+    }
   `;
 
   const AlertButtonContainer = styled.div`
@@ -229,10 +204,11 @@ export function MessageWindowComponent() {
                   setProps(new MessageWindowProperties());
                 }}
               >
-                <img src={CloseButton} alt='Close Button'></img>
+                {/* <img src={CloseButton} alt='Close Button'></img> */}
               </AlertCloseButton>
               {renderLogo()}
-              <AlertTitle>{props.message}</AlertTitle>
+              <AlertTitle>{props.title}</AlertTitle>
+              <AlertMessage>{props.message}</AlertMessage>
               <AlertButtonContainer>
                 {props.buttons.map((buttonData) => {
                   return (
@@ -259,6 +235,7 @@ export function MessageWindowComponent() {
 export class MessageWindowProperties {
   constructor(
     isVisible: boolean = false,
+    title: string = '',
     message: string = '',
     buttons: Array<{
       text: string;
@@ -267,12 +244,14 @@ export class MessageWindowProperties {
     logoType: MessageWindowLogoType = MessageWindowLogoType.None
   ) {
     this.isVisible = isVisible;
+    this.title = title;
     this.message = message;
     this.buttons = buttons;
     this.logoType = logoType;
   }
 
   isVisible: boolean;
+  title: string;
   message: string;
   logoType: MessageWindowLogoType;
 

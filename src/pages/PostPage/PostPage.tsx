@@ -301,6 +301,7 @@ const PostPage = () => {
       new MessageWindowProperties(
         true,
         '업로드 중입니다. 조금만 기다려주세요!',
+        '',
         [],
         MessageWindowLogoType.CryingFace
       ),
@@ -321,7 +322,6 @@ const PostPage = () => {
       // 수동으로 클리어해줘야 초기화됨.
       setTitle('');
       setDescription('');
-
       setTag([]);
       setMeetTime('');
 
