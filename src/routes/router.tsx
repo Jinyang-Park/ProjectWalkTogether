@@ -23,6 +23,7 @@ import MessageWindow, {
 import PostEditPage from '../pages/PostEditPage/PostEditPage';
 import MeetDateInitializer from './../components/MeetDateInitializer/MeetDateInitializer';
 import ChangePassword from '../pages/ChangePassword/ChangePassword';
+import ScrollToTopButton from './../components/ScrollToTopButton/ScrollToTopButton';
 
 const Router = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
@@ -50,6 +51,7 @@ const Router = () => {
         <Route path='/chat' element={<ChattingPage />} />
         <Route path='/changepassword' element={<ChangePassword />} />
       </Routes>
+      <ScrollToTopButton />
       <MeetDateInitializer />
       <Footer />
     </BrowserRouter>
