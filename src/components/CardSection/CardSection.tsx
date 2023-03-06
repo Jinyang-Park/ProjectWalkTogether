@@ -6,7 +6,7 @@ import { currentUserUid, paramsState } from '../../Rocoil/Atom';
 import { async } from '@firebase/util';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { ref } from 'firebase/storage';
-import { dbService } from '../../common/firebase';
+import { authService, dbService } from '../../common/firebase';
 import { red } from '@mui/material/colors';
 import CommonStyles from './../../styles/CommonStyles';
 
@@ -99,7 +99,6 @@ const CardSection = ({ post }: postProps) => {
       </S.CardSectionWrapper>
       <S.LikedHeartFlex>
         {likebtn ? (
-          // LikeBtnFill부분만 svg가 안된다...
           <S.LikeBtnFill
             src={require('../../assets/HeartFill2.svg').default}
             onClick={() => {

@@ -230,7 +230,7 @@ const PostPage = () => {
       return;
     }
 
-    if (Description.length < 1 || Description.length > 200) {
+    if (Description.length < 1 || Description.length > 150) {
       alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
       return;
     }

@@ -6,6 +6,7 @@ import { Bannerupload, ThumbnailUpload } from '../../../Rocoil/Atom';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
 import Tag from '../../../components/Tag';
+import useDetectClose from './../../../hooks/useDetectClose';
 
 interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
@@ -22,6 +23,8 @@ function MainPost({
   setPostCategory,
   postCategory,
 }: SetProps) {
+  // 모달 외부 클릭 시 닫기 customhook
+  const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
   const [posttitel, Setposttitle] = useRecoilState(TitleInput); //글 제목
   //const [postTag, setPostTag] = useState(''); //해쉬태그
   const [postdescription, SetDescription] = useRecoilState(DescriptionInput); //글 내용
@@ -89,7 +92,7 @@ function MainPost({
         <S.BoxPhoto>
           <label htmlFor='thumnail'>
             <S.ThumnailPhotoChange
-              src={thumbnail ? thumbnail : '/assets/blackboard.png'}
+              src={thumbnail ? thumbnail : 'assets/blackboard.png'}
             />
           </label>
           <S.ThumnailPhoto
@@ -102,22 +105,25 @@ function MainPost({
         </S.BoxPhoto>
 
         <S.BoxMain>
-          <S.CateogryWrapper
-            onClick={() => {
-              setShow(true);
-            }}
-          >
-            <S.CalendarIcon src={'/assets/calendar.png'} />
-            <S.CategoryTitle>{postCategory}</S.CategoryTitle>
-          </S.CateogryWrapper>
-
-          {show && (
+          {/*모달 외부 클릭 시 닫힘*/}
+          <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
+            <S.CateogryWrapper
+              onClick={() => {
+                setShow(true);
+              }}
+            >
+              <S.CalendarIcon src={'/assets/calendar.png'} />
+              <S.CategoryTitle>{postCategory}</S.CategoryTitle>
+            </S.CateogryWrapper>
+          </S.DropdownButton>
+          {myPageIsOpen && (
             <DropdownCategory
+              isDropped={myPageIsOpen}
               setPostCategory={setPostCategory}
               setShow={setShow}
             />
           )}
-
+          {/*모달 외부 클릭 시 닫힘*/}
           <S.InputTitle
             onChange={handleChange}
             placeholder='제목을 입력해 주세요'

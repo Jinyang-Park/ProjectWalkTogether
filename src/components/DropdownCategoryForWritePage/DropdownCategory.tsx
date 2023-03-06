@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 declare interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  isDropped: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const DropdownCategory = ({ setPostCategory, setShow }: SetProps) => {
   const buttonClickHandler = (event: any) => {
@@ -39,10 +40,13 @@ const DropdownCategory = ({ setPostCategory, setShow }: SetProps) => {
             );
           })}
         </S.DropdownWapper>
+        <S.CategoryConfirmBtn
+          // 24~25
+          onClick={() => confirmButtonClickHandler()}
+        >
+          선택 완료
+        </S.CategoryConfirmBtn>
       </S.DropdownConatainer>
-      <S.CategoryConfirmBtn onClick={() => confirmButtonClickHandler()}>
-        완료
-      </S.CategoryConfirmBtn>
     </S.DropdownBox>
   );
 };
