@@ -33,7 +33,7 @@ export const Nav = styled.div`
 `;
 
 export const SideOllae = styled.div`
-  margin-right: 380px;
+  margin-right: 400px;
 `;
 
 export const NavUl = styled.ul`
@@ -85,7 +85,7 @@ export const NavEtc = styled.div`
 `;
 export const Profile = styled.div`
   padding-top: 0.625rem;
-  font-size: 15px;
+  font-size: 10px;
 `;
 export const Logo = styled.img`
   cursor: pointer;

@@ -35,4 +35,5 @@ export default function KakaoLogoutButton() {
 
 const KakaoLogout = styled.div`
   cursor: pointer;
+  font-size: 10px;
 `;

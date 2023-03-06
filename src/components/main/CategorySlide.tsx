@@ -54,7 +54,6 @@ const StyledSlider = styled(Slider)`
     width: 90%;
     height: 100px;
     margin: auto;
-    background-color: pink;
   }
   .slick-slide div {
     /* cursor: pointer; */
@@ -68,7 +67,7 @@ const StyledSlider = styled(Slider)`
     width: 26px;
     height: 26px;
     top: 60%;
-    left: -3px;
+    left: -5px;
     cursor: pointer;
     position: absolute;
   }
@@ -85,7 +84,7 @@ const StyledSlider = styled(Slider)`
     width: 26px;
     height: 26px;
     cursor: pointer;
-    right: -3px;
+    right: -5px;
     position: absolute;
     top: 60%;
   }
