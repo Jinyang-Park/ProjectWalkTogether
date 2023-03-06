@@ -3,7 +3,7 @@ import Comments from './Comments/Comments';
 import CommonStyles from './../../styles/CommonStyles';
 import DetailMap from './DetailMap/DetailMap';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { paramsState } from '../../Rocoil/Atom';
+import { isLoggedIn, paramsState } from '../../Rocoil/Atom';
 import { useEffect, useState, useRef } from 'react';
 import {
   getDoc,
@@ -63,6 +63,8 @@ const DetailPage = () => {
 
   //산책 완료 버튼
   const [complete, setComplete] = useState<any>(false);
+
+  const loggedIn = useRecoilValue(isLoggedIn);
 
   // getPost 함수에서 비동기로 데이터를 가져오기 때문에 isLoading을 사용하여 로딩중인지 아닌지를 확인
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -371,6 +373,10 @@ const DetailPage = () => {
                   <S.LikeBtnLine
                     src={'/assets/HeartLine.svg'}
                     onClick={() => {
+                      if (!loggedIn) {
+                        navigate('/login');
+                        return;
+                      }
                       likepost();
                       console.log('좋아요');
                     }}

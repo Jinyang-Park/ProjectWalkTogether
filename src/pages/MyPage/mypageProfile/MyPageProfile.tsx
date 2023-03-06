@@ -127,7 +127,13 @@ const MyPageProfile = (props: { uid: string }) => {
     <MyPageProfileWrap>
       <UserProfileContainer>
         <UserProfileImgLabel htmlFor='fileInput'>
-          <UserProfileImg src={imageURL} />
+          <UserProfileImg
+            src={
+              imageURL
+                ? imageURL
+                : require('../../../assets/MypageIcon/carmeralcon3.png')
+            }
+          />
           {uid === userUID && (
             <>
               <UserProfileEditIcon src={'/assets/editicon.png'} />

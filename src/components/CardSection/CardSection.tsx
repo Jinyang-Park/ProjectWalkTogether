@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './CardSection.style';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { currentUserUid, paramsState } from '../../Rocoil/Atom';
+import { currentUserUid, isLoggedIn, paramsState } from '../../Rocoil/Atom';
 import { async } from '@firebase/util';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { ref } from 'firebase/storage';
@@ -19,6 +19,7 @@ const CardSection = ({ post }: postProps) => {
   const setParams = useSetRecoilState(paramsState);
   const [likebtn, setLikeBtn] = useState<boolean>(false);
   const uid = useRecoilValue(currentUserUid);
+  const loggedIn = useRecoilValue(isLoggedIn);
 
   // console.log(post);
 
@@ -110,6 +111,10 @@ const CardSection = ({ post }: postProps) => {
           <S.LikeBtnLine
             src={'/assets/HeartLine.svg'}
             onClick={() => {
+              if (!loggedIn) {
+                navigate('/login');
+                return;
+              }
               likepost();
               console.log('좋아요');
             }}
