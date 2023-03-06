@@ -80,22 +80,22 @@ const DetailPage = () => {
   // const getPostingsThumbnail = getPostings.ThumbnailURL_Posting;
 
   // 게시글 id db 가져오기
-  // onsnapshot으로 바꾸기 상태를 바라보고 db가 바뀌면 상태를 최신화해준다. 동적데이터는 onsnapshot이 좋다.
-  // const getPost = async () => {
-  //   const q = doc(dbService, 'Post', id);
-  //   const postData = await getDoc(q);
+  const getPost = async () => {
+    const q = doc(dbService, 'Post', id);
+    const postData = await getDoc(q);
 
-  //   //비동기
-  //   setGetPostings(postData.data());
-  //   // isLoading 범인
-  //   // isLoading 이 false가 되면 로딩이 끝난 것, true면 로딩중으로 isLoading을 관리
-  //   setIsLoading(false);
-  // };
-
-  const getPost = onSnapshot(doc(dbService, 'Post', id), (postData) => {
+    //비동기
     setGetPostings(postData.data());
+    // isLoading 범인
+    // isLoading 이 false가 되면 로딩이 끝난 것, true면 로딩중으로 isLoading을 관리
     setIsLoading(false);
-  });
+  };
+
+  // onsnapshot으로 바꾸기 상태를 바라보고 db가 바뀌면 상태를 최신화해준다. 동적데이터는 onsnapshot이 좋다.
+  // const getPost = onSnapshot(doc(dbService, 'Post', id), (postData) => {
+  //   setGetPostings(postData.data());
+  //   setIsLoading(false);
+  // });
 
   /////////////////
   //채팅방 중복확인 중 db에서 데이터 가져오기.
@@ -139,10 +139,10 @@ const DetailPage = () => {
   // complete 넣기 만약 온스냅샷으로 바뀌면  getPost(),complete 없어도된다.
   useEffect(() => {
     window.scrollTo(0, 0);
-    // getPost();
+    getPost();
     getChattingList();
     // duplicate();
-  }, [mychatlist]);
+  }, [mychatlist, complete]);
 
   // 채팅창 중복확인은 getChattingList 이후에 작동되게uesEffect를 사용해주니까 중복확인이 되었다.
   useEffect(() => {
@@ -372,7 +372,7 @@ const DetailPage = () => {
                 </S.WalktogetherBtn>
               ) : // 자바스크립트 문법이라서 중괄호가 필요가 없다
               getPostings.ProceedState_Posting === 'postingDone' ? (
-                <div>산책완료</div>
+                <S.CompleteBtnTitle>산책이 완료되었습니다</S.CompleteBtnTitle>
               ) : (
                 <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
                   <S.MoreBtn

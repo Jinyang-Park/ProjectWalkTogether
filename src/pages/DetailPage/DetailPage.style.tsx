@@ -336,3 +336,21 @@ export const DetailpageWrapper = styled.div`
   margin-left: 78px;
   margin-right: 78px;
 `;
+export const CompleteBtnTitle = styled.div`
+  position: absolute;
+  padding: 10px;
+  font-family: 'SUITERegular';
+  letter-spacing: -2.1px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  border: 1px solid #bec5d7;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 10px;
+  color: #7d8bae;
+  bottom: 185px;
+`;

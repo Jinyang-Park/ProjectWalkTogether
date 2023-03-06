@@ -56,11 +56,26 @@ export const CommentLi = styled.li`
   /* border-bottom: 1px solid rgb(205, 205, 205); */
   /* padding: 20px 40px 30px; */
 `;
-export const CommentProfileImg = styled.img`
+export const CommentProfilediv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
   width: 44px;
   height: 44px;
   border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(53, 100, 187, 0.25);
   margin-right: 12px;
+`;
+
+export const CommentProfileImg = styled.img`
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(53, 100, 187, 0.25);
+  /* margin-right: 12px; */
 `;
 export const CommentUserName = styled.div`
   font-size: 12px;

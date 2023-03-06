@@ -13,7 +13,7 @@ const MyPageWrite = (props: { uid: string }) => {
     const querySnapshot = await getDocs(
       query(collection(dbService, 'Post'), where('UID', '==', uid))
     );
-    console.log(querySnapshot.docs[0].data());
+    // console.log(querySnapshot.docs[0].data());
     setPosts(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
   };
   useEffect(() => {
