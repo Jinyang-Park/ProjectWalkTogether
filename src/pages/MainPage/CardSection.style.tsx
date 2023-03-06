@@ -51,6 +51,7 @@ export const HashTag = styled.p`
   line-height: 15px;
 `;
 export const ListItemContainer = styled.div`
+  border-top: 1px solid #ddd;
   padding-top: 5px;
 `;
 export const LikedHeartFlex = styled.div`
@@ -86,14 +87,8 @@ export const ListItemDate = styled.span`
 export const LikedListItem = styled.div`
   display: flex;
   flex-wrap: wrap;
-<<<<<<< HEAD
   grid-gap: 49.3px;
   margin-top: 36px;
-=======
-  grid-gap: 74.5px;
-  grid-row-gap: 70px;
-  margin-top: 46px;
->>>>>>> 857c80ce810a6c1dd4eb26de14c683fbaac11576
 `;
 
 export const Collection = styled.div``;

@@ -7,10 +7,12 @@ const Tag = (props: { tagItem: string }) => {
   const Tag = props.tagItem;
   const [tagItem, setTagItem] = useState('');
   const [tagList, setTagList] = useRecoilState(NewpostTag);
+  let [isInputClicked, setIsInputClicked] = useState(false);
 
   const onKeyPress = (e) => {
     if (tagList.length >= 3) {
       window.alert('더이상 태그를 추가할 수 없습니다!');
+      setIsInputClicked(true);
       return;
     }
     if (tagList.includes(e.target.value)) {
@@ -56,7 +58,7 @@ const Tag = (props: { tagItem: string }) => {
         <TagInput
           maxLength={6}
           type='text'
-          placeholder='#해쉬태그를 입력해주세요'
+          placeholder={isInputClicked === true ? '' : '해쉬태그를 입력해주세요'}
           tabIndex={2}
           onChange={(e) => setTagItem(e.target.value)}
           value={tagItem}

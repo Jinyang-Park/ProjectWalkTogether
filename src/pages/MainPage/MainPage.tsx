@@ -104,6 +104,7 @@ export const CategoryWrapper = styled.div`
   flex-direction: column;
   width: 868px;
   margin: auto;
+  margin-bottom: 80px;
 `;
 
 const FirstLayout = styled.div`

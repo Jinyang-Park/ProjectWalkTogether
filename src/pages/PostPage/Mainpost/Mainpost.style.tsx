@@ -24,7 +24,6 @@ export const Boxcontents = styled.div`
   border: 1px solid #ffffff;
   box-shadow: 0px 4px 7px rgba(190, 197, 215, 0.81);
   backdrop-filter: blur(5px);
-
   @media screen and (max-width: 868px) {
   }
 `;
@@ -77,7 +76,6 @@ export const InputTitle = styled.input`
   margin-bottom: 10px;
   background: #eef1f7;
   border-radius: 4px;
-
   &:focus {
     outline: 2px solid #6a24ff;
   }
@@ -104,7 +102,6 @@ export const Textarea = styled.textarea`
   &:focus {
     outline: 2px solid #6a24ff;
   }
-
   background: #eef1f7;
   border-radius: 4px;
 `;

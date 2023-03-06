@@ -46,21 +46,32 @@ export const NavText = styled(Link)`
   font-family: 'SUITERegular';
   letter-spacing: -2px;
 `;
-export const LoginButton = styled.button`
+export const LoginButton = styled.div`
   border: none;
-  margin: 0 auto;
-  padding: 10px;
-  margin-top: 10px;
+
   padding: 5px;
+  margin-top: 10px;
+
   border-radius: 5px;
   width: 100px;
-  height: 40px;
+  height: 30px;
   /* background: blue; */
   font-size: 12px;
   color: black;
+  background-color: #eef1f7;
   font-family: 'SUITERegular';
   letter-spacing: -0.1px;
 `;
+
+export const LoginLayout = styled.div`
+  margin-left: 30px;
+  margin: auto;
+  m
+`;
+export const LoginText = styled.p`
+  margin-right: 10px;
+`;
+
 export const NavEtc = styled.div`
   display: flex;
   margin: 0px;
@@ -70,7 +81,6 @@ export const Profile = styled.div`
   font-size: 15px;
 `;
 export const Logo = styled.img`
-  height: 3.125rem;
   cursor: pointer;
 `;
 export const DropdownButton = styled.div`
@@ -101,6 +111,24 @@ export const Ul = styled.ul`
 `;
 export const Li = styled.li``;
 
+export const LoginDropNav = styled.nav<{ isPropped: boolean }>`
+  background: #eef1f7;
+  box-shadow: 0 0 10px #bec5d7;
+  position: absolute;
+  top: 40px;
+
+  width: 100px;
+  text-align: center;
+  border-radius: 3px;
+
+  z-index: 9;
+  ${({ isPropped }) =>
+    isPropped &&
+    css`
+      opacity: 1;
+    `};
+`;
+
 export const DropNav = styled.nav<{ isDropped: boolean }>`
   background: #b8c0d1;
   position: absolute;
@@ -124,7 +152,6 @@ export const DropNav = styled.nav<{ isDropped: boolean }>`
       left: 50%;
     `};
 `;
-
 export const AlarmContainer = styled(DropdownContainer)`
   position: relative;
   right: 10px;
@@ -168,6 +195,14 @@ export const Img = styled.img`
   position: relative;
   left: 5px;
   z-index: 1;
+`;
+export const LoginImg = styled.img`
+  width: 15px;
+  height: 15px;
+  position: relative;
+  z-index: 1;
+  left: 70px;
+  bottom: 16px;
 `;
 
 export const Logout = styled.div``;

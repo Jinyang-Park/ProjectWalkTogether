@@ -31,9 +31,7 @@ function CategorySlide() {
           return (
             //리액트 라우터 dom state 찾아보기
             <Categoryitem
-              onClick={() =>
-                navigate(`/category/${Category.name}`, { state: Category })
-              }
+              onClick={() => navigate(`/category/${Category.name}`)}
               key={Category.name}
             >
               <Img src={Category.img} />
@@ -50,25 +48,26 @@ const StyledSlider = styled(Slider)`
   margin: auto;
   width: 80%; //슬라이드 컨테이너 영역
   padding-top: 45px;
-  background-color: green;
 
   .slick-list {
     //슬라이드 스크린
-    width: 90%;
+    width: 85%;
     height: 100px;
+    margin: auto;
   }
   .slick-slide div {
     /* cursor: pointer; */
   }
 
   .slick-track {
-    width: 100%;
+    width: 0%;
     align-items: center;
   }
   .slick-prev {
     width: 26px;
     height: 26px;
     top: 60%;
+    left: 10px;
     cursor: pointer;
     position: absolute;
   }
@@ -85,6 +84,7 @@ const StyledSlider = styled(Slider)`
     width: 26px;
     height: 26px;
     cursor: pointer;
+    right: 10px;
     position: absolute;
     top: 60%;
   }
@@ -101,9 +101,7 @@ const StyledSlider = styled(Slider)`
 
 export const Category = styled.div``;
 
-export const Categoryitem = styled.div`
-  background-color: pink;
-`;
+export const Categoryitem = styled.div``;
 
 export const Img = styled.img`
   width: 50px;
