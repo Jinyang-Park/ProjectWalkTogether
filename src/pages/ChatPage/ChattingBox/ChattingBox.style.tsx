@@ -131,7 +131,7 @@ export const ChattingButton = styled.button`
 //채팅 최상위 박스
 export const ChattingContent = styled.div`
   height: 460px;
-  width: 566px;
+  width: 576px;
   /* border-right: 1px solid #bec5d7; */
   border-bottom: 1px solid #bec5d7;
   color: rgba(125, 139, 174, 1);
