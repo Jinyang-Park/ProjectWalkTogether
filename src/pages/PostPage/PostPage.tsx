@@ -159,7 +159,7 @@ const PostPage = () => {
   /////////////
   //콘솔확인용/
   useEffect(() => {
-    console.log(' RsvDate_Posting:', RsvDate_Posting);
+    console.log(' Address_Posting:', Address_Posting);
     setPostTime(timestring); //현재 시간
     // setPostHour(meeting); //약속 시간
     setPostNickname(nickname);
@@ -226,7 +226,6 @@ const PostPage = () => {
   ///////////
   const handleSubmit = async (e: any) => {
     if (Title.length < 1 || Title.length > 20) {
-      alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
       return;
     }
 
@@ -242,12 +241,52 @@ const PostPage = () => {
     //           if (postCategory !== '카테고리') {
 
     if (meetDate === '') {
-      alert('날짜를 입력해 주세요');
+      // alert('날짜를 입력해 주세요');
+      MessageWindow.showWindow(
+        new MessageWindowProperties(
+          true,
+          '날짜를 입력해 주세요',
+          '',
+          [
+            {
+              text: '닫 기',
+              callback: () => {
+                MessageWindow.showWindow(
+                  new MessageWindowProperties(),
+                  setState
+                );
+              },
+            },
+          ],
+          MessageWindowLogoType.WritingHand
+        ),
+        setState
+      );
       return;
     }
 
     if (meetTime === '') {
-      alert('시간을 입력해 주세요');
+      // alert('시간을 입력해 주세요');
+      MessageWindow.showWindow(
+        new MessageWindowProperties(
+          true,
+          '시간을 입력해 주세요',
+          '',
+          [
+            {
+              text: '닫 기',
+              callback: () => {
+                MessageWindow.showWindow(
+                  new MessageWindowProperties(),
+                  setState
+                );
+              },
+            },
+          ],
+          MessageWindowLogoType.WritingHand
+        ),
+        setState
+      );
       return;
     }
 
@@ -262,12 +301,55 @@ const PostPage = () => {
     }
 
     if (adress === '충북 보은군 속리산면 갈목리 산 19-1') {
-      alert('지도에서 약속 장소를 선택해 주십시오');
+      // alert('지도에서 약속 장소를 선택해 주십시오');
+
+      MessageWindow.showWindow(
+        new MessageWindowProperties(
+          true,
+          '지도에서 약속 장소를 선택해 주십시오',
+          '',
+          [
+            {
+              text: '닫 기',
+              callback: () => {
+                MessageWindow.showWindow(
+                  new MessageWindowProperties(),
+                  setState
+                );
+              },
+            },
+          ],
+          MessageWindowLogoType.WritingHand
+        ),
+        setState
+      );
+
       return;
     }
 
     if (postCategory === '카테고리') {
       alert('카테고리를 선택해 주세요');
+      MessageWindow.showWindow(
+        new MessageWindowProperties(
+          true,
+          '카테고리를 선택해 주세요',
+          '',
+          [
+            {
+              text: '닫 기',
+              callback: () => {
+                MessageWindow.showWindow(
+                  new MessageWindowProperties(),
+                  setState
+                );
+              },
+            },
+          ],
+          MessageWindowLogoType.WritingHand
+        ),
+        setState
+      );
+
       return;
     }
 
@@ -330,7 +412,7 @@ const PostPage = () => {
 
     // setTimeout(adddoc, 8000);
   };
-  // console.log('postCategory', postCategory);
+  console.log(' Address_Posting', Address_Posting);
   return (
     <CommonStyles>
       <S.Boxcontainer>
