@@ -365,6 +365,11 @@ const DetailPage = () => {
                 )}
                 <S.HeartBtn>{`${likeCount}`}</S.HeartBtn>
               </S.LikeWrapper>
+              {getPostings.ProceedState_Posting === 'postingDone' ? (
+                <S.CompleteBtnTitle>산책이 완료되었습니다</S.CompleteBtnTitle>
+              ) : (
+                <></>
+              )}
               {/* 현재 user가 쓴 글인지 판별 */}
               {getPostings.UID !== authService.currentUser?.uid ? (
                 <S.WalktogetherBtn onClick={goToChat}>
@@ -372,8 +377,9 @@ const DetailPage = () => {
                 </S.WalktogetherBtn>
               ) : // 자바스크립트 문법이라서 중괄호가 필요가 없다
               getPostings.ProceedState_Posting === 'postingDone' ? (
-                <S.CompleteBtnTitle>산책이 완료되었습니다</S.CompleteBtnTitle>
+                <></>
               ) : (
+                // <S.CompleteBtnTitle>산책이 완료되었습니다</S.CompleteBtnTitle>
                 <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
                   <S.MoreBtn
                     onClick={() => {

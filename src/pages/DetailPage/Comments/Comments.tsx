@@ -287,110 +287,125 @@ const Comments = ({ param }: postProps) => {
         </S.CommentUserImgWrapper>
       </S.DetailCommentContainer>
       {/* 리뷰 리스트 */}
-      <S.CommentListWrapper>
-        {myComment.map((comment: any) => {
-          return (
-            <S.CommentList key={comment.id}>
-              {/* 현재 user가 쓴 글인지 판별 */}
-              {comment?.UID !== authService.currentUser?.uid ? (
-                <S.CommentLi>
-                  <S.CommentProfileImg src={comment.ProfileImg} />
-                  <S.CommentWrapper>
-                    <S.CommentUserName>{comment.NickName}</S.CommentUserName>
-                    <S.CommentBox>
-                      <S.CommentInput>
-                        {comment.Description_Comments}
-                      </S.CommentInput>
-                      <S.CommentDataWrapper>
-                        <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
-                      </S.CommentDataWrapper>
-                    </S.CommentBox>
-                  </S.CommentWrapper>
-                </S.CommentLi>
-              ) : (
-                //현재 유저가 쓴 글이면 수정, 삭제 버튼까지 보여준다.
-                <S.CommentLi>
-                  {comment.ProfileImg === null ? (
-                    <S.CommentProfilediv>
-                      <S.CommentProfileImg
-                        src={
-                          require('../../../assets/DetailPageIcon/profileIcon.svg')
-                            .default
-                        }
-                      />
-                    </S.CommentProfilediv>
-                  ) : (
-                    <S.CommentProfilediv>
-                      <S.CommentProfileImg src={comment.ProfileImg} />
-                    </S.CommentProfilediv>
-                  )}
-                  <S.CommentWrapper>
-                    <S.CommentUserName>{comment.NickName}</S.CommentUserName>
-                    <S.CommentBox>
-                      {comment.isEdit ? (
-                        <S.Form>
-                          <S.EditForm
-                            onChange={(e) => setEditContent(e.target.value)}
-                            value={editContent}
-                          ></S.EditForm>
-                        </S.Form>
-                      ) : (
+      {myComment.length > 0 && (
+        <S.CommentListWrapper>
+          {myComment.map((comment: any) => {
+            return (
+              <S.CommentList key={comment.id}>
+                {/* 현재 user가 쓴 글인지 판별 */}
+                {comment?.UID !== authService.currentUser?.uid ? (
+                  <S.CommentLi>
+                    {!comment.ProfileImg ? (
+                      <S.CommentProfilediv>
+                        <S.CommentProfileIcon
+                          src={
+                            require('../../../assets/DetailPageIcon/profileIcon.svg')
+                              .default
+                          }
+                        />
+                      </S.CommentProfilediv>
+                    ) : (
+                      <S.CommentProfilediv>
+                        <S.CommentProfileImg src={comment.ProfileImg} />
+                      </S.CommentProfilediv>
+                    )}
+                    <S.CommentWrapper>
+                      <S.CommentUserName>{comment.NickName}</S.CommentUserName>
+                      <S.CommentBox>
                         <S.CommentInput>
                           {comment.Description_Comments}
                         </S.CommentInput>
-                      )}
-                      <S.CommentContainer>
-                        <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
-                        <S.CommentCancelDeleteBtnWrapper>
-                          {comment.isEdit ? (
-                            <S.CommentEditBtn
-                              onClick={() =>
-                                EditUpdateHandler(comment.documentId)
-                              }
-                            >
-                              완료하기
-                            </S.CommentEditBtn>
-                          ) : // isEditing이 false이면 즉 내가 클릭하지 않은 댓글들은 수정하기 버튼이 사라진다.
-                          // 내가 클릭한 댓글이 true가 되면 나머지 댓글들은 수정하기 버튼이 사라진다.
+                        <S.CommentDataWrapper>
+                          <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
+                        </S.CommentDataWrapper>
+                      </S.CommentBox>
+                    </S.CommentWrapper>
+                  </S.CommentLi>
+                ) : (
+                  //현재 유저가 쓴 글이면 수정, 삭제 버튼까지 보여준다.
+                  <S.CommentLi>
+                    {!comment.ProfileImg ? (
+                      <S.CommentProfilediv>
+                        <S.CommentProfileIcon
+                          src={
+                            require('../../../assets/DetailPageIcon/profileIcon.svg')
+                              .default
+                          }
+                        />
+                      </S.CommentProfilediv>
+                    ) : (
+                      <S.CommentProfilediv>
+                        <S.CommentProfileImg src={comment.ProfileImg} />
+                      </S.CommentProfilediv>
+                    )}
+                    <S.CommentWrapper>
+                      <S.CommentUserName>{comment.NickName}</S.CommentUserName>
+                      <S.CommentBox>
+                        {comment.isEdit ? (
+                          <S.Form>
+                            <S.EditForm
+                              onChange={(e) => setEditContent(e.target.value)}
+                              value={editContent}
+                            ></S.EditForm>
+                          </S.Form>
+                        ) : (
+                          <S.CommentInput>
+                            {comment.Description_Comments}
+                          </S.CommentInput>
+                        )}
+                        <S.CommentContainer>
+                          <S.CommentDate>{comment.CreatedAt}</S.CommentDate>
+                          <S.CommentCancelDeleteBtnWrapper>
+                            {comment.isEdit ? (
+                              <S.CommentEditBtn
+                                onClick={() =>
+                                  EditUpdateHandler(comment.documentId)
+                                }
+                              >
+                                완료하기
+                              </S.CommentEditBtn>
+                            ) : // isEditing이 false이면 즉 내가 클릭하지 않은 댓글들은 수정하기 버튼이 사라진다.
+                            // 내가 클릭한 댓글이 true가 되면 나머지 댓글들은 수정하기 버튼이 사라진다.
 
-                          isEditing ? (
-                            <></>
-                          ) : (
-                            <S.CommentEditBtn
-                              onClick={() =>
-                                EditCommentHandler(comment.documentId)
-                              }
-                            >
-                              수정하기
-                            </S.CommentEditBtn>
-                          )}
-                          {comment.isEdit ? (
-                            <S.CommentDeleteBtn
-                              onClick={() => {
-                                CancelHandler(comment.documentId);
-                              }}
-                            >
-                              취소하기
-                            </S.CommentDeleteBtn>
-                          ) : (
-                            <S.CommentDeleteBtn
-                              onClick={() => {
-                                DeleteCommentHandler(comment.documentId);
-                              }}
-                            >
-                              삭제하기
-                            </S.CommentDeleteBtn>
-                          )}
-                        </S.CommentCancelDeleteBtnWrapper>
-                      </S.CommentContainer>
-                    </S.CommentBox>
-                  </S.CommentWrapper>
-                </S.CommentLi>
-              )}
-            </S.CommentList>
-          );
-        })}
-      </S.CommentListWrapper>
+                            isEditing ? (
+                              <></>
+                            ) : (
+                              <S.CommentEditBtn
+                                onClick={() =>
+                                  EditCommentHandler(comment.documentId)
+                                }
+                              >
+                                수정하기
+                              </S.CommentEditBtn>
+                            )}
+                            {comment.isEdit ? (
+                              <S.CommentDeleteBtn
+                                onClick={() => {
+                                  CancelHandler(comment.documentId);
+                                }}
+                              >
+                                취소하기
+                              </S.CommentDeleteBtn>
+                            ) : (
+                              <S.CommentDeleteBtn
+                                onClick={() => {
+                                  DeleteCommentHandler(comment.documentId);
+                                }}
+                              >
+                                삭제하기
+                              </S.CommentDeleteBtn>
+                            )}
+                          </S.CommentCancelDeleteBtnWrapper>
+                        </S.CommentContainer>
+                      </S.CommentBox>
+                    </S.CommentWrapper>
+                  </S.CommentLi>
+                )}
+              </S.CommentList>
+            );
+          })}
+        </S.CommentListWrapper>
+      )}
     </S.DetailCommentsWrapper>
   );
 };
