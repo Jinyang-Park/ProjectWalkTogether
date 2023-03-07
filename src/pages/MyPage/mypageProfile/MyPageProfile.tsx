@@ -8,6 +8,7 @@ import { authService, dbService, storage } from '../../../common/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { currentUserUid, username } from '../../../Rocoil/Atom';
+import MypageDropBox from './MypageDropBox';
 const MyPageProfile = (props: { uid: string }) => {
   const navigate = useNavigate();
   const uid = props.uid;
@@ -26,6 +27,9 @@ const MyPageProfile = (props: { uid: string }) => {
 
   const [nameswitch, setNameSwitch] = useState(false);
   const [messageswitch, setMessagesSwitch] = useState(false);
+
+  // 모달창
+  const [showBox, setShowBox] = useState<any>(false);
 
   useEffect(() => {
     getImageURL();
@@ -71,14 +75,7 @@ const MyPageProfile = (props: { uid: string }) => {
         console.log(error);
       });
   };
-  const onDeleteAccount = () => {
-    if (window.confirm('탈퇴하실건가요?')) {
-      deleteUser(getAuth().currentUser).then(() => {
-        alert('탈퇴가 완료 되었습니다.');
-        navigate('/');
-      });
-    }
-  };
+
   const onEditBtn = async () => {
     if (!isEditing) {
       setNewname(authService.currentUser.displayName);
@@ -127,16 +124,21 @@ const MyPageProfile = (props: { uid: string }) => {
     <MyPageProfileWrap>
       <UserProfileContainer>
         <UserProfileImgLabel htmlFor='fileInput'>
-          <UserProfileImg
-            src={
-              imageURL
-                ? imageURL
-                : require('../../../assets/MypageIcon/carmeralcon3.png')
-            }
-          />
+          <UserWrapper>
+            <UserProfileImg
+              src={
+                imageURL
+                  ? imageURL
+                  : require('../../../assets/MypageIcon/carmeraIcon.svg')
+                      .default
+              }
+            />
+          </UserWrapper>
           {uid === userUID && (
             <>
-              <UserProfileEditIcon src={'/assets/editicon.png'} />
+              <UserProfileEditIcon
+                src={require('../../../assets/MypageIcon/EditIcon.svg').default}
+              />
               <UserProfileImgBtn
                 type='file'
                 id='fileInput'
@@ -149,18 +151,37 @@ const MyPageProfile = (props: { uid: string }) => {
 
       <UserProfileInfoContainer>
         {uid === userUID && (
-          <button onClick={onEditBtn}>
-            {!isEditing ? '수정하기' : '수정완료'}
-          </button>
+          <UserModifyBtn onClick={onEditBtn}>
+            {!isEditing ? (
+              <>
+                수정하기
+                <UserModifyBtnIcon
+                  src={
+                    require('../../../assets/MypageIcon/EditPinkIcon.svg')
+                      .default
+                  }
+                />
+              </>
+            ) : (
+              <>
+                수정완료
+                <UserModifyBtnIcon
+                  src={require('../../../assets/MypageIcon/check2.svg').default}
+                />
+              </>
+            )}
+          </UserModifyBtn>
         )}
-        <button
-          onClick={() => {
-            navigate('/changepassword');
-          }}
-        >
-          비밀번호 변경
-        </button>
-        <button onClick={onDeleteAccount}>탈퇴하기</button>
+        {/*커스텀 훅 들어올 자리*/}
+        <div>
+          <MypageMoreBtn
+            src={require('../../../assets/MypageIcon/More.svg').default}
+            onClick={() => {
+              setShowBox(true);
+            }}
+          />
+        </div>
+        {showBox && <MypageDropBox />}
         <UserNickNameBox>
           {!isEditing ? (
             <UserNickName>{name}</UserNickName>
@@ -212,45 +233,47 @@ const MyPageProfile = (props: { uid: string }) => {
 export default MyPageProfile;
 
 const MyPageProfileWrap = styled.div`
-  width: 100%;
-  height: 203px;
-  margin: 15px auto 0 auto;
+  /* width: 100%; */
+  height: 163px;
+  margin: 15px 78px 0px 78px;
 
   display: flex;
   flex-direction: row;
 `;
 const UserProfileContainer = styled.div`
-  width: 25%;
+  /* width: 25%;
   height: 100%;
-  margin: auto;
+  margin: auto; */
 
   position: relative;
 
   justify-content: center;
   align-items: center;
 
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 const UserProfileImg = styled.img`
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
+  /* width: 163px;
+  height: 163px; */
+  width: 66px;
+  height: 60px;
 `;
 const UserProfileImgLabel = styled.label``;
 const UserProfileEditIcon = styled.img`
-  width: 50px;
-  height: 50px;
-  right: 0px;
-  bottom: 0px;
-
+  width: 30px;
+  height: 30px;
+  right: 9px;
+  bottom: 9px;
   cursor: pointer;
-
   position: absolute;
 `;
 const UserProfileImgBtn = styled.input`
   display: none;
 `;
 const UserProfileInfoContainer = styled.div`
-  width: 75%;
+  width: 100%;
   height: 100%;
   margin-left: 20px;
 `;
@@ -302,4 +325,47 @@ const UserIntroduceBtn = styled.button`
 
   background-image: url('../../../assets/editicon.png');
   background-size: cover;
+`;
+const UserWrapper = styled.div`
+  width: 163px;
+  height: 163px;
+  background: #eeeeee;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const UserModifyBtn = styled.button`
+  position: absolute;
+  width: 104px;
+  height: 40px;
+  background: #ffffff;
+  /* coral */
+  margin-left: 545px;
+
+  border: 1px solid #ff8f8f;
+  border-radius: 4px;
+  outline: none;
+
+  font-family: 'SUITERegular';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ff8f8f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  letter-spacing: -2px;
+`;
+export const UserModifyBtnIcon = styled.img`
+  margin-left: 8px;
+  width: 20px;
+  height: 20px;
+`;
+export const MypageMoreBtn = styled.img`
+  width: 10px;
+  height: 40px;
+  position: absolute;
+  margin-left: 675px;
 `;
