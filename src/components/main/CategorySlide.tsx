@@ -54,7 +54,6 @@ const StyledSlider = styled(Slider)`
     width: 90%;
     height: 100px;
     margin: auto;
-    background-color: yellow;
   }
   .slick-slide div {
     /* cursor: pointer; */
