@@ -164,15 +164,20 @@ const PostPage = () => {
 
   let timestring = `${time.year}/${time.month}/${time.date} ${time.hours}:${time.minutes}`;
 
-  /////////////
-  //콘솔확인용/
+  // 글수정 페이지갔다가 글쓰기 페이지 갔을때 해쉬태그 초기화
   useEffect(() => {
-    console.log(' Address_Posting:', Address_Posting);
-    setPostTime(timestring); //현재 시간
-    // setPostHour(meeting); //약속 시간
-    setPostNickname(nickname);
-    setPostAuthor(user);
-  });
+    setTag([]);
+  }, []);
+
+  // /////////////
+  // //콘솔확인용/
+  // useEffect(() => {
+  //   console.log(' Address_Posting:', Address_Posting);
+  //   setPostTime(timestring); //현재 시간
+  //   // setPostHour(meeting); //약속 시간
+  //   setPostNickname(nickname);
+  //   setPostAuthor(user);
+  // });
 
   //settimeout test
   const geturl: any = (callback: () => void = () => {}) => {

@@ -30,6 +30,7 @@ export const FilterArea = styled.div`
 export const CategoryFilter = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 8px;
 `;
 export const CategoryFilterWarpper = styled.div`
   display: flex;

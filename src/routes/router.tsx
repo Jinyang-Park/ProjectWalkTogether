@@ -24,6 +24,7 @@ import PostEditPage from '../pages/PostEditPage/PostEditPage';
 import MeetDateInitializer from './../components/MeetDateInitializer/MeetDateInitializer';
 import ChangePassword from '../pages/ChangePassword/ChangePassword';
 import ScrollToTopButton from './../components/ScrollToTopButton/ScrollToTopButton';
+import RerouteToMyPage from './../components/RerouteToMyPage/RerouteToMyPage';
 
 const Router = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
@@ -46,9 +47,10 @@ const Router = () => {
         <Route path='/collection/:id' element={<Collection />} />
         <Route path='/detailpage/:id' element={<DetailPage />} />
         <Route path='agreement' element={<Agreement />} />
-        <Route path='/edit/:id' element={<PostEditPage />}></Route>
+        <Route path='/edit/:id' element={<PostEditPage />} />
         <Route path='/chat' element={<ChattingPage />} />
         <Route path='/changepassword' element={<ChangePassword />} />
+        <Route path='/reroutetomypage' element={<RerouteToMyPage />} />
       </Routes>
       <ScrollToTopButton />
       <MeetDateInitializer />

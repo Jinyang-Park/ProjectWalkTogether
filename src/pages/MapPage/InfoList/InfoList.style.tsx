@@ -60,6 +60,8 @@ export const SearchLineSearchInputBox = styled.span`
   border: 1px solid black;
 `;
 export const SearchLineTotalCount = styled.span`
+  margin-top: 10px;
+  font-family: 'SUITERegular';
   font-size: smaller;
   color: gray;
 
@@ -155,7 +157,7 @@ export const NoResult = styled.div``;
 
 export const NoResultTitle = styled.p`
   font-family: 'SUITERegular';
-  margin-top: -30px;
+  margin-top: -60px;
   font-weight: 500;
   font-size: 16px;
   line-height: 45px;
