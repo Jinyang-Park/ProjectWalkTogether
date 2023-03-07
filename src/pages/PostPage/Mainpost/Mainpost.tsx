@@ -78,7 +78,13 @@ function MainPost({
     <>
       <S.Bannercontainer>
         <label htmlFor='banner'>
-          <S.ThumbnailImgPorlaroid src={banner ? banner : '/assets/배너.png'} />
+          <S.ThumbnailImgPorlaroid
+            src={
+              banner
+                ? banner
+                : require('../../../assets/ChattingIcon/banner2.svg').default
+            }
+          />
         </label>
         <S.BannerPhoto
           type='file'
@@ -88,13 +94,25 @@ function MainPost({
           id='banner'
         />
       </S.Bannercontainer>
+      <S.Sticker
+        src={
+          require('../../../assets/PostEditPageIcon/PolaroidFolderIcon.svg')
+            .default
+        }
+      />
       <S.Boxcontents>
         <S.BoxPhoto>
           <label htmlFor='thumnail'>
             <S.ThumnailPhotoChange
-              src={thumbnail ? thumbnail : 'assets/blackboard.png'}
+              src={
+                thumbnail
+                  ? thumbnail
+                  : require('../../../assets/ChattingIcon/slectpicure.svg')
+                      .default
+              }
             />
           </label>
+
           <S.ThumnailPhoto
             type='file'
             accept='image/*'
@@ -128,11 +146,11 @@ function MainPost({
             onChange={handleChange}
             placeholder='제목을 입력해 주세요'
           />
+          <Tag tagItem='' />
           <S.Textarea
             onChange={handleChangeText}
-            placeholder='당신의 이야기를 적어주세요'
+            placeholder='당신의 이야기를 160글자 내로 적어주세요'
           ></S.Textarea>
-          <Tag tagItem='' />
         </S.BoxMain>
       </S.Boxcontents>
     </>

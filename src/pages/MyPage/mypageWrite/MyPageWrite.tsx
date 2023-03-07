@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { dbService } from '../../../common/firebase';
 import MypageTabbar from '../tabbar/MypageTabbar';
 import CardSection from '../../../components/CardSection/CardSection';
-import S from '../MyPageSharedStyles';
+import * as S from './MypageWrite.style';
 
 const MyPageWrite = (props: { uid: string }) => {
   const { uid } = props;
@@ -21,18 +21,13 @@ const MyPageWrite = (props: { uid: string }) => {
   }, [posts]);
 
   return (
-    <MyPageWriteWrap>
+    <S.MyPageWriteWrap>
       <S.PostListWrap>
         {posts.map((post, i) => {
           return <CardSection post={post} key={i} />;
         })}
       </S.PostListWrap>
-    </MyPageWriteWrap>
+    </S.MyPageWriteWrap>
   );
 };
 export default MyPageWrite;
-
-const MyPageWriteWrap = styled.div`
-  width: 100%;
-  height: 735px;
-`;

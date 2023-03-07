@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { async } from '@firebase/util';
 import {
   getAuth,
@@ -14,6 +15,8 @@ import MessageWindow, {
   messageWindowPropertiesAtom,
 } from '../../messagewindow/MessageWindow';
 import { isLoggedIn } from '../../Rocoil/Atom';
+import * as S from './ChangePassword.style';
+import CommonStyles from '../../styles/CommonStyles';
 
 const ChangePassword = () => {
   const userloggedin = useRecoilValue(isLoggedIn);
@@ -96,62 +99,119 @@ const ChangePassword = () => {
   const currentPasswordValidationCheckComponent = () => {
     if (hasUserAttemptedPasswordChange) {
       if (!isCurrentPasswordValid) {
-        return <p>비밀번호를 확인해주세요.</p>;
+        return (
+          <S.ValidityTest>
+            <S.Reddot></S.Reddot>비밀번호를 확인해주세요.
+          </S.ValidityTest>
+        );
       }
     }
 
     return <></>;
   };
 
+  console.log('newpassword:', newpassword);
+
   return (
-    <div>
-      <div>비밀번호 재설정 하세요</div>
+    <CommonStyles>
+      <S.Outer>
+        <S.InnerBox>
+          <S.PasswordChangeTitleBox>
+            <S.PasswordChangeTitle>
+              비밀번호를 재설정 하세요
+            </S.PasswordChangeTitle>
+          </S.PasswordChangeTitleBox>
 
-      {userloggedin && (
-        <>
-          <input
-            value={currentpassword}
-            type='password'
-            placeholder='현재 비밀번호 확인'
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setCurrentPassword(e.currentTarget.value);
-            }}
-          ></input>
-          {currentPasswordValidationCheckComponent()}
-        </>
-      )}
+          {userloggedin && (
+            <>
+              <S.PasswordChangeInputBox>
+                <S.InputBox>
+                  <S.Input
+                    value={currentpassword}
+                    type='password'
+                    placeholder='현재 비밀번호 확인'
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      setCurrentPassword(e.currentTarget.value);
+                    }}
+                  ></S.Input>
+                  <S.CheckBtn>
+                    <img
+                      src={
+                        require('../../assets/ChattingIcon/check.svg').default
+                      }
+                    ></img>
+                  </S.CheckBtn>
+                </S.InputBox>
 
-      <input
-        value={newpassword}
-        type='password'
-        placeholder='새로운 비밀번호를 입력해주세요'
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setHasUserChangedNewPassword(true);
-          setIsNewPasswordValid(e.currentTarget.value !== '');
-          setNewPassword(e.currentTarget.value);
-          setDoNewPasswordsMatch(e.currentTarget.value === checkpassword);
-        }}
-      ></input>
-      {hasUserChangedNewPassword && !isNewPasswordValid && (
-        <p>새로운 비밀번호가 유효하지 않습니다.</p>
-      )}
+                {currentPasswordValidationCheckComponent()}
+              </S.PasswordChangeInputBox>
+            </>
+          )}
+          <S.PasswordChangeInputBox>
+            <S.InputBox>
+              <S.Input
+                value={newpassword}
+                type='password'
+                placeholder='새로운 비밀번호를 입력해주세요'
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setHasUserChangedNewPassword(true);
+                  setIsNewPasswordValid(e.currentTarget.value !== '');
+                  setNewPassword(e.currentTarget.value);
+                  setDoNewPasswordsMatch(
+                    e.currentTarget.value === checkpassword
+                  );
+                }}
+              ></S.Input>
+              <S.CheckBtn>
+                <img
+                  src={require('../../assets/ChattingIcon/check.svg').default}
+                ></img>
+              </S.CheckBtn>
+            </S.InputBox>
 
-      <input
-        value={checkpassword}
-        type='password'
-        placeholder='새로운 비밀번호를 재입력 해주세요'
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setDoNewPasswordsMatch(e.currentTarget.value === newpassword);
-          setCheckPassword(e.currentTarget.value);
-        }}
-      ></input>
-      {hasUserChangedNewPassword && !doNewPasswordsMatch && (
-        <p>비밀번호가 일치하지 않습니다.</p>
-      )}
+            {hasUserChangedNewPassword && !isNewPasswordValid && (
+              <S.ValidityTest>
+                <S.Reddot></S.Reddot> 새로운 비밀번호가 유효하지 않습니다.
+              </S.ValidityTest>
+            )}
+          </S.PasswordChangeInputBox>
+          <S.PasswordChangeInputBox>
+            <S.InputBox>
+              <S.Input
+                value={checkpassword}
+                type='password'
+                placeholder='새로운 비밀번호를 재입력 해주세요'
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setDoNewPasswordsMatch(e.currentTarget.value === newpassword);
+                  setCheckPassword(e.currentTarget.value);
+                }}
+              ></S.Input>
+              <S.CheckBtn>
+                <img
+                  src={require('../../assets/ChattingIcon/check.svg').default}
+                ></img>
+              </S.CheckBtn>
+            </S.InputBox>
 
-      <button onClick={passwordChangeBtn}>비밀번호 재설정</button>
-      <button>이전으로 돌아가기</button>
-    </div>
+            {hasUserChangedNewPassword && !doNewPasswordsMatch && (
+              <S.ValidityTest>
+                <S.Reddot></S.Reddot>비밀번호가 일치하지 않습니다.
+              </S.ValidityTest>
+            )}
+          </S.PasswordChangeInputBox>
+
+          <S.ConfirmBtnBox>
+            <S.ConfirmBtn onClick={passwordChangeBtn}>
+              비밀번호 재설정
+            </S.ConfirmBtn>
+          </S.ConfirmBtnBox>
+
+          <S.BackBtnBox>
+            <S.BackBtn>이전으로 돌아가기</S.BackBtn>
+          </S.BackBtnBox>
+        </S.InnerBox>
+      </S.Outer>
+    </CommonStyles>
   );
 };
 export default ChangePassword;

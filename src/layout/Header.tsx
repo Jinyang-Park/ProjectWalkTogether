@@ -118,7 +118,15 @@ const Header = () => {
 
                 <S.DropNav isDropped={alarmIsOpen}>
                   <S.NotificationsBox>
-                    <div>알림</div>
+                    <S.NotificationTitleBox>
+                      알림
+                      <S.NotificationTitleXbtn>
+                        <img
+                          src={require('../assets/ChattingIcon/X.svg').default}
+                        ></img>
+                      </S.NotificationTitleXbtn>
+                    </S.NotificationTitleBox>
+
                     <HeaderAlarm setAlarm={setAlarm}></HeaderAlarm>
                   </S.NotificationsBox>
                 </S.DropNav>

@@ -123,6 +123,15 @@ const TagInput = styled.input`
   cursor: text;
   font-size: 16px;
   font-family: 'SUITERegular';
+
+  &::placeholder {
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #7d8bae;
+  }
 `;
 
 export default Tag;
