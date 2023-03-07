@@ -17,6 +17,7 @@ import { dbService } from '../../common/firebase';
 import CommonStyles from '../../styles/CommonStyles';
 import { paramsState } from '../../Rocoil/Atom';
 import * as S from './CardSection.style';
+import CardSection from '../../components/CardSection/CardSection';
 const Collection = (props: any) => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -25,11 +26,16 @@ const Collection = (props: any) => {
   // 라우터에서 카테고리 페이지를 만든다./categorypage/:category 이 부분이 :category 이 부분을 매개변수로 넘겨준다. /category/${Category.name} -> Category.name이 들어온다.
   // navigate사용해서 category/카테고리의 네임으로 이동되게 만들어야된다.
   const [shoes, setShoes] = useState([]);
+  const [title, setTitle] = useState('');
+  const [hot, setHot] = useState([]);
+  const [match, setMatch] = useState([]);
+
   const setParams = useSetRecoilState(paramsState);
 
   useEffect(() => {
     console.log(id);
     if (id === '1') {
+      setTitle('신발신는 중');
       const q = query(
         collection(dbService, 'Post'),
         // Category_Posting이 파람스로 넘겨준 애들과 같은 애들만 뿌려줘라
@@ -48,65 +54,83 @@ const Collection = (props: any) => {
       });
       console.log(shoes);
     }
-    if (id === '뜨거운신발') {
-    }
-    if (id === '걷는중') {
-    }
-  }, []);
+    if (id === '2') {
+      setTitle('뜨거운 신발');
+      const q = query(
+        collection(dbService, 'Post'),
+        // Category_Posting이 파람스로 넘겨준 애들과 같은 애들만 뿌려줘라
+        orderBy('createdAt', 'desc')
+      );
+      onSnapshot(q, (snapshot) => {
+        const getpostList = snapshot.docs.map((doc) => {
+          const postList = {
+            id: doc.id,
+            ...doc.data(),
+          };
+          return postList;
+        });
+        setShoes(getpostList);
+        console.log(getpostList);
+      });
 
+      // return (
+      //   <S.LikedListItem>
+      //     {shoes
+
+      //       .slice(0, 8)
+      //       .sort((a, b) => b.LikedUsers.length - a.LikedUsers.length)
+      //       .map((post: any) => {
+      //         return <CardSection key={post.id} post={post} />;
+      //       })}
+      //   </S.LikedListItem>
+      // );
+    }
+
+    if (id === '3') {
+      setTitle('매칭된 신발');
+      const q = query(
+        collection(dbService, 'Post'),
+
+        orderBy('createdAt', 'desc'),
+        where('ProceedState_Posting', '==', 'postingDone')
+      );
+      onSnapshot(q, (snapshot) => {
+        const getpostList = snapshot.docs.map((doc) => {
+          const postList = {
+            id: doc.id,
+            ...doc.data(),
+          };
+          return postList;
+        });
+        setShoes(getpostList);
+      });
+
+      console.log(shoes);
+    }
+    //state 하나로, value값에 따라서 state가 변경되게
+  }, [id]);
+
+  useEffect(() => {
+    if (!!shoes.length) {
+      if (id === '2') {
+        setHot(
+          shoes?.sort((a, b) => b.LikedUsers.length - a.LikedUsers.length)
+        );
+      } else setHot(shoes);
+    }
+  }, [shoes]);
+  console.log(title);
   return (
     <>
       <CommonStyles>
         <S.CategoryTitleWrapper>
-          <S.CategoryTitle>신발신는 중</S.CategoryTitle>
+          <S.CategoryTitle>{title}</S.CategoryTitle>
           {/* <S.CategoryImg>{category.img}</S.CategoryImg> */}
         </S.CategoryTitleWrapper>
+
         <S.LikedListItem>
-          {shoes.map((item) => {
-            return (
-              <>
-                <S.CardBox>
-                  <S.CardSectionWrapper
-                    onClick={() => {
-                      setParams(item.id);
-                      navigate(`/detailpage/${item.id}`);
-                    }}
-                  >
-                    <S.ListItemWrapper>
-                      <S.ListItemThumnail src={item.ThumbnailURL_Posting} />
-                    </S.ListItemWrapper>
-                    <S.ListItemThumnailTitle>
-                      {item.Title_Posting}
-                    </S.ListItemThumnailTitle>
-                    <S.HashTag>
-                      {item.Hashtag_Posting.map((tagItem, i) => {
-                        return (
-                          <>
-                            {tagItem == '' ? (
-                              <div>&nbsp;</div>
-                            ) : (
-                              <div key={i}>{'#' + tagItem}</div>
-                            )}
-                          </>
-                        );
-                      })}
-                    </S.HashTag>
-                    <S.ListItemContainer>
-                      <S.LikedHeartFlex>
-                        <S.ListItemAddress>
-                          {item.Address_Posting}
-                        </S.ListItemAddress>
-                        <S.LikeBtnLine />
-                      </S.LikedHeartFlex>
-                      <S.ListItemDate>
-                        {item.RsvDate_Posting}
-                        {item.RsvHour_Posting}
-                      </S.ListItemDate>
-                    </S.ListItemContainer>
-                  </S.CardSectionWrapper>
-                </S.CardBox>
-              </>
-            );
+          {hot?.map((post: any) => {
+            return <CardSection key={post.id} post={post} />;
           })}
         </S.LikedListItem>
       </CommonStyles>

@@ -17,6 +17,8 @@ import CollectionAll from '../Collection/CollectionAll';
 import Collection from '../Collection/Collection';
 import { CollecitionList } from '../../utils/CollectionList';
 import LikesComponent from './LikeComponent';
+
+import Fire from '../../assets/Mainpage/Fire.svg';
 import WalkAfter from './WalkAfter';
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 
@@ -29,6 +31,29 @@ const MainPage = () => {
       <MainBanner />
       <CategoryWrapper>
         <CategorySlide />
+
+        <ContentLayout>
+          <TextTitle>
+            {' '}
+            <HotShoesImg src={Fire}></HotShoesImg>뜨거운 신발
+          </TextTitle>
+
+          <FirstLayout>
+            <InsideText>현재 인기가 많은 산책들이에요</InsideText>
+            <Button
+              value='2'
+              onClick={(event) =>
+                navigate(`/collection/${event.target['value']}`)
+              }
+            >
+              전체보기
+            </Button>
+          </FirstLayout>
+          <S.LikedListItem>
+            <LikesComponent />
+          </S.LikedListItem>
+          <Line />
+        </ContentLayout>
 
         <ContentLayout>
           <TextTitle>신발 신는 중</TextTitle>
@@ -46,25 +71,6 @@ const MainPage = () => {
 
           <S.LikedListItem>
             <FootOning />
-          </S.LikedListItem>
-          <Line />
-        </ContentLayout>
-
-        <ContentLayout>
-          <TextTitle>뜨거운 신발</TextTitle>
-          <FirstLayout>
-            <InsideText>현재 인기가 많은 산책들이에요</InsideText>
-            <Button
-              value='2'
-              onClick={(event) =>
-                navigate(`/collection/${event.target['value']}`)
-              }
-            >
-              전체보기
-            </Button>
-          </FirstLayout>
-          <S.LikedListItem>
-            <LikesComponent />
           </S.LikedListItem>
           <Line />
         </ContentLayout>
@@ -107,10 +113,19 @@ const InsideText = styled.p`
   color: #7d8bae;
   width: 300px;
 `;
+
+const HotShoesBox = styled.img``;
+
+const HotShoesImg = styled.img`
+  width: 76px;
+  height: 76px;
+  display: flex;
+`;
 const TextTitle = styled.p`
   font-family: 'SUITEBold';
   letter-spacing: -3px;
   font-size: 36px;
+  display: flex;
 `;
 export const CategoryWrapper = styled.div`
   display: flex;
