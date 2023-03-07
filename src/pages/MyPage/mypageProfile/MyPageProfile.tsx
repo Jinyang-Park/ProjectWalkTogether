@@ -9,6 +9,9 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { currentUserUid, username } from '../../../Rocoil/Atom';
 import MypageDropBox from './MypageDropBox';
+import useDetectClose from '../../../hooks/useDetectClose';
+import * as S from './MyPageProfile.style';
+
 const MyPageProfile = (props: { uid: string }) => {
   const navigate = useNavigate();
   const uid = props.uid;
@@ -30,6 +33,9 @@ const MyPageProfile = (props: { uid: string }) => {
 
   // 모달창
   const [showBox, setShowBox] = useState<any>(false);
+
+  // 모달 외부 클릭 시 닫기 customhook
+  const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
 
   useEffect(() => {
     getImageURL();
@@ -121,41 +127,40 @@ const MyPageProfile = (props: { uid: string }) => {
   }, []);
 
   return (
-    <MyPageProfileWrap>
-      <UserProfileContainer>
-        <UserProfileImgLabel htmlFor='fileInput'>
-          <UserWrapper>
-            <UserProfileImg
+    <S.MyPageProfileWrap>
+      <S.UserProfileContainer>
+        <S.UserProfileImgLabel htmlFor='fileInput'>
+          <S.UserWrapper>
+            <S.UserProfileImg
               src={
                 imageURL
                   ? imageURL
-                  : require('../../../assets/MypageIcon/carmeraIcon.svg')
-                      .default
+                  : require('../../../assets/MypageIcon/carmera.svg').default
               }
             />
-          </UserWrapper>
+          </S.UserWrapper>
           {uid === userUID && (
             <>
-              <UserProfileEditIcon
+              <S.UserProfileEditIcon
                 src={require('../../../assets/MypageIcon/EditIcon.svg').default}
               />
-              <UserProfileImgBtn
+              <S.UserProfileImgBtn
                 type='file'
                 id='fileInput'
                 onChange={onImageChange}
               />
             </>
           )}
-        </UserProfileImgLabel>
-      </UserProfileContainer>
+        </S.UserProfileImgLabel>
+      </S.UserProfileContainer>
 
-      <UserProfileInfoContainer>
+      <S.UserProfileInfoContainer>
         {uid === userUID && (
-          <UserModifyBtn onClick={onEditBtn}>
+          <S.UserModifyBtn onClick={onEditBtn}>
             {!isEditing ? (
               <>
                 수정하기
-                <UserModifyBtnIcon
+                <S.UserModifyBtnIcon
                   src={
                     require('../../../assets/MypageIcon/EditPinkIcon.svg')
                       .default
@@ -165,29 +170,29 @@ const MyPageProfile = (props: { uid: string }) => {
             ) : (
               <>
                 수정완료
-                <UserModifyBtnIcon
+                <S.UserModifyBtnIcon
                   src={require('../../../assets/MypageIcon/check2.svg').default}
                 />
               </>
             )}
-          </UserModifyBtn>
+          </S.UserModifyBtn>
         )}
         {/*커스텀 훅 들어올 자리*/}
-        <div>
-          <MypageMoreBtn
+        <S.MyPageButton onClick={myPageHandler} ref={myPageRef}>
+          <S.MypageMoreBtn
             src={require('../../../assets/MypageIcon/More.svg').default}
             onClick={() => {
               setShowBox(true);
             }}
           />
-        </div>
-        {showBox && <MypageDropBox />}
-        <UserNickNameBox>
+        </S.MyPageButton>
+        {myPageIsOpen && <MypageDropBox />}
+        <S.UserNickNameBox>
           {!isEditing ? (
-            <UserNickName>{name}</UserNickName>
+            <S.UserNickName>{name}</S.UserNickName>
           ) : (
             <>
-              <input
+              <S.ChangeNickName
                 value={newname}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   if (e.target.value.length > 25) {
@@ -196,24 +201,26 @@ const MyPageProfile = (props: { uid: string }) => {
                     setNewname(e.currentTarget.value);
                   }
                 }}
-              ></input>
+              />
             </>
           )}
-        </UserNickNameBox>
+        </S.UserNickNameBox>
         {nameswitch && <div>닉네임은 25글자를 넘을 수 없습니다.</div>}
 
-        <UserWalkCountBox>
-          <UserWalkCountIcon>아이콘</UserWalkCountIcon>
-          <UserWalkCountText>
+        <S.UserWalkCountBox>
+          <S.UserWalkCountIcon
+            src={require('../../../assets/MypageIcon/droplet.svg').default}
+          />
+          <S.UserWalkCountText>
             총 {20}번의 산책을 완료하셨어요!
-          </UserWalkCountText>
-        </UserWalkCountBox>
+          </S.UserWalkCountText>
+        </S.UserWalkCountBox>
 
-        <UserIntroduceAreaBox>
+        <S.UserIntroduceAreaBox>
           {!isEditing ? (
-            <UserIntroduceText>{message}</UserIntroduceText>
+            <S.UserIntroduceText>{message}</S.UserIntroduceText>
           ) : (
-            <textarea
+            <S.ChangeContent
               value={newmessage}
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                 if (e.currentTarget.value.length > 200) {
@@ -222,150 +229,12 @@ const MyPageProfile = (props: { uid: string }) => {
                   setNewmessage(e.currentTarget.value);
                 }
               }}
-            ></textarea>
+            />
           )}
-        </UserIntroduceAreaBox>
+        </S.UserIntroduceAreaBox>
         {messageswitch && <div>자기소개는 200글자를 넘을 수 없습니다.</div>}
-      </UserProfileInfoContainer>
-    </MyPageProfileWrap>
+      </S.UserProfileInfoContainer>
+    </S.MyPageProfileWrap>
   );
 };
 export default MyPageProfile;
-
-const MyPageProfileWrap = styled.div`
-  /* width: 100%; */
-  height: 163px;
-  margin: 15px 78px 0px 78px;
-
-  display: flex;
-  flex-direction: row;
-`;
-const UserProfileContainer = styled.div`
-  /* width: 25%;
-  height: 100%;
-  margin: auto; */
-
-  position: relative;
-
-  justify-content: center;
-  align-items: center;
-
-  /* border: 1px solid black; */
-`;
-const UserProfileImg = styled.img`
-  /* width: 100%;
-  height: 100%; */
-  /* width: 163px;
-  height: 163px; */
-  width: 66px;
-  height: 60px;
-`;
-const UserProfileImgLabel = styled.label``;
-const UserProfileEditIcon = styled.img`
-  width: 30px;
-  height: 30px;
-  right: 9px;
-  bottom: 9px;
-  cursor: pointer;
-  position: absolute;
-`;
-const UserProfileImgBtn = styled.input`
-  display: none;
-`;
-const UserProfileInfoContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  margin-left: 20px;
-`;
-const UserNickNameBox = styled.div`
-  width: 20%;
-
-  justify-content: center;
-  align-items: center;
-
-  background: #eef1f7;
-`;
-const UserNickName = styled.div`
-  font-size: 36px;
-`;
-const UserNickNameBtn = styled.button`
-  width: 50px;
-  height: 50px;
-
-  background-image: url('../../../assets/editicon.png');
-  background-size: cover;
-`;
-const UserWalkCountBox = styled.div`
-  width: 50%;
-  margin-bottom: 15px;
-
-  display: flex;
-`;
-const UserWalkCountIcon = styled.div``;
-const UserWalkCountText = styled.div``;
-const UserIntroduceAreaBox = styled.div`
-  width: 100%;
-  height: 49%;
-
-  display: flex;
-  position: relative;
-
-  background: #eef1f7;
-`;
-const UserIntroduceText = styled.div`
-  width: 100%;
-`;
-const UserIntroduceBtn = styled.button`
-  width: 50px;
-  height: 50px;
-  bottom: 0px;
-  right: 0px;
-
-  position: absolute;
-
-  background-image: url('../../../assets/editicon.png');
-  background-size: cover;
-`;
-const UserWrapper = styled.div`
-  width: 163px;
-  height: 163px;
-  background: #eeeeee;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-export const UserModifyBtn = styled.button`
-  position: absolute;
-  width: 104px;
-  height: 40px;
-  background: #ffffff;
-  /* coral */
-  margin-left: 545px;
-
-  border: 1px solid #ff8f8f;
-  border-radius: 4px;
-  outline: none;
-
-  font-family: 'SUITERegular';
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  color: #ff8f8f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  letter-spacing: -2px;
-`;
-export const UserModifyBtnIcon = styled.img`
-  margin-left: 8px;
-  width: 20px;
-  height: 20px;
-`;
-export const MypageMoreBtn = styled.img`
-  width: 10px;
-  height: 40px;
-  position: absolute;
-  margin-left: 675px;
-`;

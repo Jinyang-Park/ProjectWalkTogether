@@ -50,7 +50,7 @@ const MyPage = () => {
         <MyPageWrap>
           <MyPageBanner uid={id} />
           <MyPageProfile uid={id} />
-          <MyPageReview />
+          {/* <MyPageReview /> */}
           <MypageTabbar
             currentpage={currentPage}
             setCurrentPage={setCurrentPage}
