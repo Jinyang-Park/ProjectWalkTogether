@@ -77,7 +77,7 @@ export function usePosts() {
     queryFn: fetchPosts,
     //   TIME: m *  s *   ms
     cacheTime: 5 * 60 * 1000,
-    staleTime: 1 * 10 * 1000,
+    staleTime: 10 * 1000,
   });
 
   const posts: Array<Post> = data || [];
