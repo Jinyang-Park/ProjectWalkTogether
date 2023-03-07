@@ -23,14 +23,15 @@ const Header = () => {
   const loggedIn = useRecoilValue(isLoggedIn);
   const [kakaoCode, setKakaoCode] = useRecoilState(kakaoState);
   const [alarm, setAlarm] = useState(0);
+  const [view, setView] = useState(false);
 
-  const getKakaoCode = () => {
-    const code = new URL(window.location.href).searchParams.get('code');
-    if (code) {
-      setKakaoCode(code);
-      console.log(code);
-    }
-  };
+  // const getKakaoCode = () => {
+  //   const code = new URL(window.location.href).searchParams.get('code');
+  //   if (code) {
+  //     setKakaoCode(code);
+  //     console.log(code);
+  //   }
+  // };
 
   const handleLogin = () => {
     navigate('login');
@@ -38,14 +39,17 @@ const Header = () => {
   const gotomy = () => {
     navigate('mypage');
   };
+  const home = () => {
+    navigate('/');
+  };
 
   // const kakaoUser = sessionStorage.getItem('id');
-  const kakaoUser = useRecoilValue(kakaoUserState);
+
   const sessionId = useRecoilValue(username);
 
   console.log('alarm:', alarm);
 
-  getKakaoCode();
+  // getKakaoCode();
   //const currentUser = authService.currentUser;
   //const userNickName = currentUser?.displayName;
   //localId !== null
@@ -53,54 +57,57 @@ const Header = () => {
   return (
     <S.NavContainer>
       <S.Nav>
-        <S.NavUl>
-          <S.NavLi>
-            <S.NavText to='/'>홈</S.NavText>
-          </S.NavLi>
-          <S.NavLi>
-            <S.NavText to='/map'>지도</S.NavText>
-          </S.NavLi>
-          {/* <S.NavLi>
+        <S.NavLi>
+          <S.OllaeBox onClick={home}>
+            <S.OllaeLogo
+              src={require('../../src/assets/ollaelogo.svg').default}
+            />
+            <S.OllaeText>올래</S.OllaeText>
+          </S.OllaeBox>
+        </S.NavLi>
+
+        {/* <S.NavLi>
             <S.NavText to="/chat">chat</S.NavText>
           </S.NavLi> */}
-          <S.NavLi>
-            {!loggedIn && !kakaoCode ? (
-              <S.NavText
-                onClick={() => {
-                  alert('로그인을 해주세요!');
-                }}
-                to='/login'
-              >
-                글 쓰기
-              </S.NavText>
-            ) : (
-              <S.NavText to='/postpage'>글 쓰기</S.NavText>
-            )}
-          </S.NavLi>
-          <S.NavLi>
-            {!loggedIn && !kakaoCode ? (
-              <S.NavText
-                onClick={() => {
-                  alert('로그인을 해주세요!');
-                }}
-                to='/login'
-              >
-                채팅
-              </S.NavText>
-            ) : (
-              <S.NavText to='/chat'>채 팅</S.NavText>
-            )}
-          </S.NavLi>
-
-          {/* <S.NavLi>
-            <S.NavText to="/detailpage">상세</S.NavText>
-          </S.NavLi> */}
-        </S.NavUl>
-
+        <S.SideOllae>
+          <S.NavUl>
+            <S.NavLi>
+              {loggedIn === false ? (
+                <S.NavText
+                  onClick={() => {
+                    alert('로그인을 해주세요!');
+                  }}
+                  to='/login'
+                >
+                  글 쓰기
+                </S.NavText>
+              ) : (
+                <S.NavText to='/postpage'>글 쓰기</S.NavText>
+              )}
+            </S.NavLi>
+            <S.NavLi>
+              {loggedIn === false ? (
+                <S.NavText
+                  onClick={() => {
+                    alert('로그인을 해주세요!');
+                  }}
+                  to='/login'
+                >
+                  채팅
+                </S.NavText>
+              ) : (
+                <S.NavText to='/chat'>채 팅</S.NavText>
+              )}
+            </S.NavLi>
+            <S.NavLi>
+              <S.NavText to='/map'>지도뷰</S.NavText>
+            </S.NavLi>
+          </S.NavUl>
+        </S.SideOllae>
         <S.NavEtc>
           {/* <S.Profile onClick={gotomy}>닉네임</S.Profile> */}
           <S.AlarmContainer>
-            {loggedIn || kakaoCode ? (
+            {loggedIn ? (
               <S.DropdownButton onClick={alarmHandler} ref={alarmRef}>
                 <S.AlarmContainer>
                   <S.Img
@@ -133,28 +140,48 @@ const Header = () => {
           </S.AlarmContainer>
 
           <S.MyPageContainer>
-            {loggedIn || kakaoCode ? (
-              <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
+            {loggedIn ? (
+              <S.DropdownButton
+                onClick={() => {
+                  myPageHandler();
+                  setView(!view);
+                }}
+                ref={myPageRef}
+              >
                 <S.LoginButton>
-                  <div>{sessionId || kakaoUser}님</div>
+                  <S.LoginLayout>
+                    <S.LoginText>{sessionId}님</S.LoginText>
+                    {view ? (
+                      <S.LoginImg
+                        src={
+                          require('../../src/assets/Header/headerup.svg')
+                            .default
+                        }
+                      ></S.LoginImg>
+                    ) : (
+                      <S.LoginImg
+                        src={
+                          require('../../src/assets/Header/headerdowns.svg')
+                            .default
+                        }
+                      ></S.LoginImg>
+                    )}
+                  </S.LoginLayout>
                 </S.LoginButton>
 
-                <S.DropNav isDropped={myPageIsOpen}>
-                  <S.Ul>
-                    <S.Li>
-                      <S.Profile onClick={gotomy}>마이페이지</S.Profile>
-                    </S.Li>
-                    <S.Li>
-                      <S.Profile onClick={gotomy}>닉네임</S.Profile>
-                    </S.Li>
-                    <S.Li>
-                      <KakaoLogoutButton />
-                    </S.Li>
-                    <S.Li>
-                      <S.NavText to='/postpage'>글쓰기</S.NavText>
-                    </S.Li>
-                  </S.Ul>
-                </S.DropNav>
+                {view && (
+                  <S.LoginDropNav isPropped={myPageIsOpen}>
+                    <S.Ul>
+                      <S.Li>
+                        <S.Profile onClick={gotomy}>마이페이지</S.Profile>
+                      </S.Li>
+
+                      <S.Li>
+                        <KakaoLogoutButton />
+                      </S.Li>
+                    </S.Ul>
+                  </S.LoginDropNav>
+                )}
               </S.DropdownButton>
             ) : (
               <S.LoginButton onClick={handleLogin}>Login</S.LoginButton>

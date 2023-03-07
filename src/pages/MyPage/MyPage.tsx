@@ -52,6 +52,7 @@ const MyPage = () => {
           <MyPageProfile uid={id} />
           {/* <MyPageReview /> */}
           <MypageTabbar
+            uid={id}
             currentpage={currentPage}
             setCurrentPage={setCurrentPage}
           />

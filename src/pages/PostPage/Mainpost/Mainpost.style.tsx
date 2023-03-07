@@ -83,18 +83,19 @@ export const InputTitle = styled.input<{ isValidityTitle: boolean }>`
   margin-bottom: 10px;
   background: #eef1f7;
   border-radius: 4px;
-
   font-family: 'SUITERegular';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
 
+
   ${({ isValidityTitle }) =>
     isValidityTitle &&
     css`
       outline: 2px solid #ff8f8f;
     `}
+
 
   &::placeholder {
     font-family: 'SUITERegular';
@@ -104,7 +105,6 @@ export const InputTitle = styled.input<{ isValidityTitle: boolean }>`
     line-height: 20px;
     color: #24264e;
   }
-
   &:focus {
     outline: 2px solid #7d8bae;
   }
@@ -122,13 +122,12 @@ export const Textarea = styled.textarea<{ isValidityContents: boolean }>`
   overflow-wrap: break-word;
   border: none;
   padding: 8px 15px 9px;
-
   font-family: 'SUITERegular';
   font-weight: 400;
   font-size: 12px;
   line-height: 21px;
-
   color: #24264e;
+
 
   ${({ isValidityContents }) =>
     isValidityContents &&
@@ -136,13 +135,13 @@ export const Textarea = styled.textarea<{ isValidityContents: boolean }>`
       outline: 2px solid #ff8f8f;
     `}
 
+
   &::placeholder {
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
     color: #bec5d7;
   }
-
   overflow: auto;
   /* transition: border-color 0.1s, background-color 0.1s; */
   resize: none;
@@ -150,7 +149,6 @@ export const Textarea = styled.textarea<{ isValidityContents: boolean }>`
   &:focus {
     outline: 2px solid #7d8bae;
   }
-
   background: #eef1f7;
   border-radius: 4px;
 `;
@@ -162,7 +160,6 @@ export const BoxPhoto = styled.div`
   height: 204px;
   left: 102px;
   top: 328px;
-
   background: #eef1f7;
   border: 1px solid #ffffff;
   border-radius: 4px;
