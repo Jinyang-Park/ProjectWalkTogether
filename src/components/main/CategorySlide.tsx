@@ -2,14 +2,10 @@ import Slider from 'react-slick';
 import '../../styles/slick.css';
 import '../../styles/slick-theme.css';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { ListItem } from '@mui/material';
-import React from 'react';
-import { constSelector } from 'recoil';
 import { CategorysList } from '../../utils/CategorysList';
 import { useNavigate, useParams } from 'react-router-dom';
-import nextarrow from '../../assets/nextarrow.svg';
-import beforearrow from '../../assets/beforearrow.svg';
+import nextarrow from '../../assets/Mainpage/nextarrow.svg';
+import beforearrow from '../../assets/Mainpage/beforearrow.svg';
 
 //MdArrowForwardIos
 

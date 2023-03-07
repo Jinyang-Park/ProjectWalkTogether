@@ -15,7 +15,8 @@ export const NavContainer = styled.div`
 export const OllaeLogo = styled.img`
   width: 35px;
   height: 35px;
-  padding-right: 6px;
+  padding-right: 6p
+  cursor:pointer;
 
   cursor: pointer;
   @media screen and (max-width: 420px) {
