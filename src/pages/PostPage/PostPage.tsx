@@ -150,6 +150,7 @@ const PostPage = () => {
   //해시태그 리코일
   const Tag = useRecoilValue<Array<string>>(NewpostTag);
   const setTag = useSetRecoilState<Array<string>>(NewpostTag);
+
   //현재시간
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
 
@@ -413,7 +414,7 @@ const PostPage = () => {
       // 수동으로 클리어해줘야 초기화됨.
       setTitle('');
       setDescription('');
-      setTagList([]);
+      setTag([]);
       setMeetTime('');
       setlocation({});
 
