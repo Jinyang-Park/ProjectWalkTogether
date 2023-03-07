@@ -77,7 +77,3 @@ export function usePosts() {
 
   return posts;
 }
-
-export function usePost(id: string) {
-  return usePosts().filter((post) => post.id === id)[0];
-}
