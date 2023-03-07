@@ -8,9 +8,8 @@ import React from 'react';
 import { constSelector } from 'recoil';
 import { CategorysList } from '../../utils/CategorysList';
 import { useNavigate, useParams } from 'react-router-dom';
-
-import { MdArrowBackIosNew } from 'react-icons/md';
-import { MdArrowForwardIos } from 'react-icons/md';
+import nextarrow from '../../assets/nextarrow.svg';
+import beforearrow from '../../assets/beforearrow.svg';
 
 //MdArrowForwardIos
 
@@ -23,8 +22,6 @@ function CategorySlide() {
     speed: 500,
     slidesToShow: 7,
     slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
   };
 
   return (
@@ -34,9 +31,7 @@ function CategorySlide() {
           return (
             //리액트 라우터 dom state 찾아보기
             <Categoryitem
-              onClick={() =>
-                navigate(`/category/${Category.name}`, { state: Category })
-              }
+              onClick={() => navigate(`/category/${Category.name}`)}
               key={Category.name}
             >
               <Img src={Category.img} />
@@ -49,74 +44,82 @@ function CategorySlide() {
   );
 }
 
-const PrevArrow = styled(MdArrowBackIosNew)`
-  color: black;
-`;
-const NextArrow = styled(MdArrowForwardIos)`
-  color: black;
-`;
-
 const StyledSlider = styled(Slider)`
   margin: auto;
   width: 80%; //슬라이드 컨테이너 영역
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 37px;
+
   .slick-list {
     //슬라이드 스크린
-    width: 100%;
-    height: 30%;
-    margin: 0 auto;
+    width: 90%;
+    height: 100px;
+    margin: auto;
   }
   .slick-slide div {
     /* cursor: pointer; */
   }
 
   .slick-track {
-    width: 100%;
+    width: 0%;
+    align-items: center;
   }
-  .slick-prev::before,
-  .slick-next::before {
-    opacity: 0;
-    display: none;
+  .slick-prev {
+    width: 26px;
+    height: 26px;
+    top: 60%;
+    left: -5px;
+    cursor: pointer;
+    position: absolute;
+  }
+  .slick-prev:before {
+    width: 26px;
+    height: 26px;
+    background-image: url(${beforearrow});
+    background-size: 26px 26px;
+    display: inline-block;
+    content: '';
+    opacity: 1;
+  }
+  .slick-next {
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    right: -5px;
+    position: absolute;
+    top: 60%;
+  }
+
+  .slick-next:before {
+    width: 26px;
+    height: 26px;
+    background-image: url(${nextarrow});
+    background-size: 26px 26px;
+    display: inline-block;
+    content: '';
+    opacity: 1;
   }
 `;
 
-export const Category = styled.div`
-  font-family: 'pretendard';
-  padding: 0 20px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+export const Category = styled.div``;
 
-  grid-gap: 8px 0;
-  gap: 8px 0;
-  margin: 0 auto 32px;
-`;
+export const Categoryitem = styled.div``;
 
-export const Categoryitem = styled.div`
-  cursor: pointer;
-
-  width: 23%;
-
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-
-  color: #6b6766;
-`;
 export const Img = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50%;
   margin: auto;
+
   background-color: #f2efed;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
 `;
 export const ImgTitle = styled.p`
   text-align: center;
   margin: 0 auto;
+  font-family: 'SUITERegular';
+  letter-spacing: -2px;
+  padding-top: 10px;
 `;
 
 export default CategorySlide;

@@ -9,7 +9,6 @@ export const InputLayout = styled.div`
   position: relative;
 `;
 export const InputBox = styled.div`
-  border: 1px solid #ddd;
   border-radius: 30px;
 
   width: 460px;
@@ -17,7 +16,8 @@ export const InputBox = styled.div`
   margin: 0 auto;
   position: relative;
   top: 100px;
-  box-shadow: black;
+
+  box-shadow: 0 0 10px #bec5d7;
 `;
 export const join_box = styled.div`
   padding-left: 40px;
@@ -31,13 +31,17 @@ export const Title_head = styled.p`
   margin-top: 40px;
 `;
 
+export const checkBox_check00 = styled.div`
+  position: relative;
+`;
+
 export const checkBox_check01 = styled.div`
   position: relative;
 `;
 export const Agree01 = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 `;
 
 export const checkBox_check02 = styled.div`
@@ -118,10 +122,17 @@ export const AgreeBox = styled.div`
   line-height: 30px;
 `;
 
-export const AgreeBtn = styled.button`
+export const AgreeBtn = styled.button<{ state: boolean }>`
   width: 306px;
   height: 46px;
   background-color: #7d8bae;
   color: white;
   border-radius: 5px;
+  background: ${(props) => (props.state ? '#7d8bae;' : '#C8D1E0')};
+  @media screen and (max-width: 390px) {
+    width: 334px;
+    height: 39px;
+    font-size: 15px;
+    line-height: 13px;
+  }
 `;

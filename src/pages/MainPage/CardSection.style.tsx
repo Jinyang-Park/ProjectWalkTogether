@@ -32,6 +32,8 @@ export const ListItemThumnailTitle = styled.p`
   /* overflow: hidden; */
   text-overflow: ellipsis;
   font-size: 16px;
+  font-family: 'SUITERegular';
+  letter-spacing: -2px;
   font-weight: 600;
   line-height: 19.97px;
   letter-spacing: normal;
@@ -45,6 +47,7 @@ export const HashTag = styled.p`
   gap: 8px;
   font-weight: 500;
   font-size: 12px;
+  font-family: 'SUITERegular';
   line-height: 15px;
 `;
 export const ListItemContainer = styled.div`
@@ -72,18 +75,20 @@ export const ListItemAddress = styled.p`
   line-height: 15px;
 `;
 export const ListItemDate = styled.span`
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
   margin-top: 2px;
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
+  margin-right: 3px;
 `;
 
 export const LikedListItem = styled.div`
   display: flex;
   flex-wrap: wrap;
-  grid-gap: 74.5px;
-  grid-row-gap: 70px;
-  margin-top: 46px;
+  grid-gap: 49.3px;
+  margin-top: 36px;
 `;
 
 export const Collection = styled.div``;

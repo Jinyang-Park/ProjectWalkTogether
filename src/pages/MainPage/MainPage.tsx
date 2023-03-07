@@ -16,7 +16,12 @@ import * as S from './CardSection.style';
 import CollectionAll from '../Collection/CollectionAll';
 import Collection from '../Collection/Collection';
 import { CollecitionList } from '../../utils/CollectionList';
+import LikesComponent from './LikeComponent';
 
+import Fire from '../../assets/Mainpage/Fire.svg';
+import Boog from '../../assets/Mainpage/boog.svg';
+import gitbal from '../../assets/Mainpage/gitbal.svg';
+import WalkAfter from './WalkAfter';
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 
 const MainPage = () => {
@@ -26,30 +31,78 @@ const MainPage = () => {
   return (
     <CommonStyles>
       <MainBanner />
+      <CategoryWrapper>
+        <CategorySlide />
 
-      <CategorySlide />
+        <ContentLayout>
+          <TextTitle>
+            {' '}
+            <HotShoesImg src={Fire}></HotShoesImg>뜨거운 신발
+          </TextTitle>
 
-      <div>
-        <FirstLayout>
-          <span style={{ fontSize: 20, fontWeight: 'bold' }}>신발신는중</span>
-          <Button
-            value='1'
-            onClick={(event) =>
-              navigate(`/collection/${event.target['value']}`)
-            }
-          >
-            전체보기
-          </Button>
-        </FirstLayout>
+          <FirstLayout>
+            <InsideText>현재 인기가 많은 산책들이에요</InsideText>
+            <Button
+              value='2'
+              onClick={(event) =>
+                navigate(`/collection/${event.target['value']}`)
+              }
+            >
+              전체보기
+            </Button>
+          </FirstLayout>
+          <S.LikedListItem>
+            <LikesComponent />
+          </S.LikedListItem>
+          <Line />
+        </ContentLayout>
 
-        <S.LikedListItem>
-          <FootOning />
-        </S.LikedListItem>
-      </div>
+        <ContentLayout>
+          <TextTitle>
+            <HotShoesImg src={Boog}></HotShoesImg>
+            신발 신는 중
+          </TextTitle>
+          <FirstLayout>
+            <InsideText>현재 이루어지고 있는 산책들이에요</InsideText>
+            <Button
+              value='1'
+              onClick={(event) =>
+                navigate(`/collection/${event.target['value']}`)
+              }
+            >
+              전체보기
+            </Button>
+          </FirstLayout>
 
-      <span style={{ fontSize: 20, fontWeight: 'bold' }}>뜨거운신발</span>
+          <S.LikedListItem>
+            <FootOning />
+          </S.LikedListItem>
+          <Line />
+        </ContentLayout>
 
-      <span style={{ fontSize: 20, fontWeight: 'bold' }}>걷는 중</span>
+        <ContentLayout>
+          <TextTitle>
+            {' '}
+            <HotShoesImg src={gitbal}></HotShoesImg>
+            매칭된 신발
+          </TextTitle>
+          <FirstLayout>
+            <InsideText>매칭이 완료된 산책들이에요</InsideText>
+            <Button
+              value='3'
+              onClick={(event) =>
+                navigate(`/collection/${event.target['value']}`)
+              }
+            >
+              전체보기
+            </Button>
+          </FirstLayout>
+          <S.LikedListItem>
+            <WalkAfter />
+          </S.LikedListItem>
+          <Line />
+        </ContentLayout>
+      </CategoryWrapper>
     </CommonStyles>
   );
 };
@@ -60,11 +113,51 @@ const Category = styled.div``;
 const Button = styled.button`
   float: right;
   background-color: transparent;
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
+`;
+const InsideText = styled.p`
+  font-family: 'SUITERegular';
+  letter-spacing: -1px;
+  color: #7d8bae;
+  width: 300px;
+`;
+
+const HotShoesBox = styled.img``;
+
+const HotShoesImg = styled.img`
+  width: 76px;
+  height: 76px;
+  display: flex;
+`;
+const TextTitle = styled.p`
+  font-family: 'SUITEBold';
+  letter-spacing: -3px;
+  font-size: 36px;
+  display: flex;
+`;
+export const CategoryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 868px;
+  margin: auto;
+  margin-bottom: 80px;
 `;
 
 const FirstLayout = styled.div`
-  justify-content: space-around;
+  display: flex;
+  justify-content: space-between;
 `;
 
+const Line = styled.div`
+  height: 32px;
+  background-color: white;
+  width: 100%;
+  border-bottom: 2px solid #bec5d7;
+`;
+
+const ContentLayout = styled.div`
+  padding-top: 66px;
+`;
 export const Collectionitem = styled.div``;
 export default MainPage;
