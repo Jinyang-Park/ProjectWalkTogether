@@ -33,7 +33,7 @@ const MainPage = () => {
         <ContentLayout>
           <TitleLayout>
             <HotShoesImg src={Fire}></HotShoesImg>
-            <TextTitle>뜨거운 신발</TextTitle>
+            <S.CategoryTitle>뜨거운 신발 </S.CategoryTitle>
           </TitleLayout>
 
           <FirstLayout>
@@ -56,7 +56,7 @@ const MainPage = () => {
         <ContentLayout>
           <TitleLayout>
             <HotShoesImg src={Boog}></HotShoesImg>
-            <TextTitle>신발 신는 중</TextTitle>
+            <S.CategoryTitle>신발 신는 중 </S.CategoryTitle>
           </TitleLayout>
 
           <FirstLayout>
@@ -80,7 +80,7 @@ const MainPage = () => {
         <ContentLayout>
           <TitleLayout>
             <HotShoesImg src={gitbal}></HotShoesImg>
-            <TextTitle>매칭된 신발</TextTitle>
+            <S.CategoryTitle>매칭된 신발 </S.CategoryTitle>
           </TitleLayout>
           <FirstLayout>
             <InsideText>매칭이 완료된 산책들이에요</InsideText>
@@ -123,12 +123,11 @@ const TitleLayout = styled.div`
   align-items: center;
 `;
 
-const HotShoesBox = styled.img``;
-
 const HotShoesImg = styled.img`
   width: 76px;
   height: 76px;
   display: flex;
+  margin-top: 40px;
 `;
 const TextTitle = styled.p`
   font-family: 'SUITEBold';
