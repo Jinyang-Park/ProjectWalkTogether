@@ -26,17 +26,7 @@ import { async, uuidv4 } from '@firebase/util';
 
 import { userForChat, currentUserUid } from '../../Rocoil/Atom';
 import useDetectClose from './../../hooks/useDetectClose';
-
-interface getPostings {
-  BannereURL_Posting: string;
-  Category_Posting: string;
-  Description_Posting: string;
-  Nickname: string;
-  ThunmnailURL_Posting: string;
-  Title_Posting: string;
-  UID: string;
-  children: JSX.Element | JSX.Element[];
-}
+import { Post, usePost } from '../../api/postsApi';
 
 const DetailPage = () => {
   // 모달 외부 클릭 시 닫기 customhook
@@ -44,17 +34,18 @@ const DetailPage = () => {
   // 현재 유저의 정보
   const UID = useRecoilValue(userForChat);
 
+  // useParams를 사용하여 구조 분해 할당을 하여 사용함
+  const { id } = useParams();
+
   // 페이지 업데이트용
-  const [post, setPost] = useState<any>({});
+  // const [post, setPost] = useState<any>({});
+  const post: Post = usePost(id);
 
   // 채팅방으로 이동
   const navigate = useNavigate();
   // 아톰은 새로고침하면 초기화가 된다. 앱이 랜더링이 된다.
   // 리코일은 리덕스와 같아서 새로고침하면 날라간다.
   // const params = useRecoilValue(paramsState);
-
-  // useParams를 사용하여 구조 분해 할당을 하여 사용함
-  const { id } = useParams();
 
   const [getPostings, setGetPostings] = useState<any>({});
 
@@ -75,7 +66,7 @@ const DetailPage = () => {
   const [chatList, setChatList] = useState<any>([]);
 
   // 채팅방 만들기
-  const getPostingUID = getPostings.UID;
+  const getPostingUID = post.UID;
   const CurrentUid = UID.useruid;
 
   //  동일한 유저이더라도 게시글마다 새로운 채팅방이 생긴다
@@ -296,17 +287,6 @@ const DetailPage = () => {
       LikedUsers: p.LikedUsers,
     });
   };
-
-  useEffect(() => {
-    if (!id || id === '') return;
-    onSnapshot(doc(dbService, 'Post', id), (doc) => {
-      setPost(doc.data());
-    });
-  }, [id]);
-
-  useEffect(() => {
-    console.log(post);
-  }, [post]);
 
   // 좋아요 취소
   const unlikepost = async () => {

@@ -1,4 +1,4 @@
-import { Post, usePosts } from '../../../api/getPosts';
+import { Post, usePosts } from '../../../api/postsApi';
 import CardSection from '../../../components/CardSection/CardSection';
 import * as S from './MypageLike.style';
 

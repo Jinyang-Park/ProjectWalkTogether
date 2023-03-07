@@ -8,7 +8,7 @@ import CommonStyles from './../../styles/CommonStyles';
 import { useRecoilValue } from 'recoil';
 
 import { Cetegory } from '../../Rocoil/Atom';
-import { Post, usePosts } from '../../api/getPosts';
+import { Post, usePosts } from '../../api/postsApi';
 
 const MapPage = () => {
   // firestore에서 데이터 'Post' 가져오기

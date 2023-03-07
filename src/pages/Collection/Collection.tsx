@@ -21,7 +21,7 @@ import CardSection from '../../components/CardSection/CardSection';
 import Fire from '../../assets/Mainpage/Fire.svg';
 import Boog from '../../assets/Mainpage/boog.svg';
 import gitbal from '../../assets/Mainpage/gitbal.svg';
-import { Post, usePosts } from '../../api/getPosts';
+import { Post, usePosts } from '../../api/postsApi';
 
 const Collection = (props: any) => {
   const navigate = useNavigate();

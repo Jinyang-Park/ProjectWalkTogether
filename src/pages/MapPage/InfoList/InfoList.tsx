@@ -35,7 +35,7 @@ import { paramsState } from '../../../Rocoil/Atom';
 import { useSetRecoilState } from 'recoil';
 import CommonStyles from './../../../styles/CommonStyles';
 import CardSection from './../../../components/CardSection/CardSection';
-import { Post, usePosts } from '../../../api/getPosts';
+import { Post, usePosts } from '../../../api/postsApi';
 
 const InfoList = ({ Post }) => {
   const navigate = useNavigate();

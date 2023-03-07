@@ -29,11 +29,6 @@ export type Post = {
   createdAt: number;
 };
 
-export const postsAtom = atom<Array<Post>>({
-  key: 'posts',
-  default: [],
-});
-
 export function usePosts() {
   async function fetchPosts() {
     const getPostsQuery = query(
@@ -83,4 +78,8 @@ export function usePosts() {
   const posts: Array<Post> = data || [];
 
   return posts;
+}
+
+export function usePost(id: string) {
+  return usePosts().filter((post) => post.id === id)[0];
 }

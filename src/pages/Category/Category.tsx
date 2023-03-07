@@ -19,7 +19,7 @@ import { Cetegory, FilterSelectedDate } from '../../Rocoil/Atom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { fontWeight } from '@mui/system';
 import { CategorysList } from '../../utils/CategorysList';
-import { Post, usePosts } from '../../api/getPosts';
+import { Post, usePosts } from '../../api/postsApi';
 
 const Category = () => {
   const { category } = useParams();

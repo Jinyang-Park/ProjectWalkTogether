@@ -1,6 +1,6 @@
 import * as S from './CardSection.style';
 import CardSection from '../../components/CardSection/CardSection';
-import { Post, usePosts } from '../../api/getPosts';
+import { Post, usePosts } from '../../api/postsApi';
 
 //뜨거운 신발
 const WalkAfter = () => {

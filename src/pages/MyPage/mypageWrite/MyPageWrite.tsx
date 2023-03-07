@@ -1,6 +1,6 @@
 import CardSection from '../../../components/CardSection/CardSection';
 import * as S from './MypageWrite.style';
-import { Post, usePosts } from '../../../api/getPosts';
+import { Post, usePosts } from '../../../api/postsApi';
 
 const MyPageWrite = (props: { uid: string }) => {
   const { uid } = props;
