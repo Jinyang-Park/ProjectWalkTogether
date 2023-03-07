@@ -90,15 +90,15 @@ export const Li = styled.li``;
 export const DropNav = styled.nav<{ isDropped: boolean }>`
   background: #b8c0d1;
   position: absolute;
-  top: 52px;
-  left: 50%;
+  top: 55px;
+
   width: 100px;
   text-align: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, -20px);
+  transform: translate(-80%, -20px);
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
   z-index: 9;
 
@@ -107,8 +107,8 @@ export const DropNav = styled.nav<{ isDropped: boolean }>`
     css`
       opacity: 1;
       visibility: visible;
-      transform: translate(-50%, 0);
-      left: 50%;
+      transform: translate(-80%, 0);
+      left: 60%;
     `};
 `;
 
@@ -147,8 +147,8 @@ export const Reddot = styled.div`
   width: 4px;
   height: 4px;
   position: relative;
-  bottom: 22px;
-  left: 20px;
+  bottom: 24px;
+  left: 25px;
   z-index: 2;
 `;
 
@@ -167,6 +167,17 @@ export const NotificationTitleBox = styled.div`
   /* background-color: blue; */
   width: 210px;
   height: 31px;
+  position: relative;
+`;
+
+export const NotificationTitleBoxText = styled.p`
+  position: relative;
+  top: 10px;
+  font-family: 'SUIT';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 12px;
 `;
 
 export const NotificationTitleXbtn = styled.div`
@@ -174,5 +185,5 @@ export const NotificationTitleXbtn = styled.div`
   height: 10px;
   position: relative;
   bottom: 17px;
-  left: 192px;
+  left: 185px;
 `;
