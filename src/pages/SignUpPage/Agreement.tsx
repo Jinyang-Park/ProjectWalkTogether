@@ -16,12 +16,29 @@ const Agreement = () => {
 
   //약관동의 로직
   const [checkList, setCheckList] = useState([]);
-  const [buttonColor, setButtonColor] = useState(false);
-  const [checkBoxActive, setCheckBoxActive] = useState(false);
+  const [buttonColor, setButtonColor] = useState<boolean>(false);
+  const [checkBoxActive, setCheckBoxActive] = useState<boolean>(false);
+  const [disabled, setDisabled] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const isCheckBoxClicked = () => {
     setCheckBoxActive(!checkBoxActive);
   };
-  const [disabled, setDisabled] = useState(true);
+
+  const agreenments = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!checkBoxActive) {
+      alert('약관에 동의해주세요!'); // checkbox가 선택되지 않았다면 알림창 띄우기
+      return;
+    }
+  };
+
+  const checkAll = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.checked
+      ? setCheckList(['all', 'terms', 'collect', 'another', 'service'])
+      : setCheckList([]);
+    console.log(e.target.checked);
+  };
 
   const check = (e) => {
     e.target.checked
@@ -37,9 +54,11 @@ const Agreement = () => {
     ) {
       setDisabled(false);
       setButtonColor(true);
+      setErrorMessage('다음페이지로 갑니다');
     } else {
       setDisabled(true);
       setButtonColor(false);
+      setErrorMessage('약관동의를 해주세요.');
     }
   }, [checkList]);
 
@@ -59,13 +78,36 @@ const Agreement = () => {
     setIsOpenModal4(!isOpenModal4);
   }, [isOpenModal4]);
 
+  // if (!checkBoxActive) {
+  //   alert('약관에 동의해주세요!'); // checkbox가 선택되지 않았다면 알림창 띄우기
+  //   return;
+  // }
   return (
     <CommonStyles>
       <S.InputLayout>
         <S.InputBox>
-          <form name='termForm' action='/signUp' method='Get'>
+          <form onSubmit={agreenments}>
             <S.Title_head>약관동의</S.Title_head>
             <S.join_box>
+              <S.checkBox_check00>
+                <S.Agree01>
+                  <S.ListLayout>
+                    <S.List>전체</S.List>
+                    <S.Text>이용약관 동의</S.Text>
+                  </S.ListLayout>
+
+                  <S.checkAllBtn>
+                    <input
+                      onClick={isCheckBoxClicked}
+                      type='checkbox'
+                      name='all'
+                      onChange={checkAll}
+                      checked={checkList.includes('all') ? true : false}
+                    />
+                  </S.checkAllBtn>
+                </S.Agree01>
+              </S.checkBox_check00>
+
               <S.checkBox_check01>
                 <S.Agree01>
                   <S.ListLayout>
@@ -105,10 +147,10 @@ const Agreement = () => {
 
                   <S.checkAllBtn>
                     <input
+                      onClick={isCheckBoxClicked}
                       type='checkbox'
                       name='terms'
                       onChange={check}
-                      onClick={isCheckBoxClicked}
                       checked={checkList.includes('terms') ? true : false}
                     />
                   </S.checkAllBtn>
@@ -154,10 +196,10 @@ const Agreement = () => {
 
                   <S.checkAllBtn>
                     <input
+                      onClick={isCheckBoxClicked}
                       type='checkbox'
                       name='collect'
                       onChange={check}
-                      onClick={isCheckBoxClicked}
                       checked={checkList.includes('collect') ? true : false}
                     />
                   </S.checkAllBtn>
@@ -257,9 +299,10 @@ const Agreement = () => {
               <S.AgreeBtn
                 type='submit'
                 disabled={disabled}
+                state={buttonColor}
                 onClick={() => navigate('/signup')}
               >
-                약관 전체 동의
+                {errorMessage}
               </S.AgreeBtn>
             </S.AgreeBox>
             <S.Back>

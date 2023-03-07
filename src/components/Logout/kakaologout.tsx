@@ -19,6 +19,8 @@ export default function KakaoLogoutButton() {
       navigate('/');
     } else {
       authService.signOut();
+      sessionStorage.clear();
+      localStorage.clear();
     }
 
     // 새로고침 하지않으면 네이버로그인 버튼이 사라짐. 렌더링문제인듯함
@@ -33,4 +35,5 @@ export default function KakaoLogoutButton() {
 
 const KakaoLogout = styled.div`
   cursor: pointer;
+  font-size: 10px;
 `;

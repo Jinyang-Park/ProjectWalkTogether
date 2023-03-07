@@ -83,13 +83,11 @@ export const InputTitle = styled.input`
   margin-bottom: 10px;
   background: #eef1f7;
   border-radius: 4px;
-
   font-family: 'SUITERegular';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-
   &::placeholder {
     font-family: 'SUITERegular';
     font-style: normal;
@@ -98,7 +96,6 @@ export const InputTitle = styled.input`
     line-height: 20px;
     color: #24264e;
   }
-
   &:focus {
     outline: 2px solid #6a24ff;
   }
@@ -116,21 +113,17 @@ export const Textarea = styled.textarea`
   overflow-wrap: break-word;
   border: none;
   padding: 8px 15px 9px;
-
   font-family: 'SUITERegular';
   font-weight: 400;
   font-size: 12px;
   line-height: 21px;
-
   color: #24264e;
-
   &::placeholder {
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
     color: #24264e;
   }
-
   overflow: auto;
   /* transition: border-color 0.1s, background-color 0.1s; */
   resize: none;
@@ -138,7 +131,6 @@ export const Textarea = styled.textarea`
   &:focus {
     outline: 2px solid #6a24ff;
   }
-
   background: #eef1f7;
   border-radius: 4px;
 `;
@@ -150,7 +142,6 @@ export const BoxPhoto = styled.div`
   height: 204px;
   left: 102px;
   top: 328px;
-
   background: #eef1f7;
   border: 1px solid #ffffff;
   border-radius: 4px;

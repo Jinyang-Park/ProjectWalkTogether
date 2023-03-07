@@ -2,6 +2,7 @@ import Slider from 'react-slick';
 import styled from '@emotion/styled';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+// import BannerImage from '../assets/SlideContainer/BannerSlide.png';
 
 const settings = {
   arrows: true,
@@ -24,7 +25,7 @@ const MainBanner = () => {
               <BannerSubTitle>나의 이야기</BannerSubTitle>
             </BannerTitle>
           </BannerTextBox>
-          <BannerFirstImg src="/assets/slide01.png" />
+          <BannerFirstImg src='/assets/slide01.png' />
         </BannerContainer>
       </SlideWrapper>
       <SlideWrapper>
@@ -35,7 +36,7 @@ const MainBanner = () => {
               <BannerSubTitle>나의 이야기</BannerSubTitle>
             </BannerTitle>
           </BannerTextBox>
-          <BannerSecondImg src="/assets/slide01.png" />
+          <BannerSecondImg src='/assets/slide01.png' />
         </BannerContainer>
       </SlideWrapper>
     </SliderWrapper>
@@ -97,7 +98,6 @@ const BannerContainer = styled.div`
 `;
 const BannerTextBox = styled.div`
   position: absolute;
-  background-color: orange;
   width: 40.25rem;
   height: 12.8125rem;
   left: 9.125rem;
@@ -131,6 +131,7 @@ const BannerFirstImg = styled.img`
   position: absolute;
   width: 64rem;
   height: 27rem;
+  /* background-image: ; */
 `;
 const BannerSecondImg = styled.img`
   position: absolute;
