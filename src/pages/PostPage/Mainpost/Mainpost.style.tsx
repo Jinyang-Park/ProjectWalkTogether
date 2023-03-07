@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled, { css } from 'styled-components';
 
 //배너 상단 박스
 export const Bannercontainer = styled.div`
@@ -71,14 +71,14 @@ export const CateogryWrapper = styled.div`
 `;
 
 //제목 입력하는 input
-export const InputTitle = styled.input`
-  border: none;
+export const InputTitle = styled.input<{ isValidityTitle: boolean }>`
+  /* border: none; */
+  outline: 1px soild red;
   height: 30px;
   width: 80%;
   margin-top: 8px;
   border-radius: 4px;
   background: none;
-  border: none;
   padding: 2px 15px 0px;
   margin-bottom: 10px;
   background: #eef1f7;
@@ -89,6 +89,12 @@ export const InputTitle = styled.input`
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
+
+  ${({ isValidityTitle }) =>
+    isValidityTitle &&
+    css`
+      outline: 2px solid red;
+    `}
 
   &::placeholder {
     font-family: 'SUITERegular';
@@ -107,7 +113,7 @@ export const InputTitle = styled.input`
 //해쉬태그 박스
 
 // 글쓰기 textarea
-export const Textarea = styled.textarea`
+export const Textarea = styled.textarea<{ isValidityContents: boolean }>`
   position: relative;
   width: 80%;
   height: 73px;
@@ -123,6 +129,12 @@ export const Textarea = styled.textarea`
   line-height: 21px;
 
   color: #24264e;
+
+  ${({ isValidityContents }) =>
+    isValidityContents &&
+    css`
+      outline: 2px solid red;
+    `}
 
   &::placeholder {
     font-weight: 400;

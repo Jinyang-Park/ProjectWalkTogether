@@ -10,7 +10,11 @@ import useDetectClose from './../../../hooks/useDetectClose';
 
 interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
+  setIsValidityTitle: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsValidityContents: React.Dispatch<React.SetStateAction<boolean>>;
   postCategory: string;
+  isValidityTitle: boolean;
+  isValidityContents: boolean;
 }
 interface SetProps {
   setTagItem: React.Dispatch<React.SetStateAction<string>>;
@@ -22,6 +26,10 @@ function MainPost({
   TagItem,
   setPostCategory,
   postCategory,
+  isValidityTitle,
+  isValidityContents,
+  setIsValidityTitle,
+  setIsValidityContents,
 }: SetProps) {
   // 모달 외부 클릭 시 닫기 customhook
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
@@ -66,12 +74,16 @@ function MainPost({
   ////////
   const handleChange = (e: any) => {
     Setposttitle(e.target.value);
+    posttitel === '' ? setIsValidityTitle(true) : setIsValidityTitle(false);
   };
 
   ////////
   //글내용
   const handleChangeText = (e: any) => {
     SetDescription(e.target.value);
+    postdescription === ''
+      ? setIsValidityContents(true)
+      : setIsValidityContents(false);
   };
 
   return (
@@ -145,11 +157,13 @@ function MainPost({
           <S.InputTitle
             onChange={handleChange}
             placeholder='제목을 입력해 주세요'
+            isValidityTitle={isValidityTitle}
           />
           <Tag tagItem='' />
           <S.Textarea
             onChange={handleChangeText}
             placeholder='당신의 이야기를 160글자 내로 적어주세요'
+            isValidityContents={isValidityContents}
           ></S.Textarea>
         </S.BoxMain>
       </S.Boxcontents>

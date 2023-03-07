@@ -75,6 +75,12 @@ const PostPage = () => {
   //약속 시간
   const meetDate = useRecoilValue(ReserveDate);
 
+  //타이틀 유효성검사
+  const [isValidityTitle, setIsValidityTitle] = useState<boolean>(false);
+
+  //내용 유효성검사
+  const [isValidityContents, setIsValidityContents] = useState<boolean>(false);
+
   const date = (y: number, m: number, d: number) => {
     const D = new Date(y, m, d);
 
@@ -228,11 +234,13 @@ const PostPage = () => {
   ///////////
   const handleSubmit = async (e: any) => {
     if (Title.length < 1 || Title.length > 20) {
+      setIsValidityTitle(true);
       return;
     }
 
     if (Description.length < 1 || Description.length > 200) {
-      alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
+      // alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
+      setIsValidityContents(true);
       return;
     }
     // if (meetDate !== '') {
@@ -425,6 +433,10 @@ const PostPage = () => {
           setTagItem={setTagItem}
           TagItem={TagItem}
           // onKeyPress={onKeyPress}
+          isValidityTitle={isValidityTitle}
+          isValidityContents={isValidityContents}
+          setIsValidityContents={setIsValidityContents}
+          setIsValidityTitle={setIsValidityTitle}
         />
         <IuputInformation />
         <S.PostSubmitBox>

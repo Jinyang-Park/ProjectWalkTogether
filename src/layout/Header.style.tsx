@@ -148,7 +148,7 @@ export const Reddot = styled.div`
   height: 4px;
   position: relative;
   bottom: 24px;
-  left: 25px;
+  left: 20px;
   z-index: 2;
 `;
 
