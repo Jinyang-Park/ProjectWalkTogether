@@ -34,7 +34,6 @@ const Router = () => {
     <BrowserRouter>
       <AuthStateListener />
       <Header />
-      <RightSideWeatherCheck />
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />

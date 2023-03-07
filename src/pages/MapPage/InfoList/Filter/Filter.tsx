@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import DropdownCategory from '../../../../components/DropdownCategoryForWritePage/DropdownCategory';
 import * as S from './Filter.style';
 import AntCalendarMap from '../Calendar/AntCalendarDate';
-import DropdownFilterCategory from '../../../../components/DropdownFilterCategory/DropdownFilterCategory';
+import DropdownFilterCategoryForMapPage from '../../../../components/DropDownCategoryForMapPage/DropDownCategoryForMapPage';
 import { useRecoilValue, useRecoilState } from 'recoil';
 
-import { Cetegory } from '../../../../Rocoil/Atom';
+import { Cetegory, viewCountForMapPage } from '../../../../Rocoil/Atom';
 
 declare interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
@@ -19,6 +19,9 @@ export const FilterBar = ({
 }: SetProps) => {
   const [show, setShow] = useState<any>(false);
   const [TextChange, setTextChange] = useState('카테고리');
+  const [Category, setCatefory] = useRecoilState(Cetegory);
+
+  const [viewCount, setViewCount] = useRecoilState(viewCountForMapPage);
 
   return (
     <>
@@ -30,7 +33,8 @@ export const FilterBar = ({
             <S.FilterCalendarIcon />
           </S.CategoryFilterWarpper>
           {show && (
-            <DropdownFilterCategory
+            <DropdownFilterCategoryForMapPage
+              setCategory={setCatefory}
               setShow={setShow}
               setTextChange={setTextChange}
               TextChange={TextChange}
@@ -40,15 +44,17 @@ export const FilterBar = ({
         </S.CategoryFilter>
         {/*최신순 / 조회순 / 좋아요순*/}
         <S.FilterSortWrapper>
-          <S.FilterNewest>
+          <S.FilterNewest onClick={() => setViewCount('최신순')}>
             최신순
             <S.FilterAreaLine></S.FilterAreaLine>
           </S.FilterNewest>
-          <S.FilterNewest>
+          <S.FilterNewest onClick={() => setViewCount('조회순')}>
             조회순
             <S.FilterAreaLine></S.FilterAreaLine>
           </S.FilterNewest>
-          <S.FilterNewest>좋아요순</S.FilterNewest>
+          <S.FilterNewest onClick={() => setViewCount('좋아요순')}>
+            좋아요순
+          </S.FilterNewest>
         </S.FilterSortWrapper>
       </S.FilterArea>
     </>

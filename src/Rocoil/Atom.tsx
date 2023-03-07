@@ -120,7 +120,37 @@ export const Cetegory = atom<any>({
   default: '전체',
 });
 
+export const FilterSelectedDateForMapPage = atom<any>({
+  key: 'FilterSelectedDateForMapPage',
+  default: '',
+});
+
+export const FilterMeetDateForMapPage = atom<any>({
+  key: 'FilterMeetDateForMapPage',
+  default: '',
+});
+
+export const dateType1ForMapPage = atom<any>({
+  key: 'dateType1ForMapPage',
+  default: '',
+});
+
+export const dateType2ForMapPage = atom<any>({
+  key: 'dateType2ForMapPage',
+  default: '',
+});
+
+export const viewCountForMapPage = atom<any>({
+  key: 'viewCountForMapPage',
+  default: '최신순',
+});
+
 //* ---------------MapPage Catefory------------------ *//
+
+export const chattingusers = atom<any>({
+  key: 'chattingusers',
+  default: '',
+});
 
 export const filterDatename = atom<any>({
   key: 'filterDatename',
