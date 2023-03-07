@@ -13,11 +13,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import CategorySlide from '../../components/main/CategorySlide';
 import FootOning from './FootOning';
 import * as S from './CardSection.style';
-import CollectionAll from '../Collection/CollectionAll';
-import Collection from '../Collection/Collection';
-import { CollecitionList } from '../../utils/CollectionList';
 import LikesComponent from './LikeComponent';
-
 import Fire from '../../assets/Mainpage/Fire.svg';
 import Boog from '../../assets/Mainpage/boog.svg';
 import gitbal from '../../assets/Mainpage/gitbal.svg';
