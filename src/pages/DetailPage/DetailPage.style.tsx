@@ -169,6 +169,7 @@ export const ThunmnailURL = styled.img`
   left: 114px;
   top: 338px;
   border-radius: 4px;
+  cursor: pointer;
 `;
 
 export const DetailUserName = styled.span`
@@ -176,11 +177,12 @@ export const DetailUserName = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 16px;
   line-height: 20px;
   margin: 0 auto;
   margin-top: 8px;
+  cursor: pointer;
 `;
 export const DetailIntroWrapper = styled.div`
   display: flex;

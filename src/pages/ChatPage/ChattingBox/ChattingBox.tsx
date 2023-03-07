@@ -23,6 +23,7 @@ import {
   tochattingboxprofileimg,
 } from '../../../Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 interface SetProps {
   tochattingBoxUid: string;
@@ -35,6 +36,7 @@ function ChattingBox({
   tochattingBoxRoomIndex,
   tochattingBoxOpponentRoomIndex,
 }: SetProps) {
+  const navigate = useNavigate();
   const [message, setMessage] = useState('');
   const [getmessage, setGetMessage] = useState<any>([]);
   //인풋값 초기화
@@ -154,7 +156,11 @@ function ChattingBox({
               </S.ChattingBoxheaderImgCover>
             )}
           </S.ChattingNicknamePhoto>
-          <S.ChattingNicknameto>{nickname} 님</S.ChattingNicknameto>
+          <S.ChattingNicknameto
+          // onClick={() => navigate(`/mypage/${getPostings.UID}`)}
+          >
+            {nickname} 님
+          </S.ChattingNicknameto>
         </S.ChattingNickname>
         <S.ChattingContent>
           {/* 글 들어가는 곳 */}

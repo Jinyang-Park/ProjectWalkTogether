@@ -4,9 +4,9 @@ export const InputBox = styled.div`
   display: flex;
 
   flex-wrap: wrap;
-  width: 868px;
+  width: 460px;
   height: 532px;
-  background: #efefef;
+
   margin-top: 80px;
   margin: auto;
   border-radius: 10px;
@@ -15,15 +15,8 @@ export const InputBox = styled.div`
 
   top: 100px;
 
+  box-shadow: 0 0 10px #bec5d7;
   z-index: 1;
-`;
-
-export const LeftBox = styled.div`
-  background: #adadad;
-  border-radius: 10px;
-  width: 370px;
-  height: 436px;
-  margin: auto;
 `;
 
 //Inputholder안의 진짜 input태그
@@ -85,7 +78,7 @@ export const LoginBtn = styled.button`
   background-color: #d1d1d1;
   cursor: pointer;
   &:hover {
-    background: cornflowerblue;
+    background: #7d8bae;
     color: white;
     transition: 0.5s;
   }
@@ -102,7 +95,7 @@ export const RegisterBtn = styled.button`
   color: black;
   border: none;
   margin-top: 0.625rem;
-
+  background-color: transparent;
   cursor: pointer;
   &:hover {
     color: #816ceb;

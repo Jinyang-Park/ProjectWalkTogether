@@ -182,7 +182,6 @@ const SignUpPage = () => {
       <div>
         <form onSubmit={handleSubmitClick}>
           <S.InputBox>
-            <S.LeftBox />
             <S.InputBoxContent>
               <S.LoginLogo>
                 <h1>회원가입</h1>

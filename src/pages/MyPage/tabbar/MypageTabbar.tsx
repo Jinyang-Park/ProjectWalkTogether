@@ -1,10 +1,23 @@
 import * as S from './MypageTabbar.style';
+import { useEffect } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
+import { dbService } from '../../../common/firebase';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { currentUserUid, UserNickName } from './../../../Rocoil/Atom';
 
 const MypageTabbar = (props: {
   currentpage: string;
   setCurrentPage: (arg0: string) => void;
+  uid: string;
 }) => {
   const { currentpage, setCurrentPage } = props;
+
+  // 현재 페이지의 닉네임 리코일
+  const [name, setName] = useRecoilState(UserNickName);
+  // 현재 유저의 UID
+  const userUID = useRecoilValue(currentUserUid);
+
+  const uid = props.uid;
 
   return (
     <S.TabbarWrap>
@@ -18,7 +31,7 @@ const MypageTabbar = (props: {
           borderBottomColor: currentpage === 'Post' ? '#000' : '#CBCBCB',
         }}
       >
-        내가 쓴 글
+        {uid === userUID ? '내가 쓴 글' : `${name} 님이 쓴 글`}
       </S.UserWriteBtn>
       <S.UserInterest
         onClick={() => {

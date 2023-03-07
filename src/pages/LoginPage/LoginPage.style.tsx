@@ -2,27 +2,20 @@ import styled from 'styled-components';
 
 export const InputLayout = styled.div``;
 
-export const leftBox = styled.div`
-  background: #adadad;
-  border-radius: 10px;
-  width: 370px;
-  height: 436px;
-  margin: auto;
-`;
 export const InputBox = styled.div`
   display: flex;
 
   flex-wrap: wrap;
-  width: 868px;
+  width: 460px;
   height: 532px;
-  background: #efefef;
+
   margin-top: 80px;
   margin: auto;
   border-radius: 10px;
   padding: 5px;
   position: relative;
   top: 100px;
-
+  box-shadow: 0 0 10px #bec5d7;
   z-index: 1;
 `;
 export const InputBoxContent = styled.div`
@@ -56,7 +49,7 @@ export const Inputholder = styled.div`
   border-radius: 0.625rem;
   width: 360px;
   height: 48px;
-  border: 2px solid #adadad;
+  border: 2px solid #bec5d7;
   color: #b2c8df;
 
   margin-top: 10px;
@@ -70,7 +63,13 @@ export const LoginLogo = styled.div`
   margin-top: 2.875rem;
   margin-bottom: 1.5625rem;
   font-size: 32px;
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
   color: black;
+`;
+export const LogoText = styled.div`
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
 `;
 
 export const ButtonBox = styled.div`
@@ -80,26 +79,27 @@ export const ButtonBox = styled.div`
   align-items: center;
 `;
 
-export const Line = styled.div`
-  border-top: 0.0625rem solid #444444;
-  margin-top: 0.3125rem;
-  margin-bottom: 0.1875rem;
-  width: 150px;
-  margin: auto;
-`;
 export const OrText = styled.div`
-  font-size: 10px;
+  padding-top: 20px;
+  font-size: 13px;
+  align-items: center;
+  text-align: center;
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
+  color: #7d8bae;
 `;
 
 export const SocialBox = styled.div`
-  margin: auto;
+  gap: 0.75rem;
   display: flex;
   align-items: center;
-  margin-left: 30px;
+  justify-content: center;
 `;
 
 export const FindBox = styled.div`
   display: flex;
+  align-items: center;
+  text-align: center;
 `;
 export const LineBox = styled.div`
   margin: 10px;
@@ -139,13 +139,12 @@ export const LoginBtn = styled.button`
   height: 2.5rem;
   font-size: 16px;
   color: black;
-  border-color: #2192ff;
   font-weight: 400;
   margin-top: 0.9375rem;
   background-color: #d1d1d1;
   cursor: pointer;
   &:hover {
-    background: cornflowerblue;
+    background: #7d8bae;
     color: white;
     transition: 0.5s;
   }
@@ -153,25 +152,34 @@ export const LoginBtn = styled.button`
 export const ThirdBox = styled.div`
   display: flex;
   align-items: center;
+  margin: 0 auto;
   justify-content: space-between;
 `;
 
 export const RegisterBtn = styled.button`
-  width: 80px;
-  height: 35px;
-  color: black;
-  border: none;
-  margin-top: 0.625rem;
-  position: relative;
-  bottom: 10px;
-
-  cursor: pointer;
-  &:hover {
-    color: #816ceb;
-    transition: 0.4s;
-  }
+  background-color: transparent;
+  padding-left: 5px;
 `;
 
+export const FindBtn = styled.button`
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
+  color: #7d8bae;
+  margin: auto;
+  padding-top: 10px;
+`;
+
+export const ResisterText = styled.p`
+  font-size: 13px;
+  align-items: center;
+  text-align: center;
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
+  color: #7d8bae;
+`;
 export const Validityfontbox = styled.div`
   border: none;
   width: 330px;

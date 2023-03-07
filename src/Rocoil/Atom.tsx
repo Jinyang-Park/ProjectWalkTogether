@@ -237,3 +237,7 @@ export const TimeEdit = atom<any>({
   key: 'TimeEdit',
   default: '',
 });
+export const UserNickName = atom<string>({
+  key: 'UserNickName',
+  default: '',
+});

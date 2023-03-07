@@ -3,6 +3,10 @@ import * as S from './LoginPage.style';
 import { useState } from 'react';
 import {
   signInWithEmailAndPassword,
+  isSignInWithEmailLink,
+  onAuthStateChanged,
+  sendSignInLinkToEmail,
+  signInWithEmailLink,
   signInWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
@@ -24,6 +28,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [loginModalopen, setLoginModalopen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
 
   //onchange로 값을 저장.
@@ -137,7 +142,7 @@ const LoginPage = () => {
             {/* <S.leftBox /> */}
             <S.InputBoxContent>
               <S.LoginLogo>
-                <h1>같이 걸을래?</h1>
+                <S.LogoText>같이 걸을래?</S.LogoText>
               </S.LoginLogo>
               <S.Inputholder>
                 <S.Input
@@ -163,11 +168,8 @@ const LoginPage = () => {
 
                 <S.Validityfontbox>{errorMessage}</S.Validityfontbox>
               </S.ButtonBox>
-              <S.LineBox>
-                <S.Line />
-                <S.OrText>또는</S.OrText>
-                <S.Line />
-              </S.LineBox>
+
+              <S.OrText>SNS로 간편하게 시작하기</S.OrText>
 
               <S.SocialBox>
                 <S.Facebook
@@ -175,20 +177,23 @@ const LoginPage = () => {
                   src='/assets/facebook.png'
                 />
                 <S.Google onClick={signInWithGoogle} src='assets/google.png' />
-                <KakaoLoginButton />
+                {/* <KakaoLoginButton /> */}
                 {/* <S.Naver src='assets/naver.png' /> */}
               </S.SocialBox>
               <S.ThirdBox>
-                <S.RegisterBtn
-                  type='button'
-                  onClick={() => navigate('/agreement')}
-                >
-                  회원 가입
-                </S.RegisterBtn>
-                <S.FindBox>
-                  <S.RegisterBtn onClick={findPwd}>비밀번호찾기</S.RegisterBtn>
-                </S.FindBox>
+                <S.ResisterText>
+                  아직 계정이 없으신가요?
+                  <S.RegisterBtn
+                    type='button'
+                    onClick={() => navigate('/agreement')}
+                  >
+                    이메일로 빠르게 회원 가입 하기
+                  </S.RegisterBtn>
+                </S.ResisterText>
               </S.ThirdBox>
+              <S.FindBox>
+                <S.FindBtn onClick={findPwd}>비밀번호찾기</S.FindBtn>
+              </S.FindBox>
             </S.InputBoxContent>
           </S.InputBox>
         </form>
