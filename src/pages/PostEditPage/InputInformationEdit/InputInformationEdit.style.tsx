@@ -8,6 +8,7 @@ export const MapNInputBox = styled.div`
   position: relative;
   top: -67px;
   margin-top: 112px;
+  margin-bottom: 64px;
   flex-direction: column;
   align-items: center;
 `;
@@ -94,4 +95,19 @@ export const InputTimeBox = styled.div`
   margin-left: 9px;
   border: 2px solid #aeb1b7;
   border-radius: 4px;
+`;
+export const AddressIcon = styled.img`
+  position: absolute;
+  left: 17.5rem;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+`;
+export const MapAddressTitle = styled.div`
+  /* width: 100%; */
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+  margin-bottom: 12px;
+  /* justify-content: center; */
 `;

@@ -8,17 +8,23 @@ export const MapNInputBox = styled.div`
   position: relative;
   top: -67px;
   margin-top: 112px;
+  margin-bottom: 64px;
   flex-direction: column;
   align-items: center;
 `;
 
-export const Selection = styled.div`
+export const Selection = styled.p`
+  font-family: 'SUITERegular';
   position: relative;
   /* background-color: blue; */
-  right: 336px;
+  /* width: 100%; */
+  right: 335px;
   font-size: 20px;
   font-weight: 500;
   color: #24264e;
+  /* border-bottom: 2px solid #bec5d7; */
+  justify-content: center;
+  display: flex;
 `;
 
 export const borderline = styled.div`
@@ -94,4 +100,19 @@ export const InputTimeBox = styled.div`
   margin-left: 9px;
   border: 2px solid #bec5d7;
   border-radius: 4px;
+`;
+export const AddressIcon = styled.img`
+  position: absolute;
+  left: 17.5rem;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+`;
+export const MapAddressTitle = styled.div`
+  /* width: 100%; */
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+  margin-bottom: 12px;
+  /* justify-content: center; */
 `;

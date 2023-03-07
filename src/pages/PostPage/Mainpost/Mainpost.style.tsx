@@ -46,28 +46,31 @@ export const ThumbnailImgPorlaroid = styled.img`
   /* margin-bottom: 20px; */
 `;
 export const CalendarIcon = styled.img`
-  position: absolute;
+  /* position: absolute; */
   width: 26px;
   height: 26px;
-  top: 52px;
-  margin-left: 6px;
+  top: 6px;
+  margin-right: 10px;
+  /* margin-left: 6px; */
   object-fit: contain;
 `;
-export const CategoryTitle = styled.div`
+export const CategoryTitle = styled.p`
+  width: auto;
+  font-family: 'SUITERegular';
   font-size: 23px;
   /* padding: 0px 0px 0px 30px; */
   justify-content: center;
 `;
 export const CateogryWrapper = styled.div`
+  display: flex;
+  padding: 4px 10px;
   width: fit-content;
   height: 38px;
-  padding: 4px 10px;
   border-radius: 4px;
   align-items: center;
   text-align: center;
   color: white;
   background-color: rgba(125, 139, 174, 1);
-  display: flex;
 `;
 
 //제목 입력하는 input

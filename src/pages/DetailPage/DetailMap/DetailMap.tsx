@@ -135,46 +135,64 @@ const MapContainer = ({ getPostings }: Props) => {
 
   return (
     <>
-      <Map
-        center={postPosition}
-        style={{ width: '100%', height: '450px' }}
-        level={3}
-        onCreate={setMap}
-        ref={mapRef}
-        onClick={(_t, mouseEvent) => {
-          // if setIsOpen is true, set it to false
-          // else call setPosition
-          if (isOpen.isopen) {
-            setIsOpen({
-              lat: '',
-              lng: '',
-              isopen: false,
-            });
-          } else
-            setPosition({
-              lat: mouseEvent.latLng.getLat(),
-              lng: mouseEvent.latLng.getLng(),
-            });
-        }}
-      >
-        {position && <MapMarker position={postPosition} />}
-
-        <ZoomControl position={kakao.maps.ControlPosition.BOTTOMRIGHT} />
-        <S.CustomZoomControl className='custom_zoomcontrol'>
-          <S.ZoomInButton onClick={zoomIn}>
-            <AiOutlinePlus size={40} />
-          </S.ZoomInButton>
-          <S.ZoomOutButton onClick={zoomOut}>
-            <AiOutlineMinus size={40} />
-          </S.ZoomOutButton>
-          <S.FindMyLocationButton onClick={findMyLocation}>
-            <AiOutlineEnvironment size={40} />
-          </S.FindMyLocationButton>
-          <S.LinkToKaKaoNavibutton onClick={linkToKaKaoNavi}>
-            <AiOutlineCar size={40} />
-          </S.LinkToKaKaoNavibutton>
-        </S.CustomZoomControl>
-      </Map>
+      <S.MapAndControlContainer>
+        <Map
+          center={myLoca}
+          style={{ width: '100%', height: '450px' }}
+          level={3}
+          onCreate={setMap}
+          ref={mapRef}
+          onClick={(_t, mouseEvent) => {
+            // if setIsOpen is true, set it to false
+            // else call setPosition
+            if (isOpen.isopen) {
+              setIsOpen({
+                lat: '',
+                lng: '',
+                isopen: false,
+              });
+            } else
+              setPosition({
+                lat: mouseEvent.latLng.getLat(),
+                lng: mouseEvent.latLng.getLng(),
+              });
+          }}
+        >
+          {position && <MapMarker position={postPosition} />}
+          <S.CustomZoomControl className='custom_zoomcontrol'>
+            <S.ZoomInButton onClick={zoomIn}>
+              {/* <AiOutlinePlus size={40} /> */}
+              <S.ZoomInSVG
+                src={
+                  require('../../../assets/MapPageIcon/PlusButton.svg').default
+                }
+              />
+            </S.ZoomInButton>
+            <S.ZoomOutButton onClick={zoomOut}>
+              <S.ZoomOutSVG
+                src={
+                  require('../../../assets/MapPageIcon/MinusButton.svg').default
+                }
+              />
+            </S.ZoomOutButton>
+            <S.FindMyLocationButton onClick={findMyLocation}>
+              <S.FindMyLocationSVG
+                src={
+                  require('../../../assets/MapPageIcon/LocationButton.svg')
+                    .default
+                }
+              />
+            </S.FindMyLocationButton>
+            <S.LinkToKaKaoNavibutton onClick={linkToKaKaoNavi}>
+              <S.LinkToKaKaoNaviSVG
+                src={
+                  require('../../../assets/MapPageIcon/NaviButton.svg').default
+                }
+              />
+            </S.LinkToKaKaoNavibutton>
+          </S.CustomZoomControl>
+        </Map>
+      </S.MapAndControlContainer>
     </>
   );
 };

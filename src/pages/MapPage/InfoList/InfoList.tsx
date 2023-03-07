@@ -46,13 +46,13 @@ const InfoList = ({ Post }) => {
   const viewCount = useRecoilValue(viewCountForMapPage);
 
   const DateType1 = useRecoilValue(dateType1ForMapPage);
-  console.log('DateType1', DateType1);
+  // console.log('DateType1', DateType1);
   const [SelectedDate, setSelectedDate] = useState('');
   // DateType1 을 받아와서 SelectedDate 에 넣어준다.
   useEffect(() => {
     setSelectedDate(DateType1);
   }, [DateType1]);
-  console.log('SelectedDate', SelectedDate);
+  // console.log('SelectedDate', SelectedDate);
 
   const Category = useRecoilValue(Cetegory);
   const postpostpost =

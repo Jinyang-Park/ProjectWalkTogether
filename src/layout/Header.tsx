@@ -13,6 +13,7 @@ import {
   username,
 } from '../Rocoil/Atom';
 import HeaderAlarm from '../components/HeaderAlarm/HeaderAlarm';
+import { LoactionTitle } from './../pages/DetailPage/DetailPage.style';
 
 const Header = () => {
   const location = useLocation();
@@ -36,9 +37,21 @@ const Header = () => {
   const handleLogin = () => {
     navigate('login');
   };
+
+  // 우회하기
+  // 다른 사람 프로필 페이지를 갔다가 마이페이지 눌르면 오류난가
+  // 라우터에서 참고하고 있는 엘러먼트가 똑같다.
+  // 남의 페이지에서 내페이지를 넘어왔을떄 컴포넌트가 안바뀐다.
+  // 다른 페이지를 갔다 오는원리로 다시 짰다
+  // 재전송해줄 페이지를 다시 만든것이다.
   const gotomy = () => {
-    navigate('mypage');
+    if (location.pathname.includes('mypage')) {
+      navigate('/reroutetomypage');
+      return;
+    }
+    navigate('/mypage');
   };
+
   const home = () => {
     navigate('/');
   };

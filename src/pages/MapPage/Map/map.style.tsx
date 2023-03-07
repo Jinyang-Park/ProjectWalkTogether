@@ -5,7 +5,7 @@ export const MapPageSearchBar = styled.form`
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  padding-left: 5px;
+  padding: 10px;
   height: 48px;
 
   margin-bottom: 0px;
@@ -62,6 +62,7 @@ export const ResultListCardImage = styled.img`
   border-radius: 5px;
 `;
 export const ResultListCardTitle = styled.span`
+  font-family: 'SUITERegular';
   font-size: 16px;
   font-weight: 600;
 `;
@@ -124,7 +125,7 @@ export const CustomZoomControl = styled.div`
   left: 818px;
   z-index: 1;
   gap: 3px;
-
+  width: 44px;
   color: white;
 `;
 export const ZoomInButton = styled.span`
