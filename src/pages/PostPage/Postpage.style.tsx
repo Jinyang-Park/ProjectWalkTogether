@@ -36,4 +36,8 @@ export const PostSubmitBtn = styled.button`
 
   background-color: rgba(125, 139, 174, 1);
   color: white;
+  :active {
+    width: 214px;
+    height: 40px;
+  }
 `;

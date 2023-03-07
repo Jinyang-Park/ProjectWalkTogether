@@ -26,6 +26,7 @@ interface SetProps {
   SetTochattingBoxOpponenRoomIndex: React.Dispatch<
     React.SetStateAction<string>
   >;
+
   tochattingBoxRoomIndex: string;
   tochattingBoxOpponentRoomIndex: string;
   tochattingBoxUid: string;
@@ -56,6 +57,8 @@ function ChattingList({
   const myRoomIndex = tochattingBoxRoomIndex;
   // const opponentRoomIndex = tochattingBoxOpponentRoomIndex;
   const currentUid = useRecoilValue(currentUserUid);
+  // 채팅리스트
+  const [chattingListActive, setChattingListActive] = useState();
 
   const getChattingList = async () => {
     if (mychatlist === '') {
@@ -128,6 +131,7 @@ function ChattingList({
             {chattingUser.map((user) => {
               return (
                 <S.ChattingUser
+                  tabIndex={-1}
                   onClick={() => {
                     SetTochattingBoxRoomId(user.combineId);
                     SetTochattingBoxNickname(user.nickname);

@@ -106,8 +106,8 @@ function InputInformation() {
     });
   };
   convertAddress();
-  console.log(address);
-  console.log(search);
+  // console.log('position:', position);
+  // console.log(search);
 
   return (
     <S.MapNInputBox>

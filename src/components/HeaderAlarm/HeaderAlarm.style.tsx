@@ -12,6 +12,11 @@ export const NotificationContent = styled.p`
   display: block;
   font-size: 10px;
   display: flex;
+  font-family: 'SUIT';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
 `;
 
 export const NotificationContentBox = styled.div`
@@ -33,6 +38,11 @@ export const NoitificationIconBox = styled.div`
 
 export const NotificationText = styled.p`
   font-size: 10px;
+  font-family: 'SUIT';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
 `;
 
 export const NotificationTime = styled.p`

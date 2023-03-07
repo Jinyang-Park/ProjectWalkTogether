@@ -47,6 +47,11 @@ export const CheckBtn = styled.div`
   position: relative;
   left: 276px;
   bottom: 10px;
+  cursor: pointer;
+  :active {
+    width: 10px;
+    height: 10px;
+  }
 `;
 
 export const InputBox = styled.div`
