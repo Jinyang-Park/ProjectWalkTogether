@@ -90,10 +90,10 @@ export const OrText = styled.div`
 `;
 
 export const SocialBox = styled.div`
-  margin: auto;
+  gap: 0.75rem;
   display: flex;
   align-items: center;
-  margin-left: 30px;
+  justify-content: center;
 `;
 
 export const FindBox = styled.div`
@@ -139,7 +139,6 @@ export const LoginBtn = styled.button`
   height: 2.5rem;
   font-size: 16px;
   color: black;
-  border-color: #2192ff;
   font-weight: 400;
   margin-top: 0.9375rem;
   background-color: #d1d1d1;

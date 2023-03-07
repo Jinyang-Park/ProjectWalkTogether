@@ -31,23 +31,30 @@ const WalkAfter = () => {
 
   // {value : '신발~' , where :' ' , how:'정렬방법'}
   useEffect(() => {
-    const q = query(
-      collection(dbService, 'Post'),
-      // Category_Posting이 파람스로 넘겨준 애들과 같은 애들만 뿌려줘라
-      orderBy('createdAt', 'desc'),
-      where('ProceedState_Posting', '==', 'postingDone')
-      // orderBy('TimeStamp_Posting', 'desc')
-    );
-    onSnapshot(q, (snapshot) => {
-      const getpostList = snapshot.docs.map((doc) => {
-        const postList = {
-          id: doc.id,
-          ...doc.data(),
-        };
-        return postList;
+    const temp = async () => {
+      const q = await query(
+        collection(dbService, 'Post'),
+        // Category_Posting이 파람스로 넘겨준 애들과 같은 애들만 뿌려줘라
+        where('ProceedState_Posting', '==', 'postingDone'),
+        orderBy('createdAt', 'desc') //내림차순
+
+        // orderBy('TimeStamp_Posting', 'desc')
+      );
+      console.log(q);
+      onSnapshot(q, (snapshot) => {
+        const getpostList = snapshot.docs.map((doc) => {
+          const postList = {
+            id: doc.id,
+            ...doc.data(),
+          };
+
+          return postList;
+        });
+
+        setPostList(getpostList);
       });
-      setPostList(getpostList);
-    });
+    };
+    temp();
   }, []);
 
   console.log(postList);
@@ -68,13 +75,9 @@ const WalkAfter = () => {
 
   return (
     <S.LikedListItem>
-      {postList
-
-        .slice(0, 8)
-
-        .map((post: any) => {
-          return <CardSection key={post.id} post={post} />;
-        })}
+      {postList.slice(0, 8).map((post: any) => {
+        return <CardSection key={post.id} post={post} />;
+      })}
     </S.LikedListItem>
   );
 };

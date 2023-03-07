@@ -82,9 +82,8 @@ export const ListItemDate = styled.span`
 export const LikedListItem = styled.div`
   display: flex;
   flex-wrap: wrap;
-  grid-gap: 74.5px;
-  grid-row-gap: 70px;
-  margin-top: 46px;
+  grid-gap: 49.3px;
+  margin-top: 36px;
 `;
 
 export const CategoryTitleWrapper = styled.div``;

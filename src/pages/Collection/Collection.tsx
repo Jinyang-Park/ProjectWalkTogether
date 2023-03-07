@@ -18,6 +18,10 @@ import CommonStyles from '../../styles/CommonStyles';
 import { paramsState } from '../../Rocoil/Atom';
 import * as S from './CardSection.style';
 import CardSection from '../../components/CardSection/CardSection';
+import Fire from '../../assets/Mainpage/Fire.svg';
+import Boog from '../../assets/Mainpage/boog.svg';
+import gitbal from '../../assets/Mainpage/gitbal.svg';
+
 const Collection = (props: any) => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -28,7 +32,7 @@ const Collection = (props: any) => {
   const [shoes, setShoes] = useState([]);
   const [title, setTitle] = useState('');
   const [hot, setHot] = useState([]);
-  const [match, setMatch] = useState([]);
+  const [file, setFile] = useState(null);
 
   const setParams = useSetRecoilState(paramsState);
 
@@ -36,6 +40,7 @@ const Collection = (props: any) => {
     console.log(id);
     if (id === '1') {
       setTitle('신발신는 중');
+      setFile(<HotShoesImg src={Boog}></HotShoesImg>);
       const q = query(
         collection(dbService, 'Post'),
         // Category_Posting이 파람스로 넘겨준 애들과 같은 애들만 뿌려줘라
@@ -56,6 +61,7 @@ const Collection = (props: any) => {
     }
     if (id === '2') {
       setTitle('뜨거운 신발');
+      setFile(<HotShoesImg src={Fire}></HotShoesImg>);
       const q = query(
         collection(dbService, 'Post'),
         // Category_Posting이 파람스로 넘겨준 애들과 같은 애들만 뿌려줘라
@@ -88,6 +94,7 @@ const Collection = (props: any) => {
 
     if (id === '3') {
       setTitle('매칭된 신발');
+      setFile(<HotShoesImg src={gitbal}></HotShoesImg>);
       const q = query(
         collection(dbService, 'Post'),
 
@@ -122,10 +129,14 @@ const Collection = (props: any) => {
   console.log(title);
   return (
     <>
-      <CommonStyles>
+      <CategoryWrapper>
         <S.CategoryTitleWrapper>
-          <S.CategoryTitle>{title}</S.CategoryTitle>
-          {/* <S.CategoryImg>{category.img}</S.CategoryImg> */}
+          <TitleLayout>
+            <div>{file}</div>
+            <S.CategoryTitle>{title}</S.CategoryTitle>
+
+            {/* <S.CategoryImg>{category.img}</S.CategoryImg> */}
+          </TitleLayout>
         </S.CategoryTitleWrapper>
 
         <S.LikedListItem>
@@ -133,13 +144,32 @@ const Collection = (props: any) => {
             return <CardSection key={post.id} post={post} />;
           })}
         </S.LikedListItem>
-      </CommonStyles>
+      </CategoryWrapper>
     </>
   );
 };
 
 export default Collection;
 
+export const HotShoesImg = styled.img`
+  width: 76px;
+  height: 76px;
+  margin-top: 40px;
+`;
+
+export const TitleLayout = styled.div`
+  display: flex;
+
+  align-items: center;
+`;
+
+export const CategoryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 868px;
+  margin: auto;
+  margin-bottom: 80px;
+`;
 export const CollectionWrapper = styled.div``;
 
 export const Collectionitem = styled.div``;

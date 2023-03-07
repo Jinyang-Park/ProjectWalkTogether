@@ -14,6 +14,7 @@ export const OllaeLogo = styled.img`
 
   padding-right: 6px;
   image: url(${ComeLogo});
+  cursor: pointer;
 `;
 export const OllaeBox = styled.div`
   display: flex;
@@ -22,6 +23,8 @@ export const OllaeBox = styled.div`
 export const OllaeText = styled.p`
   font-size: 20px;
   font-family: 'SUITEBold';
+  font-weight: 600;
+  cursor: pointer;
 `;
 
 export const Nav = styled.div`
@@ -59,9 +62,9 @@ export const LoginButton = styled.div`
 
   padding: 5px;
   margin-top: 10px;
-
+  justify-content: center;
   border-radius: 5px;
-  width: 78px;
+  /* width: max-content; */
   height: 30px;
   /* background: blue; */
   font-size: 12px;
@@ -72,8 +75,9 @@ export const LoginButton = styled.div`
 `;
 
 export const LoginLayout = styled.div`
-  margin-left: 30px;
-  margin: auto;
+  display: flex;
+  overflow: visible;
+  width: 100%;
 `;
 export const LoginText = styled.p`
   margin-right: 10px;
@@ -207,10 +211,8 @@ export const Img = styled.img`
 export const LoginImg = styled.img`
   width: 15px;
   height: 15px;
-  position: relative;
+  margin-top: 5px;
   z-index: 1;
-  left: 55px;
-  bottom: 16px;
 `;
 
 export const Logout = styled.div``;

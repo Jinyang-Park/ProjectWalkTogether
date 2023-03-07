@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 // import BannerImage from '../assets/SlideContainer/BannerSlide.png';
-
+import Banner from '../../assets/Mainpage/Bannerslides.svg';
+import Slide from '../../assets/Mainpage/slides.svg';
 const settings = {
   arrows: true,
   dots: true,
@@ -25,7 +26,7 @@ const MainBanner = () => {
               <BannerSubTitle>나의 이야기</BannerSubTitle>
             </BannerTitle>
           </BannerTextBox>
-          <BannerFirstImg src='/assets/slide01.png' />
+          <BannerFirstImg src={Banner} />
         </BannerContainer>
       </SlideWrapper>
       <SlideWrapper>
@@ -36,7 +37,7 @@ const MainBanner = () => {
               <BannerSubTitle>나의 이야기</BannerSubTitle>
             </BannerTitle>
           </BannerTextBox>
-          <BannerSecondImg src='/assets/slide01.png' />
+          <BannerSecondImg src={Slide} />
         </BannerContainer>
       </SlideWrapper>
     </SliderWrapper>
@@ -46,18 +47,19 @@ const MainBanner = () => {
 export default MainBanner;
 const SliderWrapper = styled(Slider)`
   width: 100%;
-  height: 20.625rem;
+  height: 27rem;
+
   .slick-slide {
     position: relative;
     width: 100%;
-    height: 20.625rem;
+    height: 27rem;
   }
   .slick-dots {
     position: absolute;
     bottom: 0;
     color: #d7d7d7;
-    top: 250px;
-    right: 300px;
+    top: 280px;
+    right: 335px;
     margin-right: 20px;
 
     li {
@@ -117,7 +119,7 @@ const BannerTitle = styled.div`
   margin-bottom: 1.5625rem;
   z-index: 10;
   position: relative;
-  top: 80px;
+  top: 150px;
 `;
 const BannerSubTitle = styled.div`
   width: 35.4375rem;
@@ -131,6 +133,7 @@ const BannerFirstImg = styled.img`
   position: absolute;
   width: 64rem;
   height: 27rem;
+
   /* background-image: ; */
 `;
 const BannerSecondImg = styled.img`
