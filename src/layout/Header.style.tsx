@@ -161,7 +161,7 @@ export const DropNav = styled.nav<{ isDropped: boolean }>`
 export const AlarmContainer = styled(DropdownContainer)`
   position: relative;
   right: 10px;
-  top: 15px;
+  top: 8px;
 `;
 
 export const AlarmButton = styled.button`
