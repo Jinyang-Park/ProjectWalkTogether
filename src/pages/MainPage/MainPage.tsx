@@ -19,6 +19,8 @@ import { CollecitionList } from '../../utils/CollectionList';
 import LikesComponent from './LikeComponent';
 
 import Fire from '../../assets/Mainpage/Fire.svg';
+import Boog from '../../assets/Mainpage/boog.svg';
+import gitbal from '../../assets/Mainpage/gitbal.svg';
 import WalkAfter from './WalkAfter';
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 
@@ -56,7 +58,10 @@ const MainPage = () => {
         </ContentLayout>
 
         <ContentLayout>
-          <TextTitle>신발 신는 중</TextTitle>
+          <TextTitle>
+            <HotShoesImg src={Boog}></HotShoesImg>
+            신발 신는 중
+          </TextTitle>
           <FirstLayout>
             <InsideText>현재 이루어지고 있는 산책들이에요</InsideText>
             <Button
@@ -76,7 +81,11 @@ const MainPage = () => {
         </ContentLayout>
 
         <ContentLayout>
-          <TextTitle>매칭된 신발</TextTitle>
+          <TextTitle>
+            {' '}
+            <HotShoesImg src={gitbal}></HotShoesImg>
+            매칭된 신발
+          </TextTitle>
           <FirstLayout>
             <InsideText>매칭이 완료된 산책들이에요</InsideText>
             <Button
