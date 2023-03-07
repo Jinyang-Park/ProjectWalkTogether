@@ -13,14 +13,13 @@ export const Boxcontainer = styled.div`
   /* background-color: blue; */
   /* width: 100%; */
   /* width: 1024px; */
-  height: calc(100vh - 100px);
+  /* height: calc(100vh - 100px); */
+  margin-bottom: 100px;
 `;
 
 //제출 버튼
 export const PostSubmitBox = styled.div`
-  position: relative;
-  width: 100%;
-  height: 10%;
+  margin-top: -50px;
   /* background-color: aliceblue; */
 `;
 
@@ -34,4 +33,8 @@ export const PostSubmitBtn = styled.button`
 
   background-color: rgba(125, 139, 174, 1);
   color: white;
+  :active {
+    width: 214px;
+    height: 40px;
+  }
 `;

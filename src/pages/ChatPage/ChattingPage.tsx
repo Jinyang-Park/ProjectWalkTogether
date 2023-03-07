@@ -14,6 +14,7 @@ const ChattingPage = () => {
     useState<string>('');
   const [tochattingBoxOpponentRoomIndex, SetTochattingBoxOpponenRoomIndex] =
     useState<string>('');
+  //채팅 리스트하나를 클릭했을 때 불이 들어오게 함
 
   return (
     <CommonStyles>

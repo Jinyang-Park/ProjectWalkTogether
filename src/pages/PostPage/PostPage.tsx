@@ -49,6 +49,7 @@ const PostPage = () => {
 
   //주소 받아오기 myLocation
   const location = useRecoilValue(myLocation);
+  const setlocation = useSetRecoilState<any>(myLocation);
   const adress = useRecoilValue(selectedAddress);
 
   const MeetLatitude_Posting = location.lat;
@@ -73,6 +74,12 @@ const PostPage = () => {
 
   //약속 시간
   const meetDate = useRecoilValue(ReserveDate);
+
+  //타이틀 유효성검사
+  const [isValidityTitle, setIsValidityTitle] = useState<boolean>(false);
+
+  //내용 유효성검사
+  const [isValidityContents, setIsValidityContents] = useState<boolean>(false);
 
   const date = (y: number, m: number, d: number) => {
     const D = new Date(y, m, d);
@@ -143,6 +150,7 @@ const PostPage = () => {
   //해시태그 리코일
   const Tag = useRecoilValue<Array<string>>(NewpostTag);
   const setTag = useSetRecoilState<Array<string>>(NewpostTag);
+
   //현재시간
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
 
@@ -226,11 +234,13 @@ const PostPage = () => {
   ///////////
   const handleSubmit = async (e: any) => {
     if (Title.length < 1 || Title.length > 20) {
+      setIsValidityTitle(true);
       return;
     }
 
     if (Description.length < 1 || Description.length > 200) {
-      alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
+      // alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
+      setIsValidityContents(true);
       return;
     }
     // if (meetDate !== '') {
@@ -406,13 +416,14 @@ const PostPage = () => {
       setDescription('');
       setTag([]);
       setMeetTime('');
+      setlocation({});
 
       navigate(`/category/${postCategory}`);
     });
 
     // setTimeout(adddoc, 8000);
   };
-  console.log(' Address_Posting', Address_Posting);
+  console.log(' location', location);
   return (
     <CommonStyles>
       <S.Boxcontainer>
@@ -422,6 +433,10 @@ const PostPage = () => {
           setTagItem={setTagItem}
           TagItem={TagItem}
           // onKeyPress={onKeyPress}
+          isValidityTitle={isValidityTitle}
+          isValidityContents={isValidityContents}
+          setIsValidityContents={setIsValidityContents}
+          setIsValidityTitle={setIsValidityTitle}
         />
         <IuputInformation />
         <S.PostSubmitBox>
