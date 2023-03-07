@@ -178,16 +178,20 @@ const MyPageProfile = (props: { uid: string }) => {
             )}
           </S.UserModifyBtn>
         )}
-        {/*커스텀 훅 들어올 자리*/}
-        <S.MyPageButton onClick={myPageHandler} ref={myPageRef}>
-          <S.MypageMoreBtn
-            src={require('../../../assets/MypageIcon/More.svg').default}
-            onClick={() => {
-              setShowBox(true);
-            }}
-          />
-        </S.MyPageButton>
-        {myPageIsOpen && <MypageDropBox />}
+        {/*&&는 :()뒤에 넣지 않는다*/}
+        {uid === userUID && (
+          <>
+            <S.MyPageButton onClick={myPageHandler} ref={myPageRef}>
+              <S.MypageMoreBtn
+                src={require('../../../assets/MypageIcon/More.svg').default}
+                onClick={() => {
+                  setShowBox(true);
+                }}
+              />
+            </S.MyPageButton>
+            {myPageIsOpen && <MypageDropBox />}
+          </>
+        )}
         <S.UserNickNameBox>
           {!isEditing ? (
             <S.UserNickName>{name}</S.UserNickName>
