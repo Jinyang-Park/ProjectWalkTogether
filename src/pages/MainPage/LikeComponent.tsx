@@ -66,16 +66,14 @@ const LikesComponent = () => {
   // switch문 찾아보기
 
   return (
-    <CommonStyles>
-      <S.LikedListItem>
-        {postList
-          .slice(0, 8)
-          .sort((a, b) => b.View - a.View)
-          .map((post: any) => {
-            return <CardSection key={post.id} post={post} />;
-          })}
-      </S.LikedListItem>
-    </CommonStyles>
+    <S.LikedListItem>
+      {postList
+        .slice(0, 8)
+        .sort((a, b) => b.View - a.View)
+        .map((post: any) => {
+          return <CardSection key={post.id} post={post} />;
+        })}
+    </S.LikedListItem>
   );
 };
 export default LikesComponent;
