@@ -1,6 +1,4 @@
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
-import { atom, useRecoilState } from 'recoil';
 import { dbService } from '../common/firebase';
 import { useQuery } from '@tanstack/react-query';
 
