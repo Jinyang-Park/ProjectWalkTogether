@@ -56,10 +56,9 @@ export const Nav = styled.div`
 `;
 
 export const SideOllae = styled.div`
-  position: absolute;
-  left: 33%;
+  margin-right: 400px;
   @media screen and (max-width: 420px) {
-    margin-right: 50px;
+    margin-right: 0px;
 
     left: 30%;
     position: absolute;
@@ -117,8 +116,6 @@ export const NavEtc = styled.div`
   display: flex;
   margin: 0px;
   @media screen and (max-width: 420px) {
-    right: 10%;
-    position: absolute;
   }
 `;
 export const Profile = styled.div`
