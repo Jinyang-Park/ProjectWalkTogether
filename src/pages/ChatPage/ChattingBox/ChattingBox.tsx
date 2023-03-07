@@ -134,7 +134,7 @@ function ChattingBox({
 
   const nowmessage = getmessage;
 
-  console.log('myRoomIndex', myRoomIndex);
+  console.log('nowmessage', nowmessage);
 
   return (
     <div>

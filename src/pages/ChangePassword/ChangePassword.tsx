@@ -110,6 +110,18 @@ const ChangePassword = () => {
     return <></>;
   };
 
+  const nowPasswordConfrim = () => {
+    setCurrentPassword('');
+  };
+
+  const newPassword = () => {
+    setNewPassword('');
+  };
+
+  const newPasswordConfrim = () => {
+    setCheckPassword('');
+  };
+
   console.log('newpassword:', newpassword);
 
   return (
@@ -134,13 +146,24 @@ const ChangePassword = () => {
                       setCurrentPassword(e.currentTarget.value);
                     }}
                   ></S.Input>
-                  <S.CheckBtn>
-                    <img
-                      src={
-                        require('../../assets/ChattingIcon/check.svg').default
-                      }
-                    ></img>
-                  </S.CheckBtn>
+                  {currentpassword === '' ? (
+                    <S.CheckBtn onClick={nowPasswordConfrim}>
+                      <img
+                        src={
+                          require('../../assets/ChattingIcon/check.svg').default
+                        }
+                      ></img>
+                    </S.CheckBtn>
+                  ) : (
+                    <S.CheckBtn onClick={nowPasswordConfrim}>
+                      <img
+                        src={
+                          require('../../assets/ChattingIcon/clearbtn.svg')
+                            .default
+                        }
+                      ></img>
+                    </S.CheckBtn>
+                  )}
                 </S.InputBox>
 
                 {currentPasswordValidationCheckComponent()}
@@ -162,11 +185,21 @@ const ChangePassword = () => {
                   );
                 }}
               ></S.Input>
-              <S.CheckBtn>
-                <img
-                  src={require('../../assets/ChattingIcon/check.svg').default}
-                ></img>
-              </S.CheckBtn>
+              {newpassword === '' ? (
+                <S.CheckBtn onClick={newPassword}>
+                  <img
+                    src={require('../../assets/ChattingIcon/check.svg').default}
+                  ></img>
+                </S.CheckBtn>
+              ) : (
+                <S.CheckBtn onClick={newPassword}>
+                  <img
+                    src={
+                      require('../../assets/ChattingIcon/clearbtn.svg').default
+                    }
+                  ></img>
+                </S.CheckBtn>
+              )}
             </S.InputBox>
 
             {hasUserChangedNewPassword && !isNewPasswordValid && (
@@ -186,11 +219,21 @@ const ChangePassword = () => {
                   setCheckPassword(e.currentTarget.value);
                 }}
               ></S.Input>
-              <S.CheckBtn>
-                <img
-                  src={require('../../assets/ChattingIcon/check.svg').default}
-                ></img>
-              </S.CheckBtn>
+              {checkpassword === '' ? (
+                <S.CheckBtn onClick={newPasswordConfrim}>
+                  <img
+                    src={require('../../assets/ChattingIcon/check.svg').default}
+                  ></img>
+                </S.CheckBtn>
+              ) : (
+                <S.CheckBtn onClick={newPasswordConfrim}>
+                  <img
+                    src={
+                      require('../../assets/ChattingIcon/clearbtn.svg').default
+                    }
+                  ></img>
+                </S.CheckBtn>
+              )}
             </S.InputBox>
 
             {hasUserChangedNewPassword && !doNewPasswordsMatch && (

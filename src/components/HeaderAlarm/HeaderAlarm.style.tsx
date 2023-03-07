@@ -37,7 +37,6 @@ export const NoitificationIconBox = styled.div`
 `;
 
 export const NotificationText = styled.p`
-  /* letter-spacing: -0.5px; */
   font-size: 10px;
   font-family: 'SUIT';
   font-style: normal;

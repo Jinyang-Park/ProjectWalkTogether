@@ -49,6 +49,7 @@ const PostPage = () => {
 
   //주소 받아오기 myLocation
   const location = useRecoilValue(myLocation);
+  const setlocation = useSetRecoilState<any>(myLocation);
   const adress = useRecoilValue(selectedAddress);
 
   const MeetLatitude_Posting = location.lat;
@@ -143,6 +144,7 @@ const PostPage = () => {
   //해시태그 리코일
   const Tag = useRecoilValue<Array<string>>(NewpostTag);
   const setTag = useSetRecoilState<Array<string>>(NewpostTag);
+
   //현재시간
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
 
@@ -406,13 +408,14 @@ const PostPage = () => {
       setDescription('');
       setTag([]);
       setMeetTime('');
+      setlocation({});
 
       navigate(`/category/${postCategory}`);
     });
 
     // setTimeout(adddoc, 8000);
   };
-  console.log(' Address_Posting', Address_Posting);
+  console.log(' location', location);
   return (
     <CommonStyles>
       <S.Boxcontainer>

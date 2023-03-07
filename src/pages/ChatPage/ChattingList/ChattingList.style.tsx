@@ -52,7 +52,7 @@ export const ChattingListMessagePhoto = styled.div`
 
 export const ChattingListouter = styled.div`
   overflow-y: scroll;
-  width: 292px;
+  width: 300px;
   height: 509px;
   position: relative;
   /* 
@@ -70,24 +70,27 @@ export const ChattingFooterBox = styled.div`
 `;
 
 export const ChattingUserBox = styled.div`
-  width: 280px;
+  width: 290px;
   height: auto;
-  border-right: 1px solid #bec5d7;
-  border-bottom: 1px solid #bec5d7;
+
   z-index: 1;
+  /* background-color: blue; */
 `;
 
 export const ChattingUserContents = styled.div`
-  width: 280px;
+  width: 291px;
   height: auto;
   display: flex;
+  border-bottom: 1px solid #bec5d7;
+  /* border-right: 1px solid #bec5d7; */
+  /* background-color: blue; */
 `;
 
 export const ChattingUser = styled.div`
   display: flex;
   border-bottom: 1px solid #bec5d7;
-  border-bottom: 1px solid #bec5d7;
-  width: 280px;
+
+  width: 290px;
   height: 63px;
 `;
 
