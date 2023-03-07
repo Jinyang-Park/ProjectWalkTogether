@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { dbService } from '../../../common/firebase';
 import CardSection from '../../../components/CardSection/CardSection';
-
-import S from '../MyPageSharedStyles';
+import * as S from './MypageLike.style';
 
 const MyPageLike = (props: { uid: string }) => {
   const { uid } = props;
@@ -23,18 +22,13 @@ const MyPageLike = (props: { uid: string }) => {
   }, [posts]);
 
   return (
-    <MyPageWriteWrap>
+    <S.MyPageWriteWrap>
       <S.PostListWrap>
         {posts.map((post, i) => {
           return <CardSection post={post} key={i} />;
         })}
       </S.PostListWrap>
-    </MyPageWriteWrap>
+    </S.MyPageWriteWrap>
   );
 };
 export default MyPageLike;
-
-const MyPageWriteWrap = styled.div`
-  width: 100%;
-  height: 735px;
-`;
