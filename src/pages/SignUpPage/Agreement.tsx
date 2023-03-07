@@ -18,11 +18,19 @@ const Agreement = () => {
   const [checkList, setCheckList] = useState([]);
   const [buttonColor, setButtonColor] = useState(false);
   const [checkBoxActive, setCheckBoxActive] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+
   const isCheckBoxClicked = () => {
     setCheckBoxActive(!checkBoxActive);
   };
-  const [disabled, setDisabled] = useState(true);
 
+  const signup = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!checkBoxActive) {
+      alert('약관에 동의해주세요!'); // checkbox가 선택되지 않았다면 알림창 띄우기
+      return;
+    }
+  };
   const check = (e) => {
     e.target.checked
       ? setCheckList([...checkList, e.target.name])
@@ -59,11 +67,15 @@ const Agreement = () => {
     setIsOpenModal4(!isOpenModal4);
   }, [isOpenModal4]);
 
+  // if (!checkBoxActive) {
+  //   alert('약관에 동의해주세요!'); // checkbox가 선택되지 않았다면 알림창 띄우기
+  //   return;
+  // }
   return (
     <CommonStyles>
       <S.InputLayout>
         <S.InputBox>
-          <form name='termForm' action='/signUp' method='Get'>
+          <form onSubmit={signup}>
             <S.Title_head>약관동의</S.Title_head>
             <S.join_box>
               <S.checkBox_check01>
