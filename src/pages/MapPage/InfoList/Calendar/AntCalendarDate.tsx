@@ -75,9 +75,14 @@ const AntCalendarMap: React.FC = () => {
           inputReadOnly={true}
           format={format}
           placeholder='날짜'
-          style={{ width: 120, height: 30 }}
+          style={{
+            width: 79,
+            height: 27,
+            marginRight: 8,
+            fontSize: 12,
+          }}
           allowClear={false}
-          placement='bottomRight'
+          // placement='bottomRight'
           // bordered={false}
         />
       </Space>
