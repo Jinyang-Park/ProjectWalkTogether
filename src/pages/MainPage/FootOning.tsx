@@ -53,13 +53,11 @@ const FootOning = () => {
   const navigate = useNavigate();
 
   return (
-    <CommonStyles>
-      <S.LikedListItem>
-        {postList.slice(0, 8).map((post: any) => {
-          return <CardSection key={post.id} post={post} />;
-        })}
-      </S.LikedListItem>
-    </CommonStyles>
+    <S.LikedListItem>
+      {postList.slice(0, 8).map((post: any) => {
+        return <CardSection key={post.id} post={post} />;
+      })}
+    </S.LikedListItem>
   );
 };
 export default FootOning;

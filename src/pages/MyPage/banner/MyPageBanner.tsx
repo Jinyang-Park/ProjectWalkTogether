@@ -60,10 +60,18 @@ const MyPageBanner = (props: { uid: string }) => {
   return (
     <BannerWrap onClick={onBannerClick}>
       <BannerImgLabel htmlFor='bannerInput'>
-        <BannerImg src={imageURL ? imageURL : '/assets/배너.png'} />
+        <BannerImg
+          src={
+            imageURL
+              ? imageURL
+              : require('../../../assets/MypageIcon/bannerImg.svg').default
+          }
+        />
         {uid === userUID && (
           <>
-            <BannerImgBtn src={'/assets/editicon.png'} />
+            <BannerImgBtn
+              src={require('../../../assets/MypageIcon/EditIcon.svg').default}
+            />
             <BannerImgInput
               type='file'
               id='bannerInput'
@@ -92,14 +100,11 @@ const BannerImg = styled.img`
 `;
 const BannerImgLabel = styled.label``;
 const BannerImgBtn = styled.img`
-  width: 50px;
-  height: 50px;
-  right: 40px;
-  bottom: 10px;
-
+  width: 48px;
+  height: 48px;
+  left: 898px;
+  bottom: 16px;
   cursor: pointer;
-
-  border-radius: 50%;
   position: absolute;
 `;
 const BannerImgInput = styled.input`
