@@ -111,9 +111,9 @@ function ChattingBox({
     }
 
     const q = query(
-      collection(dbService, 'Chatting', roomId, 'message')
-      // where('chattingRoomId', '==', roomId),
-      // orderBy('createdAt', 'desc')
+      collection(dbService, 'Chatting', roomId, 'message'),
+      where('chattingRoomId', '==', roomId),
+      orderBy('createdAt', 'desc')
     );
     onSnapshot(q, (querySnapshot) => {
       const getChat = querySnapshot.docs.map((doc) => {
