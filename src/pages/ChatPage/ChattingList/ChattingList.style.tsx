@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled, { css } from 'styled-components';
 
 //채팅리스트 박스
 export const ChattingListBox = styled.div`
@@ -81,7 +81,7 @@ export const ChattingUserContents = styled.div`
   width: 291px;
   height: auto;
   display: flex;
-  border-bottom: 1px solid #bec5d7;
+  /* border-bottom: 1px solid #bec5d7; */
   /* border-right: 1px solid #bec5d7; */
   /* background-color: blue; */
 `;
@@ -89,9 +89,21 @@ export const ChattingUserContents = styled.div`
 export const ChattingUser = styled.div`
   display: flex;
   border-bottom: 1px solid #bec5d7;
-
   width: 290px;
   height: 63px;
+  cursor: pointer;
+
+  :focus {
+    background-color: #eef1f7;
+  }
+
+  /* :active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 288px;
+    height: 60px;
+  } */
 `;
 
 export const UserImg = styled.img`
