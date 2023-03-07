@@ -334,7 +334,10 @@ const DetailPage = () => {
         <S.Boxcontents>
           <S.BoxPhoto>
             {/*썸네일*/}
-            <S.ThunmnailURL src={getPostings.ThumbnailURL_Posting} />
+            <S.ThunmnailURL
+              onClick={() => navigate(`/mypage/${getPostings.UID}`)}
+              src={getPostings.ThumbnailURL_Posting}
+            />
             <S.DetailUserName
               onClick={() => navigate(`/mypage/${getPostings.UID}`)}
             >

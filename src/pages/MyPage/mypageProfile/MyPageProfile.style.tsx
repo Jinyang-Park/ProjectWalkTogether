@@ -78,12 +78,14 @@ export const UserWalkCountText = styled.p`
   font-size: 12px;
 `;
 export const UserIntroduceAreaBox = styled.div`
+  font-family: 'SUITERegular';
   width: 100%;
   height: 100px;
   /* height: 75px; */
   display: flex;
   position: relative;
   background: #eef1f7;
+  border-radius: 4px;
 `;
 export const UserIntroduceText = styled.div`
   font-family: 'SUITERegular';
@@ -185,4 +187,20 @@ export const ChangeContent = styled.textarea`
 
   background: #eef1f7;
   border-radius: 4px;
+`;
+export const ShowCheckNickName = styled.p`
+  font-family: 'SUITERegular';
+  font-size: 10px;
+  line-height: 21px;
+  color: #7d8bae;
+  /* line-height: 21px; */
+`;
+export const ShowIcon = styled.img`
+  width: 5px;
+  height: 5px;
+  margin-right: 5px;
+`;
+export const ShowTitleFlex = styled.div`
+  display: flex;
+  align-items: center;
 `;

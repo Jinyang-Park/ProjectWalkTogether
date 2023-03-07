@@ -58,11 +58,7 @@ const MainPage = () => {
         </ContentLayout>
 
         <ContentLayout>
-          <TitleLayout>
-            <HotShoesImg src={Boog}></HotShoesImg>
-            <TextTitle>신발 신는 중</TextTitle>
-          </TitleLayout>
-
+          <TextTitle>신발 신는 중</TextTitle>
           <FirstLayout>
             <InsideText>현재 이루어지고 있는 산책들이에요</InsideText>
             <Button
@@ -82,10 +78,7 @@ const MainPage = () => {
         </ContentLayout>
 
         <ContentLayout>
-          <TitleLayout>
-            <HotShoesImg src={gitbal}></HotShoesImg>
-            <TextTitle>매칭된 신발</TextTitle>
-          </TitleLayout>
+          <TextTitle>매칭된 신발</TextTitle>
           <FirstLayout>
             <InsideText>매칭이 완료된 산책들이에요</InsideText>
             <Button

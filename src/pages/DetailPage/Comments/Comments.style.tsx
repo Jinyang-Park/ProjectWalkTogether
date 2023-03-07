@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Textarea } from './../../PostPage/Mainpost/Mainpost.style';
+import { currentUserUid } from './../../../Rocoil/Atom';
 
 export const DetailCommentsWrapper = styled.div`
   position: relative;
@@ -57,6 +58,7 @@ export const CommentLi = styled.li`
   /* padding: 20px 40px 30px; */
 `;
 export const CommentProfilediv = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,10 +71,12 @@ export const CommentProfilediv = styled.div`
   margin-right: 12px;
 `;
 export const CommentProfileIcon = styled.img`
+  cursor: pointer;
   width: 40px;
   height: 40px;
   margin-left: 1px;
   margin-top: 1px;
+  cursor: pointer;
 `;
 
 export const CommentProfileImg = styled.img`
@@ -80,14 +84,18 @@ export const CommentProfileImg = styled.img`
   height: 38px;
   border-radius: 50%;
   background: #ffffff;
+  cursor: pointer;
+
   /* box-shadow: 0px 0px 4px rgba(53, 100, 187, 0.25); */
   /* margin-right: 12px; */
 `;
 export const CommentUserName = styled.div`
+  cursor: pointer;
   font-size: 12px;
   line-height: 14.98px;
   margin-bottom: 8px;
   font-weight: 600;
+  cursor: pointer;
 `;
 export const CommentInput = styled.div`
   /* width: 100%; */
