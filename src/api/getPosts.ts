@@ -69,8 +69,6 @@ export function usePosts() {
       };
     });
 
-    console.log('fetchPosts 실행됨');
-
     return newPosts;
   }
 
