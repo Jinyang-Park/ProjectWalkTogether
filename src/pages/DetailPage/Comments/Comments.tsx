@@ -324,8 +324,9 @@ const Comments = ({ param }: postProps) => {
                   <S.CommentLi>
                     {!comment.ProfileImg ? (
                       <S.CommentProfilediv>
+                        {/*프로필 사진 클릭시 프로필로 이동*/}
                         <S.CommentProfileIcon
-                          // onClick={() => navigate(`/mypage/${getPostings.UID}`)}
+                          onClick={() => navigate(`/mypage/${comment.UID}`)}
                           src={
                             require('../../../assets/DetailPageIcon/profileIcon.svg')
                               .default
@@ -334,11 +335,20 @@ const Comments = ({ param }: postProps) => {
                       </S.CommentProfilediv>
                     ) : (
                       <S.CommentProfilediv>
-                        <S.CommentProfileImg src={comment.ProfileImg} />
+                        {/*프로필 사진 클릭시 프로필로 이동*/}
+                        <S.CommentProfileImg
+                          onClick={() => navigate(`/mypage/${comment.UID}`)}
+                          src={comment.ProfileImg}
+                        />
                       </S.CommentProfilediv>
                     )}
                     <S.CommentWrapper>
-                      <S.CommentUserName>{comment.NickName}</S.CommentUserName>
+                      {/*닉네임  클릭시 프로필로 이동*/}
+                      <S.CommentUserName
+                        onClick={() => navigate(`/mypage/${comment.UID}`)}
+                      >
+                        {comment.NickName}
+                      </S.CommentUserName>
                       <S.CommentBox>
                         <S.CommentInput>
                           {comment.Description_Comments}
@@ -352,9 +362,11 @@ const Comments = ({ param }: postProps) => {
                 ) : (
                   //현재 유저가 쓴 글이면 수정, 삭제 버튼까지 보여준다.
                   <S.CommentLi>
+                    {/*프로필 사진 클릭시 프로필로 이동*/}
                     {!comment.ProfileImg ? (
                       <S.CommentProfilediv>
                         <S.CommentProfileIcon
+                          onClick={() => navigate(`/mypage/${comment.UID}`)}
                           src={
                             require('../../../assets/DetailPageIcon/profileIcon.svg')
                               .default
@@ -363,11 +375,20 @@ const Comments = ({ param }: postProps) => {
                       </S.CommentProfilediv>
                     ) : (
                       <S.CommentProfilediv>
-                        <S.CommentProfileImg src={comment.ProfileImg} />
+                        {/*프로필 사진 클릭시 프로필로 이동*/}
+                        <S.CommentProfileImg
+                          onClick={() => navigate(`/mypage/${comment.UID}`)}
+                          src={comment.ProfileImg}
+                        />
                       </S.CommentProfilediv>
                     )}
                     <S.CommentWrapper>
-                      <S.CommentUserName>{comment.NickName}</S.CommentUserName>
+                      {/*닉네임  클릭시 프로필로 이동*/}
+                      <S.CommentUserName
+                        onClick={() => navigate(`/mypage/${comment.UID}`)}
+                      >
+                        {comment.NickName}
+                      </S.CommentUserName>
                       <S.CommentBox>
                         {comment.isEdit ? (
                           <S.Form>
