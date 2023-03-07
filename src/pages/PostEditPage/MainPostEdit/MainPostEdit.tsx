@@ -106,7 +106,12 @@ function MainPostEdit({
         <S.BoxPhoto>
           <label htmlFor='thumnail'>
             <S.ThumnailPhotoChange
-              src={thumbnail ? thumbnail : '/assets/blackboard.png'}
+              src={
+                thumbnail
+                  ? thumbnail
+                  : require('../../../assets/ChattingIcon/slectpicure.svg')
+                      .default
+              }
             />
           </label>
           <S.ThumnailPhoto

@@ -63,8 +63,8 @@ export const ChattingFooterBox = styled.div`
   position: relative;
   /* top: -1.1px; */
   height: 15px;
-  width: 280px;
-  border-right: 1px solid #bec5d7;
+  width: 291px;
+
   border-top: 1px solid #bec5d7;
   z-index: 0;
 `;
@@ -113,8 +113,8 @@ export const UserImgCover = styled.div`
 `;
 
 export const UserName = styled.div`
-  /* position: relative;
-  top: 13.5px; */
+  position: relative;
+  top: 2px;
 
   font-family: 'Poppins';
   font-style: normal;
@@ -171,3 +171,5 @@ export const GreenLight = styled.div`
   top: 25px;
   border-radius: 30px;
 `;
+
+export const ChatImg = styled.img``;
