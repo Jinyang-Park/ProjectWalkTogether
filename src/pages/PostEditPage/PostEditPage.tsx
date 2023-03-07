@@ -284,6 +284,7 @@ const PostEditPage = () => {
       new MessageWindowProperties(
         true,
         '업로드 중입니다. 조금만 기다려주세요!',
+        '',
         [],
         MessageWindowLogoType.CryingFace
       ),

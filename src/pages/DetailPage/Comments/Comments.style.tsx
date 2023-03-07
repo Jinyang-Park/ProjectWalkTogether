@@ -68,13 +68,19 @@ export const CommentProfilediv = styled.div`
   box-shadow: 0px 0px 4px rgba(53, 100, 187, 0.25);
   margin-right: 12px;
 `;
+export const CommentProfileIcon = styled.img`
+  width: 40px;
+  height: 40px;
+  margin-left: 1px;
+  margin-top: 1px;
+`;
 
 export const CommentProfileImg = styled.img`
   width: 38px;
   height: 38px;
   border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0px 0px 4px rgba(53, 100, 187, 0.25);
+  /* box-shadow: 0px 0px 4px rgba(53, 100, 187, 0.25); */
   /* margin-right: 12px; */
 `;
 export const CommentUserName = styled.div`

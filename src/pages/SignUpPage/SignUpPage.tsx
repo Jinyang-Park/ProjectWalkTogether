@@ -139,6 +139,7 @@ const SignUpPage = () => {
             new MessageWindowProperties(
               true,
               '회원가입이 완료되었어요!',
+              '',
               [
                 {
                   text: '로그인 페이지로 돌아가기',

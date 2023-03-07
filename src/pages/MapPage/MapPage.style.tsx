@@ -1,44 +1,47 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const MapPageContainer = styled.span`
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  margin-top: 20px;
+
   height: 200vh;
   max-width: 1024px;
   @media screen {
   }
-`
+`;
 
 export const MapPageHeader = styled.span`
   display: flex;
   flex-direction: column;
   margin-top: 30px;
   width: 868px;
-`
+`;
 export const MapPageSearchBar = styled.form`
   display: flex;
   flex-direction: row;
   justify-content: start;
   align-items: center;
   padding-left: 15px;
-  height: 50px;
+  height: 45px;
 
   margin-bottom: 3px;
   border: 1px solid black;
   border-radius: 5px;
   overflow: hidden;
-`
+`;
+
 export const SearchBar = styled.input`
   width: 866px;
-  height: 50px;
+  height: 45px;
   font-size: 25px;
   margin-left: 20px;
   ::placeholder {
     color: #bfbfbf;
   }
-`
+`;
 
 export const MapKaKaoMapContainer = styled.span`
   display: flex;
@@ -51,7 +54,7 @@ export const MapKaKaoMapContainer = styled.span`
     width: 300px;
     height: 300px;
   }
-`
+`;
 export const MapPageTitle = styled.span`
   height: 45px;
   display: flex;
@@ -60,7 +63,7 @@ export const MapPageTitle = styled.span`
 
   margin-top: 50px;
   font-weight: 600;
-`
+`;
 
 export const LineMarker = styled.span`
   display: flex;
@@ -68,7 +71,7 @@ export const LineMarker = styled.span`
   justify-content: center;
   height: 5px;
   border-bottom: 1px solid black;
-`
+`;
 
 export const MapPageContentsWrapper = styled.span`
   display: flex;
@@ -81,7 +84,7 @@ export const MapPageContentsWrapper = styled.span`
   @media screen and (max-width: 344px) {
     flex-direction: column;
   }
-`
+`;
 
 export const UserInfoContainer = styled.span`
   display: flex;
@@ -89,4 +92,4 @@ export const UserInfoContainer = styled.span`
   height: 100%;
   @media screen and (max-width: 344px) {
   }
-`
+`;

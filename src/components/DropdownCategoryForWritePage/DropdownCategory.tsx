@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom';
 declare interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
-  isDropped: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const DropdownCategory = ({ setPostCategory, setShow }: SetProps) => {
   const buttonClickHandler = (event: any) => {
@@ -17,8 +16,6 @@ const DropdownCategory = ({ setPostCategory, setShow }: SetProps) => {
     // 아래부분처럼 해결함
     setPostCategory(event.target.innerText);
   };
-  //클릭한 버튼의 값이 잘 찍힌다.
-  // console.log(textChange);
 
   const confirmButtonClickHandler = () => {
     setShow(false);

@@ -60,7 +60,7 @@ const MyPageBanner = (props: { uid: string }) => {
   return (
     <BannerWrap onClick={onBannerClick}>
       <BannerImgLabel htmlFor='bannerInput'>
-        <BannerImg src={imageURL} />
+        <BannerImg src={imageURL ? imageURL : '/assets/배너.png'} />
         {uid === userUID && (
           <>
             <BannerImgBtn src={'/assets/editicon.png'} />
