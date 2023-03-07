@@ -156,7 +156,9 @@ export const ChangeNickName = styled.input`
   font-size: 26px;
   line-height: 32px;
   border: none;
-  padding: 8px 12px;
+  padding: 8px 10px;
+  margin-bottom: 4px;
+
   &:focus {
     outline: 2px solid #6a24ff;
   }
