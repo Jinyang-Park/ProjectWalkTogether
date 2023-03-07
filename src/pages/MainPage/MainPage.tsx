@@ -113,6 +113,7 @@ const Button = styled.button`
   letter-spacing: -0.1px;
 `;
 const InsideText = styled.p`
+  padding-top: 19px;
   font-family: 'SUITERegular';
   letter-spacing: -1px;
   color: #7d8bae;
