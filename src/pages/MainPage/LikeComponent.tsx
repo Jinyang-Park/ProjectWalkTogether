@@ -68,6 +68,7 @@ const LikesComponent = () => {
   return (
     <S.LikedListItem>
       {postList
+
         .slice(0, 8)
         .sort((a, b) => b.LikedUsers.length - a.LikedUsers.length)
         .map((post: any) => {

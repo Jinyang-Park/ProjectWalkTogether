@@ -41,7 +41,7 @@ export const checkBox_check01 = styled.div`
 export const Agree01 = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 `;
 
 export const checkBox_check02 = styled.div`
@@ -122,10 +122,17 @@ export const AgreeBox = styled.div`
   line-height: 30px;
 `;
 
-export const AgreeBtn = styled.button`
+export const AgreeBtn = styled.button<{ state: boolean }>`
   width: 306px;
   height: 46px;
   background-color: #7d8bae;
   color: white;
   border-radius: 5px;
+  background: ${(props) => (props.state ? '#7d8bae;' : '#C8D1E0')};
+  @media screen and (max-width: 390px) {
+    width: 334px;
+    height: 39px;
+    font-size: 15px;
+    line-height: 13px;
+  }
 `;

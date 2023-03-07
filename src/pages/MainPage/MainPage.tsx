@@ -83,7 +83,6 @@ const MainPage = () => {
             </Button>
           </FirstLayout>
           <S.LikedListItem>
-            {' '}
             <WalkAfter />
           </S.LikedListItem>
           <Line />

@@ -19,6 +19,7 @@ const Agreement = () => {
   const [buttonColor, setButtonColor] = useState<boolean>(false);
   const [checkBoxActive, setCheckBoxActive] = useState<boolean>(false);
   const [disabled, setDisabled] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const isCheckBoxClicked = () => {
     setCheckBoxActive(!checkBoxActive);
@@ -53,9 +54,11 @@ const Agreement = () => {
     ) {
       setDisabled(false);
       setButtonColor(true);
+      setErrorMessage('다음페이지로 갑니다');
     } else {
       setDisabled(true);
       setButtonColor(false);
+      setErrorMessage('약관동의를 해주세요.');
     }
   }, [checkList]);
 
@@ -296,9 +299,10 @@ const Agreement = () => {
               <S.AgreeBtn
                 type='submit'
                 disabled={disabled}
+                state={buttonColor}
                 onClick={() => navigate('/signup')}
               >
-                약관 전체 동의
+                {errorMessage}
               </S.AgreeBtn>
             </S.AgreeBox>
             <S.Back>
