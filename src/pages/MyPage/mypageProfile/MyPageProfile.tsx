@@ -15,6 +15,7 @@ import * as S from './MyPageProfile.style';
 const MyPageProfile = (props: { uid: string }) => {
   const navigate = useNavigate();
   const uid = props.uid;
+  // console.log(uid);
 
   const [newname, setNewname] = useState('');
   const [newmessage, setNewmessage] = useState('');
