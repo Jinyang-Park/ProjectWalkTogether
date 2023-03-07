@@ -126,7 +126,7 @@ const InfoList = ({ Post }) => {
   //! 여기까지 Category에서 가져옴
 
   return (
-    <CommonStyles>
+    <>
       <S.SearchLineTotalCount>
         총 {DoubledFilterDate.length} 건의 검색결과
       </S.SearchLineTotalCount>
@@ -145,7 +145,7 @@ const InfoList = ({ Post }) => {
           return <CardSection key={post.id} post={post} />;
         })} */}
       </S.LikedListItem>
-    </CommonStyles>
+    </>
   );
 };
 

@@ -65,7 +65,7 @@ const MyPage = () => {
 export default MyPage;
 
 const MyPageWrap = styled.div`
-  width: 868px;
+  /* width: 868px; */
   margin: auto;
 `;
 
