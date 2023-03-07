@@ -7,7 +7,6 @@ export const TabbarWrap = styled.div`
   margin-top: 50px;
   margin-left: 78px;
   margin-right: 78px;
-  border-bottom: 2px solid black;
 `;
 
 export const UserWriteBtn = styled.button`

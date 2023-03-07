@@ -44,6 +44,7 @@ export const UserProfileInfoContainer = styled.div`
   width: 100%;
   height: 100%;
   margin-left: 20px;
+  position: relative;
 `;
 export const UserNickNameBox = styled.div`
   /* width: fit-content; */
@@ -78,7 +79,8 @@ export const UserWalkCountText = styled.p`
 `;
 export const UserIntroduceAreaBox = styled.div`
   width: 100%;
-  height: 75px;
+  height: 100px;
+  /* height: 75px; */
   display: flex;
   position: relative;
   background: #eef1f7;

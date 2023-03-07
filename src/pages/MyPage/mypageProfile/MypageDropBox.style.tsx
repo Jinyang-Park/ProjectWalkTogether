@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const DropBoxWrapper = styled.div`
   position: absolute;
   z-index: 1;
-  left: 67rem;
-  top: 26rem;
+  left: 35rem;
+  top: 3rem;
 `;
 export const DropBoxDeleteAccountBtn = styled.div`
   width: 120px;

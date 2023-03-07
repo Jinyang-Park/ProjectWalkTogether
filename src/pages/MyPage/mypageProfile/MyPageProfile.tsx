@@ -207,14 +207,15 @@ const MyPageProfile = (props: { uid: string }) => {
         </S.UserNickNameBox>
         {nameswitch && <div>닉네임은 25글자를 넘을 수 없습니다.</div>}
 
-        <S.UserWalkCountBox>
+        {/*후기 카운트 */}
+        {/* <S.UserWalkCountBox>
           <S.UserWalkCountIcon
             src={require('../../../assets/MypageIcon/droplet.svg').default}
           />
           <S.UserWalkCountText>
             총 {20}번의 산책을 완료하셨어요!
           </S.UserWalkCountText>
-        </S.UserWalkCountBox>
+        </S.UserWalkCountBox> */}
 
         <S.UserIntroduceAreaBox>
           {!isEditing ? (

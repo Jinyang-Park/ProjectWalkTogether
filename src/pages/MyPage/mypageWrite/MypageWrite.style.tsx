@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MyPageWriteWrap = styled.div`
   width: 100%;
-  height: 735px;
+  margin-bottom: 100px;
 `;
 export const PostListWrap = styled.div`
   display: flex;
