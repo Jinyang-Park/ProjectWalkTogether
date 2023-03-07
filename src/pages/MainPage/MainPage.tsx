@@ -13,11 +13,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import CategorySlide from '../../components/main/CategorySlide';
 import FootOning from './FootOning';
 import * as S from './CardSection.style';
-import CollectionAll from '../Collection/CollectionAll';
-import Collection from '../Collection/Collection';
-import { CollecitionList } from '../../utils/CollectionList';
 import LikesComponent from './LikeComponent';
-
 import Fire from '../../assets/Mainpage/Fire.svg';
 import Boog from '../../assets/Mainpage/boog.svg';
 import gitbal from '../../assets/Mainpage/gitbal.svg';
@@ -35,10 +31,10 @@ const MainPage = () => {
         <CategorySlide />
 
         <ContentLayout>
-          <TextTitle>
-            {' '}
-            <HotShoesImg src={Fire}></HotShoesImg>뜨거운 신발
-          </TextTitle>
+          <TitleLayout>
+            <HotShoesImg src={Fire}></HotShoesImg>
+            <TextTitle>뜨거운 신발</TextTitle>
+          </TitleLayout>
 
           <FirstLayout>
             <InsideText>현재 인기가 많은 산책들이에요</InsideText>
@@ -58,10 +54,11 @@ const MainPage = () => {
         </ContentLayout>
 
         <ContentLayout>
-          <TextTitle>
+          <TitleLayout>
             <HotShoesImg src={Boog}></HotShoesImg>
-            신발 신는 중
-          </TextTitle>
+            <TextTitle>신발 신는 중</TextTitle>
+          </TitleLayout>
+
           <FirstLayout>
             <InsideText>현재 이루어지고 있는 산책들이에요</InsideText>
             <Button
@@ -81,11 +78,10 @@ const MainPage = () => {
         </ContentLayout>
 
         <ContentLayout>
-          <TextTitle>
-            {' '}
+          <TitleLayout>
             <HotShoesImg src={gitbal}></HotShoesImg>
-            매칭된 신발
-          </TextTitle>
+            <TextTitle>매칭된 신발</TextTitle>
+          </TitleLayout>
           <FirstLayout>
             <InsideText>매칭이 완료된 산책들이에요</InsideText>
             <Button
@@ -122,6 +118,10 @@ const InsideText = styled.p`
   color: #7d8bae;
   width: 300px;
 `;
+const TitleLayout = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const HotShoesBox = styled.img``;
 
@@ -134,6 +134,7 @@ const TextTitle = styled.p`
   font-family: 'SUITEBold';
   letter-spacing: -3px;
   font-size: 36px;
+  font-weight: 400;
   display: flex;
 `;
 export const CategoryWrapper = styled.div`
