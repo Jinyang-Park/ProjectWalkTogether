@@ -16,21 +16,29 @@ const Agreement = () => {
 
   //약관동의 로직
   const [checkList, setCheckList] = useState([]);
-  const [buttonColor, setButtonColor] = useState(false);
-  const [checkBoxActive, setCheckBoxActive] = useState(false);
+  const [buttonColor, setButtonColor] = useState<boolean>(false);
+  const [checkBoxActive, setCheckBoxActive] = useState<boolean>(false);
   const [disabled, setDisabled] = useState(true);
 
   const isCheckBoxClicked = () => {
     setCheckBoxActive(!checkBoxActive);
   };
 
-  const signup = async (e: React.FormEvent<HTMLFormElement>) => {
+  const agreenments = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!checkBoxActive) {
       alert('약관에 동의해주세요!'); // checkbox가 선택되지 않았다면 알림창 띄우기
       return;
     }
   };
+
+  const checkAll = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.checked
+      ? setCheckList(['all', 'terms', 'collect', 'another', 'service'])
+      : setCheckList([]);
+    console.log(e.target.checked);
+  };
+
   const check = (e) => {
     e.target.checked
       ? setCheckList([...checkList, e.target.name])
@@ -75,9 +83,28 @@ const Agreement = () => {
     <CommonStyles>
       <S.InputLayout>
         <S.InputBox>
-          <form onSubmit={signup}>
+          <form onSubmit={agreenments}>
             <S.Title_head>약관동의</S.Title_head>
             <S.join_box>
+              <S.checkBox_check00>
+                <S.Agree01>
+                  <S.ListLayout>
+                    <S.List>전체</S.List>
+                    <S.Text>이용약관 동의</S.Text>
+                  </S.ListLayout>
+
+                  <S.checkAllBtn>
+                    <input
+                      onClick={isCheckBoxClicked}
+                      type='checkbox'
+                      name='all'
+                      onChange={checkAll}
+                      checked={checkList.includes('all') ? true : false}
+                    />
+                  </S.checkAllBtn>
+                </S.Agree01>
+              </S.checkBox_check00>
+
               <S.checkBox_check01>
                 <S.Agree01>
                   <S.ListLayout>
@@ -117,10 +144,10 @@ const Agreement = () => {
 
                   <S.checkAllBtn>
                     <input
+                      onClick={isCheckBoxClicked}
                       type='checkbox'
                       name='terms'
                       onChange={check}
-                      onClick={isCheckBoxClicked}
                       checked={checkList.includes('terms') ? true : false}
                     />
                   </S.checkAllBtn>
@@ -166,10 +193,10 @@ const Agreement = () => {
 
                   <S.checkAllBtn>
                     <input
+                      onClick={isCheckBoxClicked}
                       type='checkbox'
                       name='collect'
                       onChange={check}
-                      onClick={isCheckBoxClicked}
                       checked={checkList.includes('collect') ? true : false}
                     />
                   </S.checkAllBtn>

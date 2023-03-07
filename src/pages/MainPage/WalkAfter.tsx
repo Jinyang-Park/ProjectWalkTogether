@@ -24,7 +24,7 @@ interface postProps {
 }
 
 //뜨거운 신발
-const LikesComponent = () => {
+const WalkAfter = () => {
   const setParams = useSetRecoilState(paramsState);
   const { id } = useParams();
   const [postList, setPostList] = useState([]);
@@ -34,7 +34,8 @@ const LikesComponent = () => {
     const q = query(
       collection(dbService, 'Post'),
       // Category_Posting이 파람스로 넘겨준 애들과 같은 애들만 뿌려줘라
-      orderBy('createdAt', 'desc')
+      orderBy('createdAt', 'desc'),
+      where('ProceedState_Posting', '==', 'postingDone')
       // orderBy('TimeStamp_Posting', 'desc')
     );
     onSnapshot(q, (snapshot) => {
@@ -68,12 +69,13 @@ const LikesComponent = () => {
   return (
     <S.LikedListItem>
       {postList
+
         .slice(0, 8)
-        .sort((a, b) => b.LikedUsers.length - a.LikedUsers.length)
+
         .map((post: any) => {
           return <CardSection key={post.id} post={post} />;
         })}
     </S.LikedListItem>
   );
 };
-export default LikesComponent;
+export default WalkAfter;

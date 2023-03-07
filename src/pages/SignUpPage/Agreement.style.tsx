@@ -31,6 +31,10 @@ export const Title_head = styled.p`
   margin-top: 40px;
 `;
 
+export const checkBox_check00 = styled.div`
+  position: relative;
+`;
+
 export const checkBox_check01 = styled.div`
   position: relative;
 `;

@@ -17,7 +17,7 @@ import CollectionAll from '../Collection/CollectionAll';
 import Collection from '../Collection/Collection';
 import { CollecitionList } from '../../utils/CollectionList';
 import LikesComponent from './LikeComponent';
-
+import WalkAfter from './WalkAfter';
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 
 const MainPage = () => {
@@ -70,9 +70,23 @@ const MainPage = () => {
         </ContentLayout>
 
         <ContentLayout>
-          <TextTitle style={{ fontSize: 20, fontWeight: 'bold' }}>
-            걷는 중
-          </TextTitle>
+          <TextTitle>매칭된 신발</TextTitle>
+          <FirstLayout>
+            <InsideText>매칭이 완료된 산책들이에요</InsideText>
+            <Button
+              value='3'
+              onClick={(event) =>
+                navigate(`/collection/${event.target['value']}`)
+              }
+            >
+              전체보기
+            </Button>
+          </FirstLayout>
+          <S.LikedListItem>
+            {' '}
+            <WalkAfter />
+          </S.LikedListItem>
+          <Line />
         </ContentLayout>
       </CategoryWrapper>
     </CommonStyles>
