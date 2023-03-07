@@ -325,6 +325,7 @@ const Comments = ({ param }: postProps) => {
                     {!comment.ProfileImg ? (
                       <S.CommentProfilediv>
                         <S.CommentProfileIcon
+                          // onClick={() => navigate(`/mypage/${getPostings.UID}`)}
                           src={
                             require('../../../assets/DetailPageIcon/profileIcon.svg')
                               .default
