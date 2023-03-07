@@ -65,7 +65,7 @@ export const SearchLineTotalCount = styled.span`
   font-size: smaller;
   color: gray;
 
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 `;
 export const LikedListItem = styled.div`
   display: flex;
@@ -157,7 +157,7 @@ export const NoResult = styled.div``;
 
 export const NoResultTitle = styled.p`
   font-family: 'SUITERegular';
-  margin-top: -60px;
+  margin-top: -40px;
   font-weight: 500;
   font-size: 16px;
   line-height: 45px;

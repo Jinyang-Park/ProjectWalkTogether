@@ -30,7 +30,16 @@ export const FilterBar = ({
           {/*카테고리영역 */}
           <S.CategoryFilterWarpper onClick={() => setShow(true)}>
             <S.FilterCategory>{TextChange}</S.FilterCategory>
-            <S.FilterCalendarIcon />
+            {/*카테고리이면 아이콘 보여주고 아니면 block*/}
+            <S.FilterCalendarIcon
+              style={{
+                display: TextChange === '카테고리' ? 'block' : 'none',
+              }}
+              src={
+                require('../../../../assets/CategoryPageIcon/CategoryIcon2.svg')
+                  .default
+              }
+            />
           </S.CategoryFilterWarpper>
           {show && (
             <DropdownFilterCategoryForMapPage
