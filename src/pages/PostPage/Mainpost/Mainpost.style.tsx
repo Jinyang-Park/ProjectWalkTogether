@@ -26,9 +26,6 @@ export const Boxcontents = styled.div`
   border: 1px solid #ffffff;
   box-shadow: 0px 4px 7px rgba(190, 197, 215, 0.81);
   backdrop-filter: blur(5px);
-
-  @media screen and (max-width: 868px) {
-  }
 `;
 
 export const BoxMain = styled.div`
@@ -86,7 +83,19 @@ export const InputTitle = styled.input`
   margin-bottom: 10px;
   background: #eef1f7;
   border-radius: 4px;
-
+  font-family: 'SUITERegular';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  &::placeholder {
+    font-family: 'SUITERegular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #24264e;
+  }
   &:focus {
     outline: 2px solid #6a24ff;
   }
@@ -104,21 +113,17 @@ export const Textarea = styled.textarea`
   overflow-wrap: break-word;
   border: none;
   padding: 8px 15px 9px;
-
   font-family: 'SUITERegular';
   font-weight: 400;
   font-size: 12px;
   line-height: 21px;
-
   color: #24264e;
-
   &::placeholder {
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
     color: #24264e;
   }
-
   overflow: auto;
   /* transition: border-color 0.1s, background-color 0.1s; */
   resize: none;
@@ -137,7 +142,6 @@ export const BoxPhoto = styled.div`
   height: 204px;
   left: 102px;
   top: 328px;
-
   background: #eef1f7;
   border: 1px solid #ffffff;
   border-radius: 4px;
