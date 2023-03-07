@@ -15,6 +15,7 @@ import * as S from './MyPageProfile.style';
 const MyPageProfile = (props: { uid: string }) => {
   const navigate = useNavigate();
   const uid = props.uid;
+  // console.log(uid);
 
   const [newname, setNewname] = useState('');
   const [newmessage, setNewmessage] = useState('');
@@ -195,7 +196,7 @@ const MyPageProfile = (props: { uid: string }) => {
               <S.ChangeNickName
                 value={newname}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  if (e.target.value.length > 25) {
+                  if (e.target.value.length > 8) {
                     setNameSwitch(true);
                   } else {
                     setNewname(e.currentTarget.value);
@@ -205,7 +206,7 @@ const MyPageProfile = (props: { uid: string }) => {
             </>
           )}
         </S.UserNickNameBox>
-        {nameswitch && <div>닉네임은 25글자를 넘을 수 없습니다.</div>}
+        {nameswitch && <div>닉네임은 8글자를 넘을 수 없습니다.</div>}
 
         {/*후기 카운트 */}
         {/* <S.UserWalkCountBox>
