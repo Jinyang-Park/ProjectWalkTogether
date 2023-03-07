@@ -6,7 +6,11 @@ export const NavContainer = styled.div`
   height: 52px;
   background-color: white;
   width: 100%;
+  position: relative;
   border-bottom: 0.5px solid rgba(190, 197, 215, 1);
+  @media screen and (max-width: 420px) {
+    width: 100%;
+  }
 `;
 export const OllaeLogo = styled.img`
   width: 35px;
@@ -14,16 +18,29 @@ export const OllaeLogo = styled.img`
   padding-right: 6px;
 
   cursor: pointer;
+  @media screen and (max-width: 420px) {
+    width: 35px;
+    height: 35px;
+    padding-left: 20px;
+  }
 `;
 export const OllaeBox = styled.div`
   display: flex;
 `;
 
 export const OllaeText = styled.p`
+  margin: auto;
+  text-align: center;
+  margin-top: 3px;
   font-size: 20px;
   font-family: 'SUITEBold';
   font-weight: 600;
   cursor: pointer;
+  @media screen and (max-width: 420px) {
+    font-size: 15px;
+    font-family: 'SUITEBold';
+    font-weight: 600;
+  }
 `;
 
 export const Nav = styled.div`
@@ -32,14 +49,27 @@ export const Nav = styled.div`
   width: 868px;
   align-items: center;
   justify-content: space-between;
+  @media screen and (max-width: 420px) {
+    position: absolute;
+    width: 434px;
+  }
 `;
 
 export const SideOllae = styled.div`
-  margin-right: 400px;
+  position: absolute;
+  left: 33%;
+  @media screen and (max-width: 420px) {
+    margin-right: 50px;
+
+    left: 30%;
+    position: absolute;
+  }
 `;
 
 export const NavUl = styled.ul`
   display: flex;
+  @media screen and (max-width: 420px) {
+  }
 `;
 
 export const NavLi = styled.li`
@@ -47,6 +77,9 @@ export const NavLi = styled.li`
   margin-right: 40px;
   margin-top: 8px;
   text-decoration: none;
+  @media screen and (max-width: 420px) {
+    margin-right: 20px;
+  }
 `;
 export const NavText = styled(Link)`
   text-decoration: none;
@@ -83,6 +116,10 @@ export const LoginText = styled.p`
 export const NavEtc = styled.div`
   display: flex;
   margin: 0px;
+  @media screen and (max-width: 420px) {
+    right: 10%;
+    position: absolute;
+  }
 `;
 export const Profile = styled.div`
   padding-top: 0.625rem;
