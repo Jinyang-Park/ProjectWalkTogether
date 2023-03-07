@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { async } from '@firebase/util';
 import {
   getAuth,
@@ -98,12 +99,18 @@ const ChangePassword = () => {
   const currentPasswordValidationCheckComponent = () => {
     if (hasUserAttemptedPasswordChange) {
       if (!isCurrentPasswordValid) {
-        return <p>비밀번호를 확인해주세요.</p>;
+        return (
+          <S.ValidityTest>
+            <S.Reddot></S.Reddot>비밀번호를 확인해주세요.
+          </S.ValidityTest>
+        );
       }
     }
 
     return <></>;
   };
+
+  console.log('newpassword:', newpassword);
 
   return (
     <CommonStyles>
@@ -119,7 +126,6 @@ const ChangePassword = () => {
             <>
               <S.PasswordChangeInputBox>
                 <S.InputBox>
-                  {' '}
                   <S.Input
                     value={currentpassword}
                     type='password'
@@ -128,6 +134,13 @@ const ChangePassword = () => {
                       setCurrentPassword(e.currentTarget.value);
                     }}
                   ></S.Input>
+                  <S.CheckBtn>
+                    <img
+                      src={
+                        require('../../assets/ChattingIcon/check.svg').default
+                      }
+                    ></img>
+                  </S.CheckBtn>
                 </S.InputBox>
 
                 {currentPasswordValidationCheckComponent()}
@@ -149,17 +162,21 @@ const ChangePassword = () => {
                   );
                 }}
               ></S.Input>
+              <S.CheckBtn>
+                <img
+                  src={require('../../assets/ChattingIcon/check.svg').default}
+                ></img>
+              </S.CheckBtn>
             </S.InputBox>
 
             {hasUserChangedNewPassword && !isNewPasswordValid && (
               <S.ValidityTest>
-                새로운 비밀번호가 유효하지 않습니다.
+                <S.Reddot></S.Reddot> 새로운 비밀번호가 유효하지 않습니다.
               </S.ValidityTest>
             )}
           </S.PasswordChangeInputBox>
           <S.PasswordChangeInputBox>
             <S.InputBox>
-              {' '}
               <S.Input
                 value={checkpassword}
                 type='password'
@@ -169,10 +186,17 @@ const ChangePassword = () => {
                   setCheckPassword(e.currentTarget.value);
                 }}
               ></S.Input>
+              <S.CheckBtn>
+                <img
+                  src={require('../../assets/ChattingIcon/check.svg').default}
+                ></img>
+              </S.CheckBtn>
             </S.InputBox>
 
             {hasUserChangedNewPassword && !doNewPasswordsMatch && (
-              <S.ValidityTest>비밀번호가 일치하지 않습니다.</S.ValidityTest>
+              <S.ValidityTest>
+                <S.Reddot></S.Reddot>비밀번호가 일치하지 않습니다.
+              </S.ValidityTest>
             )}
           </S.PasswordChangeInputBox>
 

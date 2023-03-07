@@ -78,7 +78,13 @@ function MainPost({
     <>
       <S.Bannercontainer>
         <label htmlFor='banner'>
-          <S.ThumbnailImgPorlaroid src={banner ? banner : '/assets/배너.png'} />
+          <S.ThumbnailImgPorlaroid
+            src={
+              banner
+                ? banner
+                : require('../../../assets/ChattingIcon/banner2.svg').default
+            }
+          />
         </label>
         <S.BannerPhoto
           type='file'

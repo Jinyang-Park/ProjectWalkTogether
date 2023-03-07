@@ -41,6 +41,14 @@ export const PasswordChangeInputBox = styled.div`
   /* border: 1px solid black; */
 `;
 
+export const CheckBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: relative;
+  left: 276px;
+  bottom: 10px;
+`;
+
 export const InputBox = styled.div`
   width: 306px;
   height: 47px;
@@ -53,12 +61,13 @@ export const InputBox = styled.div`
 export const ValidityTest = styled.p`
   position: relative;
   left: 40px;
-  top: 23px;
+  top: 6px;
   font-family: 'SUIT';
   font-style: normal;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
+  display: flex;
 
   /* blue */
 
@@ -117,4 +126,13 @@ export const Input = styled.input`
     line-height: 15px;
     color: #24264e;
   }
+`;
+
+export const Reddot = styled.div`
+  width: 8px;
+  height: 8px;
+  background-color: #ff8f8f;
+  border-radius: 5px;
+  margin-right: 8px;
+  margin-left: 8px;
 `;
