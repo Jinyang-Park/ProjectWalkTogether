@@ -35,26 +35,30 @@ import { paramsState } from '../../../Rocoil/Atom';
 import { useSetRecoilState } from 'recoil';
 import CommonStyles from './../../../styles/CommonStyles';
 import CardSection from './../../../components/CardSection/CardSection';
+import { Post, usePosts } from '../../../api/postsApi';
 
 const InfoList = ({ Post }) => {
   const navigate = useNavigate();
   const setParams = useSetRecoilState(paramsState);
-  const [postings, setPostings] = useState<any>([]);
+  const Category = useRecoilValue(Cetegory);
+  const postings: Array<Post> = usePosts().filter((post) => {
+    if (Category === '전체') return true;
+    return post.Category_Posting === Category;
+  });
 
   const FilterSelectedDate = useRecoilValue(FilterSelectedDateForMapPage);
   // recoilvalue 로 viewCountForMapPage 를 받아온다.
   const viewCount = useRecoilValue(viewCountForMapPage);
 
   const DateType1 = useRecoilValue(dateType1ForMapPage);
-  console.log('DateType1', DateType1);
+  // console.log('DateType1', DateType1);
   const [SelectedDate, setSelectedDate] = useState('');
   // DateType1 을 받아와서 SelectedDate 에 넣어준다.
   useEffect(() => {
     setSelectedDate(DateType1);
   }, [DateType1]);
-  console.log('SelectedDate', SelectedDate);
+  // console.log('SelectedDate', SelectedDate);
 
-  const Category = useRecoilValue(Cetegory);
   const postpostpost =
     Category !== '전체'
       ? Post.filter((x) => x.Category_Posting === Category)
@@ -63,45 +67,6 @@ const InfoList = ({ Post }) => {
   // 필터링 필요한지 아닌지
   const [meetDate, setMeetDate] = useRecoilState(FilterSelectedDateForMapPage);
   const isDateSpecified = meetDate !== '';
-
-  //! 여기부터 Category에서 가져옴
-  useEffect(() => {
-    const isAll = Category === '전체';
-
-    // 카테고리에서 전체를 클릭했을때 where 없애는 코드문
-    const c = collection(dbService, 'Post');
-    const w = where('Category_Posting', '==', Category);
-    const o = orderBy('createdAt', 'desc');
-    const q = isAll ? query(c, o) : query(c, w, o);
-
-    onSnapshot(q, (snapshot) => {
-      const getCategoryList = snapshot.docs.map((doc) => {
-        const CategoryList = {
-          id: doc.id,
-          ...doc.data(),
-        };
-
-        return CategoryList;
-      });
-
-      // 필터링 필요한지 아닌지
-      const isDateSpecified = meetDate !== '';
-
-      // getCategoryList를 리턴함. 필터링할 필요가 있으면 필터링해줌.
-      const getListFilteredIfNecessary = () => {
-        if (isDateSpecified)
-          return getCategoryList.filter(
-            (post: any) => post.RsvDate_Posting === SelectedDate
-          );
-
-        return getCategoryList;
-      };
-
-      // getCategoryList() 호출해서 setPostings()함
-      setPostings(getListFilteredIfNecessary());
-    });
-  }, [Category]);
-
   // FilterDate는 DoubleFilterDate를 위해 쓰는 코드이다.
   const FilteredDate =
     SelectedDate.length < 14

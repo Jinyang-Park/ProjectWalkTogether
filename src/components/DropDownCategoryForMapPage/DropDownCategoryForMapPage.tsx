@@ -43,13 +43,14 @@ const DropdownFilterCategoryForMapPage = ({
             );
           })}
         </S.DropdownWapper>
+
+        <S.CategoryConfirmBtn
+          // 24~25
+          onClick={() => confirmButtonClickHandler(TextChange)}
+        >
+          선택 완료
+        </S.CategoryConfirmBtn>
       </S.DropdownConatainer>
-      <S.CategoryConfirmBtn
-        // 24~25
-        onClick={() => confirmButtonClickHandler(TextChange)}
-      >
-        완료
-      </S.CategoryConfirmBtn>
     </S.DropdownBox>
   );
 };

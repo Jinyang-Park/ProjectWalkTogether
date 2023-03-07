@@ -8,7 +8,7 @@ import { FindBox } from './../SignUpPage/SignUpPage.style';
 export const DetailAddressContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 24px;
+  margin-top: -150px;
 `;
 export const DetailAddressIcon = styled.img`
   width: 44px;

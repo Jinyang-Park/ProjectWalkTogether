@@ -19,7 +19,10 @@ export const Boxcontainer = styled.div`
 
 //제출 버튼
 export const PostSubmitBox = styled.div`
-  margin-top: -50px;
+  margin-top: -115px;
+  /* position: relative;
+  width: 100%;
+  height: 10%; */
   /* background-color: aliceblue; */
 `;
 

@@ -93,17 +93,13 @@ export const ChattingUser = styled.div`
   height: 63px;
   cursor: pointer;
 
-  :focus {
+  /* :focus {
+    background-color: #eef1f7;
+  } */
+
+  :active {
     background-color: #eef1f7;
   }
-
-  /* :active {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 288px;
-    height: 60px;
-  } */
 `;
 
 export const UserImg = styled.img`

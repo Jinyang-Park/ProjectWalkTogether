@@ -41,8 +41,6 @@ import MessageWindow, {
 import useDetectClose from '../../hooks/useDetectClose';
 
 const PostEditPage = () => {
-  // 모달 외부 클릭 시 닫기 customhook
-  const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
   // 해당 글 id, db 정보
   const { id } = useParams();
   const { state } = useLocation();

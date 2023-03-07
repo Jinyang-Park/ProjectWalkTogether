@@ -58,7 +58,7 @@ export const MapKaKaoMapContainer = styled.span`
 export const MapPageTitle = styled.span`
   height: 45px;
   display: flex;
-
+  font-family: 'SUITERegular';
   font-size: 35px;
 
   margin-top: 50px;

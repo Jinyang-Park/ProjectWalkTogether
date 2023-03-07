@@ -1,24 +1,11 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { dbService } from '../../../common/firebase';
-import MypageTabbar from '../tabbar/MypageTabbar';
 import CardSection from '../../../components/CardSection/CardSection';
 import * as S from './MypageWrite.style';
+import { Post, usePosts } from '../../../api/postsApi';
 
 const MyPageWrite = (props: { uid: string }) => {
   const { uid } = props;
-  const [posts, setPosts] = useState([]);
-  const fetchPosts = async () => {
-    const querySnapshot = await getDocs(
-      query(collection(dbService, 'Post'), where('UID', '==', uid))
-    );
-    // console.log(querySnapshot.docs[0].data());
-    setPosts(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-  };
-  useEffect(() => {
-    fetchPosts();
-  }, [posts]);
+
+  const posts: Array<Post> = usePosts().filter((post) => post.UID === uid);
 
   return (
     <S.MyPageWriteWrap>

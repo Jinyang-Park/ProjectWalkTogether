@@ -3,80 +3,19 @@ import * as S from './MapPage.style';
 import InfoList from './InfoList/InfoList';
 import MapContainer from './Map/map';
 import FilterBar from './InfoList/Filter/Filter';
-import Category from '../Category/Category';
 
 import CommonStyles from './../../styles/CommonStyles';
-
-import {
-  doc,
-  getDocs,
-  collection,
-  query,
-  orderBy,
-  where,
-} from 'firebase/firestore';
-import { dbService } from '../../common/firebase';
-import { useEffect, useState } from 'react';
-
 import { useRecoilValue } from 'recoil';
-import type { DocumentAny } from '../../../src/assets/constants/types';
-
-import useGeolocation from '../../hooks/useGeoLocation';
 
 import { Cetegory } from '../../Rocoil/Atom';
+import { Post, usePosts } from '../../api/postsApi';
 
 const MapPage = () => {
   // firestore에서 데이터 'Post' 가져오기
-  const [Post, setPosting] = useState<DocumentAny[]>([]);
-  const [AllPost, setAllPosting] = useState<DocumentAny[]>([]);
+  const posts: Array<Post> = usePosts();
+
+  // not a typo
   const cetegory = useRecoilValue(Cetegory);
-
-  // firestore에서 데이터 'Post' 가져오기
-  const syncpostingstatewithfirestore = () => {
-    console.log(cetegory);
-    const q = query(
-      collection(dbService, 'Post'),
-      // where('Category_Posting', '==', cetegory),
-      orderBy('TimeStamp_Posting', 'desc')
-    );
-    getDocs(q).then((querySnapshot) => {
-      // DocumentAny[] 는 any 아닌척 하고 싶어서 대신 작성함 types.d.ts
-      // 타입 지정은 아래쪽과 같이 해야함
-      const firestorePostingList: DocumentAny[] = [];
-      querySnapshot.forEach((doc) => {
-        firestorePostingList.push({
-          id: doc.id,
-          UID: doc.data().UID,
-          Title_Posting: doc.data().Title_Posting,
-          Description_Posting: doc.data().Description_Posting,
-          Category_Posting: doc.data().Category_Posting,
-          PostingID_Posting: doc.data().PostingID_Posting,
-          TimeStamp_Posting: doc.data().TimeStamp_Posting,
-          MeetLatitude_Posting: doc.data().MeetLatitude_Posting,
-          MeetLongitude_Posting: doc.data().MeetLongitude_Posting,
-          NowLatitude_Posting: doc.data().NowLatitude_Posting,
-          NowLongitude_Posting: doc.data().NowLongitude_Posting,
-          RsvDate_Posting: doc.data().RsvDate_Posting,
-          RsvHour_Posting: doc.data().RsvHour_Posting,
-          Nickname: doc.data().Nickname,
-          Address_Posting: doc.data().Address_Posting,
-          ThumbnailURL_Posting: doc.data().ThumbnailURL_Posting,
-          LikedUsers: doc.data().LikedUsers,
-          Hashtag_Posting: doc.data().Hashtag_Posting,
-          View: doc.data().View,
-        });
-      });
-      setPosting(firestorePostingList);
-      setAllPosting(firestorePostingList);
-    });
-  };
-  useEffect(() => {
-    syncpostingstatewithfirestore();
-  }, [cetegory]);
-
-  useEffect(() => {
-    setAllPosting(Post);
-  }, [Post]);
 
   // console.log('AllPost', AllPost)
   // AllPost 는 전체 포스팅 리스트
@@ -119,7 +58,7 @@ const MapPage = () => {
         <S.MapPageHeader>
           <S.MapKaKaoMapContainer>
             {/* Map Container */}
-            <MapContainer Post={Post} />
+            <MapContainer Post={posts} />
           </S.MapKaKaoMapContainer>
         </S.MapPageHeader>
 
@@ -140,7 +79,7 @@ const MapPage = () => {
               // 프롭스로 넘겨줄 함수를 만들어서 넘겨줘야함
             />
             {/* Posting List */}
-            <InfoList Post={Post} />
+            <InfoList Post={posts} />
           </S.UserInfoContainer>
         </S.MapPageContentsWrapper>
       </S.MapPageContainer>
