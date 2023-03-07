@@ -47,13 +47,14 @@ function CategorySlide() {
 const StyledSlider = styled(Slider)`
   margin: auto;
   width: 80%; //슬라이드 컨테이너 영역
-  padding-top: 37px;
+  padding-top: 52px;
 
   .slick-list {
     //슬라이드 스크린
     width: 90%;
     height: 100px;
     margin: auto;
+    background-color: yellow;
   }
   .slick-slide div {
     /* cursor: pointer; */

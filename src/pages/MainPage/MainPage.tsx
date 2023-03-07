@@ -150,14 +150,12 @@ const FirstLayout = styled.div`
 `;
 
 const Line = styled.div`
-  height: 32px;
+  height: 64px;
   background-color: white;
   width: 100%;
   border-bottom: 2px solid #bec5d7;
 `;
 
-const ContentLayout = styled.div`
-  padding-top: 66px;
-`;
+const ContentLayout = styled.div``;
 export const Collectionitem = styled.div``;
 export default MainPage;
