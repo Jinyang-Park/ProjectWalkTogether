@@ -93,7 +93,7 @@ export const InputTitle = styled.input<{ isValidityTitle: boolean }>`
   ${({ isValidityTitle }) =>
     isValidityTitle &&
     css`
-      outline: 2px solid red;
+      outline: 2px solid #ff8f8f;
     `}
 
   &::placeholder {
@@ -106,7 +106,7 @@ export const InputTitle = styled.input<{ isValidityTitle: boolean }>`
   }
 
   &:focus {
-    outline: 2px solid #6a24ff;
+    outline: 2px solid #7d8bae;
   }
 `;
 
@@ -133,14 +133,14 @@ export const Textarea = styled.textarea<{ isValidityContents: boolean }>`
   ${({ isValidityContents }) =>
     isValidityContents &&
     css`
-      outline: 2px solid red;
+      outline: 2px solid #ff8f8f;
     `}
 
   &::placeholder {
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
-    color: #24264e;
+    color: #bec5d7;
   }
 
   overflow: auto;
@@ -148,7 +148,7 @@ export const Textarea = styled.textarea<{ isValidityContents: boolean }>`
   resize: none;
   /* border: 1px solid #3d3a3a; */
   &:focus {
-    outline: 2px solid #6a24ff;
+    outline: 2px solid #7d8bae;
   }
 
   background: #eef1f7;
