@@ -3,11 +3,11 @@ import { Input } from 'antd';
 
 export const MapNInputBox = styled.div`
   width: 100%;
-  height: 600px;
   display: flex;
   /* background-color: antiquewhite; */
   position: relative;
-  top: -88px;
+  top: -67px;
+  margin-top: 112px;
   flex-direction: column;
   align-items: center;
 `;
@@ -58,7 +58,7 @@ export const InputAdressBox = styled.form`
   width: 384px;
   height: 36.5px;
   position: relative;
-  border: 2px solid #aeb1b7;
+  border: 2px solid #bec5d7;
   /* background-color: yellow; */
   border-radius: 4px;
 `;
@@ -84,7 +84,7 @@ export const InpuDayBox = styled.div`
   /* background-color: orange; */
   margin-left: 9px;
   font-size: 10px;
-  border: 2px solid #aeb1b7;
+  border: 2px solid #bec5d7;
   border-radius: 4px;
 `;
 
@@ -92,6 +92,6 @@ export const InputTimeBox = styled.div`
   width: 219px;
   height: 40px;
   margin-left: 9px;
-  border: 2px solid #aeb1b7;
+  border: 2px solid #bec5d7;
   border-radius: 4px;
 `;

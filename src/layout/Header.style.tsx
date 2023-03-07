@@ -147,8 +147,8 @@ export const Reddot = styled.div`
   width: 4px;
   height: 4px;
   position: relative;
-  bottom: 24px;
-  left: 25px;
+  bottom: 22px;
+  left: 20px;
   z-index: 2;
 `;
 
@@ -161,3 +161,18 @@ export const Img = styled.img`
 `;
 
 export const Logout = styled.div``;
+
+export const NotificationTitleBox = styled.div`
+  border-bottom: 1px solid #eef1f7;
+  /* background-color: blue; */
+  width: 210px;
+  height: 31px;
+`;
+
+export const NotificationTitleXbtn = styled.div`
+  width: 10px;
+  height: 10px;
+  position: relative;
+  bottom: 17px;
+  left: 192px;
+`;

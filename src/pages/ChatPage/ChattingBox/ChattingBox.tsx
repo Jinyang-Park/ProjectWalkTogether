@@ -111,9 +111,9 @@ function ChattingBox({
     }
 
     const q = query(
-      collection(dbService, 'Chatting', roomId, 'message'),
-      where('chattingRoomId', '==', roomId),
-      orderBy('createdAt', 'desc')
+      collection(dbService, 'Chatting', roomId, 'message')
+      // where('chattingRoomId', '==', roomId),
+      // orderBy('createdAt', 'desc')
     );
     onSnapshot(q, (querySnapshot) => {
       const getChat = querySnapshot.docs.map((doc) => {
@@ -124,7 +124,7 @@ function ChattingBox({
         return chat;
       });
       setGetMessage(getChat);
-      console.log('tochattingBoxUid:', tochattingBoxUid);
+      console.log('getmessage:', tochattingBoxUid);
     });
   };
 
@@ -134,7 +134,7 @@ function ChattingBox({
 
   const nowmessage = getmessage;
 
-  console.log('opponentuid', opponentuid);
+  console.log('myRoomIndex', myRoomIndex);
 
   return (
     <div>

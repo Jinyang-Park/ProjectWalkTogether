@@ -81,7 +81,7 @@ function ChattingList({
   };
 
   const isActiveUpdate = async () => {
-    const updatMyDoc = doc(
+    const updatMyDoc = await doc(
       dbService,
       'ChattingUsers',
       currentUid,
@@ -97,7 +97,7 @@ function ChattingList({
     // );
     updateDoc(updatMyDoc, {
       isActive: 'empty',
-      createdAt: new Date(),
+      // createdAt: new Date(),
     });
     // updateDoc(updatYourDoc, {
     //   isActive: 'empty',
