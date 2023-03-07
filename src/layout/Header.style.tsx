@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import ComeLogo from '../../src/assets/logobyollae.svg';
+// import ComeLogo from '../../src/assets/logobyollae.svg';
 
 export const NavContainer = styled.div`
   height: 52px;
@@ -13,7 +13,6 @@ export const OllaeLogo = styled.img`
   height: 35px;
 
   padding-right: 6px;
-  image: url(${ComeLogo});
 `;
 export const OllaeBox = styled.div`
   display: flex;
@@ -57,11 +56,11 @@ export const NavText = styled(Link)`
 export const LoginButton = styled.div`
   border: none;
 
-  padding: 5px;
+  padding: 5px 10px;
   margin-top: 10px;
 
   border-radius: 5px;
-  width: 78px;
+  width: max-content;
   height: 30px;
   /* background: blue; */
   font-size: 12px;
@@ -205,12 +204,14 @@ export const Img = styled.img`
   z-index: 1;
 `;
 export const LoginImg = styled.img`
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
   position: relative;
-  z-index: 1;
+  /* z-index: 1; */
   left: 55px;
   bottom: 16px;
+  margin-left: 8px;
 `;
 
 export const Logout = styled.div``;

@@ -6,11 +6,12 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { authService, dbService, storage } from '../../../common/firebase';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
 import { currentUserUid, username } from '../../../Rocoil/Atom';
 import MypageDropBox from './MypageDropBox';
 import useDetectClose from '../../../hooks/useDetectClose';
 import * as S from './MyPageProfile.style';
+import { UserNickName } from './../../../Rocoil/Atom';
 
 const MyPageProfile = (props: { uid: string }) => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const MyPageProfile = (props: { uid: string }) => {
 
   const [newname, setNewname] = useState('');
   const [newmessage, setNewmessage] = useState('');
-  const [name, setName] = useState('');
+  const [name, setName] = useRecoilState(UserNickName);
   const [message, setMessage] = useState('');
 
   const setUsername = useSetRecoilState(username);
@@ -178,19 +179,23 @@ const MyPageProfile = (props: { uid: string }) => {
             )}
           </S.UserModifyBtn>
         )}
-        {/*커스텀 훅 들어올 자리*/}
-        <S.MyPageButton onClick={myPageHandler} ref={myPageRef}>
-          <S.MypageMoreBtn
-            src={require('../../../assets/MypageIcon/More.svg').default}
-            onClick={() => {
-              setShowBox(true);
-            }}
-          />
-        </S.MyPageButton>
-        {myPageIsOpen && <MypageDropBox />}
+        {/*&&는 :()뒤에 넣지 않는다*/}
+        {uid === userUID && (
+          <>
+            <S.MyPageButton onClick={myPageHandler} ref={myPageRef}>
+              <S.MypageMoreBtn
+                src={require('../../../assets/MypageIcon/More.svg').default}
+                onClick={() => {
+                  setShowBox(true);
+                }}
+              />
+            </S.MyPageButton>
+            {myPageIsOpen && <MypageDropBox />}
+          </>
+        )}
         <S.UserNickNameBox>
           {!isEditing ? (
-            <S.UserNickName>{name}</S.UserNickName>
+            <S.UserNickName>{!name ? '이름없음' : name}</S.UserNickName>
           ) : (
             <>
               <S.ChangeNickName
@@ -206,7 +211,16 @@ const MyPageProfile = (props: { uid: string }) => {
             </>
           )}
         </S.UserNickNameBox>
-        {nameswitch && <div>닉네임은 8글자를 넘을 수 없습니다.</div>}
+        {nameswitch && (
+          <S.ShowTitleFlex>
+            <S.ShowIcon
+              src={require('../../../assets/MypageIcon/Dot.svg').default}
+            />
+            <S.ShowCheckNickName>
+              닉네임은 8글자를 넘을 수 없습니다.
+            </S.ShowCheckNickName>
+          </S.ShowTitleFlex>
+        )}
 
         {/*후기 카운트 */}
         {/* <S.UserWalkCountBox>
@@ -223,9 +237,10 @@ const MyPageProfile = (props: { uid: string }) => {
             <S.UserIntroduceText>{message}</S.UserIntroduceText>
           ) : (
             <S.ChangeContent
+              placeholder='자기소개를 입력해주세요'
               value={newmessage}
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                if (e.currentTarget.value.length > 200) {
+                if (e.currentTarget.value.length > 120) {
                   setMessagesSwitch(true);
                 } else {
                   setNewmessage(e.currentTarget.value);
@@ -234,7 +249,16 @@ const MyPageProfile = (props: { uid: string }) => {
             />
           )}
         </S.UserIntroduceAreaBox>
-        {messageswitch && <div>자기소개는 200글자를 넘을 수 없습니다.</div>}
+        {messageswitch && (
+          <S.ShowTitleFlex>
+            <S.ShowIcon
+              src={require('../../../assets/MypageIcon/Dot.svg').default}
+            />
+            <S.ShowCheckNickName>
+              자기소개는 120글자를 넘을 수 없습니다.
+            </S.ShowCheckNickName>
+          </S.ShowTitleFlex>
+        )}
       </S.UserProfileInfoContainer>
     </S.MyPageProfileWrap>
   );

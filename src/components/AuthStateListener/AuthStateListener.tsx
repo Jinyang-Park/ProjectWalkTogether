@@ -19,8 +19,11 @@ import {
 } from 'firebase/firestore';
 import { ref } from 'firebase/storage';
 import { authService, dbService } from '../../common/firebase';
+import { useNavigate } from 'react-router-dom';
 
 export default function AuthStateListener() {
+  const navigate = useNavigate();
+
   const setIsLoggedIn = useSetRecoilState(isLoggedIn);
   const setCurrentUserUid = useSetRecoilState(currentUserUid);
   const setUsername = useSetRecoilState(username);
@@ -123,6 +126,7 @@ export default function AuthStateListener() {
         setCurrentUserUid('');
         // setCurrentKakaoId('');
         setUsername('');
+        navigate(`/`);
       }
     });
   }, []);
