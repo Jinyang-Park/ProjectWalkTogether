@@ -23,7 +23,7 @@ export const PostSubmitBtn = styled.button`
   height: 42px;
   font-weight: 700;
   border-radius: 4px;
-  margin-top: 64px;
+  /* margin-top: 64px; */
 
   background-color: rgba(125, 139, 174, 1);
   color: white;

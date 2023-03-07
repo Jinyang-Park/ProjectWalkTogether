@@ -111,7 +111,12 @@ function InputInformation() {
 
   return (
     <S.MapNInputBox>
-      <S.Selection> 장소를 선택해 주세요</S.Selection>
+      <S.MapAddressTitle>
+        <S.Selection> 장소를 선택해 주세요</S.Selection>
+        <S.AddressIcon
+          src={require('../../../assets/PostPageIcon/AddressIcon.svg').default}
+        />
+      </S.MapAddressTitle>
       <S.borderline></S.borderline>
       <S.MapBox>
         <S.KakaoMap>

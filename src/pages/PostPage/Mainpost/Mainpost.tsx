@@ -124,16 +124,24 @@ function MainPost({
 
         <S.BoxMain>
           {/*모달 외부 클릭 시 닫힘*/}
-          <S.DropdownButton onClick={myPageHandler} ref={myPageRef}>
-            <S.CateogryWrapper
-              onClick={() => {
-                setShow(true);
+
+          <S.CateogryWrapper
+            onClick={() => {
+              setShow(true);
+            }}
+          >
+            <S.CalendarIcon
+              style={{
+                display: postCategory === '카테고리' ? 'block' : 'none',
               }}
-            >
-              <S.CalendarIcon src={'/assets/calendar.png'} />
-              <S.CategoryTitle>{postCategory}</S.CategoryTitle>
-            </S.CateogryWrapper>
-          </S.DropdownButton>
+              src={
+                require('../../../assets/PostPageIcon/CategoryListIcon.svg')
+                  .default
+              }
+            />
+            <S.CategoryTitle>{postCategory}</S.CategoryTitle>
+          </S.CateogryWrapper>
+
           {show && (
             <DropdownCategory
               // isDropped={myPageIsOpen}
