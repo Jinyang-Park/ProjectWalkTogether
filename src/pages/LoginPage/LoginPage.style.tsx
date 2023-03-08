@@ -7,7 +7,7 @@ export const InputBox = styled.div`
 
   flex-wrap: wrap;
   width: 460px;
-  height: 532px;
+  height: 600px;
 
   margin-top: 80px;
   margin: auto;
@@ -143,6 +143,7 @@ export const LoginBtn = styled.button`
   margin-top: 0.9375rem;
   background-color: #d1d1d1;
   cursor: pointer;
+
   &:hover {
     background: #7d8bae;
     color: white;
@@ -159,6 +160,7 @@ export const ThirdBox = styled.div`
 export const RegisterBtn = styled.button`
   background-color: transparent;
   padding-left: 5px;
+  font-family: 'SUITERegular';
 `;
 
 export const FindBtn = styled.button`
