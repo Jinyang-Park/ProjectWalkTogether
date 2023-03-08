@@ -16,7 +16,6 @@ const CollectionAll = () => {
   return (
     <Collection>
       {CollecitionList.map((Collection) => {
-        console.log(Collection);
         return (
           <Collectionitem
             onClick={() => navigate(`/collection/${Collection.name}`)}

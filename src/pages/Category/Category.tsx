@@ -19,11 +19,15 @@ import { Cetegory, FilterSelectedDate } from '../../Rocoil/Atom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { fontWeight } from '@mui/system';
 import { CategorysList } from '../../utils/CategorysList';
+import { Post, usePosts } from '../../api/postsApi';
 
 const Category = () => {
   const { category } = useParams();
   console.log(category);
-  const [postings, setPostings] = useState<any>([]);
+  const postings: Array<Post> = usePosts().filter((post) => {
+    if (category === '전체') return true;
+    return post.Category_Posting === category;
+  });
   // console.log(category);
   const [show, setShow] = useState<any>(false);
   const [TextChange, setTextChange] = useState('카테고리');
@@ -70,60 +74,6 @@ const Category = () => {
 
   // 내가 필터 달력 클릭한 값이 잘 넘어온다.
   // console.log('SelectedDate', SelectedDate);
-
-  useEffect(() => {
-    const isAll = category === '전체';
-
-    // 카테고리에서 전체를 클릭했을때 where 없애는 코드문
-    const c = collection(dbService, 'Post');
-    const w = where('Category_Posting', '==', category);
-    const o = orderBy('createdAt', 'desc');
-    const q = isAll ? query(c, o) : query(c, w, o);
-
-    onSnapshot(q, (snapshot) => {
-      const getCategoryList = snapshot.docs.map((doc) => {
-        const CategoryList = {
-          id: doc.id,
-          ...doc.data(),
-        };
-
-        return CategoryList;
-      });
-
-      // 필터링 필요한지 아닌지
-      const isDateSpecified = meetDate !== '';
-
-      // getCategoryList를 리턴함. 필터링할 필요가 있으면 필터링해줌.
-      const getListFilteredIfNecessary = () => {
-        if (isDateSpecified)
-          return getCategoryList.filter(
-            (post: any) => post.RsvDate_Posting === SelectedDate
-          );
-
-        return getCategoryList;
-      };
-
-      // getCategoryList() 호출해서 setPostings()함
-      setPostings(getListFilteredIfNecessary());
-
-      // setPostings (
-      //   isDateSpecified === true => 필터 else 전체
-      // )
-
-      // if (meetDate !== '') {
-      //   setPostings(
-      //     getCategoryList.filter(
-      //       (post: any) => post.RsvDate_Posting === SelectedDate
-      //     )
-      //   );
-      // } else setPostings(getCategoryList);
-    });
-
-    // 카테고리에서 다른 카테고리를 클릭할때도 초기화가 된다. 즉, 내가 클릭한 달력날짜도 초기화가 되는 문제가 있다.
-    // return () => {
-    //   setMeetDate('');
-    // };
-  }, [category]);
 
   // FilterDate는 DoubleFilterDate를 위해 쓰는 코드이다.
   const FilteredDate =
