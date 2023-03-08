@@ -171,15 +171,13 @@ const PostPage = () => {
     setTag([]);
   }, []);
 
-  // /////////////
-  // //콘솔확인용/
-  // useEffect(() => {
-  //   console.log(' Address_Posting:', Address_Posting);
-  //   setPostTime(timestring); //현재 시간
-  //   // setPostHour(meeting); //약속 시간
-  //   setPostNickname(nickname);
-  //   setPostAuthor(user);
-  // });
+  useEffect(() => {
+    console.log(' Address_Posting:', Address_Posting);
+    setPostTime(timestring); //현재 시간
+    // setPostHour(meeting); //약속 시간
+    setPostNickname(nickname);
+    setPostAuthor(user);
+  }, []);
 
   //settimeout test
   const geturl: any = (callback: () => void = () => {}) => {
@@ -345,7 +343,7 @@ const PostPage = () => {
     }
 
     if (postCategory === '카테고리') {
-      alert('카테고리를 선택해 주세요');
+      // alert('카테고리를 선택해 주세요');
       MessageWindow.showWindow(
         new MessageWindowProperties(
           true,

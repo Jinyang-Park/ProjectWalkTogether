@@ -2,37 +2,37 @@ export const CategorysList = [
   {
     name: '전체',
     value: 1,
-    img: '/assets/dog.png',
+    img: '/assets/group.png',
   },
   {
     name: '반려동물',
     value: 2,
-    img: '/assets/book.png',
+    img: '/assets/dog.png',
   },
   {
     name: '독서',
     value: 3,
-    img: '/assets/calendar.png',
+    img: '/assets/book.png',
   },
   {
     name: '음악',
     value: 4,
-    img: '/assets/career.png',
+    img: '/assets/music.jpg',
   },
   {
     name: '고민상담',
     value: 5,
-    img: '/assets/finance.png',
+    img: '/assets/counsel.png',
   },
   {
     name: '부동산',
     value: 6,
-    img: '/assets/dog.png',
+    img: '/assets/finance.png',
   },
   {
     name: '영화',
     value: 7,
-    img: '/assets/dog.png',
+    img: '/assets/movie.png',
   },
   {
     name: '운동',
