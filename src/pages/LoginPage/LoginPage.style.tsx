@@ -90,7 +90,7 @@ export const OrText = styled.div`
 `;
 
 export const SocialBox = styled.div`
-  gap: 0.75rem;
+  gap: 0.55rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,14 +114,14 @@ export const Naver = styled.img`
 `;
 
 export const Facebook = styled.img`
-  margin: 1.25rem;
+  margin: 2.5rem;
   width: 2.5rem;
 
   cursor: pointer;
 `;
 
 export const Google = styled.img`
-  margin: 1.25rem;
+  margin: 2.5rem;
   width: 2.5rem;
 
   cursor: pointer;

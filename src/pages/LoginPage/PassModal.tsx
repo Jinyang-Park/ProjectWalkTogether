@@ -40,16 +40,25 @@ function PassModal({ open, onClose, setLoginModalopen }: any) {
 
   return (
     <Overlay>
-      <ModalContainer className="modalContainer">
-        <CloseBtn onClick={onClose} className="closeBtn">
+      <ModalContainer className='modalContainer'>
+        <CloseBtn onClick={onClose} className='closeBtn'>
           x
         </CloseBtn>
-        <InputContent className="content">
-          <Input onChange={findPasswordfnc} placeholder="이메일을 입력해 주세요." className="EmailSubmit"></Input>
+        <Title>비밀번호 찾기</Title>
+        <InputContent className='content'>
+          <Input
+            onChange={findPasswordfnc}
+            placeholder='비밀번호를 변경할 이메일을 입력해 주세요.'
+            className='EmailSubmit'
+          ></Input>
         </InputContent>
-        <BtnContainer className="btnContainer">
-          <Btnprimary onClick={handleSubmitClick} type="submit" className="btnprimary">
-            <Span className="bold">제 출</Span>
+        <BtnContainer className='btnContainer'>
+          <Btnprimary
+            onClick={handleSubmitClick}
+            type='submit'
+            className='btnprimary'
+          >
+            <Span className='bold'>제 출</Span>
           </Btnprimary>
         </BtnContainer>
       </ModalContainer>
@@ -63,23 +72,27 @@ export default PassModal;
 const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
-  transform: translate(0%, -65%);
   width: 100%;
-  height: 100%;
-  z-index: 2;
+  height: 200vh;
+  z-index: 99;
+  right: 0%;
+  top: -30%;
+  margin: auto;
 `;
 
 //모달 박스 (흰색)
 const ModalContainer = styled.div`
   max-width: 600px;
   width: 100%;
-  height: 100px;
+  height: 300px;
   position: relative;
-  top: 40%;
+  top: 20%;
   display: flex;
   background-color: white;
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
-  border-radius: 20px;
+  border-radius: 10px;
+  margin: auto;
+  flex-direction: column;
 `;
 
 // X버튼
@@ -89,16 +102,23 @@ const CloseBtn = styled.p`
   right: 15px;
   cursor: pointer;
 `;
+const Title = styled.p`
+  text-align: center;
+  margin-top: 50px;
+  font-size: 30px;
+  font-weight: 400;
+`;
 
 // 인풋바깥 테두리
 const InputContent = styled.div`
-  border-radius: 35px;
-  border: 3px solid #b2c8df;
-  width: 380px;
-  height: 45px;
+  border-radius: 0.625rem;
+  border: 2px solid #bec5d7;
+  width: 360px;
+  height: 48px;
   margin-top: 25px;
   position: relative;
-  left: 20px;
+  top: 30px;
+  margin: 0 auto;
 `;
 
 //인풋창
@@ -109,22 +129,30 @@ const Input = styled.input`
   position: relative;
   left: 30px;
   outline: none;
+  z-index: 999;
 `;
 
 const BtnContainer = styled.div`
   display: flex;
   padding: 1rem 1rem;
+  margin: auto;
 `;
 
-const Btnprimary = styled.button`
-  width: 100px;
-  margin: 0.5rem;
-  padding: 16px 0;
-  border: none;
-  color: #2192ff;
-  background-color: aliceblue;
-  border-radius: 35px;
+export const Btnprimary = styled.button`
+  border-radius: 5px;
+  width: 360px;
+  height: 2.5rem;
+  font-size: 16px;
+  color: black;
+  font-weight: 400;
+  margin-top: 0.9375rem;
+  background-color: #d1d1d1;
   cursor: pointer;
+  &:hover {
+    background: #7d8bae;
+    color: white;
+    transition: 0.5s;
+  }
 `;
 
 //버튼 글자

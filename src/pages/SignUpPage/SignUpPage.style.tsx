@@ -108,10 +108,11 @@ export const FindBox = styled.div`
 `;
 
 export const Validityfontbox = styled.div`
+  margin: auto;
   border: none;
   width: 330px;
   font-size: 10px;
-  height: 10px;
+  height: 20px;
   position: relative;
   right: 10px;
   margin-top: 3px;

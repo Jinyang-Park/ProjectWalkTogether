@@ -8,7 +8,16 @@ import {
   sendEmailVerification,
 } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { authService } from '../../common/firebase';
+import { dbService, authService } from '../../common/firebase';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from 'firebase/firestore';
 import { emailRegex, nicknameRegex, pwdRegex } from '../../utils/UserInfoRegex';
 import CommonStyles from './../../styles/CommonStyles';
 import { useSetRecoilState } from 'recoil';
@@ -39,28 +48,11 @@ const SignUpPage = () => {
     messageWindowPropertiesAtom
   );
 
-  const actionCodeSettings = {
-    // URL you want to redirect back to. The domain (www.example.com) for this
-    // URL must be in the authorized domains list in the Firebase Console.
-    url: 'https://domainprojectwalk.page.link/verification',
-    // This must be true.
-    handleCodeInApp: true,
-    iOS: {
-      bundleId: 'com.example.ios',
-    },
-    android: {
-      packageName: 'com.example.android',
-      installApp: true,
-      minimumVersion: '12',
-    },
-    dynamicLinkDomain: 'example.page.link',
-  };
   //onchange로 값을 저장한다.
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     if (email.length > 5) {
       if (emailRegex.test(email) === false) {
-        setValidateEmail(' 옳바른 형식을 입력해 주십시오.');
         setValidateEmailColor(false);
       } else {
         // setValidateEmail(' 올바른 형식의 이메일 주소입니다.');
@@ -68,6 +60,40 @@ const SignUpPage = () => {
       }
     }
   };
+
+  //이메일 중복검사
+  const isEmail = async (email: any) => {
+    const q = query(collection(dbService, 'user'), where('email', '==', email));
+    const querySnapshot = await getDocs(q);
+
+    let isCheckEmail = '';
+
+    querySnapshot.forEach((doc) => {
+      isCheckEmail = doc.data().email;
+    });
+    return isCheckEmail;
+  };
+
+  useEffect(() => {
+    isEmail(email)
+      .then((result) => {
+        if (email) {
+          if (result === email) {
+            setValidateEmail('사용중인 이메일입니다.');
+          } else if (emailRegex.test(email) === false) {
+            setValidateEmail('이메일 형식을 확인해주세요.');
+          } else {
+            setValidateEmail('사용 가능한 이메일입니다.');
+          }
+        } else {
+          setValidateEmail(' ');
+        }
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  }, [email, setValidateEmail]);
+
   // password값을 저장하고 유효성검사를 실시한다.
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -128,23 +154,32 @@ const SignUpPage = () => {
       pwdRegex.test(password) === true &&
       emailRegex.test(email) === true
     ) {
-      await createUserWithEmailAndPassword(authService, email, password)
-        .then(async (response) => {
+      await createUserWithEmailAndPassword(authService, email, password).then(
+        async (response) => {
           await updateProfile(response.user, {
             displayName: displayname,
-          });
-          // alert('회원가입 완료');
-          // navigate('/login');
+          })
+            .then(() => {
+              if (authService.currentUser !== null) {
+                sendEmailVerification(authService.currentUser);
+              }
+            })
+            .catch((error) => {
+              let message = error.message;
+              message = '형식에 맞게 작성해주세요';
+              alert(message);
+            });
+
           MessageWindow.showWindow(
             new MessageWindowProperties(
               true,
-              '회원가입이 완료되었어요!',
+              '인증 메일을 보냈습니다.',
               '',
               [
                 {
-                  text: '로그인 페이지로 돌아가기',
+                  text: '이메일을 확인해주세요',
                   callback: () => {
-                    navigate('/login');
+                    navigate('/login', { replace: true });
                   },
                 },
               ],
@@ -152,18 +187,8 @@ const SignUpPage = () => {
             ),
             setState
           );
-        })
-
-        .catch((error) => {
-          console.log(error);
-
-          if (
-            (error =
-              'FirebaseError: Firebase: Error (auth/email-already-in-use).')
-          ) {
-            alert('중복된 이메일 입니다. 새로운 이메일 주소를 입력해 주세요.');
-          }
-        });
+        }
+      );
     } else if (confirmPwd !== password) {
       alert('비밀번호가 일치하지 않습니다.');
     } else if (nicknameRegex.test(displayname) === false) {
@@ -204,12 +229,17 @@ const SignUpPage = () => {
                     }
                   </S.Validityfontbox> */}
                 </S.Inputholder>
+                <S.Validityfontbox>{validateDisplayname}</S.Validityfontbox>
                 <S.Inputholder>
                   <S.Input
                     type='email'
-                    name='아이디'
-                    placeholder='아이디'
+                    name='email'
+                    placeholder='email'
                     onChange={onChangeEmail}
+                    // onChange={(e) => {
+                    //   setEmail(e.target.value);
+                    //   isEmail;
+                    // }}
                   ></S.Input>
                   {/* <S.Validityfontbox>
                     {
@@ -221,6 +251,7 @@ const SignUpPage = () => {
                     }
                   </S.Validityfontbox> */}
                 </S.Inputholder>
+                <S.Validityfontbox>{validateEmail}</S.Validityfontbox>
                 <S.Inputholder>
                   <S.Input
                     type='password'
@@ -229,6 +260,7 @@ const SignUpPage = () => {
                     onChange={onChangePassword}
                     value={password}
                   ></S.Input>
+
                   {/* <S.Validityfontbox>
                     {
                       <S.ValidityPasswordfont validatePwColor={validatePwColor}>
@@ -237,6 +269,7 @@ const SignUpPage = () => {
                     }
                   </S.Validityfontbox> */}
                 </S.Inputholder>
+                <S.Validityfontbox>{validatePw}</S.Validityfontbox>
                 <S.Inputholder>
                   <S.Input
                     value={confirmPwd}
@@ -255,6 +288,7 @@ const SignUpPage = () => {
                     }
                   </S.Validityfontbox> */}
                 </S.Inputholder>
+                <S.Validityfontbox>{validatePwconfirm}</S.Validityfontbox>
               </S.InputBoxContent>
               <S.ButtonBox>
                 <S.LoginBtn type='submit'>회원 가입</S.LoginBtn>
