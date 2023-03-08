@@ -193,7 +193,7 @@ const MapContainer = (Post) => {
             }}
           >
             <S.ResultListCardImage
-              src={post.ThunmnailURL_Posting}
+              src={post.ThumbnailURL_Posting}
             ></S.ResultListCardImage>
             <S.ResultListCard key={post.PostingID_Posting}>
               <S.ResultListCardTitle>
