@@ -89,9 +89,11 @@ export const NavText = styled(Link)`
 `;
 export const LoginButton = styled.div`
   border: none;
-  padding: 5px;
+  padding: 4px 7px 4px 7px;
+  //상우하좌
+
   margin-top: 10px;
-  justify-content: center;
+
   border-radius: 5px;
   /* width: max-content; */
   height: 30px;
@@ -101,15 +103,15 @@ export const LoginButton = styled.div`
   background-color: #eef1f7;
   font-family: 'SUITERegular';
   letter-spacing: -0.1px;
+  justify-content: center;
 `;
 
 export const LoginLayout = styled.div`
-  display: flex;
-  overflow: visible;
-  width: 100%;
+  display: flex; ;
 `;
 export const LoginText = styled.p`
   margin-right: 10px;
+  background-color: pink;
 `;
 
 export const NavEtc = styled.div`

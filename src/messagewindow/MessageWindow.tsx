@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { atom, useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
@@ -71,93 +71,112 @@ export enum MessageWindowLogoType {
   YellowPencil,
 }
 
+const ModalWrap = styled.div``;
+
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
+`;
+
+const AlertWrap = styled.div`
+  width: 343px;
+  height: 400px;
+  padding: 20px 64px;
+
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+
+  background: #ffffff;
+  box-shadow: 0px 0px 10px #bec5d7;
+  border-radius: 4px;
+`;
+const AlertCloseButton = styled.button`
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  background-color: transparent;
+`;
+
+const LogoImg = styled.img`
+  width: 172px;
+  height: 172px;
+`;
+const AlertTitle = styled.div`
+  letter-spacing: -2px;
+  width: 275px;
+  height: 36px;
+  line-height: 150.8%;
+  margin-top: 8px;
+  font-family: 'SUITERegular';
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 8px;
+`;
+
+const AlertMessage = styled.div`
+  letter-spacing: -2px;
+  font-family: 'SUITERegular';
+  height: 24px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150.8%;
+  text-align: center;
+  color: #7d8bae;
+`;
+
+const AlertButton = styled.button`
+  width: 200px;
+  height: 40px;
+  border-radius: 32px;
+  border: 1px solid #bec5d7;
+  border-radius: 32px;
+  margin-bottom: 8px;
+  background: #ffffff;
+  color: #7d8bae;
+  &:hover {
+    background: #7d8bae;
+    color: #eef1f7;
+  }
+`;
+
+const AlertButtonContainer = styled.div`
+  margin-top: 24px;
+`;
+
 export function MessageWindowComponent() {
   const [props, setProps] = useRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
-  const ModalWrap = styled.div``;
 
-  const ModalBackground = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 99;
-    background: rgba(255, 255, 255, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
-  `;
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const onClickEvent = (e: any) => {
+      if (ref.current !== null && !ref.current.contains(e.target)) {
+        if (props.isVisible) {
+          setProps(new MessageWindowProperties());
+        }
+      }
+    };
 
-  const AlertWrap = styled.div`
-    width: 343px;
-    height: 400px;
-    padding: 20px 64px;
-
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-
-    background: #ffffff;
-    box-shadow: 0px 0px 10px #bec5d7;
-    border-radius: 4px;
-  `;
-  const AlertCloseButton = styled.button`
-    width: 20px;
-    height: 20px;
-    margin-left: auto;
-    background-color: transparent;
-  `;
-
-  const LogoImg = styled.img`
-    width: 172px;
-    height: 172px;
-  `;
-  const AlertTitle = styled.div`
-    letter-spacing: -2px;
-    width: 275px;
-    height: 36px;
-    line-height: 150.8%;
-    margin-top: 8px;
-    font-family: 'SUITERegular';
-    font-weight: 600;
-    font-size: 24px;
-    margin-bottom: 8px;
-  `;
-
-  const AlertMessage = styled.div`
-    letter-spacing: -2px;
-    font-family: 'SUITERegular';
-    height: 24px;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 150.8%;
-    text-align: center;
-    color: #7d8bae;
-  `;
-
-  const AlertButton = styled.button`
-    width: 200px;
-    height: 40px;
-    border-radius: 32px;
-    border: 1px solid #bec5d7;
-    border-radius: 32px;
-    margin-bottom: 8px;
-    background: #ffffff;
-    color: #7d8bae;
-    &:hover {
-      background: #7d8bae;
-      color: #eef1f7;
+    if (props.isVisible) {
+      window.addEventListener('click', onClickEvent);
+    } else {
+      window.removeEventListener('click', onClickEvent);
     }
-  `;
+  }, [props.isVisible]);
 
-  const AlertButtonContainer = styled.div`
-    margin-top: 24px;
-  `;
   const renderLogo = () => {
     switch (props.logoType) {
       case MessageWindowLogoType.None:
@@ -199,7 +218,7 @@ export function MessageWindowComponent() {
       {props.isVisible && (
         <ModalWrap>
           <ModalBackground>
-            <AlertWrap>
+            <AlertWrap ref={ref}>
               <AlertCloseButton
                 onClick={() => {
                   setProps(new MessageWindowProperties());
