@@ -24,9 +24,10 @@ import { Post, usePosts } from '../../api/postsApi';
 const Category = () => {
   const { category } = useParams();
   console.log(category);
-  const postings: Array<Post> = usePosts().filter(
-    (post) => post.Category_Posting === category
-  );
+  const postings: Array<Post> = usePosts().filter((post) => {
+    if (category === '전체') return true;
+    return post.Category_Posting === category;
+  });
   // console.log(category);
   const [show, setShow] = useState<any>(false);
   const [TextChange, setTextChange] = useState('카테고리');
