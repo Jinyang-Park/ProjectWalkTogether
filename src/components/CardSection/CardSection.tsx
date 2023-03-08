@@ -9,6 +9,8 @@ import { ref } from 'firebase/storage';
 import { authService, dbService } from '../../common/firebase';
 import { red } from '@mui/material/colors';
 import CommonStyles from './../../styles/CommonStyles';
+import Skeleton from 'react-loading-skeleton';
+import { width } from '@mui/system';
 
 interface postProps {
   post: any;
@@ -20,6 +22,9 @@ const CardSection = ({ post }: postProps) => {
   const [likebtn, setLikeBtn] = useState<boolean>(false);
   const uid = useRecoilValue(currentUserUid);
   const loggedIn = useRecoilValue(isLoggedIn);
+
+  // skeleton UI Loading
+  const [loading, setLoading] = useState(true);
 
   // console.log(post);
 
@@ -35,6 +40,12 @@ const CardSection = ({ post }: postProps) => {
   //         navigate(`/detailpage/${post.id}`);
   //       }}
   //     ></S.CardSectionWrapper>
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
+  // });
 
   useEffect(() => {
     setLikeBtn(post.LikedUsers.includes(uid));
