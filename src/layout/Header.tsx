@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './Header.style';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 // import logoImg from '../../src/assets/shoes.png';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { authService } from '../common/firebase';
 import useDetectClose from '../hooks/useDetectClose';
 import KakaoLogoutButton from '../components/Logout/kakaologout';
@@ -14,6 +14,11 @@ import {
 } from '../Rocoil/Atom';
 import HeaderAlarm from '../components/HeaderAlarm/HeaderAlarm';
 import { LoactionTitle } from './../pages/DetailPage/DetailPage.style';
+import MessageWindow, {
+  MessageWindowLogoType,
+  MessageWindowProperties,
+  messageWindowPropertiesAtom,
+} from '../messagewindow/MessageWindow';
 
 const Header = () => {
   const location = useLocation();
@@ -33,6 +38,10 @@ const Header = () => {
   //     console.log(code);
   //   }
   // };
+
+  const setState = useSetRecoilState<MessageWindowProperties>(
+    messageWindowPropertiesAtom
+  );
 
   const handleLogin = () => {
     navigate('login');
@@ -88,7 +97,27 @@ const Header = () => {
               {loggedIn === false ? (
                 <S.NavText
                   onClick={() => {
-                    alert('로그인을 해주세요!');
+                    // alert('로그인을 해주세요!');
+                    MessageWindow.showWindow(
+                      new MessageWindowProperties(
+                        true,
+                        '로그인을 해주세요!',
+                        '',
+                        [
+                          {
+                            text: '닫 기',
+                            callback: () => {
+                              MessageWindow.showWindow(
+                                new MessageWindowProperties(),
+                                setState
+                              );
+                            },
+                          },
+                        ],
+                        MessageWindowLogoType.Perplex
+                      ),
+                      setState
+                    );
                   }}
                   to='/login'
                 >
@@ -102,7 +131,27 @@ const Header = () => {
               {loggedIn === false ? (
                 <S.NavText
                   onClick={() => {
-                    alert('로그인을 해주세요!');
+                    // alert('로그인을 해주세요!');
+                    MessageWindow.showWindow(
+                      new MessageWindowProperties(
+                        true,
+                        '로그인을 해주세요!',
+                        '',
+                        [
+                          {
+                            text: '닫 기',
+                            callback: () => {
+                              MessageWindow.showWindow(
+                                new MessageWindowProperties(),
+                                setState
+                              );
+                            },
+                          },
+                        ],
+                        MessageWindowLogoType.Perplex
+                      ),
+                      setState
+                    );
                   }}
                   to='/login'
                 >
