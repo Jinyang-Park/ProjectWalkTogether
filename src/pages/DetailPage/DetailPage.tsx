@@ -2,7 +2,7 @@ import * as S from './DetailPage.style';
 import Comments from './Comments/Comments';
 import CommonStyles from './../../styles/CommonStyles';
 import DetailMap from './DetailMap/DetailMap';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { isLoggedIn, paramsState } from '../../Rocoil/Atom';
 import { useEffect, useState, useRef } from 'react';
 import {
@@ -26,6 +26,11 @@ import { async, uuidv4 } from '@firebase/util';
 
 import { userForChat, currentUserUid } from '../../Rocoil/Atom';
 import useDetectClose from './../../hooks/useDetectClose';
+import MessageWindow, {
+  MessageWindowLogoType,
+  MessageWindowProperties,
+  messageWindowPropertiesAtom,
+} from '../../messagewindow/MessageWindow';
 
 interface getPostings {
   BannereURL_Posting: string;
@@ -85,6 +90,10 @@ const DetailPage = () => {
   const posterChatroomId = uuidv4();
   //현재 유저의 chattingListroom의 doc id
   const applicantChatroomId = uuidv4();
+  //커스텀 얼럿
+  const setState = useSetRecoilState<MessageWindowProperties>(
+    messageWindowPropertiesAtom
+  );
 
   // 게시글 id db 가져오기
   const getPost = async () => {
@@ -155,6 +164,28 @@ const DetailPage = () => {
   useEffect(() => {
     duplicate();
   }, [getChattingList]);
+
+  const goToLogin = () => {
+    MessageWindow.showWindow(
+      new MessageWindowProperties(
+        true,
+        '로그인을 해주세요!',
+        '',
+        [
+          {
+            text: '닫 기',
+            callback: () => {
+              MessageWindow.showWindow(new MessageWindowProperties(), setState);
+            },
+          },
+        ],
+        MessageWindowLogoType.Perplex
+      ),
+      setState
+    );
+
+    navigate('/login');
+  };
 
   const goToChat = async () => {
     if (isduplication == true) {
@@ -398,9 +429,15 @@ const DetailPage = () => {
               )}
               {/* 현재 user가 쓴 글인지 판별 */}
               {getPostings.UID !== authService.currentUser?.uid ? (
-                <S.WalktogetherBtn onClick={goToChat}>
-                  <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
-                </S.WalktogetherBtn>
+                loggedIn ? (
+                  <S.WalktogetherBtn onClick={goToChat}>
+                    <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
+                  </S.WalktogetherBtn>
+                ) : (
+                  <S.WalktogetherBtn onClick={goToLogin}>
+                    <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
+                  </S.WalktogetherBtn>
+                )
               ) : // 자바스크립트 문법이라서 중괄호가 필요가 없다
               getPostings.ProceedState_Posting === 'postingDone' ? (
                 <></>

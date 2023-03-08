@@ -172,7 +172,7 @@ const PostPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log(' Address_Posting:', Address_Posting);
+    console.log(' thumbnail:', thumbnail);
     setPostTime(timestring); //현재 시간
     // setPostHour(meeting); //약속 시간
     setPostNickname(nickname);
