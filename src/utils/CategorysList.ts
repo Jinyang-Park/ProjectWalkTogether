@@ -92,7 +92,7 @@ export const CategorysList = [
   {
     name: 'IT',
     value: 19,
-    img: '/assets/category/',
+    img: '/assets/category/IT.jpg',
   },
   {
     name: '과학',
