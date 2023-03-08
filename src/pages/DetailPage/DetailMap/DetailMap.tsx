@@ -137,7 +137,7 @@ const MapContainer = ({ getPostings }: Props) => {
     <>
       <S.MapAndControlContainer>
         <Map
-          center={myLoca}
+          center={postPosition}
           style={{ width: '100%', height: '450px' }}
           level={3}
           onCreate={setMap}
