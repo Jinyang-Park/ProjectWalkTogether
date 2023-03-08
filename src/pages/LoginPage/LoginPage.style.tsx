@@ -28,9 +28,9 @@ export const InputBoxContent = styled.div`
 export const Input = styled.input`
   border: none;
   width: 320px;
-  height: 2.375rem;
+  height: 38px;
   position: relative;
-  left: 1.875rem;
+  left: 30px;
   outline: none;
   background-color: transparent;
   :focus-visible {
@@ -46,7 +46,7 @@ export const ResetButton = styled.img`
 //Input태그의 테두리
 export const Inputholder = styled.div`
   margin: auto;
-  border-radius: 0.625rem;
+  border-radius: 10px;
   width: 360px;
   height: 48px;
   border: 2px solid #bec5d7;
@@ -60,8 +60,8 @@ export const Inputholder = styled.div`
 //잠깐만 !
 export const LoginLogo = styled.div`
   text-align: center;
-  margin-top: 2.875rem;
-  margin-bottom: 1.5625rem;
+  margin-top: 46px;
+  margin-bottom: 25px;
   font-size: 32px;
   font-family: 'SUITERegular';
   letter-spacing: -0.1px;
@@ -90,7 +90,7 @@ export const OrText = styled.div`
 `;
 
 export const SocialBox = styled.div`
-  gap: 0.75rem;
+  gap: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,28 +107,28 @@ export const LineBox = styled.div`
   display: flex;
 `;
 export const Naver = styled.img`
-  margin: 1.25rem;
-  width: 2.5rem;
+  margin: 20px;
+  width: 40px;
 
   cursor: pointer;
 `;
 
 export const Facebook = styled.img`
-  margin: 1.25rem;
-  width: 2.5rem;
+  margin: 20px;
+  width: 40px;
 
   cursor: pointer;
 `;
 
 export const Google = styled.img`
-  margin: 1.25rem;
-  width: 2.5rem;
+  margin: 20px;
+  width: 40px;
 
   cursor: pointer;
 `;
 export const KakaoLoginButton = styled.img`
-  margin: 1.25rem;
-  width: 2.5rem;
+  margin: 20px;
+  width: 40px;
 
   cursor: pointer;
 `;
@@ -136,11 +136,11 @@ export const KakaoLoginButton = styled.img`
 export const LoginBtn = styled.button`
   border-radius: 5px;
   width: 360px;
-  height: 2.5rem;
+  height: 40px;
   font-size: 16px;
   color: black;
   font-weight: 400;
-  margin-top: 0.9375rem;
+  margin-top: 15px;
   background-color: #d1d1d1;
   cursor: pointer;
 

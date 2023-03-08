@@ -23,9 +23,9 @@ export const InputBox = styled.div`
 export const Input = styled.input`
   border: none;
   width: 250px;
-  height: 2.375rem;
+  height: 38px;
   position: relative;
-  left: 1.875rem;
+  left: 30px;
   background-color: transparent;
   outline: none;
   :focus-visible {
@@ -36,7 +36,7 @@ export const Input = styled.input`
 //Input태그의 테두리
 export const Inputholder = styled.div`
   margin: auto;
-  border-radius: 0.625rem;
+  border-radius: 10px;
   width: 360px;
   height: 48px;
   border: 2px solid #adadad;
@@ -53,8 +53,8 @@ export const InputBoxContent = styled.div`
 //잠깐만 !
 export const LoginLogo = styled.div`
   text-align: center;
-  margin-top: 0.875rem;
-  margin-bottom: 1.5625rem;
+  margin-top: 14px;
+  margin-bottom: 25px;
   font-size: 32px;
   color: black;
 `;
@@ -69,12 +69,12 @@ export const ButtonBox = styled.div`
 export const LoginBtn = styled.button`
   border-radius: 5px;
   width: 360px;
-  height: 2.5rem;
+  height: 40px;
   font-size: 16px;
   color: black;
   border-color: #2192ff;
   font-weight: 400;
-  margin-top: 0.9375rem;
+  margin-top: 15px;
   background-color: #d1d1d1;
   cursor: pointer;
   &:hover {
@@ -91,10 +91,10 @@ export const ThirdBox = styled.div`
 `;
 export const RegisterBtn = styled.button`
   width: 80px;
-  height: 2.5rem;
+  height: 40px;
   color: black;
   border: none;
-  margin-top: 0.625rem;
+  margin-top: 10px;
   background-color: transparent;
   cursor: pointer;
   &:hover {

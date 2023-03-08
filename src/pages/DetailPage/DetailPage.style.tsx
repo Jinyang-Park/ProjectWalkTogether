@@ -19,7 +19,7 @@ export const DetailAddress = styled.h2`
   font-family: 'SUITERegular';
   font-size: 16px;
   font-weight: 500;
-  margin-right: 2rem;
+  margin-right: 32px;
 `;
 export const DetailDateWrapper = styled.div`
   display: flex;
@@ -39,11 +39,11 @@ export const DetailTime = styled.p`
   font-weight: 500;
 `;
 export const HeartIcon = styled(AiOutlineHeart)`
-  font-size: 1.5rem;
+  font-size: 24px;
 `;
 export const DetailIntroduceArea = styled.div`
-  margin: 4rem 0 0;
-  margin-bottom: 4rem;
+  margin: 64px 0 0;
+  margin-bottom: 64px;
   padding: 20px 30px;
   background-color: #fafafa;
   display: flex;

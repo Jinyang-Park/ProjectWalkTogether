@@ -38,8 +38,8 @@ export const CommentUserImgWrapper = styled.div`
   width: 100%;
 `;
 export const CommtentUserImg = styled.img`
-  width: 4rem;
-  height: 4rem;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   margin-right: 30px;
 `;

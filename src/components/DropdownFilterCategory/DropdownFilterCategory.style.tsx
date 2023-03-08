@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const DropdownBox = styled.div`
   position: absolute;
   z-index: 1000;
-  margin-top: 18.5rem;
+  margin-top: 296px;
 `;
 export const DropdownConatainer = styled.div`
   padding: 14px 10px;

@@ -103,7 +103,7 @@ export const InputTimeBox = styled.div`
 `;
 export const AddressIcon = styled.img`
   position: absolute;
-  left: 14.5rem;
+  left: 232px;
   width: 24px;
   height: 24px;
   object-fit: contain;
