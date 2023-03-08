@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './CardSection.style';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { currentUserUid, isLoggedIn, paramsState } from '../../Rocoil/Atom';
-import { async } from '@firebase/util';
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
-import { ref } from 'firebase/storage';
-import { authService, dbService } from '../../common/firebase';
-import { red } from '@mui/material/colors';
-import CommonStyles from './../../styles/CommonStyles';
-import Skeleton from 'react-loading-skeleton';
-import { width } from '@mui/system';
+import { doc, updateDoc } from 'firebase/firestore';
+import { dbService } from '../../common/firebase';
 
 interface postProps {
   post: any;

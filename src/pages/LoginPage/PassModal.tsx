@@ -40,16 +40,24 @@ function PassModal({ open, onClose, setLoginModalopen }: any) {
 
   return (
     <Overlay>
-      <ModalContainer className="modalContainer">
-        <CloseBtn onClick={onClose} className="closeBtn">
+      <ModalContainer className='modalContainer'>
+        <CloseBtn onClick={onClose} className='closeBtn'>
           x
         </CloseBtn>
-        <InputContent className="content">
-          <Input onChange={findPasswordfnc} placeholder="이메일을 입력해 주세요." className="EmailSubmit"></Input>
+        <InputContent className='content'>
+          <Input
+            onChange={findPasswordfnc}
+            placeholder='이메일을 입력해 주세요.'
+            className='EmailSubmit'
+          ></Input>
         </InputContent>
-        <BtnContainer className="btnContainer">
-          <Btnprimary onClick={handleSubmitClick} type="submit" className="btnprimary">
-            <Span className="bold">제 출</Span>
+        <BtnContainer className='btnContainer'>
+          <Btnprimary
+            onClick={handleSubmitClick}
+            type='submit'
+            className='btnprimary'
+          >
+            <Span className='bold'>제 출</Span>
           </Btnprimary>
         </BtnContainer>
       </ModalContainer>
@@ -113,12 +121,12 @@ const Input = styled.input`
 
 const BtnContainer = styled.div`
   display: flex;
-  padding: 1rem 1rem;
+  padding: 16px 16px;
 `;
 
 const Btnprimary = styled.button`
   width: 100px;
-  margin: 0.5rem;
+  margin: 8px;
   padding: 16px 0;
   border: none;
   color: #2192ff;

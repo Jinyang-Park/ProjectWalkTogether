@@ -7,8 +7,8 @@ export const Button = styled.div<{ showButton: boolean }>`
   border-radius: 50%;
 
   position: fixed;
-  right: 2rem;
-  bottom: 2rem;
+  right: 32px;
+  bottom: 32px;
 
   display: flex;
   justify-content: center;

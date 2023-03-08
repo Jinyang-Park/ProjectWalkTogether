@@ -118,9 +118,9 @@ export default function KakaoLoginButton() {
 }
 
 const KakaoLogoButton = styled.img`
-  width: 2.5rem;
-  height: 2.5rem;
-  margin: 1.25rem;
+  width: 40px;
+  height: 40px;
+  margin: 20px;
   cursor: pointer;
 `;
 const Logout = styled.div``;
