@@ -7,7 +7,6 @@ export const MapPageContainer = styled.span`
 
   margin-top: 20px;
 
-  height: 200vh;
   max-width: 1024px;
   @media screen {
   }
