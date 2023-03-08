@@ -9,7 +9,6 @@ import { ref } from 'firebase/storage';
 import { authService, dbService } from '../../common/firebase';
 import { red } from '@mui/material/colors';
 import CommonStyles from './../../styles/CommonStyles';
-import Skeleton from 'react-loading-skeleton';
 import { width } from '@mui/system';
 
 interface postProps {

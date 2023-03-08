@@ -398,9 +398,13 @@ const DetailPage = () => {
               )}
               {/* 현재 user가 쓴 글인지 판별 */}
               {getPostings.UID !== authService.currentUser?.uid ? (
-                <S.WalktogetherBtn onClick={goToChat}>
-                  <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
-                </S.WalktogetherBtn>
+                loggedIn ? (
+                  <S.WalktogetherBtn onClick={goToChat}>
+                    <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
+                  </S.WalktogetherBtn>
+                ) : (
+                  <></>
+                )
               ) : // 자바스크립트 문법이라서 중괄호가 필요가 없다
               getPostings.ProceedState_Posting === 'postingDone' ? (
                 <></>
