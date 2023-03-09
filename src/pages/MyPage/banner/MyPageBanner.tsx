@@ -1,5 +1,4 @@
-import { async } from '@firebase/util';
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
