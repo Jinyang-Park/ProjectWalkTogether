@@ -92,13 +92,16 @@ export const InputTitle = styled.input<{ isValidityTitle: boolean }>`
   font-size: 16px;
   line-height: 20px;
 
+  &:focus {
+    outline: 2px solid #7d8bae;
+  }
 
   ${({ isValidityTitle }) =>
-    isValidityTitle &&
-    css`
-      outline: 2px solid #ff8f8f;
-    `}
-
+    isValidityTitle == true
+      ? css`
+          outline: 2px solid #ff8f8f;
+        `
+      : css``}
 
   &::placeholder {
     font-family: 'SUITERegular';
@@ -107,9 +110,6 @@ export const InputTitle = styled.input<{ isValidityTitle: boolean }>`
     font-size: 16px;
     line-height: 20px;
     color: #24264e;
-  }
-  &:focus {
-    outline: 2px solid #7d8bae;
   }
 `;
 
@@ -130,14 +130,17 @@ export const Textarea = styled.textarea<{ isValidityContents: boolean }>`
   font-size: 12px;
   line-height: 21px;
   color: #24264e;
-
+  &:focus {
+    outline: 2px solid #7d8bae;
+  }
+  background: #eef1f7;
+  border-radius: 4px;
 
   ${({ isValidityContents }) =>
     isValidityContents &&
     css`
       outline: 2px solid #ff8f8f;
     `}
-
 
   &::placeholder {
     font-weight: 400;
@@ -149,11 +152,6 @@ export const Textarea = styled.textarea<{ isValidityContents: boolean }>`
   /* transition: border-color 0.1s, background-color 0.1s; */
   resize: none;
   /* border: 1px solid #3d3a3a; */
-  &:focus {
-    outline: 2px solid #7d8bae;
-  }
-  background: #eef1f7;
-  border-radius: 4px;
 `;
 
 // 이미지 컨테이너
