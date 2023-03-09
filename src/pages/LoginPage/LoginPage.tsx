@@ -26,7 +26,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { apiKey, dbService, authService } from '../../common/firebase';
 import { emailRegex, pwdRegex } from '../../utils/UserInfoRegex';
-import PassModal from '../LoginPage/PassModal';
+
 import CommonStyles from './../../styles/CommonStyles';
 import MessageWindow, {
   MessageWindowLogoType,

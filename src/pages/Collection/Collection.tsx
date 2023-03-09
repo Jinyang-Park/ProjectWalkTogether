@@ -61,7 +61,6 @@ const Collection = (props: any) => {
       if (id === '3') return post.ProceedState_Posting === 'postingDone';
       else return post;
     })
-
     .sort((a, b) => {
       if (id === '2') return b.LikedUsers.length - a.LikedUsers.length;
       return 0;
@@ -84,8 +83,8 @@ const Collection = (props: any) => {
         </S.CategoryTitleWrapper>
 
         <S.LikedListItem>
-          {shoes.slice(0, 24).map((post: any) => {
-            return <CardSection key={post.id} post={post} />;
+          {shoes.map((post: any) => {
+            return <CardSection key={post.id} post={post} refetch={refetch} />;
           })}
         </S.LikedListItem>
       </CategoryWrapper>
