@@ -136,3 +136,7 @@ export const Reddot = styled.div`
   margin-right: 8px;
   margin-left: 8px;
 `;
+export const CheckIcon = styled.img`
+  cursor: pointer;
+`;
+export const CheckIconright = styled.img``;

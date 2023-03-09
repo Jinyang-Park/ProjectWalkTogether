@@ -15,17 +15,17 @@ export const InputBox = styled.div`
   z-index: 1;
 `;
 export const Line = styled.div`
-  height: 32px;
+  height: 64px;
   background-color: white;
   width: 306px;
   margin: auto;
-  border-bottom: 2px solid #bec5d7;
+  border-bottom: 1px solid #eef1f7;
 `;
 
 export const join_box = styled.div`
   padding-left: 40px;
   padding-right: 40px;
-  margin-top: 34.5px;
+  margin-top: 16.5px;
 
   padding-bottom: 80px;
 `;
@@ -33,8 +33,8 @@ export const Title_head = styled.p`
   font-size: 20px;
   text-align: center;
   margin-top: 47px;
-  font-family: 'SUITESemiBold';
-  font-weight: 600;
+  font-family: 'SUITERegular';
+  font-weight: 500;
 `;
 
 export const checkBox_check00 = styled.div`
@@ -47,6 +47,7 @@ export const checkBox_check01 = styled.div`
 export const Agree01 = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-bottom: 20px;
 `;
 
@@ -87,42 +88,38 @@ export const checkAllBtn = styled.div``;
 export const checkBox_check03 = styled.div``;
 
 export const DialogButton = styled.img`
-  position: absolute;
   margin-top: 1px;
   width: 20px;
   height: 20px;
-  left: 120px;
+  margin-left: -140px;
   background-size: cover;
 `;
 export const DialogButton2 = styled.img`
-  position: absolute;
   margin-top: 1px;
   width: 20px;
   height: 20px;
-  left: 195px;
+  margin-left: -65px;
   background-size: cover;
 `;
 export const DialogButton3 = styled.img`
-  position: absolute;
   margin-top: 1px;
   width: 20px;
   height: 20px;
-  left: 850px;
+  margin-left: -90px;
   background-size: cover;
 `;
 
 export const DialogButton4 = styled.img`
-  position: absolute;
   margin-top: 1px;
   width: 20px;
   height: 20px;
-  left: 835px;
+  margin-left: -95px;
   background-size: cover;
 `;
 
 export const Back = styled.div`
   text-align: center;
-  margin-top: 16px;
+  margin-top: 10px;
 `;
 
 export const BackBtn = styled.button`
@@ -137,20 +134,20 @@ export const ModalTitle = styled.div`
   font-weight: 600;
 `;
 export const ModalContents = styled.div`
-  margin-top: 10px;
+  margin-top: 30px;
   font-size: 15px;
   overflow: scroll;
 
   font-family: 'SUITERegular';
-  height: 270px;
-  width: 300px;
+  height: 430px;
+  width: 400px;
 `;
 
 export const CloseButton = styled.img`
   background: none;
   color: gray;
   position: absolute;
-  top: 10px;
+  top: 25px;
   right: 20px;
   width: 20px;
   height: 20px;
@@ -170,6 +167,7 @@ export const AgreeBox = styled.div`
 export const AgreeBtn = styled.button<{ state: boolean }>`
   width: 306px;
   height: 46px;
+  margin-top: 32px;
   background-color: #7d8bae;
   color: white;
   border-radius: 5px;
