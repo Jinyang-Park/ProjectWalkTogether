@@ -22,30 +22,6 @@ const CardSection = ({ post, refetch }: postProps) => {
   const uid = useRecoilValue(currentUserUid);
   const loggedIn = useRecoilValue(isLoggedIn);
 
-  // skeleton UI Loading
-  const [loading, setLoading] = useState(true);
-
-  // console.log(post);
-
-  // post 바뀔때마 실행되는것이다.
-  // useEffect(() => {
-  //   setParams(post.id);
-  // }, [post]);
-
-  // 클릭할때마다 setParams가 바뀌어야된다.
-  // <S.CardSectionWrapper
-  //       onClick={() => {
-  //         setParams(post.id);
-  //         navigate(`/detailpage/${post.id}`);
-  //       }}
-  //     ></S.CardSectionWrapper>
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 1000);
-  // });
-
   useEffect(() => {
     setLikeBtn(post.LikedUsers.includes(uid));
   }, [post]);
@@ -93,7 +69,7 @@ const CardSection = ({ post, refetch }: postProps) => {
         </S.ListItemWrapper>
         <S.ListItemThumnailTitle>{post.Title_Posting}</S.ListItemThumnailTitle>
         <S.HashTag>
-          {post.Hashtag_Posting.map((tagItem, i) => {
+          {post.Hashtag_Posting.map((tagItem: any, i: any) => {
             return (
               <>
                 {tagItem == '' ? (

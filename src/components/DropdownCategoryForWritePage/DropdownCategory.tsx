@@ -31,7 +31,7 @@ const DropdownCategory = ({ setPostCategory, setShow }: SetProps) => {
         <S.DropdownWapper>
           {detailCategroyFilter.map((data) => {
             return (
-              <S.CategoryBtn onClick={buttonClickHandler}>
+              <S.CategoryBtn onClick={buttonClickHandler} key={data.name}>
                 {data.name}
               </S.CategoryBtn>
             );

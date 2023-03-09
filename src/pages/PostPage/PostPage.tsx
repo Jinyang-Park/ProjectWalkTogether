@@ -29,6 +29,7 @@ import MessageWindow, {
   MessageWindowProperties,
   messageWindowPropertiesAtom,
 } from '../../messagewindow/MessageWindow';
+import Loader from '../../components/Loader/Loader';
 
 const PostPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false); //아이디 찾기 모달창
@@ -64,6 +65,7 @@ const PostPage = () => {
   const [getBanner, setGetBanner] = useState<any>();
   /////이미지가져오기
   const banner = useRecoilValue(Bannerupload);
+
   const thumbnail = useRecoilValue(ThumbnailUpload);
   ///// firestorage 이미지 불러오기
   const auth = getAuth();
@@ -82,6 +84,9 @@ const PostPage = () => {
 
   //내용 유효성검사
   const [isValidityContents, setIsValidityContents] = useState<boolean>(false);
+
+  // 로딩일 경우
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const date = (y: number, m: number, d: number) => {
     const D = new Date(y, m, d);
@@ -171,6 +176,8 @@ const PostPage = () => {
     setTag([]);
   }, []);
 
+  console.log(banner);
+
   useEffect(() => {
     console.log(' thumbnail:', thumbnail);
     setPostTime(timestring); //현재 시간
@@ -186,7 +193,6 @@ const PostPage = () => {
         const getThumbnail = ThumbnailUrl;
         console.log('섬네일url', getThumbnail);
         // alert('섬네일url');
-
         //get썸네일 url
         getDownloadURL(ref(storage, `test/${PostingID_Posting}/banner`))
           .then((bannerUrl) => {
@@ -243,7 +249,7 @@ const PostPage = () => {
       return;
     }
 
-    if (Description.length < 1 || Description.length > 200) {
+    if (Description.length < 1 || Description.length > 160) {
       // alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
       setIsValidityContents(true);
       return;
@@ -394,18 +400,20 @@ const PostPage = () => {
     // alert('업로드중입니다.');
 
     // 업로드 시작 확정 시 로딩창 띄워줌
-    MessageWindow.showWindow(
-      new MessageWindowProperties(
-        true,
-        '업로드 중입니다. 조금만 기다려주세요!',
-        '',
-        [],
-        MessageWindowLogoType.CryingFace
-      ),
-      setState
-    );
 
-    ///////////////////////////////////////////////////////
+    setIsLoading(true);
+    // MessageWindow.showWindow(
+    //   new MessageWindowProperties(
+    //     true,
+    //     '아녕',
+    //     '',
+    //     [],
+    //     MessageWindowLogoType.CryingFace
+    //   ),
+    //   setState
+    // );
+
+    // ///////////////////////////////////////////////////////
     await uploadBytes(bannerRef, banner);
 
     // geturl(); settTimeout이 없으면 에러가 난다.
@@ -422,13 +430,13 @@ const PostPage = () => {
       setTag([]);
       setMeetTime('');
       setlocation({});
-
+      setIsLoading(false);
       navigate(`/category/${postCategory}`);
     });
 
     // setTimeout(adddoc, 8000);
   };
-  console.log(' location', location);
+
   return (
     <CommonStyles>
       <S.Boxcontainer>
@@ -444,6 +452,7 @@ const PostPage = () => {
           setIsValidityTitle={setIsValidityTitle}
         />
         <IuputInformation />
+        {isLoading && <Loader />}
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>
         </S.PostSubmitBox>

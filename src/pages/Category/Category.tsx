@@ -23,13 +23,16 @@ import { Post, usePosts } from '../../api/postsApi';
 
 const Category = () => {
   const { category } = useParams();
-  console.log(category);
+
+  //refetch
   const { posts, refetch } = usePosts();
+
+  // postsApi
   const postings: Array<Post> = posts.filter((post) => {
     if (category === '전체') return true;
     return post.Category_Posting === category;
   });
-  // console.log(category);
+
   const [show, setShow] = useState<any>(false);
   const [TextChange, setTextChange] = useState('카테고리');
 
@@ -66,9 +69,6 @@ const Category = () => {
   const m = meetDate.$M;
   const d = meetDate.$D;
   const month = meetDate.$M + 1;
-  console.log(y, m, d);
-  // console.log(FilterSelectedDate);
-  // 달력
 
   const SelectedDate = `${month}/${d} ${date(y, m, d)}`;
   // const SelectedDate = `${todayMonth}/${meetDaynum}`;
@@ -81,16 +81,6 @@ const Category = () => {
     SelectedDate.length < 14
       ? postings.filter((post: any) => post.RsvDate_Posting === SelectedDate)
       : postings;
-
-  // FilteredDate를 가지고 조회순으로 정렬해주는 함수이다.
-  // const DoubledFilterDate =
-  //   viewCount === '조회순'
-  //     ? [...FilteredDate].sort((a, b) => b.View - a.View)
-  //     : viewCount === '좋아요순'
-  //     ? [...FilteredDate].sort(
-  //         (a, b) => b.LikedUsers.length - a.LikedUsers.length
-  //       )
-  //     : FilteredDate;
 
   // switch문 찾아보기
   const DoubleFilteredDateFunction = () => {
@@ -115,7 +105,7 @@ const Category = () => {
           {/*useParams 받아온 카테고리 이름과 같으면 해당 img 보여줌*/}
           {CategorysList.map((item) => {
             if (category === item.name) {
-              return <S.CategoryImg src={item.img} />;
+              return <S.CategoryImg src={item.img} key={item.name} />;
             }
           })}
           <S.CategoryTitle>{category}</S.CategoryTitle>

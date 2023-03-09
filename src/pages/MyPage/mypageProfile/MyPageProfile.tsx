@@ -201,7 +201,7 @@ const MyPageProfile = (props: { uid: string }) => {
               <S.ChangeNickName
                 value={newname}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  if (e.target.value.length > 8) {
+                  if (e.target.value.length > 5) {
                     setNameSwitch(true);
                   } else {
                     setNewname(e.currentTarget.value);
@@ -217,7 +217,7 @@ const MyPageProfile = (props: { uid: string }) => {
               src={require('../../../assets/MypageIcon/Dot.svg').default}
             />
             <S.ShowCheckNickName>
-              닉네임은 8글자를 넘을 수 없습니다.
+              닉네임은 5글자를 넘을 수 없습니다.
             </S.ShowCheckNickName>
           </S.ShowTitleFlex>
         )}

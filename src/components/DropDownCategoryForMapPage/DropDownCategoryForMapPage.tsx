@@ -37,7 +37,7 @@ const DropdownFilterCategoryForMapPage = ({
         <S.DropdownWapper>
           {CategorysList.map((data) => {
             return (
-              <S.CategoryBtn onClick={buttonClickHandler}>
+              <S.CategoryBtn onClick={buttonClickHandler} key={data.name}>
                 {data.name}
               </S.CategoryBtn>
             );

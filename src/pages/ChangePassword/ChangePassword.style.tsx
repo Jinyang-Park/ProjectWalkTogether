@@ -63,7 +63,7 @@ export const InputBox = styled.div`
   left: 40px;
 `;
 
-export const ValidityTest = styled.p`
+export const ValidityTest = styled.div`
   position: relative;
   left: 40px;
   top: 6px;
