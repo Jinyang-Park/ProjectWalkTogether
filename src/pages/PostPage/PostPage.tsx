@@ -452,7 +452,7 @@ const PostPage = () => {
           setIsValidityTitle={setIsValidityTitle}
         />
         <IuputInformation />
-        {true && <Loader />}
+        {isLoading && <Loader />}
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>
         </S.PostSubmitBox>

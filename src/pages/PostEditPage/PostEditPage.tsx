@@ -39,6 +39,7 @@ import MessageWindow, {
   messageWindowPropertiesAtom,
 } from '../../messagewindow/MessageWindow';
 import useDetectClose from '../../hooks/useDetectClose';
+import Loader from '../../components/Loader/Loader';
 
 const PostEditPage = () => {
   // 해당 글 id, db 정보
@@ -92,6 +93,9 @@ const PostEditPage = () => {
 
   //약속 시간
   const [meetEditDate, setMeetEditDate] = useRecoilState(ReserveEditDate);
+
+  // 로딩일 경우
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const date = (y: number, m: number, d: number) => {
     const D = new Date(y, m, d);
@@ -278,21 +282,23 @@ const PostEditPage = () => {
 
     const bannerRef = ref(storage, `test/${PostingID_Posting}/banner`);
 
-    MessageWindow.showWindow(
-      new MessageWindowProperties(
-        true,
-        '업로드 중입니다. 조금만 기다려주세요!',
-        '',
-        [],
-        MessageWindowLogoType.CryingFace
-      ),
-      setState
-    );
+    // MessageWindow.showWindow(
+    //   new MessageWindowProperties(
+    //     true,
+    //     '업로드 중입니다. 조금만 기다려주세요!',
+    //     '',
+    //     [],
+    //     MessageWindowLogoType.CryingFace
+    //   ),
+    //   setState
+    // );
+    setIsLoading(true);
 
     await uploadBytes(bannerRef, banner);
     geturl(() => {
       // MessageWindow 닫는 코드
       MessageWindow.showWindow(new MessageWindowProperties(), setState);
+      setIsLoading(false);
       navigate(`/category/${postCategory}`);
     });
   };
@@ -313,6 +319,7 @@ const PostEditPage = () => {
           lat={state.MeetLatitude_Posting}
           lng={state.MeetLongitude_Posting}
         />
+        {isLoading && <Loader />}
         <S.PostSubmitBox>
           <S.PostSubmitBtn onClick={handleSubmit}>수정하기</S.PostSubmitBtn>
         </S.PostSubmitBox>

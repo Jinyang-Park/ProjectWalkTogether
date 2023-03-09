@@ -89,11 +89,11 @@ const CardSection = ({ post }: postProps) => {
         </S.ListItemWrapper>
         <S.ListItemThumnailTitle>{post.Title_Posting}</S.ListItemThumnailTitle>
         <S.HashTag>
-          {post.Hashtag_Posting.map((tagItem, i) => {
+          {post.Hashtag_Posting.map((tagItem: any, i: any) => {
             return (
               <>
                 {tagItem == '' ? (
-                  <div>&nbsp;</div>
+                  <div key={tagItem}>&nbsp;</div>
                 ) : (
                   <div key={i}>{'#' + tagItem}</div>
                 )}

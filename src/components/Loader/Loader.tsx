@@ -17,14 +17,14 @@ const Loading = styled.div`
   right: 0;
   bottom: 0;
   z-index: 99;
-  background: rgba(255, 255, 255, 0.9);
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   /* opacity: 0; */
-  animation: react-confirm-alert 0.5s 0.2s forwards;
+  /* animation: react-confirm-alert 0.5s 0.2s forwards; */
 `;
 const Img = styled.img`
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
 `;
