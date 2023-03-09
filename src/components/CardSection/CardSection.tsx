@@ -7,9 +7,7 @@ import { async } from '@firebase/util';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { ref } from 'firebase/storage';
 import { authService, dbService } from '../../common/firebase';
-import { red } from '@mui/material/colors';
 import CommonStyles from './../../styles/CommonStyles';
-import { width } from '@mui/system';
 
 interface postProps {
   post: any;
