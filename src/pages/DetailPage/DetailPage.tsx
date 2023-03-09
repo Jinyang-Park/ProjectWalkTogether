@@ -334,7 +334,7 @@ const DetailPage = () => {
   }, [id]);
 
   useEffect(() => {
-    console.log(post);
+    // console.log(post);
   }, [post]);
 
   // 좋아요 취소

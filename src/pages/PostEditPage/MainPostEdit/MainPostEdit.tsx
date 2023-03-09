@@ -8,7 +8,7 @@ import DropdownCategory from '../../../components/DropdownCategoryForWritePage/D
 import { useParams } from 'react-router-dom';
 import { doc, getDoc } from '@firebase/firestore';
 import { dbService } from './../../../common/firebase';
-import Tag from './../../../components/Tag';
+import Tag from '../../../components/Tag/Tag';
 import useDetectClose from './../../../hooks/useDetectClose';
 
 interface SetProps {

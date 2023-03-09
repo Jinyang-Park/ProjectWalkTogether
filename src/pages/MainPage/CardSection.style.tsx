@@ -94,8 +94,9 @@ export const LikedListItem = styled.div`
 export const Collection = styled.div``;
 
 export const CategoryTitle = styled.p`
-  margin-top: 64px;
+  /* margin-top: 64px; */
   font-weight: 500;
   font-size: 36px;
   line-height: 45px;
+  margin-top: 74px;
 `;
