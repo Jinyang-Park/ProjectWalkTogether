@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as S from './Header.style';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 // import logoImg from '../../src/assets/shoes.png';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { authService } from '../common/firebase';
 import useDetectClose from '../hooks/useDetectClose';
 import KakaoLogoutButton from '../components/Logout/kakaologout';
 import {

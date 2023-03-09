@@ -3,9 +3,7 @@ import * as S from '../ChattingList/ChattingList.style';
 import {
   query,
   collection,
-  getDocs,
   orderBy,
-  where,
   onSnapshot,
   doc,
   updateDoc,

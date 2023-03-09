@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import * as S from './Mainpost.style';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { TitleInput, DescriptionInput } from '../../../Rocoil/Atom';
 import { Bannerupload, ThumbnailUpload } from '../../../Rocoil/Atom';
-import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
+
 import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
 import Tag from '../../../components/Tag';
 import useDetectClose from './../../../hooks/useDetectClose';
