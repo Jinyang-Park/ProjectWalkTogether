@@ -131,6 +131,7 @@ function ChattingList({
             {chattingUser.map((user) => {
               return (
                 <S.ChattingUser
+                  key={user.id}
                   tabIndex={-1}
                   onClick={() => {
                     SetTochattingBoxRoomId(user.combineId);

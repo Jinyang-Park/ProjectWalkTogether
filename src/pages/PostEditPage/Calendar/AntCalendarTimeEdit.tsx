@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil';
 
 import { ConfigProvider } from 'antd';
 import ko_KR from 'antd/locale/ko_KR';
-import { blue } from '@mui/material/colors';
+
 import { TimeEdit } from '../../../Rocoil/Atom';
 import { useLocation } from 'react-router-dom';
 import dayjs from 'dayjs';

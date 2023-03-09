@@ -17,7 +17,7 @@ import DropdownFilterCategory from './../../components/DropdownFilterCategory/Dr
 import AntCalendarMap from './Calendar/AntCalendarDate';
 import { Cetegory, FilterSelectedDate } from '../../Rocoil/Atom';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { fontWeight } from '@mui/system';
+
 import { CategorysList } from '../../utils/CategorysList';
 import { Post, usePosts } from '../../api/postsApi';
 
