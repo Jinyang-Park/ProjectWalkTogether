@@ -9,7 +9,8 @@ const FootOning = () => {
   // skeleton UI Loading
   const [isloading, setIsLoading] = useState<boolean>(true);
 
-  const postList: Array<Post> = usePosts();
+  const { posts, refetch } = usePosts();
+  const postList: Array<Post> = posts;
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,7 +25,7 @@ const FootOning = () => {
       ) : (
         <S.LikedListItem>
           {postList.slice(0, 8).map((post: any) => {
-            return <CardSection key={post.id} post={post} />;
+            return <CardSection key={post.id} post={post} refetch={refetch} />;
           })}
         </S.LikedListItem>
       )}

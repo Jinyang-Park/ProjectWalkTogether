@@ -32,8 +32,6 @@ const DropBox = ({ setShowBox, id, getPostings, setComplete }: DropProps) => {
 
   // 산책완료 변경
   const [posting, setPosting] = useState('posting');
-  // console.log(getPostings.Category_Posting);
-  // console.log(getPostings);
 
   //삭제 버튼
   const DeletePostHandler = async (id: any) => {

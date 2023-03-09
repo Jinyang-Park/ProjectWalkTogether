@@ -5,13 +5,14 @@ import { Post, usePosts } from '../../../api/postsApi';
 const MyPageWrite = (props: { uid: string }) => {
   const { uid } = props;
 
-  const posts: Array<Post> = usePosts().filter((post) => post.UID === uid);
+  const { posts, refetch } = usePosts();
+  const filteredPosts: Array<Post> = posts.filter((post) => post.UID === uid);
 
   return (
     <S.MyPageWriteWrap>
       <S.PostListWrap>
-        {posts.map((post, i) => {
-          return <CardSection post={post} key={i} />;
+        {filteredPosts.map((post, i) => {
+          return <CardSection post={post} key={i} refetch={refetch} />;
         })}
       </S.PostListWrap>
     </S.MyPageWriteWrap>

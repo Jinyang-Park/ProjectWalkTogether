@@ -102,7 +102,9 @@ const StyledSlider = styled(Slider)`
 
 export const Category = styled.div``;
 
-export const Categoryitem = styled.div``;
+export const Categoryitem = styled.div`
+  cursor: pointer;
+`;
 
 export const Img = styled.img`
   width: 50px;
