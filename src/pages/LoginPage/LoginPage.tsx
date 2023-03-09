@@ -45,7 +45,6 @@ const LoginPage = () => {
   const [value, setValue] = useState('');
   const [password, setPassword] = useState('');
   const [loginModalopen, setLoginModalopen] = useState(false);
-
   const [user, setUser] = useState({});
   const [validateEmailColor, setValidateEmailColor] = useState(false);
   const navigate = useNavigate();
@@ -61,9 +60,31 @@ const LoginPage = () => {
   //onchange로 값을 저장.
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+    if (email.length > 5) {
+      setDisabled(false);
+      if (emailRegex.test(email) === false) {
+        setButtonColor(false);
+        setDisabled(true);
+      } else {
+        // setValidateEmail(' 올바른 형식의 이메일 주소입니다.');
+        setDisabled(false);
+        setButtonColor(true);
+      }
+    }
   };
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+    if (password.length > 0) {
+      setDisabled(false);
+      if (pwdRegex.test(password) === false) {
+        setButtonColor(false);
+        setDisabled(true);
+      } else {
+        //setValidatePw(' 올바른 형식의 비밀번호 입니다.');
+        setDisabled(false);
+        setButtonColor(true);
+      }
+    }
   };
 
   //firebase
@@ -93,10 +114,7 @@ const LoginPage = () => {
             );
 
             navigate('/');
-            setDisabled(false);
           } else {
-            setDisabled(true);
-            setButtonColor(true);
             // alert('인증되지 않은 사용자입니다.');
 
             MessageWindow.showWindow(
@@ -147,7 +165,6 @@ const LoginPage = () => {
             );
           } else if (errorMessage.includes('wrong-password')) {
             console.log('wrong-password');
-            // return alert('비밀번호가 잘못 되었습니다.');
             MessageWindow.showWindow(
               new MessageWindowProperties(
                 true,
@@ -165,6 +182,8 @@ const LoginPage = () => {
               ),
               setState
             );
+
+            // return alert('비밀번호가 잘못 되었습니다.');
           }
 
           // setErrorMessage('로그인 실패');
@@ -180,37 +199,6 @@ const LoginPage = () => {
         })
     );
   };
-
-  //이메일 중복검사
-  const isEmail = async (email: any) => {
-    const q = query(collection(dbService, 'user'), where('email', '==', email));
-    const querySnapshot = await getDocs(q);
-
-    let isCheckEmail = '';
-
-    querySnapshot.forEach((doc) => {
-      isCheckEmail = doc.data().email;
-    });
-    return isCheckEmail;
-  };
-
-  useEffect(() => {
-    isEmail(email)
-      .then((result) => {
-        if (email) {
-          if (result === email) {
-            setDisabled(false);
-            setButtonColor(true);
-          }
-        } else {
-          setDisabled(true);
-          setButtonColor(false);
-        }
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  }, [email]);
 
   useEffect(() => {
     if (email) {
