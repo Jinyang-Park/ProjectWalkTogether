@@ -7,6 +7,7 @@ import { Bannerupload, ThumbnailUpload } from '../../../Rocoil/Atom';
 import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
 import Tag from '../../../components/Tag/Tag';
 import useDetectClose from './../../../hooks/useDetectClose';
+import imageCompression from 'browser-image-compression';
 
 interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;
@@ -43,17 +44,49 @@ function MainPost({
   const [banner, setBanner] = useState<any>(null);
   const [show, setShow] = useState<any>(false);
 
+  //이미지 압축 함수
+  const compressThumbnailImage = async (image: File) => {
+    try {
+      const options = {
+        maxSizeMB: 0.005,
+        maxWidthOrHeight: 1840,
+        // useWebWorker: true,
+      };
+      const compressedFile = await imageCompression(image, options);
+      setPhotoupload(() => compressedFile);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  //배너 이미지 압축
+  const compressBannerImage = async (image: File) => {
+    try {
+      const options = {
+        maxSizeMB: 0.5,
+        maxWidthOrHeight: 1840,
+        // useWebWorker: true,
+      };
+      const compressedFile = await imageCompression(image, options);
+      setBanneruploadupload(() => compressedFile);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   function thumnailimageChange(e: any) {
     const filelist = e.target.files[0];
 
     const reader = new FileReader();
 
+    // const thunmbnail = compressThumbnailImage(filelist);
+
     reader.onload = () => {
-      setPhotoupload(() => filelist);
+      compressThumbnailImage(filelist);
+      // setPhotoupload(() => filelist);
       setThumbnail(() => reader.result);
     };
     reader.readAsDataURL(filelist);
-    console.log('썸네일 인풋:', photoupload);
+    console.log('썸네일 인풋:', reader);
   }
 
   function bannerimageChange(e: any) {
@@ -61,8 +94,11 @@ function MainPost({
 
     const reader = new FileReader();
 
+    // const banner = compressBannerImage(filelist);
+
     reader.onload = () => {
-      setBanneruploadupload(() => filelist);
+      // setBanneruploadupload(() => banner);
+      compressBannerImage(filelist);
       setBanner(() => reader.result);
     };
 
@@ -85,6 +121,10 @@ function MainPost({
       ? setIsValidityContents(true)
       : setIsValidityContents(false);
   };
+
+  // const imag = compressBannerImage(bannerupload);
+
+  // console.log('bannerupload:', bannerupload);
 
   return (
     <>
