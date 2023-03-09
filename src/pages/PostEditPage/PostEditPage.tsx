@@ -97,6 +97,12 @@ const PostEditPage = () => {
   // 로딩일 경우
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  //내용 유효성검사
+  const [isValidityContents, setIsValidityContents] = useState<boolean>(false);
+
+  //타이틀 유효성검사
+  const [isValidityTitle, setIsValidityTitle] = useState<boolean>(false);
+
   const date = (y: number, m: number, d: number) => {
     const D = new Date(y, m, d);
 
@@ -253,12 +259,12 @@ const PostEditPage = () => {
 
   const handleSubmit = async (e: any) => {
     if (Title.length < 1 || Title.length > 20) {
-      alert('타이틀은 1자 이상 20자 미만으로 작성해 주세요');
+      setIsValidityTitle(true);
       return;
     }
 
-    if (Description.length < 1 || Description.length > 200) {
-      alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
+    if (Description.length < 1 || Description.length > 160) {
+      setIsValidityContents(true);
       return;
     }
 
@@ -313,6 +319,10 @@ const PostEditPage = () => {
           bannerimg={state.BannerURL_Posting}
           setHasEditedBanner={setHasEditedBanner}
           setHasEditedThumbnail={setHasEditedThumbnail}
+          isValidityTitle={isValidityTitle}
+          isValidityContents={isValidityContents}
+          setIsValidityContents={setIsValidityContents}
+          setIsValidityTitle={setIsValidityTitle}
         />
         <InputInformationEdit
           addressEdit={state.Address_Posting}

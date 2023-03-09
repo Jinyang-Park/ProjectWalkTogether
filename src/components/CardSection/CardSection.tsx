@@ -20,9 +20,6 @@ const CardSection = ({ post }: postProps) => {
   const uid = useRecoilValue(currentUserUid);
   const loggedIn = useRecoilValue(isLoggedIn);
 
-  // skeleton UI Loading
-  const [loading, setLoading] = useState(true);
-
   // console.log(post);
 
   // post 바뀔때마 실행되는것이다.
@@ -91,7 +88,7 @@ const CardSection = ({ post }: postProps) => {
             return (
               <>
                 {tagItem == '' ? (
-                  <div key={tagItem}>&nbsp;</div>
+                  <div>&nbsp;</div>
                 ) : (
                   <div key={i}>{'#' + tagItem}</div>
                 )}
