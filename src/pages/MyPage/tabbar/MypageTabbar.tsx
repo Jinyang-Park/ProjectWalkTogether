@@ -48,7 +48,9 @@ const MypageTabbar = (props: {
         >
           찜
         </S.UserInterest>
-        <S.borderlinebottom></S.borderlinebottom>
+        <S.barWrap>
+          <S.borderlinebottom></S.borderlinebottom>
+        </S.barWrap>
       </S.TabbarWrap>
     </>
   );

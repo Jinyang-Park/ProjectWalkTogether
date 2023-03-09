@@ -37,10 +37,20 @@ export const UserInterest = styled.button`
   background: none;
 `;
 export const borderlinebottom = styled.div`
-  border-bottom: 2px solid #cbcbcb;
+  position: relative;
+  /* width: 25%;
+  height: 5px;
+  background: #333;
+  border-radius: 5px; */
+`;
+export const barWrap = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 35px;
+  width: 100%;
+  height: 2px;
+  display: block;
+  background: #cbcbcb;
+  margin-top: 10px;
+  border-radius: 0.5px;
+  z-index: -1;
 `;

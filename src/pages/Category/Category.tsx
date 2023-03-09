@@ -23,8 +23,11 @@ import { Post, usePosts } from '../../api/postsApi';
 
 const Category = () => {
   const { category } = useParams();
-  console.log(category);
+
+  //refetch
   const { posts, refetch } = usePosts();
+
+  // postsApi
   const postings: Array<Post> = posts.filter((post) => {
     if (category === '전체') return true;
     return post.Category_Posting === category;
