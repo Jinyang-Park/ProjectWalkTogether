@@ -1,9 +1,8 @@
 import * as S from './CardSection.style';
 import CardSection from '../../components/CardSection/CardSection';
 import { Post, usePosts } from '../../api/postsApi';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CardSkeleton from '../../components/CardSkeleton/CardSkeleton';
-// import { onAuthStateChanged } from 'firebase/auth'
 
 const FootOning = () => {
   // skeleton UI Loading
@@ -14,12 +13,13 @@ const FootOning = () => {
     return post.ProceedState_Posting != 'postingDone';
   });
 
+  // 로더
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
   });
-  // console.log(isloading);
+
   return (
     <>
       {isloading ? (

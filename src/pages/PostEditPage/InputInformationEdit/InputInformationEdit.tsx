@@ -1,17 +1,8 @@
 import * as S from './InputInformationEdit.style';
-// import MapContainer from '../../MapPage/Map/map';
 import { myLocation, selectedAddress } from '../../../Rocoil/Atom';
-import {
-  Map,
-  MapMarker,
-  ZoomControl,
-  MapTypeControl,
-} from 'react-kakao-maps-sdk';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { useState, useEffect, useRef } from 'react';
-import React from 'react';
 import { useRecoilState } from 'recoil';
-import AntCalendar from '../../PostPage/Hooks/Calendar/AntCalendarDate';
-import AntCalendarTime from '../../PostPage/Hooks/Calendar/AntCalendarTime';
 import AntCalendarEdit from '../Calendar/AntCalendarDateEdit';
 import AntCalendarTimeEdit from '../Calendar/AntCalendarTimeEdit';
 
@@ -126,8 +117,6 @@ function InputInformationEdit({ addressEdit, lat, lng }: Edit) {
     });
   };
   convertAddress();
-  console.log(address);
-  console.log(search);
 
   return (
     <S.MapNInputBox>

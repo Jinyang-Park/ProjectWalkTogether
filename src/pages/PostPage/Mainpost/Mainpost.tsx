@@ -80,8 +80,6 @@ function MainPost({
 
     const reader = new FileReader();
 
-    // const thunmbnail = compressThumbnailImage(filelist);
-
     reader.onload = () => {
       compressThumbnailImage(filelist);
       // setPhotoupload(() => filelist);
@@ -95,8 +93,6 @@ function MainPost({
     const filelist = e.target.files[0];
 
     const reader = new FileReader();
-
-    // const banner = compressBannerImage(filelist);
 
     reader.onload = () => {
       // setBanneruploadupload(() => banner);
@@ -123,10 +119,6 @@ function MainPost({
       ? setIsValidityContents(true)
       : setIsValidityContents(false);
   };
-
-  // const imag = compressBannerImage(bannerupload);
-
-  // console.log('bannerupload:', bannerupload);
 
   return (
     <>

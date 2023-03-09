@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CommonStyles from './../../styles/CommonStyles';
 import * as S from './PostEditPage.style';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
@@ -7,8 +7,6 @@ import {
   selectedAddress,
   Bannerupload,
   ThumbnailUpload,
-  ReserveDate,
-  Time,
   TitleInput,
   DescriptionInput,
   ReserveEditDate,
@@ -20,17 +18,7 @@ import { uuidv4 } from '@firebase/util';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage, dbService } from './../../common/firebase';
-import {
-  addDoc,
-  collection,
-  doc,
-  updateDoc,
-  onSnapshot,
-  getDoc,
-  query,
-  where,
-  orderBy,
-} from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import MainPostEdit from './MainPostEdit/MainPostEdit';
 import InputInformationEdit from './InputInformationEdit/InputInformationEdit';
 import MessageWindow, {
@@ -38,7 +26,6 @@ import MessageWindow, {
   MessageWindowProperties,
   messageWindowPropertiesAtom,
 } from '../../messagewindow/MessageWindow';
-import useDetectClose from '../../hooks/useDetectClose';
 import Loader from '../../components/Loader/Loader';
 
 const PostEditPage = () => {
@@ -169,25 +156,6 @@ const PostEditPage = () => {
 
   let timestring = `${time.year}/${time.month}/${time.date} ${time.hours}:${time.minutes}`;
 
-  // const GetPreviousMeetDate = () => {
-  //   meetEditDate.length < 14
-  //     ? setMeetEditDate(state.RsvDate_Posting)
-  //     : setMeetEditDate(RsvDate_Posting);
-  // };
-  // // console.log(state.RsvDate_Posting);
-  // const GetPreviousMeetTime = () => {
-  //   meetTimeEdit.length < 9
-  //     ? setMeetTimeEdit(state.RsvHour_Posting)
-  //     : setMeetTimeEdit(RsvHour_Posting);
-  // };
-
-  // // NaN/undefined가 뜬 이유다.
-  // console.log(state.RsvHour_Posting);
-  // useEffect(() => {
-  //   GetPreviousMeetDate();
-  //   GetPreviousMeetTime();
-  // }, [meetEditDate, meetTimeEdit]);
-
   //수정
   useEffect(() => {
     if (state) {
@@ -196,8 +164,6 @@ const PostEditPage = () => {
       setThumbnail(state.ThumbnailURL_Posting);
       setBanner(state.BannerURL_Posting);
       setTag(state.Hashtag_Posting);
-      // setMeetEditDate(state.RsvDate_Posting);
-      // setMeetTimeEdit(state.RsvHour_Posting);
     }
   }, [state]);
 
@@ -212,14 +178,6 @@ const PostEditPage = () => {
             console.log('배너url', typeof bannerUrl);
 
             try {
-              // const updateBanner: { BannerURL_Posting } = {
-              //   BannerURL_Posting: bannerUrl,
-              // };
-
-              // const updateThumbnail: { ThumbnailURL_Posting } = {
-              //   ThumbnailURL_Posting: thumbnailUrl,
-              // };
-
               const postRef = doc(dbService, 'Post', id);
               updateDoc(postRef, {
                 Description_Posting: Description,

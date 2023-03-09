@@ -30,17 +30,6 @@ import MessageWindow, {
   messageWindowPropertiesAtom,
 } from '../../messagewindow/MessageWindow';
 
-interface getPostings {
-  BannereURL_Posting: string;
-  Category_Posting: string;
-  Description_Posting: string;
-  Nickname: string;
-  ThunmnailURL_Posting: string;
-  Title_Posting: string;
-  UID: string;
-  children: JSX.Element | JSX.Element[];
-}
-
 const DetailPage = () => {
   // 모달 외부 클릭 시 닫기 customhook
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
@@ -105,17 +94,6 @@ const DetailPage = () => {
     setIsLoading(false);
   };
 
-  // onsnapshot으로 바꾸기 상태를 바라보고 db가 바뀌면 상태를 최신화해준다. 동적데이터는 onsnapshot이 좋다.
-  // const getPost = onSnapshot(doc(dbService, 'Post', id), (postData) => {
-  //   setGetPostings(postData.data());
-  //   setIsLoading(false);
-  // });
-
-  /////////////////
-  //채팅방 중복확인 중 db에서 데이터 가져오기.
-
-  // getPost getChattingList  => duplicate
-
   const getChattingList = async () => {
     if (mychatlist === '') {
       return;
@@ -137,8 +115,6 @@ const DetailPage = () => {
       list = [...list, { id: doc.id, ...doc.data() }];
     });
     setChatList(list);
-
-    // console.log('list:', list);
   };
 
   const duplicate = () => {
@@ -191,15 +167,7 @@ const DetailPage = () => {
       navigate('/chat');
     } else {
       alert('채팅창으로 이동합니다.');
-      // db에저장된 user의 정보가 저장되는 곳
 
-      //db에저장된 컬렉션 user의 작성자가 가지는 하위컬랙션 chattingroom에 저장되는값들
-      // await setDoc(doc(dbService, 'Users', `${getPostingUID}`), {
-      //   getPostingUID: getPostingUID,
-      //   // chattingroom: [{ combineId, date }],
-      // });
-
-      // 게시글주인 chattingroom에 저장되는값들
       await setDoc(
         doc(
           dbService,
@@ -256,8 +224,6 @@ const DetailPage = () => {
     }
   };
 
-  // !! undfined false 아니면 true
-  // 여기 공부하자!
   const UpdateView = async () => {
     const q = doc(dbService, 'Post', id);
     // dbService에 있는 getPostings.View + 1 를 View 넣어준다.
@@ -271,16 +237,11 @@ const DetailPage = () => {
     }
   }, [isLoading]);
 
-  // console.log(getPostings.View);
-  // console.log(getPostings);
-  // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
-
-  // console.log(getPostings.ThunmnailURL_Posting);
-  // console.log(getPostings);
-
+  // 좋아요
   const [hasUserLikedThisPost, setHasUserLikedThisPost] =
     useState<boolean>(false);
 
+  // 좋아요 유저
   const hasUserLikedPost = async () => {
     const snap = await getDoc(doc(dbService, 'Post', id));
     if (snap.exists() && snap.data()) {
@@ -294,6 +255,7 @@ const DetailPage = () => {
     hasUserLikedPost().then((value) => setHasUserLikedThisPost(value));
   }, [id, currentUserUid, post]);
 
+  // 좋아요 카운트
   const [likeCount, setLikeCount] = useState<number>(0);
 
   const getLikeCount = async () => {
@@ -317,9 +279,6 @@ const DetailPage = () => {
 
     let p = post;
     p.LikedUsers.push(userUid);
-
-    // doc = getDocs(Post 중에 PostingID_Posting === post.PostingID_Posting인 것들)[0]
-    // updateDoc(doc, likderifjsif)
 
     updateDoc(doc(dbService, 'Post', id), {
       LikedUsers: p.LikedUsers,

@@ -1,15 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
-// import { Categoryitem, ImgTitle, Img } from '../../components/CategoryAll';
-// import { HeartIcon } from "../DetailPage/DetailPage";
 import CommonStyles from './../../styles/CommonStyles';
-import { dbService } from '../../common/firebase';
-//import { query, onSnapshot, collection } from 'firebase/firestore';
-import { authService } from '../../common/firebase';
 import MainBanner from '../../components/main/banner';
-import { useNavigate, useParams } from 'react-router-dom';
-//import CategoryAll from './CategoryAll/CategoryAll';
+import { useNavigate } from 'react-router-dom';
 import CategorySlide from '../../components/main/CategorySlide';
 import FootOning from './FootOning';
 import * as S from './CardSection.style';

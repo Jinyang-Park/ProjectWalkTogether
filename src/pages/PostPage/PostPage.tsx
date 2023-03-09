@@ -12,17 +12,16 @@ import {
   NewpostTag,
   userForChat,
 } from '../../../src/Rocoil/Atom';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { getAuth } from 'firebase/auth';
-import { uuidv4, async } from '@firebase/util';
+import { uuidv4 } from '@firebase/util';
 import { collection, addDoc } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
-import Mainpost from './Mainpost/Mainpost';
 import IuputInformation from './InputInformation/InputInformation';
 import * as S from './Postpage.style';
 import CommonStyles from './../../styles/CommonStyles';
 import MainPost from './Mainpost/Mainpost';
-import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../common/firebase';
 import { useNavigate } from 'react-router-dom';
 import MessageWindow, {

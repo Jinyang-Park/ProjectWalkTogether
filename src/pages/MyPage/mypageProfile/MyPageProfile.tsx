@@ -16,7 +16,6 @@ import { UserNickName } from './../../../Rocoil/Atom';
 const MyPageProfile = (props: { uid: string }) => {
   const navigate = useNavigate();
   const uid = props.uid;
-  // console.log(uid);
 
   const [newname, setNewname] = useState('');
   const [newmessage, setNewmessage] = useState('');
@@ -43,14 +42,17 @@ const MyPageProfile = (props: { uid: string }) => {
     getImageURL();
   }, []);
 
+  // 이미지 URL 가져오는 부분
   const getImageURL = async () => {
-    console.log(uid);
+    // console.log(uid);
 
     const docRef = doc(dbService, 'user', uid);
     const docSnap = await getDoc(docRef);
 
     setImageURL(docSnap.data().profileImg);
   };
+
+  // 이미지 바꾸는 부분
   const onImageChange = (
     e: React.ChangeEvent<EventTarget & HTMLInputElement>
   ) => {
@@ -84,6 +86,7 @@ const MyPageProfile = (props: { uid: string }) => {
       });
   };
 
+  // 닉네임과 내용 수정
   const onEditBtn = async () => {
     if (!isEditing) {
       setNewname(authService.currentUser.displayName);
@@ -117,6 +120,7 @@ const MyPageProfile = (props: { uid: string }) => {
     setIsEditing(!isEditing);
   };
 
+  // 바뀐 닉네임과 메세지 부분
   const fetchInfo = async () => {
     console.log('Attempted to fetch user info ' + uid);
     const docSnap = await getDoc(doc(dbService, 'user', uid));
