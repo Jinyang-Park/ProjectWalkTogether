@@ -53,13 +53,22 @@ const FindPassword = () => {
         .catch((error) => {
           const errorCode = error.code;
           console.log(errorCode);
-          alert('등록되지 않은 아이디 입니다.');
+          MessageWindow.showWindow(
+            new MessageWindowProperties(
+              true,
+              '등록되지 않은 이메일입니다',
+              '',
+              [],
+              MessageWindowLogoType.CryingFace
+            ),
+            setState
+          );
           // ..
         });
     } else if (findPwd.length === 0) {
-      alert('이메일을 입력해주세요');
+      setValidate('이메일을 입력해주세요');
     } else {
-      alert('이메일을 정확히 입력해 주세요.');
+      setValidate('이메일을 정확히 입력해 주세요.');
     }
   };
   return (
@@ -82,7 +91,7 @@ const FindPassword = () => {
                 ></S.Input>
               </S.Inputholder>
               <S.ButtonBox>
-                <S.LoginBtn onClick={resetPassword}>비밀번호 찾기</S.LoginBtn>
+                <S.FindBtn onClick={resetPassword}>비밀번호 찾기</S.FindBtn>
 
                 <S.Validityfontbox>{validate}</S.Validityfontbox>
               </S.ButtonBox>

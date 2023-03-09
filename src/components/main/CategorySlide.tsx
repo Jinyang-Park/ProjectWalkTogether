@@ -17,7 +17,7 @@ function CategorySlide() {
     swipeToSlide: true,
     speed: 500,
     slidesToShow: 7,
-    slidesToScroll: 1,
+    slidesToScroll: 3,
   };
 
   return (

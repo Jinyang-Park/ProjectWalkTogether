@@ -4,8 +4,8 @@ export const InputBox = styled.div`
   display: flex;
 
   flex-wrap: wrap;
-  width: 460px;
-  height: 532px;
+  width: 386px;
+  height: 582px;
 
   margin-top: 80px;
   margin: auto;
@@ -22,41 +22,45 @@ export const InputBox = styled.div`
 //Inputholder안의 진짜 input태그
 export const Input = styled.input`
   border: none;
-  width: 250px;
-  height: 2.375rem;
+  width: 240px;
+  margin-top: 10px;
+  height: 38px;
   position: relative;
-  left: 1.875rem;
-  background-color: transparent;
+
+  margin: 0 auto;
+  left: 30px;
+  font-family: 'SUITERegular';
   outline: none;
-  :focus-visible {
-    outline: none;
-  }
+  background-color: transparent;
 `;
 
 //Input태그의 테두리
 export const Inputholder = styled.div`
   margin: auto;
-  border-radius: 0.625rem;
-  width: 360px;
-  height: 48px;
-  border: 2px solid #adadad;
+  border-radius: 10px;
+  width: 306px;
+  height: 47px;
+  border: 2px solid #bec5d7;
   color: #b2c8df;
-  margin-top: 10px;
+
+  margin-top: 15px;
 `;
 
 //인풋을 둘러싼 박스
 export const InputBoxContent = styled.div`
-  width: 360px;
+  width: 306px;
   margin: auto;
 `;
 
 //잠깐만 !
 export const LoginLogo = styled.div`
   text-align: center;
-  margin-top: 0.875rem;
-  margin-bottom: 1.5625rem;
+  margin-top: 14px;
+  margin-bottom: 25px;
   font-size: 32px;
   color: black;
+  font-family: 'SUITESemiBold';
+  font-weight: 600;
 `;
 
 export const ButtonBox = styled.div`
@@ -68,39 +72,32 @@ export const ButtonBox = styled.div`
 //회원 가입 버튼
 export const LoginBtn = styled.button`
   border-radius: 5px;
-  width: 360px;
-  height: 2.5rem;
+  width: 306px;
+  height: 46px;
   font-size: 16px;
   color: black;
-  border-color: #2192ff;
   font-weight: 400;
   margin-top: 0.9375rem;
   background-color: #d1d1d1;
   cursor: pointer;
-  &:hover {
-    background: #7d8bae;
-    color: white;
-    transition: 0.5s;
-  }
+
+  background: #7d8bae;
+  color: white;
+
+  font-family: 'SUITERegular';
 `;
 
 export const ThirdBox = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
 `;
 export const RegisterBtn = styled.button`
-  width: 80px;
-  height: 2.5rem;
-  color: black;
-  border: none;
-  margin-top: 0.625rem;
   background-color: transparent;
-  cursor: pointer;
-  &:hover {
-    color: #816ceb;
-    transition: 0.4s;
-  }
+  padding-left: 5px;
+  font-weight: 300;
+  font-family: 'SUITEBold';
+  margin: auto;
+  margin-top: 16px;
 `;
 
 export const FindBox = styled.div`
@@ -108,36 +105,63 @@ export const FindBox = styled.div`
 `;
 
 export const Validityfontbox = styled.div`
-  margin: auto;
   border: none;
-  width: 330px;
+  font-family: 'SUITERegular';
   font-size: 10px;
-  height: 20px;
   position: relative;
   right: 10px;
-  margin-top: 3px;
+  margin-top: 5px;
   outline: none;
-  color: blue;
+  color: #7d8bae;
+  margin-left: 17px;
 `;
 
 //유효성검사시 글자
-export const ValidityNicnamefont = styled.span<{
+
+// `;
+export const ValidityEmailCircle = styled.img<{ validateEmailColor: boolean }>`
+  background-color: ${(Props) =>
+    Props.validateEmailColor ? '#1BE08D' : '#FF8F8F'};
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 10px;
+
+  z-index: 99;
+`;
+
+export const ValidityNameCircle = styled.img<{
   validateDisplaynameColor: boolean;
 }>`
-  color: ${(Props) => (Props.validateDisplaynameColor ? 'blue' : 'red')};
-  font-size: 15px;
+  background-color: ${(Props) =>
+    Props.validateDisplaynameColor ? '#1BE08D' : '#FF8F8F'};
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 10px;
+
+  z-index: 99;
 `;
-export const ValidityEmailfont = styled.span<{ validateEmailColor: boolean }>`
-  color: ${(Props) => (Props.validateEmailColor ? 'blue' : 'red')};
-  font-size: 15px;
-`;
-export const ValidityPasswordfont = styled.span<{ validatePwColor: boolean }>`
-  color: ${(Props) => (Props.validatePwColor ? 'blue' : 'red')};
-  font-size: 15px;
-`;
-export const ValidityConfirmPwdfont = styled.span<{
+
+export const VConfirmCircle = styled.img<{
   validatePwconfirmColor: boolean;
 }>`
-  color: ${(Props) => (Props.validatePwconfirmColor ? 'blue' : 'red')};
-  font-size: 15px;
+  background-color: ${(Props) =>
+    Props.validatePwconfirmColor ? '#1BE08D' : '#FF8F8F'};
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 10px;
+
+  z-index: 99;
+`;
+
+export const ValidBox = styled.div`
+  display: flex;
+  width: 306px;
+  height: 15px;
+  margin: auto;
+`;
+export const EtcBtn = styled.div`
+  margin-top: 40px;
 `;

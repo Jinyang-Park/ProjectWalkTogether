@@ -89,7 +89,7 @@ export const NavText = styled(Link)`
 `;
 export const LoginButton = styled.div`
   border: none;
-  padding: 4px 7px 4px 7px;
+  padding: 4px 12px 4px 12px;
   //상우하좌
 
   margin-top: 10px;
