@@ -1,18 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import * as ReactDOMServer from 'react-dom/server';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { paramsState } from '../../../Rocoil/Atom';
 import { useSetRecoilState } from 'recoil';
-
-import { useRecoilState, useRecoilValue } from 'recoil';
-
-import {
-  AiOutlineSearch,
-  AiOutlinePlus,
-  AiOutlineMinus,
-  AiOutlineEnvironment,
-  AiOutlineCar,
-} from 'react-icons/ai';
 import { RxDividerVertical } from 'react-icons/rx';
 import { IoMdClose } from 'react-icons/io';
 
@@ -20,12 +9,7 @@ import { IoMdClose } from 'react-icons/io';
 
 import * as S from './map.style';
 
-import {
-  Map,
-  MapMarker,
-  ZoomControl,
-  MapTypeControl,
-} from 'react-kakao-maps-sdk';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 const MapContainer = (Post) => {
   // 현재 위치를 가져오기 위한 state 생성
@@ -111,8 +95,6 @@ const MapContainer = (Post) => {
     });
   };
   convertAddress();
-  console.log(address);
-  console.log(search);
 
   // 키워드로 장소검색하기 위한 useEffect
   useEffect(() => {
@@ -223,9 +205,6 @@ const MapContainer = (Post) => {
             </S.ResultListCard>
           </S.InfoWindow>
         )}
-        {/* <div style={{ color: '#000' }} key={post.PostingID_Posting}> */}
-        {/* {post.Title_Posting} */}
-        {/* </div> */}
       </MapMarker>
     );
   }, []);

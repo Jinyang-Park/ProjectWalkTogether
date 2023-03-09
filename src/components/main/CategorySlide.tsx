@@ -11,8 +11,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import nextarrow from '../../assets/Mainpage/nextarrow.svg';
 import beforearrow from '../../assets/Mainpage/beforearrow.svg';
 
-//MdArrowForwardIos
-
 function CategorySlide() {
   const navigate = useNavigate();
   const settings = {
@@ -29,7 +27,6 @@ function CategorySlide() {
       <StyledSlider {...settings}>
         {CategorysList.map((Category) => {
           return (
-            //리액트 라우터 dom state 찾아보기
             <Categoryitem
               onClick={() => navigate(`/category/${Category.name}`)}
               key={Category.name}

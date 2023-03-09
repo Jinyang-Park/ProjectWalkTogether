@@ -3,8 +3,7 @@ import styled from 'styled-components';
 export const InputLayout = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 64px;
-  margin-bottom: 64px;
+  margin-top: 150px;
 `;
 
 export const InputBox = styled.div`
@@ -141,15 +140,16 @@ export const LoginBtn = styled.button<{ state: boolean }>`
 `;
 export const ThirdBox = styled.div`
   display: flex;
-  height: 20px;
+  justify-content: center;
 `;
 
 export const RegisterBtn = styled.button`
   background-color: transparent;
   padding-left: 5px;
-  font-weight: 300;
+  margin-right: 2px;
+  font-weight: 600;
   font-size: 12px;
-  font-family: 'SUITEBold';
+  font-family: 'SUITERegular';
   color: black;
 `;
 
@@ -165,11 +165,12 @@ export const FindBtn = styled.button`
   padding-top: 10px;
 `;
 
-export const ResisterText = styled.p`
+export const ResisterText = styled.div`
   font-size: 11px;
-
+  display: flex;
+  align-items: center;
   font-family: 'SUITERegular';
-  letter-spacing: -0.1px;
+  letter-spacing: -0.5px;
   color: #7d8bae;
 `;
 export const Validityfontbox = styled.div`
@@ -202,4 +203,15 @@ export const ValidityEmailCircle = styled.img<{ validateEmailColor: boolean }>`
 export const ValidBox = styled.div`
   display: flex;
   width: 306px;
+`;
+export const ButtonIcon = styled.img`
+  width: 10px;
+  height: 10px;
+  object-fit: contain;
+  cursor: pointer;
+`;
+export const RegisterBtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
