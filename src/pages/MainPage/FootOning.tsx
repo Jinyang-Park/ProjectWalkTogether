@@ -10,7 +10,9 @@ const FootOning = () => {
   const [isloading, setIsLoading] = useState<boolean>(true);
 
   const { posts, refetch } = usePosts();
-  const postList: Array<Post> = posts;
+  const postList: Array<Post> = posts.filter((post) => {
+    return post.ProceedState_Posting != 'postingDone';
+  });
 
   useEffect(() => {
     setTimeout(() => {

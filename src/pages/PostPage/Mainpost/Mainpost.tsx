@@ -5,7 +5,7 @@ import { TitleInput, DescriptionInput } from '../../../Rocoil/Atom';
 import { Bannerupload, ThumbnailUpload } from '../../../Rocoil/Atom';
 
 import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
-import Tag from '../../../components/Tag';
+import Tag from '../../../components/Tag/Tag';
 import useDetectClose from './../../../hooks/useDetectClose';
 
 interface SetProps {
