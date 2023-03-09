@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled, { css } from 'styled-components';
 
 //배너 상단 박스
 export const Bannercontainer = styled.div`
@@ -71,7 +71,7 @@ export const CateogryWrapper = styled.div`
 `;
 
 //제목 입력하는 input
-export const InputTitle = styled.input`
+export const InputTitle = styled.input<{ isValidityTitle: boolean }>`
   border: none;
   height: 30px;
   width: 80%;
@@ -90,6 +90,12 @@ export const InputTitle = styled.input`
   font-size: 16px;
   line-height: 20px;
 
+  ${({ isValidityTitle }) =>
+    isValidityTitle &&
+    css`
+      outline: 2px solid #ff8f8f;
+    `}
+
   &::placeholder {
     font-family: 'SUITERegular';
     font-style: normal;
@@ -100,7 +106,7 @@ export const InputTitle = styled.input`
   }
 
   &:focus {
-    outline: 2px solid #6a24ff;
+    outline: 2px solid #7d8bae;
   }
 `;
 
@@ -113,7 +119,7 @@ export const HashtagBox = styled.div`
 `;
 
 // 글쓰기 textarea
-export const Textarea = styled.textarea`
+export const Textarea = styled.textarea<{ isValidityContents: boolean }>`
   position: relative;
   width: 80%;
   height: 73px;
@@ -130,6 +136,12 @@ export const Textarea = styled.textarea`
 
   color: #24264e;
 
+  ${({ isValidityContents }) =>
+    isValidityContents &&
+    css`
+      outline: 2px solid #ff8f8f;
+    `}
+
   &::placeholder {
     font-weight: 400;
     font-size: 12px;
@@ -142,7 +154,7 @@ export const Textarea = styled.textarea`
   resize: none;
   /* border: 1px solid #3d3a3a; */
   &:focus {
-    outline: 2px solid #6a24ff;
+    outline: 2px solid #7d8bae;
   }
 
   background: #eef1f7;

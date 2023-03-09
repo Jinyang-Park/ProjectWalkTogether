@@ -2,6 +2,10 @@ import Slider from 'react-slick';
 import '../../styles/slick.css';
 import '../../styles/slick-theme.css';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+import React from 'react';
+import { constSelector } from 'recoil';
 import { CategorysList } from '../../utils/CategorysList';
 import { useNavigate, useParams } from 'react-router-dom';
 import nextarrow from '../../assets/Mainpage/nextarrow.svg';
@@ -43,7 +47,7 @@ function CategorySlide() {
 const StyledSlider = styled(Slider)`
   margin: auto;
   width: 80%; //슬라이드 컨테이너 영역
-  padding-top: 52px;
+  margin-top: 52px;
 
   .slick-list {
     //슬라이드 스크린
@@ -98,7 +102,9 @@ const StyledSlider = styled(Slider)`
 
 export const Category = styled.div``;
 
-export const Categoryitem = styled.div``;
+export const Categoryitem = styled.div`
+  cursor: pointer;
+`;
 
 export const Img = styled.img`
   width: 50px;

@@ -44,11 +44,18 @@ function PassModal({ open, onClose, setLoginModalopen }: any) {
         <CloseBtn onClick={onClose} className='closeBtn'>
           x
         </CloseBtn>
+<<<<<<< HEAD
         <Title>비밀번호 찾기</Title>
         <InputContent className='content'>
           <Input
             onChange={findPasswordfnc}
             placeholder='비밀번호를 변경할 이메일을 입력해 주세요.'
+=======
+        <InputContent className='content'>
+          <Input
+            onChange={findPasswordfnc}
+            placeholder='이메일을 입력해 주세요.'
+>>>>>>> a47c1ef19c02f37ec2767d427eeed10eb7cd3e41
             className='EmailSubmit'
           ></Input>
         </InputContent>
@@ -134,6 +141,7 @@ const Input = styled.input`
 
 const BtnContainer = styled.div`
   display: flex;
+<<<<<<< HEAD
   padding: 1rem 1rem;
   margin: auto;
 `;
@@ -147,6 +155,19 @@ export const Btnprimary = styled.button`
   font-weight: 400;
   margin-top: 0.9375rem;
   background-color: #d1d1d1;
+=======
+  padding: 16px 16px;
+`;
+
+const Btnprimary = styled.button`
+  width: 100px;
+  margin: 8px;
+  padding: 16px 0;
+  border: none;
+  color: #2192ff;
+  background-color: aliceblue;
+  border-radius: 35px;
+>>>>>>> a47c1ef19c02f37ec2767d427eeed10eb7cd3e41
   cursor: pointer;
   &:hover {
     background: #7d8bae;

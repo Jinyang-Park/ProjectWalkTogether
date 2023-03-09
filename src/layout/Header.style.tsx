@@ -121,7 +121,7 @@ export const NavEtc = styled.div`
   }
 `;
 export const Profile = styled.div`
-  padding-top: 0.625rem;
+  padding-top: 10px;
   font-size: 10px;
 `;
 export const Logo = styled.img`

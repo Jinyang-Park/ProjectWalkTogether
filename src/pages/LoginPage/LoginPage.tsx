@@ -307,12 +307,12 @@ const LoginPage = () => {
                     type='button'
                     onClick={() => navigate('/agreement')}
                   >
-                    이메일로 빠르게 회원 가입 하기
+                    이메일로 빠르게 회원가입 하기
                   </S.RegisterBtn>
                 </S.ResisterText>
               </S.ThirdBox>
               <S.FindBox>
-                <S.FindBtn onClick={findPwd}>비밀번호찾기</S.FindBtn>
+                <S.FindBtn onClick={findPwd}>비밀번호 찾기</S.FindBtn>
               </S.FindBox>
             </S.InputBoxContent>
           </S.InputBox>

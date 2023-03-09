@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { NewpostTag } from '../Rocoil/Atom';
+import { NewpostTag } from '../../Rocoil/Atom';
 
 const Tag = (props: { tagItem: string }) => {
   const Tag = props.tagItem;
   const [tagItem, setTagItem] = useState('');
   const [tagList, setTagList] = useRecoilState(NewpostTag);
-  let [isInputClicked, setIsInputClicked] = useState(false);
+  const [isInputClicked, setIsInputClicked] = useState(false);
 
   const onKeyPress = (e) => {
     if (tagList.length >= 3) {
@@ -77,22 +77,15 @@ const TagBox = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  /* height: 20px; */
   width: 84%;
   margin-bottom: 10px;
-  /* padding: 0 10px; */
-  /* border-radius: px; */
-  /* &:focus-within {
-    border-color: #8ca6bc;
-  }
-  background: #eef1f7; */
 `;
 
 const TagItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2px;
+  padding: 4px;
   margin-right: 4px;
   background-color: #8ca6bc;
   border-radius: 5px;
@@ -106,12 +99,13 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15px;
-  height: 15px;
+  width: 11px;
+  height: 11px;
   margin-left: 5px;
   background-color: white;
   border-radius: 50%;
   color: #c7d5ff;
+  font-size: 11px;
 `;
 
 const TagInput = styled.input`
