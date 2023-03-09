@@ -2,49 +2,88 @@ import React from 'react';
 import * as S from './LoginPage.style';
 import { useState } from 'react';
 import {
+  Auth,
   signInWithEmailAndPassword,
-  isSignInWithEmailLink,
-  onAuthStateChanged,
-  sendSignInLinkToEmail,
-  signInWithEmailLink,
   signInWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
   setPersistence,
   browserSessionPersistence,
   getAuth,
+  signOut,
 } from 'firebase/auth';
-import { doc, setDoc } from '@firebase/firestore';
+
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from 'firebase/firestore';
+
 import { useNavigate } from 'react-router-dom';
-import { dbService, authService } from '../../common/firebase';
+import { apiKey, dbService, authService } from '../../common/firebase';
 import { emailRegex, pwdRegex } from '../../utils/UserInfoRegex';
-import PassModal from '../LoginPage/PassModal';
+
 import CommonStyles from './../../styles/CommonStyles';
-import KakaoLoginButton from './KakaoLoginButton';
+import MessageWindow, {
+  MessageWindowLogoType,
+  MessageWindowProperties,
+  messageWindowPropertiesAtom,
+} from '../../messagewindow/MessageWindow';
+import LogoF from '../../assets/LoginPage/logof.svg';
+import LogoG from '../../assets/LoginPage/logog.svg';
+import { useSetRecoilState } from 'recoil';
+import { useEffect } from 'react';
 
 const LoginPage = () => {
+  const [disabled, setDisabled] = useState(false);
+  const [buttonColor, setButtonColor] = useState<boolean>(false);
   const [email, setEmail] = useState('');
   const [value, setValue] = useState('');
   const [password, setPassword] = useState('');
   const [loginModalopen, setLoginModalopen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
   const [user, setUser] = useState({});
+  const [validateEmailColor, setValidateEmailColor] = useState(false);
   const navigate = useNavigate();
+  const SAVE_EMAIL_ID_KEY = 'SAVE_EMAIL_ID_KEY';
+  const SAVE_EMAIL_ID_CHECKED_KEY = 'SAVE_EMAIL_ID_CHECKED_KEY';
+  const setState = useSetRecoilState<MessageWindowProperties>(
+    messageWindowPropertiesAtom
+  );
 
+  const [checkedSaveEmail, setCheckedSaveEmail] = useState<boolean | string>(
+    false
+  );
   //onchange로 값을 저장.
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     if (email.length > 5) {
-      if (pwdRegex.test(password) === false) {
-        setErrorMessage('이메일을 다시 입력해주세요.');
+      setDisabled(true);
+      if (emailRegex.test(email) === false) {
+        setButtonColor(false);
+        setDisabled(false);
+      } else {
+        // setValidateEmail(' 올바른 형식의 이메일 주소입니다.');
+        setDisabled(false);
+        setButtonColor(true);
       }
     }
   };
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    if (password.length > 0) {
+    if (password.length < 0) {
+      setDisabled(true);
+    } else {
       if (pwdRegex.test(password) === false) {
-        setErrorMessage('비밀번호를 다시 입력해주세요.');
+        setButtonColor(false);
+        setDisabled(true);
+      } else {
+        //setValidatePw(' 올바른 형식의 비밀번호 입니다.');
+        setDisabled(false);
+        setButtonColor(true);
       }
     }
   };
@@ -53,47 +92,127 @@ const LoginPage = () => {
   const handleSubmitClick = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setPersistence(authService, browserSessionPersistence)
-      .then(() => {
-        return signInWithEmailAndPassword(authService, email, password)
-          .then((data) => {
-            sessionStorage.setItem('id', data.user.displayName);
-            sessionStorage.setItem('email', data.user.email);
-            sessionStorage.setItem('id', data.user.displayName);
-            sessionStorage.setItem('email', data.user.email);
-            navigate('/', { replace: true });
-          })
+    return (
+      signInWithEmailAndPassword(authService, email, password)
+        .then((data) => {
+          const user = authService;
+          sessionStorage.setItem('id', data.user.displayName);
+          sessionStorage.setItem('email', data.user.email);
 
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
-            //auth/invalid-tenant-id
+          // navigate('/', { replace: true });
 
-            alert('로그인 실패');
-            if (email.length === 0) {
-              alert('이메일을 입력해 주세요');
-            } else if (emailRegex.test(email) === false) {
-              alert('이메일을 정확히 입력해 주세요');
-            } else if (password.length === 0) {
-              alert('비밀번호를 입력해 주세요');
-            } else if (pwdRegex.test(password) === false) {
-              alert('비밀번호를 정확히 입력해 주세요 ');
+          if (user.currentUser?.emailVerified) {
+            localStorage.setItem(
+              SAVE_EMAIL_ID_CHECKED_KEY,
+              checkedSaveEmail as string
+            );
+            if (checkedSaveEmail) {
+              localStorage.setItem(SAVE_EMAIL_ID_KEY, email);
             }
-          });
-      })
+            sessionStorage.setItem(
+              apiKey as string,
+              authService.currentUser?.uid as string
+            );
 
-      .catch((error) => {
-        const errorMessage = error.message;
-        alert(errorMessage);
-      });
+            navigate('/');
+          } else {
+            // alert('인증되지 않은 사용자입니다.');
+
+            MessageWindow.showWindow(
+              new MessageWindowProperties(
+                true,
+                '이메일 인증을 해주세요',
+                '',
+                [
+                  {
+                    text: '확인',
+                    callback: () => {
+                      if (authService.currentUser !== null) {
+                        signOut(authService).then(() => navigate('/login'));
+                      }
+                    },
+                  },
+                ],
+                MessageWindowLogoType.Perplex
+              ),
+              setState
+            );
+          }
+        })
+        //모달만들기
+
+        .catch((error) => {
+          const errorMessage = error.message;
+          console.log('errorMessage:', errorMessage);
+          if (errorMessage.includes('user-not-found')) {
+            //return alert('가입되지않은 회원입니다');
+
+            MessageWindow.showWindow(
+              new MessageWindowProperties(
+                true,
+                '가입되지 않은 회원입니다',
+                '',
+                [
+                  {
+                    text: '확인',
+                    callback: () => {
+                      return;
+                    },
+                  },
+                ],
+                MessageWindowLogoType.Perplex
+              ),
+              setState
+            );
+          } else if (errorMessage.includes('wrong-password')) {
+            console.log('wrong-password');
+            MessageWindow.showWindow(
+              new MessageWindowProperties(
+                true,
+                '비밀번호를 확인해주세요',
+                '',
+                [
+                  {
+                    text: '확인',
+                    callback: () => {
+                      return;
+                    },
+                  },
+                ],
+                MessageWindowLogoType.Perplex
+              ),
+              setState
+            );
+
+            // return alert('비밀번호가 잘못 되었습니다.');
+          }
+
+          // setErrorMessage('로그인 실패');
+          // if (email.length === 0) {
+          //   return alert('이메일을 입력해 주세요');
+          // } else if (emailRegex.test(email) === false) {
+          //   return setErrorMessage('이메일을 정확히 입력해 주세요');
+          // } else if (password.length === 0) {
+          //   return setErrorMessage('비밀번호를 입력해 주세요');
+          // } else if (pwdRegex.test(password) === false) {
+          //   alert('비밀번호를 정확히 입력해 주세요 ');
+          // }
+        })
+    );
   };
+
+  useEffect(() => {
+    if (email) {
+      if (email.match(emailRegex) === null) {
+        return alert('이메일 형식을 확인해주세요.');
+      }
+    }
+  }, [setEmail]);
 
   //비밀번호 찾기
   const findPwd = (e: any) => {
     e.preventDefault();
-    setLoginModalopen(true);
+    navigate('/find');
   };
 
   //소셜로그인 페이스북
@@ -142,7 +261,7 @@ const LoginPage = () => {
             {/* <S.leftBox /> */}
             <S.InputBoxContent>
               <S.LoginLogo>
-                <S.LogoText>같이 걸을래요</S.LogoText>
+                <S.LogoText>같이 걸어요</S.LogoText>
               </S.LoginLogo>
               <S.Inputholder>
                 <S.Input
@@ -164,19 +283,20 @@ const LoginPage = () => {
               </S.Inputholder>
 
               <S.ButtonBox>
-                <S.LoginBtn type='submit'>로그인</S.LoginBtn>
-
-                <S.Validityfontbox>{errorMessage}</S.Validityfontbox>
+                <S.LoginBtn
+                  disabled={disabled}
+                  state={buttonColor}
+                  type='submit'
+                >
+                  로그인
+                </S.LoginBtn>
               </S.ButtonBox>
 
               <S.OrText>SNS로 간편하게 시작하기</S.OrText>
 
               <S.SocialBox>
-                <S.Facebook
-                  onClick={signInWithFacebook}
-                  src='/assets/facebook.png'
-                />
-                <S.Google onClick={signInWithGoogle} src='assets/google.png' />
+                <S.Facebook onClick={() => signInWithFacebook()} src={LogoF} />
+                <S.Google onClick={() => signInWithGoogle()} src={LogoG} />
                 {/* <KakaoLoginButton /> */}
                 {/* <S.Naver src='assets/naver.png' /> */}
               </S.SocialBox>
@@ -197,17 +317,6 @@ const LoginPage = () => {
             </S.InputBoxContent>
           </S.InputBox>
         </form>
-
-        <PassModal
-          open={loginModalopen}
-          setLoginModalopen={setLoginModalopen}
-          onClose={() => setLoginModalopen(false)}
-        />
-        <PassModal
-          open={loginModalopen}
-          setLoginModalopen={setLoginModalopen}
-          onClose={() => setLoginModalopen(false)}
-        />
       </S.InputLayout>
     </CommonStyles>
   );

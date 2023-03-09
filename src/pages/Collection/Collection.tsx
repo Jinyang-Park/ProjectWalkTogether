@@ -83,7 +83,7 @@ const Collection = (props: any) => {
         </S.CategoryTitleWrapper>
 
         <S.LikedListItem>
-          {shoes.map((post: any) => {
+          {shoes.slice(0, 24).map((post: any) => {
             return <CardSection key={post.id} post={post} refetch={refetch} />;
           })}
         </S.LikedListItem>

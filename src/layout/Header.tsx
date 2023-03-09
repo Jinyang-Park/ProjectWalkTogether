@@ -73,7 +73,7 @@ const Header = () => {
         <S.NavLi>
           <S.OllaeBox onClick={home}>
             <S.OllaeLogo
-              src={require('../../src/assets/ollaelogo.svg').default}
+              src={require('../../src/assets/Mainpage/ollaelogo.svg').default}
             />
             <S.OllaeText>올래</S.OllaeText>
           </S.OllaeBox>

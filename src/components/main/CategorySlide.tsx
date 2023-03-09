@@ -8,8 +8,8 @@ import React from 'react';
 import { constSelector } from 'recoil';
 import { CategorysList } from '../../utils/CategorysList';
 import { useNavigate, useParams } from 'react-router-dom';
-import nextarrow from '../../assets/nextarrow.svg';
-import beforearrow from '../../assets/beforearrow.svg';
+import nextarrow from '../../assets/Mainpage/nextarrow.svg';
+import beforearrow from '../../assets/Mainpage/beforearrow.svg';
 
 //MdArrowForwardIos
 
@@ -21,7 +21,7 @@ function CategorySlide() {
     swipeToSlide: true,
     speed: 500,
     slidesToShow: 7,
-    slidesToScroll: 1,
+    slidesToScroll: 3,
   };
 
   return (

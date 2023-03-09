@@ -25,7 +25,7 @@ import MeetDateInitializer from './../components/MeetDateInitializer/MeetDateIni
 import ChangePassword from '../pages/ChangePassword/ChangePassword';
 import ScrollToTopButton from './../components/ScrollToTopButton/ScrollToTopButton';
 import RerouteToMyPage from './../components/RerouteToMyPage/RerouteToMyPage';
-
+import FindPassword from '../pages/LoginPage/Findpassword';
 const Router = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
@@ -51,6 +51,7 @@ const Router = () => {
         <Route path='/chat' element={<ChattingPage />} />
         <Route path='/changepassword' element={<ChangePassword />} />
         <Route path='/reroutetomypage' element={<RerouteToMyPage />} />
+        <Route path='/find' element={<FindPassword />} />
       </Routes>
       <ScrollToTopButton />
       <MeetDateInitializer />
