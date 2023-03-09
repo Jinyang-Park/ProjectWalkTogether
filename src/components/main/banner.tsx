@@ -47,12 +47,12 @@ const MainBanner = () => {
 export default MainBanner;
 const SliderWrapper = styled(Slider)`
   width: 100%;
-  height: 27rem;
+  height: 432px;
 
   .slick-slide {
     position: relative;
     width: 100%;
-    height: 27rem;
+    height: 432px;
   }
   .slick-dots {
     position: absolute;
@@ -63,15 +63,15 @@ const SliderWrapper = styled(Slider)`
     margin-right: 20px;
 
     li {
-      width: 0.05rem;
-      height: 0.1rem;
-      margin: 0 0.45rem;
+      width: 0.8px;
+      height: 1.6px;
+      margin: 0 7.2px;
     }
     button {
       margin: 5px;
 
-      width: 0.3rem;
-      height: 0.3rem;
+      width: 4.8px;
+      height: 4.8px;
       border-radius: 50%;
       background: '#CED3DB';
       &::after {
@@ -81,63 +81,63 @@ const SliderWrapper = styled(Slider)`
     .slick-active {
       button {
         background: '#d7d3ff';
-        width: 0.3rem;
-        height: 0.3rem;
+        width: 4.8px;
+        height: 4.8px;
       }
     }
   }
 `;
 const SlideWrapper = styled.div`
   width: 100%;
-  height: 27rem;
+  height: 432px;
   overflow: hidden;
 `;
 const BannerContainer = styled.div`
-  width: 64rem;
+  width: 1024px;
   height: 100%;
   margin: 0 auto;
   position: relative;
 `;
 const BannerTextBox = styled.div`
   position: absolute;
-  width: 40.25rem;
-  height: 12.8125rem;
-  left: 9.125rem;
+  width: 644px;
+  height: 205px;
+  left: 146px;
   z-index: 13px;
 `;
 
 const BannerTitle = styled.div`
   flex-wrap: wrap;
-  width: 50.25rem;
-  height: 4.25rem;
+  width: 804px;
+  height: 68px;
   font-weight: 300;
-  font-size: 2.25rem;
+  font-size: 36px;
   line-height: 160%;
   display: flex;
   align-items: center;
   color: '#333D4B';
-  margin-bottom: 1.5625rem;
+  margin-bottom: 25px;
   z-index: 10;
   position: relative;
   top: 150px;
 `;
 const BannerSubTitle = styled.div`
-  width: 35.4375rem;
-  height: 4rem;
+  width: 567px;
+  height: 64px;
   font-weight: 600;
-  font-size: 2.25rem;
+  font-size: 36px;
   line-height: 160%;
   color: '#333D4B';
 `;
 const BannerFirstImg = styled.img`
   position: absolute;
-  width: 64rem;
-  height: 27rem;
+  width: 1024px;
+  height: 432px;
 
   /* background-image: ; */
 `;
 const BannerSecondImg = styled.img`
   position: absolute;
-  width: 64rem;
-  height: 27rem;
+  width: 1024px;
+  height: 432px;
 `;

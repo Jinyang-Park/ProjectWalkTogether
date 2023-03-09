@@ -1,25 +1,23 @@
 import styled from 'styled-components';
 
-export const InputLayout = styled.div``;
+export const InputLayout = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+  margin-bottom: 64px;
+`;
 
 export const InputBox = styled.div`
-  display: flex;
+  width: 386px;
+  height: 532px;
 
-  flex-wrap: wrap;
-  width: 460px;
-  height: 600px;
-
-  margin-top: 80px;
-  margin: auto;
   border-radius: 10px;
-  padding: 5px;
-  position: relative;
-  top: 100px;
-  box-shadow: 0 0 10px #bec5d7;
+  background: #ffffff;
+  box-shadow: 0px 0px 7px rgba(190, 197, 215, 0.8);
   z-index: 1;
 `;
 export const InputBoxContent = styled.div`
-  width: 360px;
+  width: 306px;
 
   margin: auto;
 `;
@@ -27,15 +25,16 @@ export const InputBoxContent = styled.div`
 // 인풋태그
 export const Input = styled.input`
   border: none;
-  width: 320px;
+  width: 240px;
+  margin-top: 10px;
   height: 38px;
   position: relative;
+
+  margin: 0 auto;
   left: 30px;
+  font-family: 'SUITERegular';
   outline: none;
   background-color: transparent;
-  :focus-visible {
-    outline: none;
-  }
 `;
 
 export const ResetButton = styled.img`
@@ -47,8 +46,8 @@ export const ResetButton = styled.img`
 export const Inputholder = styled.div`
   margin: auto;
   border-radius: 10px;
-  width: 360px;
-  height: 48px;
+  width: 306px;
+  height: 47px;
   border: 2px solid #bec5d7;
   color: #b2c8df;
 
@@ -59,17 +58,19 @@ export const Inputholder = styled.div`
 
 //잠깐만 !
 export const LoginLogo = styled.div`
-  text-align: center;
-  margin-top: 46px;
-  margin-bottom: 25px;
-  font-size: 32px;
-  font-family: 'SUITERegular';
-  letter-spacing: -0.1px;
-  color: black;
+  height: 112px;
+  /* background-color: antiquewhite; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const LogoText = styled.div`
-  font-family: 'SUITERegular';
-  letter-spacing: -0.1px;
+  font-family: 'SUIT';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 25px;
+  color: #24264e;
 `;
 
 export const ButtonBox = styled.div`
@@ -81,19 +82,23 @@ export const ButtonBox = styled.div`
 
 export const OrText = styled.div`
   padding-top: 20px;
-  font-size: 13px;
+  font-size: 10px;
   align-items: center;
   text-align: center;
   font-family: 'SUITERegular';
   letter-spacing: -0.1px;
+  font-weight: 300;
   color: #7d8bae;
 `;
 
 export const SocialBox = styled.div`
-  gap: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 24px;
+  /* width: 100px;
+  background-color: green; */
+  margin: 16px 0px 27px 0px;
 `;
 
 export const FindBox = styled.div`
@@ -106,61 +111,46 @@ export const LineBox = styled.div`
   align-items: center;
   display: flex;
 `;
-export const Naver = styled.img`
-  margin: 20px;
-  width: 40px;
-
-  cursor: pointer;
-`;
 
 export const Facebook = styled.img`
-  margin: 20px;
   width: 40px;
 
   cursor: pointer;
 `;
 
 export const Google = styled.img`
-  margin: 20px;
-  width: 40px;
-
-  cursor: pointer;
-`;
-export const KakaoLoginButton = styled.img`
-  margin: 20px;
   width: 40px;
 
   cursor: pointer;
 `;
 
-export const LoginBtn = styled.button`
+export const LoginBtn = styled.button<{ state: boolean }>`
   border-radius: 5px;
-  width: 360px;
-  height: 40px;
+  width: 306px;
+  height: 46px;
   font-size: 16px;
   color: black;
   font-weight: 400;
   margin-top: 15px;
-  background-color: #d1d1d1;
+  background: ${(props) => (props.state ? '#7d8bae;' : '#C8D1E0')};
   cursor: pointer;
+  margin-top: 56px;
+  color: white;
 
-  &:hover {
-    background: #7d8bae;
-    color: white;
-    transition: 0.5s;
-  }
+  font-family: 'SUITERegular';
 `;
 export const ThirdBox = styled.div`
   display: flex;
-  align-items: center;
-  margin: 0 auto;
-  justify-content: space-between;
+  height: 20px;
 `;
 
 export const RegisterBtn = styled.button`
   background-color: transparent;
   padding-left: 5px;
-  font-family: 'SUITERegular';
+  font-weight: 300;
+  font-size: 12px;
+  font-family: 'SUITEBold';
+  color: black;
 `;
 
 export const FindBtn = styled.button`
@@ -171,25 +161,45 @@ export const FindBtn = styled.button`
   letter-spacing: -0.1px;
   color: #7d8bae;
   margin: auto;
+  font-size: 10px;
   padding-top: 10px;
 `;
 
 export const ResisterText = styled.p`
-  font-size: 13px;
-  align-items: center;
-  text-align: center;
+  font-size: 11px;
+
   font-family: 'SUITERegular';
   letter-spacing: -0.1px;
   color: #7d8bae;
 `;
 export const Validityfontbox = styled.div`
   border: none;
-  width: 330px;
+  font-family: 'SUITERegular';
   font-size: 10px;
-  height: 10px;
+  height: 20px;
   position: relative;
   right: 10px;
-  margin-top: 3px;
+  margin-top: 5px;
   outline: none;
-  color: blue;
+  color: #7d8bae;
+  margin-left: 17px;
+`;
+
+// export const Error = styled.strong`
+//   display: ${(props) => (props.display ? 'block' : 'none')}; ;
+// `;
+export const ValidityEmailCircle = styled.img<{ validateEmailColor: boolean }>`
+  background-color: ${(Props) =>
+    Props.validateEmailColor ? '#1BE08D' : '#FF8F8F'};
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 10px;
+
+  z-index: 99;
+`;
+
+export const ValidBox = styled.div`
+  display: flex;
+  width: 306px;
 `;
