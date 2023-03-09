@@ -1,24 +1,19 @@
 import styled from 'styled-components';
 
 export const InputLayout = styled.div`
-  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+  margin-bottom: 64px;
 `;
 
 export const InputBox = styled.div`
-  top: 64px;
-  position: absolute;
-  display: flex;
-  margin: 64px 0px 64px 0px;
-  flex-wrap: wrap;
   width: 386px;
   height: 532px;
-  bottom: 64px;
 
-  margin: auto;
   border-radius: 10px;
-  position: relative;
-
-  box-shadow: 0 0 10px #bec5d7;
+  background: #ffffff;
+  box-shadow: 0px 0px 7px rgba(190, 197, 215, 0.8);
   z-index: 1;
 `;
 export const InputBoxContent = styled.div`
@@ -32,7 +27,7 @@ export const Input = styled.input`
   border: none;
   width: 240px;
   margin-top: 10px;
-  height: 2.375rem;
+  height: 38px;
   position: relative;
 
   margin: 0 auto;
@@ -50,7 +45,7 @@ export const ResetButton = styled.img`
 //Input태그의 테두리
 export const Inputholder = styled.div`
   margin: auto;
-  border-radius: 0.625rem;
+  border-radius: 10px;
   width: 306px;
   height: 47px;
   border: 2px solid #bec5d7;
@@ -63,17 +58,19 @@ export const Inputholder = styled.div`
 
 //잠깐만 !
 export const LoginLogo = styled.div`
-  text-align: center;
-
-  margin-bottom: 48px;
-  font-size: 32px;
-  font-family: 'SUITERegular';
-  letter-spacing: -0.1px;
-  color: black;
+  height: 112px;
+  /* background-color: antiquewhite; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const LogoText = styled.div`
-  font-family: 'SUITERegular';
-  letter-spacing: -0.1px;
+  font-family: 'SUIT';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 25px;
+  color: #24264e;
 `;
 
 export const ButtonBox = styled.div`
@@ -116,13 +113,13 @@ export const LineBox = styled.div`
 `;
 
 export const Facebook = styled.img`
-  width: 2.5rem;
+  width: 40px;
 
   cursor: pointer;
 `;
 
 export const Google = styled.img`
-  width: 2.5rem;
+  width: 40px;
 
   cursor: pointer;
 `;
@@ -134,10 +131,10 @@ export const LoginBtn = styled.button<{ state: boolean }>`
   font-size: 16px;
   color: black;
   font-weight: 400;
-  margin-top: 0.9375rem;
+  margin-top: 15px;
   background: ${(props) => (props.state ? '#7d8bae;' : '#C8D1E0')};
   cursor: pointer;
-
+  margin-top: 56px;
   color: white;
 
   font-family: 'SUITERegular';

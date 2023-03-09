@@ -1,24 +1,19 @@
 import styled from 'styled-components';
 
 export const InputLayout = styled.div`
-  width: 100%;
-
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
+  justify-content: center;
+  margin-top: 64px;
+  margin-bottom: 64px;
 `;
 export const InputBox = styled.div`
-  border-radius: 30px;
-
   width: 386px;
   height: 532px;
-  margin: 0 auto;
-  position: relative;
-  top: 64px;
-  bottom: 64px;
 
-  box-shadow: 0 0 10px #bec5d7;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0px 0px 7px rgba(190, 197, 215, 0.8);
+  z-index: 1;
 `;
 export const Line = styled.div`
   height: 32px;
@@ -33,7 +28,7 @@ export const join_box = styled.div`
   padding-right: 40px;
   margin-top: 34.5px;
 
-  padding-bottom: 50px;
+  padding-bottom: 80px;
 `;
 export const Title_head = styled.p`
   font-size: 20px;
@@ -113,7 +108,7 @@ export const DialogButton3 = styled.img`
   margin-top: 1px;
   width: 20px;
   height: 20px;
-  left: 215px;
+  left: 850px;
   background-size: cover;
 `;
 
@@ -122,7 +117,7 @@ export const DialogButton4 = styled.img`
   margin-top: 1px;
   width: 20px;
   height: 20px;
-  left: 200px;
+  left: 835px;
   background-size: cover;
 `;
 
@@ -152,26 +147,15 @@ export const ModalContents = styled.div`
   width: 300px;
 `;
 
-export const CloseButton = styled.button`
+export const CloseButton = styled.img`
   background: none;
   color: gray;
-  border: 2px solid;
-  padding: 5px 20px;
-  font-size: 18px;
-  transition: color 0.2s, border-color 1s, transform 0.5s;
   position: absolute;
-  bottom: 10px;
+  top: 10px;
   right: 20px;
-
+  width: 20px;
+  height: 20px;
   cursor: pointer;
-
-  &:hover {
-    border-color: black;
-    color: black;
-    box-shadow: 0 0.5em 0.5em -0.4em;
-    transform: translateY(-5px);
-    cursor: pointer;
-  }
 `;
 export const AgreeBox = styled.div`
   display: flex;

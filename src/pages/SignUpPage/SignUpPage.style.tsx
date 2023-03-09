@@ -144,6 +144,19 @@ export const ValidityNameCircle = styled.img<{
 `;
 
 export const VConfirmCircle = styled.img<{
+  validatePwColor: boolean;
+}>`
+  background-color: ${(Props) =>
+    Props.validatePwColor ? '#1BE08D' : '#FF8F8F'};
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 10px;
+
+  z-index: 99;
+`;
+
+export const PassConfirmCircle = styled.img<{
   validatePwconfirmColor: boolean;
 }>`
   background-color: ${(Props) =>

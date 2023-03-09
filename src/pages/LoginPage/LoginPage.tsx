@@ -39,7 +39,7 @@ import { useSetRecoilState } from 'recoil';
 import { useEffect } from 'react';
 
 const LoginPage = () => {
-  const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(false);
   const [buttonColor, setButtonColor] = useState<boolean>(false);
   const [email, setEmail] = useState('');
   const [value, setValue] = useState('');
@@ -61,10 +61,10 @@ const LoginPage = () => {
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     if (email.length > 5) {
-      setDisabled(false);
+      setDisabled(true);
       if (emailRegex.test(email) === false) {
         setButtonColor(false);
-        setDisabled(true);
+        setDisabled(false);
       } else {
         // setValidateEmail(' 올바른 형식의 이메일 주소입니다.');
         setDisabled(false);
@@ -74,8 +74,9 @@ const LoginPage = () => {
   };
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    if (password.length > 0) {
-      setDisabled(false);
+    if (password.length < 0) {
+      setDisabled(true);
+    } else {
       if (pwdRegex.test(password) === false) {
         setButtonColor(false);
         setDisabled(true);

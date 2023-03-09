@@ -6,6 +6,7 @@ import { currentUserUid, isLoggedIn } from '../../Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import AgreeModal from './AgreeModal';
 import React from 'react';
+import xxx from '../../assets/Agreement/xbutton.svg';
 
 const Agreement = () => {
   const [isOpenModal1, setOpenModal1] = useState<boolean>(false);
@@ -381,12 +382,11 @@ const Agreement = () => {
                         </p>
                       </S.ModalContents>
                       <S.CloseButton
+                        src={xxx}
                         onClick={() => {
                           setOpenModal1(!isOpenModal1);
                         }}
-                      >
-                        Close
-                      </S.CloseButton>
+                      ></S.CloseButton>
                     </AgreeModal>
                   )}
                   <S.DialogButton
@@ -631,12 +631,11 @@ const Agreement = () => {
                         </p>
                       </S.ModalContents>
                       <S.CloseButton
+                        src={xxx}
                         onClick={() => {
                           setIsOpenModal2(!isOpenModal2);
                         }}
-                      >
-                        Close
-                      </S.CloseButton>
+                      ></S.CloseButton>
                     </AgreeModal>
                   )}
                   <S.DialogButton2
@@ -842,12 +841,11 @@ const Agreement = () => {
                         </p>
                       </S.ModalContents>
                       <S.CloseButton
+                        src={xxx}
                         onClick={() => {
                           setIsOpenModal3(!isOpenModal3);
                         }}
-                      >
-                        Close
-                      </S.CloseButton>
+                      ></S.CloseButton>
                     </AgreeModal>
                   )}
                   <S.DialogButton3
@@ -1222,12 +1220,11 @@ const Agreement = () => {
                         </p>
                       </S.ModalContents>
                       <S.CloseButton
+                        src={xxx}
                         onClick={() => {
                           setIsOpenModal4(!isOpenModal4);
                         }}
-                      >
-                        Close
-                      </S.CloseButton>
+                      ></S.CloseButton>
                     </AgreeModal>
                   )}
                   <S.DialogButton4

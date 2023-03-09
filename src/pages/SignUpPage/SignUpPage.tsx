@@ -39,7 +39,7 @@ const SignUpPage = () => {
   const [validateEmail, setValidateEmail] = useState('');
   const [validateEmailColor, setValidateEmailColor] = useState(false);
   const [validatePw, setValidatePw] = useState('');
-  const [validatePwColor, setValidatePwColor] = useState(true);
+  const [validatePwColor, setValidatePwColor] = useState<boolean>(true);
   const [validatePwconfirm, setValidatePwconfirm] = useState('');
   const [validatePwconfirmColor, setValidatePwconfirmColor] = useState(true);
   const [validateDisplayname, setValidateDisplayname] = useState('');
@@ -121,7 +121,9 @@ const SignUpPage = () => {
     //비밀번호 유효성 검사
     if (password.length > 0) {
       if (pwdRegex.test(password) === false) {
-        setValidatePw(' 옳바른 형식을 입력해 주십시오.');
+        setValidatePw(
+          ' 숫자, 글자와 특수문자를 사용하여 5글자 이상로 작성해주세요.'
+        );
         setValidatePwColor(false);
         setPwShow(true);
       } else {
@@ -317,7 +319,7 @@ const SignUpPage = () => {
                 <S.ValidBox>
                   {pwShow && (
                     <S.VConfirmCircle
-                      validatePwconfirmColor={validatePwconfirmColor}
+                      validatePwColor={validatePwColor}
                     ></S.VConfirmCircle>
                   )}
                   <S.Validityfontbox>{validatePw}</S.Validityfontbox>
@@ -338,9 +340,9 @@ const SignUpPage = () => {
               ) : (
                 <S.ValidBox>
                   {conFirmShow && (
-                    <S.VConfirmCircle
+                    <S.PassConfirmCircle
                       validatePwconfirmColor={validatePwconfirmColor}
-                    ></S.VConfirmCircle>
+                    ></S.PassConfirmCircle>
                   )}
                   <S.Validityfontbox>{validatePwconfirm}</S.Validityfontbox>
                 </S.ValidBox>
