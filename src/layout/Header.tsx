@@ -30,14 +30,6 @@ const Header = () => {
   const [alarm, setAlarm] = useState(0);
   const [view, setView] = useState(false);
 
-  // const getKakaoCode = () => {
-  //   const code = new URL(window.location.href).searchParams.get('code');
-  //   if (code) {
-  //     setKakaoCode(code);
-  //     console.log(code);
-  //   }
-  // };
-
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
@@ -94,68 +86,14 @@ const Header = () => {
           <S.NavUl>
             <S.NavLi>
               {loggedIn === false ? (
-                <S.NavText
-                  onClick={() => {
-                    // alert('로그인을 해주세요!');
-                    MessageWindow.showWindow(
-                      new MessageWindowProperties(
-                        true,
-                        '로그인을 해주세요!',
-                        '',
-                        [
-                          {
-                            text: '닫 기',
-                            callback: () => {
-                              MessageWindow.showWindow(
-                                new MessageWindowProperties(),
-                                setState
-                              );
-                            },
-                          },
-                        ],
-                        MessageWindowLogoType.Perplex
-                      ),
-                      setState
-                    );
-                  }}
-                  to='/login'
-                >
-                  글 쓰기
-                </S.NavText>
+                <S.NavText to='/login'>글 쓰기</S.NavText>
               ) : (
                 <S.NavText to='/postpage'>글 쓰기</S.NavText>
               )}
             </S.NavLi>
             <S.NavLi>
               {loggedIn === false ? (
-                <S.NavText
-                  onClick={() => {
-                    // alert('로그인을 해주세요!');
-                    MessageWindow.showWindow(
-                      new MessageWindowProperties(
-                        true,
-                        '로그인을 해주세요!',
-                        '',
-                        [
-                          {
-                            text: '닫 기',
-                            callback: () => {
-                              MessageWindow.showWindow(
-                                new MessageWindowProperties(),
-                                setState
-                              );
-                            },
-                          },
-                        ],
-                        MessageWindowLogoType.Perplex
-                      ),
-                      setState
-                    );
-                  }}
-                  to='/login'
-                >
-                  채팅
-                </S.NavText>
+                <S.NavText to='/login'>채팅</S.NavText>
               ) : (
                 <S.NavText to='/chat'>채 팅</S.NavText>
               )}

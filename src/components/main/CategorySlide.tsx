@@ -47,7 +47,7 @@ function CategorySlide() {
 const StyledSlider = styled(Slider)`
   margin: auto;
   width: 80%; //슬라이드 컨테이너 영역
-  padding-top: 37px;
+  margin-top: 52px;
 
   .slick-list {
     //슬라이드 스크린
