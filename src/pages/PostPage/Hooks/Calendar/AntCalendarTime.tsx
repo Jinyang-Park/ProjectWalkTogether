@@ -6,7 +6,6 @@ import { useRecoilState } from 'recoil';
 import { Time } from '../../../../Rocoil/Atom';
 import { ConfigProvider } from 'antd';
 import ko_KR from 'antd/locale/ko_KR';
-import { blue } from '@mui/material/colors';
 
 const AntCalendarTime: React.FC = () => {
   const format = 'HH:mm';
@@ -25,7 +24,7 @@ const AntCalendarTime: React.FC = () => {
         onChange={onChange}
         inputReadOnly={true}
         format={format}
-        placeholder="시간을 입력해주세요."
+        placeholder='시간을 입력해주세요.'
         style={{
           width: 219,
           height: 40,
@@ -35,7 +34,7 @@ const AntCalendarTime: React.FC = () => {
         allowClear={false}
         autoFocus={false}
         bordered={false}
-        placement="bottomLeft"
+        placement='bottomLeft'
       />
     </ConfigProvider>
   );

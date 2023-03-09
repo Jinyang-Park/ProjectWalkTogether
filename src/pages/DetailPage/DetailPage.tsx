@@ -2,9 +2,9 @@ import * as S from './DetailPage.style';
 import Comments from './Comments/Comments';
 import CommonStyles from './../../styles/CommonStyles';
 import DetailMap from './DetailMap/DetailMap';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { isLoggedIn, paramsState } from '../../Rocoil/Atom';
-import { useEffect, useState, useRef } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { isLoggedIn } from '../../Rocoil/Atom';
+import { useEffect, useState } from 'react';
 import {
   getDoc,
   doc,
@@ -18,11 +18,9 @@ import {
   onSnapshot,
 } from 'firebase/firestore';
 import { authService, dbService } from './../../common/firebase';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import { assert } from 'console';
-import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory';
+import { useNavigate, useParams } from 'react-router-dom';
 import DropBox from './DropBox/DropBox';
-import { async, uuidv4 } from '@firebase/util';
+import { uuidv4 } from '@firebase/util';
 
 import { userForChat, currentUserUid } from '../../Rocoil/Atom';
 import useDetectClose from './../../hooks/useDetectClose';
