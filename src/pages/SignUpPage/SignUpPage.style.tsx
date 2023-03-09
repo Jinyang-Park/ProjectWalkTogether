@@ -21,17 +21,20 @@ export const InputBox = styled.div`
 
 //Inputholder안의 진짜 input태그
 export const Input = styled.input`
-  border: none;
-  width: 240px;
-  margin-top: 10px;
-  height: 38px;
-  position: relative;
-
-  margin: 0 auto;
-  left: 30px;
-  font-family: 'SUITERegular';
   outline: none;
-  background-color: transparent;
+  position: relative;
+  left: 10px;
+  top: 7px;
+  width: 250px;
+
+  &&::placeholder {
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #24264e;
+  }
 `;
 
 //Input태그의 테두리

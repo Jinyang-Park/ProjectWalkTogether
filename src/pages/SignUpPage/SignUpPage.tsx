@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
 import * as S from './SignUpPage.style';
-
 import {
   createUserWithEmailAndPassword,
   updateProfile,
@@ -9,15 +7,7 @@ import {
 } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { dbService, authService } from '../../common/firebase';
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  setDoc,
-  where,
-} from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { emailRegex, nicknameRegex, pwdRegex } from '../../utils/UserInfoRegex';
 import CommonStyles from './../../styles/CommonStyles';
 import { useSetRecoilState } from 'recoil';
@@ -52,10 +42,6 @@ const SignUpPage = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
-
-  // if (password.length === 0) {
-  //   return setPwvisible(false);
-  // }
 
   //onchange로 값을 저장한다.
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -173,24 +159,6 @@ const SignUpPage = () => {
       }
     }
   };
-
-  // useEffect(() => {
-  //   if (displayname.length > 0) {
-  //     if (nicknameRegex.test(displayname) === false) {
-  //       setValidateDisplayname(
-  //         '한글,영문,숫자 포함 1자 이상 7자 이하로 작성해 주세요.'
-  //       );
-  //       setShow(true);
-  //       setValidateDisplayColor(false);
-  //     } else {
-  //       setShow(true);
-  //       setValidateDisplayname('옳바른 형식의 닉네임 입니다.');
-  //       setValidateDisplayColor(true);
-  //     }
-  //   } else {
-  //     setNameVisible(false);
-  //   }
-  // }, [displayname]);
 
   // submit & firebase
   const handleSubmitClick = async (e: React.FormEvent<HTMLFormElement>) => {
