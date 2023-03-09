@@ -12,7 +12,8 @@ import { Post, usePosts } from '../../api/postsApi';
 
 const MapPage = () => {
   // firestore에서 데이터 'Post' 가져오기
-  const posts: Array<Post> = usePosts();
+
+  const { posts } = usePosts();
 
   // not a typo
   const cetegory = useRecoilValue(Cetegory);

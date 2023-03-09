@@ -8,11 +8,13 @@ import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { ref } from 'firebase/storage';
 import { authService, dbService } from '../../common/firebase';
 import CommonStyles from './../../styles/CommonStyles';
+import { Post } from '../../api/postsApi';
 
 interface postProps {
-  post: any;
+  post: Post;
+  refetch: () => void;
 }
-const CardSection = ({ post }: postProps) => {
+const CardSection = ({ post, refetch }: postProps) => {
   // console.log('post', post.id);
   const navigate = useNavigate();
   const setParams = useSetRecoilState(paramsState);
@@ -57,11 +59,11 @@ const CardSection = ({ post }: postProps) => {
     // doc = getDocs(Post 중에 PostingID_Posting === post.PostingID_Posting인 것들)[0]
     // updateDoc(doc, likderifjsif)
 
-    updateDoc(doc(dbService, 'Post', post.id), {
+    await updateDoc(doc(dbService, 'Post', post.id), {
       LikedUsers: p.LikedUsers,
-    })
-      .then((s) => console.log('succes', s))
-      .catch((e) => console.log(e));
+    });
+
+    refetch();
   };
 
   // 좋아요 취소
@@ -69,9 +71,10 @@ const CardSection = ({ post }: postProps) => {
     console.log(post.id);
 
     const u = post.LikedUsers.filter((id: string) => id !== uid);
-    updateDoc(doc(dbService, 'Post', post.id), {
+    await updateDoc(doc(dbService, 'Post', post.id), {
       LikedUsers: u,
     });
+    refetch();
   };
 
   return (
