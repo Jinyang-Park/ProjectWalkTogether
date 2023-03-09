@@ -23,9 +23,9 @@ import { Post, usePosts } from '../../api/postsApi';
 
 const Category = () => {
   const { category } = useParams();
-
-  // postApi
-  const postings: Array<Post> = usePosts().filter((post) => {
+  console.log(category);
+  const { posts, refetch } = usePosts();
+  const postings: Array<Post> = posts.filter((post) => {
     if (category === '전체') return true;
     return post.Category_Posting === category;
   });
@@ -157,7 +157,9 @@ const Category = () => {
             </S.NoResult>
           ) : (
             DoubledFilterDate.map((post: any) => {
-              return <CardSection key={post.id} post={post} />;
+              return (
+                <CardSection key={post.id} post={post} refetch={refetch} />
+              );
             })
           )}
         </S.LikedListItem>
