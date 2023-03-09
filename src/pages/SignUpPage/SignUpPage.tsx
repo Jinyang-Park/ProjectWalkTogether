@@ -98,9 +98,6 @@ const SignUpPage = () => {
       });
   }, [email, setValidateEmail]);
 
-  // if (password.length === 0) {
-  //   setPwvisible(false);
-  // }
   // password값을 저장하고 유효성검사를 실시한다.
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
