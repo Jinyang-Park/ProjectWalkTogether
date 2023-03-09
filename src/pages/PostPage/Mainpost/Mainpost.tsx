@@ -34,7 +34,7 @@ function MainPost({
 }: SetProps) {
   // 모달 외부 클릭 시 닫기 customhook
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
-  const [posttitel, Setposttitle] = useRecoilState(TitleInput); //글 제목
+  const [posttitle, Setposttitle] = useRecoilState(TitleInput); //글 제목
   //const [postTag, setPostTag] = useState(''); //해쉬태그
   const [postdescription, SetDescription] = useRecoilState(DescriptionInput); //글 내용
   // const [postCategory, setPostCategory] = useState(''); //카테고리
@@ -43,6 +43,8 @@ function MainPost({
   const [thumbnail, setThumbnail] = useState<any>(null); // Handles input change event and updates state
   const [banner, setBanner] = useState<any>(null);
   const [show, setShow] = useState<any>(false);
+  //유효성검사
+  const [isActiveTitle, setIsActiveTitle] = useState<boolean>(false);
 
   //이미지 압축 함수
   const compressThumbnailImage = async (image: File) => {
@@ -110,7 +112,7 @@ function MainPost({
   ////////
   const handleChange = (e: any) => {
     Setposttitle(e.target.value);
-    posttitel === '' ? setIsValidityTitle(true) : setIsValidityTitle(false);
+    posttitle === '' ? setIsValidityTitle(true) : setIsValidityTitle(false);
   };
 
   ////////
@@ -134,7 +136,7 @@ function MainPost({
             src={
               banner
                 ? banner
-                : require('../../../assets/ChattingIcon/banner2.svg').default
+                : require('../../../assets/ChattingIcon/banner3.svg').default
             }
           />
         </label>
@@ -203,6 +205,7 @@ function MainPost({
           )}
           {/*모달 외부 클릭 시 닫힘*/}
           <S.InputTitle
+            // value={isActiveTitle}
             onChange={handleChange}
             placeholder='제목을 입력해 주세요'
             isValidityTitle={isValidityTitle}
