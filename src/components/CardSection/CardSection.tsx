@@ -63,7 +63,9 @@ const CardSection = ({ post, refetch }: postProps) => {
       LikedUsers: p.LikedUsers,
     });
 
-    refetch();
+    setLikeBtn(true);
+
+    // refetch();
   };
 
   // 좋아요 취소
@@ -74,7 +76,8 @@ const CardSection = ({ post, refetch }: postProps) => {
     await updateDoc(doc(dbService, 'Post', post.id), {
       LikedUsers: u,
     });
-    refetch();
+    // refetch();
+    setLikeBtn(false);
   };
 
   return (
