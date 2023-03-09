@@ -6,9 +6,9 @@ import { useParams } from 'react-router-dom';
 import { paramsState } from '../../Rocoil/Atom';
 import * as S from './CardSection.style';
 import CardSection from '../../components/CardSection/CardSection';
-import Fire from '../../assets/Mainpage/Fire.svg';
-import Boog from '../../assets/Mainpage/boog.svg';
-import gitbal from '../../assets/Mainpage/gitbal.svg';
+import Fire from '../../assets/Mainpage/Fire.png';
+import Boog from '../../assets/Mainpage/boog.png';
+import gitbal from '../../assets/Mainpage/gitbal.png';
 import { Post, usePosts } from '../../api/postsApi';
 
 const Collection = (props: any) => {

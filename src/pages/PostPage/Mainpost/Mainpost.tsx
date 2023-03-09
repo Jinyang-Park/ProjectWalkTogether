@@ -107,14 +107,14 @@ function MainPost({
   // 타이틀
   ////////
   const handleChange = (e: any) => {
-    Setposttitle(e.target.value);
+    Setposttitle(() => e.target.value);
     posttitle === '' ? setIsValidityTitle(true) : setIsValidityTitle(false);
   };
 
   ////////
   //글내용
   const handleChangeText = (e: any) => {
-    SetDescription(e.target.value);
+    SetDescription(() => e.target.value);
     postdescription === ''
       ? setIsValidityContents(true)
       : setIsValidityContents(false);

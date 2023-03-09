@@ -6,9 +6,9 @@ import CategorySlide from '../../components/main/CategorySlide';
 import FootOning from './FootOning';
 import * as S from './CardSection.style';
 import LikesComponent from './LikeComponent';
-import Fire from '../../assets/Mainpage/Fire.svg';
-import Boog from '../../assets/Mainpage/boog.svg';
-import gitbal from '../../assets/Mainpage/gitbal.svg';
+import Fire from '../../assets/Mainpage/Fire.png';
+import Boog from '../../assets/Mainpage/boog.png';
+import gitbal from '../../assets/Mainpage/gitbal.png';
 import WalkAfter from './WalkAfter';
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 
