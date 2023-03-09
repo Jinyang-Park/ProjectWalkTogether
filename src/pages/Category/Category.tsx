@@ -114,7 +114,7 @@ const Category = () => {
           {/*useParams 받아온 카테고리 이름과 같으면 해당 img 보여줌*/}
           {CategorysList.map((item) => {
             if (category === item.name) {
-              return <S.CategoryImg src={item.img} />;
+              return <S.CategoryImg src={item.img} key={item.name} />;
             }
           })}
           <S.CategoryTitle>{category}</S.CategoryTitle>
