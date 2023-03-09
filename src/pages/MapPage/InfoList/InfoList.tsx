@@ -41,7 +41,8 @@ const InfoList = ({ Post }) => {
   const navigate = useNavigate();
   const setParams = useSetRecoilState(paramsState);
   const Category = useRecoilValue(Cetegory);
-  const postings: Array<Post> = usePosts().filter((post) => {
+  const { posts, refetch } = usePosts();
+  const postings: Array<Post> = posts.filter((post) => {
     if (Category === '전체') return true;
     return post.Category_Posting === Category;
   });
@@ -103,7 +104,7 @@ const InfoList = ({ Post }) => {
           </S.NoResult>
         ) : (
           DoubledFilterDate.map((post: any) => {
-            return <CardSection key={post.id} post={post} />;
+            return <CardSection key={post.id} post={post} refetch={refetch} />;
           })
         )}
         {/* {postpostpost.map((post: any) => {

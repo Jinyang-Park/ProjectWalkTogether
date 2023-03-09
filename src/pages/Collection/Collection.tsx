@@ -58,7 +58,8 @@ const Collection = (props: any) => {
   // 2 = 뜨거운 신발
   // 3 = 매칭된 신발
 
-  const shoes: Array<Post> = usePosts()
+  const { posts, refetch } = usePosts();
+  const shoes: Array<Post> = posts
     .filter((post) => {
       if (id === '3') return post.ProceedState_Posting === 'postingDone';
       else return post;
@@ -82,7 +83,7 @@ const Collection = (props: any) => {
 
         <S.LikedListItem>
           {shoes.map((post: any) => {
-            return <CardSection key={post.id} post={post} />;
+            return <CardSection key={post.id} post={post} refetch={refetch} />;
           })}
         </S.LikedListItem>
       </CategoryWrapper>
