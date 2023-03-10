@@ -222,5 +222,7 @@ src
 #### 🔥채팅
 * 게시글에 ‘함께 걸을래요’ 버튼 선택 시, 채팅방으로 이동
 * 첫 채팅이 이루어질 때 알림 메세지 송신 및 알림 선택 시, 해당 채팅방으로 이동
-<img src="https://user-images.githubusercontent.com/80263801/224359801-5729bfe5-c4d8-459d-8147-a1564e2ad377.gif" width="500" height="600">
-<img src="https://user-images.githubusercontent.com/80263801/224360048-3be05765-6bdf-4096-9238-08fa3279e614.gif" width="500" height="600">
+<div>
+<img src="https://user-images.githubusercontent.com/80263801/224359801-5729bfe5-c4d8-459d-8147-a1564e2ad377.gif" width="800" height="700">
+<img src="https://user-images.githubusercontent.com/80263801/224360048-3be05765-6bdf-4096-9238-08fa3279e614.gif" width="800" height="700">
+	</div>
