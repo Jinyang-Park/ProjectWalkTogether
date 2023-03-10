@@ -70,6 +70,11 @@ const SignUpPage = () => {
   const deletenameinput = () => {
     setDisplayname('');
   };
+
+  const deletemailinput = () => {
+    setEmail('');
+  };
+
   const deleteCnfirminput = () => {
     setCnfirmPwd('');
   };
@@ -211,6 +216,8 @@ const SignUpPage = () => {
             imageURL:
               'https://firebasestorage.googleapis.com/v0/b/oh-ju-79642.appspot.com/o/profile%2Fblank_profile.png?alt=media&token=0053da71-f478-44a7-ae13-320539bdf641',
             bannerImg: '',
+            introduce: '',
+
           })
             .then(() => {
               if (authService.currentUser !== null) {
@@ -258,7 +265,7 @@ const SignUpPage = () => {
 
   return (
     <CommonStyles>
-      <div>
+      <S.InputLayout>
         <form onSubmit={handleSubmitClick}>
           <S.InputBox>
             <S.InputBoxContent>
@@ -312,7 +319,8 @@ const SignUpPage = () => {
 
                 {email && (
                   <S.CheckBox>
-                    <S.DeleteEmailCheckBtn onClick={deleteCnfirminput}>
+                    <S.DeleteEmailCheckBtn onClick={deletemailinput}>
+
                       <S.CheckIconright
                         src={
                           require('../../assets/ChattingIcon/clearbtn.svg')
@@ -348,16 +356,18 @@ const SignUpPage = () => {
                 ></S.Input>
 
                 {password && (
-                  <S.CheckBox>
+                  <S.CheckPasswordBox>
                     {passinputType === 'password' ? (
-                      <S.CheckBtn onClick={handleToggleInputType}>
+                      <S.CheckPassWordBtn onClick={handleToggleInputType}>
+
                         <S.CheckIconright
                           src={
                             require('../../assets/LoginPage/No-eye.svg').default
                           }
                           alt='Show password'
                         />
-                      </S.CheckBtn>
+                      </S.CheckPassWordBtn>
+
                     ) : (
                       <S.OpenCheckBtn onClick={handleToggleInputType}>
                         <S.Checkeye
@@ -379,7 +389,8 @@ const SignUpPage = () => {
                         alt='Show password'
                       />
                     </S.DeletePassCheckBtn>
-                  </S.CheckBox>
+                  </S.CheckPasswordBox>
+
                 )}
               </S.Inputholder>
 
@@ -406,7 +417,8 @@ const SignUpPage = () => {
                 ></S.Input>
 
                 {confirmPwd && (
-                  <S.CheckBox>
+                  <S.CheckPasswordBox>
+
                     {ConfirmPassInputType === 'password' ? (
                       <S.CheckPassBtn onClick={handleToggleConfirmInputType}>
                         <S.CheckIconright
@@ -439,7 +451,7 @@ const SignUpPage = () => {
                         alt='Show password'
                       />
                     </S.DeleteCheckBtn>
-                  </S.CheckBox>
+                  </S.CheckPasswordBox>
                 )}
               </S.Inputholder>
               {confirmPwd === '' ? (
@@ -473,7 +485,7 @@ const SignUpPage = () => {
             </S.InputBoxContent>
           </S.InputBox>
         </form>
-      </div>
+      </S.InputLayout>
     </CommonStyles>
   );
 };

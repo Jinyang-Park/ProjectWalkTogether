@@ -1,19 +1,27 @@
 import styled from 'styled-components';
 
-export const InputBox = styled.div`
+export const InputLayout = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 242px);
 
+  /* background-color: blue; */
+
+  /* margin-top: 80px; */
+`;
+export const InputBox = styled.div`
   flex-wrap: wrap;
   width: 386px;
   height: 582px;
 
-  margin-top: 80px;
-  margin: auto;
+  /* margin-top: 80px; */
   border-radius: 10px;
   padding: 5px;
-  position: relative;
 
-  top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   box-shadow: 0 0 10px #bec5d7;
   z-index: 1;
@@ -42,7 +50,7 @@ export const Input = styled.input`
 
 //Input태그의 테두리
 export const Inputholder = styled.div`
-  margin: auto;
+  /* margin: auto; */
   border-radius: 10px;
   width: 306px;
   height: 47px;
@@ -55,7 +63,7 @@ export const Inputholder = styled.div`
 //인풋을 둘러싼 박스
 export const InputBoxContent = styled.div`
   width: 306px;
-  margin: auto;
+  /* margin: auto; */
 `;
 
 //잠깐만 !
@@ -102,8 +110,8 @@ export const RegisterBtn = styled.button`
   padding-left: 5px;
   font-weight: 300;
   font-family: 'SUITEBold';
-  margin: auto;
-  margin-top: 16px;
+  /* margin: auto; */
+  /* margin-top: 16px; */
 `;
 
 export const FindBox = styled.div`
@@ -187,64 +195,84 @@ export const EtcBtn = styled.div`
 export const CheckBtn = styled.div`
   width: 20px;
   height: 15px;
-  position: fixed;
+
+  /* position: fixed;
   right: 430px;
 
-  bottom: 366px;
+  bottom: 366px; */
+
   cursor: pointer;
   :active {
     width: 20px;
     height: 15px;
   }
 `;
+
+export const CheckPassWordBtn = styled.div`
+  width: 20px;
+  height: 15px;
+  position: relative;
+  left: 250px;
+  bottom: 10px;
+
+  /* cursor: pointer;
+  :active {
+    width: 20px;
+    height: 15px;
+  } */
+`;
+
 
 export const CheckPassBtn = styled.div`
   width: 20px;
   height: 15px;
-  position: fixed;
-  right: 430px;
 
-  bottom: 290px;
-  cursor: pointer;
+  position: relative;
+  left: 250px;
+  bottom: 10px;
+
+  /* cursor: pointer;
   :active {
     width: 20px;
     height: 15px;
-  }
+  } */
 `;
 export const OpenCheckBtn = styled.div`
-  width: 22px;
-  height: 27px;
-  position: fixed;
-  right: 430px;
+  width: 20px;
+  height: 15px;
+  position: relative;
+  left: 250px;
+  bottom: 10px;
 
-  bottom: 360px;
-  cursor: pointer;
+  /* cursor: pointer;
   :active {
     width: 22px;
     height: 27px;
-  }
+  } */
 `;
 export const OpenPassCheckBtn = styled.div`
-  width: 22px;
-  height: 27px;
-  position: fixed;
-  right: 430px;
-
-  bottom: 285px;
+  width: 20px;
+  height: 15px;
+  position: relative;
+  left: 250px;
+  bottom: 10px;
   cursor: pointer;
-  :active {
+  /* :active {
     width: 22px;
     height: 27px;
-  }
+  } */
+
 `;
 
 export const DeleteCheckBtn = styled.div`
   width: 13px;
   height: 13px;
-  position: fixed;
-  right: 405px;
 
-  bottom: 292px;
+  position: relative;
+  left: 280px;
+  bottom: 25px;
+
+
   cursor: pointer;
   :active {
     width: 13px;
@@ -255,21 +283,26 @@ export const DeleteCheckBtn = styled.div`
 export const DeletePassCheckBtn = styled.div`
   width: 13px;
   height: 13px;
-  position: fixed;
-  right: 405px;
 
-  bottom: 368px;
-  cursor: pointer;
+  position: relative;
+  left: 280px;
+  bottom: 25px;
+
+  /* cursor: pointer;
   :active {
     width: 13px;
     height: 13px;
-  }
+  } */
+
 `;
 
 export const CheckBox = styled.div`
   display: flex;
   position: relative;
-  right: 30px;
+
+  left: 280px;
+  bottom: 10px;
+
   gap: 12px;
 `;
 
@@ -280,13 +313,17 @@ export const PassCheckBox = styled.div`
   right: 30px;
   gap: 12px;
 `;
+
+
+export const CheckPasswordBox = styled.div``;
+
+export const EyeXBox = styled.div``;
+
 export const DeleteEmailCheckBtn = styled.div`
   width: 13px;
   height: 13px;
-  position: fixed;
-  right: 405px;
 
-  bottom: 445px;
+
   cursor: pointer;
   :active {
     width: 13px;
@@ -297,10 +334,7 @@ export const DeleteEmailCheckBtn = styled.div`
 export const DeleteNameCheckBtn = styled.div`
   width: 13px;
   height: 13px;
-  position: fixed;
-  right: 405px;
 
-  bottom: 523px;
   cursor: pointer;
   :active {
     width: 13px;
