@@ -33,7 +33,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [value, setValue] = useState('');
   const [password, setPassword] = useState('');
-
+  const [emailinputType, setEmailInputType] = useState<string>('password');
   const [passinputType, setPassInputType] = useState<string>('password');
   const [user, setUser] = useState({});
   const [validateEmailColor, setValidateEmailColor] = useState(false);
@@ -52,12 +52,8 @@ const LoginPage = () => {
     setPassInputType(passinputType === 'password' ? 'text' : 'password');
   };
 
-  const deletepassinput = () => {
+  const deleteinput = () => {
     setPassword('');
-  };
-
-  const deleteEmailinput = () => {
-    setEmail('');
   };
 
   //onchange로 값을 저장.
@@ -290,19 +286,24 @@ const LoginPage = () => {
                   onChange={onChangeEmail}
                 ></S.Input>
 
-                {email && (
-                  <S.CheckBox>
-                    <S.DeleteEmailCheckBtn onClick={deleteEmailinput}>
-                      <S.CheckIconright
-                        src={
-                          require('../../assets/ChattingIcon/clearbtn.svg')
-                            .default
-                        }
-                        alt='Show password'
-                      />
-                    </S.DeleteEmailCheckBtn>
-                  </S.CheckBox>
-                )}
+                {/* {email === '' ? (
+                  <S.CheckBtn onClick={email}>
+                    <S.CheckIconright
+                      src={
+                        require('../../assets/ChattingIcon/check.svg').default
+                      }
+                    />
+                  </S.CheckBtn>
+                ) : (
+                  <S.CheckBtn onClick={newPassword}>
+                    <S.CheckIcon
+                      src={
+                        require('../../assets/ChattingIcon/clearbtn.svg')
+                          .default
+                      }
+                    ></S.CheckIcon>
+                  </S.CheckBtn>
+                )} */}
               </S.Inputholder>
               <S.Inputholder>
                 <S.Input
@@ -312,40 +313,22 @@ const LoginPage = () => {
                   placeholder='비밀번호를 입력해주세요'
                   onChange={onChangePassword}
                 ></S.Input>
-
-                {password && (
-                  <S.CheckBox>
-                    {passinputType === 'password' ? (
-                      <S.CheckBtn onClick={handleToggleInputType}>
-                        <S.CheckIconright
-                          src={
-                            require('../../assets/LoginPage/No-eye.svg').default
-                          }
-                          alt='Show password'
-                        />
-                      </S.CheckBtn>
-                    ) : (
-                      <S.OpenCheckBtn onClick={handleToggleInputType}>
-                        <S.Checkeye
-                          src={
-                            require('../../assets/LoginPage/openeye.svg')
-                              .default
-                          }
-                          alt='Hide password'
-                        />
-                      </S.OpenCheckBtn>
-                    )}
-
-                    <S.DeleteCheckBtn onClick={deletepassinput}>
-                      <S.CheckIconright
-                        src={
-                          require('../../assets/ChattingIcon/clearbtn.svg')
-                            .default
-                        }
-                        alt='Show password'
-                      />
-                    </S.DeleteCheckBtn>
-                  </S.CheckBox>
+                {passinputType === 'password' ? (
+                  <S.CheckBtn onClick={handleToggleInputType}>
+                    <S.CheckIconright
+                      src={require('../../assets/LoginPage/No-eye.svg').default}
+                      alt='Show password'
+                    />
+                  </S.CheckBtn>
+                ) : (
+                  <S.CheckBtn onClick={handleToggleInputType}>
+                    <S.Checkeye
+                      src={
+                        require('../../assets/LoginPage/openeye.svg').default
+                      }
+                      alt='Hide password'
+                    />
+                  </S.CheckBtn>
                 )}
               </S.Inputholder>
 
@@ -386,7 +369,7 @@ const LoginPage = () => {
                 </S.ResisterText>
               </S.ThirdBox>
               <S.FindBox>
-                <S.ToFindPage onClick={findPwd}>비밀번호 찾기</S.ToFindPage>
+                <S.FindBtn onClick={findPwd}>비밀번호 찾기</S.FindBtn>
               </S.FindBox>
             </S.InputBoxContent>
           </S.InputBox>
