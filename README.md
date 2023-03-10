@@ -1,4 +1,4 @@
-# 🚶‍ Ollae 🚶‍♀️ 
+# 🚶‍🚶‍♀️  Ollae 🤝
 
 ![Group 875](https://user-images.githubusercontent.com/80263801/224346703-e03f635e-9993-4975-9ef2-b13ced76737b.jpg)
 
