@@ -92,3 +92,70 @@ export const CategoryTitle = styled.p`
   line-height: 45px;
   margin-top: 74px;
 `;
+
+export const Category = styled.div``;
+export const Button = styled.button`
+  float: right;
+  background-color: transparent;
+  font-family: 'SUITERegular';
+  letter-spacing: -0.1px;
+  margin-right: 5px;
+`;
+export const InsideText = styled.p`
+  margin-top: 19px;
+  font-family: 'SUITERegular';
+  letter-spacing: -1px;
+  color: #7d8bae;
+  width: 300px;
+`;
+export const TitleLayout = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const HotShoesImg = styled.img`
+  width: 76px;
+  height: 76px;
+  display: flex;
+  margin-top: 40px;
+`;
+export const TextTitle = styled.p`
+  font-family: 'SUITEBold';
+  letter-spacing: -3px;
+  font-size: 36px;
+  font-weight: 400;
+  display: flex;
+`;
+export const CategoryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 868px;
+  margin: auto;
+  margin-bottom: 80px;
+`;
+
+export const FirstLayout = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Line = styled.div`
+  height: 74px;
+  background-color: white;
+  width: 100%;
+  border-bottom: 2px solid #bec5d7;
+`;
+export const ButtonIcon = styled.img`
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+  cursor: pointer;
+`;
+export const ButtonWrap = styled.div`
+  margin-top: 19px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const ContentLayout = styled.div``;
+export const Collectionitem = styled.div``;

@@ -47,65 +47,61 @@ const CardSection = ({ post, refetch }: postProps) => {
   };
 
   return (
-    <S.FooterWrapper>
-      <S.CardBox>
-        <S.CardSectionWrapper
-          onClick={() => {
-            setParams(post.id);
-            navigate(`/detailpage/${post.id}`);
-          }}
-        >
-          <S.ListItemWrapper>
-            <S.ListItemThumnail src={post.ThumbnailURL_Posting} />
-          </S.ListItemWrapper>
-          <S.ListItemThumnailTitle>
-            {post.Title_Posting}
-          </S.ListItemThumnailTitle>
-          <S.HashTag>
-            {post.Hashtag_Posting.map((tagItem: any, i: any) => {
-              return (
-                <>
-                  {tagItem == '' ? (
-                    <div>&nbsp;</div>
-                  ) : (
-                    <div key={i}>{'#' + tagItem}</div>
-                  )}
-                </>
-              );
-            })}
-          </S.HashTag>
-          <S.ListItemContainer>
-            <S.AddressDateHourWrapper>
-              <S.ListItemAddress>{post.Address_Posting}</S.ListItemAddress>
-              <S.ListItemDate>{post.RsvDate_Posting}</S.ListItemDate>
-              <S.ListItemHour>{post.RsvHour_Posting}</S.ListItemHour>
-            </S.AddressDateHourWrapper>
-          </S.ListItemContainer>
-        </S.CardSectionWrapper>
-        <S.LikedHeartFlex>
-          {likebtn ? (
-            <S.LikeBtnFill
-              src={require('../../assets/HeartFill2.svg').default}
-              onClick={() => {
-                unlikepost();
-              }}
-            />
-          ) : (
-            <S.LikeBtnLine
-              src={'/assets/HeartLine.svg'}
-              onClick={() => {
-                if (!loggedIn) {
-                  navigate('/login');
-                  return;
-                }
-                likepost();
-                console.log('좋아요');
-              }}
-            />
-          )}
-        </S.LikedHeartFlex>
-      </S.CardBox>
-    </S.FooterWrapper>
+    <S.CardBox>
+      <S.CardSectionWrapper
+        onClick={() => {
+          setParams(post.id);
+          navigate(`/detailpage/${post.id}`);
+        }}
+      >
+        <S.ListItemWrapper>
+          <S.ListItemThumnail src={post.ThumbnailURL_Posting} />
+        </S.ListItemWrapper>
+        <S.ListItemThumnailTitle>{post.Title_Posting}</S.ListItemThumnailTitle>
+        <S.HashTag>
+          {post.Hashtag_Posting.map((tagItem: any, i: any) => {
+            return (
+              <>
+                {tagItem == '' ? (
+                  <div>&nbsp;</div>
+                ) : (
+                  <div key={i}>{'#' + tagItem}</div>
+                )}
+              </>
+            );
+          })}
+        </S.HashTag>
+        <S.ListItemContainer>
+          <S.AddressDateHourWrapper>
+            <S.ListItemAddress>{post.Address_Posting}</S.ListItemAddress>
+            <S.ListItemDate>{post.RsvDate_Posting}</S.ListItemDate>
+            <S.ListItemHour>{post.RsvHour_Posting}</S.ListItemHour>
+          </S.AddressDateHourWrapper>
+        </S.ListItemContainer>
+      </S.CardSectionWrapper>
+      <S.LikedHeartFlex>
+        {likebtn ? (
+          <S.LikeBtnFill
+            src={require('../../assets/HeartFill2.svg').default}
+            onClick={() => {
+              unlikepost();
+            }}
+          />
+        ) : (
+          <S.LikeBtnLine
+            src={'/assets/HeartLine.svg'}
+            onClick={() => {
+              if (!loggedIn) {
+                navigate('/login');
+                return;
+              }
+              likepost();
+              console.log('좋아요');
+            }}
+          />
+        )}
+      </S.LikedHeartFlex>
+    </S.CardBox>
   );
 };
 
