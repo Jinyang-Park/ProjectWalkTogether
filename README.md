@@ -11,6 +11,7 @@
 
 
 ### 💙 프로젝트 소개
+---
 
 1인가구 구성원 또는, 사생활에 깊이 연관되지 않는 가벼운 만남으로 관계를 시작하고 싶은 신세대 에게 만남 서비스 플랫폼
 
@@ -22,7 +23,7 @@
 <br/>
 
 ### 📝 회고 및 관련 기록
-
+---
 [📒 올래 Notion](https://www.notion.so/Project-Walk-Together-Final-354dd91df9b2405f90bd8519fc03f0a3?pvs=4)
 
 [💻 프로젝트 기획안](https://www.notion.so/eda81292232d4843b5136bfbcf831080?pvs=4)
