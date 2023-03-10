@@ -4,8 +4,7 @@ export const ChattingBox = styled.div`
   border: 1px solid #bec5d7;
   width: 577px;
   height: 564px;
-
-  margin-top: 28px;
+  margin-top: 80px;
   border-radius: 4px;
 `;
 

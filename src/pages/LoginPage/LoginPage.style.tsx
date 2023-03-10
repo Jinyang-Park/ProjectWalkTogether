@@ -3,8 +3,10 @@ import styled from 'styled-components';
 export const InputLayout = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 150px;
-  margin-top: 150px;
+  align-items: center;
+  /* margin-top: 80px; */
+
+  min-height: calc(100vh - 242px);
 `;
 
 export const InputBox = styled.div`
