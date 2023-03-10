@@ -23,5 +23,5 @@
 
 ### 📝 프로젝트 소개
 
-|------|------|------|------|
+
 |[올래 Notion](https://www.notion.so/Project-Walk-Together-Final-354dd91df9b2405f90bd8519fc03f0a3?pvs=4)|[프로젝트 기획안](https://www.notion.so/eda81292232d4843b5136bfbcf831080?pvs=4)|[기술적 의사결](https://github.com/dwg787)|[💬 KPT 회고](https://velog.io/@dbsskdud60)|
