@@ -2,9 +2,14 @@ import * as S from './DetailPage.style';
 import Comments from './Comments/Comments';
 import CommonStyles from './../../styles/CommonStyles';
 import DetailMap from './DetailMap/DetailMap';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { isLoggedIn, paramsState } from '../../Rocoil/Atom';
-import { useEffect, useState, useRef } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  isLoggedIn,
+  tochattingboxroomid,
+  tochattingboxnickname,
+  tochattingboxprofileimg,
+} from '../../Rocoil/Atom';
+import { useEffect, useState } from 'react';
 import {
   getDoc,
   doc,
@@ -18,25 +23,17 @@ import {
   onSnapshot,
 } from 'firebase/firestore';
 import { authService, dbService } from './../../common/firebase';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import { assert } from 'console';
-import DropdownCategory from '../../components/DropdownCategoryForWritePage/DropdownCategory';
+import { useNavigate, useParams } from 'react-router-dom';
 import DropBox from './DropBox/DropBox';
-import { async, uuidv4 } from '@firebase/util';
+import { uuidv4 } from '@firebase/util';
 
 import { userForChat, currentUserUid } from '../../Rocoil/Atom';
 import useDetectClose from './../../hooks/useDetectClose';
-
-interface getPostings {
-  BannereURL_Posting: string;
-  Category_Posting: string;
-  Description_Posting: string;
-  Nickname: string;
-  ThunmnailURL_Posting: string;
-  Title_Posting: string;
-  UID: string;
-  children: JSX.Element | JSX.Element[];
-}
+import MessageWindow, {
+  MessageWindowLogoType,
+  MessageWindowProperties,
+  messageWindowPropertiesAtom,
+} from '../../messagewindow/MessageWindow';
 
 const DetailPage = () => {
   // 모달 외부 클릭 시 닫기 customhook
@@ -85,6 +82,15 @@ const DetailPage = () => {
   const posterChatroomId = uuidv4();
   //현재 유저의 chattingListroom의 doc id
   const applicantChatroomId = uuidv4();
+  //커스텀 얼럿
+  const setState = useSetRecoilState<MessageWindowProperties>(
+    messageWindowPropertiesAtom
+  );
+
+  //함께걸을래요를 누르면 해당 채팅박스가 바로 뜨게하는 리코일
+  const roomId = useSetRecoilState(tochattingboxroomid);
+  const nickname = useSetRecoilState(tochattingboxnickname);
+  const profileImg = useSetRecoilState(tochattingboxprofileimg);
 
   // 게시글 id db 가져오기
   const getPost = async () => {
@@ -97,17 +103,6 @@ const DetailPage = () => {
     // isLoading 이 false가 되면 로딩이 끝난 것, true면 로딩중으로 isLoading을 관리
     setIsLoading(false);
   };
-
-  // onsnapshot으로 바꾸기 상태를 바라보고 db가 바뀌면 상태를 최신화해준다. 동적데이터는 onsnapshot이 좋다.
-  // const getPost = onSnapshot(doc(dbService, 'Post', id), (postData) => {
-  //   setGetPostings(postData.data());
-  //   setIsLoading(false);
-  // });
-
-  /////////////////
-  //채팅방 중복확인 중 db에서 데이터 가져오기.
-
-  // getPost getChattingList  => duplicate
 
   const getChattingList = async () => {
     if (mychatlist === '') {
@@ -130,8 +125,6 @@ const DetailPage = () => {
       list = [...list, { id: doc.id, ...doc.data() }];
     });
     setChatList(list);
-
-    // console.log('list:', list);
   };
 
   const duplicate = () => {
@@ -156,21 +149,78 @@ const DetailPage = () => {
     duplicate();
   }, [getChattingList]);
 
+  const goToLogin = () => {
+    MessageWindow.showWindow(
+      new MessageWindowProperties(
+        true,
+        '로그인을 해주세요!',
+        '',
+        [
+          {
+            text: '닫 기',
+            callback: () => {
+              MessageWindow.showWindow(new MessageWindowProperties(), setState);
+            },
+          },
+        ],
+        MessageWindowLogoType.Perplex
+      ),
+      setState
+    );
+
+    navigate('/login');
+  };
+
   const goToChat = async () => {
     if (isduplication == true) {
-      alert('이미 채팅이 존재합니다.');
-      navigate('/chat');
+      // alert('이미 채팅이 존재합니다.');
+      MessageWindow.showWindow(
+        new MessageWindowProperties(
+          true,
+          '이미 채팅이 존재합니다!',
+          '',
+          [
+            {
+              text: '닫 기',
+              callback: () => {
+                MessageWindow.showWindow(
+                  new MessageWindowProperties(),
+                  setState
+                );
+              },
+            },
+          ],
+          MessageWindowLogoType.Perplex
+        ),
+        setState
+      );
     } else {
-      alert('채팅창으로 이동합니다.');
-      // db에저장된 user의 정보가 저장되는 곳
+      // alert('채팅창으로 이동합니다.');
+      MessageWindow.showWindow(
+        new MessageWindowProperties(
+          true,
+          '채팅창으로 이동합니다',
+          '',
+          [
+            {
+              text: '채팅하러 가기',
+              callback: () => navigate('/chat'),
+            },
+            {
+              text: '닫 기',
+              callback: () => {
+                MessageWindow.showWindow(
+                  new MessageWindowProperties(),
+                  setState
+                );
+              },
+            },
+          ],
+          MessageWindowLogoType.Rocket
+        ),
+        setState
+      );
 
-      //db에저장된 컬렉션 user의 작성자가 가지는 하위컬랙션 chattingroom에 저장되는값들
-      // await setDoc(doc(dbService, 'Users', `${getPostingUID}`), {
-      //   getPostingUID: getPostingUID,
-      //   // chattingroom: [{ combineId, date }],
-      // });
-
-      // 게시글주인 chattingroom에 저장되는값들
       await setDoc(
         doc(
           dbService,
@@ -223,12 +273,13 @@ const DetailPage = () => {
         }
       );
 
-      navigate('/chat');
+      // 함께 걸을래요를 누르면 해당 값들이 chatbox에 전달된다
+      roomId(combineId);
+      nickname(getPostings.Nickname);
+      profileImg(getPostings.ThumbnailURL_Posting);
     }
   };
 
-  // !! undfined false 아니면 true
-  // 여기 공부하자!
   const UpdateView = async () => {
     const q = doc(dbService, 'Post', id);
     // dbService에 있는 getPostings.View + 1 를 View 넣어준다.
@@ -242,16 +293,11 @@ const DetailPage = () => {
     }
   }, [isLoading]);
 
-  // console.log(getPostings.View);
-  // console.log(getPostings);
-  // getPostings 콘솔로그 찍어보면 post에 해당된 db확인 가능
-
-  // console.log(getPostings.ThunmnailURL_Posting);
-  // console.log(getPostings);
-
+  // 좋아요
   const [hasUserLikedThisPost, setHasUserLikedThisPost] =
     useState<boolean>(false);
 
+  // 좋아요 유저
   const hasUserLikedPost = async () => {
     const snap = await getDoc(doc(dbService, 'Post', id));
     if (snap.exists() && snap.data()) {
@@ -265,6 +311,7 @@ const DetailPage = () => {
     hasUserLikedPost().then((value) => setHasUserLikedThisPost(value));
   }, [id, currentUserUid, post]);
 
+  // 좋아요 카운트
   const [likeCount, setLikeCount] = useState<number>(0);
 
   const getLikeCount = async () => {
@@ -289,9 +336,6 @@ const DetailPage = () => {
     let p = post;
     p.LikedUsers.push(userUid);
 
-    // doc = getDocs(Post 중에 PostingID_Posting === post.PostingID_Posting인 것들)[0]
-    // updateDoc(doc, likderifjsif)
-
     updateDoc(doc(dbService, 'Post', id), {
       LikedUsers: p.LikedUsers,
     });
@@ -305,7 +349,7 @@ const DetailPage = () => {
   }, [id]);
 
   useEffect(() => {
-    console.log(post);
+    // console.log(post);
   }, [post]);
 
   // 좋아요 취소
@@ -398,9 +442,15 @@ const DetailPage = () => {
               )}
               {/* 현재 user가 쓴 글인지 판별 */}
               {getPostings.UID !== authService.currentUser?.uid ? (
-                <S.WalktogetherBtn onClick={goToChat}>
-                  <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
-                </S.WalktogetherBtn>
+                loggedIn ? (
+                  <S.WalktogetherBtn onClick={goToChat}>
+                    <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
+                  </S.WalktogetherBtn>
+                ) : (
+                  <S.WalktogetherBtn onClick={goToLogin}>
+                    <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
+                  </S.WalktogetherBtn>
+                )
               ) : // 자바스크립트 문법이라서 중괄호가 필요가 없다
               getPostings.ProceedState_Posting === 'postingDone' ? (
                 <></>

@@ -4,15 +4,18 @@ import * as S from './MypageLike.style';
 
 const MyPageLike = (props: { uid: string }) => {
   const { uid } = props;
-  const posts: Array<Post> = usePosts().filter((post) =>
+  const { posts, refetch } = usePosts();
+
+  // Api호출 함수
+  const filteredPosts: Array<Post> = posts.filter((post) =>
     post.LikedUsers.includes(uid)
   );
 
   return (
     <S.MyPageWriteWrap>
       <S.PostListWrap>
-        {posts.map((post, i) => {
-          return <CardSection post={post} key={i} />;
+        {filteredPosts.map((post, i) => {
+          return <CardSection post={post} key={i} refetch={refetch} />;
         })}
       </S.PostListWrap>
     </S.MyPageWriteWrap>

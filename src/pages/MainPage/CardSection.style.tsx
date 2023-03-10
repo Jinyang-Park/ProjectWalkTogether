@@ -6,18 +6,12 @@ export const CardSectionWrapper = styled.a`
   cursor: pointer;
   width: 100%;
   height: 100%;
-  /* width: 180px;
-  min-height: 207px; */
 `;
 export const ListItemWrapper = styled.div`
   position: relative;
   overflow: hidden;
   width: 200px;
   height: 130px;
-  /* height: 32.8888vw;
-  min-height: 92.44px; */
-  /* width: 100%;
-  height: 100%; */
 `;
 export const ListItemThumnail = styled.img`
   position: absolute;
@@ -29,7 +23,6 @@ export const ListItemThumnail = styled.img`
 export const ListItemThumnailTitle = styled.p`
   width: 200px;
   margin: 8px 0px 0px 0px;
-  /* overflow: hidden; */
   text-overflow: ellipsis;
   font-size: 16px;
   font-family: 'SUITERegular';
@@ -64,7 +57,7 @@ export const LikeBtnLine = styled(AiOutlineHeart)`
   position: absolute;
   width: 25px;
   height: 20px;
-  margin-left: 9rem;
+  margin-left: 144px;
   margin-top: 30px;
   cursor: pointer;
 `;
@@ -94,8 +87,8 @@ export const LikedListItem = styled.div`
 export const Collection = styled.div``;
 
 export const CategoryTitle = styled.p`
-  margin-top: 64px;
   font-weight: 500;
   font-size: 36px;
   line-height: 45px;
+  margin-top: 74px;
 `;

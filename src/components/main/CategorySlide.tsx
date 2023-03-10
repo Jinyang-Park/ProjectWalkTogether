@@ -3,15 +3,13 @@ import '../../styles/slick.css';
 import '../../styles/slick-theme.css';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { ListItem } from '@mui/material';
+
 import React from 'react';
 import { constSelector } from 'recoil';
 import { CategorysList } from '../../utils/CategorysList';
 import { useNavigate, useParams } from 'react-router-dom';
-import nextarrow from '../../assets/nextarrow.svg';
-import beforearrow from '../../assets/beforearrow.svg';
-
-//MdArrowForwardIos
+import nextarrow from '../../assets/Mainpage/nextarrow.svg';
+import beforearrow from '../../assets/Mainpage/beforearrow.svg';
 
 function CategorySlide() {
   const navigate = useNavigate();
@@ -21,7 +19,7 @@ function CategorySlide() {
     swipeToSlide: true,
     speed: 500,
     slidesToShow: 7,
-    slidesToScroll: 1,
+    slidesToScroll: 3,
   };
 
   return (
@@ -29,7 +27,6 @@ function CategorySlide() {
       <StyledSlider {...settings}>
         {CategorysList.map((Category) => {
           return (
-            //리액트 라우터 dom state 찾아보기
             <Categoryitem
               onClick={() => navigate(`/category/${Category.name}`)}
               key={Category.name}
@@ -47,7 +44,7 @@ function CategorySlide() {
 const StyledSlider = styled(Slider)`
   margin: auto;
   width: 80%; //슬라이드 컨테이너 영역
-  padding-top: 37px;
+  margin-top: 52px;
 
   .slick-list {
     //슬라이드 스크린
@@ -102,7 +99,9 @@ const StyledSlider = styled(Slider)`
 
 export const Category = styled.div``;
 
-export const Categoryitem = styled.div``;
+export const Categoryitem = styled.div`
+  cursor: pointer;
+`;
 
 export const Img = styled.img`
   width: 50px;

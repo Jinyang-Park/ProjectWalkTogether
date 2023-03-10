@@ -38,8 +38,8 @@ export const CommentUserImgWrapper = styled.div`
   width: 100%;
 `;
 export const CommtentUserImg = styled.img`
-  width: 4rem;
-  height: 4rem;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   margin-right: 30px;
 `;
@@ -194,13 +194,14 @@ export const CommentCancelDeleteBtnWrapper = styled.div``;
 export const EditForm = styled.textarea`
   font-family: 'SUITERegular';
   color: black;
-  height: fit-content;
+  height: auto;
   width: 80%;
   margin: 16px;
   /* padding: 16px 30px 30px 17px; */
   border: 0px solid transparent;
   /* margin-top: 16px; */
   background: none;
+  resize: none;
 
   /* 
   padding: 10px 10px 4px;

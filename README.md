@@ -1,130 +1,27 @@
-# Getting Started with Create React App
+# 🚶‍♂ Ollae
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Group 873](https://user-images.githubusercontent.com/80263801/224290251-c79d49d9-56df-4025-8d99-8757267ece07.jpg)
 
-## Available Scripts
+프로젝트 기간 : 2023.02.06 ~ 2023.03.13
 
-In the project directory, you can run:
+🔗 [Ollea 서비스 배포 링크](https://www.ollae.kr/)
+🎬 [시연영상 보러가기](https://www.youtube.com/watch?v=_ZFK_nYZ7ho)
 
-### `yarn start`
+<br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 💙 프로젝트 소개
 
-### `yarn test`
+1인가구 구성원 또는, 사생활에 깊이 연관되지 않는 가벼운 만남으로 관계를 시작하고 싶은 신세대 에게 만남 서비스 플랫폼
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* 카테고리를 통해 원하는 주제를 선택하여 산책 할 사람 또는 모임을 찾을 수 있습니다.
+* 지도 뷰를 통해 만나는 장소를 쉽게 찾을 수 있고 주변에 산책하는 모임을 볼 수 있습니다.
+* 실시간 채팅을 통해 산책 할 사람과 구체적인 만남을 약속할 수 있습니다.
 
-### `yarn build`
+<br/>
+<br/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 📝 프로젝트 소개
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-```
-projectwalktogether
-├─ .env
-├─ .gitignore
-├─ @types
-│  └─ pages
-│     └─ index.d.ts
-├─ package-lock.json
-├─ package.json
-├─ public
-│  ├─ assets
-│  │  ├─ art.png
-│  │  ├─ book.png
-│  │  ├─ career.png
-│  │  ├─ coffee.jpg
-│  │  ├─ counsel.png
-│  │  ├─ dog.png
-│  │  ├─ eco.png
-│  │  ├─ finance.png
-│  │  ├─ food.jpg
-│  │  ├─ group.png
-│  │  ├─ hodu.jpg
-│  │  ├─ mapimg.png
-│  │  ├─ movie.png
-│  │  ├─ music.jpg
-│  │  ├─ photo.jpg
-│  │  ├─ plant.png
-│  │  ├─ thumbnailImg.png
-│  │  ├─ travel.png
-│  │  ├─ walk.jpg
-│  │  └─ workout.png
-│  ├─ favicon.ico
-│  ├─ index.html
-│  ├─ logo192.png
-│  ├─ logo512.png
-│  ├─ manifest.json
-│  └─ robots.txt
-├─ README.md
-├─ src
-│  ├─ App.css
-│  ├─ App.tsx
-│  ├─ common
-│  │  ├─ colors.ts
-│  │  ├─ firebase.ts
-│  │  ├─ globalStyles.ts
-│  │  └─ layout.ts
-│  ├─ components
-│  │  ├─ CategoryAll.tsx
-│  │  └─ Header.tsx
-│  ├─ index.css
-│  ├─ index.tsx
-│  ├─ logo.svg
-│  ├─ pages
-│  │  ├─ CategoryPage.tsx
-│  │  ├─ ChattingPage.tsx
-│  │  ├─ DetailPage.tsx
-│  │  ├─ LoginPage.tsx
-│  │  ├─ MainPage.tsx
-│  │  ├─ MapPage
-│  │  │  ├─ InfoList
-│  │  │  │  ├─ InfoList.style.tsx
-│  │  │  │  └─ InfoList.tsx
-│  │  │  ├─ MapPage.style.tsx
-│  │  │  ├─ MapPage.tsx
-│  │  │  └─ Overlay
-│  │  │     ├─ Overlay.style.tsx
-│  │  │     └─ Overlay.tsx
-│  │  ├─ MyPage
-│  │  │  └─ LikePost.tsx
-│  │  ├─ MyPage.tsx
-│  │  ├─ PostPage.tsx
-│  │  └─ SignUpPage.tsx
-│  ├─ react-app-env.d.ts
-│  ├─ reportWebVitals.ts
-│  ├─ routes
-│  │  └─ router.tsx
-│  ├─ setupTests.ts
-│  └─ store
-│     └─ selector.ts
-├─ tsconfig.json
-└─ yarn.lock
-
-```
+|------|------|------|------|
+|[올래 Notion](https://www.notion.so/Project-Walk-Together-Final-354dd91df9b2405f90bd8519fc03f0a3?pvs=4)|[프로젝트 기획안](https://www.notion.so/eda81292232d4843b5136bfbcf831080?pvs=4)|[기술적 의사결](https://github.com/dwg787)|[💬 KPT 회고](https://velog.io/@dbsskdud60)|

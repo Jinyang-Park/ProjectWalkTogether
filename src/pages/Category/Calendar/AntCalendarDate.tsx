@@ -10,23 +10,17 @@ import { FilterSelectedDate } from '../../../Rocoil/Atom';
 import { query, collection, where, onSnapshot } from 'firebase/firestore';
 import { dbService } from './../../../common/firebase';
 import useDetectClose from './../../../hooks/useDetectClose';
-import { padding } from '@mui/system';
 
 const AntCalendarMap: React.FC = () => {
   const format = 'YYYY/MM/DD';
   const [filterSelectedDate, setfilterSelectedDate] =
     useRecoilState<any>(FilterSelectedDate);
 
-  // const [Date, setDate] = useRecoilState<any>(FilterDate);
-
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-    // console.log('dateString', dateString);
-    // console.log('date', date);
     setfilterSelectedDate(date);
 
     console.log(filterSelectedDate);
   };
-  // console.log('filterSelectedDate', filterSelectedDate);
 
   return (
     <ConfigProvider locale={locale}>

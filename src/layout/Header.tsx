@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as S from './Header.style';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 // import logoImg from '../../src/assets/shoes.png';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { authService } from '../common/firebase';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import useDetectClose from '../hooks/useDetectClose';
 import KakaoLogoutButton from '../components/Logout/kakaologout';
 import {
@@ -14,6 +13,11 @@ import {
 } from '../Rocoil/Atom';
 import HeaderAlarm from '../components/HeaderAlarm/HeaderAlarm';
 import { LoactionTitle } from './../pages/DetailPage/DetailPage.style';
+import MessageWindow, {
+  MessageWindowLogoType,
+  MessageWindowProperties,
+  messageWindowPropertiesAtom,
+} from '../messagewindow/MessageWindow';
 
 const Header = () => {
   const location = useLocation();
@@ -26,13 +30,9 @@ const Header = () => {
   const [alarm, setAlarm] = useState(0);
   const [view, setView] = useState(false);
 
-  // const getKakaoCode = () => {
-  //   const code = new URL(window.location.href).searchParams.get('code');
-  //   if (code) {
-  //     setKakaoCode(code);
-  //     console.log(code);
-  //   }
-  // };
+  const setState = useSetRecoilState<MessageWindowProperties>(
+    messageWindowPropertiesAtom
+  );
 
   const handleLogin = () => {
     navigate('login');
@@ -73,7 +73,7 @@ const Header = () => {
         <S.NavLi>
           <S.OllaeBox onClick={home}>
             <S.OllaeLogo
-              src={require('../../src/assets/ollaelogo.svg').default}
+              src={require('../../src/assets/Mainpage/ollaelogo.svg').default}
             />
             <S.OllaeText>올래</S.OllaeText>
           </S.OllaeBox>
@@ -86,28 +86,14 @@ const Header = () => {
           <S.NavUl>
             <S.NavLi>
               {loggedIn === false ? (
-                <S.NavText
-                  onClick={() => {
-                    alert('로그인을 해주세요!');
-                  }}
-                  to='/login'
-                >
-                  글 쓰기
-                </S.NavText>
+                <S.NavText to='/login'>글 쓰기</S.NavText>
               ) : (
                 <S.NavText to='/postpage'>글 쓰기</S.NavText>
               )}
             </S.NavLi>
             <S.NavLi>
               {loggedIn === false ? (
-                <S.NavText
-                  onClick={() => {
-                    alert('로그인을 해주세요!');
-                  }}
-                  to='/login'
-                >
-                  채팅
-                </S.NavText>
+                <S.NavText to='/login'>채팅</S.NavText>
               ) : (
                 <S.NavText to='/chat'>채 팅</S.NavText>
               )}

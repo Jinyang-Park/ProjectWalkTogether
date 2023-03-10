@@ -8,7 +8,7 @@ import {
   deleteDoc,
   doc,
 } from 'firebase/firestore';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { dbService } from '../../common/firebase';
 import { currentUserUid } from '../../Rocoil/Atom';
 import { useNavigate } from 'react-router-dom';
@@ -58,9 +58,9 @@ function HeaderAlarm({ setAlarm }: Props) {
     }
 
     const q = query(
-      collection(dbService, 'ChattingUsers', mychatlist, 'Alarm')
-      // where('chattingRoomId', '==', roomId)
-      // orderBy('createdAt', 'desc')
+      collection(dbService, 'ChattingUsers', mychatlist, 'Alarm'),
+      // ,where('chattingRoomId', '==', roomId)
+      orderBy('createdAt', 'desc')
     );
     onSnapshot(q, (querySnapshot) => {
       const getNotificationList = querySnapshot.docs.map((doc) => {
@@ -86,7 +86,7 @@ function HeaderAlarm({ setAlarm }: Props) {
     getNotificationList();
   }, []);
 
-  console.log('time:', timeForToday(timee));
+  // console.log('time:', timeForToday(timee));
   return (
     <div>
       {notificationList.map((ars) => {

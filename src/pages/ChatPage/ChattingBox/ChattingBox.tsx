@@ -1,16 +1,13 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import * as S from './ChattingBox.style';
 import { useState } from 'react';
 import { dbService } from '../../../common/firebase';
 import {
-  setDoc,
   doc,
-  serverTimestamp,
   query,
   collection,
   where,
   orderBy,
-  getDocs,
   onSnapshot,
   addDoc,
   updateDoc,
@@ -23,7 +20,7 @@ import {
   tochattingboxprofileimg,
 } from '../../../Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface SetProps {
   tochattingBoxUid: string;
@@ -159,7 +156,7 @@ function ChattingBox({
           <S.ChattingNicknameto
           // onClick={() => navigate(`/mypage/${getPostings.UID}`)}
           >
-            {nickname} 님
+            {nickname == '' ? '대화상대를 선택해 주세요' : nickname} 님
           </S.ChattingNicknameto>
         </S.ChattingNickname>
         <S.ChattingContent>

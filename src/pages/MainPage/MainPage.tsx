@@ -1,28 +1,18 @@
-import React from 'react';
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
-// import { Categoryitem, ImgTitle, Img } from '../../components/CategoryAll';
-// import { HeartIcon } from "../DetailPage/DetailPage";
 import CommonStyles from './../../styles/CommonStyles';
-import { dbService } from '../../common/firebase';
-//import { query, onSnapshot, collection } from 'firebase/firestore';
-import { authService } from '../../common/firebase';
 import MainBanner from '../../components/main/banner';
-import { useNavigate, useParams } from 'react-router-dom';
-//import CategoryAll from './CategoryAll/CategoryAll';
+import { useNavigate } from 'react-router-dom';
 import CategorySlide from '../../components/main/CategorySlide';
 import FootOning from './FootOning';
 import * as S from './CardSection.style';
 import LikesComponent from './LikeComponent';
-import Fire from '../../assets/Mainpage/Fire.svg';
-import Boog from '../../assets/Mainpage/boog.svg';
-import gitbal from '../../assets/Mainpage/gitbal.svg';
+import Fire from '../../assets/Mainpage/Fire.png';
+import Boog from '../../assets/Mainpage/boog.png';
+import gitbal from '../../assets/Mainpage/gitbal.png';
 import WalkAfter from './WalkAfter';
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 
 const MainPage = () => {
-  const { collection } = useParams();
-  console.log(authService.currentUser);
   const navigate = useNavigate();
   return (
     <CommonStyles>
@@ -32,20 +22,25 @@ const MainPage = () => {
 
         <ContentLayout>
           <TitleLayout>
-            <HotShoesImg src={Fire}></HotShoesImg>
+            <HotShoesImg src={Fire} />
             <S.CategoryTitle>뜨거운 신발 </S.CategoryTitle>
           </TitleLayout>
 
           <FirstLayout>
             <InsideText>현재 인기가 많은 산책들이에요</InsideText>
-            <Button
-              value='2'
-              onClick={(event) =>
-                navigate(`/collection/${event.target['value']}`)
-              }
-            >
-              전체보기
-            </Button>
+            <ButtonWrap>
+              <Button
+                value='2'
+                onClick={(event) =>
+                  navigate(`/collection/${event.target['value']}`)
+                }
+              >
+                전체보기
+              </Button>
+              <ButtonIcon
+                src={require('../../assets/Mainpage/chevronleft.svg').default}
+              />
+            </ButtonWrap>
           </FirstLayout>
           <S.LikedListItem>
             <LikesComponent />
@@ -55,20 +50,25 @@ const MainPage = () => {
 
         <ContentLayout>
           <TitleLayout>
-            <HotShoesImg src={Boog}></HotShoesImg>
+            <HotShoesImg src={Boog} />
             <S.CategoryTitle>신발 신는 중 </S.CategoryTitle>
           </TitleLayout>
 
           <FirstLayout>
             <InsideText>현재 이루어지고 있는 산책들이에요</InsideText>
-            <Button
-              value='1'
-              onClick={(event) =>
-                navigate(`/collection/${event.target['value']}`)
-              }
-            >
-              전체보기
-            </Button>
+            <ButtonWrap>
+              <Button
+                value='1'
+                onClick={(event) =>
+                  navigate(`/collection/${event.target['value']}`)
+                }
+              >
+                전체보기
+              </Button>
+              <ButtonIcon
+                src={require('../../assets/Mainpage/chevronleft.svg').default}
+              />
+            </ButtonWrap>
           </FirstLayout>
 
           <S.LikedListItem>
@@ -79,24 +79,28 @@ const MainPage = () => {
 
         <ContentLayout>
           <TitleLayout>
-            <HotShoesImg src={gitbal}></HotShoesImg>
+            <HotShoesImg src={gitbal} />
             <S.CategoryTitle>매칭된 신발 </S.CategoryTitle>
           </TitleLayout>
           <FirstLayout>
             <InsideText>매칭이 완료된 산책들이에요</InsideText>
-            <Button
-              value='3'
-              onClick={(event) =>
-                navigate(`/collection/${event.target['value']}`)
-              }
-            >
-              전체보기
-            </Button>
+            <ButtonWrap>
+              <Button
+                value='3'
+                onClick={(event) =>
+                  navigate(`/collection/${event.target['value']}`)
+                }
+              >
+                전체보기
+              </Button>
+              <ButtonIcon
+                src={require('../../assets/Mainpage/chevronleft.svg').default}
+              />
+            </ButtonWrap>
           </FirstLayout>
           <S.LikedListItem>
             <WalkAfter />
           </S.LikedListItem>
-          <Line />
         </ContentLayout>
       </CategoryWrapper>
     </CommonStyles>
@@ -111,10 +115,10 @@ const Button = styled.button`
   background-color: transparent;
   font-family: 'SUITERegular';
   letter-spacing: -0.1px;
-  padding-top: 19px;
+  margin-right: 5px;
 `;
 const InsideText = styled.p`
-  padding-top: 19px;
+  margin-top: 19px;
   font-family: 'SUITERegular';
   letter-spacing: -1px;
   color: #7d8bae;
@@ -152,12 +156,24 @@ const FirstLayout = styled.div`
 `;
 
 const Line = styled.div`
-  height: 64px;
+  height: 74px;
   background-color: white;
   width: 100%;
   border-bottom: 2px solid #bec5d7;
 `;
-
+const ButtonIcon = styled.img`
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+  cursor: pointer;
+`;
+const ButtonWrap = styled.div`
+  margin-top: 19px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const ContentLayout = styled.div``;
+
 export const Collectionitem = styled.div``;
 export default MainPage;

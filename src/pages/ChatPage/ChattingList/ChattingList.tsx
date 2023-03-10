@@ -3,9 +3,7 @@ import * as S from '../ChattingList/ChattingList.style';
 import {
   query,
   collection,
-  getDocs,
   orderBy,
-  where,
   onSnapshot,
   doc,
   updateDoc,
@@ -37,8 +35,6 @@ function ChattingList({
   SetTochattingBoxRoomIndex,
   SetTochattingBoxOpponenRoomIndex,
   tochattingBoxRoomIndex,
-  tochattingBoxUid,
-  tochattingBoxOpponentRoomIndex,
 }: SetProps) {
   const mychatlist = useRecoilValue(currentUserUid);
   const [chatList, setChatList] = useState<any>([]);
@@ -131,6 +127,7 @@ function ChattingList({
             {chattingUser.map((user) => {
               return (
                 <S.ChattingUser
+                  key={user.id}
                   tabIndex={-1}
                   onClick={() => {
                     SetTochattingBoxRoomId(user.combineId);

@@ -1,40 +1,41 @@
 import styled from 'styled-components';
 
-export const InputLayout = styled.div``;
+export const InputLayout = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+`;
 
 export const InputBox = styled.div`
-  display: flex;
+  width: 386px;
+  height: 532px;
 
-  flex-wrap: wrap;
-  width: 460px;
-  height: 600px;
-
-  margin-top: 80px;
-  margin: auto;
   border-radius: 10px;
-  padding: 5px;
-  position: relative;
-  top: 100px;
-  box-shadow: 0 0 10px #bec5d7;
+  background: #ffffff;
+  box-shadow: 0px 0px 7px rgba(190, 197, 215, 0.8);
   z-index: 1;
 `;
 export const InputBoxContent = styled.div`
-  width: 360px;
+  width: 306px;
 
   margin: auto;
 `;
 
 // 인풋태그
 export const Input = styled.input`
-  border: none;
-  width: 320px;
-  height: 2.375rem;
-  position: relative;
-  left: 1.875rem;
   outline: none;
-  background-color: transparent;
-  :focus-visible {
-    outline: none;
+  position: relative;
+  left: 10px;
+  top: 7px;
+  width: 250px;
+
+  &&::placeholder {
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #24264e;
   }
 `;
 
@@ -46,54 +47,79 @@ export const ResetButton = styled.img`
 //Input태그의 테두리
 export const Inputholder = styled.div`
   margin: auto;
-  border-radius: 0.625rem;
-  width: 360px;
-  height: 48px;
+  border-radius: 10px;
+  width: 306px;
+  height: 47px;
   border: 2px solid #bec5d7;
   color: #b2c8df;
+  position: relative;
 
   margin-top: 10px;
 `;
+
+//초기화버튼
+export const CheckBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: relative;
+  left: 276px;
+  bottom: 10px;
+  cursor: pointer;
+  :active {
+    width: 10px;
+    height: 10px;
+  }
+`;
+
+//초기화버튼 이미지
+export const CheckIconright = styled.img``;
 
 //인풋을 둘러싼 박스
 
 //잠깐만 !
 export const LoginLogo = styled.div`
-  text-align: center;
-  margin-top: 2.875rem;
-  margin-bottom: 1.5625rem;
-  font-size: 32px;
-  font-family: 'SUITERegular';
-  letter-spacing: -0.1px;
-  color: black;
+  height: 112px;
+  /* background-color: antiquewhite; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 7px;
 `;
 export const LogoText = styled.div`
-  font-family: 'SUITERegular';
-  letter-spacing: -0.1px;
+  font-family: 'SUIT';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 25px;
+  color: #24264e;
 `;
 
 export const ButtonBox = styled.div`
   display: flex;
-
   flex-direction: column;
   align-items: center;
 `;
 
 export const OrText = styled.div`
   padding-top: 20px;
-  font-size: 13px;
+  font-size: 10px;
   align-items: center;
   text-align: center;
   font-family: 'SUITERegular';
   letter-spacing: -0.1px;
+  font-weight: 300;
   color: #7d8bae;
 `;
 
 export const SocialBox = styled.div`
-  gap: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 24px;
+  /* width: 100px;
+  background-color: green; */
+  margin: 16px 0px 27px 0px;
 `;
 
 export const FindBox = styled.div`
@@ -106,64 +132,50 @@ export const LineBox = styled.div`
   align-items: center;
   display: flex;
 `;
-export const Naver = styled.img`
-  margin: 1.25rem;
-  width: 2.5rem;
-
-  cursor: pointer;
-`;
 
 export const Facebook = styled.img`
-  margin: 1.25rem;
-  width: 2.5rem;
+  width: 40px;
 
   cursor: pointer;
 `;
 
 export const Google = styled.img`
-  margin: 1.25rem;
-  width: 2.5rem;
-
-  cursor: pointer;
-`;
-export const KakaoLoginButton = styled.img`
-  margin: 1.25rem;
-  width: 2.5rem;
+  width: 40px;
 
   cursor: pointer;
 `;
 
-export const LoginBtn = styled.button`
+export const LoginBtn = styled.button<{ state: boolean }>`
   border-radius: 5px;
-  width: 360px;
-  height: 2.5rem;
+  width: 306px;
+  height: 46px;
   font-size: 16px;
   color: black;
   font-weight: 400;
-  margin-top: 0.9375rem;
-  background-color: #d1d1d1;
+  margin-top: 15px;
+  background: ${(props) => (props.state ? '#7d8bae;' : '#C8D1E0')};
   cursor: pointer;
+  margin-top: 56px;
+  color: white;
 
-  &:hover {
-    background: #7d8bae;
-    color: white;
-    transition: 0.5s;
-  }
+  font-family: 'SUITERegular';
 `;
 export const ThirdBox = styled.div`
   display: flex;
-  align-items: center;
-  margin: 0 auto;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const RegisterBtn = styled.button`
   background-color: transparent;
   padding-left: 5px;
+  margin-right: 2px;
+  font-weight: 600;
+  font-size: 12px;
   font-family: 'SUITERegular';
+  color: black;
 `;
 
-export const FindBtn = styled.button`
+export const ToFindPage = styled.button`
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -171,25 +183,83 @@ export const FindBtn = styled.button`
   letter-spacing: -0.1px;
   color: #7d8bae;
   margin: auto;
+  font-size: 10px;
   padding-top: 10px;
 `;
 
-export const ResisterText = styled.p`
-  font-size: 13px;
+export const FindBtn = styled.button`
+  width: 306px;
+  height: 46px;
+  background-color: #7d8bae;
+  position: relative;
+  border-radius: 4px;
+
+  top: 263px;
+`;
+
+export const BackBtn = styled.button`
+  position: relative;
+  top: 252px;
+  background-color: white;
+  font-size: 10px;
+  color: #7d8bae;
+`;
+
+export const FindBtnText = styled.p`
+  color: white;
+  font-family: 'SUIT';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+`;
+
+export const ResisterText = styled.div`
+  font-size: 11px;
+  display: flex;
   align-items: center;
-  text-align: center;
   font-family: 'SUITERegular';
-  letter-spacing: -0.1px;
+  letter-spacing: -0.5px;
   color: #7d8bae;
 `;
 export const Validityfontbox = styled.div`
   border: none;
-  width: 330px;
+  font-family: 'SUITERegular';
   font-size: 10px;
-  height: 10px;
+  height: 20px;
   position: relative;
   right: 10px;
-  margin-top: 3px;
+  top: 30px;
   outline: none;
-  color: blue;
+  color: #7d8bae;
+  margin-left: 17px;
+`;
+
+// export const Error = styled.strong`
+//   display: ${(props) => (props.display ? 'block' : 'none')}; ;
+// `;
+export const ValidityEmailCircle = styled.img<{ validateEmailColor: boolean }>`
+  background-color: ${(Props) =>
+    Props.validateEmailColor ? '#1BE08D' : '#FF8F8F'};
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 10px;
+
+  z-index: 99;
+`;
+
+export const ValidBox = styled.div`
+  display: flex;
+  width: 306px;
+`;
+export const ButtonIcon = styled.img`
+  width: 10px;
+  height: 10px;
+  object-fit: contain;
+  cursor: pointer;
+`;
+export const RegisterBtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
