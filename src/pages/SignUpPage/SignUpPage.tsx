@@ -70,6 +70,9 @@ const SignUpPage = () => {
   const deletenameinput = () => {
     setDisplayname('');
   };
+  const deletemailinput = () => {
+    setEmail('');
+  };
   const deleteCnfirminput = () => {
     setCnfirmPwd('');
   };
@@ -211,6 +214,7 @@ const SignUpPage = () => {
             imageURL:
               'https://firebasestorage.googleapis.com/v0/b/oh-ju-79642.appspot.com/o/profile%2Fblank_profile.png?alt=media&token=0053da71-f478-44a7-ae13-320539bdf641',
             bannerImg: '',
+            introduce: '',
           })
             .then(() => {
               if (authService.currentUser !== null) {
@@ -312,7 +316,7 @@ const SignUpPage = () => {
 
                 {email && (
                   <S.CheckBox>
-                    <S.DeleteEmailCheckBtn onClick={deleteCnfirminput}>
+                    <S.DeleteEmailCheckBtn onClick={deletemailinput}>
                       <S.CheckIconright
                         src={
                           require('../../assets/ChattingIcon/clearbtn.svg')
@@ -350,14 +354,14 @@ const SignUpPage = () => {
                 {password && (
                   <S.CheckBox>
                     {passinputType === 'password' ? (
-                      <S.CheckBtn onClick={handleToggleInputType}>
+                      <S.CheckPassWordBtn onClick={handleToggleInputType}>
                         <S.CheckIconright
                           src={
                             require('../../assets/LoginPage/No-eye.svg').default
                           }
                           alt='Show password'
                         />
-                      </S.CheckBtn>
+                      </S.CheckPassWordBtn>
                     ) : (
                       <S.OpenCheckBtn onClick={handleToggleInputType}>
                         <S.Checkeye

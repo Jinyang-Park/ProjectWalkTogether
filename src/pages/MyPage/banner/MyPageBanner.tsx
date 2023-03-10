@@ -12,11 +12,11 @@ interface Props {
 }
 
 const MyPageBanner = ({ userInfo }: Props) => {
-  const { uid, bannerImg } = userInfo;
+  const { uid: userId, imageUrl } = userInfo;
 
   const userUID = useRecoilValue(currentUserUid);
 
-  const [imageURL, setImageURL] = useState<string>('');
+  const [imageURL, setImageURL] = useState<string>(userInfo.imageUrl);
 
   const onImageChange = (
     e: React.ChangeEvent<EventTarget & HTMLInputElement>
@@ -59,7 +59,7 @@ const MyPageBanner = ({ userInfo }: Props) => {
               : require('../../../assets/MypageIcon/bannerImg.svg').default
           }
         />
-        {uid === userUID && (
+        {userId === userUID && (
           <>
             <BannerImgBtn
               src={require('../../../assets/MypageIcon/EditIcon.svg').default}

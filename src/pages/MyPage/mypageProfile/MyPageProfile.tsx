@@ -12,6 +12,7 @@ import MypageDropBox from './MypageDropBox';
 import useDetectClose from '../../../hooks/useDetectClose';
 import * as S from './MyPageProfile.style';
 import { UserNickName } from '../../../Rocoil/Atom';
+import { useUser } from '../../../api/userApi';
 
 interface Props {
   userInfo: any;
@@ -23,7 +24,8 @@ interface Props {
 const MyPageProfile = ({ userInfo }: Props) => {
   const navigate = useNavigate();
 
-  const { id, email, nickname, profileImg, uid } = userInfo;
+  const { displayName, imageUrl, userId } = userInfo;
+  const id = useRecoilValue(currentUserUid);
 
   const [newname, setNewname] = useState('');
   const [newmessage, setNewmessage] = useState('');
@@ -31,7 +33,6 @@ const MyPageProfile = ({ userInfo }: Props) => {
   const [message, setMessage] = useState('');
 
   const setUsername = useSetRecoilState(username);
-  const userUID = useRecoilValue(currentUserUid);
   const [isediting, setIsEditing] = useState(false);
   const [nameswitch, setNameSwitch] = useState(false);
   const [messageswitch, setMessagesSwitch] = useState(false);
@@ -40,16 +41,18 @@ const MyPageProfile = ({ userInfo }: Props) => {
   // 모달창
   const [showBox, setShowBox] = useState<any>(false);
 
+  const userInThisContextIDontEvenKnowWhatToCallThisAnymoreForFucksSake =
+    useUser(userId);
+
   // 모달 외부 클릭 시 닫기 customhook
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
   useEffect(() => {
     getImageURL();
-  }, [uid]);
+  }, [userId]);
   const getImageURL = async () => {
-    const docRef = doc(dbService, 'user', uid);
-    const docSnap = await getDoc(docRef);
-
-    setImageURL(docSnap.data().profileImg);
+    setImageURL(
+      userInThisContextIDontEvenKnowWhatToCallThisAnymoreForFucksSake.imageUrl
+    );
   };
   const onImageChange = (
     e: React.ChangeEvent<EventTarget & HTMLInputElement>
@@ -87,13 +90,13 @@ const MyPageProfile = ({ userInfo }: Props) => {
   const onEditBtn = async () => {
     if (!isediting) {
       setNewname(authService.currentUser.displayName);
-      const docSnap = await getDoc(doc(dbService, 'user', uid));
+      const docSnap = await getDoc(doc(dbService, 'user', userId));
       setNewmessage(docSnap.data().introduce);
     } else {
       updateProfile(authService.currentUser, {
         displayName: newname,
       });
-      updateDoc(doc(dbService, 'user', uid), {
+      updateDoc(doc(dbService, 'user', userId), {
         nickname: newname,
         introduce: newmessage,
       });
@@ -111,43 +114,20 @@ const MyPageProfile = ({ userInfo }: Props) => {
 
   return (
     <S.MyPageProfileWrap>
-      <UserProfileContainer>
-        <UserProfileImgLabel htmlFor='fileInput'>
-          <UserProfileImg src={profileImg} />
-          <UserProfileEditIcon src={'/assets/editicon.png'} />
+      <S.UserProfileContainer>
+        <S.UserProfileImgLabel htmlFor='fileInput'>
+          <S.UserProfileImg src={imageUrl} />
+          <S.UserProfileEditIcon src={'/assets/editicon.png'} />
           <UserProfileImgBtn
             type='file'
             id='fileInput'
             onChange={onImageChange}
           />
-        </UserProfileImgLabel>
-      </UserProfileContainer>
+        </S.UserProfileImgLabel>
+      </S.UserProfileContainer>
 
       <S.UserProfileInfoContainer>
-        {uid === userUID && (
-          <S.UserModifyBtn onClick={onEditBtn}>
-            {!isediting ? (
-              <>
-                수정하기
-                <S.UserModifyBtnIcon
-                  src={
-                    require('../../../assets/MypageIcon/EditPinkIcon.svg')
-                      .default
-                  }
-                />
-              </>
-            ) : (
-              <>
-                수정완료
-                <S.UserModifyBtnIcon
-                  src={require('../../../assets/MypageIcon/check2.svg').default}
-                />
-              </>
-            )}
-          </S.UserModifyBtn>
-        )}
-
-        {uid === userUID && (
+        {userId === id && (
           <>
             <S.MyPageButton onClick={myPageHandler} ref={myPageRef}>
               <S.MypageMoreBtn
@@ -162,22 +142,17 @@ const MyPageProfile = ({ userInfo }: Props) => {
         )}
         <S.UserNickNameBox>
           {!isediting ? (
-            <S.UserNickName>{!name ? '이름없음' : name}</S.UserNickName>
+            <S.UserNickName>{displayName}</S.UserNickName>
           ) : (
-            <>
-              <S.ChangeNickName
-                value={newname}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  if (e.target.value.length > 5) {
-                    setNameSwitch(true);
-                  } else {
-                    setNewname(e.currentTarget.value);
-                  }
-                }}
-              />
-            </>
+            <input
+              value={newname}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setNewname(e.currentTarget.value);
+              }}
+            ></input>
           )}
         </S.UserNickNameBox>
+
         {nameswitch && (
           <S.ShowTitleFlex>
             <S.ShowIcon
@@ -208,6 +183,7 @@ const MyPageProfile = ({ userInfo }: Props) => {
             ></textarea>
           )}
         </UserIntroduceAreaBox> */}
+
         <S.UserIntroduceAreaBox>
           {!isediting ? (
             <S.UserIntroduceText>{message}</S.UserIntroduceText>

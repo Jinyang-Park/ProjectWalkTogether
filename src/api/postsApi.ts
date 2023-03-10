@@ -1,6 +1,6 @@
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { dbService } from '../common/firebase';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from 'react-query';
 
 export type Post = {
   id: string;

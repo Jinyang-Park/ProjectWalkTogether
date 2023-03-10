@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const InputLayout = styled.div`
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+  /* margin-top: 80px; */
+  min-height: calc(100vh - 242px);
+`;
 export const InputBox = styled.div`
   display: flex;
 
@@ -197,12 +205,25 @@ export const CheckBtn = styled.div`
     height: 15px;
   }
 `;
+export const CheckPassWordBtn = styled.div`
+  width: 20px;
+  height: 15px;
+  position: fixed;
+  right: 710px;
+
+  bottom: 367px;
+  cursor: pointer;
+  :active {
+    width: 20px;
+    height: 15px;
+  }
+`;
 
 export const CheckPassBtn = styled.div`
   width: 20px;
   height: 15px;
   position: fixed;
-  right: 430px;
+  right: 710px;
 
   bottom: 290px;
   cursor: pointer;
@@ -215,9 +236,9 @@ export const OpenCheckBtn = styled.div`
   width: 22px;
   height: 27px;
   position: fixed;
-  right: 430px;
+  right: 710px;
 
-  bottom: 360px;
+  bottom: 362px;
   cursor: pointer;
   :active {
     width: 22px;
@@ -228,9 +249,9 @@ export const OpenPassCheckBtn = styled.div`
   width: 22px;
   height: 27px;
   position: fixed;
-  right: 430px;
+  right: 710px;
 
-  bottom: 285px;
+  bottom: 284px;
   cursor: pointer;
   :active {
     width: 22px;
@@ -242,7 +263,7 @@ export const DeleteCheckBtn = styled.div`
   width: 13px;
   height: 13px;
   position: fixed;
-  right: 405px;
+  right: 685px;
 
   bottom: 292px;
   cursor: pointer;
@@ -256,7 +277,7 @@ export const DeletePassCheckBtn = styled.div`
   width: 13px;
   height: 13px;
   position: fixed;
-  right: 405px;
+  right: 685px;
 
   bottom: 368px;
   cursor: pointer;
@@ -271,6 +292,7 @@ export const CheckBox = styled.div`
   position: relative;
   right: 30px;
   gap: 12px;
+  align-items: center;
 `;
 
 export const PassCheckBox = styled.div`
@@ -284,7 +306,7 @@ export const DeleteEmailCheckBtn = styled.div`
   width: 13px;
   height: 13px;
   position: fixed;
-  right: 405px;
+  right: 685px;
 
   bottom: 445px;
   cursor: pointer;
@@ -298,7 +320,7 @@ export const DeleteNameCheckBtn = styled.div`
   width: 13px;
   height: 13px;
   position: fixed;
-  right: 405px;
+  right: 685px;
 
   bottom: 523px;
   cursor: pointer;
