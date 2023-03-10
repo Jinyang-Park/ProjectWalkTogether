@@ -120,7 +120,7 @@ const DropBox = ({ setShowBox, id, getPostings, setComplete }: DropProps) => {
             },
           },
         ],
-        MessageWindowLogoType.Perplex
+        MessageWindowLogoType.Congratulation
       ),
       setState
     );

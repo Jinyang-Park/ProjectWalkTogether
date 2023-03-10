@@ -386,7 +386,7 @@ const LoginPage = () => {
                 </S.ResisterText>
               </S.ThirdBox>
               <S.FindBox>
-                <S.FindBtn onClick={findPwd}>비밀번호 찾기</S.FindBtn>
+                <S.ToFindPage onClick={findPwd}>비밀번호 찾기</S.ToFindPage>
               </S.FindBox>
             </S.InputBoxContent>
           </S.InputBox>

@@ -12,6 +12,7 @@ import rocket from '../assets/messageWindow/Rocket.png';
 import writingHand from '../assets/messageWindow/WritingHand.png';
 import yellowPencil from '../assets/messageWindow/YellowPencil.png';
 import CloseButton from '../assets/messageWindow/CancelBtn.png';
+import congratulation from '../assets/messageWindow/Congratulation.png';
 
 //
 // 사용법
@@ -69,6 +70,7 @@ export enum MessageWindowLogoType {
   Rocket,
   WritingHand,
   YellowPencil,
+  Congratulation,
 }
 
 export function MessageWindowComponent() {
@@ -188,6 +190,9 @@ export function MessageWindowComponent() {
 
       case MessageWindowLogoType.YellowPencil:
         return <LogoImg src={yellowPencil} alt='Yellow Pencil' />;
+
+      case MessageWindowLogoType.Congratulation:
+        return <LogoImg src={congratulation} alt='Congratulationl' />;
 
       default:
         return <></>;

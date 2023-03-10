@@ -24,6 +24,7 @@ import ChangePassword from '../pages/ChangePassword/ChangePassword';
 import ScrollToTopButton from './../components/ScrollToTopButton/ScrollToTopButton';
 import RerouteToMyPage from './../components/RerouteToMyPage/RerouteToMyPage';
 import FindPassword from '../pages/LoginPage/Findpassword';
+import Footer from '../layout/Footer/Footer';
 const Router = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
@@ -51,6 +52,7 @@ const Router = () => {
         <Route path='/reroutetomypage' element={<RerouteToMyPage />} />
         <Route path='/find' element={<FindPassword />} />
       </Routes>
+      <Footer />
       <ScrollToTopButton />
       <MeetDateInitializer />
     </BrowserRouter>

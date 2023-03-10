@@ -51,8 +51,9 @@ export const ChattingListMessagePhoto = styled.div`
 `;
 
 export const ChattingListouter = styled.div`
+  overflow-x: hidden;
   overflow-y: scroll;
-  width: 300px;
+  width: 291px;
   height: 509px;
   position: relative;
   /* 

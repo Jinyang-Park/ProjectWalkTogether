@@ -4,6 +4,7 @@ export const CategoryWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 868px;
+  min-height: 60vh;
   margin: auto;
   margin-bottom: 80px;
 `;
