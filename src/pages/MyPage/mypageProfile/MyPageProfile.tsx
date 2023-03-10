@@ -6,6 +6,12 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { authService, dbService, storage } from '../../../common/firebase';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
+import { currentUserUid, username } from '../../../Rocoil/Atom';
+import MypageDropBox from './MypageDropBox';
+import useDetectClose from '../../../hooks/useDetectClose';
+import * as S from './MyPageProfile.style';
+import { UserNickName } from '../../../Rocoil/Atom';
 
 interface Props {
   userInfo: any;
@@ -21,11 +27,21 @@ const MyPageProfile = ({ userInfo }: Props) => {
 
   const [newname, setNewname] = useState('');
   const [newmessage, setNewmessage] = useState('');
+  const [name, setName] = useRecoilState(UserNickName);
   const [message, setMessage] = useState('');
 
+  const setUsername = useSetRecoilState(username);
+  const userUID = useRecoilValue(currentUserUid);
   const [isediting, setIsEditing] = useState(false);
-
+  const [nameswitch, setNameSwitch] = useState(false);
+  const [messageswitch, setMessagesSwitch] = useState(false);
   const [imageURL, setImageURL] = useState<string>('');
+
+  // 모달창
+  const [showBox, setShowBox] = useState<any>(false);
+
+  // 모달 외부 클릭 시 닫기 customhook
+  const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
   useEffect(() => {
     getImageURL();
   }, [uid]);
@@ -81,15 +97,20 @@ const MyPageProfile = ({ userInfo }: Props) => {
         nickname: newname,
         introduce: newmessage,
       });
+
+      setName(newname);
+      setMessage(newmessage);
+      setUsername(newname);
     }
     //textfiled;
     sessionStorage.setItem('id', newname);
+
     navigate('/mypage');
     setIsEditing(!isediting);
   };
 
   return (
-    <MyPageProfileWrap>
+    <S.MyPageProfileWrap>
       <UserProfileContainer>
         <UserProfileImgLabel htmlFor='fileInput'>
           <UserProfileImg src={profileImg} />
@@ -97,27 +118,76 @@ const MyPageProfile = ({ userInfo }: Props) => {
           <UserProfileImgBtn
             type='file'
             id='fileInput'
-            // onChange={onImageChange}
+            onChange={onImageChange}
           />
         </UserProfileImgLabel>
       </UserProfileContainer>
 
-      <UserProfileInfoContainer>
-        <button onClick={onEditBtn}>
-          {!isediting ? '수정하기' : '수정완료'}
-        </button>
-        <UserNickNameBox>
+      <S.UserProfileInfoContainer>
+        {uid === userUID && (
+          <S.UserModifyBtn onClick={onEditBtn}>
+            {!isediting ? (
+              <>
+                수정하기
+                <S.UserModifyBtnIcon
+                  src={
+                    require('../../../assets/MypageIcon/EditPinkIcon.svg')
+                      .default
+                  }
+                />
+              </>
+            ) : (
+              <>
+                수정완료
+                <S.UserModifyBtnIcon
+                  src={require('../../../assets/MypageIcon/check2.svg').default}
+                />
+              </>
+            )}
+          </S.UserModifyBtn>
+        )}
+
+        {uid === userUID && (
+          <>
+            <S.MyPageButton onClick={myPageHandler} ref={myPageRef}>
+              <S.MypageMoreBtn
+                src={require('../../../assets/MypageIcon/More.svg').default}
+                onClick={() => {
+                  setShowBox(true);
+                }}
+              />
+            </S.MyPageButton>
+            {myPageIsOpen && <MypageDropBox />}
+          </>
+        )}
+        <S.UserNickNameBox>
           {!isediting ? (
-            <UserNickName>{nickname}</UserNickName>
+            <S.UserNickName>{!name ? '이름없음' : name}</S.UserNickName>
           ) : (
-            <input
-              value={newname}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setNewname(e.currentTarget.value);
-              }}
-            ></input>
+            <>
+              <S.ChangeNickName
+                value={newname}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  if (e.target.value.length > 5) {
+                    setNameSwitch(true);
+                  } else {
+                    setNewname(e.currentTarget.value);
+                  }
+                }}
+              />
+            </>
           )}
-        </UserNickNameBox>
+        </S.UserNickNameBox>
+        {nameswitch && (
+          <S.ShowTitleFlex>
+            <S.ShowIcon
+              src={require('../../../assets/MypageIcon/Dot.svg').default}
+            />
+            <S.ShowCheckNickName>
+              닉네임은 5글자를 넘을 수 없습니다.
+            </S.ShowCheckNickName>
+          </S.ShowTitleFlex>
+        )}
         {/* 
         <UserWalkCountBox>
           <UserWalkCountIcon>아이콘</UserWalkCountIcon>
@@ -138,20 +208,39 @@ const MyPageProfile = ({ userInfo }: Props) => {
             ></textarea>
           )}
         </UserIntroduceAreaBox> */}
-      </UserProfileInfoContainer>
-    </MyPageProfileWrap>
+        <S.UserIntroduceAreaBox>
+          {!isediting ? (
+            <S.UserIntroduceText>{message}</S.UserIntroduceText>
+          ) : (
+            <S.ChangeContent
+              placeholder='자기소개를 입력해주세요'
+              value={newmessage}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                if (e.currentTarget.value.length > 120) {
+                  setMessagesSwitch(true);
+                } else {
+                  setNewmessage(e.currentTarget.value);
+                }
+              }}
+            />
+          )}
+        </S.UserIntroduceAreaBox>
+        {messageswitch && (
+          <S.ShowTitleFlex>
+            <S.ShowIcon
+              src={require('../../../assets/MypageIcon/Dot.svg').default}
+            />
+            <S.ShowCheckNickName>
+              자기소개는 120글자를 넘을 수 없습니다.
+            </S.ShowCheckNickName>
+          </S.ShowTitleFlex>
+        )}
+      </S.UserProfileInfoContainer>
+    </S.MyPageProfileWrap>
   );
 };
 export default MyPageProfile;
 
-const MyPageProfileWrap = styled.div`
-  width: 835px;
-  height: 203px;
-  margin: 15px auto 0 auto;
-
-  display: flex;
-  flex-direction: row;
-`;
 const UserProfileContainer = styled.div`
   width: 25%;
   height: 100%;
@@ -182,11 +271,7 @@ const UserProfileEditIcon = styled.img`
 const UserProfileImgBtn = styled.input`
   display: none;
 `;
-const UserProfileInfoContainer = styled.div`
-  width: 75%;
-  height: 100%;
-  margin-left: 20px;
-`;
+
 const UserNickNameBox = styled.div`
   width: 20%;
 
@@ -195,9 +280,7 @@ const UserNickNameBox = styled.div`
 
   background: #eef1f7;
 `;
-const UserNickName = styled.div`
-  font-size: 36px;
-`;
+
 const UserNickNameBtn = styled.button`
   width: 50px;
   height: 50px;

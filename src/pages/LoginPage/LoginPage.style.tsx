@@ -23,11 +23,11 @@ export const InputBoxContent = styled.div`
 // 인풋태그
 export const Input = styled.input`
   outline: none;
-  outline: none;
+
   position: relative;
   left: 10px;
   top: 7px;
-  width: 250px;
+  width: 230px;
   &&::placeholder {
     font-family: 'SUIT';
     font-style: normal;
@@ -38,7 +38,6 @@ export const Input = styled.input`
   }
   left: 10px;
   top: 7px;
-  width: 250px;
 
   &&::placeholder {
     font-family: 'SUIT';
@@ -47,6 +46,9 @@ export const Input = styled.input`
     font-size: 12px;
     line-height: 15px;
     color: #24264e;
+  }
+  ::-ms-reveal {
+    display: none;
   }
 `;
 
@@ -225,16 +227,67 @@ export const RegisterBtnWrapper = styled.div`
 `;
 
 export const CheckBtn = styled.div`
-  width: 13px;
-  height: 13px;
-  position: relative;
-  left: 276px;
-  bottom: 10px;
+  width: 20px;
+  height: 15px;
+  position: fixed;
+  right: 430px;
+
+  bottom: 415px;
   cursor: pointer;
   :active {
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 15px;
   }
 `;
+
+export const OpenCheckBtn = styled.div`
+  width: 22px;
+  height: 27px;
+  position: fixed;
+  right: 430px;
+
+  bottom: 410px;
+  cursor: pointer;
+  :active {
+    width: 22px;
+    height: 27px;
+  }
+`;
+
+export const DeleteCheckBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: fixed;
+  right: 405px;
+
+  bottom: 417px;
+  cursor: pointer;
+  :active {
+    width: 13px;
+    height: 13px;
+  }
+`;
+
+export const CheckBox = styled.div`
+  display: flex;
+  position: relative;
+  right: 30px;
+  gap: 12px;
+`;
+
+export const DeleteEmailCheckBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: fixed;
+  right: 405px;
+
+  bottom: 473px;
+  cursor: pointer;
+  :active {
+    width: 13px;
+    height: 13px;
+  }
+`;
+
 export const CheckIconright = styled.img``;
 export const Checkeye = styled.img``;

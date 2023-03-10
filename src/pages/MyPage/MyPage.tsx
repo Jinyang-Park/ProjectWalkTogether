@@ -35,14 +35,16 @@ const MyPage = () => {
   }, [userUid]);
 
   useEffect(() => {
-    if (id === '') {
-      if (loggedIn) {
-        setId(userUid);
-      } else {
-        // 로그아웃 상태 시 로그인 페이지로 보냄
-        navigate('/login');
+    setTimeout(() => {
+      if (id === '') {
+        if (loggedIn) {
+          setId(userUid);
+        } else {
+          // 로그아웃 상태 시 로그인 페이지로 보냄
+          navigate('/login');
+        }
       }
-    }
+    }, 3000);
   }, [loggedIn]);
   //다른사람페이지로 가서 새로고침을 했을때 로그아웃을 하면 로그인페이지로 간다
   //id가없어서 안된다 파라미터 uid 방식이 아니라 mypage그대로 쓰자
@@ -66,7 +68,7 @@ const MyPage = () => {
       <MyPageWrap>
         <MyPageBanner userInfo={userInfo} />
         <MyPageProfile userInfo={userInfo} />
-        <MyPageReview />
+        {/* <MyPageReview /> */}
         <MypageTabbar
           uid={id}
           currentpage={currentPage}
