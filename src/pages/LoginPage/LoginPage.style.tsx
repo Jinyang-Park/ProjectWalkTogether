@@ -3,7 +3,10 @@ import styled from 'styled-components';
 export const InputLayout = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 150px;
+  align-items: center;
+  /* margin-top: 80px; */
+
+  min-height: calc(100vh - 242px);
 `;
 
 export const InputBox = styled.div`
@@ -22,7 +25,19 @@ export const InputBoxContent = styled.div`
 // 인풋태그
 export const Input = styled.input`
   outline: none;
+  outline: none;
   position: relative;
+  left: 10px;
+  top: 7px;
+  width: 230px;
+  &&::placeholder {
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #24264e;
+  }
   left: 10px;
   top: 7px;
   width: 250px;
@@ -33,6 +48,9 @@ export const Input = styled.input`
     font-size: 12px;
     line-height: 15px;
     color: #24264e;
+    ::-ms-reveal {
+      display: none;
+    }
   }
 `;
 
@@ -209,3 +227,35 @@ export const RegisterBtnWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const CheckBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: relative;
+  left: 276px;
+  bottom: 10px;
+  cursor: pointer;
+  :active {
+    width: 10px;
+    height: 10px;
+  }
+`;
+
+export const BackBtn = styled.button`
+  position: relative;
+  top: 252px;
+  background-color: white;
+  font-size: 10px;
+  color: #7d8bae;
+`;
+
+export const FindBtnText = styled.p`
+  color: white;
+  font-family: 'SUIT';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+`;
+
+export const CheckIconright = styled.img``;
+export const Checkeye = styled.img``;

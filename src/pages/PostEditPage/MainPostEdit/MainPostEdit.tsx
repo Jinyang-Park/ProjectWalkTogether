@@ -1,13 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import * as S from './MainPostEdit.style';
 import { useRecoilState } from 'recoil';
 import { TitleInput, DescriptionInput } from '../../../Rocoil/Atom';
 import { Bannerupload, ThumbnailUpload } from '../../../Rocoil/Atom';
-import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
-import { useParams } from 'react-router-dom';
-import { doc, getDoc } from '@firebase/firestore';
-import { dbService } from './../../../common/firebase';
 import Tag from '../../../components/Tag/Tag';
 import useDetectClose from './../../../hooks/useDetectClose';
 
@@ -40,7 +36,6 @@ function MainPostEdit({
   const [postTitle, setPostTitle] = useRecoilState(TitleInput); //글 제목
   const [postTag, setPostTag] = useState(''); //해쉬태그
   const [postdescription, SetDescription] = useRecoilState(DescriptionInput); //글 내용
-  // const [postCategory, setPostCategory] = useState(''); //카테고리
   const [photoupload, setPhotoupload] = useRecoilState(ThumbnailUpload); // Handles input change event and updates state
   const [bannerupload, setBanneruploadupload] = useRecoilState(Bannerupload);
   const [thumbnail, setThumbnail] = useState<any>(thumbnailimg);

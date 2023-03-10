@@ -3,9 +3,11 @@ import styled from '@emotion/styled';
 export const Outer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 64px;
+  align-items: center;
+  /* margin-top: 64px; */
   /* top: 65px;
   position: relative; */
+  min-height: calc(100vh - 242px);
 `;
 
 export const InnerBox = styled.div`

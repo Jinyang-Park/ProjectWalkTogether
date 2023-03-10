@@ -1,7 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from '../layout/Header';
-import RightSideWeatherCheck from '../layout/WeatherCheck';
-import Footer from '../layout/Footer';
 import MainPage from '../pages/MainPage/MainPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
@@ -26,6 +24,7 @@ import ChangePassword from '../pages/ChangePassword/ChangePassword';
 import ScrollToTopButton from './../components/ScrollToTopButton/ScrollToTopButton';
 import RerouteToMyPage from './../components/RerouteToMyPage/RerouteToMyPage';
 import FindPassword from '../pages/LoginPage/Findpassword';
+import Footer from '../layout/Footer/Footer';
 const Router = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
@@ -53,9 +52,9 @@ const Router = () => {
         <Route path='/reroutetomypage' element={<RerouteToMyPage />} />
         <Route path='/find' element={<FindPassword />} />
       </Routes>
+      <Footer />
       <ScrollToTopButton />
       <MeetDateInitializer />
-      <Footer />
     </BrowserRouter>
   );
 };
