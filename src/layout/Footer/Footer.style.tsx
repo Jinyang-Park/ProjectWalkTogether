@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const NavContainer = styled.div`
-  height: 200px;
-  /* background-color: blue; */
-  background: linear-gradient(to bottom, #d3f1ff, white);
-  width: 1024px;
+  height: 190px;
+  background-color: #eef1f7;
+  /* background: linear-gradient(to bottom, #d3f1ff, white); */
+  /* width: 1024px; */
   position: relative;
   font-family: 'SUIT';
   color: #24264e;
@@ -21,7 +21,7 @@ export const NavContainer = styled.div`
 
 export const FooterContentsOuter = styled.div`
   display: flex;
-  width: 1024px;
+  /* width: 1024px; */
 `;
 
 export const LogoNIntro = styled.div`
@@ -37,7 +37,7 @@ export const LogoBox = styled.div`
   height: 27px;
   position: relative;
   top: 31px;
-  left: 40px;
+  right: 75px;
 `;
 
 export const IntroText = styled.p`
@@ -61,7 +61,7 @@ export const Contact = styled.div`
 
   width: 25%;
   position: relative;
-  left: 50px;
+  right: 5px;
 `;
 
 export const ContactBox = styled.div`
@@ -126,7 +126,7 @@ export const SectionBox = styled.div`
   /* background-color: white; */
   position: relative;
   top: 31px;
-
+  left: 60px;
   font-size: 14px;
   display: flex;
   flex-direction: column;
@@ -141,7 +141,7 @@ export const SectionNav = styled(Link)`
 export const ReservedText = styled.div`
   position: relative;
   top: 110px;
-  left: 150px;
+  left: 145px;
   font-size: 14px;
   width: 500px;
 `;
@@ -154,9 +154,9 @@ export const GitImg = styled.img`
 `;
 
 export const PlaneImg = styled.img`
-  width: 14px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   position: relative;
-  top: 2px;
-  right: 2px;
+  top: 4px;
+  viewport-fit: initial;
 `;
