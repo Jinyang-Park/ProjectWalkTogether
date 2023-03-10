@@ -3,14 +3,12 @@ import styled from 'styled-components';
 export const InputLayout = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 64px;
-  margin-bottom: 64px;
+  margin-top: 150px;
 `;
 
 export const InputBox = styled.div`
   width: 386px;
   height: 532px;
-
   border-radius: 10px;
   background: #ffffff;
   box-shadow: 0px 0px 7px rgba(190, 197, 215, 0.8);
@@ -18,23 +16,24 @@ export const InputBox = styled.div`
 `;
 export const InputBoxContent = styled.div`
   width: 306px;
-
   margin: auto;
 `;
 
 // 인풋태그
 export const Input = styled.input`
-  border: none;
-  width: 240px;
-  margin-top: 10px;
-  height: 38px;
-  position: relative;
-
-  margin: 0 auto;
-  left: 30px;
-  font-family: 'SUITERegular';
   outline: none;
-  background-color: transparent;
+  position: relative;
+  left: 10px;
+  top: 7px;
+  width: 250px;
+  &&::placeholder {
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #24264e;
+  }
 `;
 
 export const ResetButton = styled.img`
@@ -50,7 +49,6 @@ export const Inputholder = styled.div`
   height: 47px;
   border: 2px solid #bec5d7;
   color: #b2c8df;
-
   margin-top: 10px;
 `;
 
@@ -75,7 +73,6 @@ export const LogoText = styled.div`
 
 export const ButtonBox = styled.div`
   display: flex;
-
   flex-direction: column;
   align-items: center;
 `;
@@ -114,13 +111,11 @@ export const LineBox = styled.div`
 
 export const Facebook = styled.img`
   width: 40px;
-
   cursor: pointer;
 `;
 
 export const Google = styled.img`
   width: 40px;
-
   cursor: pointer;
 `;
 
@@ -136,20 +131,20 @@ export const LoginBtn = styled.button<{ state: boolean }>`
   cursor: pointer;
   margin-top: 56px;
   color: white;
-
   font-family: 'SUITERegular';
 `;
 export const ThirdBox = styled.div`
   display: flex;
-  height: 20px;
+  justify-content: center;
 `;
 
 export const RegisterBtn = styled.button`
   background-color: transparent;
   padding-left: 5px;
-  font-weight: 300;
+  margin-right: 2px;
+  font-weight: 600;
   font-size: 12px;
-  font-family: 'SUITEBold';
+  font-family: 'SUITERegular';
   color: black;
 `;
 
@@ -165,11 +160,12 @@ export const FindBtn = styled.button`
   padding-top: 10px;
 `;
 
-export const ResisterText = styled.p`
+export const ResisterText = styled.div`
   font-size: 11px;
-
+  display: flex;
+  align-items: center;
   font-family: 'SUITERegular';
-  letter-spacing: -0.1px;
+  letter-spacing: -0.5px;
   color: #7d8bae;
 `;
 export const Validityfontbox = styled.div`
@@ -195,11 +191,21 @@ export const ValidityEmailCircle = styled.img<{ validateEmailColor: boolean }>`
   height: 10px;
   border-radius: 50%;
   margin-top: 10px;
-
   z-index: 99;
 `;
 
 export const ValidBox = styled.div`
   display: flex;
   width: 306px;
+`;
+export const ButtonIcon = styled.img`
+  width: 10px;
+  height: 10px;
+  object-fit: contain;
+  cursor: pointer;
+`;
+export const RegisterBtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

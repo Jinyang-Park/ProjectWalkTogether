@@ -108,7 +108,7 @@ export const DialogButton3 = styled.img`
   margin-top: 1px;
   width: 20px;
   height: 20px;
-  left: 850px;
+  left: 565px;
   background-size: cover;
 `;
 
@@ -117,7 +117,7 @@ export const DialogButton4 = styled.img`
   margin-top: 1px;
   width: 20px;
   height: 20px;
-  left: 835px;
+  left: 555px;
   background-size: cover;
 `;
 
@@ -166,6 +166,7 @@ export const AgreeBox = styled.div`
   font-size: 20px;
   text-align: center;
   line-height: 30px;
+  margin-top: 15px;
 `;
 
 export const AgreeBtn = styled.button<{ state: boolean }>`

@@ -2,7 +2,6 @@ import React from 'react';
 import * as S from './LoginPage.style';
 import { useState } from 'react';
 import {
-  Auth,
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
@@ -12,16 +11,6 @@ import {
   getAuth,
   signOut,
 } from 'firebase/auth';
-
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  setDoc,
-  where,
-} from 'firebase/firestore';
 
 import { useNavigate } from 'react-router-dom';
 import { apiKey, dbService, authService } from '../../common/firebase';
@@ -303,12 +292,19 @@ const LoginPage = () => {
               <S.ThirdBox>
                 <S.ResisterText>
                   아직 계정이 없으신가요?
-                  <S.RegisterBtn
-                    type='button'
-                    onClick={() => navigate('/agreement')}
-                  >
-                    이메일로 빠르게 회원가입 하기
-                  </S.RegisterBtn>
+                  <S.RegisterBtnWrapper>
+                    <S.RegisterBtn
+                      type='button'
+                      onClick={() => navigate('/agreement')}
+                    >
+                      이메일로 빠르게 회원가입 하기
+                    </S.RegisterBtn>
+                    <S.ButtonIcon
+                      src={
+                        require('../../assets/Mainpage/chevronleft.svg').default
+                      }
+                    />
+                  </S.RegisterBtnWrapper>
                 </S.ResisterText>
               </S.ThirdBox>
               <S.FindBox>
