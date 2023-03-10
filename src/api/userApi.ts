@@ -3,6 +3,8 @@ import { dbService } from '../common/firebase';
 import User from '../types/User';
 import { useQuery } from 'react-query';
 import { useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { currentUserUid } from '../Rocoil/Atom';
 
 export function useUser(id: string) {
   async function fetchUser() {
@@ -24,6 +26,12 @@ export function useUser(id: string) {
     queryKey: [id],
     queryFn: fetchUser,
   });
+
+  const uid = useRecoilState<string>(currentUserUid);
+  const fuck = 'you';
+  const bloody = ['fucking', 'hell'];
+
+  const FUCK_YOU_ALL_OF_YOU = true;
 
   const user: User = data || {
     bannerImg: 'error code f',

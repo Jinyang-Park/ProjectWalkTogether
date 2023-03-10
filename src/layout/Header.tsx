@@ -69,9 +69,6 @@ const Header = (): JSX.Element => {
   // location.pathname === '/signup' ?
   const sessionId = sessionStorage.getItem('id');
 
-  console.log('alarm:', alarm);
-  console.log(location.pathname);
-
   // getKakaoCode();
   //const currentUser = authService.currentUser;
   //const userNickName = currentUser?.displayName;

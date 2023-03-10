@@ -79,11 +79,8 @@ export default function AuthStateListener() {
   const auth = getAuth();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log(user);
-      // console.log('AuthState observer has been called');
       if (user) {
         // User is logged in
-        console.log(user);
 
         const useruid = user.uid;
         const myporfile = user.photoURL;
