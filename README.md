@@ -9,7 +9,7 @@
 🎬 [시연영상 보러가기](https://www.youtube.com/watch?v=_ZFK_nYZ7ho)
 
 <br/>
-
+<br/>
 
 ## 💙 프로젝트 소개
 
@@ -27,7 +27,7 @@
 
 [📒 올래 Notion](https://www.notion.so/Project-Walk-Together-Final-354dd91df9b2405f90bd8519fc03f0a3?pvs=4)
 
-[💻 프로젝트 기획안](https://www.notion.so/eda81292232d4843b5136bfbcf831080?pvs=4)
+[✍ 프로젝트 기획안](https://www.notion.so/eda81292232d4843b5136bfbcf831080?pvs=4)
 
 [🚀 기술적 의사결정](https://github.com/dwg787)
 
@@ -43,3 +43,21 @@
 |------|------|------|------|------|------|
 |[Github](https://github.com/Jinyang-Park)|[Github](https://github.com/rhsoks)|[Github](https://github.com/GhostPines)|[Github](https://github.com/Leekee01)|[Github](https://github.com/themrsung)|[Gmail](hjson1024@gmail.com)
 
+
+<br/>
+<br/>
+
+## 💻 기술 스택
+
+<div align="left">
+	<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+        <img src="https://img.shields.io/badge/React Query-FF4154?style=for-the-badge&logo=redux&logoColor=black">
+                <img src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=redux&logoColor=black">
+	<img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white" />
+                                  <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=redux&logoColor=black">
+                                                                  <img src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=redux&logoColor=black">
+	<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=expo&logoColor=white">
+</div>
+
+<br/>
+<br/>
