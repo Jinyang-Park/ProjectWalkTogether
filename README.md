@@ -63,3 +63,77 @@
 
 <br/>
 <br/>
+
+## 📂 디렉토리 구조
+
+```
+src
+ ┣ 📂api
+ ┃ ┗ 📜postsApi.ts
+ ┣ 📂assets
+ ┃ ┣ 📂Agreement
+ ┃ ┣ 📂CategoryPageIcon
+ ┃ ┣ 📂ChattingIcon
+ ┃ ┣ 📂constants
+ ┃ ┣ 📂DetailPageIcon
+ ┃ ┣ 📂Header
+ ┃ ┣ 📂Loader
+ ┃ ┣ 📂LoginPage
+ ┃ ┣ 📂Mainpage
+ ┃ ┣ 📂MapPageIcon
+ ┃ ┣ 📂messageWindow
+ ┃ ┣ 📂MypageIcon
+ ┃ ┣ 📂NavigationAssets
+ ┃ ┣ 📂PostEditPageIcon
+ ┃ ┣ 📂PostPageIcon
+ ┣ 📂common
+ ┣ 📂components
+ ┃ ┣ 📂AuthStateListener
+ ┃ ┣ 📂CardSection
+ ┃ ┣ 📂CardSkeleton
+ ┃ ┣ 📂DropDownCategoryForMapPage
+ ┃ ┣ 📂DropdownCategoryForWritePage
+ ┃ ┣ 📂DropdownFilterCategory
+ ┃ ┣ 📂HeaderAlarm
+ ┃ ┣ 📂Loader
+ ┃ ┣ 📂Logout
+ ┃ ┣ 📂main
+ ┃ ┣ 📂MeetDateInitializer
+ ┃ ┣ 📂PostModal
+ ┃ ┣ 📂RerouteToMyPage
+ ┃ ┣ 📂ScrollToTopButton
+ ┃ ┗ 📂Tag
+ ┣ 📂fonts
+ ┣ 📂hooks
+ ┃ ┣ 📜useDetectClose.ts
+ ┃ ┣ 📜useGeoLocation.ts
+ ┃ ┣ 📜useLoginState.ts
+ ┃ ┣ 📜useMap.ts
+ ┃ ┗ 📜useSearch.ts
+ ┣ 📂layout
+ ┣ 📂messagewindow
+ ┣ 📂pages
+ ┃ ┣ 📂Category
+ ┃ ┣ 📂ChangePassword
+ ┃ ┣ 📂ChatPage
+ ┃ ┣ 📂Collection
+ ┃ ┣ 📂DetailPage
+ ┃ ┣ 📂LoginPage
+ ┃ ┣ 📂MainPage
+ ┃ ┣ 📂MapPage
+ ┃ ┣ 📂MyPage
+ ┃ ┣ 📂PostEditPage
+ ┃ ┣ 📂PostPage
+ ┃ ┗ 📂SignUpPage
+ ┣ 📂Recoil
+ ┣ 📂routes
+ ┃ ┗ 📜router.tsx
+ ┣ 📂store
+ ┃ ┗ 📜selector.ts
+ ┣ 📂styles
+ ┣ 📂utils
+ ┣ 📜App.tsx
+ ┣ 📜index.css
+ ┣ 📜index.tsx
+ ┗ 📜react-app-env.d.ts
+```
