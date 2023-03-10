@@ -3,7 +3,12 @@ import Comments from './Comments/Comments';
 import CommonStyles from './../../styles/CommonStyles';
 import DetailMap from './DetailMap/DetailMap';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { isLoggedIn } from '../../Rocoil/Atom';
+import {
+  isLoggedIn,
+  tochattingboxroomid,
+  tochattingboxnickname,
+  tochattingboxprofileimg,
+} from '../../Rocoil/Atom';
 import { useEffect, useState } from 'react';
 import {
   getDoc,
@@ -81,6 +86,11 @@ const DetailPage = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
+
+  //함께걸을래요를 누르면 해당 채팅박스가 바로 뜨게하는 리코일
+  const roomId = useSetRecoilState(tochattingboxroomid);
+  const nickname = useSetRecoilState(tochattingboxnickname);
+  const profileImg = useSetRecoilState(tochattingboxprofileimg);
 
   // 게시글 id db 가져오기
   const getPost = async () => {
@@ -161,10 +171,53 @@ const DetailPage = () => {
 
   const goToChat = async () => {
     if (isduplication == true) {
-      alert('이미 채팅이 존재합니다.');
-      navigate('/chat');
+      // alert('이미 채팅이 존재합니다.');
+      MessageWindow.showWindow(
+        new MessageWindowProperties(
+          true,
+          '이미 채팅이 존재합니다!',
+          '',
+          [
+            {
+              text: '닫 기',
+              callback: () => {
+                MessageWindow.showWindow(
+                  new MessageWindowProperties(),
+                  setState
+                );
+              },
+            },
+          ],
+          MessageWindowLogoType.Perplex
+        ),
+        setState
+      );
     } else {
-      alert('채팅창으로 이동합니다.');
+      // alert('채팅창으로 이동합니다.');
+      MessageWindow.showWindow(
+        new MessageWindowProperties(
+          true,
+          '채팅창으로 이동합니다',
+          '',
+          [
+            {
+              text: '채팅하러 가기',
+              callback: () => navigate('/chat'),
+            },
+            {
+              text: '닫 기',
+              callback: () => {
+                MessageWindow.showWindow(
+                  new MessageWindowProperties(),
+                  setState
+                );
+              },
+            },
+          ],
+          MessageWindowLogoType.Rocket
+        ),
+        setState
+      );
 
       await setDoc(
         doc(
@@ -218,7 +271,10 @@ const DetailPage = () => {
         }
       );
 
-      navigate('/chat');
+      // 함께 걸을래요를 누르면 해당 값들이 chatbox에 전달된다
+      roomId(combineId);
+      nickname(getPostings.Nickname);
+      profileImg(getPostings.ThumbnailURL_Posting);
     }
   };
 
