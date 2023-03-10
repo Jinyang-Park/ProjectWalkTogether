@@ -238,5 +238,22 @@ export const CheckBtn = styled.div`
     height: 10px;
   }
 `;
+
+export const BackBtn = styled.button`
+  position: relative;
+  top: 252px;
+  background-color: white;
+  font-size: 10px;
+  color: #7d8bae;
+`;
+
+export const FindBtnText = styled.p`
+  color: white;
+  font-family: 'SUIT';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+`;
+
 export const CheckIconright = styled.img``;
 export const Checkeye = styled.img``;

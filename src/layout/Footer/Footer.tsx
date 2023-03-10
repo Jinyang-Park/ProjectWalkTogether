@@ -40,13 +40,19 @@ function Footer() {
             </S.ContactBtnBox>
             <S.ContactBtnBox>
               <S.GitImg src={require('../../assets/Header/github.png')} />
+              <S.Contactus href='https://github.com/GhostPines' target='_blank'>
+                Minsung
+              </S.Contactus>
+            </S.ContactBtnBox>
+            <S.ContactBtnBox>
+              <S.GitImg src={require('../../assets/Header/github.png')} />
               <S.Contactus href='https://github.com/Leekee01' target='_blank'>
                 Huigyeong
               </S.Contactus>
             </S.ContactBtnBox>
             <S.ContactBtnBox>
               <S.GitImg src={require('../../assets/Header/github.png')} />
-              <S.Contactus href='https://github.com/GhostPines' target='_blank'>
+              <S.Contactus href='https://github.com/themrsung' target='_blank'>
                 Alejandro
               </S.Contactus>
             </S.ContactBtnBox>

@@ -215,7 +215,7 @@ export const NotificationsBox = styled.div`
   text-align: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  transform: translate(-50%, -20px);
+  transform: translate(-65%, -20px);
   /* opacity: 0; */
 `;
 

@@ -9,7 +9,6 @@ export const NavContainer = styled.div`
   position: relative;
   font-family: 'SUIT';
   color: #24264e;
-  position: relative;
   display: flex;
   justify-content: center;
   top: 50px;
