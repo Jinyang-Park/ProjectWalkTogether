@@ -226,3 +226,8 @@ src
 <img src="https://user-images.githubusercontent.com/80263801/224359801-5729bfe5-c4d8-459d-8147-a1564e2ad377.gif" width="500" height="400">
 <img src="https://user-images.githubusercontent.com/80263801/224360048-3be05765-6bdf-4096-9238-08fa3279e614.gif" width="500" height="400">
 	</div>
+	
+#### 🔥카테고리
+* 카테고리와 날짜 선택 시, 해당 게시물 확인 가능 (최신순, 좋아요 순, 조회순)
+<img src="https://user-images.githubusercontent.com/80263801/224362429-8c6c4765-36a7-44c0-90a5-10bb66583c16.gif" width="800" height="700">
+
