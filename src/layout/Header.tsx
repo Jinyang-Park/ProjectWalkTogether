@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { useState } from 'react';
 import * as S from './Header.style';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -120,9 +121,9 @@ const Header = () => {
                     <S.NotificationTitleBox>
                       알림
                       <S.NotificationTitleXbtn>
-                        <img
+                        {/* <img
                           src={require('../assets/ChattingIcon/X.svg').default}
-                        ></img>
+                        ></img> */}
                       </S.NotificationTitleXbtn>
                     </S.NotificationTitleBox>
 
