@@ -50,7 +50,7 @@
 
 ## 💻 서비스 아키텍처
 
-<img src="https://user-images.githubusercontent.com/80263801/224418166-44db83f8-e616-4d55-aa47-017593a191c0.jpg" width="960" height="540">
+<img src="https://user-images.githubusercontent.com/80263801/224418166-44db83f8-e616-4d55-aa47-017593a191c0.jpg" width="480" height="270">
 
 
 
