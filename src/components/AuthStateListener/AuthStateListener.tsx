@@ -56,8 +56,6 @@ export default function AuthStateListener() {
         profileImg: profileImg,
         uid: uid,
       });
-
-      console.log(res);
     } else {
       const res = await setDoc(doc(dbService, 'user', uid), {
         email: email,
@@ -66,7 +64,6 @@ export default function AuthStateListener() {
         uid: uid,
         id: uid,
       });
-      console.log(res);
     }
   };
 
@@ -96,9 +93,11 @@ export default function AuthStateListener() {
           myporfile,
           mynickname,
         };
-
+        console.log(user.uid);
+        //첫로그인
         setIsLoggedIn(true);
         setCurrentUserUid(user.uid);
+        console.log(user.displayName);
         setUsername(user.displayName);
         setUserForChat(nowuser);
 
@@ -115,7 +114,7 @@ export default function AuthStateListener() {
         setCurrentUserUid('');
         // setCurrentKakaoId('');
         setUsername('');
-        navigate(`/`);
+        navigate('/');
       }
     });
   }, []);

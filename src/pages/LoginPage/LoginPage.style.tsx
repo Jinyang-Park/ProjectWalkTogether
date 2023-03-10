@@ -4,12 +4,12 @@ export const InputLayout = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 150px;
+  margin-top: 150px;
 `;
 
 export const InputBox = styled.div`
   width: 386px;
   height: 532px;
-
   border-radius: 10px;
   background: #ffffff;
   box-shadow: 0px 0px 7px rgba(190, 197, 215, 0.8);
@@ -17,18 +17,17 @@ export const InputBox = styled.div`
 `;
 export const InputBoxContent = styled.div`
   width: 306px;
-
   margin: auto;
 `;
 
 // 인풋태그
 export const Input = styled.input`
   outline: none;
+  outline: none;
   position: relative;
   left: 10px;
   top: 7px;
-  width: 250px;
-
+  width: 230px;
   &&::placeholder {
     font-family: 'SUIT';
     font-style: normal;
@@ -36,6 +35,20 @@ export const Input = styled.input`
     font-size: 12px;
     line-height: 15px;
     color: #24264e;
+  }
+  left: 10px;
+  top: 7px;
+  width: 250px;
+  &&::placeholder {
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #24264e;
+    ::-ms-reveal {
+      display: none;
+    }
   }
 `;
 
@@ -52,27 +65,8 @@ export const Inputholder = styled.div`
   height: 47px;
   border: 2px solid #bec5d7;
   color: #b2c8df;
-  position: relative;
-
   margin-top: 10px;
 `;
-
-//초기화버튼
-export const CheckBtn = styled.div`
-  width: 13px;
-  height: 13px;
-  position: relative;
-  left: 276px;
-  bottom: 10px;
-  cursor: pointer;
-  :active {
-    width: 10px;
-    height: 10px;
-  }
-`;
-
-//초기화버튼 이미지
-export const CheckIconright = styled.img``;
 
 //인풋을 둘러싼 박스
 
@@ -83,8 +77,6 @@ export const LoginLogo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  top: 7px;
 `;
 export const LogoText = styled.div`
   font-family: 'SUIT';
@@ -135,13 +127,11 @@ export const LineBox = styled.div`
 
 export const Facebook = styled.img`
   width: 40px;
-
   cursor: pointer;
 `;
 
 export const Google = styled.img`
   width: 40px;
-
   cursor: pointer;
 `;
 
@@ -157,7 +147,6 @@ export const LoginBtn = styled.button<{ state: boolean }>`
   cursor: pointer;
   margin-top: 56px;
   color: white;
-
   font-family: 'SUITERegular';
 `;
 export const ThirdBox = styled.div`
@@ -175,7 +164,7 @@ export const RegisterBtn = styled.button`
   color: black;
 `;
 
-export const ToFindPage = styled.button`
+export const FindBtn = styled.button`
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -185,32 +174,6 @@ export const ToFindPage = styled.button`
   margin: auto;
   font-size: 10px;
   padding-top: 10px;
-`;
-
-export const FindBtn = styled.button`
-  width: 306px;
-  height: 46px;
-  background-color: #7d8bae;
-  position: relative;
-  border-radius: 4px;
-
-  top: 263px;
-`;
-
-export const BackBtn = styled.button`
-  position: relative;
-  top: 252px;
-  background-color: white;
-  font-size: 10px;
-  color: #7d8bae;
-`;
-
-export const FindBtnText = styled.p`
-  color: white;
-  font-family: 'SUIT';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
 `;
 
 export const ResisterText = styled.div`
@@ -228,7 +191,7 @@ export const Validityfontbox = styled.div`
   height: 20px;
   position: relative;
   right: 10px;
-  top: 30px;
+  margin-top: 5px;
   outline: none;
   color: #7d8bae;
   margin-left: 17px;
@@ -244,7 +207,6 @@ export const ValidityEmailCircle = styled.img<{ validateEmailColor: boolean }>`
   height: 10px;
   border-radius: 50%;
   margin-top: 10px;
-
   z-index: 99;
 `;
 
@@ -263,3 +225,18 @@ export const RegisterBtnWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const CheckBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: relative;
+  left: 276px;
+  bottom: 10px;
+  cursor: pointer;
+  :active {
+    width: 10px;
+    height: 10px;
+  }
+`;
+export const CheckIconright = styled.img``;
+export const Checkeye = styled.img``;

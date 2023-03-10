@@ -162,6 +162,7 @@ export const AgreeBox = styled.div`
   font-size: 20px;
   text-align: center;
   line-height: 30px;
+  margin-top: 15px;
 `;
 
 export const AgreeBtn = styled.button<{ state: boolean }>`
