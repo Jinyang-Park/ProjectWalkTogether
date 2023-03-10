@@ -93,33 +93,33 @@ export const CategoryTitle = styled.p`
   margin-top: 74px;
 `;
 
-const Category = styled.div``;
-const Button = styled.button`
+export const Category = styled.div``;
+export const Button = styled.button`
   float: right;
   background-color: transparent;
   font-family: 'SUITERegular';
   letter-spacing: -0.1px;
   margin-right: 5px;
 `;
-const InsideText = styled.p`
+export const InsideText = styled.p`
   margin-top: 19px;
   font-family: 'SUITERegular';
   letter-spacing: -1px;
   color: #7d8bae;
   width: 300px;
 `;
-const TitleLayout = styled.div`
+export const TitleLayout = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const HotShoesImg = styled.img`
+export const HotShoesImg = styled.img`
   width: 76px;
   height: 76px;
   display: flex;
   margin-top: 40px;
 `;
-const TextTitle = styled.p`
+export const TextTitle = styled.p`
   font-family: 'SUITEBold';
   letter-spacing: -3px;
   font-size: 36px;
@@ -158,3 +158,4 @@ export const ButtonWrap = styled.div`
   align-items: center;
 `;
 export const ContentLayout = styled.div``;
+export const Collectionitem = styled.div``;
