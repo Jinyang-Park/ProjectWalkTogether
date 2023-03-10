@@ -101,6 +101,11 @@ const MapContainer = (Post) => {
     SearchFunction();
   }, [map]);
 
+  // 검색어 삭제
+  const SearchTextDeleteHanlder = () => {
+    setSearch('');
+  };
+
   //  // 지도를 불러오기 위한 함수
   const SearchFunction = () => {
     if (!map) return;
@@ -228,7 +233,9 @@ const MapContainer = (Post) => {
           onChange={onChange}
         />
         <RxDividerVertical size={36} />
-        <IoMdClose size={40} />
+        <S.DeleteTextWapper onClick={SearchTextDeleteHanlder}>
+          <IoMdClose size={40} />
+        </S.DeleteTextWapper>
       </S.MapPageSearchBar>
 
       <S.MapAndControlContainer>
