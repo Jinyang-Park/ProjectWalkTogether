@@ -97,9 +97,7 @@ const DetailPage = () => {
     const q = doc(dbService, 'Post', id);
     const postData = await getDoc(q);
 
-    //비동기
     setGetPostings(postData.data());
-    // isLoading 범인
     // isLoading 이 false가 되면 로딩이 끝난 것, true면 로딩중으로 isLoading을 관리
     setIsLoading(false);
   };
