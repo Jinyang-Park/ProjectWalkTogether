@@ -30,9 +30,9 @@
 
 [✍ 프로젝트 기획안](https://www.notion.so/eda81292232d4843b5136bfbcf831080?pvs=4)
 
-[🚀 기술적 의사결정]([https://github.com/dwg787](https://www.notion.so/b9dcf5e34d754a50ac9d0d2e39ff259d))
+[🚀 기술적 의사결정]((https://www.notion.so/b9dcf5e34d754a50ac9d0d2e39ff259d))
 
-[💬 KPT 회고](https://velog.io/@dbsskdud60)
+[💬 KPT 회고](https://www.notion.so/Project-Walk-Together-Final-354dd91df9b2405f90bd8519fc03f0a3?pvs=4)
 
 
 <br/>
