@@ -11,7 +11,7 @@ export const NavContainer = styled.div`
   color: #24264e;
   display: flex;
   justify-content: center;
-  top: 50px;
+  /* top: 50px; */
 
   @media screen and (max-width: 420px) {
     width: 100%;
