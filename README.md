@@ -1,11 +1,11 @@
-# 🚶‍🚶‍♀️  Ollae
+# 🚶‍🚶‍♀️  ollae
 
 ![Group 875](https://user-images.githubusercontent.com/80263801/224346703-e03f635e-9993-4975-9ef2-b13ced76737b.jpg)
 
 
 프로젝트 기간 : 2023.02.06 ~ 2023.03.13
 
-🔗 [Ollea 서비스 배포 링크](https://www.ollae.kr/)
+🔗 [ollae 서비스 배포 링크](https://www.ollae.kr/)
 <br/>
 👉 [시연영상 보러가기](https://www.youtube.com/watch?v=_ZFK_nYZ7ho)
 
