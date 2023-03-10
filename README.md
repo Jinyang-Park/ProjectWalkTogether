@@ -219,4 +219,8 @@ src
 * 사용자 현재 위치 기준으로 게시글 확인 가능 및 장소 검색 가능 
 <img src="https://user-images.githubusercontent.com/80263801/224353978-f90bf196-5b7d-4738-9a87-ec9259bf66df.gif" width="800" height="700">
 
-
+#### 🔥채팅
+* 게시글에 ‘함께 걸을래요’ 버튼 선택 시, 채팅방으로 이동
+* 첫 채팅이 이루어질 때 알림 메세지 송신 및 알림 선택 시, 해당 채팅방으로 이동
+<img src="https://user-images.githubusercontent.com/80263801/224359801-5729bfe5-c4d8-459d-8147-a1564e2ad377.gif" width="800" height="700">
+<img src="https://user-images.githubusercontent.com/80263801/224360048-3be05765-6bdf-4096-9238-08fa3279e614.gif">
