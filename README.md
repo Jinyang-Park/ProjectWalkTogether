@@ -1,4 +1,4 @@
-# 🚶‍♂ Ollae
+# 🚶‍🚶‍♀️ Ollae
 
 ![Group 873](https://user-images.githubusercontent.com/80263801/224290251-c79d49d9-56df-4025-8d99-8757267ece07.jpg)
 
@@ -24,6 +24,19 @@
 ### 📝 회고 및 관련 기록
 
 [📒 올래 Notion](https://www.notion.so/Project-Walk-Together-Final-354dd91df9b2405f90bd8519fc03f0a3?pvs=4)
+
 [💻 프로젝트 기획안](https://www.notion.so/eda81292232d4843b5136bfbcf831080?pvs=4)
+
 [🚀 기술적 의사결정](https://github.com/dwg787)
-[💬 KPT 회고](https://velog.io/@dbsskdud60)|
+
+[💬 KPT 회고](https://velog.io/@dbsskdud60)
+
+
+<br/>
+<br/>
+
+### 🙌 팀원 소개
+|박진양|라형선|김민성|이희경|성민준|손혜주
+|------|------|------|------|------|------|
+|[Github](https://github.com/Jinyang-Park)|[Github](https://github.com/rhsoks)|[Github](https://github.com/GhostPines)|[Github](https://github.com/Leekee01)|[Github](https://github.com/themrsung)|[Gmail](hjson1024@gmail.com)
+
