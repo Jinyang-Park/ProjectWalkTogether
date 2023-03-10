@@ -218,5 +218,5 @@ src
 #### 🔥지도 
 * 사용자 현재 위치 기준으로 게시글 확인 가능 및 장소 검색 가능 
 
+![지도](https://user-images.githubusercontent.com/80263801/224353978-f90bf196-5b7d-4738-9a87-ec9259bf66df.gif)
 
-![지도](https://user-images.githubusercontent.com/80263801/224353275-0a8da586-0993-4a2a-95cd-8b8710c4de67.gif)
