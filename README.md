@@ -5,6 +5,7 @@
 프로젝트 기간 : 2023.02.06 ~ 2023.03.13
 
 🔗 [Ollea 서비스 배포 링크](https://www.ollae.kr/)
+<br/>
 🎬 [시연영상 보러가기](https://www.youtube.com/watch?v=_ZFK_nYZ7ho)
 
 <br/>
@@ -37,6 +38,7 @@
 <br/>
 
 ### 🙌 팀원 소개
+---
 |박진양|라형선|김민성|이희경|성민준|손혜주
 |------|------|------|------|------|------|
 |[Github](https://github.com/Jinyang-Park)|[Github](https://github.com/rhsoks)|[Github](https://github.com/GhostPines)|[Github](https://github.com/Leekee01)|[Github](https://github.com/themrsung)|[Gmail](hjson1024@gmail.com)
