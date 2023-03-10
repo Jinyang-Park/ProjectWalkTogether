@@ -20,7 +20,6 @@ const FindPassword = () => {
   const [findPwd, setFindPwd] = useState('');
   const email = findPwd;
   //비밀번호 초기화 버튼
-  const [findpassword, setFindPassword] = useState('');
   const findPasswordClear = () => {
     setFindPwd(() => '');
   };
@@ -63,7 +62,17 @@ const FindPassword = () => {
               true,
               '등록되지 않은 이메일입니다',
               '',
-              [],
+              [
+                {
+                  text: '닫 기',
+                  callback: () => {
+                    MessageWindow.showWindow(
+                      new MessageWindowProperties(),
+                      setState
+                    );
+                  },
+                },
+              ],
               MessageWindowLogoType.CryingFace
             ),
             setState

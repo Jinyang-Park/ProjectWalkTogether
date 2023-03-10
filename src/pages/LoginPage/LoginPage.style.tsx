@@ -228,7 +228,7 @@ export const Validityfontbox = styled.div`
   height: 20px;
   position: relative;
   right: 10px;
-  margin-top: 5px;
+  top: 30px;
   outline: none;
   color: #7d8bae;
   margin-left: 17px;
