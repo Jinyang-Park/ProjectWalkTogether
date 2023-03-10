@@ -4,7 +4,6 @@ import { Input } from 'antd';
 export const MapNInputBox = styled.div`
   width: 100%;
   display: flex;
-  /* background-color: antiquewhite; */
   position: relative;
   top: -67px;
   margin-top: 112px;
@@ -16,13 +15,10 @@ export const MapNInputBox = styled.div`
 export const Selection = styled.p`
   font-family: 'SUITERegular';
   position: relative;
-  /* background-color: blue; */
-  /* width: 100%; */
   right: 335px;
   font-size: 20px;
   font-weight: 500;
   color: #24264e;
-  /* border-bottom: 2px solid #bec5d7; */
   justify-content: center;
   display: flex;
 `;
@@ -36,7 +32,6 @@ export const borderline = styled.div`
 `;
 
 export const InputBox = styled.div`
-  /* background-color: #d07171; */
   width: 863px;
   height: 50px;
   display: flex;
@@ -47,7 +42,6 @@ export const InputBox = styled.div`
 export const MapBox = styled.div`
   width: 863px;
   height: 436px;
-  /* background-color: gray; */
   border-top: 1px;
 `;
 
@@ -65,7 +59,6 @@ export const InputAdressBox = styled.form`
   height: 36.5px;
   position: relative;
   border: 2px solid #bec5d7;
-  /* background-color: yellow; */
   border-radius: 4px;
 `;
 
@@ -87,7 +80,6 @@ export const InputAdress = styled(Input)`
 export const InpuDayBox = styled.div`
   width: 250px;
   height: 40px;
-  /* background-color: orange; */
   margin-left: 9px;
   font-size: 10px;
   border: 2px solid #bec5d7;
@@ -109,12 +101,9 @@ export const AddressIcon = styled.img`
   object-fit: contain;
 `;
 export const MapAddressTitle = styled.div`
-  /* width: 100%; */
   display: flex;
-  /* flex-direction: row; */
   align-items: center;
   margin-bottom: 12px;
-  /* justify-content: center; */
 `;
 export const CustomZoomControl = styled.div`
   position: relative;

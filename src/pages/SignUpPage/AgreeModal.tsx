@@ -36,8 +36,8 @@ const ModalContainer = styled.div`
 `;
 
 const DialogBox = styled.dialog`
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,9 +47,9 @@ const DialogBox = styled.dialog`
   box-sizing: border-box;
   background-color: white;
   z-index: 10000;
-  top: calc(50% - 200px);
-  left: calc(50% - 200px);
-  position: absolute;
+  top: calc(50% - 250px);
+  left: calc(50% - 250px);
+
   position: fixed;
 `;
 

@@ -1,25 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { constSelector } from 'recoil';
+import { useState, useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import {
-  query,
-  collection,
-  where,
-  orderBy,
-  getDocs,
-  onSnapshot,
-} from 'firebase/firestore';
-import { dbService } from '../../common/firebase';
-import CommonStyles from '../../styles/CommonStyles';
 import { paramsState } from '../../Rocoil/Atom';
 import * as S from './CardSection.style';
 import CardSection from '../../components/CardSection/CardSection';
-import Fire from '../../assets/Mainpage/Fire.svg';
-import Boog from '../../assets/Mainpage/boog.svg';
-import gitbal from '../../assets/Mainpage/gitbal.svg';
+import Fire from '../../assets/Mainpage/Fire.png';
+import Boog from '../../assets/Mainpage/boog.png';
+import gitbal from '../../assets/Mainpage/gitbal.png';
 import { Post, usePosts } from '../../api/postsApi';
 
 const Collection = (props: any) => {
@@ -77,8 +66,6 @@ const Collection = (props: any) => {
           <TitleLayout>
             <div>{file}</div>
             <S.CategoryTitle>{title}</S.CategoryTitle>
-
-            {/* <S.CategoryImg>{category.img}</S.CategoryImg> */}
           </TitleLayout>
         </S.CategoryTitleWrapper>
 

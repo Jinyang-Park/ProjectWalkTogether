@@ -19,7 +19,11 @@ import MessageWindow, {
   messageWindowPropertiesAtom,
 } from '../messagewindow/MessageWindow';
 
-const Header = () => {
+interface PropsType {
+  onClick?: (e: React.MouseEvent) => void;
+}
+
+const Header = (): JSX.Element => {
   const location = useLocation();
   const history = useNavigate();
   const navigate = useNavigate();
@@ -33,6 +37,10 @@ const Header = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
+
+  const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
+  const userItem = sessionStorage.getItem(sessionKey);
+  const uid = !!userItem ? JSON.parse(userItem).uid : '';
 
   const handleLogin = () => {
     navigate('login');
@@ -49,7 +57,7 @@ const Header = () => {
       navigate('/reroutetomypage');
       return;
     }
-    navigate('/mypage');
+    navigate(`/mypage/${uid}`);
   };
 
   const home = () => {
@@ -57,10 +65,11 @@ const Header = () => {
   };
 
   // const kakaoUser = sessionStorage.getItem('id');
-
-  const sessionId = useRecoilValue(username);
+  // location.pathname === '/signup' ?
+  const sessionId = sessionStorage.getItem('id');
 
   console.log('alarm:', alarm);
+  console.log(location.pathname);
 
   // getKakaoCode();
   //const currentUser = authService.currentUser;
@@ -104,7 +113,6 @@ const Header = () => {
           </S.NavUl>
         </S.SideOllae>
         <S.NavEtc>
-          {/* <S.Profile onClick={gotomy}>닉네임</S.Profile> */}
           <S.AlarmContainer>
             {loggedIn ? (
               <S.DropdownButton onClick={alarmHandler} ref={alarmRef}>

@@ -4,6 +4,7 @@ export const InputLayout = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 150px;
+  margin-top: 150px;
 `;
 
 export const InputBox = styled.div`
@@ -22,10 +23,23 @@ export const InputBoxContent = styled.div`
 // 인풋태그
 export const Input = styled.input`
   outline: none;
+  outline: none;
   position: relative;
   left: 10px;
   top: 7px;
   width: 250px;
+  &&::placeholder {
+    font-family: 'SUIT';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #24264e;
+  }
+  left: 10px;
+  top: 7px;
+  width: 250px;
+
   &&::placeholder {
     font-family: 'SUIT';
     font-style: normal;
@@ -209,3 +223,18 @@ export const RegisterBtnWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const CheckBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: relative;
+  left: 276px;
+  bottom: 10px;
+  cursor: pointer;
+  :active {
+    width: 10px;
+    height: 10px;
+  }
+`;
+export const CheckIconright = styled.img``;
+export const Checkeye = styled.img``;

@@ -33,7 +33,8 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [value, setValue] = useState('');
   const [password, setPassword] = useState('');
-  const [loginModalopen, setLoginModalopen] = useState(false);
+  const [emailinputType, setEmailInputType] = useState<string>('password');
+  const [passinputType, setPassInputType] = useState<string>('password');
   const [user, setUser] = useState({});
   const [validateEmailColor, setValidateEmailColor] = useState(false);
   const navigate = useNavigate();
@@ -46,9 +47,19 @@ const LoginPage = () => {
   const [checkedSaveEmail, setCheckedSaveEmail] = useState<boolean | string>(
     false
   );
+
+  const handleToggleInputType = () => {
+    setPassInputType(passinputType === 'password' ? 'text' : 'password');
+  };
+
+  const deleteinput = () => {
+    setPassword('');
+  };
+
   //onchange로 값을 저장.
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+
     if (email.length > 5) {
       setDisabled(true);
       if (emailRegex.test(email) === false) {
@@ -81,6 +92,7 @@ const LoginPage = () => {
   const handleSubmitClick = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    console.log('authService', authService);
     return (
       signInWithEmailAndPassword(authService, email, password)
         .then((data) => {
@@ -91,12 +103,12 @@ const LoginPage = () => {
           // navigate('/', { replace: true });
 
           if (user.currentUser?.emailVerified) {
-            localStorage.setItem(
+            sessionStorage.setItem(
               SAVE_EMAIL_ID_CHECKED_KEY,
               checkedSaveEmail as string
             );
             if (checkedSaveEmail) {
-              localStorage.setItem(SAVE_EMAIL_ID_KEY, email);
+              sessionStorage.setItem(SAVE_EMAIL_ID_KEY, email);
             }
             sessionStorage.setItem(
               apiKey as string,
@@ -104,6 +116,21 @@ const LoginPage = () => {
             );
 
             navigate('/');
+
+            setPersistence(authService, browserSessionPersistence)
+              .then(() => {
+                // Existing and future Auth states are now persisted in the current
+                // session only. Closing the window would clear any existing state even
+                // if a user forgets to sign out.
+                // ...
+                // New sign-in will be persisted with session persistence.
+                return signInWithEmailAndPassword(authService, email, password);
+              })
+              .catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+              });
           } else {
             // alert('인증되지 않은 사용자입니다.');
 
@@ -154,7 +181,6 @@ const LoginPage = () => {
               setState
             );
           } else if (errorMessage.includes('wrong-password')) {
-            console.log('wrong-password');
             MessageWindow.showWindow(
               new MessageWindowProperties(
                 true,
@@ -254,21 +280,56 @@ const LoginPage = () => {
               </S.LoginLogo>
               <S.Inputholder>
                 <S.Input
-                  type='email'
                   value={email}
                   name='아이디'
                   placeholder='이메일을 입력해주세요'
                   onChange={onChangeEmail}
                 ></S.Input>
+
+                {/* {email === '' ? (
+                  <S.CheckBtn onClick={email}>
+                    <S.CheckIconright
+                      src={
+                        require('../../assets/ChattingIcon/check.svg').default
+                      }
+                    />
+                  </S.CheckBtn>
+                ) : (
+                  <S.CheckBtn onClick={newPassword}>
+                    <S.CheckIcon
+                      src={
+                        require('../../assets/ChattingIcon/clearbtn.svg')
+                          .default
+                      }
+                    ></S.CheckIcon>
+                  </S.CheckBtn>
+                )} */}
               </S.Inputholder>
               <S.Inputholder>
                 <S.Input
-                  type='password'
+                  type={passinputType}
                   value={password}
                   name='비밀번호'
                   placeholder='비밀번호를 입력해주세요'
                   onChange={onChangePassword}
                 ></S.Input>
+                {passinputType === 'password' ? (
+                  <S.CheckBtn onClick={handleToggleInputType}>
+                    <S.CheckIconright
+                      src={require('../../assets/LoginPage/No-eye.svg').default}
+                      alt='Show password'
+                    />
+                  </S.CheckBtn>
+                ) : (
+                  <S.CheckBtn onClick={handleToggleInputType}>
+                    <S.Checkeye
+                      src={
+                        require('../../assets/LoginPage/openeye.svg').default
+                      }
+                      alt='Hide password'
+                    />
+                  </S.CheckBtn>
+                )}
               </S.Inputholder>
 
               <S.ButtonBox>

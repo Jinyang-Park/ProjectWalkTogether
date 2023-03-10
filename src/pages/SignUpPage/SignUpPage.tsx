@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
 import * as S from './SignUpPage.style';
-
 import {
   createUserWithEmailAndPassword,
   updateProfile,
@@ -12,10 +10,9 @@ import { dbService, authService } from '../../common/firebase';
 import {
   collection,
   doc,
-  getDoc,
+  setDoc,
   getDocs,
   query,
-  setDoc,
   where,
 } from 'firebase/firestore';
 import { emailRegex, nicknameRegex, pwdRegex } from '../../utils/UserInfoRegex';
@@ -33,6 +30,7 @@ const SignUpPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPwd, setCnfirmPwd] = useState('');
   const [displayname, setDisplayname] = useState('');
+  const [bannerImg, setBannerImg] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
   //유효성검사
@@ -52,10 +50,6 @@ const SignUpPage = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
-
-  // if (password.length === 0) {
-  //   return setPwvisible(false);
-  // }
 
   //onchange로 값을 저장한다.
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -112,9 +106,6 @@ const SignUpPage = () => {
       });
   }, [email, setValidateEmail]);
 
-  // if (password.length === 0) {
-  //   setPwvisible(false);
-  // }
   // password값을 저장하고 유효성검사를 실시한다.
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -174,24 +165,6 @@ const SignUpPage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (displayname.length > 0) {
-  //     if (nicknameRegex.test(displayname) === false) {
-  //       setValidateDisplayname(
-  //         '한글,영문,숫자 포함 1자 이상 7자 이하로 작성해 주세요.'
-  //       );
-  //       setShow(true);
-  //       setValidateDisplayColor(false);
-  //     } else {
-  //       setShow(true);
-  //       setValidateDisplayname('옳바른 형식의 닉네임 입니다.');
-  //       setValidateDisplayColor(true);
-  //     }
-  //   } else {
-  //     setNameVisible(false);
-  //   }
-  // }, [displayname]);
-
   // submit & firebase
   const handleSubmitClick = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -207,6 +180,14 @@ const SignUpPage = () => {
         async (response) => {
           await updateProfile(response.user, {
             displayName: displayname,
+          });
+          setDoc(doc(dbService, 'Users', `${authService.currentUser?.uid}`), {
+            userId: authService.currentUser?.uid,
+            email: email,
+            displayname: displayname,
+            imageURL:
+              'https://firebasestorage.googleapis.com/v0/b/oh-ju-79642.appspot.com/o/profile%2Fblank_profile.png?alt=media&token=0053da71-f478-44a7-ae13-320539bdf641',
+            bannerImg: '',
           })
             .then(() => {
               if (authService.currentUser !== null) {
@@ -228,6 +209,9 @@ const SignUpPage = () => {
                 {
                   text: '이메일을 확인해주세요',
                   callback: () => {
+                    authService.signOut();
+                    sessionStorage.clear();
+                    localStorage.clear();
                     navigate('/login', { replace: true });
                   },
                 },

@@ -1,7 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from '../layout/Header';
-import RightSideWeatherCheck from '../layout/WeatherCheck';
-import Footer from '../layout/Footer';
 import MainPage from '../pages/MainPage/MainPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
@@ -55,7 +53,6 @@ const Router = () => {
       </Routes>
       <ScrollToTopButton />
       <MeetDateInitializer />
-      <Footer />
     </BrowserRouter>
   );
 };

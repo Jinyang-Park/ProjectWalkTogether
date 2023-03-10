@@ -1,5 +1,4 @@
 import * as S from './InputInformation.style';
-// import MapContainer from '../../MapPage/Map/map';
 import { myLocation, selectedAddress } from '../../../Rocoil/Atom';
 import {
   Map,
