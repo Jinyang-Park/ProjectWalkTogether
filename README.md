@@ -56,11 +56,10 @@
 	<img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
                                   <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white">
                                                                   <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
-<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white">
-	![다운로드 (3) 1](https://user-images.githubusercontent.com/80263801/224309759-1f1df04f-d897-4028-9ed2-ff892c34cf2b.jpg)
-
+<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white">	
 </div>
 
+![다운로드 (3) 1](https://user-images.githubusercontent.com/80263801/224309868-89fb298e-7d5e-46bd-b21e-22e2a0413485.jpg)
 
 <br/>
 <br/>
