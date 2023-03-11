@@ -52,7 +52,6 @@ const Router = () => {
         <Route path='/reroutetomypage' element={<RerouteToMyPage />} />
         <Route path='/find' element={<FindPassword />} />
       </Routes>
-      <Footer />
       <ScrollToTopButton />
       <MeetDateInitializer />
     </BrowserRouter>

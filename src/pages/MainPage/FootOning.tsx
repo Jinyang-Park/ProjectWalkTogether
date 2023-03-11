@@ -3,6 +3,7 @@ import CardSection from '../../components/CardSection/CardSection';
 import { Post, usePosts } from '../../api/postsApi';
 import { useEffect, useState } from 'react';
 import CardSkeleton from '../../components/CardSkeleton/CardSkeleton';
+import Footer from './../../layout/Footer/Footer';
 
 const FootOning = () => {
   // skeleton UI Loading

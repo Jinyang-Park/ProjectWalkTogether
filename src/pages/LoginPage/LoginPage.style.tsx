@@ -4,8 +4,8 @@ export const InputLayout = styled.div`
   display: flex;
   /* align-items: center; */
   justify-content: center;
-  min-height: calc(100vh - 292px);
-  top: 80px;
+  /* min-height: calc(100vh - 292px); */
+  top: 150px;
   position: relative;
 `;
 

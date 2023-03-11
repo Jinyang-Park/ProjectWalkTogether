@@ -26,7 +26,7 @@ import { authService, dbService } from './../../common/firebase';
 import { useNavigate, useParams } from 'react-router-dom';
 import DropBox from './DropBox/DropBox';
 import { uuidv4 } from '@firebase/util';
-
+import Footer from './../../layout/Footer/Footer';
 import { userForChat, currentUserUid } from '../../Rocoil/Atom';
 import useDetectClose from './../../hooks/useDetectClose';
 import MessageWindow, {
@@ -511,6 +511,7 @@ const DetailPage = () => {
           <Comments param={id} />
         </S.DetailpageWrapper>
       </CommonStyles>
+      <Footer />
     </>
   );
 };

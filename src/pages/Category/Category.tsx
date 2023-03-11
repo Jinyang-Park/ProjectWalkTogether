@@ -10,6 +10,7 @@ import { useRecoilState } from 'recoil';
 
 import { CategorysList } from '../../utils/CategorysList';
 import { Post, usePosts } from '../../api/postsApi';
+import Footer from './../../layout/Footer/Footer';
 
 const Category = () => {
   const { category } = useParams();
@@ -85,75 +86,78 @@ const Category = () => {
   const DoubledFilterDate = DoubleFilteredDateFunction();
 
   return (
-    <CommonStyles>
-      <S.CategoryWrapper>
-        <S.CategoryTitleWrapper>
-          {/*useParams 받아온 카테고리 이름과 같으면 해당 img 보여줌*/}
-          {CategorysList.map((item) => {
-            if (category === item.name) {
-              return <S.CategoryImg src={item.img} key={item.name} />;
-            }
-          })}
-          <S.CategoryTitle>{category}</S.CategoryTitle>
-        </S.CategoryTitleWrapper>
-        <S.FilterArea>
-          <S.CategoryFilter>
-            {/*카테고리영역 */}
-            <S.CategoryFilterWarpper onClick={() => setShow(true)}>
-              <S.FilterCategory>{TextChange}</S.FilterCategory>
-              {/*카테고리이면 아이콘 보여주고 아니면 block*/}
-              <S.FilterCalendarIcon
-                style={{
-                  display: TextChange === '카테고리' ? 'block' : 'none',
-                }}
-                src={
-                  require('../../assets/CategoryPageIcon/CategoryIcon2.svg')
-                    .default
-                }
-              />
-            </S.CategoryFilterWarpper>
-            {show && (
-              <DropdownFilterCategory
-                setShow={setShow}
-                setTextChange={setTextChange}
-                TextChange={TextChange}
-              />
-            )}
-            {/*달력영역 */}
-            <AntCalendarMap />
-          </S.CategoryFilter>
-          {/*최신순 / 조회순 / 좋아요순*/}
+    <>
+      <CommonStyles>
+        <S.CategoryWrapper>
+          <S.CategoryTitleWrapper>
+            {/*useParams 받아온 카테고리 이름과 같으면 해당 img 보여줌*/}
+            {CategorysList.map((item) => {
+              if (category === item.name) {
+                return <S.CategoryImg src={item.img} key={item.name} />;
+              }
+            })}
+            <S.CategoryTitle>{category}</S.CategoryTitle>
+          </S.CategoryTitleWrapper>
+          <S.FilterArea>
+            <S.CategoryFilter>
+              {/*카테고리영역 */}
+              <S.CategoryFilterWarpper onClick={() => setShow(true)}>
+                <S.FilterCategory>{TextChange}</S.FilterCategory>
+                {/*카테고리이면 아이콘 보여주고 아니면 block*/}
+                <S.FilterCalendarIcon
+                  style={{
+                    display: TextChange === '카테고리' ? 'block' : 'none',
+                  }}
+                  src={
+                    require('../../assets/CategoryPageIcon/CategoryIcon2.svg')
+                      .default
+                  }
+                />
+              </S.CategoryFilterWarpper>
+              {show && (
+                <DropdownFilterCategory
+                  setShow={setShow}
+                  setTextChange={setTextChange}
+                  TextChange={TextChange}
+                />
+              )}
+              {/*달력영역 */}
+              <AntCalendarMap />
+            </S.CategoryFilter>
+            {/*최신순 / 조회순 / 좋아요순*/}
 
-          <S.FilterSortWrapper>
-            <S.FilterNewest onClick={() => setViewCount('최신 등록순')}>
-              최신 등록순
-              <S.FilterAreaLine></S.FilterAreaLine>
-            </S.FilterNewest>
-            <S.FilterNewest onClick={() => setViewCount('조회순')}>
-              조회순
-              <S.FilterAreaLine></S.FilterAreaLine>
-            </S.FilterNewest>
-            <S.FilterNewest onClick={() => setViewCount('좋아요 순')}>
-              좋아요 순
-            </S.FilterNewest>
-          </S.FilterSortWrapper>
-        </S.FilterArea>
-        <S.LikedListItem>
-          {/*검색 조건에 맞는 데이터가 없을 경우*/}
-          {DoubledFilterDate.length === 0 ? (
-            <S.NoResult>
-              <S.NoResultTitle>아쉽지만 해당 게시글이 없어요</S.NoResultTitle>
-            </S.NoResult>
-          ) : (
-            DoubledFilterDate.map((post: any) => {
-              return (
-                <CardSection key={post.id} post={post} refetch={refetch} />
-              );
-            })
-          )}
-        </S.LikedListItem>
-      </S.CategoryWrapper>
-    </CommonStyles>
+            <S.FilterSortWrapper>
+              <S.FilterNewest onClick={() => setViewCount('최신 등록순')}>
+                최신 등록순
+                <S.FilterAreaLine></S.FilterAreaLine>
+              </S.FilterNewest>
+              <S.FilterNewest onClick={() => setViewCount('조회순')}>
+                조회순
+                <S.FilterAreaLine></S.FilterAreaLine>
+              </S.FilterNewest>
+              <S.FilterNewest onClick={() => setViewCount('좋아요 순')}>
+                좋아요 순
+              </S.FilterNewest>
+            </S.FilterSortWrapper>
+          </S.FilterArea>
+          <S.LikedListItem>
+            {/*검색 조건에 맞는 데이터가 없을 경우*/}
+            {DoubledFilterDate.length === 0 ? (
+              <S.NoResult>
+                <S.NoResultTitle>아쉽지만 해당 게시글이 없어요</S.NoResultTitle>
+              </S.NoResult>
+            ) : (
+              DoubledFilterDate.map((post: any) => {
+                return (
+                  <CardSection key={post.id} post={post} refetch={refetch} />
+                );
+              })
+            )}
+          </S.LikedListItem>
+        </S.CategoryWrapper>
+      </CommonStyles>
+      <Footer />
+    </>
   );
 };
 

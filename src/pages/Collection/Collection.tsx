@@ -10,6 +10,7 @@ import Fire from '../../assets/Mainpage/Fire.png';
 import Boog from '../../assets/Mainpage/boog.png';
 import gitbal from '../../assets/Mainpage/gitbal.png';
 import { Post, usePosts } from '../../api/postsApi';
+import Footer from './../../layout/Footer/Footer';
 
 const Collection = (props: any) => {
   const navigate = useNavigate();
@@ -75,6 +76,7 @@ const Collection = (props: any) => {
           })}
         </S.LikedListItem>
       </CategoryWrapper>
+      <Footer />
     </>
   );
 };
