@@ -108,22 +108,22 @@ const FindPassword = () => {
                   onChange={findPasswordfnc}
                 ></S.Input>
                 {findPwd === '' ? (
-                  <S.CheckBtn onClick={findPasswordClear}>
+                  <S.CheckfindBtn onClick={findPasswordClear}>
                     <S.CheckIconright
                       src={
                         require('../../assets/ChattingIcon/check.svg').default
                       }
                     />
-                  </S.CheckBtn>
+                  </S.CheckfindBtn>
                 ) : (
-                  <S.CheckBtn onClick={findPasswordClear}>
+                  <S.CheckfindBtn onClick={findPasswordClear}>
                     <S.CheckIconright
                       src={
                         require('../../assets/ChattingIcon/clearbtn.svg')
                           .default
                       }
                     />
-                  </S.CheckBtn>
+                  </S.CheckfindBtn>
                 )}
               </S.Inputholder>
               <S.ButtonBox>

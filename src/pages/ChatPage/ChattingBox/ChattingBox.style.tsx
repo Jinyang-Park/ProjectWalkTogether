@@ -36,7 +36,6 @@ export const ChattingNicknamePhoto = styled.div`
 `;
 
 export const ChattingNicknameto = styled.div`
-  width: 140px;
   height: 20px;
   font-family: 'Poppins';
   font-style: normal;
