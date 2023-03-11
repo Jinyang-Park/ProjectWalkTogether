@@ -162,16 +162,19 @@ export const filterDatename = atom<any>({
 export const isLoggedIn = atom<boolean>({
   key: 'isLoggedIn',
   default: false,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const currentUserUid = atom<string>({
   key: 'currentUserUid',
   default: '',
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const username = atom<string>({
   key: 'username',
   default: '',
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const NewpostTag = atom<string[]>({
