@@ -57,12 +57,13 @@ export const CommentLi = styled.li`
   /* border-bottom: 1px solid rgb(205, 205, 205); */
   /* padding: 20px 40px 30px; */
 `;
+export const UserProfileWrapper = styled.div``;
 export const CommentProfilediv = styled.div`
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  /* padding: 10px; */
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -122,7 +123,7 @@ export const CommentContent = styled.textarea`
   width: 868px;
   padding: 16px 50px 60px 17px;
   margin-top: 16px;
-
+  resize: none;
   &::placeholder {
     color: #aaa;
   }

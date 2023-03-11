@@ -7,6 +7,7 @@ export const MapPageSearchBar = styled.form`
   align-items: center;
   padding: 10px;
   height: 48px;
+  align-items: flex-start;
 
   margin-bottom: 0px;
   border: 1px solid #bfbfbf;

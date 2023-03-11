@@ -85,7 +85,7 @@ export const NavText = styled(Link)`
   font-family: 'SUITERegular';
   letter-spacing: -2px;
   padding-top: 0px;
-  font-size: 12px;
+  font-size: 14px;
 `;
 export const LoginButton = styled.div`
   border: none;
@@ -122,7 +122,7 @@ export const NavEtc = styled.div`
 `;
 export const Profile = styled.div`
   padding-top: 10px;
-  font-size: 10px;
+  font-size: 12px;
 `;
 export const Logo = styled.img`
   cursor: pointer;
