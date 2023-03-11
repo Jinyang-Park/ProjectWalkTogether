@@ -23,6 +23,7 @@ const Header = () => {
   const location = useLocation();
   const history = useNavigate();
   const navigate = useNavigate();
+  // const [width, setWidth] = useState(max -content);
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
   const [alarmIsOpen, alarmRef, alarmHandler] = useDetectClose(false);
   const loggedIn = useRecoilValue(isLoggedIn);

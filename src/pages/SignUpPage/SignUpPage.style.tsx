@@ -36,6 +36,10 @@ export const Input = styled.input`
   top: 7px;
   width: 230px;
 
+  ::-ms-reveal {
+    display: none;
+  }
+
   &&::placeholder {
     font-family: 'SUIT';
     font-style: normal;

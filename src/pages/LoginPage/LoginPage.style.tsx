@@ -31,7 +31,7 @@ export const Input = styled.input`
   left: 10px;
   top: 7px;
   width: 230px;
-
+  background: transparent;
   &&::placeholder {
     font-family: 'SUIT';
     font-style: normal;
@@ -39,9 +39,9 @@ export const Input = styled.input`
     font-size: 12px;
     line-height: 15px;
     color: #24264e;
-    ::-ms-reveal {
-      display: none;
-    }
+  }
+  ::-ms-reveal {
+    display: none;
   }
 `;
 
