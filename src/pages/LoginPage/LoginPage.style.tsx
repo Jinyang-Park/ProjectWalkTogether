@@ -31,7 +31,7 @@ export const Input = styled.input`
     -webkit-text-fill-color: #000;
   }
   outline: none;
-
+  line-height: 15px;
   position: relative;
   left: 10px;
   top: 7px;
@@ -78,6 +78,18 @@ export const CheckBtn = styled.div`
   cursor: pointer;
   :active {
     width: 17px;
+    height: 13px;
+  }
+`;
+export const CheckfindBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: relative;
+  left: 276px;
+  bottom: 10px;
+  cursor: pointer;
+  :active {
+    width: 13px;
     height: 13px;
   }
 `;
