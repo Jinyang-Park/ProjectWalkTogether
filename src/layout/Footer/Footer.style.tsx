@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const NavContainer = styled.div`
-  height: 190px;
+  height: 202px;
   background-color: #eef1f7;
   /* background: linear-gradient(to bottom, #d3f1ff, white); */
   /* width: 1024px; */
@@ -87,7 +87,7 @@ export const ContactBtnBox = styled.div`
 `;
 
 export const Contactus = styled.a`
-  font-size: 10px;
+  font-size: 12px;
   position: relative;
   left: 5px;
 `;
@@ -114,7 +114,7 @@ export const NotionText = styled.div`
 export const NotionAdress = styled.a`
   background: none;
 
-  font-size: 10px;
+  font-size: 12px;
 `;
 
 export const Section = styled.div`
@@ -136,7 +136,7 @@ export const SectionText = styled.div`
   font-weight: 700;
 `;
 export const SectionNav = styled(Link)`
-  font-size: 10px;
+  font-size: 12px;
 `;
 export const ReservedText = styled.div`
   position: relative;

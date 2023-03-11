@@ -307,24 +307,28 @@ const Comments = ({ param }: postProps) => {
                 {comment?.UID !== authService.currentUser?.uid ? (
                   <S.CommentLi>
                     {!comment.ProfileImg ? (
-                      <S.CommentProfilediv>
-                        {/*프로필 사진 클릭시 프로필로 이동*/}
-                        <S.CommentProfileIcon
-                          onClick={() => navigate(`/mypage/${comment.UID}`)}
-                          src={
-                            require('../../../assets/DetailPageIcon/profileIcon.svg')
-                              .default
-                          }
-                        />
-                      </S.CommentProfilediv>
+                      <S.UserProfileWrapper>
+                        <S.CommentProfilediv>
+                          {/*프로필 사진 클릭시 프로필로 이동*/}
+                          <S.CommentProfileIcon
+                            onClick={() => navigate(`/mypage/${comment.UID}`)}
+                            src={
+                              require('../../../assets/DetailPageIcon/profileIcon.svg')
+                                .default
+                            }
+                          />
+                        </S.CommentProfilediv>
+                      </S.UserProfileWrapper>
                     ) : (
-                      <S.CommentProfilediv>
-                        {/*프로필 사진 클릭시 프로필로 이동*/}
-                        <S.CommentProfileImg
-                          onClick={() => navigate(`/mypage/${comment.UID}`)}
-                          src={comment.ProfileImg}
-                        />
-                      </S.CommentProfilediv>
+                      <S.UserProfileWrapper>
+                        <S.CommentProfilediv>
+                          {/*프로필 사진 클릭시 프로필로 이동*/}
+                          <S.CommentProfileImg
+                            onClick={() => navigate(`/mypage/${comment.UID}`)}
+                            src={comment.ProfileImg}
+                          />
+                        </S.CommentProfilediv>
+                      </S.UserProfileWrapper>
                     )}
                     <S.CommentWrapper>
                       {/*닉네임  클릭시 프로필로 이동*/}
@@ -358,13 +362,15 @@ const Comments = ({ param }: postProps) => {
                         />
                       </S.CommentProfilediv>
                     ) : (
-                      <S.CommentProfilediv>
-                        {/*프로필 사진 클릭시 프로필로 이동*/}
-                        <S.CommentProfileImg
-                          onClick={() => navigate(`/mypage/${comment.UID}`)}
-                          src={comment.ProfileImg}
-                        />
-                      </S.CommentProfilediv>
+                      <S.UserProfileWrapper>
+                        <S.CommentProfilediv>
+                          {/*프로필 사진 클릭시 프로필로 이동*/}
+                          <S.CommentProfileImg
+                            onClick={() => navigate(`/mypage/${comment.UID}`)}
+                            src={comment.ProfileImg}
+                          />
+                        </S.CommentProfilediv>
+                      </S.UserProfileWrapper>
                     )}
                     <S.CommentWrapper>
                       {/*닉네임  클릭시 프로필로 이동*/}

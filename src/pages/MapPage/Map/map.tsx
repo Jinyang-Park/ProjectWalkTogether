@@ -187,9 +187,9 @@ const MapContainer = (Post) => {
                 {post.Title_Posting}
               </S.ResultListCardTitle>
               <S.ResultListTagList>
-                <S.ResultListTag>#음악</S.ResultListTag>
+                {/* <S.ResultListTag>#음악</S.ResultListTag>
                 <S.ResultListTag>#락</S.ResultListTag>
-                <S.ResultListTag>#뮤즈파에요</S.ResultListTag>
+                <S.ResultListTag>#뮤즈파에요</S.ResultListTag> */}
               </S.ResultListTagList>
               <S.ResultListCardLine />
               <S.ResultListCardLocationTimeDateWrapper>
