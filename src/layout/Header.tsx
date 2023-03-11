@@ -70,19 +70,20 @@ const Header = () => {
   return (
     <S.NavContainer>
       <S.Nav>
-        <S.NavLi>
-          <S.OllaeBox onClick={home}>
-            <S.OllaeLogo
-              src={require('../../src/assets/Mainpage/ollaelogo.svg').default}
-            />
-            <S.OllaeText>올래</S.OllaeText>
-          </S.OllaeBox>
-        </S.NavLi>
+        <S.LogowithText>
+          <S.NavLi>
+            <S.OllaeBox onClick={home}>
+              <S.OllaeLogo
+                src={require('../../src/assets/Mainpage/ollaelogo.svg').default}
+              />
+              <S.OllaeText>올래</S.OllaeText>
+            </S.OllaeBox>
+          </S.NavLi>
 
-        {/* <S.NavLi>
+          {/* <S.NavLi>
             <S.NavText to="/chat">chat</S.NavText>
           </S.NavLi> */}
-        <S.SideOllae>
+
           <S.NavUl>
             <S.NavLi>
               {loggedIn === false ? (
@@ -102,7 +103,7 @@ const Header = () => {
               <S.NavText to='/map'>지도뷰</S.NavText>
             </S.NavLi>
           </S.NavUl>
-        </S.SideOllae>
+        </S.LogowithText>
         <S.NavEtc>
           {/* <S.Profile onClick={gotomy}>닉네임</S.Profile> */}
           <S.AlarmContainer>

@@ -49,24 +49,34 @@ export const Nav = styled.div`
   width: 868px;
   align-items: center;
   justify-content: space-between;
+
   @media screen and (max-width: 420px) {
     position: absolute;
     width: 434px;
   }
 `;
 
-export const SideOllae = styled.div`
-  margin-right: 400px;
-  @media screen and (max-width: 420px) {
-    margin-right: 0px;
+// export const SideOllae = styled.div`
+//   @media screen and (max-width: 420px) {
+//     margin-right: 0px;
 
-    left: 30%;
-    position: absolute;
+//     left: 30%;
+//     position: absolute;
+//   }
+// `;
+
+export const LogowithText = styled.div`
+  display: flex;
+
+  @media screen and (max-width: 420px) {
   }
+  gap: 10px;
 `;
 
 export const NavUl = styled.ul`
   display: flex;
+  margin-top: 5px;
+
   @media screen and (max-width: 420px) {
   }
 `;
@@ -84,7 +94,7 @@ export const NavText = styled(Link)`
   text-decoration: none;
   font-family: 'SUITERegular';
   letter-spacing: -2px;
-  padding-top: 0px;
+
   font-size: 12px;
 `;
 export const LoginButton = styled.div`
