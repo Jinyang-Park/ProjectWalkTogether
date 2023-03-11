@@ -182,8 +182,6 @@ export const DropNav = styled.nav<{ isDropped: boolean }>`
   border-radius: 3px;
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, -20px);
-  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
   z-index: 9;
   ${({ isDropped }) =>
     isDropped &&
