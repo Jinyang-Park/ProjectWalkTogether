@@ -120,9 +120,9 @@ const Header = () => {
                     <S.NotificationTitleBox>
                       알림
                       <S.NotificationTitleXbtn>
-                        <img
+                        {/* <img
                           src={require('../assets/ChattingIcon/X.svg').default}
-                        ></img>
+                        ></img> */}
                       </S.NotificationTitleXbtn>
                     </S.NotificationTitleBox>
 

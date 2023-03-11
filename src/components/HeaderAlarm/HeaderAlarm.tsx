@@ -101,9 +101,6 @@ function HeaderAlarm({ setAlarm }: Props) {
             </S.NoitificationIconBox>
             <S.NotificationContentBox>
               <S.NotificationContent>
-                {/* <S.NoitificationUserName>
-                  {ars.nickname}
-                </S.NoitificationUserName> */}
                 채팅이 시작되었습니다!
               </S.NotificationContent>
               <S.NotificationText>

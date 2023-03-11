@@ -81,7 +81,7 @@ export const InputTitle = styled.input<{ isValidityTitle: boolean }>`
   }
 
   ${({ isValidityTitle }) =>
-    isValidityTitle == true
+    isValidityTitle === true
       ? css`
           outline: 2px solid #ff8f8f;
         `
