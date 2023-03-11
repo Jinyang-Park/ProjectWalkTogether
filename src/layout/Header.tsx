@@ -57,7 +57,7 @@ const Header = () => {
   };
 
   // const kakaoUser = sessionStorage.getItem('id');
-
+  ///주석추가
   const sessionId = useRecoilValue(username);
 
   console.log('alarm:', alarm);
