@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+export const SignUPBox = styled.div`
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  /* background-color: blue; */
+  min-height: calc(100vh - 292px);
+  position: relative;
+  bottom: 39px;
+`;
+
 export const InputBox = styled.div`
   display: flex;
 
@@ -7,8 +17,6 @@ export const InputBox = styled.div`
   width: 386px;
   height: 582px;
 
-  margin-top: 80px;
-  margin: auto;
   border-radius: 10px;
   padding: 5px;
   position: relative;

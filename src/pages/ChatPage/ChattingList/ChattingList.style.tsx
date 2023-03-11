@@ -1,14 +1,14 @@
 import styled, { css } from 'styled-components';
 
 //채팅리스트 박스
-export const ChattingListBox = styled.div`
-  border: 1px solid #bec5d7;
-  background-color: white;
-  width: 292px;
-  height: 564px;
-  margin-top: 28px;
-  border-radius: 4px;
-`;
+// export const ChattingListBox = styled.div`
+//   border: 1px solid #bec5d7;
+//   background-color: white;
+//   width: 292px;
+//   height: 564px;
+//   /* margin-top: 28px; */
+//   border-radius: 4px;
+// `;
 
 //채팅리스트 메세지 박스
 export const ChattingListMessage = styled.div`
@@ -170,7 +170,7 @@ export const ChattingBox = styled.div`
   width: 292px;
   height: 564px;
   background-color: white;
-  margin-top: 28px;
+  /* margin-top: 28px; */
   border-radius: 4px;
 `;
 
