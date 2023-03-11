@@ -16,6 +16,7 @@ import { UserNickName } from './../../../Rocoil/Atom';
 const MyPageProfile = (props: { uid: string }) => {
   const navigate = useNavigate();
   const uid = props.uid;
+  // console.log(uid);
 
   const [newname, setNewname] = useState('');
   const [newmessage, setNewmessage] = useState('');
@@ -42,17 +43,14 @@ const MyPageProfile = (props: { uid: string }) => {
     getImageURL();
   }, []);
 
-  // 이미지 URL 가져오는 부분
   const getImageURL = async () => {
-    // console.log(uid);
+    console.log(uid);
 
     const docRef = doc(dbService, 'user', uid);
     const docSnap = await getDoc(docRef);
 
     setImageURL(docSnap.data().profileImg);
   };
-
-  // 이미지 바꾸는 부분
   const onImageChange = (
     e: React.ChangeEvent<EventTarget & HTMLInputElement>
   ) => {
@@ -86,7 +84,6 @@ const MyPageProfile = (props: { uid: string }) => {
       });
   };
 
-  // 닉네임과 내용 수정
   const onEditBtn = async () => {
     if (!isEditing) {
       setNewname(authService.currentUser.displayName);
@@ -120,7 +117,6 @@ const MyPageProfile = (props: { uid: string }) => {
     setIsEditing(!isEditing);
   };
 
-  // 바뀐 닉네임과 메세지 부분
   const fetchInfo = async () => {
     console.log('Attempted to fetch user info ' + uid);
     const docSnap = await getDoc(doc(dbService, 'user', uid));
@@ -205,7 +201,7 @@ const MyPageProfile = (props: { uid: string }) => {
               <S.ChangeNickName
                 value={newname}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  if (e.target.value.length > 5) {
+                  if (e.target.value.length > 20) {
                     setNameSwitch(true);
                   } else {
                     setNewname(e.currentTarget.value);
@@ -221,7 +217,7 @@ const MyPageProfile = (props: { uid: string }) => {
               src={require('../../../assets/MypageIcon/Dot.svg').default}
             />
             <S.ShowCheckNickName>
-              닉네임은 5글자를 넘을 수 없습니다.
+              닉네임은 20자 이내로 해주세요
             </S.ShowCheckNickName>
           </S.ShowTitleFlex>
         )}

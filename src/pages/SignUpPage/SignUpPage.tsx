@@ -193,6 +193,9 @@ const SignUpPage = () => {
                 {
                   text: '이메일을 확인해주세요',
                   callback: () => {
+                    authService.signOut();
+                    sessionStorage.clear();
+                    localStorage.clear();
                     navigate('/login', { replace: true });
                   },
                 },

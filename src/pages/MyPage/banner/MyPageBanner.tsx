@@ -1,4 +1,5 @@
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { async } from '@firebase/util';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -88,13 +89,11 @@ export default MyPageBanner;
 const BannerWrap = styled.div`
   width: 100%;
   height: 293px;
-
   position: relative;
 `;
 const BannerImg = styled.img`
   width: 100%;
   height: 100%;
-
   background: #d1ddf5;
 `;
 const BannerImgLabel = styled.label``;
