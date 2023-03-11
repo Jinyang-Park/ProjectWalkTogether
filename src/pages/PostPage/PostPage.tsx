@@ -312,12 +312,51 @@ const PostPage = () => {
     }
 
     if (thumbnail === '') {
-      alert('섬네일 사진을 선택해 주세요');
+      MessageWindow.showWindow(
+        new MessageWindowProperties(
+          true,
+          '썸네일 사진을 선택하세요',
+          '',
+          [
+            {
+              text: '닫 기',
+              callback: () => {
+                MessageWindow.showWindow(
+                  new MessageWindowProperties(),
+                  setState
+                );
+              },
+            },
+          ],
+          MessageWindowLogoType.WritingHand
+        ),
+        setState
+      );
+
       return;
     }
 
     if (banner === '') {
-      alert('배너사진을 선택해 주세요');
+      MessageWindow.showWindow(
+        new MessageWindowProperties(
+          true,
+          '배너사진을 선택하세요',
+          '',
+          [
+            {
+              text: '닫 기',
+              callback: () => {
+                MessageWindow.showWindow(
+                  new MessageWindowProperties(),
+                  setState
+                );
+              },
+            },
+          ],
+          MessageWindowLogoType.WritingHand
+        ),
+        setState
+      );
       return;
     }
 
@@ -327,7 +366,7 @@ const PostPage = () => {
       MessageWindow.showWindow(
         new MessageWindowProperties(
           true,
-          '지도에서 약속 장소를 선택해 주십시오',
+          '지도에서 약속 장소를 선택하세요',
           '',
           [
             {
@@ -434,7 +473,7 @@ const PostPage = () => {
 
     // setTimeout(adddoc, 8000);
   };
-  console.log(' userinfo', userinfo?.mynickname);
+  console.log(' adress:', adress);
 
   return (
     <CommonStyles>

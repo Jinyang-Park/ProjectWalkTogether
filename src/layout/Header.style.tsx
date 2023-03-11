@@ -190,7 +190,7 @@ export const DropNav = styled.nav<{ isDropped: boolean }>`
     css`
       opacity: 1;
       visibility: visible;
-      transform: translate(-50%, 0);
+      transform: translate(-78%, 0);
       left: 50%;
     `};
 `;
