@@ -7,14 +7,7 @@ import {
 } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { dbService, authService } from '../../common/firebase';
-import {
-  collection,
-  doc,
-  setDoc,
-  getDocs,
-  query,
-  where,
-} from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { emailRegex, nicknameRegex, pwdRegex } from '../../utils/UserInfoRegex';
 import CommonStyles from './../../styles/CommonStyles';
 import { useSetRecoilState } from 'recoil';
@@ -28,12 +21,8 @@ const SignUpPage = () => {
   const [disabled, setDisabled] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [passinputType, setPassInputType] = useState<string>('password');
-  const [ConfirmPassInputType, setConfirmNewPassInputType] =
-    useState<string>('password');
   const [confirmPwd, setCnfirmPwd] = useState('');
   const [displayname, setDisplayname] = useState('');
-  const [bannerImg, setBannerImg] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
   //유효성검사
@@ -53,26 +42,6 @@ const SignUpPage = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
-
-  const handleToggleInputType = () => {
-    setPassInputType(passinputType === 'password' ? 'text' : 'password');
-  };
-  const handleToggleConfirmInputType = () => {
-    setConfirmNewPassInputType(
-      ConfirmPassInputType === 'password' ? 'text' : 'password'
-    );
-  };
-
-  const deletepassinput = () => {
-    setPassword('');
-  };
-
-  const deletenameinput = () => {
-    setDisplayname('');
-  };
-  const deleteCnfirminput = () => {
-    setCnfirmPwd('');
-  };
 
   //onchange로 값을 저장한다.
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -176,7 +145,7 @@ const SignUpPage = () => {
     if (displayname.length > 0) {
       if (nicknameRegex.test(displayname) === false) {
         setValidateDisplayname(
-          '한글,영문,숫자 포함 1자 이상 6자 이내로 작성해 주세요.'
+          '한글,영문,숫자 포함 1자 이상 7자 이하로 작성해 주세요.'
         );
         setShow(true);
         setValidateDisplayColor(false);
@@ -203,14 +172,6 @@ const SignUpPage = () => {
         async (response) => {
           await updateProfile(response.user, {
             displayName: displayname,
-          });
-          setDoc(doc(dbService, 'user', `${authService.currentUser?.uid}`), {
-            userId: authService.currentUser?.uid,
-            email: email,
-            displayname: displayname,
-            imageURL:
-              'https://firebasestorage.googleapis.com/v0/b/oh-ju-79642.appspot.com/o/profile%2Fblank_profile.png?alt=media&token=0053da71-f478-44a7-ae13-320539bdf641',
-            bannerImg: '',
           })
             .then(() => {
               if (authService.currentUser !== null) {
@@ -272,20 +233,6 @@ const SignUpPage = () => {
                   value={displayname}
                   onChange={onChangeDisplayname}
                 ></S.Input>
-
-                {displayname && (
-                  <S.CheckBox>
-                    <S.DeleteNameCheckBtn onClick={deletenameinput}>
-                      <S.CheckIconright
-                        src={
-                          require('../../assets/ChattingIcon/clearbtn.svg')
-                            .default
-                        }
-                        alt='Show password'
-                      />
-                    </S.DeleteNameCheckBtn>
-                  </S.CheckBox>
-                )}
               </S.Inputholder>
 
               {displayname === '' ? (
@@ -305,24 +252,10 @@ const SignUpPage = () => {
                 <S.Input
                   type='email'
                   name='email'
-                  placeholder='이메일'
+                  placeholder='email'
                   onChange={onChangeEmail}
                   value={email}
                 ></S.Input>
-
-                {email && (
-                  <S.CheckBox>
-                    <S.DeleteEmailCheckBtn onClick={deleteCnfirminput}>
-                      <S.CheckIconright
-                        src={
-                          require('../../assets/ChattingIcon/clearbtn.svg')
-                            .default
-                        }
-                        alt='Show password'
-                      />
-                    </S.DeleteEmailCheckBtn>
-                  </S.CheckBox>
-                )}
               </S.Inputholder>
 
               {email === '' ? (
@@ -340,47 +273,12 @@ const SignUpPage = () => {
 
               <S.Inputholder>
                 <S.Input
-                  type={passinputType}
+                  type='password'
                   name='비밀번호'
                   placeholder='비밀번호'
                   onChange={onChangePassword}
                   value={password}
                 ></S.Input>
-
-                {password && (
-                  <S.CheckBox>
-                    {passinputType === 'password' ? (
-                      <S.CheckBtn onClick={handleToggleInputType}>
-                        <S.CheckIconright
-                          src={
-                            require('../../assets/LoginPage/No-eye.svg').default
-                          }
-                          alt='Show password'
-                        />
-                      </S.CheckBtn>
-                    ) : (
-                      <S.OpenCheckBtn onClick={handleToggleInputType}>
-                        <S.Checkeye
-                          src={
-                            require('../../assets/LoginPage/openeye.svg')
-                              .default
-                          }
-                          alt='Hide password'
-                        />
-                      </S.OpenCheckBtn>
-                    )}
-
-                    <S.DeletePassCheckBtn onClick={deletepassinput}>
-                      <S.CheckIconright
-                        src={
-                          require('../../assets/ChattingIcon/clearbtn.svg')
-                            .default
-                        }
-                        alt='Show password'
-                      />
-                    </S.DeletePassCheckBtn>
-                  </S.CheckBox>
-                )}
               </S.Inputholder>
 
               {password === '' ? (
@@ -399,48 +297,11 @@ const SignUpPage = () => {
               <S.Inputholder>
                 <S.Input
                   value={confirmPwd}
-                  type={ConfirmPassInputType}
+                  type='password'
                   name='비밀번호 확인'
                   placeholder='비밀번호 확인'
                   onChange={onChangeconfirmPwd}
                 ></S.Input>
-
-                {confirmPwd && (
-                  <S.CheckBox>
-                    {ConfirmPassInputType === 'password' ? (
-                      <S.CheckPassBtn onClick={handleToggleConfirmInputType}>
-                        <S.CheckIconright
-                          src={
-                            require('../../assets/LoginPage/No-eye.svg').default
-                          }
-                          alt='Show password'
-                        />
-                      </S.CheckPassBtn>
-                    ) : (
-                      <S.OpenPassCheckBtn
-                        onClick={handleToggleConfirmInputType}
-                      >
-                        <S.Checkeye
-                          src={
-                            require('../../assets/LoginPage/openeye.svg')
-                              .default
-                          }
-                          alt='Hide password'
-                        />
-                      </S.OpenPassCheckBtn>
-                    )}
-
-                    <S.DeleteCheckBtn onClick={deleteCnfirminput}>
-                      <S.CheckIconright
-                        src={
-                          require('../../assets/ChattingIcon/clearbtn.svg')
-                            .default
-                        }
-                        alt='Show password'
-                      />
-                    </S.DeleteCheckBtn>
-                  </S.CheckBox>
-                )}
               </S.Inputholder>
               {confirmPwd === '' ? (
                 <S.ValidBox></S.ValidBox>

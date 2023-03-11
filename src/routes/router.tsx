@@ -45,7 +45,7 @@ const Router = () => {
         <Route path='/category/:category' element={<Category />} />
         <Route path='/collection/:id' element={<Collection />} />
         <Route path='/detailpage/:id' element={<DetailPage />} />
-        <Route path='/agreement' element={<Agreement />} />
+        <Route path='agreement' element={<Agreement />} />
         <Route path='/edit/:id' element={<PostEditPage />} />
         <Route path='/chat' element={<ChattingPage />} />
         <Route path='/changepassword' element={<ChangePassword />} />

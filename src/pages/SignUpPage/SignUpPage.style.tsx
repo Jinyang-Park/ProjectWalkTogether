@@ -25,7 +25,7 @@ export const Input = styled.input`
   position: relative;
   left: 10px;
   top: 7px;
-  width: 230px;
+  width: 250px;
 
   &&::placeholder {
     font-family: 'SUIT';
@@ -34,9 +34,6 @@ export const Input = styled.input`
     font-size: 12px;
     line-height: 15px;
     color: #24264e;
-  }
-  ::-ms-reveal {
-    display: none;
   }
 `;
 
@@ -184,129 +181,3 @@ export const ValidBox = styled.div`
 export const EtcBtn = styled.div`
   margin-top: 40px;
 `;
-export const CheckBtn = styled.div`
-  width: 20px;
-  height: 15px;
-  position: fixed;
-  right: 430px;
-
-  bottom: 366px;
-  cursor: pointer;
-  :active {
-    width: 20px;
-    height: 15px;
-  }
-`;
-
-export const CheckPassBtn = styled.div`
-  width: 20px;
-  height: 15px;
-  position: fixed;
-  right: 430px;
-
-  bottom: 290px;
-  cursor: pointer;
-  :active {
-    width: 20px;
-    height: 15px;
-  }
-`;
-export const OpenCheckBtn = styled.div`
-  width: 22px;
-  height: 27px;
-  position: fixed;
-  right: 430px;
-
-  bottom: 360px;
-  cursor: pointer;
-  :active {
-    width: 22px;
-    height: 27px;
-  }
-`;
-export const OpenPassCheckBtn = styled.div`
-  width: 22px;
-  height: 27px;
-  position: fixed;
-  right: 430px;
-
-  bottom: 285px;
-  cursor: pointer;
-  :active {
-    width: 22px;
-    height: 27px;
-  }
-`;
-
-export const DeleteCheckBtn = styled.div`
-  width: 13px;
-  height: 13px;
-  position: fixed;
-  right: 405px;
-
-  bottom: 292px;
-  cursor: pointer;
-  :active {
-    width: 13px;
-    height: 13px;
-  }
-`;
-
-export const DeletePassCheckBtn = styled.div`
-  width: 13px;
-  height: 13px;
-  position: fixed;
-  right: 405px;
-
-  bottom: 368px;
-  cursor: pointer;
-  :active {
-    width: 13px;
-    height: 13px;
-  }
-`;
-
-export const CheckBox = styled.div`
-  display: flex;
-  position: relative;
-  right: 30px;
-  gap: 12px;
-`;
-
-export const PassCheckBox = styled.div`
-  display: flex;
-  position: relative;
-
-  right: 30px;
-  gap: 12px;
-`;
-export const DeleteEmailCheckBtn = styled.div`
-  width: 13px;
-  height: 13px;
-  position: fixed;
-  right: 405px;
-
-  bottom: 445px;
-  cursor: pointer;
-  :active {
-    width: 13px;
-    height: 13px;
-  }
-`;
-
-export const DeleteNameCheckBtn = styled.div`
-  width: 13px;
-  height: 13px;
-  position: fixed;
-  right: 405px;
-
-  bottom: 523px;
-  cursor: pointer;
-  :active {
-    width: 13px;
-    height: 13px;
-  }
-`;
-
-export const CheckIconright = styled.img``;
-export const Checkeye = styled.img``;
