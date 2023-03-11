@@ -30,6 +30,10 @@ export const InputBox = styled.div`
 
 //Inputholder안의 진짜 input태그
 export const Input = styled.input`
+  :-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #fff inset;
+    -webkit-text-fill-color: #000;
+  }
   outline: none;
   position: relative;
   left: 10px;
