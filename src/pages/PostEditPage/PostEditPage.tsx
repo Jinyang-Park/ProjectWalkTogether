@@ -27,6 +27,7 @@ import MessageWindow, {
   messageWindowPropertiesAtom,
 } from '../../messagewindow/MessageWindow';
 import Loader from '../../components/Loader/Loader';
+import Footer from './../../layout/Footer/Footer';
 
 const PostEditPage = () => {
   // 해당 글 id, db 정보
@@ -268,31 +269,34 @@ const PostEditPage = () => {
   };
 
   return (
-    <CommonStyles>
-      <S.Boxcontainer>
-        <MainPostEdit
-          setPostCategory={setPostCategory}
-          postCategory={postCategory}
-          thumbnailimg={state.ThumbnailURL_Posting}
-          bannerimg={state.BannerURL_Posting}
-          setHasEditedBanner={setHasEditedBanner}
-          setHasEditedThumbnail={setHasEditedThumbnail}
-          isValidityTitle={isValidityTitle}
-          isValidityContents={isValidityContents}
-          setIsValidityContents={setIsValidityContents}
-          setIsValidityTitle={setIsValidityTitle}
-        />
-        <InputInformationEdit
-          addressEdit={state.Address_Posting}
-          lat={state.MeetLatitude_Posting}
-          lng={state.MeetLongitude_Posting}
-        />
-        {isLoading && <Loader />}
-        <S.PostSubmitBox>
-          <S.PostSubmitBtn onClick={handleSubmit}>수정하기</S.PostSubmitBtn>
-        </S.PostSubmitBox>
-      </S.Boxcontainer>
-    </CommonStyles>
+    <>
+      <CommonStyles>
+        <S.Boxcontainer>
+          <MainPostEdit
+            setPostCategory={setPostCategory}
+            postCategory={postCategory}
+            thumbnailimg={state.ThumbnailURL_Posting}
+            bannerimg={state.BannerURL_Posting}
+            setHasEditedBanner={setHasEditedBanner}
+            setHasEditedThumbnail={setHasEditedThumbnail}
+            isValidityTitle={isValidityTitle}
+            isValidityContents={isValidityContents}
+            setIsValidityContents={setIsValidityContents}
+            setIsValidityTitle={setIsValidityTitle}
+          />
+          <InputInformationEdit
+            addressEdit={state.Address_Posting}
+            lat={state.MeetLatitude_Posting}
+            lng={state.MeetLongitude_Posting}
+          />
+          {isLoading && <Loader />}
+          <S.PostSubmitBox>
+            <S.PostSubmitBtn onClick={handleSubmit}>수정하기</S.PostSubmitBtn>
+          </S.PostSubmitBox>
+        </S.Boxcontainer>
+      </CommonStyles>
+      <Footer />
+    </>
   );
 };
 

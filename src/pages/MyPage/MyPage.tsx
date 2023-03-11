@@ -10,6 +10,7 @@ import { useRecoilValue } from 'recoil';
 import MypageTabbar from './tabbar/MypageTabbar';
 import MyPageLike from './likepage/MyPageLike';
 import styled from 'styled-components';
+import Footer from './../../layout/Footer/Footer';
 
 const MyPage = () => {
   let { uid } = useParams();
@@ -45,22 +46,25 @@ const MyPage = () => {
   };
 
   return (
-    <CommonStyles>
-      {id !== '' && (
-        <MyPageWrap>
-          <MyPageBanner uid={id} />
-          <MyPageProfile uid={id} />
-          {/* <MyPageReview /> */}
-          <MypageTabbar
-            uid={id}
-            currentpage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
+    <>
+      <CommonStyles>
+        {id !== '' && (
+          <MyPageWrap>
+            <MyPageBanner uid={id} />
+            <MyPageProfile uid={id} />
+            {/* <MyPageReview /> */}
+            <MypageTabbar
+              uid={id}
+              currentpage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
 
-          <TabContent />
-        </MyPageWrap>
-      )}
-    </CommonStyles>
+            <TabContent />
+          </MyPageWrap>
+        )}
+      </CommonStyles>
+      <Footer />
+    </>
   );
 };
 export default MyPage;

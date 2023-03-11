@@ -31,6 +31,9 @@ import MessageWindow, {
   messageWindowPropertiesAtom,
 } from '../../messagewindow/MessageWindow';
 
+import Loader from '../../components/Loader/Loader';
+import Footer from './../../layout/Footer/Footer';
+
 const PostPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false); //아이디 찾기 모달창
   const [postDb, setPostDb] = useState({}); //파이어베이스DB
@@ -86,6 +89,9 @@ const PostPage = () => {
 
   //내용 유효성검사
   const [isValidityContents, setIsValidityContents] = useState<boolean>(false);
+
+  // 로딩일 경우
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const date = (y: number, m: number, d: number) => {
     const D = new Date(y, m, d);
@@ -249,7 +255,7 @@ const PostPage = () => {
       return;
     }
 
-    if (Description.length < 1 || Description.length > 200) {
+    if (Description.length < 1 || Description.length > 160) {
       // alert('내용은 1자 이상 200자 미만으로 작성해 주세요');
       setIsValidityContents(true);
       return;
@@ -400,17 +406,17 @@ const PostPage = () => {
     // alert('업로드중입니다.');
 
     // 업로드 시작 확정 시 로딩창 띄워줌
-    MessageWindow.showWindow(
-      new MessageWindowProperties(
-        true,
-        '업로드 중입니다. 조금만 기다려주세요!',
-        '',
-        [],
-        MessageWindowLogoType.CryingFace
-      ),
-      setState
-    );
-
+    // MessageWindow.showWindow(
+    //   new MessageWindowProperties(
+    //     true,
+    //     '업로드 중입니다. 조금만 기다려주세요!',
+    //     '',
+    //     [],
+    //     MessageWindowLogoType.CryingFace
+    //   ),
+    //   setState
+    // );
+    setIsLoading(true);
     ///////////////////////////////////////////////////////
     await uploadBytes(bannerRef, banner);
 
@@ -428,7 +434,7 @@ const PostPage = () => {
       setTag([]);
       setMeetTime('');
       setlocation({});
-
+      setIsLoading(false);
       navigate(`/category/${postCategory}`);
     });
 
@@ -437,25 +443,31 @@ const PostPage = () => {
   console.log(' userinfo', userinfo?.mynickname);
 
   return (
-    <CommonStyles>
-      <S.Boxcontainer>
-        <MainPost
-          setPostCategory={setPostCategory}
-          postCategory={postCategory}
-          setTagItem={setTagItem}
-          TagItem={TagItem}
-          // onKeyPress={onKeyPress}
-          isValidityTitle={isValidityTitle}
-          isValidityContents={isValidityContents}
-          setIsValidityContents={setIsValidityContents}
-          setIsValidityTitle={setIsValidityTitle}
-        />
-        <IuputInformation />
-        <S.PostSubmitBox>
-          <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>
-        </S.PostSubmitBox>
-      </S.Boxcontainer>
-    </CommonStyles>
+    <>
+      <CommonStyles>
+        <S.Boxcontainer>
+          <MainPost
+            setPostCategory={setPostCategory}
+            postCategory={postCategory}
+            setTagItem={setTagItem}
+            TagItem={TagItem}
+            // onKeyPress={onKeyPress}
+            isValidityTitle={isValidityTitle}
+            isValidityContents={isValidityContents}
+            setIsValidityContents={setIsValidityContents}
+            setIsValidityTitle={setIsValidityTitle}
+          />
+          <IuputInformation />
+          {isLoading && <Loader />}
+          <S.PostSubmitBox>
+            <S.PostSubmitBtn onClick={handleSubmit}>
+              포스팅 하기
+            </S.PostSubmitBtn>
+          </S.PostSubmitBox>
+        </S.Boxcontainer>
+      </CommonStyles>
+      <Footer />
+    </>
   );
 };
 

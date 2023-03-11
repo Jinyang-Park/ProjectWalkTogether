@@ -10,100 +10,104 @@ import Fire from '../../assets/Mainpage/Fire.png';
 import Boog from '../../assets/Mainpage/boog.png';
 import gitbal from '../../assets/Mainpage/gitbal.png';
 import WalkAfter from './WalkAfter';
+import Footer from './../../layout/Footer/Footer';
 //컨텐츠를 컴포넌트 폴더로 이동하여 간소화 할 예정
 
 const MainPage = () => {
   const navigate = useNavigate();
   return (
-    <CommonStyles>
-      <MainBanner />
-      <CategoryWrapper>
-        <CategorySlide />
+    <>
+      <CommonStyles>
+        <MainBanner />
+        <CategoryWrapper>
+          <CategorySlide />
 
-        <ContentLayout>
-          <TitleLayout>
-            <HotShoesImg src={Fire} />
-            <S.CategoryTitle>뜨거운 신발 </S.CategoryTitle>
-          </TitleLayout>
+          <ContentLayout>
+            <TitleLayout>
+              <HotShoesImg src={Fire} />
+              <S.CategoryTitle>뜨거운 신발 </S.CategoryTitle>
+            </TitleLayout>
 
-          <FirstLayout>
-            <InsideText>현재 인기가 많은 산책들이에요</InsideText>
-            <ButtonWrap>
-              <Button
-                value='2'
-                onClick={(event) =>
-                  navigate(`/collection/${event.target['value']}`)
-                }
-              >
-                전체보기
-              </Button>
-              <ButtonIcon
-                src={require('../../assets/Mainpage/chevronleft.svg').default}
-              />
-            </ButtonWrap>
-          </FirstLayout>
-          <S.LikedListItem>
-            <LikesComponent />
-          </S.LikedListItem>
-          <Line />
-        </ContentLayout>
+            <FirstLayout>
+              <InsideText>현재 인기가 많은 산책들이에요</InsideText>
+              <ButtonWrap>
+                <Button
+                  value='2'
+                  onClick={(event) =>
+                    navigate(`/collection/${event.target['value']}`)
+                  }
+                >
+                  전체보기
+                </Button>
+                <ButtonIcon
+                  src={require('../../assets/Mainpage/chevronleft.svg').default}
+                />
+              </ButtonWrap>
+            </FirstLayout>
+            <S.LikedListItem>
+              <LikesComponent />
+            </S.LikedListItem>
+            <Line />
+          </ContentLayout>
 
-        <ContentLayout>
-          <TitleLayout>
-            <HotShoesImg src={Boog} />
-            <S.CategoryTitle>신발 신는 중 </S.CategoryTitle>
-          </TitleLayout>
+          <ContentLayout>
+            <TitleLayout>
+              <HotShoesImg src={Boog} />
+              <S.CategoryTitle>신발 신는 중 </S.CategoryTitle>
+            </TitleLayout>
 
-          <FirstLayout>
-            <InsideText>현재 이루어지고 있는 산책들이에요</InsideText>
-            <ButtonWrap>
-              <Button
-                value='1'
-                onClick={(event) =>
-                  navigate(`/collection/${event.target['value']}`)
-                }
-              >
-                전체보기
-              </Button>
-              <ButtonIcon
-                src={require('../../assets/Mainpage/chevronleft.svg').default}
-              />
-            </ButtonWrap>
-          </FirstLayout>
+            <FirstLayout>
+              <InsideText>현재 이루어지고 있는 산책들이에요</InsideText>
+              <ButtonWrap>
+                <Button
+                  value='1'
+                  onClick={(event) =>
+                    navigate(`/collection/${event.target['value']}`)
+                  }
+                >
+                  전체보기
+                </Button>
+                <ButtonIcon
+                  src={require('../../assets/Mainpage/chevronleft.svg').default}
+                />
+              </ButtonWrap>
+            </FirstLayout>
 
-          <S.LikedListItem>
-            <FootOning />
-          </S.LikedListItem>
-          <Line />
-        </ContentLayout>
+            <S.LikedListItem>
+              <FootOning />
+            </S.LikedListItem>
+            <Line />
+          </ContentLayout>
 
-        <ContentLayout>
-          <TitleLayout>
-            <HotShoesImg src={gitbal} />
-            <S.CategoryTitle>매칭된 신발 </S.CategoryTitle>
-          </TitleLayout>
-          <FirstLayout>
-            <InsideText>매칭이 완료된 산책들이에요</InsideText>
-            <ButtonWrap>
-              <Button
-                value='3'
-                onClick={(event) =>
-                  navigate(`/collection/${event.target['value']}`)
-                }
-              >
-                전체보기
-              </Button>
-              <ButtonIcon
-                src={require('../../assets/Mainpage/chevronleft.svg').default}
-              />
-            </ButtonWrap>
-          </FirstLayout>
-          <S.LikedListItem>
-            <WalkAfter />
-          </S.LikedListItem>
-        </ContentLayout>
-      </CategoryWrapper>
-    </CommonStyles>
+          <ContentLayout>
+            <TitleLayout>
+              <HotShoesImg src={gitbal} />
+              <S.CategoryTitle>매칭된 신발 </S.CategoryTitle>
+            </TitleLayout>
+            <FirstLayout>
+              <InsideText>매칭이 완료된 산책들이에요</InsideText>
+              <ButtonWrap>
+                <Button
+                  value='3'
+                  onClick={(event) =>
+                    navigate(`/collection/${event.target['value']}`)
+                  }
+                >
+                  전체보기
+                </Button>
+                <ButtonIcon
+                  src={require('../../assets/Mainpage/chevronleft.svg').default}
+                />
+              </ButtonWrap>
+            </FirstLayout>
+            <S.LikedListItem>
+              <WalkAfter />
+            </S.LikedListItem>
+          </ContentLayout>
+        </CategoryWrapper>
+      </CommonStyles>
+      <Footer />
+    </>
   );
 };
 
