@@ -36,12 +36,24 @@ const LoginPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false);
   const [user, setUser] = useState({});
   const [validateEmailColor, setValidateEmailColor] = useState(false);
+  const [passinputType, setPassInputType] = useState<string>('password');
   const navigate = useNavigate();
   const SAVE_EMAIL_ID_KEY = 'SAVE_EMAIL_ID_KEY';
   const SAVE_EMAIL_ID_CHECKED_KEY = 'SAVE_EMAIL_ID_CHECKED_KEY';
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
+
+  const handleToggleInputType = () => {
+    setPassInputType(passinputType === 'password' ? 'text' : 'password');
+  };
+
+  const deletepassinput = () => {
+    setPassword('');
+  };
+  const deletemailinput = () => {
+    setEmail('');
+  };
 
   const [checkedSaveEmail, setCheckedSaveEmail] = useState<boolean | string>(
     false
@@ -260,15 +272,64 @@ const LoginPage = () => {
                   placeholder='이메일을 입력해주세요'
                   onChange={onChangeEmail}
                 ></S.Input>
+
+                {email && (
+                  <S.CheckEmailBox>
+                    <S.DeleteEmailBtn onClick={deletemailinput}>
+                      <S.CheckIconright
+                        src={
+                          require('../../assets/ChattingIcon/clearbtn.svg')
+                            .default
+                        }
+                        alt='Show password'
+                      />
+                    </S.DeleteEmailBtn>
+                  </S.CheckEmailBox>
+                )}
               </S.Inputholder>
               <S.Inputholder>
                 <S.Input
-                  type='password'
+                  type={passinputType}
                   value={password}
                   name='비밀번호'
                   placeholder='비밀번호를 입력해주세요'
                   onChange={onChangePassword}
                 ></S.Input>
+
+                {password && (
+                  <S.CheckPassBox>
+                    {passinputType === 'password' ? (
+                      <S.CheckBtn onClick={handleToggleInputType}>
+                        <S.CheckIconright
+                          src={
+                            require('../../assets/LoginPage/No-eye.svg').default
+                          }
+                          alt='Show password'
+                        />
+                      </S.CheckBtn>
+                    ) : (
+                      <S.CheckOpenBtn onClick={handleToggleInputType}>
+                        <S.Checkeye
+                          src={
+                            require('../../assets/LoginPage/openeye.svg')
+                              .default
+                          }
+                          alt='Hide password'
+                        />
+                      </S.CheckOpenBtn>
+                    )}
+
+                    <S.DeletePassBtn onClick={deletepassinput}>
+                      <S.CheckIconright
+                        src={
+                          require('../../assets/ChattingIcon/clearbtn.svg')
+                            .default
+                        }
+                        alt='Show password'
+                      />
+                    </S.DeletePassBtn>
+                  </S.CheckPassBox>
+                )}
               </S.Inputholder>
 
               <S.ButtonBox>

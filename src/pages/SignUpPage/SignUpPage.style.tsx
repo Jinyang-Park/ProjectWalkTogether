@@ -34,7 +34,11 @@ export const Input = styled.input`
   position: relative;
   left: 10px;
   top: 7px;
-  width: 250px;
+  width: 230px;
+
+  ::-ms-reveal {
+    display: none;
+  }
 
   &&::placeholder {
     font-family: 'SUIT';
@@ -181,6 +185,110 @@ export const PassConfirmCircle = styled.img<{
   z-index: 99;
 `;
 
+export const CheckBox = styled.div`
+  display: flex;
+`;
+export const CheckPassBox = styled.div`
+  display: flex;
+  position: relative;
+`;
+export const CheckEmailBox = styled.div`
+  display: flex;
+  position: relative;
+`;
+export const CheckPassWordBtn = styled.div`
+  width: 20px;
+  height: 15px;
+  position: absolute;
+  left: 248px;
+  bottom: 10px;
+  cursor: pointer;
+  :active {
+    width: 20px;
+    height: 15px;
+  }
+`;
+
+export const OpenPassCnCheckBtn = styled.div`
+  width: 22px;
+  height: 27px;
+  position: absolute;
+  left: 247px;
+  bottom: 5px;
+  cursor: pointer;
+  :active {
+    width: 22px;
+    height: 27px;
+  }
+`;
+
+export const OpenCheckBtn = styled.div`
+  width: 22px;
+  height: 27px;
+  position: absolute;
+  left: 247px;
+  bottom: 5px;
+  cursor: pointer;
+  :active {
+    width: 22px;
+    height: 27px;
+  }
+`;
+
+export const DeleteCheckCnBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: relative;
+  left: 280px;
+  bottom: 12px;
+  cursor: pointer;
+  :active {
+    width: 13px;
+    height: 13px;
+  }
+`;
+export const DeleteEmailCheckBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: relative;
+  left: 280px;
+  bottom: 12px;
+  cursor: pointer;
+  :active {
+    width: 13px;
+    height: 13px;
+  }
+`;
+
+export const CheckNickBox = styled.div`
+  position: relative;
+`;
+
+export const DeleteNameCheckBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  left: 280px;
+  bottom: -2px;
+  cursor: pointer;
+  :active {
+    width: 13px;
+    height: 13px;
+  }
+`;
+
+export const DeletePassCheckBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: relative;
+  left: 280px;
+  bottom: 12px;
+  cursor: pointer;
+  :active {
+    width: 13px;
+    height: 13px;
+  }
+`;
 export const ValidBox = styled.div`
   display: flex;
   width: 306px;
@@ -190,3 +298,22 @@ export const ValidBox = styled.div`
 export const EtcBtn = styled.div`
   margin-top: 40px;
 `;
+export const CheckcnBox = styled.div`
+  position: relative;
+`;
+
+export const CheckCnPassBtn = styled.div`
+  width: 20px;
+  height: 15px;
+  position: absolute;
+  left: 247px;
+  bottom: 11px;
+  cursor: pointer;
+  :active {
+    width: 20px;
+    height: 15px;
+  }
+`;
+
+export const CheckIconright = styled.img``;
+export const Checkeye = styled.img``;

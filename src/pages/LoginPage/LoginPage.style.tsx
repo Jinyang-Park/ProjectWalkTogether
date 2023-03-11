@@ -30,8 +30,8 @@ export const Input = styled.input`
   position: relative;
   left: 10px;
   top: 7px;
-  width: 250px;
-
+  width: 230px;
+  background: transparent;
   &&::placeholder {
     font-family: 'SUIT';
     font-style: normal;
@@ -39,6 +39,9 @@ export const Input = styled.input`
     font-size: 12px;
     line-height: 15px;
     color: #24264e;
+  }
+  ::-ms-reveal {
+    display: none;
   }
 `;
 
@@ -62,18 +65,66 @@ export const Inputholder = styled.div`
 
 //초기화버튼
 export const CheckBtn = styled.div`
-  width: 13px;
+  width: 17px;
   height: 13px;
-  position: relative;
-  left: 276px;
-  bottom: 10px;
+  position: absolute;
+  left: 251px;
+  bottom: 12px;
   cursor: pointer;
   :active {
-    width: 10px;
-    height: 10px;
+    width: 17px;
+    height: 13px;
   }
 `;
 
+export const CheckOpenBtn = styled.div`
+  width: 19px;
+  height: 22px;
+  position: absolute;
+  left: 250px;
+  bottom: 8px;
+  cursor: pointer;
+  :active {
+    width: 19px;
+    height: 22px;
+  }
+`;
+export const DeleteEmailBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  left: 280px;
+  bottom: -2px;
+  cursor: pointer;
+  :active {
+    width: 13px;
+    height: 13px;
+  }
+`;
+
+export const DeleatePassBox = styled.div`
+  left: 30px;
+`;
+
+export const DeletePassBtn = styled.div`
+  width: 13px;
+  height: 13px;
+  position: relative;
+  left: 280px;
+  bottom: 12px;
+  cursor: pointer;
+  :active {
+    width: 13px;
+    height: 13px;
+  }
+`;
+export const CheckPassBox = styled.div`
+  position: relative;
+`;
+export const CheckEmailBox = styled.div`
+  position: relative;
+`;
+export const Checkeye = styled.img``;
 //초기화버튼 이미지
 export const CheckIconright = styled.img``;
 

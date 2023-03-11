@@ -131,11 +131,7 @@ const FindPassword = () => {
                   <S.FindBtnText>다음으로</S.FindBtnText>
                 </S.FindBtn>
                 <S.Validityfontbox>{validate}</S.Validityfontbox>
-                <S.BackBtn
-                  onClick={() => {
-                    navigate('/login');
-                  }}
-                >
+                <S.BackBtn onClick={() => navigate('/login')}>
                   이전으로 돌아가기
                 </S.BackBtn>
               </S.ButtonBox>
