@@ -5,9 +5,10 @@ export const SignUPBox = styled.div`
   /* align-items: center; */
   justify-content: center;
   /* background-color: blue; */
-  min-height: calc(100vh - 292px);
+  /* min-height: calc(100vh - 292px); */
   position: relative;
-  bottom: 39px;
+  /* bottom: 39px; */
+  top: 50px;
 `;
 
 export const InputBox = styled.div`
