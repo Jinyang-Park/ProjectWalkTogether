@@ -30,7 +30,7 @@ export const Input = styled.input`
   position: relative;
   left: 10px;
   top: 7px;
-  width: 250px;
+  width: 230px;
 
   &&::placeholder {
     font-family: 'SUIT';
