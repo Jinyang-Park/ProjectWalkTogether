@@ -26,7 +26,12 @@ export const InputBoxContent = styled.div`
 
 // 인풋태그
 export const Input = styled.input`
+  :-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #fff inset;
+    -webkit-text-fill-color: #000;
+  }
   outline: none;
+
   position: relative;
   left: 10px;
   top: 7px;

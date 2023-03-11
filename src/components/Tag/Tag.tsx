@@ -2,16 +2,42 @@ import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { NewpostTag } from '../../Rocoil/Atom';
-
+import MessageWindow, {
+  MessageWindowLogoType,
+  MessageWindowProperties,
+  messageWindowPropertiesAtom,
+} from '../../messagewindow/MessageWindow';
+import { useSetRecoilState } from 'recoil';
 const Tag = (props: { tagItem: string }) => {
+  const setState = useSetRecoilState<MessageWindowProperties>(
+    messageWindowPropertiesAtom
+  );
+
   const Tag = props.tagItem;
+
   const [tagItem, setTagItem] = useState('');
   const [tagList, setTagList] = useRecoilState(NewpostTag);
   const [isInputClicked, setIsInputClicked] = useState(false);
 
   const onKeyPress = (e) => {
     if (tagList.length >= 3) {
-      window.alert('더이상 태그를 추가할 수 없습니다!');
+      MessageWindow.showWindow(
+        new MessageWindowProperties(
+          true,
+          '더이상 태그를 추가 할 수 없습니다',
+          '',
+          [
+            {
+              text: '확인',
+              callback: () => {
+                return;
+              },
+            },
+          ],
+          MessageWindowLogoType.Perplex
+        ),
+        setState
+      );
       setIsInputClicked(true);
       return;
     }
