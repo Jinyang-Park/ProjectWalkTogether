@@ -2,8 +2,11 @@ import styled from '@emotion/styled';
 
 export const Outer = styled.div`
   display: flex;
+  /* align-items: center; */
   justify-content: center;
-  margin-top: 150px;
+  min-height: calc(100vh - 292px);
+  top: 80px;
+  position: relative;
 `;
 
 export const InnerBox = styled.div`

@@ -37,9 +37,12 @@ const ChattingPage = () => {
 export default ChattingPage;
 
 const Boxcontainer = styled.div`
+  width: 100%;
+  /* height: 100vh; */
   display: flex;
   justify-content: center;
-
-  width: 100%;
-  height: 100vh;
+  align-items: center;
+  min-height: calc(100vh - 292px);
+  position: relative;
+  top: 24px;
 `;

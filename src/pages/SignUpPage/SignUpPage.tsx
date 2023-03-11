@@ -218,124 +218,119 @@ const SignUpPage = () => {
   };
 
   return (
-    <CommonStyles>
-      <div>
-        <form onSubmit={handleSubmitClick}>
-          <S.InputBox>
-            <S.InputBoxContent>
-              <S.LoginLogo>회원가입</S.LoginLogo>
+    <S.SignUPBox>
+      <form onSubmit={handleSubmitClick}>
+        <S.InputBox>
+          <S.InputBoxContent>
+            <S.LoginLogo>회원가입</S.LoginLogo>
 
-              <S.Inputholder>
-                <S.Input
-                  type='text'
-                  name='닉네임'
-                  placeholder='닉네임'
-                  value={displayname}
-                  onChange={onChangeDisplayname}
-                ></S.Input>
-              </S.Inputholder>
+            <S.Inputholder>
+              <S.Input
+                type='text'
+                name='닉네임'
+                placeholder='닉네임'
+                value={displayname}
+                onChange={onChangeDisplayname}
+              ></S.Input>
+            </S.Inputholder>
 
-              {displayname === '' ? (
-                <S.ValidBox></S.ValidBox>
-              ) : (
-                <S.ValidBox>
-                  {show && (
-                    <S.ValidityNameCircle
-                      validateDisplaynameColor={validateDisplaynameColor}
-                    ></S.ValidityNameCircle>
-                  )}
-                  <S.Validityfontbox>{validateDisplayname}</S.Validityfontbox>
-                </S.ValidBox>
-              )}
+            {displayname === '' ? (
+              <S.ValidBox></S.ValidBox>
+            ) : (
+              <S.ValidBox>
+                {show && (
+                  <S.ValidityNameCircle
+                    validateDisplaynameColor={validateDisplaynameColor}
+                  ></S.ValidityNameCircle>
+                )}
+                <S.Validityfontbox>{validateDisplayname}</S.Validityfontbox>
+              </S.ValidBox>
+            )}
 
-              <S.Inputholder>
-                <S.Input
-                  type='email'
-                  name='email'
-                  placeholder='email'
-                  onChange={onChangeEmail}
-                  value={email}
-                ></S.Input>
-              </S.Inputholder>
+            <S.Inputholder>
+              <S.Input
+                type='email'
+                name='email'
+                placeholder='email'
+                onChange={onChangeEmail}
+                value={email}
+              ></S.Input>
+            </S.Inputholder>
 
-              {email === '' ? (
-                <S.ValidBox></S.ValidBox>
-              ) : (
-                <S.ValidBox>
-                  {emailShow && (
-                    <S.ValidityEmailCircle
-                      validateEmailColor={validateEmailColor}
-                    ></S.ValidityEmailCircle>
-                  )}
-                  <S.Validityfontbox>{validateEmail}</S.Validityfontbox>
-                </S.ValidBox>
-              )}
+            {email === '' ? (
+              <S.ValidBox></S.ValidBox>
+            ) : (
+              <S.ValidBox>
+                {emailShow && (
+                  <S.ValidityEmailCircle
+                    validateEmailColor={validateEmailColor}
+                  ></S.ValidityEmailCircle>
+                )}
+                <S.Validityfontbox>{validateEmail}</S.Validityfontbox>
+              </S.ValidBox>
+            )}
 
-              <S.Inputholder>
-                <S.Input
-                  type='password'
-                  name='비밀번호'
-                  placeholder='비밀번호'
-                  onChange={onChangePassword}
-                  value={password}
-                ></S.Input>
-              </S.Inputholder>
+            <S.Inputholder>
+              <S.Input
+                type='password'
+                name='비밀번호'
+                placeholder='비밀번호'
+                onChange={onChangePassword}
+                value={password}
+              ></S.Input>
+            </S.Inputholder>
 
-              {password === '' ? (
-                <S.ValidBox></S.ValidBox>
-              ) : (
-                <S.ValidBox>
-                  {pwShow && (
-                    <S.VConfirmCircle
-                      validatePwColor={validatePwColor}
-                    ></S.VConfirmCircle>
-                  )}
-                  <S.Validityfontbox>{validatePw}</S.Validityfontbox>
-                </S.ValidBox>
-              )}
+            {password === '' ? (
+              <S.ValidBox></S.ValidBox>
+            ) : (
+              <S.ValidBox>
+                {pwShow && (
+                  <S.VConfirmCircle
+                    validatePwColor={validatePwColor}
+                  ></S.VConfirmCircle>
+                )}
+                <S.Validityfontbox>{validatePw}</S.Validityfontbox>
+              </S.ValidBox>
+            )}
 
-              <S.Inputholder>
-                <S.Input
-                  value={confirmPwd}
-                  type='password'
-                  name='비밀번호 확인'
-                  placeholder='비밀번호 확인'
-                  onChange={onChangeconfirmPwd}
-                ></S.Input>
-              </S.Inputholder>
-              {confirmPwd === '' ? (
-                <S.ValidBox></S.ValidBox>
-              ) : (
-                <S.ValidBox>
-                  {conFirmShow && (
-                    <S.PassConfirmCircle
-                      validatePwconfirmColor={validatePwconfirmColor}
-                    ></S.PassConfirmCircle>
-                  )}
-                  <S.Validityfontbox>{validatePwconfirm}</S.Validityfontbox>
-                </S.ValidBox>
-              )}
+            <S.Inputholder>
+              <S.Input
+                value={confirmPwd}
+                type='password'
+                name='비밀번호 확인'
+                placeholder='비밀번호 확인'
+                onChange={onChangeconfirmPwd}
+              ></S.Input>
+            </S.Inputholder>
+            {confirmPwd === '' ? (
+              <S.ValidBox></S.ValidBox>
+            ) : (
+              <S.ValidBox>
+                {conFirmShow && (
+                  <S.PassConfirmCircle
+                    validatePwconfirmColor={validatePwconfirmColor}
+                  ></S.PassConfirmCircle>
+                )}
+                <S.Validityfontbox>{validatePwconfirm}</S.Validityfontbox>
+              </S.ValidBox>
+            )}
 
-              <S.EtcBtn>
-                <S.ButtonBox>
-                  <S.LoginBtn disabled={disabled} type='submit'>
-                    회원 가입
-                  </S.LoginBtn>
-                </S.ButtonBox>
-                <S.ThirdBox>
-                  <S.RegisterBtn
-                    type='button'
-                    onClick={() => navigate('/login')}
-                  >
-                    이전으로 돌아가기
-                  </S.RegisterBtn>
-                </S.ThirdBox>
-              </S.EtcBtn>
-            </S.InputBoxContent>
-          </S.InputBox>
-        </form>
-      </div>
-    </CommonStyles>
+            <S.EtcBtn>
+              <S.ButtonBox>
+                <S.LoginBtn disabled={disabled} type='submit'>
+                  회원 가입
+                </S.LoginBtn>
+              </S.ButtonBox>
+              <S.ThirdBox>
+                <S.RegisterBtn type='button' onClick={() => navigate('/login')}>
+                  이전으로 돌아가기
+                </S.RegisterBtn>
+              </S.ThirdBox>
+            </S.EtcBtn>
+          </S.InputBoxContent>
+        </S.InputBox>
+      </form>
+    </S.SignUPBox>
   );
 };
 
