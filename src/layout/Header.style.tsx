@@ -111,7 +111,6 @@ export const LoginLayout = styled.div`
 `;
 export const LoginText = styled.p`
   margin-right: 10px;
-  background-color: pink;
 `;
 
 export const NavEtc = styled.div`
