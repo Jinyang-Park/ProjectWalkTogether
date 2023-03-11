@@ -1,27 +1,19 @@
 import styled from 'styled-components';
 
-export const InputLayout = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 242px);
-
-  /* background-color: blue; */
-
-  /* margin-top: 80px; */
-`;
 export const InputBox = styled.div`
+  display: flex;
+
   flex-wrap: wrap;
   width: 386px;
   height: 582px;
 
-  /* margin-top: 80px; */
+  margin-top: 80px;
+  margin: auto;
   border-radius: 10px;
   padding: 5px;
+  position: relative;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 100px;
 
   box-shadow: 0 0 10px #bec5d7;
   z-index: 1;
@@ -33,7 +25,7 @@ export const Input = styled.input`
   position: relative;
   left: 10px;
   top: 7px;
-  width: 230px;
+  width: 250px;
 
   &&::placeholder {
     font-family: 'SUIT';
@@ -43,14 +35,11 @@ export const Input = styled.input`
     line-height: 15px;
     color: #24264e;
   }
-  ::-ms-reveal {
-    display: none;
-  }
 `;
 
 //Input태그의 테두리
 export const Inputholder = styled.div`
-  /* margin: auto; */
+  margin: auto;
   border-radius: 10px;
   width: 306px;
   height: 47px;
@@ -63,7 +52,7 @@ export const Inputholder = styled.div`
 //인풋을 둘러싼 박스
 export const InputBoxContent = styled.div`
   width: 306px;
-  /* margin: auto; */
+  margin: auto;
 `;
 
 //잠깐만 !
@@ -110,8 +99,8 @@ export const RegisterBtn = styled.button`
   padding-left: 5px;
   font-weight: 300;
   font-family: 'SUITEBold';
-  /* margin: auto; */
-  /* margin-top: 16px; */
+  margin: auto;
+  margin-top: 16px;
 `;
 
 export const FindBox = styled.div`
@@ -192,155 +181,3 @@ export const ValidBox = styled.div`
 export const EtcBtn = styled.div`
   margin-top: 40px;
 `;
-export const CheckBtn = styled.div`
-  width: 20px;
-  height: 15px;
-
-  /* position: fixed;
-  right: 430px;
-
-  bottom: 366px; */
-
-  cursor: pointer;
-  :active {
-    width: 20px;
-    height: 15px;
-  }
-`;
-
-export const CheckPassWordBtn = styled.div`
-  width: 20px;
-  height: 15px;
-  position: relative;
-  left: 250px;
-  bottom: 10px;
-
-  /* cursor: pointer;
-  :active {
-    width: 20px;
-    height: 15px;
-  } */
-`;
-
-
-export const CheckPassBtn = styled.div`
-  width: 20px;
-  height: 15px;
-
-  position: relative;
-  left: 250px;
-  bottom: 10px;
-
-  /* cursor: pointer;
-  :active {
-    width: 20px;
-    height: 15px;
-  } */
-`;
-export const OpenCheckBtn = styled.div`
-  width: 20px;
-  height: 15px;
-  position: relative;
-  left: 250px;
-  bottom: 10px;
-
-  /* cursor: pointer;
-  :active {
-    width: 22px;
-    height: 27px;
-  } */
-`;
-export const OpenPassCheckBtn = styled.div`
-  width: 20px;
-  height: 15px;
-  position: relative;
-  left: 250px;
-  bottom: 10px;
-  cursor: pointer;
-  /* :active {
-    width: 22px;
-    height: 27px;
-  } */
-
-`;
-
-export const DeleteCheckBtn = styled.div`
-  width: 13px;
-  height: 13px;
-
-  position: relative;
-  left: 280px;
-  bottom: 25px;
-
-
-  cursor: pointer;
-  :active {
-    width: 13px;
-    height: 13px;
-  }
-`;
-
-export const DeletePassCheckBtn = styled.div`
-  width: 13px;
-  height: 13px;
-
-  position: relative;
-  left: 280px;
-  bottom: 25px;
-
-  /* cursor: pointer;
-  :active {
-    width: 13px;
-    height: 13px;
-  } */
-
-`;
-
-export const CheckBox = styled.div`
-  display: flex;
-  position: relative;
-
-  left: 280px;
-  bottom: 10px;
-
-  gap: 12px;
-`;
-
-export const PassCheckBox = styled.div`
-  display: flex;
-  position: relative;
-
-  right: 30px;
-  gap: 12px;
-`;
-
-
-export const CheckPasswordBox = styled.div``;
-
-export const EyeXBox = styled.div``;
-
-export const DeleteEmailCheckBtn = styled.div`
-  width: 13px;
-  height: 13px;
-
-
-  cursor: pointer;
-  :active {
-    width: 13px;
-    height: 13px;
-  }
-`;
-
-export const DeleteNameCheckBtn = styled.div`
-  width: 13px;
-  height: 13px;
-
-  cursor: pointer;
-  :active {
-    width: 13px;
-    height: 13px;
-  }
-`;
-
-export const CheckIconright = styled.img``;
-export const Checkeye = styled.img``;

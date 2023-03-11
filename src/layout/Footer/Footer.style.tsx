@@ -2,20 +2,17 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const NavContainer = styled.div`
-
-  height: 194px;
-
+  height: 190px;
   background-color: #eef1f7;
   /* background: linear-gradient(to bottom, #d3f1ff, white); */
   /* width: 1024px; */
   position: relative;
   font-family: 'SUIT';
   color: #24264e;
+  position: relative;
   display: flex;
   justify-content: center;
-
   top: 50px;
-
 
   @media screen and (max-width: 420px) {
     width: 100%;
@@ -44,9 +41,7 @@ export const LogoBox = styled.div`
 `;
 
 export const IntroText = styled.p`
-
-  font-size: 12px;
-
+  font-size: 10px;
 `;
 
 export const Logoimg = styled.img`
@@ -92,9 +87,7 @@ export const ContactBtnBox = styled.div`
 `;
 
 export const Contactus = styled.a`
-
-  font-size: 12px;
-
+  font-size: 10px;
   position: relative;
   left: 5px;
 `;

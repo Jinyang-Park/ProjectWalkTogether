@@ -2,12 +2,13 @@ import { Post, usePosts } from '../../../api/postsApi';
 import CardSection from '../../../components/CardSection/CardSection';
 import * as S from './MypageLike.style';
 
-const MyPageLike = (userInfo: any) => {
+const MyPageLike = (props: { uid: string }) => {
+  const { uid } = props;
   const { posts, refetch } = usePosts();
 
   // Api호출 함수
   const filteredPosts: Array<Post> = posts.filter((post) =>
-    post.LikedUsers.includes(userInfo.uid)
+    post.LikedUsers.includes(uid)
   );
 
   return (

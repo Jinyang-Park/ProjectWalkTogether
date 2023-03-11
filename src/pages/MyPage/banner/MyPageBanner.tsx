@@ -1,4 +1,5 @@
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { async } from '@firebase/util';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -7,16 +8,23 @@ import { storage } from '../../../common/firebase';
 import { dbService, authService } from '../../../common/firebase';
 import { currentUserUid } from '../../../Rocoil/Atom';
 
-interface Props {
-  userInfo: any;
-}
-
-const MyPageBanner = ({ userInfo }: Props) => {
-  const { uid, bannerImg } = userInfo;
-
+const MyPageBanner = (props: { uid: string }) => {
+  const uid = props.uid;
   const userUID = useRecoilValue(currentUserUid);
 
   const [imageURL, setImageURL] = useState<string>('');
+  useEffect(() => {
+    getImageURL();
+  }, []);
+
+  const getImageURL = async () => {
+    console.log(uid);
+
+    const docRef = doc(dbService, 'user', uid);
+    const docSnap = await getDoc(docRef);
+
+    setImageURL(docSnap.data().bannerImg);
+  };
 
   const onImageChange = (
     e: React.ChangeEvent<EventTarget & HTMLInputElement>
@@ -81,13 +89,11 @@ export default MyPageBanner;
 const BannerWrap = styled.div`
   width: 100%;
   height: 293px;
-
   position: relative;
 `;
 const BannerImg = styled.img`
   width: 100%;
   height: 100%;
-
   background: #d1ddf5;
 `;
 const BannerImgLabel = styled.label``;

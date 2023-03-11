@@ -169,6 +169,3 @@ export const SearchSVG = styled.img`
   width: 40px;
   height: 40px;
 `;
-export const DeleteTextWapper = styled.div`
-  cursor: pointer;
-`;

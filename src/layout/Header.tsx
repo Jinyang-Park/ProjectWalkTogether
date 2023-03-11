@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import { useState } from 'react';
 import * as S from './Header.style';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -20,11 +19,7 @@ import MessageWindow, {
   messageWindowPropertiesAtom,
 } from '../messagewindow/MessageWindow';
 
-interface PropsType {
-  onClick?: (e: React.MouseEvent) => void;
-}
-
-const Header = (): JSX.Element => {
+const Header = () => {
   const location = useLocation();
   const history = useNavigate();
   const navigate = useNavigate();
@@ -38,10 +33,6 @@ const Header = (): JSX.Element => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
-
-  const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
-  const userItem = sessionStorage.getItem(sessionKey);
-  const uid = !!userItem ? JSON.parse(userItem).uid : '';
 
   const handleLogin = () => {
     navigate('login');
@@ -58,7 +49,7 @@ const Header = (): JSX.Element => {
       navigate('/reroutetomypage');
       return;
     }
-    navigate(`/mypage/${uid}`);
+    navigate('/mypage');
   };
 
   const home = () => {
@@ -66,11 +57,10 @@ const Header = (): JSX.Element => {
   };
 
   // const kakaoUser = sessionStorage.getItem('id');
-  // location.pathname === '/signup' ?
-  const sessionId = sessionStorage.getItem('id');
+  ///주석추가
+  const sessionId = useRecoilValue(username);
 
   console.log('alarm:', alarm);
-  console.log(location.pathname);
 
   // getKakaoCode();
   //const currentUser = authService.currentUser;
@@ -114,6 +104,7 @@ const Header = (): JSX.Element => {
           </S.NavUl>
         </S.SideOllae>
         <S.NavEtc>
+          {/* <S.Profile onClick={gotomy}>닉네임</S.Profile> */}
           <S.AlarmContainer>
             {loggedIn ? (
               <S.DropdownButton onClick={alarmHandler} ref={alarmRef}>
@@ -129,9 +120,9 @@ const Header = (): JSX.Element => {
                     <S.NotificationTitleBox>
                       알림
                       <S.NotificationTitleXbtn>
-                        {/* <img
+                        <img
                           src={require('../assets/ChattingIcon/X.svg').default}
-                        ></img> */}
+                        ></img>
                       </S.NotificationTitleXbtn>
                     </S.NotificationTitleBox>
 

@@ -3,13 +3,8 @@ import styled from 'styled-components';
 export const InputLayout = styled.div`
   display: flex;
   justify-content: center;
-
-  align-items: center;
-  /* margin-top: 150px; */
-  min-height: calc(100vh - 242px);
-
+  margin-top: 150px;
 `;
-
 export const InputBox = styled.div`
   width: 386px;
   height: 532px;
@@ -167,7 +162,6 @@ export const AgreeBox = styled.div`
   font-size: 20px;
   text-align: center;
   line-height: 30px;
-  margin-top: 15px;
 `;
 
 export const AgreeBtn = styled.button<{ state: boolean }>`
