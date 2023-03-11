@@ -32,6 +32,7 @@ import MessageWindow, {
 } from '../../messagewindow/MessageWindow';
 
 import Loader from '../../components/Loader/Loader';
+import Footer from './../../layout/Footer/Footer';
 
 const PostPage = () => {
   const [loginModalopen, setLoginModalopen] = useState(false); //아이디 찾기 모달창
@@ -442,26 +443,31 @@ const PostPage = () => {
   console.log(' userinfo', userinfo?.mynickname);
 
   return (
-    <CommonStyles>
-      <S.Boxcontainer>
-        <MainPost
-          setPostCategory={setPostCategory}
-          postCategory={postCategory}
-          setTagItem={setTagItem}
-          TagItem={TagItem}
-          // onKeyPress={onKeyPress}
-          isValidityTitle={isValidityTitle}
-          isValidityContents={isValidityContents}
-          setIsValidityContents={setIsValidityContents}
-          setIsValidityTitle={setIsValidityTitle}
-        />
-        <IuputInformation />
-        {isLoading && <Loader />}
-        <S.PostSubmitBox>
-          <S.PostSubmitBtn onClick={handleSubmit}>포스팅 하기</S.PostSubmitBtn>
-        </S.PostSubmitBox>
-      </S.Boxcontainer>
-    </CommonStyles>
+    <>
+      <CommonStyles>
+        <S.Boxcontainer>
+          <MainPost
+            setPostCategory={setPostCategory}
+            postCategory={postCategory}
+            setTagItem={setTagItem}
+            TagItem={TagItem}
+            // onKeyPress={onKeyPress}
+            isValidityTitle={isValidityTitle}
+            isValidityContents={isValidityContents}
+            setIsValidityContents={setIsValidityContents}
+            setIsValidityTitle={setIsValidityTitle}
+          />
+          <IuputInformation />
+          {isLoading && <Loader />}
+          <S.PostSubmitBox>
+            <S.PostSubmitBtn onClick={handleSubmit}>
+              포스팅 하기
+            </S.PostSubmitBtn>
+          </S.PostSubmitBox>
+        </S.Boxcontainer>
+      </CommonStyles>
+      <Footer />
+    </>
   );
 };
 
