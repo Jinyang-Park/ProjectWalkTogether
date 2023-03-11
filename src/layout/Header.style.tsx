@@ -131,7 +131,7 @@ export const NavEtc = styled.div`
 `;
 export const Profile = styled.div`
   padding-top: 10px;
-  font-size: 10px;
+  font-size: 12px;
 `;
 export const Logo = styled.img`
   cursor: pointer;
@@ -191,15 +191,13 @@ export const DropNav = styled.nav<{ isDropped: boolean }>`
   border-radius: 3px;
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, -20px);
-  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
   z-index: 9;
   ${({ isDropped }) =>
     isDropped &&
     css`
       opacity: 1;
       visibility: visible;
-      transform: translate(-50%, 0);
+      transform: translate(-78%, 0);
       left: 50%;
     `};
 `;

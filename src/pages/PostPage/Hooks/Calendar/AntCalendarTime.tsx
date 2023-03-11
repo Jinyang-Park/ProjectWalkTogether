@@ -23,6 +23,7 @@ const AntCalendarTime: React.FC = () => {
         inputReadOnly={true}
         format={format}
         placeholder='시간을 입력해주세요.'
+        placement='topLeft'
         style={{
           width: 219,
           height: 40,
@@ -32,7 +33,6 @@ const AntCalendarTime: React.FC = () => {
         allowClear={false}
         autoFocus={false}
         bordered={false}
-        placement='bottomLeft'
       />
     </ConfigProvider>
   );

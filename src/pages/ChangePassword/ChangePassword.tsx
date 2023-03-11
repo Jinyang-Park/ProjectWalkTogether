@@ -250,7 +250,13 @@ const ChangePassword = () => {
           </S.ConfirmBtnBox>
 
           <S.BackBtnBox>
-            <S.BackBtn>이전으로 돌아가기</S.BackBtn>
+            <S.BackBtn
+              onClick={() => {
+                navigate('/mypage');
+              }}
+            >
+              이전으로 돌아가기
+            </S.BackBtn>
           </S.BackBtnBox>
         </S.InnerBox>
       </S.Outer>
