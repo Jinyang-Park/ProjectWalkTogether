@@ -1,6 +1,6 @@
 import CommonStyles from '../../styles/CommonStyles';
 import * as S from './Agreement.style';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import AgreeModal from './AgreeModal';
 import React from 'react';

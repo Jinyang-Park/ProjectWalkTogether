@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import styled from 'styled-components';
 import { NewpostTag } from '../../Rocoil/Atom';
 import MessageWindow, {
   MessageWindowLogoType,
