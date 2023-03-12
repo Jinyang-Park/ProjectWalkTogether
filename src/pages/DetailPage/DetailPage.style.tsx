@@ -280,7 +280,7 @@ export const HeartBtn = styled.p`
   font-size: 16px;
   line-height: 19px;
   color: #24264e;
-  margin-left: 16px;
+  margin-left: 10px;
 `;
 export const WalktogetherBtn = styled.button`
   font-family: 'SUITERegular';
