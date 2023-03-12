@@ -62,7 +62,7 @@ function Footer() {
           <S.NotionBox>
             <S.NotionText>NOTION</S.NotionText>
             <S.NotionAdress
-              href='https://www.notion.so/Project-Walk-Together-Final-354dd91df9b2405f90bd8519fc03f0a3?pvs=4'
+              href='https://bronze-toaster-f91.notion.site/Project-Walk-Together-Final-e2eeea7945b449869e2eeddebda9f76c'
               target='_blank'
             >
               Team Ollae

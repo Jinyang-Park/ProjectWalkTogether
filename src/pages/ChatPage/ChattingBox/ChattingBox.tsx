@@ -133,7 +133,7 @@ function ChattingBox({
 
   const nowmessage = getmessage;
 
-  console.log('nowmessage', nowmessage);
+  // console.log('roomId', roomId);
 
   return (
     <div>
@@ -161,25 +161,37 @@ function ChattingBox({
         </S.ChattingNickname>
         <S.ChattingContent>
           {/* 글 들어가는 곳 */}
-          {nowmessage.map((ars) => {
-            return ars.user === chattinguser ? (
-              <S.ChattingTextBox>
-                <S.ChattingText>{ars.message}</S.ChattingText>
-                <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
-              </S.ChattingTextBox>
-            ) : (
-              <S.ChattingTextBoxLeft>
-                <S.ChattingImg>
-                  <S.ChattingBoxheaderImgCover>
-                    <S.ChattingBoxheaderImg src={profileImg} />
-                  </S.ChattingBoxheaderImgCover>
-                </S.ChattingImg>
-                <S.ChattingTextLeft>{ars.message}</S.ChattingTextLeft>
 
-                <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
-              </S.ChattingTextBoxLeft>
-            );
-          })}
+          {roomId ? (
+            nowmessage.map((ars) => {
+              return ars.user === chattinguser ? (
+                <S.ChattingTextBox>
+                  <S.ChattingText>{ars.message}</S.ChattingText>
+                  <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
+                </S.ChattingTextBox>
+              ) : (
+                <S.ChattingTextBoxLeft>
+                  <S.ChattingImg>
+                    <S.ChattingBoxheaderImgCover>
+                      <S.ChattingBoxheaderImg src={profileImg} />
+                    </S.ChattingBoxheaderImgCover>
+                  </S.ChattingImg>
+                  <S.ChattingTextLeft>{ars.message}</S.ChattingTextLeft>
+
+                  <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
+                </S.ChattingTextBoxLeft>
+              );
+            })
+          ) : (
+            <S.ChattingIntro>
+              <div style={{ fontWeight: 600 }}>
+                게시글에서 '함께 걸을래요' 버튼 선택 후
+              </div>
+              <div style={{ fontWeight: 600 }}>
+                원하시는 상대와 채팅을 시작해 주세요.
+              </div>
+            </S.ChattingIntro>
+          )}
         </S.ChattingContent>
         <S.ChattingInputBox>
           <form
