@@ -7,11 +7,11 @@ import styled from 'styled-components';
 import { authService, dbService, storage } from '../../../common/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
-import { currentUserUid, username } from '../../../Rocoil/Atom';
+import { currentUserUid, username } from '../../../Recoil/Atom';
 import MypageDropBox from './MypageDropBox';
 import useDetectClose from '../../../hooks/useDetectClose';
 import * as S from './MyPageProfile.style';
-import { UserNickName } from './../../../Rocoil/Atom';
+import { UserNickName } from '../../../Recoil/Atom';
 
 const MyPageProfile = (props: { uid: string }) => {
   const navigate = useNavigate();

@@ -11,7 +11,7 @@ import {
   myLocation,
   NewpostTag,
   userForChat,
-} from '../../../src/Rocoil/Atom';
+} from '../../Recoil/Atom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { getAuth } from 'firebase/auth';
 import { uuidv4, async } from '@firebase/util';

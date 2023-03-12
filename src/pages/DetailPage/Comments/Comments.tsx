@@ -20,7 +20,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import dayjs from 'dayjs';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { paramsState } from '../../../Rocoil/Atom';
+import { paramsState } from '../../../Recoil/Atom';
 import MessageWindow, {
   MessageWindowLogoType,
   MessageWindowProperties,
