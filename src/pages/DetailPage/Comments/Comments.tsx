@@ -33,7 +33,8 @@ interface postProps {
 }
 const Comments = ({ param }: postProps) => {
   const params = useRecoilValue(paramsState);
-//
+  // console.log(params);
+
   // 댓글 인풋
   const [inputComment, setInputComment] = useState<string>('');
   // 댓글 출력
@@ -179,7 +180,8 @@ const Comments = ({ param }: postProps) => {
     return getComments;
   };
 
-//  // useEffect 을 쓴 이유
+  console.log(params);
+  // useEffect 을 쓴 이유
   // 처음 나타났을때 댓글의 리스트들이 호출이 되고 deps 지정한 값이 바뀔때도 호출이 된다.
   useEffect(() => {
     Reupdate();
@@ -190,7 +192,8 @@ const Comments = ({ param }: postProps) => {
   const EditCommentHandler = async (documentId: any) => {
     const newComments = [...myComment];
     //comment.documentId여야된다. 콘솔로그로 찍어봐라
-//    const idx = newComments.findIndex(
+    console.log('newComments:', newComments);
+    const idx = newComments.findIndex(
       (comment) => comment.documentId === documentId
     );
     newComments[idx].isEdit = !newComments[idx].isEdit;
@@ -203,14 +206,16 @@ const Comments = ({ param }: postProps) => {
     // 내가 클릭한 댓글만 Description_Comments의 변경된 텍스트를 setEditContent 넣어준다.
     // newComments(내가 쓴 댓글들)의 Description_Comments)애들을 setEditContent 넣어준다.
     setEditContent(newComments[idx].Description_Comments);
-//    // 기본값을 false로 주고 클릭한 댓글을 ture로 바꿔준다.
+    // console.log(newComments[idx].Description_Comments);
+    // 기본값을 false로 주고 클릭한 댓글을 ture로 바꿔준다.
     // 그 다음 260번째줄 참고
     setIsEditing(true);
   };
 
   // 댓글 완료 버튼
   const EditUpdateHandler = async (documentId: any) => {
-//    await updateDoc(doc(dbService, 'comments', documentId), {
+    // console.log('editContent:', editContent);
+    await updateDoc(doc(dbService, 'comments', documentId), {
       // Descripton_Comment의 키값에 editConetnet값을 덮어 씌워줘야된다.
       Description_Comments: editContent,
       isEdit: false,

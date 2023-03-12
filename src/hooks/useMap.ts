@@ -24,7 +24,8 @@
 //   // * 지도를 생성하는 함수
 //   const makeMap = useCallback(
 //     ({ Post }) => {
-////       // 지도를 생성할 때 필요한 기본 옵션
+//       console.log('맵 실행')
+//       // 지도를 생성할 때 필요한 기본 옵션
 //       let options = {
 //         center: new kakao.maps.LatLng(37.56839464, 126.9303023), // 지도의 중심 좌표
 //         level: 3, // 지도의 확대 수준
@@ -71,7 +72,10 @@
 //       const newMarkers: any[] = []
 //       // Firestore에서 가져온 데이터를 기반으로 마커 생성
 
-//////
+//       console.log(Post)
+//       console.log(Post.Title_Posting)
+//       console.log(Post.MeetLatitude_Posting)
+
 //       const PostArr = [...Post]
 
 //       PostArr.forEach((Post: any) => {
@@ -109,7 +113,7 @@
 // 빈페이지
 
 export const qqqqq = () => {
-  return;
-};
+  return
+}
 
-export default qqqqq;
+export default qqqqq

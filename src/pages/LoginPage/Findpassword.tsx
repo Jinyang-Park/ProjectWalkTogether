@@ -56,7 +56,8 @@ const FindPassword = (): JSX.Element => {
         })
         .catch((error: any) => {
           const errorCode = error.code;
-//          MessageWindow.showWindow(
+          console.log(errorCode);
+          MessageWindow.showWindow(
             new MessageWindowProperties(
               true,
               '등록되지 않은 이메일입니다',

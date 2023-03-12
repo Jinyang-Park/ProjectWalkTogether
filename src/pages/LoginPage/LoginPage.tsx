@@ -145,7 +145,8 @@ const LoginPage = (): JSX.Element => {
 
         .catch((error) => {
           const errorMessage = error.message;
-//          if (errorMessage.includes('user-not-found')) {
+          console.log('errorMessage:', errorMessage);
+          if (errorMessage.includes('user-not-found')) {
             //return alert('가입되지않은 회원입니다');
 
             MessageWindow.showWindow(
@@ -166,7 +167,8 @@ const LoginPage = (): JSX.Element => {
               setState
             );
           } else if (errorMessage.includes('wrong-password')) {
-//            MessageWindow.showWindow(
+            console.log('wrong-password');
+            MessageWindow.showWindow(
               new MessageWindowProperties(
                 true,
                 '비밀번호를 확인해주세요',
@@ -208,14 +210,17 @@ const LoginPage = (): JSX.Element => {
       .then(() => {
         const provider = new FacebookAuthProvider();
         const auth = getAuth();
-//        return signInWithPopup(authService, provider).then((data) => {
+        console.log(auth);
+        return signInWithPopup(authService, provider).then((data) => {
           setValue(data.user.email);
           sessionStorage.setItem('id', data.user.displayName);
-//          navigate('/');
+          console.log(data);
+          navigate('/');
         });
       })
       .catch((error) => {
-//      });
+        console.log(error);
+      });
   };
 
   const signInWithGoogle = () => {

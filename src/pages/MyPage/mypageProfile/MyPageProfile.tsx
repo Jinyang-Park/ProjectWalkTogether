@@ -16,7 +16,8 @@ import { UserNickName } from '../../../Recoil/Atom';
 const MyPageProfile = (props: { uid: string }) => {
   const navigate = useNavigate();
   const uid = props.uid;
-//
+  // console.log(uid);
+
   const [newname, setNewname] = useState('');
   const [newmessage, setNewmessage] = useState('');
   const [name, setName] = useRecoilState(UserNickName);
@@ -43,7 +44,8 @@ const MyPageProfile = (props: { uid: string }) => {
   }, []);
 
   const getImageURL = async () => {
-//
+    console.log(uid);
+
     const docRef = doc(dbService, 'user', uid);
     const docSnap = await getDoc(docRef);
 
@@ -64,9 +66,11 @@ const MyPageProfile = (props: { uid: string }) => {
 
     uploadTask
       .then((snapshot) => {
-//        e.target.value = '';
+        console.log('a');
+        e.target.value = '';
         getDownloadURL(snapshot.ref).then((downloadURL) => {
-//          setImageURL(downloadURL);
+          console.log('b');
+          setImageURL(downloadURL);
           updateDoc(doc(dbService, 'user', authService.currentUser.uid), {
             profileImg: downloadURL,
           });
@@ -76,7 +80,8 @@ const MyPageProfile = (props: { uid: string }) => {
         });
       })
       .catch((error) => {
-//      });
+        console.log(error);
+      });
   };
 
   const onEditBtn = async () => {
@@ -113,7 +118,8 @@ const MyPageProfile = (props: { uid: string }) => {
   };
 
   const fetchInfo = async () => {
-//    const docSnap = await getDoc(doc(dbService, 'user', uid));
+    console.log('Attempted to fetch user info ' + uid);
+    const docSnap = await getDoc(doc(dbService, 'user', uid));
     setName(docSnap.data().nickname);
     setMessage(docSnap.data().introduce);
   };

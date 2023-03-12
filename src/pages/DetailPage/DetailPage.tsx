@@ -348,7 +348,8 @@ const DetailPage = () => {
   }, [id]);
 
   useEffect(() => {
-//  }, [post]);
+    // console.log(post);
+  }, [post]);
 
   // 좋아요 취소
   const unlikepost = async () => {
@@ -427,7 +428,8 @@ const DetailPage = () => {
                         return;
                       }
                       likepost();
-//                    }}
+                      console.log('좋아요');
+                    }}
                   />
                 )}
                 <S.HeartBtn>{`${likeCount}`}</S.HeartBtn>

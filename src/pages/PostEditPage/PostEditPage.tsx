@@ -38,7 +38,8 @@ const PostEditPage = () => {
 
   // 카테고리 값값
   const [postCategory, setPostCategory] = useState(state.Category_Posting);
-  //
+  // console.log(postCategory);
+
   //주소 받아오기 myLocation
   const location = useRecoilValue(myLocation);
   const adress = useRecoilValue(selectedAddress);
@@ -141,7 +142,8 @@ const PostEditPage = () => {
   // 가공된 날짜와 시간을 db RsvDate_Posting,RsvHour_Posting 할당
   const RsvDate_Posting = `${month}/${d} ${date(y, m, d)}`;
   const RsvHour_Posting = `${AMPM} ${time12}:${meetMinute}`;
-  //
+  console.log(RsvHour_Posting);
+
   //현재시간
   let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
 
@@ -169,11 +171,13 @@ const PostEditPage = () => {
   const geturl: any = (callback: () => void) => {
     getDownloadURL(ref(storage, `test/${PostingID_Posting}/thumbnail`))
       .then((thumbnailUrl) => {
-        //
+        console.log('섬네일url', thumbnailUrl);
+
         // Get banner url
         getDownloadURL(ref(storage, `test/${PostingID_Posting}/banner`))
           .then((bannerUrl) => {
-            //
+            console.log('배너url', typeof bannerUrl);
+
             try {
               const postRef = doc(dbService, 'Post', id);
               updateDoc(postRef, {
@@ -193,7 +197,8 @@ const PostEditPage = () => {
                 createdAt: Date.now(),
                 Hashtag_Posting: Tag,
               });
-              //              callback();
+              console.log('글작성완료 ID: ', postRef);
+              callback();
             } catch (e) {
               console.error('Error updating document: ', e);
             }

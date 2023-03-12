@@ -66,7 +66,9 @@ const Tag: React.FC<TagProps> = (props) => {
   };
 
   const deleteClick = (index: number) => {
-    ////    setTagList([...tagList.slice(0, index), ...tagList.slice(index + 1)]);
+    // console.log(index);
+    // console.log('click delete');
+    setTagList([...tagList.slice(0, index), ...tagList.slice(index + 1)]);
   };
 
   //보여줄때는 props로받아온걸로
