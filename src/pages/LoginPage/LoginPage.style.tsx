@@ -29,6 +29,7 @@ export const Input = styled.input`
   :-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px #fff inset;
     -webkit-text-fill-color: #000;
+    box-shadow: 0 0 0 30px white inset;
   }
   outline: none;
   line-height: 15px;
@@ -219,14 +220,19 @@ export const Google = styled.img`
 
 export const LoginBtn = styled.button<{ state: boolean }>`
   border-radius: 5px;
+  :disabled {
+    background-image: #7d8bae;
+    cursor: no-drop;
+  }
   width: 306px;
   height: 46px;
   font-size: 16px;
   color: black;
   font-weight: 400;
   margin-top: 15px;
-  background: ${(props) => (props.state ? '#7d8bae;' : '#C8D1E0')};
+  background: ${(props) => (props.disabled ? '#C8D1E0' : '#7d8bae;')};
   cursor: pointer;
+
   margin-top: 56px;
   color: white;
 

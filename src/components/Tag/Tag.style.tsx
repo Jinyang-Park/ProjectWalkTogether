@@ -5,9 +5,15 @@ export const WholeBox = styled.div``;
 export const TagBox = styled.div`
   display: flex;
   align-items: center;
+  background: #eef1f7;
   flex-wrap: wrap;
-  width: 84%;
+  width: 84.5%;
+  height: 35px;
   margin-bottom: 10px;
+  border-radius: 4px;
+  :focus-within {
+    outline: 2px solid #7d8bae;
+  }
 `;
 
 export const TagItem = styled.div`
@@ -20,6 +26,7 @@ export const TagItem = styled.div`
   border-radius: 5px;
   color: white;
   font-size: 10px;
+  margin: 0px 3px 0px 3px;
 `;
 export const Text = styled.span``;
 
@@ -38,26 +45,19 @@ export const Button = styled.button`
 
 export const TagInput = styled.input`
   display: inline-flex;
-  width: 100%;
-  background: #eef1f7;
+  min-width: 240px;
+  background: transparent;
   border: none;
-  /* height: 75px; */
-  border-radius: 4px;
-  padding: 8px 15px 9px;
+  outline: none;
   cursor: text;
-  overflow: auto;
-  font-size: 15px;
-  resize: none;
+  padding: 8px 15px 9px;
+  font-size: 14px;
   font-family: 'SUITERegular';
-  &:focus {
-    outline: 2px solid #7d8bae;
-  }
-
   &::placeholder {
     font-family: 'SUIT';
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     color: #7d8bae;
   }

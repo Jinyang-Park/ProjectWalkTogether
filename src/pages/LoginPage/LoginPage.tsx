@@ -70,6 +70,9 @@ const LoginPage = (): JSX.Element => {
         setButtonColor(true);
       }
     }
+    if (email.length === 0) {
+      setDisabled(true);
+    }
   };
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
