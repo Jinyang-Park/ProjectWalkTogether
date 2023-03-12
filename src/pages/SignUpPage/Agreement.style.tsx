@@ -95,6 +95,7 @@ export const DialogButton = styled.img`
   width: 20px;
   height: 20px;
   margin-left: -140px;
+  cursor: pointer;
   background-size: cover;
 `;
 export const DialogButton2 = styled.img`
@@ -102,6 +103,7 @@ export const DialogButton2 = styled.img`
   width: 20px;
   height: 20px;
   margin-left: -65px;
+  cursor: pointer;
   background-size: cover;
 `;
 export const DialogButton3 = styled.img`
@@ -109,6 +111,7 @@ export const DialogButton3 = styled.img`
   width: 20px;
   height: 20px;
   margin-left: -90px;
+  cursor: pointer;
   background-size: cover;
 `;
 
@@ -117,6 +120,7 @@ export const DialogButton4 = styled.img`
   width: 20px;
   height: 20px;
   margin-left: -95px;
+  cursor: pointer;
   background-size: cover;
 `;
 

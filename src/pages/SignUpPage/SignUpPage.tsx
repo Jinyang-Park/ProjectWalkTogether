@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 import { dbService, authService } from '../../common/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { emailRegex, nicknameRegex, pwdRegex } from '../../utils/UserInfoRegex';
-import CommonStyles from './../../styles/CommonStyles';
 import { useSetRecoilState } from 'recoil';
 import MessageWindow, {
   MessageWindowLogoType,
@@ -17,31 +16,31 @@ import MessageWindow, {
   messageWindowPropertiesAtom,
 } from '../../messagewindow/MessageWindow';
 
-const SignUpPage = () => {
-  const [disabled, setDisabled] = useState(true);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPwd, setCnfirmPwd] = useState('');
-  const [displayname, setDisplayname] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-
+const SignUpPage: React.FC = () => {
+  const [disabled, setDisabled] = useState<boolean>(true);
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPwd, setCnfirmPwd] = useState<string>('');
+  const [displayname, setDisplayname] = useState<string>('');
   const [passinputType, setPassInputType] = useState<string>('password');
   const [ConfirmPassInputType, setConfirmNewPassInputType] =
     useState<string>('password');
   const navigate = useNavigate();
   //유효성검사
-  const [validateEmail, setValidateEmail] = useState('');
-  const [validateEmailColor, setValidateEmailColor] = useState(false);
-  const [validatePw, setValidatePw] = useState('');
+  const [validateEmail, setValidateEmail] = useState<string>('');
+  const [validateEmailColor, setValidateEmailColor] = useState<boolean>(false);
+  const [validatePw, setValidatePw] = useState<string>('');
   const [validatePwColor, setValidatePwColor] = useState<boolean>(true);
-  const [validatePwconfirm, setValidatePwconfirm] = useState('');
-  const [validatePwconfirmColor, setValidatePwconfirmColor] = useState(true);
-  const [validateDisplayname, setValidateDisplayname] = useState('');
-  const [validateDisplaynameColor, setValidateDisplayColor] = useState(true);
-  const [show, setShow] = useState(false);
-  const [emailShow, setEmailShow] = useState(false);
-  const [pwShow, setPwShow] = useState(false);
-  const [conFirmShow, setConFirmShow] = useState(false);
+  const [validatePwconfirm, setValidatePwconfirm] = useState<string>('');
+  const [validatePwconfirmColor, setValidatePwconfirmColor] =
+    useState<boolean>(true);
+  const [validateDisplayname, setValidateDisplayname] = useState<string>('');
+  const [validateDisplaynameColor, setValidateDisplayColor] =
+    useState<boolean>(true);
+  const [show, setShow] = useState<boolean>(false);
+  const [emailShow, setEmailShow] = useState<boolean>(false);
+  const [pwShow, setPwShow] = useState<boolean>(false);
+  const [conFirmShow, setConFirmShow] = useState<boolean>(false);
 
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
@@ -85,7 +84,7 @@ const SignUpPage = () => {
   };
 
   //이메일 중복검사
-  const isEmail = async (email: any) => {
+  const isEmail = async (email: string) => {
     const q = query(collection(dbService, 'user'), where('email', '==', email));
     const querySnapshot = await getDocs(q);
 

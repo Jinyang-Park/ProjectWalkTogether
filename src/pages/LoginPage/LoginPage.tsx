@@ -27,15 +27,13 @@ import LogoG from '../../assets/LoginPage/logog.svg';
 import { useSetRecoilState } from 'recoil';
 import { useEffect } from 'react';
 
-const LoginPage = () => {
+const LoginPage = (): JSX.Element => {
   const [disabled, setDisabled] = useState(false);
   const [buttonColor, setButtonColor] = useState<boolean>(false);
   const [email, setEmail] = useState('');
   const [value, setValue] = useState('');
   const [password, setPassword] = useState('');
-  const [loginModalopen, setLoginModalopen] = useState(false);
   const [user, setUser] = useState({});
-  const [validateEmailColor, setValidateEmailColor] = useState(false);
   const [passinputType, setPassInputType] = useState<string>('password');
   const navigate = useNavigate();
   const SAVE_EMAIL_ID_KEY = 'SAVE_EMAIL_ID_KEY';
@@ -71,6 +69,9 @@ const LoginPage = () => {
         setDisabled(false);
         setButtonColor(true);
       }
+    }
+    if (email.length === 0) {
+      setDisabled(true);
     }
   };
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -184,20 +185,7 @@ const LoginPage = () => {
               ),
               setState
             );
-
-            // return alert('비밀번호가 잘못 되었습니다.');
           }
-
-          // setErrorMessage('로그인 실패');
-          // if (email.length === 0) {
-          //   return alert('이메일을 입력해 주세요');
-          // } else if (emailRegex.test(email) === false) {
-          //   return setErrorMessage('이메일을 정확히 입력해 주세요');
-          // } else if (password.length === 0) {
-          //   return setErrorMessage('비밀번호를 입력해 주세요');
-          // } else if (pwdRegex.test(password) === false) {
-          //   alert('비밀번호를 정확히 입력해 주세요 ');
-          // }
         })
     );
   };

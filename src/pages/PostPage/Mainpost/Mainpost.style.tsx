@@ -73,7 +73,7 @@ export const InputTitle = styled.input<{ isValidityTitle: boolean }>`
   font-family: 'SUITERegular';
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 20px;
 
   &:focus {
@@ -88,12 +88,12 @@ export const InputTitle = styled.input<{ isValidityTitle: boolean }>`
       : css``}
 
   &::placeholder {
-    font-family: 'SUITERegular';
+    font-family: 'SUIT';
     font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 14px;
     line-height: 20px;
-    color: #24264e;
+    color: #7d8bae;
   }
 `;
 
@@ -109,7 +109,7 @@ export const Textarea = styled.textarea<{ isValidityContents: boolean }>`
   padding: 8px 15px 9px;
   font-family: 'SUITERegular';
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 21px;
   color: #24264e;
   &:focus {
@@ -125,10 +125,12 @@ export const Textarea = styled.textarea<{ isValidityContents: boolean }>`
     `}
 
   &::placeholder {
+    font-family: 'SUIT';
+    font-style: normal;
     font-weight: 400;
-    font-size: 12px;
-    line-height: 15px;
-    color: #bec5d7;
+    font-size: 14px;
+    line-height: 20px;
+    color: #7d8bae;
   }
   overflow: auto;
   resize: none;

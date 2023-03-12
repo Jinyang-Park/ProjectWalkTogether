@@ -128,10 +128,12 @@ export const Textarea = styled.textarea<{ isValidityContents: boolean }>`
     `}
 
   &::placeholder {
+    font-family: 'SUIT';
+    font-style: normal;
     font-weight: 400;
-    font-size: 12px;
-    line-height: 15px;
-    color: #24264e;
+    font-size: 16px;
+    line-height: 20px;
+    color: #7d8bae;
   }
 
   overflow: auto;

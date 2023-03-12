@@ -1,6 +1,6 @@
 import { authService } from '../../common/firebase';
 import { sendPasswordResetEmail } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, MouseEvent } from 'react';
 import MessageWindow, {
   MessageWindowLogoType,
   MessageWindowProperties,
@@ -12,12 +12,12 @@ import * as S from './LoginPage.style';
 import { useNavigate } from 'react-router';
 import { emailRegex } from '../../utils/UserInfoRegex';
 
-const FindPassword = () => {
+const FindPassword = (): JSX.Element => {
   const [validate, setValidate] = useState<string>('');
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
-  const [findPwd, setFindPwd] = useState('');
+  const [findPwd, setFindPwd] = useState<string>('');
   const email = findPwd;
   //비밀번호 초기화 버튼
   const findPasswordClear = () => {
@@ -27,11 +27,11 @@ const FindPassword = () => {
   const navigate = useNavigate();
   // 비밀번호 재설정 함수 (비밀번호 찾기)
 
-  const findPasswordfnc = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const findPasswordfnc = (e: ChangeEvent<HTMLInputElement>) => {
     setFindPwd(e.target.value);
   };
 
-  const resetPassword = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const resetPassword = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (emailRegex.test(findPwd) === true) {
       await sendPasswordResetEmail(authService, email)
@@ -54,7 +54,7 @@ const FindPassword = () => {
             setState
           );
         })
-        .catch((error) => {
+        .catch((error: any) => {
           const errorCode = error.code;
           console.log(errorCode);
           MessageWindow.showWindow(

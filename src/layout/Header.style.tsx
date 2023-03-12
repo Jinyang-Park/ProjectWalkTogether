@@ -110,6 +110,7 @@ export const LoginButton = styled.div`
   /* background: blue; */
   font-size: 12px;
   color: black;
+  cursor: pointer;
   background-color: #eef1f7;
   font-family: 'SUITERegular';
   letter-spacing: -0.1px;
