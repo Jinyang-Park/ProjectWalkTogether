@@ -55,9 +55,7 @@ function MainPost({
       };
       const compressedFile = await imageCompression(image, options);
       setPhotoupload(() => compressedFile);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
   //배너 이미지 압축
   const compressBannerImage = async (image: File) => {
@@ -68,9 +66,7 @@ function MainPost({
       };
       const compressedFile = await imageCompression(image, options);
       setBanneruploadupload(() => compressedFile);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   function thumnailimageChange(e: any) {

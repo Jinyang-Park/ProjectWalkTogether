@@ -25,7 +25,6 @@ const CardSection = ({ post, refetch }: postProps) => {
 
   // 좋아요 하는 거
   const likepost = async () => {
-    // console.log(post.id);
     let p = post;
     p.LikedUsers.push(uid);
 
@@ -38,8 +37,6 @@ const CardSection = ({ post, refetch }: postProps) => {
 
   // 좋아요 취소
   const unlikepost = async () => {
-    // console.log(post.id);
-
     const u = post.LikedUsers.filter((id: string) => id !== uid);
     await updateDoc(doc(dbService, 'Post', post.id), {
       LikedUsers: u,
@@ -97,7 +94,6 @@ const CardSection = ({ post, refetch }: postProps) => {
                 return;
               }
               likepost();
-              console.log('좋아요');
             }}
           />
         )}

@@ -347,9 +347,7 @@ const DetailPage = () => {
     });
   }, [id]);
 
-  useEffect(() => {
-    // console.log(post);
-  }, [post]);
+  useEffect(() => {}, [post]);
 
   // 좋아요 취소
   const unlikepost = async () => {
@@ -428,7 +426,6 @@ const DetailPage = () => {
                         return;
                       }
                       likepost();
-                      console.log('좋아요');
                     }}
                   />
                 )}
