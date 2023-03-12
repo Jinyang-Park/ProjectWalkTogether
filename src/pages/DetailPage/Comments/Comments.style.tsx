@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Textarea } from './../../PostPage/Mainpost/Mainpost.style';
-import { currentUserUid } from './../../../Rocoil/Atom';
+import { currentUserUid } from '../../../Recoil/Atom';
 
 export const DetailCommentsWrapper = styled.div`
   position: relative;

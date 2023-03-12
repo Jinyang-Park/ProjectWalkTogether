@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil';
 import 'moment/locale/ko';
 import locale from 'antd/lib/locale/ko_KR';
 import { ConfigProvider } from 'antd';
-import { ReserveEditDate } from '../../../Rocoil/Atom';
+import { ReserveEditDate } from '../../../Recoil/Atom';
 import { useLocation } from 'react-router-dom';
 import moment from 'moment';
 import dayjs from 'dayjs';

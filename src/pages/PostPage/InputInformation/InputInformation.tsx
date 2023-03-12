@@ -1,5 +1,5 @@
 import * as S from './InputInformation.style';
-import { myLocation, selectedAddress } from '../../../Rocoil/Atom';
+import { myLocation, selectedAddress } from '../../../Recoil/Atom';
 import {
   Map,
   MapMarker,

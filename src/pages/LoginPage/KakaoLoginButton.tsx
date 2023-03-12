@@ -7,7 +7,7 @@ import { collection, addDoc, setDoc, doc } from '@firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { dbService } from '../../common/firebase';
 import { useRecoilState } from 'recoil';
-import { kakaoState, kakaoUserState } from '../../Rocoil/Atom';
+import { kakaoState, kakaoUserState } from '../../Recoil/Atom';
 import { useSetRecoilState } from 'recoil';
 export default function KakaoLoginButton() {
   // const setKakaoUser = useRecoilState(kakaoUserState);

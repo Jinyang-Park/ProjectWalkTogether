@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import useDetectClose from '../hooks/useDetectClose';
 import KakaoLogoutButton from '../components/Logout/kakaologout';
-import { isLoggedIn, username } from '../Rocoil/Atom';
+import { isLoggedIn, username } from '../Recoil/Atom';
 import HeaderAlarm from '../components/HeaderAlarm/HeaderAlarm';
 import { LoactionTitle } from './../pages/DetailPage/DetailPage.style';
 import MessageWindow, {

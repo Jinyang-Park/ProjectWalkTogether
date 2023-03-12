@@ -1,6 +1,6 @@
 import * as S from './MypageTabbar.style';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { currentUserUid, UserNickName } from './../../../Rocoil/Atom';
+import { currentUserUid, UserNickName } from '../../../Recoil/Atom';
 
 const MypageTabbar = (props: {
   currentpage: string;

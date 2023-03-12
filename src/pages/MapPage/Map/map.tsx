@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { paramsState } from '../../../Rocoil/Atom';
+import { paramsState } from '../../../Recoil/Atom';
 import { useSetRecoilState } from 'recoil';
 import { RxDividerVertical } from 'react-icons/rx';
 import { IoMdClose } from 'react-icons/io';

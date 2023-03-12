@@ -5,7 +5,7 @@ import MyPageWrite from './mypageWrite/MyPageWrite';
 import CommonStyles from '../../styles/CommonStyles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { kakaoUserState, currentUserUid, isLoggedIn } from '../../Rocoil/Atom';
+import { kakaoUserState, currentUserUid, isLoggedIn } from '../../Recoil/Atom';
 import { useRecoilValue } from 'recoil';
 import MypageTabbar from './tabbar/MypageTabbar';
 import MyPageLike from './likepage/MyPageLike';

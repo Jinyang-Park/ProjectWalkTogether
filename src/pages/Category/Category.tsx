@@ -5,7 +5,7 @@ import CardSection from '../../components/CardSection/CardSection';
 import CommonStyles from '../../styles/CommonStyles';
 import DropdownFilterCategory from './../../components/DropdownFilterCategory/DropdownFilterCategory';
 import AntCalendarMap from './Calendar/AntCalendarDate';
-import { FilterSelectedDate } from '../../Rocoil/Atom';
+import { FilterSelectedDate } from '../../Recoil/Atom';
 import { useRecoilState } from 'recoil';
 
 import { CategorysList } from '../../utils/CategorysList';
