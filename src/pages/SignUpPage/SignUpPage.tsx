@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 import { dbService, authService } from '../../common/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { emailRegex, nicknameRegex, pwdRegex } from '../../utils/UserInfoRegex';
-import CommonStyles from './../../styles/CommonStyles';
 import { useSetRecoilState } from 'recoil';
 import MessageWindow, {
   MessageWindowLogoType,
@@ -23,8 +22,6 @@ const SignUpPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPwd, setCnfirmPwd] = useState('');
   const [displayname, setDisplayname] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-
   const [passinputType, setPassInputType] = useState<string>('password');
   const [ConfirmPassInputType, setConfirmNewPassInputType] =
     useState<string>('password');
@@ -85,7 +82,7 @@ const SignUpPage = () => {
   };
 
   //이메일 중복검사
-  const isEmail = async (email: any) => {
+  const isEmail = async (email: string) => {
     const q = query(collection(dbService, 'user'), where('email', '==', email));
     const querySnapshot = await getDocs(q);
 
