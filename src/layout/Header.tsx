@@ -17,6 +17,7 @@ import MessageWindow, {
 interface Props {}
 
 const Header: React.FC<Props> = () => {
+  const [width, setWidth] = useState(100);
   const location = useLocation();
   const history = useNavigate();
   const navigate = useNavigate();
