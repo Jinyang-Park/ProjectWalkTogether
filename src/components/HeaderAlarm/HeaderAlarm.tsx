@@ -84,8 +84,6 @@ function HeaderAlarm({ setAlarm }: Props) {
   useEffect(() => {
     getNotificationList();
   }, []);
-
-  // console.log('time:', timeForToday(timee));
   return (
     <div>
       {notificationList.map((ars) => {

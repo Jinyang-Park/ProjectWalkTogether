@@ -13,7 +13,6 @@ const AntCalendarTime: React.FC = () => {
 
   const onChange = (time: Dayjs, timeString: string) => {
     setReserveTime(timeString);
-    console.log('날짜/시간', reserveTime);
   };
 
   return (

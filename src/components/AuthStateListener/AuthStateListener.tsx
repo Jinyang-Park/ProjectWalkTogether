@@ -82,7 +82,7 @@ export default function AuthStateListener() {
       // console.log('AuthState observer has been called');
       if (user) {
         // User is logged in
-        // console.log(user);
+
         const useruid = user.uid;
         const myporfile = user.photoURL;
         const mynickname = user.displayName;
