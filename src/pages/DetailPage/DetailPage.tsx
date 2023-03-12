@@ -278,14 +278,15 @@ const DetailPage = () => {
     }
   };
 
+  // 조회순 카운트
   const UpdateView = async () => {
     const q = doc(dbService, 'Post', id);
     // dbService에 있는 getPostings.View + 1 를 View 넣어준다.
     await updateDoc(q, { View: getPostings.View + 1 });
   };
 
+  // 조회순 카운트
   useEffect(() => {
-    // View를 넣어도 되는지 테스트 해보자
     if (getPostings.View >= 0) {
       UpdateView();
     }
@@ -441,14 +442,42 @@ const DetailPage = () => {
               {/* 현재 user가 쓴 글인지 판별 */}
               {getPostings.UID !== authService.currentUser?.uid ? (
                 loggedIn ? (
-                  <S.WalktogetherBtn onClick={goToChat}>
-                    <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
-                    <S.WalktogetherIcon />
+                  // 글쓰기가 완료되면 함께 걸을래요 버튼 없어짐
+
+                  <S.WalktogetherBtn
+                    onClick={goToChat}
+                    style={{
+                      display:
+                        getPostings.ProceedState_Posting === 'postingDone'
+                          ? 'none'
+                          : 'block',
+                    }}
+                  >
+                    <S.WalktogetherWrapper>
+                      <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
+                      <S.WalktogetherIcon
+                        src={require('../../assets/ballon.svg').default}
+                      />
+                    </S.WalktogetherWrapper>
                   </S.WalktogetherBtn>
                 ) : (
-                  <S.WalktogetherBtn onClick={goToLogin}>
-                    <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
-                    <S.WalktogetherIcon />
+                  // 글쓰기가 완료되면 함께 걸을래요 버튼 없어짐
+
+                  <S.WalktogetherBtn
+                    onClick={goToLogin}
+                    style={{
+                      display:
+                        getPostings.ProceedState_Posting === 'postingDone'
+                          ? 'none'
+                          : 'block',
+                    }}
+                  >
+                    <S.WalktogetherWrapper>
+                      <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
+                      <S.WalktogetherIcon
+                        src={require('../../assets/ballon.svg').default}
+                      />
+                    </S.WalktogetherWrapper>
                   </S.WalktogetherBtn>
                 )
               ) : // 자바스크립트 문법이라서 중괄호가 필요가 없다
