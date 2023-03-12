@@ -221,7 +221,7 @@ export const IntroCategory = styled.span`
 export const IntroTitle = styled.span`
   font-family: 'SUITERegular';
   font-weight: 500;
-  font-size: 36px;
+  font-size: 30px;
   line-height: 45px;
   color: #24264e;
   margin-bottom: 8px;
@@ -282,26 +282,44 @@ export const HeartBtn = styled.p`
   color: #24264e;
   margin-left: 10px;
 `;
-export const WalktogetherBtn = styled.button`
+export const WalktogetherBtn = styled.div`
+  display: flex;
+  align-items: center;
   font-family: 'SUITERegular';
-  width: 114px;
+  width: 135px;
   height: 29px;
   margin-left: 20px;
   background: #eef1f7;
   border-radius: 4px;
+  padding: 5px 7px;
+  cursor: pointer;
 `;
-export const WalktogetherTitle = styled.span`
+export const WalktogetherWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  /* font-family: 'SUITERegular';
+  width: 135px;
+  height: 29px;
+  margin-left: 20px;
+  background-color: #eef1f7;
+  border-radius: 4px;
+  padding: 0px 5px;
+  cursor: pointer; */
+`;
+export const WalktogetherTitle = styled.p`
   font-family: 'SUITERegular';
-  width: 88px;
+  width: 135px;
   height: 20px;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   color: #24264e;
-  //13px 주면 글자 짤림
-  padding: 5px 5px;
 `;
-export const WalktogetherIcon = styled.img``;
+export const WalktogetherIcon = styled.img`
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+`;
 
 export const SocialShareBtn = styled(FiShare)`
   width: 24px;

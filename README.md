@@ -223,11 +223,20 @@ src
 * 게시글에 ‘함께 걸을래요’ 버튼 선택 시, 채팅방으로 이동
 * 첫 채팅이 이루어질 때 알림 메세지 송신 및 알림 선택 시, 해당 채팅방으로 이동
 <div>
-<img src="https://user-images.githubusercontent.com/80263801/224359801-5729bfe5-c4d8-459d-8147-a1564e2ad377.gif" width="500" height="400">
-<img src="https://user-images.githubusercontent.com/80263801/224360048-3be05765-6bdf-4096-9238-08fa3279e614.gif" width="500" height="400">
+<img src="https://user-images.githubusercontent.com/80263801/224359801-5729bfe5-c4d8-459d-8147-a1564e2ad377.gif" width="400" height="300">
+<img src="https://user-images.githubusercontent.com/80263801/224360048-3be05765-6bdf-4096-9238-08fa3279e614.gif" width="400" height="300">
 	</div>
 	
 #### 🔥카테고리
 * 카테고리와 날짜 선택 시, 해당 게시물 확인 가능 (최신순, 좋아요 순, 조회순)
 <img src="https://user-images.githubusercontent.com/80263801/224362429-8c6c4765-36a7-44c0-90a5-10bb66583c16.gif" width="800" height="700">
+
+#### 🔥프로필 
+* 썸네일, 프로필, 닉네임, 자기소개 수정 및 내가 쓴글, 좋아요 글 확인 가능
+* 다른 유저의 프로필 이동 가능
+<div>
+<img src="https://user-images.githubusercontent.com/80263801/224552901-fd9fe031-5b07-43c3-8a65-b1d767a3377c.gif" width="400" height="300">
+<img src="https://user-images.githubusercontent.com/80263801/224552925-2b5c20a7-7688-4f2c-8914-4cf815fee2a9.gif" width="400" height="300">
+	</div>
+
 

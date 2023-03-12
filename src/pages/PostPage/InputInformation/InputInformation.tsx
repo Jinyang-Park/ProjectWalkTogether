@@ -1,5 +1,5 @@
 import * as S from './InputInformation.style';
-import { myLocation, selectedAddress } from '../../../Rocoil/Atom';
+import { myLocation, selectedAddress } from '../../../Recoil/Atom';
 import {
   Map,
   MapMarker,
@@ -12,13 +12,18 @@ import AntCalendar from '../Hooks/Calendar/AntCalendarDate';
 import AntCalendarTime from '../Hooks/Calendar/AntCalendarTime';
 import { useRecoilState } from 'recoil';
 
+interface inpuInfo {
+  lat: number;
+  lng: number;
+}
+
 function InputInformation() {
   // 현재 위치를 가져오기 위한 state 생성
-  const [myLoca, setMyLoca] = useState({ lat: 36.5, lng: 127.8 });
+  const [myLoca, setMyLoca] = useState<inpuInfo>({ lat: 36.5, lng: 127.8 });
   // const [myLoca, setMyLoca] = useRecoilState(myLocation);
 
   // 지도 좌표를 저장할 state   (o)
-  const [position, setPosition] = useRecoilState(myLocation);
+  const [position, setPosition] = useRecoilState<inpuInfo>(myLocation);
 
   // 키워드로 장소검색하기를 위한 state
   const [info, setInfo] = useState<any>();

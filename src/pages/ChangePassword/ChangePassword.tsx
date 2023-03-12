@@ -14,7 +14,7 @@ import MessageWindow, {
   MessageWindowProperties,
   messageWindowPropertiesAtom,
 } from '../../messagewindow/MessageWindow';
-import { isLoggedIn } from '../../Rocoil/Atom';
+import { isLoggedIn } from '../../Recoil/Atom';
 import * as S from './ChangePassword.style';
 import CommonStyles from '../../styles/CommonStyles';
 
