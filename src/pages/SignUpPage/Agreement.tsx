@@ -40,8 +40,7 @@ const Agreement: React.FC = () => {
     e.target.checked
       ? setCheckList(['all', 'terms', 'collect', 'another', 'service'])
       : setCheckList([]);
-    console.log(e.target.checked);
-  };
+//  };
 
   const check = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.checked

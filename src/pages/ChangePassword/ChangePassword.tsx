@@ -122,8 +122,7 @@ const ChangePassword = () => {
     setCheckPassword('');
   };
 
-  console.log('newpassword:', newpassword);
-
+  //
   return (
     <CommonStyles>
       <S.Outer>
