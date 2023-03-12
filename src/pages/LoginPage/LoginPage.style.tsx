@@ -29,6 +29,7 @@ export const Input = styled.input`
   :-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px #fff inset;
     -webkit-text-fill-color: #000;
+    box-shadow: 0 0 0 30px #fff inset;
   }
   outline: none;
   line-height: 15px;
@@ -37,6 +38,7 @@ export const Input = styled.input`
   top: 7px;
   width: 230px;
   background-color: transparent;
+  box-shadow: 0 0 0 30px white inset;
 
   &&::placeholder {
     font-family: 'SUIT';
