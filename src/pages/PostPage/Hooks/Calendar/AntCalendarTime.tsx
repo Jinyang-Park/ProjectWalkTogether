@@ -3,7 +3,7 @@ import { TimePicker } from 'antd';
 import type { Dayjs } from 'dayjs';
 
 import { useRecoilState } from 'recoil';
-import { Time } from '../../../../Rocoil/Atom';
+import { Time } from '../../../../Recoil/Atom';
 import { ConfigProvider } from 'antd';
 import ko_KR from 'antd/locale/ko_KR';
 

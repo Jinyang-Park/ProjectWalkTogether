@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import * as S from './MainPostEdit.style';
 import { useRecoilState } from 'recoil';
-import { TitleInput, DescriptionInput } from '../../../Rocoil/Atom';
-import { Bannerupload, ThumbnailUpload } from '../../../Rocoil/Atom';
+import { TitleInput, DescriptionInput } from '../../../Recoil/Atom';
+import { Bannerupload, ThumbnailUpload } from '../../../Recoil/Atom';
 import DropdownCategory from '../../../components/DropdownCategoryForWritePage/DropdownCategory';
 import Tag from '../../../components/Tag/Tag';
 import useDetectClose from './../../../hooks/useDetectClose';

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import * as S from './CardSection.style';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { currentUserUid, isLoggedIn, paramsState } from '../../Rocoil/Atom';
+import { currentUserUid, isLoggedIn, paramsState } from '../../Recoil/Atom';
 import { doc, updateDoc } from 'firebase/firestore';
 import { dbService } from '../../common/firebase';
 import { Post } from '../../api/postsApi';
@@ -14,6 +14,7 @@ interface postProps {
 const CardSection = ({ post, refetch }: postProps) => {
   const navigate = useNavigate();
   const setParams = useSetRecoilState(paramsState);
+  // 좋아요 컬러 채워주는 부분
   const [likebtn, setLikeBtn] = useState<boolean>(false);
   const uid = useRecoilValue(currentUserUid);
   const loggedIn = useRecoilValue(isLoggedIn);
@@ -24,20 +25,19 @@ const CardSection = ({ post, refetch }: postProps) => {
 
   // 좋아요 하는 거
   const likepost = async () => {
-    console.log(post.id);
-    let p = post;
+//    let p = post;
     p.LikedUsers.push(uid);
 
     await updateDoc(doc(dbService, 'Post', post.id), {
       LikedUsers: p.LikedUsers,
     });
-
+    // 좋아요를 눌렀을때 좋아요가 채워지는 부분분
     setLikeBtn(true);
   };
 
   // 좋아요 취소
   const unlikepost = async () => {
-    //
+//
     const u = post.LikedUsers.filter((id: string) => id !== uid);
     await updateDoc(doc(dbService, 'Post', post.id), {
       LikedUsers: u,
@@ -95,7 +95,7 @@ const CardSection = ({ post, refetch }: postProps) => {
                 return;
               }
               likepost();
-            }}
+//            }}
           />
         )}
       </S.LikedHeartFlex>

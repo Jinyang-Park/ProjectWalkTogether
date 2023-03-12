@@ -5,11 +5,11 @@ import { useRecoilState } from 'recoil';
 import 'moment/locale/ko';
 import locale from 'antd/lib/locale/ko_KR';
 import { ConfigProvider } from 'antd';
-import { FilterSelectedDateForMapPage } from '../../../../Rocoil/Atom';
+import { FilterSelectedDateForMapPage } from '../../../../Recoil/Atom';
 import {
   dateType1ForMapPage,
   dateType2ForMapPage,
-} from '../../../../Rocoil/Atom';
+} from '../../../../Recoil/Atom';
 
 const AntCalendarMap: React.FC = () => {
   const format = 'YYYY/MM/DD';

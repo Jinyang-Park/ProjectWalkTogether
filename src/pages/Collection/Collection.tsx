@@ -3,7 +3,7 @@ import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { paramsState } from '../../Rocoil/Atom';
+import { paramsState } from '../../Recoil/Atom';
 import * as S from './CardSection.style';
 import CardSection from '../../components/CardSection/CardSection';
 import Fire from '../../assets/Mainpage/Fire.png';
