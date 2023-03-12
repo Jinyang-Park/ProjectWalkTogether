@@ -44,11 +44,8 @@ const GlobalStyle = createGlobalStyle`
         color: #202020;
         font-size: 16px;
         line-height: 1.7;
-
     }
-/* body > div > div{
-    min-height: 94vh;
-} */
+
     ul{
         list-style: none;
     }
