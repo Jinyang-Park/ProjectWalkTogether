@@ -12,8 +12,6 @@ interface Props {
 }
 
 const MapContainer = ({ getPostings }: Props) => {
-  console.log(getPostings);
-
   // 현재 위치를 가져오기 위한 state 생성
   const [myLoca, setMyLoca] = useState({ lat: null, lng: null });
 
@@ -49,8 +47,6 @@ const MapContainer = ({ getPostings }: Props) => {
       lng: getPostings.MeetLongitude_Posting,
     });
   }, [getPostings]);
-
-  console.log(postPosition);
 
   // 사용자 위치를 가져오기 위한 useEffect
   React.useEffect(() => {
@@ -110,8 +106,6 @@ const MapContainer = ({ getPostings }: Props) => {
       }
     );
   }, [getPostings]);
-
-  console.log(address);
 
   return (
     <>

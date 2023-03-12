@@ -66,8 +66,6 @@ const Tag: React.FC<TagProps> = (props) => {
   };
 
   const deleteClick = (index: number) => {
-    // console.log(index);
-    // console.log('click delete');
     setTagList([...tagList.slice(0, index), ...tagList.slice(index + 1)]);
   };
 

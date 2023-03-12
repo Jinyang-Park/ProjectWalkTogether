@@ -18,8 +18,6 @@ const AntCalendarMap: React.FC = () => {
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     setfilterSelectedDate(date);
-
-    console.log(filterSelectedDate);
   };
 
   return (

@@ -27,7 +27,6 @@ function InputInformationEdit({ addressEdit, lat, lng }: Edit) {
     setPosition(myLoca);
   }, [myLoca]);
 
-  console.log(position);
   // 키워드로 장소검색하기를 위한 state
   const [info, setInfo] = useState<any>();
   const [markers, setMarkers] = useState([]);
