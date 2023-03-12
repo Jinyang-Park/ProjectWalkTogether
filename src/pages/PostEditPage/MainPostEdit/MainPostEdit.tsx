@@ -51,15 +51,12 @@ function MainPostEdit({
     reader.onload = () => {
       setPhotoupload(filelist);
       setThumbnail(() => reader.result);
-      console.log(filelist);
     };
     reader.readAsDataURL(filelist);
-    console.log('썸네일 인풋:', photoupload);
   }
 
   function bannerimageChange(e: any) {
     setHasEditedBanner(true);
-    console.log('배너 이미자가 변경되었습니다.');
     const filelist = e.target.files[0];
 
     const reader = new FileReader();
@@ -70,7 +67,6 @@ function MainPostEdit({
     };
 
     reader.readAsDataURL(filelist);
-    console.log('배너 인풋:', filelist);
   }
   /////////
   // 타이틀

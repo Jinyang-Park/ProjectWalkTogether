@@ -280,7 +280,7 @@ export const HeartBtn = styled.p`
   font-size: 16px;
   line-height: 19px;
   color: #24264e;
-  margin-left: 16px;
+  margin-left: 10px;
 `;
 export const WalktogetherBtn = styled.button`
   font-family: 'SUITERegular';
@@ -301,6 +301,8 @@ export const WalktogetherTitle = styled.span`
   //13px 주면 글자 짤림
   padding: 5px 5px;
 `;
+export const WalktogetherIcon = styled.img``;
+
 export const SocialShareBtn = styled(FiShare)`
   width: 24px;
   height: 24px;

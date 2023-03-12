@@ -121,8 +121,6 @@ const PostPage = () => {
   const d = meetDate.$D;
   const month = meetDate.$M + 1;
 
-  // console.log('date:', date(y, meetDate.$M, d));
-
   //시간
   const meetTime = useRecoilValue<string>(Time);
   const setMeetTime = useSetRecoilState<string>(Time);
@@ -182,28 +180,23 @@ const PostPage = () => {
   }, []);
 
   useEffect(() => {
-    // console.log(' thumbnail:', thumbnail);
     setPostTime(timestring); //현재 시간
     // setPostHour(meeting); //약속 시간
     setPostNickname(nickname);
     setPostAuthor(user);
   }, []);
 
-  console.log('포스트썸네일:', thumbnail);
-
   //settimeout test
   const geturl: any = (callback: () => void = () => {}) => {
     getDownloadURL(ref(storage, `Image/${PostingID_Posting}/thumbnail`))
       .then((ThumbnailUrl) => {
         const getThumbnail = ThumbnailUrl;
-        console.log('섬네일url', getThumbnail);
         // alert('섬네일url');
 
         //get썸네일 url
         getDownloadURL(ref(storage, `Image/${PostingID_Posting}/banner`))
           .then((bannerUrl) => {
             const getBanner = bannerUrl;
-            console.log('배너url', getBanner);
 
             try {
               addDoc(collection(dbService, 'Post'), {
@@ -479,7 +472,6 @@ const PostPage = () => {
 
     // setTimeout(adddoc, 8000);
   };
-  console.log(' adress:', adress);
 
   return (
     <>

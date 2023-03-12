@@ -38,6 +38,7 @@ export const Input = styled.input`
   top: 7px;
   width: 230px;
   background-color: transparent;
+  box-shadow: 0 0 0 30px white inset;
 
   &&::placeholder {
     font-family: 'SUIT';

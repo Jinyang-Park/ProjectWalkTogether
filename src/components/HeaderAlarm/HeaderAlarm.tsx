@@ -71,7 +71,6 @@ function HeaderAlarm({ setAlarm }: Props) {
         return nowList;
       });
       setNotificationList(getNotificationList);
-      console.log('notificationList:', notificationList);
     });
   };
 
@@ -85,8 +84,6 @@ function HeaderAlarm({ setAlarm }: Props) {
   useEffect(() => {
     getNotificationList();
   }, []);
-
-  // console.log('time:', timeForToday(timee));
   return (
     <div>
       {notificationList.map((ars) => {

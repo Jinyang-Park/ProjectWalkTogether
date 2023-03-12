@@ -35,25 +35,18 @@ const AntCalendarTimeEdit: React.FC = () => {
   // postingHour : 기준으로 나누어준다.
   // ex) 15: 15 --> [15,15]
   const Time = postingHour.split(':');
-  // console.log(Time);
 
   // 1~9까지는 앞에 0이 붙는다
   // ex) [5,5] 이면 Time[0].length는 1 > 1 false이기 떄문에 앞에 0이 붙어서 05가된다.
   // ex) [15,15] 이면 2 > 1 이기 때문에 0이 붙지 않는다.
   const hour = Time[0].length > 1 ? Time[0] : `0${Time[0]}`;
-  // console.log(hour);
 
   const min = Time[1];
-  // console.log(min);
 
   const PreviousHour = `${hour}:${min}`;
-  console.log(PreviousHour);
-  // console.log(dayjs(PreviousHour));
 
   const onChange = (time: Dayjs, timeString: string) => {
     setReserveTime(timeString);
-    console.log(timeString);
-    console.log('날짜/시간', reserveTime);
   };
 
   // 수정하기 전의 초기값이 빈 문자열을 기존의 값으로 바꿔주는 부분

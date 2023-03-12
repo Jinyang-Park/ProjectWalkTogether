@@ -443,10 +443,12 @@ const DetailPage = () => {
                 loggedIn ? (
                   <S.WalktogetherBtn onClick={goToChat}>
                     <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
+                    <S.WalktogetherIcon />
                   </S.WalktogetherBtn>
                 ) : (
                   <S.WalktogetherBtn onClick={goToLogin}>
                     <S.WalktogetherTitle>함께 걸을래요</S.WalktogetherTitle>
+                    <S.WalktogetherIcon />
                   </S.WalktogetherBtn>
                 )
               ) : // 자바스크립트 문법이라서 중괄호가 필요가 없다
