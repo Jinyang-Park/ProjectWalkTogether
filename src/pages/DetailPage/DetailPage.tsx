@@ -8,7 +8,7 @@ import {
   tochattingboxroomid,
   tochattingboxnickname,
   tochattingboxprofileimg,
-} from '../../Recoil/Atom';
+} from '../../Rocoil/Atom';
 import { useEffect, useState } from 'react';
 import {
   getDoc,
@@ -27,7 +27,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import DropBox from './DropBox/DropBox';
 import { uuidv4 } from '@firebase/util';
 import Footer from './../../layout/Footer/Footer';
-import { userForChat, currentUserUid } from '../../Recoil/Atom';
+import { userForChat, currentUserUid } from '../../Rocoil/Atom';
 import useDetectClose from './../../hooks/useDetectClose';
 import MessageWindow, {
   MessageWindowLogoType,

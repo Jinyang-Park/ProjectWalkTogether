@@ -1,5 +1,5 @@
 import * as S from './InputInformationEdit.style';
-import { myLocation, selectedAddress } from '../../../Recoil/Atom';
+import { myLocation, selectedAddress } from '../../../Rocoil/Atom';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { useState, useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';

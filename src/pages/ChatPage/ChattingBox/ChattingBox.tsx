@@ -18,7 +18,7 @@ import {
   tochattingboxroomid,
   tochattingboxnickname,
   tochattingboxprofileimg,
-} from '../../../Recoil/Atom';
+} from '../../../Rocoil/Atom';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 

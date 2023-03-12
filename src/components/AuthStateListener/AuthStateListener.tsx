@@ -8,7 +8,7 @@ import {
   username,
   userForChat,
   ThumbnailUpload,
-} from '../../Recoil/Atom';
+} from '../../Rocoil/Atom';
 import {
   addDoc,
   collection,

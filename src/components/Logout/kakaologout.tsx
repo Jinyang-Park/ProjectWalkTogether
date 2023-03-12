@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { authService } from '../../common/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { kakaoState } from '../../Recoil/Atom';
+import { kakaoState } from '../../Rocoil/Atom';
 
 export default function KakaoLogoutButton() {
   const navigate = useNavigate();

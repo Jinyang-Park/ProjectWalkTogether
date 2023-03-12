@@ -4,7 +4,7 @@ import AntCalendarMap from '../Calendar/AntCalendarDate';
 import DropdownFilterCategoryForMapPage from '../../../../components/DropDownCategoryForMapPage/DropDownCategoryForMapPage';
 import { useRecoilValue, useRecoilState } from 'recoil';
 
-import { Cetegory, viewCountForMapPage } from '../../../../Recoil/Atom';
+import { Cetegory, viewCountForMapPage } from '../../../../Rocoil/Atom';
 
 declare interface SetProps {
   setPostCategory: React.Dispatch<React.SetStateAction<string>>;

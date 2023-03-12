@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { storage } from '../../../common/firebase';
 import { dbService, authService } from '../../../common/firebase';
-import { currentUserUid } from '../../../Recoil/Atom';
+import { currentUserUid } from '../../../Rocoil/Atom';
 
 const MyPageBanner = (props: { uid: string }) => {
   const uid = props.uid;

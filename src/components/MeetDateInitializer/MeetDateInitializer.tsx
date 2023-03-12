@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { FilterSelectedDate } from '../../Recoil/Atom';
+import { FilterSelectedDate } from '../../Rocoil/Atom';
 import { useLocation } from 'react-router-dom';
 
 function MeetDateInitializer() {

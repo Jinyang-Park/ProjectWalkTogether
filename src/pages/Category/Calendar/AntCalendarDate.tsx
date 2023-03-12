@@ -6,7 +6,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import 'moment/locale/ko';
 import locale from 'antd/lib/locale/ko_KR';
 import { ConfigProvider } from 'antd';
-import { FilterSelectedDate } from '../../../Recoil/Atom';
+import { FilterSelectedDate } from '../../../Rocoil/Atom';
 import { query, collection, where, onSnapshot } from 'firebase/firestore';
 import { dbService } from './../../../common/firebase';
 import useDetectClose from './../../../hooks/useDetectClose';

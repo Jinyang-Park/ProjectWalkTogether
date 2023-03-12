@@ -10,7 +10,7 @@ import {
 } from 'firebase/firestore';
 import { useRecoilValue } from 'recoil';
 import { dbService } from '../../common/firebase';
-import { currentUserUid } from '../../Recoil/Atom';
+import { currentUserUid } from '../../Rocoil/Atom';
 import { useNavigate } from 'react-router-dom';
 import * as S from './HeaderAlarm.style';
 

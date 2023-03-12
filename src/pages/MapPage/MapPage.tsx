@@ -7,7 +7,7 @@ import FilterBar from './InfoList/Filter/Filter';
 import CommonStyles from './../../styles/CommonStyles';
 import { useRecoilValue } from 'recoil';
 
-import { Cetegory } from '../../Recoil/Atom';
+import { Cetegory } from '../../Rocoil/Atom';
 import { Post, usePosts } from '../../api/postsApi';
 import Footer from './../../layout/Footer/Footer';
 

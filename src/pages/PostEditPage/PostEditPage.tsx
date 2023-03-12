@@ -12,7 +12,7 @@ import {
   ReserveEditDate,
   TimeEdit,
   NewpostTag,
-} from '../../Recoil/Atom';
+} from './../../Rocoil/Atom';
 import { getAuth } from 'firebase/auth';
 import { uuidv4 } from '@firebase/util';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';

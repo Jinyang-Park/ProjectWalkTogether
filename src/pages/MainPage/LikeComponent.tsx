@@ -15,7 +15,6 @@ const LikesComponent = () => {
     (a, b) => b.LikedUsers.length - a.LikedUsers.length
   );
 
-  // 로더
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);

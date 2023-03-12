@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { paramsState } from '../../../Recoil/Atom';
+import { paramsState } from '../../../Rocoil/Atom';
 import { useSetRecoilState } from 'recoil';
 
 import * as S from './DetailMap.style';

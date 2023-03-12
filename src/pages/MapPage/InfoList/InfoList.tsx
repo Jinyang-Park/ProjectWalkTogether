@@ -7,10 +7,10 @@ import {
   FilterSelectedDateForMapPage,
   dateType1ForMapPage,
   viewCountForMapPage,
-} from '../../../Recoil/Atom';
+} from '../../../Rocoil/Atom';
 
 import { useNavigate } from 'react-router-dom';
-import { paramsState } from '../../../Recoil/Atom';
+import { paramsState } from '../../../Rocoil/Atom';
 import { useSetRecoilState } from 'recoil';
 import CardSection from './../../../components/CardSection/CardSection';
 import { Post, usePosts } from '../../../api/postsApi';

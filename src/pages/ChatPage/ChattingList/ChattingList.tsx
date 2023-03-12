@@ -14,7 +14,7 @@ import {
   tochattingboxroomid,
   tochattingboxprofileimg,
   tochattingboxnickname,
-} from '../../../Recoil/Atom';
+} from '../../../Rocoil/Atom';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
