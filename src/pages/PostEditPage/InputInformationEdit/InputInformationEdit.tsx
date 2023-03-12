@@ -14,7 +14,6 @@ interface Edit {
 function InputInformationEdit({ addressEdit, lat, lng }: Edit) {
   // 현재 위치를 가져오기 위한 state 생성
   const [myLoca, setMyLoca] = useState({ lat, lng });
-  console.log(myLoca);
   // const [myLoca, setMyLoca] = useRecoilState(myLocation);
 
   // 지도 좌표를 저장할 state   (o)
@@ -37,7 +36,6 @@ function InputInformationEdit({ addressEdit, lat, lng }: Edit) {
 
   // input value 를 가져오기 위한 state
   const [search, setSearch] = useState('');
-  // console.log(addressEdit);
   const onChange = (e) => {
     setSearch(e.target.value);
   };

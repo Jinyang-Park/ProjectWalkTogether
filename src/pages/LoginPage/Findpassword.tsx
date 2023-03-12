@@ -86,8 +86,6 @@ const FindPassword = () => {
     }
   };
 
-  console.log('findPwd:', findPwd);
-
   return (
     <>
       <CommonStyles>

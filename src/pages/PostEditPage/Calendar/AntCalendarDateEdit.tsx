@@ -21,13 +21,9 @@ const AntCalendarEdit: React.FC = () => {
 
   // db에 가공된 약속 날짜를 달력 defaulValue를 넣어주기 위한 코드
   const year = state.TimeStamp_Posting.slice(0, 4);
-  // console.log(year);
   const postingDate = state.RsvDate_Posting.split('/');
-  // console.log(postingDate);
   const month = postingDate[0];
-  // console.log(month);
   const day = postingDate[1].split(' ')[0];
-  // console.log(day);
   const PreviousDate = `${year}/${month}/${day}`;
 
   // 달력 클릭한 값이 setReserveEditDate에 저장

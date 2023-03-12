@@ -52,7 +52,6 @@ function MainPost({
       const options = {
         maxSizeMB: 0.005,
         maxWidthOrHeight: 1840,
-        // useWebWorker: true,
       };
       const compressedFile = await imageCompression(image, options);
       setPhotoupload(() => compressedFile);
@@ -66,7 +65,6 @@ function MainPost({
       const options = {
         maxSizeMB: 0.5,
         maxWidthOrHeight: 1840,
-        // useWebWorker: true,
       };
       const compressedFile = await imageCompression(image, options);
       setBanneruploadupload(() => compressedFile);
@@ -86,7 +84,6 @@ function MainPost({
       setThumbnail(() => reader.result);
     };
     reader.readAsDataURL(filelist);
-    console.log('썸네일 인풋:', reader);
   }
 
   function bannerimageChange(e: any) {
@@ -101,7 +98,6 @@ function MainPost({
     };
 
     reader.readAsDataURL(filelist);
-    console.log('배너 인풋:', filelist);
   }
   /////////
   // 타이틀

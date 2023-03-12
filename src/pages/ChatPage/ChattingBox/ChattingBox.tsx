@@ -99,8 +99,6 @@ function ChattingBox({
         });
       });
       setMessage('');
-
-      console.log('docRef:', docRef);
     }
   };
 
@@ -123,7 +121,6 @@ function ChattingBox({
         return chat;
       });
       setGetMessage(getChat);
-      console.log('getmessage:', tochattingBoxUid);
     });
   };
 
@@ -132,8 +129,6 @@ function ChattingBox({
   }, [roomId]);
 
   const nowmessage = getmessage;
-
-  // console.log('roomId', roomId);
 
   return (
     <div>

@@ -132,8 +132,7 @@ function InputInformation() {
     });
   };
   convertAddress();
-  // console.log('position:', position);
-  // console.log(search);
+
   // db의 Post 컬렉션에서 가져온 데이터를 MapMarker에 넣어주기 위한 배열 생성
 
   return (
