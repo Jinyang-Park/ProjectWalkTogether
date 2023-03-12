@@ -202,7 +202,6 @@ const LoginPage = (): JSX.Element => {
   };
 
   //소셜로그인 페이스북
-
   const signInWithFacebook = () => {
     setPersistence(authService, browserSessionPersistence)
       .then(() => {
