@@ -71,7 +71,6 @@ function HeaderAlarm({ setAlarm }: Props) {
         return nowList;
       });
       setNotificationList(getNotificationList);
-      console.log('notificationList:', notificationList);
     });
   };
 

@@ -61,8 +61,6 @@ const Header = () => {
   ///주석추가
   const sessionId = useRecoilValue(username);
 
-  console.log('alarm:', alarm);
-
   // getKakaoCode();
   //const currentUser = authService.currentUser;
   //const userNickName = currentUser?.displayName;

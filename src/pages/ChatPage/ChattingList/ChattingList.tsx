@@ -75,7 +75,6 @@ function ChattingList({
         return nowList;
       });
       setChatList(getChatList);
-      console.log('chatList:', chatList);
     });
   };
 
@@ -109,9 +108,6 @@ function ChattingList({
   }, [mychatlist]);
 
   const chattingUser = chatList;
-  console.log('chattingUser', chattingUser);
-
-  // const test2 = test.combineId;
 
   return (
     <>
