@@ -50,8 +50,6 @@ const MapContainer = ({ getPostings }: Props) => {
     });
   }, [getPostings]);
 
-  console.log(postPosition);
-
   // 사용자 위치를 가져오기 위한 useEffect
   React.useEffect(() => {
     if (navigator.geolocation) {
@@ -110,8 +108,6 @@ const MapContainer = ({ getPostings }: Props) => {
       }
     );
   }, [getPostings]);
-
-  console.log(address);
 
   return (
     <>
