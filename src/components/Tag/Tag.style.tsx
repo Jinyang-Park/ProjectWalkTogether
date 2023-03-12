@@ -38,13 +38,20 @@ export const Button = styled.button`
 
 export const TagInput = styled.input`
   display: inline-flex;
-  min-width: 200px;
-  background: transparent;
+  width: 100%;
+  background: #eef1f7;
   border: none;
-  outline: none;
+  /* height: 75px; */
+  border-radius: 4px;
+  padding: 8px 15px 9px;
   cursor: text;
-  font-size: 16px;
+  overflow: auto;
+  font-size: 15px;
+  resize: none;
   font-family: 'SUITERegular';
+  &:focus {
+    outline: 2px solid #7d8bae;
+  }
 
   &::placeholder {
     font-family: 'SUIT';

@@ -87,7 +87,9 @@ const Tag: React.FC<TagProps> = (props) => {
         <S.TagInput
           maxLength={6}
           type='text'
-          placeholder={isInputClicked === true ? '' : '해쉬태그를 입력해주세요'}
+          placeholder={
+            isInputClicked === true ? '' : '해쉬태그를 입력해주세요 ex)산책'
+          }
           tabIndex={2}
           onChange={(e) => setTagItem(e.currentTarget.value)}
           value={tagItem}
