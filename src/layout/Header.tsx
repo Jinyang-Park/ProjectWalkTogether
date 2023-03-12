@@ -5,12 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import useDetectClose from '../hooks/useDetectClose';
 import KakaoLogoutButton from '../components/Logout/kakaologout';
-import {
-  isLoggedIn,
-  kakaoState,
-  kakaoUserState,
-  username,
-} from '../Rocoil/Atom';
+import { isLoggedIn, username } from '../Rocoil/Atom';
 import HeaderAlarm from '../components/HeaderAlarm/HeaderAlarm';
 import { LoactionTitle } from './../pages/DetailPage/DetailPage.style';
 import MessageWindow, {
@@ -19,7 +14,9 @@ import MessageWindow, {
   messageWindowPropertiesAtom,
 } from '../messagewindow/MessageWindow';
 
-const Header = () => {
+interface Props {}
+
+const Header: React.FC<Props> = () => {
   const location = useLocation();
   const history = useNavigate();
   const navigate = useNavigate();
@@ -27,7 +24,7 @@ const Header = () => {
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
   const [alarmIsOpen, alarmRef, alarmHandler] = useDetectClose(false);
   const loggedIn = useRecoilValue(isLoggedIn);
-  const [kakaoCode, setKakaoCode] = useRecoilState(kakaoState);
+
   const [alarm, setAlarm] = useState(0);
   const [view, setView] = useState(false);
 
@@ -56,17 +53,7 @@ const Header = () => {
   const home = () => {
     navigate('/');
   };
-
-  // const kakaoUser = sessionStorage.getItem('id');
-  ///주석추가
   const sessionId = useRecoilValue(username);
-
-  console.log('alarm:', alarm);
-
-  // getKakaoCode();
-  //const currentUser = authService.currentUser;
-  //const userNickName = currentUser?.displayName;
-  //localId !== null
 
   return (
     <S.NavContainer>
@@ -80,10 +67,6 @@ const Header = () => {
               <S.OllaeText>올래</S.OllaeText>
             </S.OllaeBox>
           </S.NavLi>
-
-          {/* <S.NavLi>
-            <S.NavText to="/chat">chat</S.NavText>
-          </S.NavLi> */}
 
           <S.NavUl>
             <S.NavLi>
