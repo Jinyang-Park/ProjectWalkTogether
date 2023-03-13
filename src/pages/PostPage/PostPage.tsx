@@ -469,8 +469,6 @@ const PostPage = () => {
       setIsLoading(false);
       navigate(`/category/${postCategory}`);
     });
-
-    // setTimeout(adddoc, 8000);
   };
 
   return (
