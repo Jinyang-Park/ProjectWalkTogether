@@ -79,6 +79,8 @@ function ChattingList({
   };
 
   const isActiveUpdate = async () => {
+    if (!myRoomIndex) return;
+
     const updatMyDoc = await doc(
       dbService,
       'ChattingUsers',
@@ -86,21 +88,9 @@ function ChattingList({
       'chattingListroom',
       myRoomIndex
     );
-    // const updatYourDoc = doc(
-    //   dbService,
-    //   'ChattingUsers',
-    //   opponentuid,
-    //   'chattingListroom',
-    //   opponentRoomIndex
-    // );
     updateDoc(updatMyDoc, {
       isActive: 'empty',
-      // createdAt: new Date(),
     });
-    // updateDoc(updatYourDoc, {
-    //   isActive: 'empty',
-    //   createdAt: new Date(),
-    // });
   };
 
   useEffect(() => {
@@ -115,7 +105,9 @@ function ChattingList({
         <S.ChattingListMessage>
           <S.ChattingListMessageWord>메세지</S.ChattingListMessageWord>
           <S.ChattingListMessagePhoto>
-            <img src={require('../../../assets/ballon.svg').default} />
+            <S.ChattingListBallon
+              src={require('../../../assets/ballon.svg').default}
+            />
           </S.ChattingListMessagePhoto>
         </S.ChattingListMessage>
         <S.ChattingListouter>

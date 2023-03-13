@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 
 export const AlarmCount = styled.div``;
 
+export const NotificationOuter = styled.div``;
+
 export const NotificationCover = styled.div`
   background-color: white;
   text-align: left;

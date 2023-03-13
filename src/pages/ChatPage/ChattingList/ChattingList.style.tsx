@@ -44,6 +44,8 @@ export const ChattingListMessagePhoto = styled.div`
   flex-grow: 0;
 `;
 
+export const ChattingListBallon = styled.img``;
+
 // 채팅 리스트에서 최신글/닉네임/이미지를 감싸는 곳
 export const ChattingListouter = styled.div`
   overflow-x: hidden;
