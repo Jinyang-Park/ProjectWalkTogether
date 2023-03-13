@@ -87,6 +87,7 @@ export const InpuDayBox = styled.div`
 `;
 
 export const InputTimeBox = styled.div`
+  position: relative;
   width: 219px;
   height: 40px;
   margin-left: 9px;

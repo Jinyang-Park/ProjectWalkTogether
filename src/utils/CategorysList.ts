@@ -110,4 +110,4 @@ export const CategorysList = [
     img: '/assets/category/culture.jpg',
   },
 ];
-//
+/////
