@@ -117,7 +117,7 @@ const Header: React.FC<Props> = () => {
                 </S.DropNav>
               </S.DropdownButton>
             ) : (
-              <div></div>
+              <S.None></S.None>
             )}
           </S.AlarmContainer>
 

@@ -141,6 +141,10 @@ export const DropdownButton = styled.div`
   cursor: pointer;
 `;
 
+export const None = styled.div`
+  cursor: pointer;
+`;
+
 export const DropdownContainer = styled.div`
   position: relative;
   text-align: center;
