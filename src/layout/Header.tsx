@@ -17,7 +17,6 @@ import MessageWindow, {
 interface Props {}
 
 const Header: React.FC<Props> = () => {
-  const [width, setWidth] = useState(100);
   const location = useLocation();
   const history = useNavigate();
   const navigate = useNavigate();
@@ -36,6 +35,7 @@ const Header: React.FC<Props> = () => {
   const handleLogin = () => {
     navigate('login');
   };
+  //6글자 이상일 경우 ...으로 나오게
 
   // 우회하기
   // 다른 사람 프로필 페이지를 갔다가 마이페이지 눌르면 오류난가

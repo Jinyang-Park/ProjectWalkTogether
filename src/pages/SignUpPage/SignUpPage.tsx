@@ -42,6 +42,11 @@ const SignUpPage: React.FC = () => {
   const [pwShow, setPwShow] = useState<boolean>(false);
   const [conFirmShow, setConFirmShow] = useState<boolean>(false);
 
+  const userLoggedIn = sessionStorage.key(0);
+  useEffect(() => {
+    userLoggedIn ? navigate('/mypage') : navigate('/signup');
+  }, []);
+
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );

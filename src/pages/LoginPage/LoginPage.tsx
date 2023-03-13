@@ -36,8 +36,15 @@ const LoginPage = (): JSX.Element => {
   const [user, setUser] = useState({});
   const [passinputType, setPassInputType] = useState<string>('password');
   const navigate = useNavigate();
+
+  const userLoggedIn = sessionStorage.key(0);
+  useEffect(() => {
+    userLoggedIn ? navigate('/mypage') : navigate('/login');
+  }, []);
+
   const SAVE_EMAIL_ID_KEY = 'SAVE_EMAIL_ID_KEY';
   const SAVE_EMAIL_ID_CHECKED_KEY = 'SAVE_EMAIL_ID_CHECKED_KEY';
+
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
