@@ -16,25 +16,21 @@ const ChattingPage = () => {
   return (
     <>
       <CommonStyles>
-        <div>
-          <Boxcontainer>
-            <ChattingList
-              SetTochattingBoxUid={SetTochattingBoxUid}
-              SetTochattingBoxRoomIndex={SetTochattingBoxRoomIndex}
-              SetTochattingBoxOpponenRoomIndex={
-                SetTochattingBoxOpponenRoomIndex
-              }
-              tochattingBoxRoomIndex={tochattingBoxRoomIndex}
-              tochattingBoxUid={tochattingBoxUid}
-              tochattingBoxOpponentRoomIndex={tochattingBoxOpponentRoomIndex}
-            />
-            <ChattingBox
-              tochattingBoxUid={tochattingBoxUid}
-              tochattingBoxRoomIndex={tochattingBoxRoomIndex}
-              tochattingBoxOpponentRoomIndex={tochattingBoxOpponentRoomIndex}
-            />
-          </Boxcontainer>
-        </div>
+        <Boxcontainer>
+          <ChattingList
+            SetTochattingBoxUid={SetTochattingBoxUid}
+            SetTochattingBoxRoomIndex={SetTochattingBoxRoomIndex}
+            SetTochattingBoxOpponenRoomIndex={SetTochattingBoxOpponenRoomIndex}
+            tochattingBoxRoomIndex={tochattingBoxRoomIndex}
+            tochattingBoxUid={tochattingBoxUid}
+            tochattingBoxOpponentRoomIndex={tochattingBoxOpponentRoomIndex}
+          />
+          <ChattingBox
+            tochattingBoxUid={tochattingBoxUid}
+            tochattingBoxRoomIndex={tochattingBoxRoomIndex}
+            tochattingBoxOpponentRoomIndex={tochattingBoxOpponentRoomIndex}
+          />
+        </Boxcontainer>
       </CommonStyles>
       <Footer />
     </>

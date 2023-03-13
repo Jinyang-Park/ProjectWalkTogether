@@ -94,21 +94,17 @@ const Header: React.FC<Props> = () => {
             {loggedIn ? (
               <S.DropdownButton onClick={alarmHandler} ref={alarmRef}>
                 <S.AlarmContainer>
-                  <S.Img
+                  <S.BellImg
                     src={require('../../src/assets/bell.svg').default}
-                  ></S.Img>
-                  {alarm > 0 ? <S.Reddot></S.Reddot> : <div></div>}
+                  ></S.BellImg>
+                  {alarm > 0 ? <S.Reddot></S.Reddot> : <S.Nonedot></S.Nonedot>}
                 </S.AlarmContainer>
 
                 <S.DropNav isDropped={alarmIsOpen}>
                   <S.NotificationsBox>
                     <S.NotificationTitleBox>
                       알림
-                      <S.NotificationTitleXbtn>
-                        {/* <img
-                          src={require('../assets/ChattingIcon/X.svg').default}
-                        ></img> */}
-                      </S.NotificationTitleXbtn>
+                      <S.NotificationTitleXbtn></S.NotificationTitleXbtn>
                     </S.NotificationTitleBox>
 
                     <HeaderAlarm setAlarm={setAlarm}></HeaderAlarm>
@@ -116,7 +112,7 @@ const Header: React.FC<Props> = () => {
                 </S.DropNav>
               </S.DropdownButton>
             ) : (
-              <div></div>
+              <></>
             )}
           </S.AlarmContainer>
 
