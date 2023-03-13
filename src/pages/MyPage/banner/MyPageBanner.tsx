@@ -18,8 +18,6 @@ const MyPageBanner = (props: { uid: string }) => {
   }, []);
 
   const getImageURL = async () => {
-    console.log(uid);
-
     const docRef = doc(dbService, 'user', uid);
     const docSnap = await getDoc(docRef);
 
@@ -41,19 +39,15 @@ const MyPageBanner = (props: { uid: string }) => {
 
     uploadTask
       .then((snapshot) => {
-        console.log('a');
         e.target.value = '';
         getDownloadURL(snapshot.ref).then((downloadURL) => {
-          console.log('b');
           setImageURL(downloadURL);
           updateDoc(doc(dbService, 'user', authService.currentUser.uid), {
             bannerImg: downloadURL,
           });
         });
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   const onBannerClick = () => {};

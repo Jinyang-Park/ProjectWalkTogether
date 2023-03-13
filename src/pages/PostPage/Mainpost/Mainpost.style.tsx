@@ -26,7 +26,7 @@ export const BoxMain = styled.div`
   flex-direction: column;
   position: absolute;
   left: 248px;
-  top: 48px;
+  top: 30px;
   width: 80%;
 `;
 export const ThumbnailImgPorlaroid = styled.img`

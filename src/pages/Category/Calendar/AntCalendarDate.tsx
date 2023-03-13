@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import type { DatePickerProps } from 'antd';
 import { DatePicker, Space } from 'antd';
 import { useRecoilState, useRecoilValue } from 'recoil';
-// import { ReserveDate } from '../Rocoil/Atom';
 import 'moment/locale/ko';
 import locale from 'antd/lib/locale/ko_KR';
 import { ConfigProvider } from 'antd';
@@ -18,8 +17,6 @@ const AntCalendarMap: React.FC = () => {
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     setfilterSelectedDate(date);
-
-    console.log(filterSelectedDate);
   };
 
   return (

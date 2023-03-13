@@ -56,7 +56,6 @@ const FindPassword = (): JSX.Element => {
         })
         .catch((error: any) => {
           const errorCode = error.code;
-          console.log(errorCode);
           MessageWindow.showWindow(
             new MessageWindowProperties(
               true,

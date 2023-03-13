@@ -27,14 +27,11 @@ export default function KakaoLoginButton() {
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   useEffect(() => {
     const newLocation = document.location;
-    // console.log(newLocation)
 
     const PARAMS = new URL(`${newLocation}`).searchParams;
     const KAKAO_CODE = PARAMS.get('code');
-    // console.log("KAKAO_CODE : " , KAKAO_CODE )
 
     getKakaoToken(KAKAO_CODE);
-    console.log('getKakaoToken...');
   }, []);
 
   const getKakaoToken = (KAKAO_CODE: any) => {
@@ -57,7 +54,6 @@ export default function KakaoLoginButton() {
         if (data.access_token) {
           sessionStorage.setItem('token', data.access_token);
           getUserInfo(data.access_token);
-          console.log('getUserInfo...');
         } else {
           navigate('/login');
         }
@@ -91,7 +87,6 @@ export default function KakaoLoginButton() {
         sessionStorage.setItem('id', res.kakao_account.profile.nickname);
         setProfileImage(res.kakao_account.profile.is_default_imagee);
         sessionStorage.setItem('uid', res.id);
-        console.log(res);
         setKakao(res.kakao_account.profile.nickname);
         // setKakaoUser(res.nickname);
 
