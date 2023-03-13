@@ -509,10 +509,14 @@ const DetailPage = () => {
         {/*장소*/}
         <S.DetailpageWrapper>
           <S.DetailLoactionWrapper>
+            {/* <S.MapAddressTitle> */}
             <S.DeatilLoactionTitle>장소는 이 곳이에요</S.DeatilLoactionTitle>
-            <S.AddressIcon
-              src={require('../../assets/PostPageIcon/AddressIcon.svg').default}
-            />
+            {/* <S.AddressIcon
+                src={
+                  require('../../assets/PostPageIcon/AddressIcon.svg').default
+                }
+              />
+            </S.MapAddressTitle> */}
             <S.DetailLoactionContainer>
               {/*  지도 들어오는 위치에요 */}
               {/* isLoading 이 True 이면, Loading... 출력, False면 DetailMap 컴포넌트를 렌더링 한다. */}
