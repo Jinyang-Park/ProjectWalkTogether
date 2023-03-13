@@ -243,7 +243,9 @@ export const Reddot = styled.div`
   z-index: 2;
 `;
 
-export const Img = styled.img`
+export const Nonedot = styled.div``;
+
+export const BellImg = styled.img`
   width: 16px;
   height: 20px;
   position: relative;

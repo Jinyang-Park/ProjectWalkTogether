@@ -125,13 +125,14 @@ function ChattingBox({
   };
 
   useEffect(() => {
+    if (!roomId) return;
     getChatting();
   }, [roomId]);
 
   const nowmessage = getmessage;
 
   return (
-    <div>
+    <>
       <S.ChattingBox>
         <S.ChattingNickname>
           <S.ChattingNicknamePhoto>
@@ -158,14 +159,14 @@ function ChattingBox({
           {/* 글 들어가는 곳 */}
 
           {roomId ? (
-            nowmessage.map((ars) => {
+            nowmessage.map((ars, id) => {
               return ars.user === chattinguser ? (
-                <S.ChattingTextBox>
+                <S.ChattingTextBox key={id}>
                   <S.ChattingText>{ars.message}</S.ChattingText>
                   <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
                 </S.ChattingTextBox>
               ) : (
-                <S.ChattingTextBoxLeft>
+                <S.ChattingTextBoxLeft key={id}>
                   <S.ChattingImg>
                     <S.ChattingBoxheaderImgCover>
                       <S.ChattingBoxheaderImg src={profileImg} />
@@ -179,17 +180,17 @@ function ChattingBox({
             })
           ) : (
             <S.ChattingIntro>
-              <div style={{ fontWeight: 600 }}>
+              <S.ChattingIntroTextTop style={{ fontWeight: 600 }}>
                 게시글에서 '함께 걸을래요' 버튼 선택 후
-              </div>
-              <div style={{ fontWeight: 600 }}>
+              </S.ChattingIntroTextTop>
+              <S.ChattingIntroTextBottom style={{ fontWeight: 600 }}>
                 원하시는 상대와 채팅을 시작해 주세요.
-              </div>
+              </S.ChattingIntroTextBottom>
             </S.ChattingIntro>
           )}
         </S.ChattingContent>
         <S.ChattingInputBox>
-          <form
+          <S.ChattingForm
             onSubmit={(event) => sendMessage(event)}
             className='send-message'
           >
@@ -200,13 +201,15 @@ function ChattingBox({
                 value={message}
               />
               <S.ChattingButton>
-                <img src={require('../../../assets/plane.svg').default} />
+                <S.PlaneImg
+                  src={require('../../../assets/plane.svg').default}
+                />
               </S.ChattingButton>
             </S.ChattingInputouter>
-          </form>
+          </S.ChattingForm>
         </S.ChattingInputBox>
       </S.ChattingBox>
-    </div>
+    </>
   );
 }
 
