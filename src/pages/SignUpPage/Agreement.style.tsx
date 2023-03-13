@@ -61,15 +61,16 @@ export const checkBox_check02 = styled.div`
 export const PostList = styled.li`
   list-style: none;
 `;
+export const ListLayout = styled.ul`
+  display: flex;
+`;
 export const List = styled.li`
   list-style: none;
   font-family: 'SUITESemiBold';
   font-size: 12px;
   font-weight: 600;
 `;
-export const ListLayout = styled.li`
-  display: flex;
-`;
+
 export const TextFont = styled.p`
   list-style: none;
   font-family: 'SUITESemiBold';
