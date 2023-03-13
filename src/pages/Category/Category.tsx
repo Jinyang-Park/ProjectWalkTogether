@@ -32,7 +32,7 @@ const Category = () => {
 
   //약속 시간
   const [meetDate, setMeetDate] = useRecoilState(FilterSelectedDate);
-  console.log(meetDate);
+
   const date = (y: number, m: number, d: number) => {
     const D = new Date(y, m, d);
 

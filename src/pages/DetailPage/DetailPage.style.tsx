@@ -376,3 +376,11 @@ export const CompleteBtnTitle = styled.div`
   color: #7d8bae;
   bottom: 185px;
 `;
+export const AddressIcon = styled.img`
+  position: absolute;
+  bottom: -9px;
+  left: 285px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+`;
