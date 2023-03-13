@@ -140,8 +140,6 @@ const MapContainer = (Post) => {
 
   // db의 Post 컬렉션에서 가져온 데이터를 MapMarker에 넣어주기 위한 배열 생성
   const Markers = Post.Post.map((post) => {
-    // console.log(Post, post.MeetLatitude_Posting)
-    // console.log(post.MeetLongitude_Posting)
     // geocoder를 이용해 좌표 - 주소 변환
     // geocoder.coord2Address(
     //   post.MeetLongitude_Posting,

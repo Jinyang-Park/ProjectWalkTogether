@@ -148,23 +148,23 @@ const DetailPage = () => {
   }, [getChattingList]);
 
   const goToLogin = () => {
-    MessageWindow.showWindow(
-      new MessageWindowProperties(
-        true,
-        '로그인을 해주세요!',
-        '',
-        [
-          {
-            text: '닫 기',
-            callback: () => {
-              MessageWindow.showWindow(new MessageWindowProperties(), setState);
-            },
-          },
-        ],
-        MessageWindowLogoType.Perplex
-      ),
-      setState
-    );
+    // MessageWindow.showWindow(
+    //   new MessageWindowProperties(
+    //     true,
+    //     '로그인을 해주세요!',
+    //     '',
+    //     [
+    //       {
+    //         text: '닫 기',
+    //         callback: () => {
+    //           MessageWindow.showWindow(new MessageWindowProperties(), setState);
+    //         },
+    //       },
+    //     ],
+    //     MessageWindowLogoType.Perplex
+    //   ),
+    //   setState
+    // );
 
     navigate('/login');
   };
@@ -347,9 +347,7 @@ const DetailPage = () => {
     });
   }, [id]);
 
-  useEffect(() => {
-    // console.log(post);
-  }, [post]);
+  useEffect(() => {}, [post]);
 
   // 좋아요 취소
   const unlikepost = async () => {
@@ -428,7 +426,6 @@ const DetailPage = () => {
                         return;
                       }
                       likepost();
-                      console.log('좋아요');
                     }}
                   />
                 )}

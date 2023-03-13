@@ -153,6 +153,8 @@ export const ChattingTime = styled.div`
   /* background-color: blue; */
 `;
 
+export const ChattingForm = styled.form``;
+
 // 채팅 내용
 export const ChattingText = styled.div`
   max-width: 430px;
@@ -192,6 +194,8 @@ export const ChattingImg = styled.div`
   margin: 12px 0px 12px 12px;
 `;
 
+export const PlaneImg = styled.img``;
+
 //채팅창 상당의 프로필 이미지
 export const ChattingBoxheaderImg = styled.img`
   width: 21.33px;
@@ -221,3 +225,7 @@ export const ChattingIntro = styled.div`
   bottom: 130px;
   height: 200px;
 `;
+
+export const ChattingIntroTextTop = styled.div``;
+
+export const ChattingIntroTextBottom = styled.div``;

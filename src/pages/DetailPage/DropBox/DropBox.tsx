@@ -23,7 +23,6 @@ interface DropProps {
 
 const DropBox = ({ setShowBox, id, getPostings, setComplete }: DropProps) => {
   const navigate = useNavigate();
-  console.log(id);
 
   // MessageWindow 세팅
   const setState = useSetRecoilState<MessageWindowProperties>(
@@ -50,7 +49,6 @@ const DropBox = ({ setShowBox, id, getPostings, setComplete }: DropProps) => {
                 })
                 //  then과 catch 세트이다.
                 .catch((error) => {
-                  console.log(error);
                   // });
                 }),
           },
@@ -85,7 +83,6 @@ const DropBox = ({ setShowBox, id, getPostings, setComplete }: DropProps) => {
                 })
                 //  then과 catch 세트이다.
                 .catch((error) => {
-                  console.log(error);
                   // });
                 }),
           },

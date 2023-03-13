@@ -85,7 +85,7 @@ function HeaderAlarm({ setAlarm }: Props) {
     getNotificationList();
   }, []);
   return (
-    <div>
+    <S.NotificationOuter>
       {notificationList.map((ars) => {
         return (
           <S.NotificationCover
@@ -110,7 +110,7 @@ function HeaderAlarm({ setAlarm }: Props) {
           </S.NotificationCover>
         );
       })}
-    </div>
+    </S.NotificationOuter>
   );
 }
 

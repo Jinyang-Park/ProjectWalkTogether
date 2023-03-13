@@ -30,9 +30,7 @@ export default function AuthStateListener() {
 
   // 테스트용
   const a = useRecoilValue(ThumbnailUpload);
-  useEffect(() => {
-    // console.log('썸네일이 변경되없습니다', a);
-  }, [a]);
+  useEffect(() => {}, [a]);
 
   const setCurrentKakaoId = useSetRecoilState(currentKakaoId);
 
@@ -79,7 +77,6 @@ export default function AuthStateListener() {
   const auth = getAuth();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      // console.log('AuthState observer has been called');
       if (user) {
         // User is logged in
 
