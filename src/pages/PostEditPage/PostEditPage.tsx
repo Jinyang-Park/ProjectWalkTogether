@@ -67,9 +67,6 @@ const PostEditPage = () => {
   const [Title, setTitle] = useRecoilState(TitleInput);
   const [Description, setDescription] = useRecoilState(DescriptionInput);
 
-  // 포스팅 출력
-  // const [myPost, setMyPost] = useState<any>({});
-
   // 커스텀 얼럿창
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
@@ -240,16 +237,7 @@ const PostEditPage = () => {
 
     const bannerRef = ref(storage, `test/${PostingID_Posting}/banner`);
 
-    // MessageWindow.showWindow(
-    //   new MessageWindowProperties(
-    //     true,
-    //     '업로드 중입니다. 조금만 기다려주세요!',
-    //     '',
-    //     [],
-    //     MessageWindowLogoType.CryingFace
-    //   ),
-    //   setState
-    // );
+    // 로더
     setIsLoading(true);
 
     await uploadBytes(bannerRef, banner);
