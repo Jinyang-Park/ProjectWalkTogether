@@ -32,8 +32,6 @@
 
 [🚀 기술적 의사결정](https://www.notion.so/b9dcf5e34d754a50ac9d0d2e39ff259d)
 
-[💬 KPT 회고](https://bronze-toaster-f91.notion.site/Project-Walk-Together-Final-e2eeea7945b449869e2eeddebda9f76c)
-
 
 <br/>
 <br/>
