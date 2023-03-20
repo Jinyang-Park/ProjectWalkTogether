@@ -21,6 +21,8 @@ import {
   query,
   orderBy,
   onSnapshot,
+  DocumentReference,
+  DocumentData,
 } from 'firebase/firestore';
 import { authService, dbService } from './../../common/firebase';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -94,7 +96,7 @@ const DetailPage = () => {
 
   // 게시글 id db 가져오기
   const getPost = async () => {
-    const q = doc(dbService, 'Post', id);
+    const q: DocumentReference<DocumentData> = doc(dbService, 'Post', id);
     const postData = await getDoc(q);
 
     setGetPostings(postData.data());
@@ -118,7 +120,7 @@ const DetailPage = () => {
       )
     );
 
-    let list = [];
+    let list: any[] = [];
     querySnapshot.forEach((doc) => {
       list = [...list, { id: doc.id, ...doc.data() }];
     });
