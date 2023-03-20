@@ -93,6 +93,12 @@ export const IntroContents = styled.p`
 export const DetailLoactionWrapper = styled.div`
   margin-top: 332px;
 `;
+
+export const MapAddressTitle = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+`;
 export const DeatilLoactionTitle = styled.h1`
   font-family: 'SUITERegular';
   font-size: 20px;
@@ -375,4 +381,11 @@ export const CompleteBtnTitle = styled.div`
   padding: 10px;
   color: #7d8bae;
   bottom: 185px;
+`;
+export const AddressIcon = styled.img`
+  bottom: 7px;
+  /* left: 520px; */
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 `;
