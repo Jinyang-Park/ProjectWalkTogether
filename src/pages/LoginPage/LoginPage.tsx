@@ -24,8 +24,9 @@ import MessageWindow, {
 } from '../../messagewindow/MessageWindow';
 import LogoF from '../../assets/LoginPage/logof.svg';
 import LogoG from '../../assets/LoginPage/logog.svg';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useEffect } from 'react';
+import { isLoggedIn } from '../../Recoil/Atom';
 
 const LoginPage = (): JSX.Element => {
   const [disabled, setDisabled] = useState(false);
@@ -36,11 +37,6 @@ const LoginPage = (): JSX.Element => {
   const [user, setUser] = useState({});
   const [passinputType, setPassInputType] = useState<string>('password');
   const navigate = useNavigate();
-
-  const userLoggedIn = sessionStorage.key(0);
-  useEffect(() => {
-    userLoggedIn ? navigate('/mypage') : navigate('/login');
-  }, []);
 
   const SAVE_EMAIL_ID_KEY = 'SAVE_EMAIL_ID_KEY';
   const SAVE_EMAIL_ID_CHECKED_KEY = 'SAVE_EMAIL_ID_CHECKED_KEY';
@@ -241,6 +237,11 @@ const LoginPage = (): JSX.Element => {
         const errorMessage = error.message;
       });
   };
+
+  const userLoggedIn = useRecoilValue(isLoggedIn);
+  useEffect(() => {
+    userLoggedIn ? navigate('/') : navigate('/login');
+  }, []);
 
   return (
     <CommonStyles>
