@@ -38,7 +38,7 @@ const Router = () => {
       <Header />
 
       <Routes>
-        <Route path={'/'} element={<MainPage />} />
+        <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/map' element={<MapPage />} />
