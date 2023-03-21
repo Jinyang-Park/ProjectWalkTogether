@@ -117,7 +117,7 @@ export const LoginLayout = styled.div`
 `;
 export const LoginText = styled.p`
   margin-right: 10px;
-  width: 45px;
+  width: 50px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
