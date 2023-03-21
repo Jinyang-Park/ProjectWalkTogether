@@ -59,13 +59,13 @@ const CardSection = ({ post, refetch }: postProps) => {
         <S.HashTag>
           {post.Hashtag_Posting.map((tagItem: any, i: any) => {
             return (
-              <>
+              <S.none key={i}>
                 {tagItem == '' ? (
-                  <div>&nbsp;</div>
+                  <S.none>{'&nbsp;' + tagItem}</S.none>
                 ) : (
-                  <div key={i}>{'#' + tagItem}</div>
+                  <S.none key={i}>{'#' + tagItem}</S.none>
                 )}
-              </>
+              </S.none>
             );
           })}
         </S.HashTag>

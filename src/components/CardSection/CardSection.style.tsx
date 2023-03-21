@@ -4,6 +4,10 @@ export const CardBox = styled.a`
   width: 180px;
   height: 207px;
 `;
+
+export const none = styled.div`
+  cursor: pointer;
+`;
 export const CardSectionWrapper = styled.div`
   cursor: pointer;
 `;
@@ -28,7 +32,7 @@ export const ListItemThumnailTitle = styled.p`
   letter-spacing: -2px;
   color: #212121;
 `;
-export const HashTag = styled.p`
+export const HashTag = styled.div`
   font-family: 'SUITERegular';
   display: flex;
   flex-direction: row;
