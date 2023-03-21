@@ -17,7 +17,6 @@ export const OllaeLogo = styled.img`
   height: 35px;
   padding-right: 6px;
   cursor: pointer;
-
   @media screen and (max-width: 420px) {
     width: 35px;
     height: 35px;
@@ -49,7 +48,6 @@ export const Nav = styled.div`
   width: 868px;
   align-items: center;
   justify-content: space-between;
-
   @media screen and (max-width: 420px) {
     position: absolute;
     width: 434px;
@@ -67,7 +65,6 @@ export const Nav = styled.div`
 
 export const LogowithText = styled.div`
   display: flex;
-
   @media screen and (max-width: 420px) {
   }
   gap: 10px;
@@ -76,7 +73,6 @@ export const LogowithText = styled.div`
 export const NavUl = styled.ul`
   display: flex;
   margin-top: 5px;
-
   @media screen and (max-width: 420px) {
   }
 `;
@@ -94,27 +90,26 @@ export const NavText = styled(Link)`
   text-decoration: none;
   font-family: 'SUITERegular';
   letter-spacing: -2px;
-
   font-size: 12px;
 `;
 export const LoginButton = styled.div`
   border: none;
   padding: 4px 12px 4px 12px;
   //상우하좌
-
   margin-top: 10px;
-
   border-radius: 5px;
   /* width: max-content; */
   height: 30px;
   /* background: blue; */
   font-size: 12px;
+
   color: black;
   cursor: pointer;
   background-color: #eef1f7;
   font-family: 'SUITERegular';
   letter-spacing: -0.1px;
   justify-content: center;
+  position: relative;
 `;
 
 export const LoginLayout = styled.div`
@@ -122,6 +117,10 @@ export const LoginLayout = styled.div`
 `;
 export const LoginText = styled.p`
   margin-right: 10px;
+  width: 50px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 export const NavEtc = styled.div`
@@ -138,6 +137,10 @@ export const Logo = styled.img`
   cursor: pointer;
 `;
 export const DropdownButton = styled.div`
+  cursor: pointer;
+`;
+
+export const None = styled.div`
   cursor: pointer;
 `;
 
@@ -166,11 +169,13 @@ export const Ul = styled.ul`
 export const Li = styled.li``;
 
 export const LoginDropNav = styled.nav<{ isPropped: boolean }>`
+  margin: 0 auto;
   background: #eef1f7;
   box-shadow: 0 0 10px #bec5d7;
   position: absolute;
+
   top: 40px;
-  width: 78px;
+  width: 92px;
   text-align: center;
   border-radius: 3px;
   z-index: 9;

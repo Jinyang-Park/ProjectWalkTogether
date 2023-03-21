@@ -35,6 +35,7 @@ const Header: React.FC<Props> = () => {
   const handleLogin = () => {
     navigate('login');
   };
+  //6글자 이상일 경우 ...으로 나오게
 
   // 우회하기
   // 다른 사람 프로필 페이지를 갔다가 마이페이지 눌르면 오류난가
@@ -112,7 +113,7 @@ const Header: React.FC<Props> = () => {
                 </S.DropNav>
               </S.DropdownButton>
             ) : (
-              <></>
+              <S.None></S.None>
             )}
           </S.AlarmContainer>
 

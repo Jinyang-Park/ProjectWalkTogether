@@ -25,6 +25,8 @@ import ScrollToTopButton from './../components/ScrollToTopButton/ScrollToTopButt
 import RerouteToMyPage from './../components/RerouteToMyPage/RerouteToMyPage';
 import FindPassword from '../pages/LoginPage/Findpassword';
 import Footer from '../layout/Footer/Footer';
+import ErrorPage from '../pages/ErrorPage/ErrorPage';
+
 const Router = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
@@ -34,6 +36,7 @@ const Router = () => {
     <BrowserRouter>
       <AuthStateListener />
       <Header />
+
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<LoginPage />} />
@@ -51,7 +54,9 @@ const Router = () => {
         <Route path='/changepassword' element={<ChangePassword />} />
         <Route path='/reroutetomypage' element={<RerouteToMyPage />} />
         <Route path='/find' element={<FindPassword />} />
+        <Route path='/*' element={<ErrorPage />} />
       </Routes>
+
       <ScrollToTopButton />
       <MeetDateInitializer />
     </BrowserRouter>

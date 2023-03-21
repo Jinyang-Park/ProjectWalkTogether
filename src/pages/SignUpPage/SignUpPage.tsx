@@ -9,12 +9,13 @@ import { useNavigate } from 'react-router-dom';
 import { dbService, authService } from '../../common/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { emailRegex, nicknameRegex, pwdRegex } from '../../utils/UserInfoRegex';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import MessageWindow, {
   MessageWindowLogoType,
   MessageWindowProperties,
   messageWindowPropertiesAtom,
 } from '../../messagewindow/MessageWindow';
+import { isLoggedIn } from '../../Recoil/Atom';
 
 const SignUpPage: React.FC = () => {
   const [disabled, setDisabled] = useState<boolean>(true);
@@ -41,6 +42,11 @@ const SignUpPage: React.FC = () => {
   const [emailShow, setEmailShow] = useState<boolean>(false);
   const [pwShow, setPwShow] = useState<boolean>(false);
   const [conFirmShow, setConFirmShow] = useState<boolean>(false);
+
+  const userLoggedIn = useRecoilValue(isLoggedIn);
+  useEffect(() => {
+    userLoggedIn ? navigate('/') : navigate('/signup');
+  }, []);
 
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom

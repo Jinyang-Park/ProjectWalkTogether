@@ -1,4 +1,4 @@
-#  🚶‍🚶‍♀️ollae 
+#  🚶‍🚶‍♀️ollae
 
 ![Group 875](https://user-images.githubusercontent.com/80263801/224346703-e03f635e-9993-4975-9ef2-b13ced76737b.jpg)
 
@@ -31,8 +31,6 @@
 [✍ 프로젝트 기획안](https://www.notion.so/eda81292232d4843b5136bfbcf831080?pvs=4)
 
 [🚀 기술적 의사결정](https://www.notion.so/b9dcf5e34d754a50ac9d0d2e39ff259d)
-
-[💬 KPT 회고](https://bronze-toaster-f91.notion.site/Project-Walk-Together-Final-e2eeea7945b449869e2eeddebda9f76c)
 
 
 <br/>
