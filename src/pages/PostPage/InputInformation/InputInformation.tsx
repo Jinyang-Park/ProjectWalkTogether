@@ -34,7 +34,6 @@ function InputInformation() {
   // input value 를 가져오기 위한 state
   const [search, setSearch] = useState('');
 
-  console.log('markers:', markers);
 
   const onChange = (e: { target: { value: React.SetStateAction<string> } }) => {
     setSearch(e.target.value);
