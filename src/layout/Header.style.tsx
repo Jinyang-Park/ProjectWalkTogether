@@ -5,11 +5,11 @@ import ComeLogo from '../../src/assets/logobyollae.svg';
 export const NavContainer = styled.div`
   height: 52px;
   background-color: white;
-  width: 100%;
+  width: 1024px;
   position: relative;
   border-bottom: 0.5px solid rgba(190, 197, 215, 1);
-  @media screen and (max-width: 420px) {
-    width: 100%;
+  @media screen and (max-width: 430px) {
+    min-width: 430px;
   }
 `;
 export const OllaeLogo = styled.img`
@@ -17,9 +17,11 @@ export const OllaeLogo = styled.img`
   height: 35px;
   padding-right: 6px;
   cursor: pointer;
-  @media screen and (max-width: 420px) {
-    width: 35px;
-    height: 35px;
+  @media screen and (max-width: 430px) {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    top: 7px;
     padding-left: 20px;
   }
 `;
@@ -35,8 +37,8 @@ export const OllaeText = styled.p`
   font-family: 'SUITEBold';
   font-weight: 600;
   cursor: pointer;
-  @media screen and (max-width: 420px) {
-    font-size: 15px;
+  @media screen and (max-width: 430px) {
+    font-size: 16px;
     font-family: 'SUITEBold';
     font-weight: 600;
   }
@@ -48,7 +50,7 @@ export const Nav = styled.div`
   width: 868px;
   align-items: center;
   justify-content: space-between;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 430px) {
     position: absolute;
     width: 434px;
   }
@@ -65,7 +67,7 @@ export const Nav = styled.div`
 
 export const LogowithText = styled.div`
   display: flex;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 430px) {
   }
   gap: 10px;
 `;
@@ -73,7 +75,10 @@ export const LogowithText = styled.div`
 export const NavUl = styled.ul`
   display: flex;
   margin-top: 5px;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 430px) {
+    font-size: 12px;
+    position: relative;
+    top: 2px;
   }
 `;
 
@@ -82,7 +87,7 @@ export const NavLi = styled.li`
   margin-right: 40px;
   margin-top: 8px;
   text-decoration: none;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 430px) {
     margin-right: 20px;
   }
 `;
@@ -92,6 +97,7 @@ export const NavText = styled(Link)`
   letter-spacing: -2px;
   font-size: 12px;
 `;
+
 export const LoginButton = styled.div`
   border: none;
   padding: 4px 12px 4px 12px;
@@ -126,7 +132,7 @@ export const LoginText = styled.p`
 export const NavEtc = styled.div`
   display: flex;
   margin: 0px;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 430px) {
   }
 `;
 export const Profile = styled.div`

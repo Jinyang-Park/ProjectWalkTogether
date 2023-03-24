@@ -14,8 +14,8 @@ export const NavContainer = styled.div`
   justify-content: center;
   top: 50px;
 
-  @media screen and (max-width: 420px) {
-    width: 100%;
+  @media screen and (max-width: 430px) {
+    position: relative;
   }
 `;
 
@@ -29,6 +29,10 @@ export const LogoNIntro = styled.div`
   width: 25%;
   position: relative;
   left: 40px;
+  @media screen and (max-width: 430px) {
+    position: relative;
+    left: 280px;
+  }
 `;
 
 export const LogoBox = styled.div`
@@ -62,6 +66,10 @@ export const Contact = styled.div`
   width: 25%;
   position: relative;
   right: 5px;
+  @media screen and (max-width: 430px) {
+    position: relative;
+    left: 110px;
+  }
 `;
 
 export const ContactBox = styled.div`
@@ -97,6 +105,10 @@ export const Notion = styled.div`
   width: 25%;
   position: relative;
   left: 25px;
+  @media screen and (max-width: 430px) {
+    position: relative;
+    left: 20px;
+  }
 `;
 
 export const NotionBox = styled.div`
@@ -120,6 +132,10 @@ export const NotionAdress = styled.a`
 export const Section = styled.div`
   /* background-color: darkgray; */
   width: 25%;
+  @media screen and (max-width: 430px) {
+    position: relative;
+    left: -140px;
+  }
 `;
 
 export const SectionBox = styled.div`
@@ -144,6 +160,10 @@ export const ReservedText = styled.div`
   left: 145px;
   font-size: 14px;
   width: 500px;
+  @media screen and (max-width: 430px) {
+    position: relative;
+    left: -60px;
+  }
 `;
 
 export const GitImg = styled.img`

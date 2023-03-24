@@ -82,6 +82,12 @@ export const LikedListItem = styled.div`
   flex-wrap: wrap;
   grid-gap: 49.3px;
   margin-top: 36px;
+  @media screen and (max-width: 430px) {
+    width: 430px;
+    position: relative;
+    left: 20px;
+    bottom: 100px;
+  }
 `;
 
 export const Collection = styled.div``;
@@ -91,6 +97,11 @@ export const CategoryTitle = styled.p`
   font-size: 36px;
   line-height: 45px;
   margin-top: 74px;
+  @media screen and (max-width: 430px) {
+    font-size: 24px;
+    position: relative;
+    bottom: 0px;
+  }
 `;
 
 export const Button = styled.button`
@@ -99,6 +110,13 @@ export const Button = styled.button`
   font-family: 'SUITERegular';
   letter-spacing: -0.1px;
   margin-right: 5px;
+
+  @media screen and (max-width: 430px) {
+    font-size: 12px;
+    position: relative;
+    /* bottom: 200px; */
+    left: -450px;
+  }
 `;
 export const InsideText = styled.p`
   margin-top: 19px;
@@ -106,10 +124,21 @@ export const InsideText = styled.p`
   letter-spacing: -1px;
   color: #7d8bae;
   width: 300px;
+  @media screen and (max-width: 430px) {
+    font-size: 12px;
+    position: relative;
+    left: 40px;
+  }
 `;
 export const TitleLayout = styled.div`
   display: flex;
   align-items: center;
+  @media screen and (max-width: 430px) {
+    font-size: 12px;
+    position: relative;
+    bottom: 160px;
+    left: 35px;
+  }
 `;
 
 export const HotShoesImg = styled.img`
@@ -117,6 +146,12 @@ export const HotShoesImg = styled.img`
   height: 76px;
   display: flex;
   margin-top: 40px;
+  @media screen and (max-width: 430px) {
+    width: 36px;
+    height: 36px;
+    position: relative;
+    top: 10px;
+  }
 `;
 export const TextTitle = styled.p`
   font-family: 'SUITEBold';
@@ -136,6 +171,11 @@ export const CategoryWrapper = styled.div`
 export const FirstLayout = styled.div`
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 430px) {
+    font-size: 12px;
+    position: relative;
+    bottom: 170px;
+  }
 `;
 
 export const Line = styled.div`
@@ -143,12 +183,24 @@ export const Line = styled.div`
   background-color: white;
   width: 100%;
   border-bottom: 2px solid #bec5d7;
+  @media screen and (max-width: 430px) {
+    font-size: 12px;
+    position: relative;
+    bottom: 170px;
+    width: 430px;
+  }
 `;
 export const ButtonIcon = styled.img`
   width: 12px;
   height: 12px;
   object-fit: contain;
   cursor: pointer;
+  @media screen and (max-width: 430px) {
+    font-size: 12px;
+    position: relative;
+    /* bottom: 200px; */
+    left: -450px;
+  }
 `;
 export const ButtonWrap = styled.div`
   margin-top: 19px;
