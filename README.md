@@ -239,3 +239,10 @@ src
 	</div>
 
 
+<br/>
+<br/>
+
+## 📌 트러블 슈팅
+
+[API 요청 수 줄이기/ React Query 리팩토링](https://www.notion.so/API-React-Query-12b42cd9793448419f5c6cde363f78c1)
+[이미지 최적화] (https://www.notion.so/LightHouse-a0e19069d0034a5e842ffd94292a783a)
