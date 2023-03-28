@@ -2,17 +2,17 @@ import { useEffect } from 'react';
 import { atom, useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
-import checkmark from '../assets/messageWindow/Checkmark.png';
-import confetti from '../assets/messageWindow/Confetti.png';
-import cryingFace from '../assets/messageWindow/CryingFace.png';
-import flower from '../assets/messageWindow/Flower.png';
-import id from '../assets/messageWindow/ID.png';
-import perplex from '../assets/messageWindow/Perplex.png';
-import rocket from '../assets/messageWindow/Rocket.png';
-import writingHand from '../assets/messageWindow/WritingHand.png';
-import yellowPencil from '../assets/messageWindow/YellowPencil.png';
-import CloseButton from '../assets/messageWindow/CancelBtn.png';
-import congratulation from '../assets/messageWindow/Congratulation.png';
+import checkmark from '../assets/messageWindow/Checkmark.webp';
+import confetti from '../assets/messageWindow/Confetti.webp';
+import cryingFace from '../assets/messageWindow/CryingFace.webp';
+import flower from '../assets/messageWindow/Flower.webp';
+import id from '../assets/messageWindow/ID.webp';
+import perplex from '../assets/messageWindow/Perplex.webp';
+import rocket from '../assets/messageWindow/Rocket.webp';
+import writingHand from '../assets/messageWindow/WritingHand.webp';
+import yellowPencil from '../assets/messageWindow/YellowPencil.webp';
+import CloseButton from '../assets/messageWindow/CancelBtn.webp';
+import congratulation from '../assets/messageWindow/Congratulation.webp';
 
 //
 // 사용법
@@ -115,7 +115,7 @@ export function MessageWindowComponent() {
     background-color: transparent;
   `;
 
-  const LogoImg = styled.img`
+  const LogoImg = styled.source`
     width: 172px;
     height: 172px;
   `;
@@ -165,34 +165,34 @@ export function MessageWindowComponent() {
       case MessageWindowLogoType.None:
         return <></>;
       case MessageWindowLogoType.Checkmark:
-        return <LogoImg src={checkmark} alt='Checkmark' />;
+        return <LogoImg srcSet={checkmark} type='image/webp' />;
 
       case MessageWindowLogoType.Confetti:
-        return <LogoImg src={confetti} alt='Confetti' />;
+        return <LogoImg srcSet={confetti} type='image/webp' />;
 
       case MessageWindowLogoType.CryingFace:
-        return <LogoImg src={cryingFace} alt='Crying Face' />;
+        return <LogoImg srcSet={cryingFace} type='image/webp' />;
 
       case MessageWindowLogoType.Flower:
-        return <LogoImg src={flower} alt='Flower' />;
+        return <LogoImg srcSet={flower} type='image/webp' />;
 
       case MessageWindowLogoType.ID:
-        return <LogoImg src={id} alt='ID' />;
+        return <LogoImg srcSet={id} type='image/webp' />;
 
       case MessageWindowLogoType.Perplex:
-        return <LogoImg src={perplex} alt='Perplex' />;
+        return <LogoImg srcSet={perplex} type='image/webp' />;
 
       case MessageWindowLogoType.Rocket:
-        return <LogoImg src={rocket} alt='Rocket' />;
+        return <LogoImg srcSet={rocket} type='image/webp' />;
 
       case MessageWindowLogoType.WritingHand:
-        return <LogoImg src={writingHand} alt='Writing Hand' />;
+        return <LogoImg srcSet={writingHand} type='image/webp' />;
 
       case MessageWindowLogoType.YellowPencil:
-        return <LogoImg src={yellowPencil} alt='Yellow Pencil' />;
+        return <LogoImg srcSet={yellowPencil} type='image/webp' />;
 
       case MessageWindowLogoType.Congratulation:
-        return <LogoImg src={congratulation} alt='Congratulationl' />;
+        return <LogoImg srcSet={congratulation} type='image/webp' />;
 
       default:
         return <></>;
@@ -209,9 +209,7 @@ export function MessageWindowComponent() {
                 onClick={() => {
                   setProps(new MessageWindowProperties());
                 }}
-              >
-                {/* <img src={CloseButton} alt='Close Button'></img> */}
-              </AlertCloseButton>
+              ></AlertCloseButton>
               {renderLogo()}
               <AlertTitle>{props.title}</AlertTitle>
               <AlertMessage>{props.message}</AlertMessage>
