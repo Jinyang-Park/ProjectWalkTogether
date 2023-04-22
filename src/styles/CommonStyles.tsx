@@ -9,7 +9,4 @@ export default CommonStyles;
 const CommonStyle = styled.div`
   max-width: 1024px;
   margin: 0 auto;
-  @media screen and (max-width: 430px) {
-    min-width: 430px;
-  }
 `;

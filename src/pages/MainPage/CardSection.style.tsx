@@ -166,6 +166,9 @@ export const CategoryWrapper = styled.div`
   width: 868px;
   margin: auto;
   margin-bottom: 80px;
+  @media screen and (max-width: 430px) {
+    max-width: 430px;
+  }
 `;
 
 export const FirstLayout = styled.div`
@@ -208,6 +211,10 @@ export const ButtonWrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const ContentLayout = styled.div``;
+export const ContentLayout = styled.div`
+  @media screen and (max-width: 430px) {
+    max-width: 430px;
+  }
+`;
 
 export const Collectionitem = styled.div``;

@@ -153,9 +153,6 @@ export const Boxcontents = styled.div`
   /* display: flex; */
   /* height: 100%; */
   /* overflow: hidden; */
-  @media screen and (max-width: 430px) {
-    min-width: 480px;
-  }
 `;
 export const BoxPhoto = styled.div`
   margin: 48px 0px 37px 27px;
