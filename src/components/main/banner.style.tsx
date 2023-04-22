@@ -41,12 +41,21 @@ export const SliderWrapper = styled(Slider)`
         height: 4.8px;
       }
     }
+
+    @media screen and (max-width: 430px) {
+      min-width: 430px;
+      height: 207.44px;
+    }
   }
 `;
 export const SlideWrapper = styled.div`
   width: 100%;
   height: 432px;
   overflow: hidden;
+  @media screen and (max-width: 430px) {
+    min-width: 430px;
+    height: 207.44px;
+  }
 `;
 export const BannerContainer = styled.div`
   width: 1024px;
@@ -60,6 +69,9 @@ export const BannerTextBox = styled.div`
   height: 205px;
   left: 146px;
   z-index: 13px;
+  @media screen and (max-width: 430px) {
+    font-size: 28px;
+  }
 `;
 
 export const BannerTitle = styled.div`
@@ -76,6 +88,12 @@ export const BannerTitle = styled.div`
   z-index: 10;
   position: relative;
   top: 150px;
+  @media screen and (max-width: 430px) {
+    font-size: 28px;
+    position: absolute;
+    right: -50px;
+    top: 40px;
+  }
 `;
 export const BannerSubTitle = styled.div`
   width: 567px;
@@ -84,11 +102,21 @@ export const BannerSubTitle = styled.div`
   font-size: 36px;
   line-height: 160%;
   color: '#333D4B';
+  @media screen and (max-width: 430px) {
+    font-size: 28px;
+    position: absolute;
+    left: 0px;
+    top: 60px;
+  }
 `;
 export const BannerFirstImg = styled.img`
   position: absolute;
   width: 1024px;
   height: 432px;
+  @media screen and (max-width: 430px) {
+    width: 430px;
+    height: 207.44px;
+  }
 
   /* background-image: ; */
 `;
@@ -96,4 +124,8 @@ export const BannerSecondImg = styled.img`
   position: absolute;
   width: 1024px;
   height: 432px;
+  @media screen and (max-width: 430px) {
+    width: 430px;
+    height: 207.44px;
+  }
 `;

@@ -34,7 +34,7 @@ function InputInformation() {
   // input value 를 가져오기 위한 state
   const [search, setSearch] = useState('');
 
-  const onChange = (e) => {
+  const onChange = (e: { target: { value: React.SetStateAction<string> } }) => {
     setSearch(e.target.value);
   };
 
@@ -68,7 +68,7 @@ function InputInformation() {
   }, []);
 
   // 커스터마이징 된 지도 컨트롤러
-  const mapRef = useRef(null);
+  const mapRef: any = useRef(null);
 
   // 줌인
   const zoomIn = () => {
@@ -106,7 +106,7 @@ function InputInformation() {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         const bounds = new kakao.maps.LatLngBounds();
-        let markers = [];
+        let markers: never[] = [];
 
         for (var i = 0; i < data.length; i++) {
           // @ts-ignore

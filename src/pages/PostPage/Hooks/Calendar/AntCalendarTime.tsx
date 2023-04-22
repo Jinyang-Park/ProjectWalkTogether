@@ -11,7 +11,7 @@ const AntCalendarTime: React.FC = () => {
   const format = 'HH:mm';
   const [reserveTime, setReserveTime] = useRecoilState<string>(Time);
 
-  const onChange = (time: Dayjs, timeString: string) => {
+  const onChange = (time: Dayjs | null, timeString: string) => {
     setReserveTime(timeString);
   };
 

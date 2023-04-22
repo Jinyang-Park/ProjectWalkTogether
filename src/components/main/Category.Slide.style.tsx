@@ -56,6 +56,15 @@ export const StyledSlider = styled(Slider)`
     content: '';
     opacity: 1;
   }
+
+  @media screen and (max-width: 430px) {
+    min-width: 410px;
+    font-size: 28px;
+    position: absolute;
+    right: 15px;
+    top: 220px;
+    font-size: 12px;
+  }
 `;
 
 export const Category = styled.div``;
@@ -73,6 +82,9 @@ export const Img = styled.img`
   background-color: #f2efed;
   display: inline-flex;
   align-items: center;
+
+  @media screen and (max-width: 430px) {
+  }
 `;
 export const ImgTitle = styled.p`
   text-align: center;
@@ -80,4 +92,6 @@ export const ImgTitle = styled.p`
   font-family: 'SUITERegular';
   letter-spacing: -2px;
   padding-top: 10px;
+  @media screen and (max-width: 430px) {
+  }
 `;

@@ -21,6 +21,8 @@ import {
   query,
   orderBy,
   onSnapshot,
+  DocumentReference,
+  DocumentData,
 } from 'firebase/firestore';
 import { authService, dbService } from './../../common/firebase';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -51,7 +53,7 @@ const DetailPage = () => {
   // const params = useRecoilValue(paramsState);
 
   // useParams를 사용하여 구조 분해 할당을 하여 사용함
-  const { id } = useParams();
+  const { id }: any = useParams();
 
   const [getPostings, setGetPostings] = useState<any>({});
 
@@ -118,7 +120,7 @@ const DetailPage = () => {
       )
     );
 
-    let list = [];
+    let list: any[] = [];
     querySnapshot.forEach((doc) => {
       list = [...list, { id: doc.id, ...doc.data() }];
     });
@@ -332,12 +334,14 @@ const DetailPage = () => {
     const snap = await getDoc(doc(dbService, 'Post', id));
     const post = snap.data();
 
-    let p = post;
-    p.LikedUsers.push(userUid);
+    if (post !== undefined) {
+      let p = post;
+      p.LikedUsers.push(userUid);
 
-    updateDoc(doc(dbService, 'Post', id), {
-      LikedUsers: p.LikedUsers,
-    });
+      updateDoc(doc(dbService, 'Post', id), {
+        LikedUsers: p.LikedUsers,
+      });
+    }
   };
 
   useEffect(() => {
@@ -354,10 +358,12 @@ const DetailPage = () => {
     const snap = await getDoc(doc(dbService, 'Post', id));
     const post = snap.data();
 
-    const u = post.LikedUsers.filter((id: string) => id !== userUid);
-    updateDoc(doc(dbService, 'Post', id), {
-      LikedUsers: u,
-    });
+    if (post !== undefined) {
+      const u = post.LikedUsers.filter((id: string) => id !== userUid);
+      updateDoc(doc(dbService, 'Post', id), {
+        LikedUsers: u,
+      });
+    }
   };
 
   return (
@@ -394,17 +400,19 @@ const DetailPage = () => {
               <S.IntroTitle>{getPostings.Title_Posting}</S.IntroTitle>
               <S.IntroHashTag>
                 {getPostings.Hashtag_Posting &&
-                  getPostings.Hashtag_Posting.map((tagItem, i) => {
-                    return (
-                      <>
-                        {tagItem == '' ? (
-                          <div>&nbsp;</div>
-                        ) : (
-                          <div key={i}>&nbsp;{'#' + tagItem}</div>
-                        )}
-                      </>
-                    );
-                  })}
+                  getPostings.Hashtag_Posting.map(
+                    (tagItem: string, i: number) => {
+                      return (
+                        <>
+                          {tagItem == '' ? (
+                            <div>&nbsp;</div>
+                          ) : (
+                            <div key={i}>&nbsp;{'#' + tagItem}</div>
+                          )}
+                        </>
+                      );
+                    }
+                  )}
               </S.IntroHashTag>
               <S.IntroDes>{getPostings.Description_Posting}</S.IntroDes>
             </S.DetailIntroWrapper>

@@ -109,6 +109,7 @@ const GlobalStyle = createGlobalStyle`
     src: url('../fonts/SUITESemiBold.woff2') format('web open font format');
 }
 
+
   
 `;
 

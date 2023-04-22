@@ -1,4 +1,11 @@
-import { useEffect } from 'react';
+import {
+  FormEvent,
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactFragment,
+  useEffect,
+} from 'react';
 import * as S from './ChattingBox.style';
 import { useState } from 'react';
 import { dbService } from '../../../common/firebase';
@@ -28,6 +35,28 @@ interface SetProps {
   tochattingBoxOpponentRoomIndex: string;
 }
 
+interface Nowmessage {
+  user: string;
+  message:
+    | string
+    | number
+    | boolean
+    | ReactElement<any, string | JSXElementConstructor<any>>
+    | ReactFragment
+    | null
+    | undefined;
+  nowchattime:
+    | string
+    | number
+    | boolean
+    | ReactElement<any, string | JSXElementConstructor<any>>
+    | ReactFragment
+    | null
+    | undefined;
+
+  id: Key | null | undefined;
+}
+
 function ChattingBox({
   tochattingBoxUid,
   tochattingBoxRoomIndex,
@@ -54,7 +83,7 @@ function ChattingBox({
   const nowchattime = Date().slice(16, 21);
 
   //메세지 전송시 함수
-  const sendMessage = async (event) => {
+  const sendMessage = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (message.trim() === '') {
       alert('채팅을 입력해 주세요!');
@@ -159,7 +188,7 @@ function ChattingBox({
           {/* 글 들어가는 곳 */}
 
           {roomId ? (
-            nowmessage.map((ars, id) => {
+            nowmessage.map((ars: Nowmessage, id: Key | undefined | null) => {
               return ars.user === chattinguser ? (
                 <S.ChattingTextBox key={id}>
                   <S.ChattingText>{ars.message}</S.ChattingText>

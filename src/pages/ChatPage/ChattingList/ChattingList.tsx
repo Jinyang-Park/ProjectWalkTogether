@@ -24,10 +24,29 @@ interface SetProps {
   SetTochattingBoxOpponenRoomIndex: React.Dispatch<
     React.SetStateAction<string>
   >;
-
   tochattingBoxRoomIndex: string;
   tochattingBoxOpponentRoomIndex: string;
   tochattingBoxUid: string;
+}
+
+interface ChattingUser {
+  id: React.Key | null | undefined;
+  combineId: string | ((currVal: string) => string);
+  nickname: string;
+  profile: string;
+  opponentUserUid: React.SetStateAction<string>;
+  myRoomId: React.SetStateAction<string>;
+  posterChatroomId: React.SetStateAction<string>;
+  lastConversation:
+    | string
+    | number
+    | boolean
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | React.ReactFragment
+    | React.ReactPortal
+    | null
+    | undefined;
+  isActive: string;
 }
 
 function ChattingList({
@@ -43,8 +62,9 @@ function ChattingList({
   const [tochattingBoxRoomId, SetTochattingBoxRoomId] =
     useRecoilState<string>(tochattingboxroomid);
 
-  const [tochattingBoxNickname, SetTochattingBoxNickname] =
-    useRecoilState<string>(tochattingboxnickname);
+  const [tochattingBoxNickname, SetTochattingBoxNickname] = useRecoilState(
+    tochattingboxnickname
+  );
   const [tochattingBoxProfileImg, SetTochattingBoxProfileImg] =
     useRecoilState<string>(tochattingboxprofileimg);
 
@@ -98,6 +118,7 @@ function ChattingList({
   }, [mychatlist]);
 
   const chattingUser = chatList;
+  console.log('chattingUser:', chattingUser);
 
   return (
     <>
@@ -112,7 +133,7 @@ function ChattingList({
         </S.ChattingListMessage>
         <S.ChattingListouter>
           <S.ChattingUserBox>
-            {chattingUser.map((user) => {
+            {chattingUser.map((user: ChattingUser) => {
               return (
                 <S.ChattingUser
                   key={user.id}
