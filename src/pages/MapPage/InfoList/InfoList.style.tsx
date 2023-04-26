@@ -9,19 +9,19 @@ export const HeaderLine = styled.span`
   height: 50px;
   margin-top: 30px;
   margin-bottom: 10px;
-  @media screen {
+  /* @media screen {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-  }
+  } */
 `;
 export const HeaderLineTitle = styled.span`
   font-size: 30px;
   font-weight: 600;
-  @media screen {
+  /* @media screen {
     font-size: Large;
-  }
+  } */
 `;
 export const HeaderLineCategory = styled.span`
   display: flex;
@@ -31,10 +31,10 @@ export const HeaderLineCategory = styled.span`
   border-radius: 5px;
   width: 120px;
   height: 40px;
-  @media screen {
+  /* @media screen {
     width: 100px;
     height: 30px;
-  }
+  } */
 `;
 export const SearchLine = styled.span`
   display: flex;
@@ -64,8 +64,10 @@ export const SearchLineTotalCount = styled.span`
   font-family: 'SUITERegular';
   font-size: smaller;
   color: gray;
-
   /* margin-bottom: 30px; */
+  @media screen and (max-width: 430px) {
+    margin-left: 20px;
+  }
 `;
 export const LikedListItem = styled.div`
   display: flex;
@@ -73,7 +75,7 @@ export const LikedListItem = styled.div`
   grid-gap: 70px 49.3px;
   margin-top: 46px;
   @media screen and (max-width: 430px) {
-    width: calc(50% - 6px);
+    /* width: calc(50% - 6px); */
     grid-gap: 70px 30px;
     margin-left: 20px;
   }

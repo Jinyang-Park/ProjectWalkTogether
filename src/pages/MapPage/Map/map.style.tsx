@@ -105,7 +105,7 @@ export const ResultListTagList = styled.span`
   font-size: smaller;
   width: 139px;
   height: 27px;
-  color: gray;
+  color: #7d8bae;
 `;
 export const ResultListTag = styled.span``;
 

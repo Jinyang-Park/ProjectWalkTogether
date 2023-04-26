@@ -26,6 +26,12 @@ export const FilterArea = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 8px;
+  @media screen and (max-width: 430px) {
+    margin: 0px 20px;
+    align-items: center;
+    align-content: center;
+    /* width: calc(50% - 50px); */
+  }
 `;
 export const CategoryFilter = styled.div`
   display: flex;
@@ -61,6 +67,9 @@ export const FilterCalendarIcon = styled.img`
 export const FilterSortWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  @media screen and (max-width: 430px) {
+    margin-top: 10px;
+  }
 `;
 export const FilterNewest = styled.div`
   font-family: 'SUITERegular';
