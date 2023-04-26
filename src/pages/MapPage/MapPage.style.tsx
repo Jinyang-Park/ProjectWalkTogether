@@ -16,6 +16,9 @@ export const MapPageHeader = styled.span`
   flex-direction: column;
   margin-top: 30px;
   width: 868px;
+  @media screen and (max-width: 430px) {
+    width: 95%;
+  }
 `;
 export const MapPageSearchBar = styled.form`
   display: flex;
@@ -48,9 +51,12 @@ export const MapKaKaoMapContainer = styled.span`
   height: 536px;
 
   height: 50vh;
-  @media screen and (max-width: 344px) {
+  /* @media screen and (max-width: 344px) {
     width: 300px;
     height: 300px;
+  } */
+  @media screen and (max-width: 430px) {
+    width: 100%;
   }
 `;
 export const MapPageTitle = styled.span`
@@ -61,6 +67,10 @@ export const MapPageTitle = styled.span`
 
   margin-top: 50px;
   font-weight: 600;
+  @media screen and (max-width: 430px) {
+    font-size: 28px;
+    margin-left: 20px;
+  }
 `;
 
 export const LineMarker = styled.span`
@@ -79,8 +89,8 @@ export const MapPageContentsWrapper = styled.span`
   height: 100%;
   gap: 10px;
   width: 868px;
-  @media screen and (max-width: 344px) {
-    flex-direction: column;
+  @media screen and (max-width: 430px) {
+    width: 430px;
   }
 `;
 
@@ -88,6 +98,6 @@ export const UserInfoContainer = styled.span`
   display: flex;
   flex-direction: column;
   height: 100%;
-  @media screen and (max-width: 344px) {
+  @media screen and (max-width: 430px) {
   }
 `;

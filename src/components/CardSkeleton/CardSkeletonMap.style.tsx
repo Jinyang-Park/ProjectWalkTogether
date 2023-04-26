@@ -20,8 +20,6 @@ export const CardImg = styled.div`
   height: 96px;
   background-color: #f2f2f2;
   border-radius: 4px;
-  /* margin-bottom: 35.66px;
-  border-radius: 7px; */
   overflow: hidden;
   position: relative;
   @media (max-width: 820px) {
@@ -53,8 +51,6 @@ export const CardTtile = styled.div`
   margin: 8px 0px 0px 0px;
   background-color: #f2f2f2;
   border-radius: 4px;
-  /* margin-bottom: 35.66px;
-  border-radius: 7px; */
   overflow: hidden;
   position: relative;
   @media (max-width: 820px) {
@@ -85,8 +81,6 @@ export const HashTag = styled.div`
   margin: 20px 0px 8px 0px;
   background-color: #f2f2f2;
   border-radius: 4px;
-  /* margin-bottom: 35.66px;
-  border-radius: 7px; */
   overflow: hidden;
   position: relative;
   @media (max-width: 820px) {
@@ -116,8 +110,6 @@ export const CardDes = styled.div`
   height: 33px;
   background-color: #f2f2f2;
   border-radius: 4px;
-  /* margin-bottom: 35.66px;
-  border-radius: 7px; */
   overflow: hidden;
   position: relative;
   @media (max-width: 820px) {

@@ -20,27 +20,45 @@ export const CategoryTitle = styled.p`
   font-weight: 500;
   font-size: 36px;
   line-height: 45px;
+  @media screen and (max-width: 430px) {
+    font-size: 28px;
+  }
 `;
 export const CategoryImg = styled.img`
   width: 64px;
   height: 64px;
   border-radius: 4px;
+  @media screen and (max-width: 430px) {
+    margin-left: 20px;
+  }
 `;
 export const LikedListItem = styled.div`
   display: flex;
   flex-wrap: wrap;
   grid-gap: 70px 49.3px;
   margin-top: 46px;
+  @media screen and (max-width: 430px) {
+    width: calc(50% - 6px);
+    grid-gap: 70px 30px;
+    margin-left: 20px;
+  }
 `;
 export const FilterArea = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 430px) {
+    margin: 0px 20px;
+    align-items: center;
+    align-content: center;
+    width: calc(50% - 50px);
+  }
 `;
 export const CategoryFilter = styled.div`
   display: flex;
   align-items: center;
 `;
+
 export const CategoryFilterWarpper = styled.div`
   display: flex;
   padding: 0px 10px 0px 10px;
@@ -70,6 +88,9 @@ export const FilterCalendarIcon = styled.img`
 export const FilterSortWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  @media screen and (max-width: 430px) {
+    margin-top: 10px;
+  }
 `;
 export const FilterNewest = styled.p`
   font-family: 'SUITERegular';

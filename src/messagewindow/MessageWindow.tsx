@@ -98,12 +98,10 @@ export function MessageWindowComponent() {
     width: 343px;
     height: 400px;
     padding: 20px 64px;
-
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
-
     background: #ffffff;
     box-shadow: 0px 0px 10px #bec5d7;
     border-radius: 4px;

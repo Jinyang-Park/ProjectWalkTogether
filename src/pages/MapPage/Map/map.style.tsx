@@ -105,7 +105,7 @@ export const ResultListTagList = styled.span`
   font-size: smaller;
   width: 139px;
   height: 27px;
-  color: gray;
+  color: #7d8bae;
 `;
 export const ResultListTag = styled.span``;
 
@@ -128,6 +128,17 @@ export const CustomZoomControl = styled.div`
   gap: 3px;
   width: 44px;
   color: white;
+  @media screen and (max-width: 430px) {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    bottom: 180px;
+    left: 350px;
+    z-index: 1;
+    gap: 3px;
+    width: 44px;
+    color: white;
+  }
 `;
 export const ZoomInButton = styled.span`
   width: 40px;

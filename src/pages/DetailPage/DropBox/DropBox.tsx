@@ -99,17 +99,6 @@ const DropBox = ({ setShowBox, id, getPostings, setComplete }: DropProps) => {
     );
   };
 
-  // 이건 안된다.
-  // useEffect(() => {
-  //   DeletePostHandler(id);
-  // }, []);
-
-  // () => 이거 눌렀을때 실행해라 () => this 콜백함수이다.
-  // 콜백함수 공부하기
-  // 해당된 id값을 삭제하고 then이 실행해라.
-
-  // 에러는 온클릭일때 id 필요하다, 전에는 onClick={ DeletePostHandler} 에러 캡처가 난거다.
-
   return (
     <>
       <S.DropBoxWrapper>
