@@ -85,8 +85,9 @@ export const LikedListItem = styled.div`
   @media screen and (max-width: 430px) {
     width: 430px;
     position: relative;
-    left: 20px;
+    margin-left: 10px;
     bottom: 100px;
+    grid-gap: 30px;
   }
 `;
 
