@@ -48,10 +48,10 @@ export const MapKaKaoMapContainer = styled.span`
   height: 536px;
 
   height: 50vh;
-  @media screen and (max-width: 344px) {
+  /* @media screen and (max-width: 344px) {
     width: 300px;
     height: 300px;
-  }
+  } */
 `;
 export const MapPageTitle = styled.span`
   height: 45px;
@@ -79,15 +79,12 @@ export const MapPageContentsWrapper = styled.span`
   height: 100%;
   gap: 10px;
   width: 868px;
-  @media screen and (max-width: 344px) {
-    flex-direction: column;
-  }
 `;
 
 export const UserInfoContainer = styled.span`
   display: flex;
   flex-direction: column;
   height: 100%;
-  @media screen and (max-width: 344px) {
+  @media screen and (max-width: 430px) {
   }
 `;

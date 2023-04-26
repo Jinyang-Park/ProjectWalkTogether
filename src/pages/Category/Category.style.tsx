@@ -7,16 +7,12 @@ export const CategoryWrapper = styled.div`
   min-height: 60vh;
   margin: auto;
   margin-bottom: 80px;
-  @media screen and (max-width: 430px) {
-  }
 `;
 export const CategoryTitleWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-top: 84px;
-  @media screen and (max-width: 430px) {
-  }
 `;
 export const CategoryTitle = styled.p`
   font-family: 'SUITERegular';
@@ -25,6 +21,7 @@ export const CategoryTitle = styled.p`
   font-size: 36px;
   line-height: 45px;
   @media screen and (max-width: 430px) {
+    font-size: 28px;
   }
 `;
 export const CategoryImg = styled.img`
@@ -60,8 +57,6 @@ export const FilterArea = styled.div`
 export const CategoryFilter = styled.div`
   display: flex;
   align-items: center;
-  @media screen and (max-width: 430px) {
-  }
 `;
 
 export const CategoryFilterWarpper = styled.div`
@@ -75,8 +70,6 @@ export const CategoryFilterWarpper = styled.div`
   border-radius: 4px;
   margin-right: 8px;
   margin-top: 10px;
-  @media screen and (max-width: 430px) {
-  }
 `;
 export const FilterCategory = styled.p`
   width: auto;
@@ -86,15 +79,11 @@ export const FilterCategory = styled.p`
   line-height: 15px;
   color: #a6a6a6;
   margin-right: 4px;
-  @media screen and (max-width: 430px) {
-  }
 `;
 export const FilterCalendarIcon = styled.img`
   width: 10px;
   height: 10px;
   object-fit: contain;
-  @media screen and (max-width: 430px) {
-  }
 `;
 export const FilterSortWrapper = styled.div`
   display: flex;
@@ -116,8 +105,6 @@ export const FilterNewest = styled.p`
     cursor: pointer;
     font-weight: 600;
   }
-  @media screen and (max-width: 430px) {
-  }
 `;
 export const FilterAreaLine = styled.span`
   margin: 1px 8px 0;
@@ -125,8 +112,6 @@ export const FilterAreaLine = styled.span`
   height: 16px;
   background-color: #e7e3e2;
   display: inline-block;
-  @media screen and (max-width: 430px) {
-  }
 `;
 export const NoResult = styled.div``;
 
@@ -137,6 +122,4 @@ export const NoResultTitle = styled.p`
   font-size: 16px;
   line-height: 45px;
   /* color: #7d8bae; */
-  @media screen and (max-width: 430px) {
-  }
 `;

@@ -71,9 +71,12 @@ export const LikedListItem = styled.div`
   display: flex;
   flex-wrap: wrap;
   grid-gap: 70px 49.3px;
-  /* grid-template-rows: 49.3px; */
-
   margin-top: 46px;
+  @media screen and (max-width: 430px) {
+    width: calc(50% - 6px);
+    grid-gap: 70px 30px;
+    margin-left: 20px;
+  }
 `;
 
 export const ResultList = styled.span`

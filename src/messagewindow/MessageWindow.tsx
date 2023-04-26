@@ -2,17 +2,17 @@ import { useEffect } from 'react';
 import { atom, useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
-import checkmark from '../assets/messageWindow/Checkmark.webp';
-import confetti from '../assets/messageWindow/Confetti.webp';
-import cryingFace from '../assets/messageWindow/CryingFace.webp';
-import flower from '../assets/messageWindow/Flower.webp';
-import id from '../assets/messageWindow/ID.webp';
-import perplex from '../assets/messageWindow/Perplex.webp';
-import rocket from '../assets/messageWindow/Rocket.webp';
-import writingHand from '../assets/messageWindow/WritingHand.webp';
-import yellowPencil from '../assets/messageWindow/YellowPencil.webp';
-import CloseButton from '../assets/messageWindow/CancelBtn.webp';
-import congratulation from '../assets/messageWindow/Congratulation.webp';
+import checkmark from '../assets/messageWindow/Checkmark.png';
+import confetti from '../assets/messageWindow/Confetti.png';
+import cryingFace from '../assets/messageWindow/CryingFace.png';
+import flower from '../assets/messageWindow/Flower.png';
+import id from '../assets/messageWindow/ID.png';
+import perplex from '../assets/messageWindow/Perplex.png';
+import rocket from '../assets/messageWindow/Rocket.png';
+import writingHand from '../assets/messageWindow/WritingHand.png';
+import yellowPencil from '../assets/messageWindow/YellowPencil.png';
+import CloseButton from '../assets/messageWindow/CancelBtn.png';
+import congratulation from '../assets/messageWindow/Congratulation.png';
 
 //
 // 사용법
@@ -98,12 +98,10 @@ export function MessageWindowComponent() {
     width: 343px;
     height: 400px;
     padding: 20px 64px;
-
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
-
     background: #ffffff;
     box-shadow: 0px 0px 10px #bec5d7;
     border-radius: 4px;
@@ -115,7 +113,7 @@ export function MessageWindowComponent() {
     background-color: transparent;
   `;
 
-  const LogoImg = styled.source`
+  const LogoImg = styled.img`
     width: 172px;
     height: 172px;
   `;
@@ -165,34 +163,34 @@ export function MessageWindowComponent() {
       case MessageWindowLogoType.None:
         return <></>;
       case MessageWindowLogoType.Checkmark:
-        return <LogoImg srcSet={checkmark} type='image/webp' />;
+        return <LogoImg src={checkmark} alt='Checkmark' />;
 
       case MessageWindowLogoType.Confetti:
-        return <LogoImg srcSet={confetti} type='image/webp' />;
+        return <LogoImg src={confetti} alt='Confetti' />;
 
       case MessageWindowLogoType.CryingFace:
-        return <LogoImg srcSet={cryingFace} type='image/webp' />;
+        return <LogoImg src={cryingFace} alt='Crying Face' />;
 
       case MessageWindowLogoType.Flower:
-        return <LogoImg srcSet={flower} type='image/webp' />;
+        return <LogoImg src={flower} alt='Flower' />;
 
       case MessageWindowLogoType.ID:
-        return <LogoImg srcSet={id} type='image/webp' />;
+        return <LogoImg src={id} alt='ID' />;
 
       case MessageWindowLogoType.Perplex:
-        return <LogoImg srcSet={perplex} type='image/webp' />;
+        return <LogoImg src={perplex} alt='Perplex' />;
 
       case MessageWindowLogoType.Rocket:
-        return <LogoImg srcSet={rocket} type='image/webp' />;
+        return <LogoImg src={rocket} alt='Rocket' />;
 
       case MessageWindowLogoType.WritingHand:
-        return <LogoImg srcSet={writingHand} type='image/webp' />;
+        return <LogoImg src={writingHand} alt='Writing Hand' />;
 
       case MessageWindowLogoType.YellowPencil:
-        return <LogoImg srcSet={yellowPencil} type='image/webp' />;
+        return <LogoImg src={yellowPencil} alt='Yellow Pencil' />;
 
       case MessageWindowLogoType.Congratulation:
-        return <LogoImg srcSet={congratulation} type='image/webp' />;
+        return <LogoImg src={congratulation} alt='Congratulationl' />;
 
       default:
         return <></>;
@@ -209,7 +207,9 @@ export function MessageWindowComponent() {
                 onClick={() => {
                   setProps(new MessageWindowProperties());
                 }}
-              ></AlertCloseButton>
+              >
+                {/* <img src={CloseButton} alt='Close Button'></img> */}
+              </AlertCloseButton>
               {renderLogo()}
               <AlertTitle>{props.title}</AlertTitle>
               <AlertMessage>{props.message}</AlertMessage>
