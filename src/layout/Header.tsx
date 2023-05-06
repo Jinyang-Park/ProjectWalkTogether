@@ -58,125 +58,119 @@ const Header: React.FC<Props> = () => {
   const sessionId = useRecoilValue(username);
 
   return (
-    <CommonStyles>
-      <S.NavContainer>
-        <S.Nav>
-          <S.LogowithText>
+    // <CommonStyles>
+    <S.NavContainer>
+      <S.Nav>
+        <S.LogowithText>
+          <S.NavLi>
+            <S.OllaeBox onClick={home}>
+              <S.OllaeLogo
+                src={require('../../src/assets/Mainpage/ollaelogo.svg').default}
+              />
+              <S.OllaeText>올래</S.OllaeText>
+            </S.OllaeBox>
+          </S.NavLi>
+
+          <S.NavUl>
             <S.NavLi>
-              <S.OllaeBox onClick={home}>
-                <S.OllaeLogo
-                  src={
-                    require('../../src/assets/Mainpage/ollaelogo.svg').default
-                  }
-                />
-                <S.OllaeText>올래</S.OllaeText>
-              </S.OllaeBox>
+              {loggedIn === false ? (
+                <S.NavText to='/login'>글 쓰기</S.NavText>
+              ) : (
+                <S.NavText to='/postpage'>글 쓰기</S.NavText>
+              )}
             </S.NavLi>
+            <S.NavLi>
+              {loggedIn === false ? (
+                <S.NavText to='/login'>채팅</S.NavText>
+              ) : (
+                <S.NavText to='/chat'>채 팅</S.NavText>
+              )}
+            </S.NavLi>
+            <S.NavLi>
+              <S.NavText to='/map'>지도뷰</S.NavText>
+            </S.NavLi>
+          </S.NavUl>
+        </S.LogowithText>
+        <S.NavEtc>
+          {/* <S.Profile onClick={gotomy}>닉네임</S.Profile> */}
+          <S.AlarmContainer>
+            {loggedIn ? (
+              <S.DropdownButton onClick={alarmHandler} ref={alarmRef}>
+                <S.AlarmContainer>
+                  <S.BellImg
+                    src={require('../../src/assets/bell.svg').default}
+                  ></S.BellImg>
+                  {alarm > 0 ? <S.Reddot></S.Reddot> : <S.Nonedot></S.Nonedot>}
+                </S.AlarmContainer>
 
-            <S.NavUl>
-              <S.NavLi>
-                {loggedIn === false ? (
-                  <S.NavText to='/login'>글 쓰기</S.NavText>
-                ) : (
-                  <S.NavText to='/postpage'>글 쓰기</S.NavText>
-                )}
-              </S.NavLi>
-              <S.NavLi>
-                {loggedIn === false ? (
-                  <S.NavText to='/login'>채팅</S.NavText>
-                ) : (
-                  <S.NavText to='/chat'>채 팅</S.NavText>
-                )}
-              </S.NavLi>
-              <S.NavLi>
-                <S.NavText to='/map'>지도뷰</S.NavText>
-              </S.NavLi>
-            </S.NavUl>
-          </S.LogowithText>
-          <S.NavEtc>
-            {/* <S.Profile onClick={gotomy}>닉네임</S.Profile> */}
-            <S.AlarmContainer>
-              {loggedIn ? (
-                <S.DropdownButton onClick={alarmHandler} ref={alarmRef}>
-                  <S.AlarmContainer>
-                    <S.BellImg
-                      src={require('../../src/assets/bell.svg').default}
-                    ></S.BellImg>
-                    {alarm > 0 ? (
-                      <S.Reddot></S.Reddot>
+                <S.DropNav isDropped={alarmIsOpen}>
+                  <S.NotificationsBox>
+                    <S.NotificationTitleBox>
+                      알림
+                      <S.NotificationTitleXbtn></S.NotificationTitleXbtn>
+                    </S.NotificationTitleBox>
+
+                    <HeaderAlarm setAlarm={setAlarm}></HeaderAlarm>
+                  </S.NotificationsBox>
+                </S.DropNav>
+              </S.DropdownButton>
+            ) : (
+              <S.None></S.None>
+            )}
+          </S.AlarmContainer>
+
+          <S.MyPageContainer>
+            {loggedIn ? (
+              <S.DropdownButton
+                onClick={() => {
+                  myPageHandler();
+                  setView(!view);
+                }}
+                ref={myPageRef}
+              >
+                <S.LoginButton>
+                  <S.LoginLayout>
+                    <S.LoginText>{sessionId}님</S.LoginText>
+                    {view ? (
+                      <S.LoginImg
+                        src={
+                          require('../../src/assets/Header/headerup.svg')
+                            .default
+                        }
+                      ></S.LoginImg>
                     ) : (
-                      <S.Nonedot></S.Nonedot>
+                      <S.LoginImg
+                        src={
+                          require('../../src/assets/Header/headerdowns.svg')
+                            .default
+                        }
+                      ></S.LoginImg>
                     )}
-                  </S.AlarmContainer>
+                  </S.LoginLayout>
+                </S.LoginButton>
 
-                  <S.DropNav isDropped={alarmIsOpen}>
-                    <S.NotificationsBox>
-                      <S.NotificationTitleBox>
-                        알림
-                        <S.NotificationTitleXbtn></S.NotificationTitleXbtn>
-                      </S.NotificationTitleBox>
+                {view && (
+                  <S.LoginDropNav isPropped={myPageIsOpen}>
+                    <S.Ul>
+                      <S.Li>
+                        <S.Profile onClick={gotomy}>마이페이지</S.Profile>
+                      </S.Li>
 
-                      <HeaderAlarm setAlarm={setAlarm}></HeaderAlarm>
-                    </S.NotificationsBox>
-                  </S.DropNav>
-                </S.DropdownButton>
-              ) : (
-                <S.None></S.None>
-              )}
-            </S.AlarmContainer>
-
-            <S.MyPageContainer>
-              {loggedIn ? (
-                <S.DropdownButton
-                  onClick={() => {
-                    myPageHandler();
-                    setView(!view);
-                  }}
-                  ref={myPageRef}
-                >
-                  <S.LoginButton>
-                    <S.LoginLayout>
-                      <S.LoginText>{sessionId}님</S.LoginText>
-                      {view ? (
-                        <S.LoginImg
-                          src={
-                            require('../../src/assets/Header/headerup.svg')
-                              .default
-                          }
-                        ></S.LoginImg>
-                      ) : (
-                        <S.LoginImg
-                          src={
-                            require('../../src/assets/Header/headerdowns.svg')
-                              .default
-                          }
-                        ></S.LoginImg>
-                      )}
-                    </S.LoginLayout>
-                  </S.LoginButton>
-
-                  {view && (
-                    <S.LoginDropNav isPropped={myPageIsOpen}>
-                      <S.Ul>
-                        <S.Li>
-                          <S.Profile onClick={gotomy}>마이페이지</S.Profile>
-                        </S.Li>
-
-                        <S.Li>
-                          <KakaoLogoutButton />
-                        </S.Li>
-                      </S.Ul>
-                    </S.LoginDropNav>
-                  )}
-                </S.DropdownButton>
-              ) : (
-                <S.LoginButton onClick={handleLogin}>Login</S.LoginButton>
-              )}
-            </S.MyPageContainer>
-          </S.NavEtc>
-        </S.Nav>
-      </S.NavContainer>
-    </CommonStyles>
+                      <S.Li>
+                        <KakaoLogoutButton />
+                      </S.Li>
+                    </S.Ul>
+                  </S.LoginDropNav>
+                )}
+              </S.DropdownButton>
+            ) : (
+              <S.LoginButton onClick={handleLogin}>Login</S.LoginButton>
+            )}
+          </S.MyPageContainer>
+        </S.NavEtc>
+      </S.Nav>
+    </S.NavContainer>
+    // </CommonStyles>
   );
 };
 
