@@ -5,7 +5,8 @@ import ComeLogo from '../../src/assets/logobyollae.svg';
 export const NavContainer = styled.div`
   height: 52px;
   background-color: white;
-  width: 1024px;
+  width: 100%;
+  /* width: 1024px; */
   position: relative;
   border-bottom: 0.5px solid rgba(190, 197, 215, 1);
   @media screen and (max-width: 430px) {
@@ -119,7 +120,7 @@ export const LoginButton = styled.div`
 `;
 
 export const LoginLayout = styled.div`
-  display: flex; ;
+  display: flex;
 `;
 export const LoginText = styled.p`
   margin-right: 10px;
