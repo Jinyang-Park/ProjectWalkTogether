@@ -40,7 +40,7 @@ export const ThumbnailImgPorlaroid = styled.img`
   height: 293px;
   @media screen and (max-width: 430px) {
     width: 430px;
-    height: 123px;
+    height: 170px;
   }
 `;
 export const CalendarIcon = styled.img`

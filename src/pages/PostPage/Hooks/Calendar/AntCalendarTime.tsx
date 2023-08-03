@@ -21,7 +21,7 @@ const AntCalendarTime: React.FC = () => {
         onChange={onChange}
         inputReadOnly={true}
         format={format}
-        placeholder='시간을 입력해주세요.'
+        placeholder='시간을 선택해주세요.'
         placement='topLeft'
         style={{
           width: 219,

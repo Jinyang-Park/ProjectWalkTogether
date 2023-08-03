@@ -1,3 +1,7 @@
-.ant-picker {
-  font-size: 150px;
+/* 달력과 시간이모티콘의 위치가 동시에 움직이기 때문에 화면 밖으로 날려버렸다 */
+.ant-picker-suffix {
+  @media screen and (max-width: 430px) {
+    position: relative;
+    right: 2000px;
+  }
 }

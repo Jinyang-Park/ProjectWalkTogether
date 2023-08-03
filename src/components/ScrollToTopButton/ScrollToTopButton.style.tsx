@@ -21,10 +21,18 @@ export const Button = styled.div<{ showButton: boolean }>`
   &:hover {
     opacity: 0.8;
   }
+  @media screen and (max-width: 430px) {
+    right: 220px;
+    width: 35px;
+    height: 35px;
+  }
 `;
 
 export const ArrowIcon = styled(FiArrowUp)`
   font-size: 28px;
   color: #fff;
   cursor: pointer;
+  @media screen and (max-width: 430px) {
+    font-size: 22px;
+  }
 `;

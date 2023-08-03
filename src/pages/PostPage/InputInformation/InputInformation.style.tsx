@@ -49,6 +49,12 @@ export const InputBox = styled.div`
   display: flex;
   position: relative;
   bottom: 40px;
+  @media screen and (max-width: 430px) {
+    display: block;
+    width: 430px;
+    position: relative;
+    bottom: 150px;
+  }
 `;
 
 export const MapBox = styled.div`
@@ -80,6 +86,12 @@ export const InputAdressBox = styled.form`
   position: relative;
   border: 2px solid #bec5d7;
   border-radius: 4px;
+  @media screen and (max-width: 430px) {
+    width: 395px;
+    height: 36px;
+    margin-bottom: 20px;
+    left: 15px;
+  }
 `;
 
 //인풋창
@@ -95,10 +107,9 @@ export const InputAdress = styled(Input)`
   input:focus {
     outline: none;
   }
-
   @media screen and (max-width: 430px) {
-    width: 125px;
-    height: 20px;
+    position: relative;
+    left: 0px;
   }
 `;
 
@@ -109,6 +120,12 @@ export const InpuDayBox = styled.div`
   font-size: 10px;
   border: 2px solid #bec5d7;
   border-radius: 4px;
+  @media screen and (max-width: 430px) {
+    width: 400px;
+    position: relative;
+    left: 5px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const InputTimeBox = styled.div`
@@ -118,6 +135,11 @@ export const InputTimeBox = styled.div`
   margin-left: 9px;
   border: 2px solid #bec5d7;
   border-radius: 4px;
+  @media screen and (max-width: 430px) {
+    width: 400px;
+    position: relative;
+    left: 5px;
+  }
 `;
 export const AddressIcon = styled.img`
   position: absolute;
@@ -145,6 +167,10 @@ export const CustomZoomControl = styled.div`
   gap: 3px;
   width: 44px;
   color: white;
+  @media screen and (max-width: 430px) {
+    position: relative;
+    left: 350px;
+  }
 `;
 export const ZoomInButton = styled.span`
   width: 40px;
