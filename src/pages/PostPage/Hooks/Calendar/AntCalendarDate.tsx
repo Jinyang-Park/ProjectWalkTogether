@@ -6,6 +6,7 @@ import { ReserveDate } from '../../../../Recoil/Atom';
 import 'moment/locale/ko';
 import locale from 'antd/lib/locale/ko_KR';
 import { ConfigProvider } from 'antd';
+import './AntCalendarDate.tsx.css';
 
 const AntCalendar: React.FC = () => {
   const format = 'YYYY/MM/DD';
@@ -19,6 +20,7 @@ const AntCalendar: React.FC = () => {
     <ConfigProvider locale={locale}>
       <Space direction='vertical'>
         <DatePicker
+          className='ant-picker'
           onChange={onChange}
           inputReadOnly={true}
           format={format}

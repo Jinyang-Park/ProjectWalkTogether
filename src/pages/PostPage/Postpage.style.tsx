@@ -12,6 +12,10 @@ export const Boxcontainer = styled.div`
 //제출 버튼
 export const PostSubmitBox = styled.div`
   margin-top: -115px;
+  @media screen and (max-width: 430px) {
+    position: relative;
+    right: 532px;
+  }
 `;
 
 export const PostSubmitBtn = styled.button`

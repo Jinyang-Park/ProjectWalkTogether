@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowIcon, Button } from './ScrollToTopButton.style';
+import React from 'react';
 
 const ScrollToTopButton = () => {
   const [showButton, setShowButton] = useState<boolean>(false);

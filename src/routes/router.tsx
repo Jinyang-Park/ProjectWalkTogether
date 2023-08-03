@@ -26,6 +26,7 @@ import RerouteToMyPage from './../components/RerouteToMyPage/RerouteToMyPage';
 import FindPassword from '../pages/LoginPage/Findpassword';
 import Footer from '../layout/Footer/Footer';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
+import React from 'react';
 
 const Router = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(

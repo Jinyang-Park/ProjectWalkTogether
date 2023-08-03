@@ -89,9 +89,10 @@ export const BannerTitle = styled.div`
   position: relative;
   top: 150px;
   @media screen and (max-width: 430px) {
+    width: 600px;
     font-size: 28px;
     position: absolute;
-    right: -50px;
+    right: 150px;
     top: 40px;
   }
 `;
@@ -103,6 +104,7 @@ export const BannerSubTitle = styled.div`
   line-height: 160%;
   color: '#333D4B';
   @media screen and (max-width: 430px) {
+    width: 200px;
     font-size: 28px;
     position: absolute;
     left: 0px;

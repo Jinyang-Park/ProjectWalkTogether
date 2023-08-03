@@ -10,6 +10,11 @@ export const MapNInputBox = styled.div`
   margin-bottom: 64px;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 430px) {
+    position: relative;
+    top: -87px;
+    width: 430px;
+  }
 `;
 
 export const Selection = styled.p`
@@ -21,6 +26,10 @@ export const Selection = styled.p`
   color: #24264e;
   justify-content: center;
   display: flex;
+  @media screen and (max-width: 430px) {
+    position: relative;
+    right: 100px;
+  }
 `;
 
 export const borderline = styled.div`
@@ -29,6 +38,9 @@ export const borderline = styled.div`
   border-top: 2px solid #bec5d7;
   position: relative;
   top: 1px;
+  @media screen and (max-width: 430px) {
+    width: 430px;
+  }
 `;
 
 export const InputBox = styled.div`
@@ -37,12 +49,21 @@ export const InputBox = styled.div`
   display: flex;
   position: relative;
   bottom: 40px;
+  @media screen and (max-width: 430px) {
+    display: block;
+    width: 430px;
+    position: relative;
+    bottom: 150px;
+  }
 `;
 
 export const MapBox = styled.div`
   width: 863px;
   height: 436px;
   border-top: 1px;
+  @media screen and (max-width: 430px) {
+    width: 430px;
+  }
 `;
 
 export const KakaoMap = styled.div`
@@ -51,6 +72,11 @@ export const KakaoMap = styled.div`
   background-color: white;
   position: relative;
   top: 5px;
+  @media screen and (max-width: 430px) {
+    margin: 0 auto;
+    width: 390px;
+    height: 241px;
+  }
 `;
 
 //인풋박스
@@ -60,6 +86,12 @@ export const InputAdressBox = styled.form`
   position: relative;
   border: 2px solid #bec5d7;
   border-radius: 4px;
+  @media screen and (max-width: 430px) {
+    width: 395px;
+    height: 36px;
+    margin-bottom: 20px;
+    left: 15px;
+  }
 `;
 
 //인풋창
@@ -75,6 +107,10 @@ export const InputAdress = styled(Input)`
   input:focus {
     outline: none;
   }
+  @media screen and (max-width: 430px) {
+    position: relative;
+    left: 0px;
+  }
 `;
 
 export const InpuDayBox = styled.div`
@@ -84,6 +120,12 @@ export const InpuDayBox = styled.div`
   font-size: 10px;
   border: 2px solid #bec5d7;
   border-radius: 4px;
+  @media screen and (max-width: 430px) {
+    width: 400px;
+    position: relative;
+    left: 5px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const InputTimeBox = styled.div`
@@ -93,6 +135,11 @@ export const InputTimeBox = styled.div`
   margin-left: 9px;
   border: 2px solid #bec5d7;
   border-radius: 4px;
+  @media screen and (max-width: 430px) {
+    width: 400px;
+    position: relative;
+    left: 5px;
+  }
 `;
 export const AddressIcon = styled.img`
   position: absolute;
@@ -100,6 +147,10 @@ export const AddressIcon = styled.img`
   width: 24px;
   height: 24px;
   object-fit: contain;
+  @media screen and (max-width: 430px) {
+    position: absolute;
+    left: 220px;
+  }
 `;
 export const MapAddressTitle = styled.div`
   display: flex;
@@ -116,6 +167,10 @@ export const CustomZoomControl = styled.div`
   gap: 3px;
   width: 44px;
   color: white;
+  @media screen and (max-width: 430px) {
+    position: relative;
+    left: 350px;
+  }
 `;
 export const ZoomInButton = styled.span`
   width: 40px;

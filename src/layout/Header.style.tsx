@@ -10,7 +10,7 @@ export const NavContainer = styled.div`
   position: relative;
   border-bottom: 0.5px solid rgba(190, 197, 215, 1);
   @media screen and (max-width: 430px) {
-    min-width: 430px;
+    width: 430px;
   }
 `;
 export const OllaeLogo = styled.img`
@@ -22,7 +22,7 @@ export const OllaeLogo = styled.img`
     width: 25px;
     height: 25px;
     position: relative;
-    top: 7px;
+    top: 4px;
     padding-left: 20px;
   }
 `;
