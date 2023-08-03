@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const CardBox = styled.a`
   width: 180px;
   height: 207px;
+  @media screen and (max-width: 430px) {
+    width: 150px;
+    height: 191px;
+  }
 `;
 
 export const none = styled.div`
@@ -10,6 +14,13 @@ export const none = styled.div`
 `;
 export const CardSectionWrapper = styled.div`
   cursor: pointer;
+  @media screen and (max-width: 430px) {
+    font-size: 12px;
+    position: relative;
+    width: 150px;
+    height: 191px;
+    /* bottom: 200px; */
+  }
 `;
 export const ListItemWrapper = styled.div`
   width: 100%;

@@ -10,6 +10,11 @@ export const MapNInputBox = styled.div`
   margin-bottom: 64px;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 430px) {
+    position: relative;
+    top: -87px;
+    width: 430px;
+  }
 `;
 
 export const Selection = styled.p`
@@ -21,6 +26,10 @@ export const Selection = styled.p`
   color: #24264e;
   justify-content: center;
   display: flex;
+  @media screen and (max-width: 430px) {
+    position: relative;
+    right: 100px;
+  }
 `;
 
 export const borderline = styled.div`
@@ -29,6 +38,9 @@ export const borderline = styled.div`
   border-top: 2px solid #bec5d7;
   position: relative;
   top: 1px;
+  @media screen and (max-width: 430px) {
+    width: 430px;
+  }
 `;
 
 export const InputBox = styled.div`
@@ -43,6 +55,9 @@ export const MapBox = styled.div`
   width: 863px;
   height: 436px;
   border-top: 1px;
+  @media screen and (max-width: 430px) {
+    width: 430px;
+  }
 `;
 
 export const KakaoMap = styled.div`
@@ -51,6 +66,11 @@ export const KakaoMap = styled.div`
   background-color: white;
   position: relative;
   top: 5px;
+  @media screen and (max-width: 430px) {
+    margin: 0 auto;
+    width: 390px;
+    height: 241px;
+  }
 `;
 
 //인풋박스
@@ -74,6 +94,11 @@ export const InputAdress = styled(Input)`
 
   input:focus {
     outline: none;
+  }
+
+  @media screen and (max-width: 430px) {
+    width: 125px;
+    height: 20px;
   }
 `;
 
@@ -100,6 +125,10 @@ export const AddressIcon = styled.img`
   width: 24px;
   height: 24px;
   object-fit: contain;
+  @media screen and (max-width: 430px) {
+    position: absolute;
+    left: 220px;
+  }
 `;
 export const MapAddressTitle = styled.div`
   display: flex;

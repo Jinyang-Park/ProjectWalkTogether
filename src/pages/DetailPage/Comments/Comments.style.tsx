@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Textarea } from './../../PostPage/Mainpost/Mainpost.style';
+import { Textarea } from '../../PostPage/Mainpost/Mainpost.style';
 import { currentUserUid } from '../../../Recoil/Atom';
 
 export const DetailCommentsWrapper = styled.div`
@@ -183,7 +183,7 @@ export const CommentBox = styled.div`
 export const CommentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%; ;
+  width: 100%;
 `;
 export const CommentContainer = styled.div`
   display: flex;

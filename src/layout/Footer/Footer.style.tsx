@@ -9,13 +9,12 @@ export const NavContainer = styled.div`
   position: relative;
   font-family: 'SUIT';
   color: #24264e;
-  position: relative;
   display: flex;
   justify-content: center;
   top: 50px;
 
   @media screen and (max-width: 430px) {
-    position: relative;
+    width: 430px;
   }
 `;
 
@@ -162,7 +161,7 @@ export const ReservedText = styled.div`
   width: 500px;
   @media screen and (max-width: 430px) {
     position: relative;
-    left: -60px;
+    left: -100px;
   }
 `;
 

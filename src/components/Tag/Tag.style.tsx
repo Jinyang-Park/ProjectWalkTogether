@@ -14,6 +14,14 @@ export const TagBox = styled.div`
   :focus-within {
     outline: 2px solid #7d8bae;
   }
+  @media screen and (max-width: 430px) {
+    width: 260px;
+    height: 18px;
+    position: relative;
+    top: -24px;
+    right: 132px;
+    font-size: 10px;
+  }
 `;
 
 export const TagItem = styled.div`
@@ -27,6 +35,9 @@ export const TagItem = styled.div`
   color: white;
   font-size: 10px;
   margin: 0px 3px 0px 3px;
+  @media screen and (max-width: 430px) {
+    height: 15px;
+  }
 `;
 export const Text = styled.span``;
 
@@ -60,5 +71,10 @@ export const TagInput = styled.input`
     font-size: 14px;
     line-height: 20px;
     color: #7d8bae;
+  }
+  @media screen and (max-width: 430px) {
+    position: relative;
+    bottom: 4px;
+    font-size: 10px;
   }
 `;

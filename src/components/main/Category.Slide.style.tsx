@@ -58,11 +58,11 @@ export const StyledSlider = styled(Slider)`
   }
 
   @media screen and (max-width: 430px) {
-    min-width: 410px;
+    width: 410px;
     font-size: 28px;
-    position: absolute;
+    position: relative;
     right: 15px;
-    top: 220px;
+    bottom: 200px;
     font-size: 12px;
   }
 `;
