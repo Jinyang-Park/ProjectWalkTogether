@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const ChattingBox = styled.div`
+export const ChattingBox = styled.div<{ swapBoxAndLists: boolean }>`
   border: 1px solid #bec5d7;
   width: 577px;
   height: 564px;
@@ -11,6 +11,7 @@ export const ChattingBox = styled.div`
     left: 0px;
     bottom: 24px;
     border-radius: 0px;
+    display: ${(props) => (props.swapBoxAndLists ? 'none' : 'block')};
     /* display: none; */
   }
 `;
@@ -204,7 +205,7 @@ export const ChattingText = styled.div`
   word-break: break-all;
 
   @media screen and (max-width: 430px) {
-    width: 300px;
+    max-width: 300px;
   }
 `;
 
@@ -221,12 +222,11 @@ export const ChattingTextLeft = styled.div`
   padding: 10px;
   font-size: 12px;
   display: inline-block;
-
   text-align: left;
   word-break: break-all;
-  
+
   @media screen and (max-width: 430px) {
-    width: 300px;
+    max-width: 300px;
   }
 `;
 
@@ -273,3 +273,11 @@ export const ChattingIntro = styled.div`
 export const ChattingIntroTextTop = styled.div``;
 
 export const ChattingIntroTextBottom = styled.div``;
+
+export const BackButton = styled.button`
+  display: none;
+  @media screen and (max-width: 430px) {
+    display: block;
+    background-color: white;
+  }
+`;

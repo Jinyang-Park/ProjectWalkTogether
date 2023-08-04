@@ -28,11 +28,14 @@ import {
 } from '../../../Recoil/Atom';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+import { relative } from 'path';
 
 interface SetProps {
   tochattingBoxUid: string;
   tochattingBoxRoomIndex: string;
   tochattingBoxOpponentRoomIndex: string;
+  swapBoxAndLists: boolean;
+  SetSwapBoxAndLists: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface Nowmessage {
@@ -58,6 +61,8 @@ interface Nowmessage {
 }
 
 function ChattingBox({
+  SetSwapBoxAndLists,
+  swapBoxAndLists,
   tochattingBoxUid,
   tochattingBoxRoomIndex,
   tochattingBoxOpponentRoomIndex,
@@ -162,8 +167,12 @@ function ChattingBox({
 
   return (
     <>
-      <S.ChattingBox>
+      <S.ChattingBox swapBoxAndLists={swapBoxAndLists}>
         <S.ChattingNickname>
+          <S.BackButton onClick={() => SetSwapBoxAndLists(true)}>
+            {' '}
+            &lt;
+          </S.BackButton>
           <S.ChattingNicknamePhoto>
             {profileImg === '' ? (
               <S.ChattingBoxheaderImgCover>
@@ -184,6 +193,7 @@ function ChattingBox({
             {nickname == '' ? '대화상대를 선택해 주세요' : `${nickname} 님`}
           </S.ChattingNicknameto>
         </S.ChattingNickname>
+
         <S.ChattingContent>
           {/* 글 들어가는 곳 */}
 

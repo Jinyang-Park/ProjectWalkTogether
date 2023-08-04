@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 //최상단 div
-export const ChattingBox = styled.div`
+export const ChattingBox = styled.div<{ swapBoxAndLists: boolean }>`
   border: 1px solid #bec5d7;
   width: 292px;
   height: 564px;
@@ -12,9 +12,9 @@ export const ChattingBox = styled.div`
     position: relative;
     left: 0px;
     bottom: 25px;
-    height: 100%;
+    /* height: calc(100vh - 50px); */
     border-radius: 0;
-    display: none;
+    display: ${(props) => (props.swapBoxAndLists ? 'block' : 'none')};
   }
 `;
 

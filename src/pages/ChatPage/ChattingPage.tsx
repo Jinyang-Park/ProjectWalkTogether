@@ -12,6 +12,10 @@ const ChattingPage = () => {
   const [tochattingBoxOpponentRoomIndex, SetTochattingBoxOpponenRoomIndex] =
     useState<string>('');
   //채팅 리스트하나를 클릭했을 때 불이 들어오게 함
+  const [swapBoxAndLists, SetSwapBoxAndLists] = useState<boolean>(true);
+  //반응형에서 채팅리스트와 채팅박스트를 보여주는 부분을 다루는 상태값
+
+  console.log('swapBoxesAndLists:', swapBoxAndLists);
 
   return (
     <>
@@ -21,6 +25,8 @@ const ChattingPage = () => {
             SetTochattingBoxUid={SetTochattingBoxUid}
             SetTochattingBoxRoomIndex={SetTochattingBoxRoomIndex}
             SetTochattingBoxOpponenRoomIndex={SetTochattingBoxOpponenRoomIndex}
+            SetSwapBoxAndLists={SetSwapBoxAndLists}
+            swapBoxAndLists={swapBoxAndLists}
             tochattingBoxRoomIndex={tochattingBoxRoomIndex}
             tochattingBoxUid={tochattingBoxUid}
             tochattingBoxOpponentRoomIndex={tochattingBoxOpponentRoomIndex}
@@ -29,6 +35,8 @@ const ChattingPage = () => {
             tochattingBoxUid={tochattingBoxUid}
             tochattingBoxRoomIndex={tochattingBoxRoomIndex}
             tochattingBoxOpponentRoomIndex={tochattingBoxOpponentRoomIndex}
+            SetSwapBoxAndLists={SetSwapBoxAndLists}
+            swapBoxAndLists={swapBoxAndLists}
           />
         </Boxcontainer>
       </CommonStyles>

@@ -24,6 +24,8 @@ interface SetProps {
   SetTochattingBoxOpponenRoomIndex: React.Dispatch<
     React.SetStateAction<string>
   >;
+  SetSwapBoxAndLists: React.Dispatch<React.SetStateAction<boolean>>;
+  swapBoxAndLists: boolean;
   tochattingBoxRoomIndex: string;
   tochattingBoxOpponentRoomIndex: string;
   tochattingBoxUid: string;
@@ -53,6 +55,8 @@ function ChattingList({
   SetTochattingBoxUid,
   SetTochattingBoxRoomIndex,
   SetTochattingBoxOpponenRoomIndex,
+  SetSwapBoxAndLists,
+  swapBoxAndLists,
   tochattingBoxRoomIndex,
 }: SetProps) {
   const mychatlist = useRecoilValue(currentUserUid);
@@ -122,7 +126,7 @@ function ChattingList({
 
   return (
     <>
-      <S.ChattingBox>
+      <S.ChattingBox swapBoxAndLists={swapBoxAndLists}>
         <S.ChattingListMessage>
           <S.ChattingListMessageWord>메세지</S.ChattingListMessageWord>
           <S.ChattingListMessagePhoto>
@@ -146,6 +150,7 @@ function ChattingList({
                     SetTochattingBoxUid(user.opponentUserUid);
                     SetTochattingBoxRoomIndex(user.myRoomId);
                     SetTochattingBoxOpponenRoomIndex(user.posterChatroomId);
+                    SetSwapBoxAndLists(false);
 
                     isActiveUpdate();
 
