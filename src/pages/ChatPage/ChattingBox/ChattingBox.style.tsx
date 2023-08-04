@@ -5,6 +5,32 @@ export const ChattingBox = styled.div`
   width: 577px;
   height: 564px;
   border-radius: 4px;
+  @media screen and (max-width: 430px) {
+    width: 430px;
+    position: relative;
+    left: 0px;
+    bottom: 24px;
+    border-radius: 0px;
+    /* display: none; */
+  }
+`;
+
+//채팅 최상위 박스
+export const ChattingContent = styled.div`
+  height: 460px;
+  width: 576px;
+  /* border-right: 1px solid #bec5d7; */
+  border-bottom: 1px solid #bec5d7;
+  color: rgba(125, 139, 174, 1);
+  overflow-y: auto;
+  //왼쪽에 채팅창뜨게하는 3종세트
+  display: flex; // 그러므로 내림차순으로 가져오면 가장 나중에 쓴 글이 최하단에 위치 하지 않을까?
+  flex-direction: column-reverse; //값을 가져올때 오름차순=> 가장 먼저쓴 글이 최하단에 위치한다
+  @media screen and (max-width: 430px) {
+    width: 430px;
+
+    /* display: none; */
+  }
 `;
 
 export const ChattingNickname = styled.div`
@@ -25,6 +51,9 @@ export const ChattingNickname = styled.div`
   /* light blue */
   /* background-color: blue; */
   border-bottom: 1px solid #bec5d7;
+  @media screen and (max-width: 430px) {
+    width: 429px;
+  }
 `;
 
 export const ChattingNicknamePhoto = styled.div`
@@ -61,6 +90,9 @@ export const ChattingInputBox = styled.div`
   height: 64px;
   border-radius: 4px;
   /* border-right: 1px solid #bec5d7; */
+  @media screen and (max-width: 430px) {
+    width: 430px;
+  }
 `;
 
 export const ChattingInputouter = styled.div`
@@ -88,6 +120,12 @@ export const ChattingInputouter = styled.div`
   flex: none;
   order: 0;
   flex-grow: 0;
+
+  @media screen and (max-width: 430px) {
+    width: 390px;
+
+    /* display: none; */
+  }
 `;
 
 export const ChattingInput = styled.input`
@@ -106,6 +144,11 @@ export const ChattingInput = styled.input`
   order: 0;
   flex-grow: 0;
   outline: none;
+  @media screen and (max-width: 430px) {
+    width: 300px;
+
+    /* display: none; */
+  }
 `;
 
 export const ChattingButton = styled.button`
@@ -123,19 +166,10 @@ export const ChattingButton = styled.button`
   flex: none;
   order: 1;
   flex-grow: 0;
-`;
-
-//채팅 최상위 박스
-export const ChattingContent = styled.div`
-  height: 460px;
-  width: 576px;
-  /* border-right: 1px solid #bec5d7; */
-  border-bottom: 1px solid #bec5d7;
-  color: rgba(125, 139, 174, 1);
-  overflow-y: auto;
-  //왼쪽에 채팅창뜨게하는 3종세트
-  display: flex; // 그러므로 내림차순으로 가져오면 가장 나중에 쓴 글이 최하단에 위치 하지 않을까?
-  flex-direction: column-reverse; //값을 가져올때 오름차순=> 가장 먼저쓴 글이 최하단에 위치한다
+  @media screen and (max-width: 430px) {
+    position: relative;
+    right: 110px;
+  }
 `;
 
 //오른쪽
@@ -167,6 +201,11 @@ export const ChattingText = styled.div`
   /* position: relative;
   left: 100px; */
   text-align: left;
+  word-break: break-all;
+
+  @media screen and (max-width: 430px) {
+    width: 300px;
+  }
 `;
 
 //왼쪽
@@ -184,6 +223,11 @@ export const ChattingTextLeft = styled.div`
   display: inline-block;
 
   text-align: left;
+  word-break: break-all;
+  
+  @media screen and (max-width: 430px) {
+    width: 300px;
+  }
 `;
 
 export const ChattingImg = styled.div`

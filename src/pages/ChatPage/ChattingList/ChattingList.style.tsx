@@ -6,8 +6,16 @@ export const ChattingBox = styled.div`
   width: 292px;
   height: 564px;
   background-color: white;
-
   border-radius: 4px;
+  @media screen and (max-width: 430px) {
+    width: 430px;
+    position: relative;
+    left: 0px;
+    bottom: 25px;
+    height: 100%;
+    border-radius: 0;
+    display: none;
+  }
 `;
 
 //채팅리스트 메세지 박스
@@ -18,6 +26,10 @@ export const ChattingListMessage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 430px) {
+    width: 428px;
+    border-bottom: 1px solid #bec5d7;
+  }
 `;
 
 export const ChattingListMessageWord = styled.div`
@@ -36,6 +48,7 @@ export const ChattingListMessageWord = styled.div`
   order: 0;
   flex-grow: 0;
 `;
+
 export const ChattingListMessagePhoto = styled.div`
   width: 12px;
   height: 12px;
@@ -53,18 +66,29 @@ export const ChattingListouter = styled.div`
   width: 300px;
   height: 509px;
   position: relative;
+  @media screen and (max-width: 430px) {
+    width: 430px;
+    height: 100%;
+  }
 `;
 
 export const ChattingUserBox = styled.div`
   width: 290px;
   height: auto;
   z-index: 1;
+  @media screen and (max-width: 430px) {
+    width: 430px;
+  }
 `;
 
 export const ChattingUserContents = styled.div`
   width: 291px;
   height: auto;
   display: flex;
+  @media screen and (max-width: 430px) {
+    width: 420px;
+    border-right: 1px solid #bec5d7;
+  }
 `;
 
 export const ChattingUser = styled.div`
@@ -75,6 +99,9 @@ export const ChattingUser = styled.div`
   cursor: pointer;
   :active {
     background-color: #eef1f7;
+  }
+  @media screen and (max-width: 430px) {
+    width: 430px;
   }
 `;
 
@@ -140,7 +167,9 @@ export const ChattingFooterBox = styled.div`
   /* top: -1.1px; */
   height: 15px;
   width: 291px;
-
   border-top: 1px solid #bec5d7;
   z-index: 0;
+  @media screen and (max-width: 430px) {
+    display: none;
+  }
 `;

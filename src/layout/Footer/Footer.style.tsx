@@ -15,6 +15,8 @@ export const NavContainer = styled.div`
 
   @media screen and (max-width: 430px) {
     width: 430px;
+    position: relative;
+    top: 0px;
   }
 `;
 
