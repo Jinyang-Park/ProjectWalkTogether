@@ -10,7 +10,7 @@ export const ChattingBox = styled.div<{ swapBoxAndLists: boolean }>`
   @media screen and (max-width: 430px) {
     width: 430px;
     position: relative;
-    left: 0px;
+    left: 5px;
     bottom: 25px;
     /* height: calc(100vh - 50px); */
     border-radius: 0;

@@ -124,7 +124,7 @@ const DetailPage = () => {
     querySnapshot.forEach((doc) => {
       list = [...list, { id: doc.id, ...doc.data() }];
     });
-    setChatList(list);
+    return list;
   };
 
   const duplicate = () => {
@@ -172,111 +172,125 @@ const DetailPage = () => {
   };
 
   const goToChat = async () => {
-    if (isduplication == true) {
-      // alert('이미 채팅이 존재합니다.');
-      MessageWindow.showWindow(
-        new MessageWindowProperties(
-          true,
-          '이미 채팅이 존재합니다!',
-          '',
-          [
-            {
-              text: '닫 기',
-              callback: () => {
-                MessageWindow.showWindow(
-                  new MessageWindowProperties(),
-                  setState
-                );
+    try {
+      const data = await getChattingList();
+      let isduplication = false;
+
+      for (let a = 0; a < data.length; a++) {
+        if (data[a].combineId === combineId) {
+          isduplication = true;
+          break; // No need to continue checking if duplication is found
+        }
+      }
+
+      if (isduplication == true) {
+        // alert('이미 채팅이 존재합니다.');
+        MessageWindow.showWindow(
+          new MessageWindowProperties(
+            true,
+            '이미 채팅이 존재합니다!',
+            '',
+            [
+              {
+                text: '닫 기',
+                callback: () => {
+                  MessageWindow.showWindow(
+                    new MessageWindowProperties(),
+                    setState
+                  );
+                },
               },
-            },
-          ],
-          MessageWindowLogoType.Perplex
-        ),
-        setState
-      );
-    } else {
-      // alert('채팅창으로 이동합니다.');
-      MessageWindow.showWindow(
-        new MessageWindowProperties(
-          true,
-          '채팅창으로 이동합니다',
-          '',
-          [
-            {
-              text: '채팅하러 가기',
-              callback: () => navigate('/chat'),
-            },
-            {
-              text: '닫 기',
-              callback: () => {
-                MessageWindow.showWindow(
-                  new MessageWindowProperties(),
-                  setState
-                );
+            ],
+            MessageWindowLogoType.Perplex
+          ),
+          setState
+        );
+      } else {
+        // alert('채팅창으로 이동합니다.');
+        MessageWindow.showWindow(
+          new MessageWindowProperties(
+            true,
+            '채팅창으로 이동합니다',
+            '',
+            [
+              {
+                text: '채팅하러 가기',
+                callback: () => navigate('/chat'),
               },
-            },
-          ],
-          MessageWindowLogoType.Rocket
-        ),
-        setState
-      );
+              {
+                text: '닫 기',
+                callback: () => {
+                  MessageWindow.showWindow(
+                    new MessageWindowProperties(),
+                    setState
+                  );
+                },
+              },
+            ],
+            MessageWindowLogoType.Rocket
+          ),
+          setState
+        );
 
-      await setDoc(
-        doc(
-          dbService,
-          'ChattingUsers',
-          `${getPostingUID}`,
-          'chattingListroom',
-          posterChatroomId
-        ),
-        {
-          combineId,
-          profile: UID.myporfile,
-          nickname: UID.mynickname,
-          createdAt: new Date(),
-          uid: getPostings.UID,
-          opponentUserUid: UID.useruid,
-          posterChatroomId: applicantChatroomId,
-          myRoomId: posterChatroomId,
-        }
-      );
-      //현재 유저의 chattingroom에 저장되는 값들
-      await setDoc(
-        doc(
-          dbService,
-          'ChattingUsers',
-          `${CurrentUid}`,
-          'chattingListroom',
-          applicantChatroomId
-        ),
-        {
-          combineId,
-          profile: getPostings.ThumbnailURL_Posting,
-          nickname: getPostings.Nickname,
-          createdAt: new Date(),
-          uid: CurrentUid,
-          opponentUserUid: getPostings.UID,
-          posterChatroomId: posterChatroomId,
-          myRoomId: applicantChatroomId,
-        }
-      );
+        await setDoc(
+          doc(
+            dbService,
+            'ChattingUsers',
+            `${getPostingUID}`,
+            'chattingListroom',
+            posterChatroomId
+          ),
+          {
+            combineId,
+            profile: UID.myporfile,
+            nickname: UID.mynickname,
+            createdAt: new Date(),
+            uid: getPostings.UID,
+            opponentUserUid: UID.useruid,
+            posterChatroomId: applicantChatroomId,
+            myRoomId: posterChatroomId,
+          }
+        );
+        //현재 유저의 chattingroom에 저장되는 값들
+        await setDoc(
+          doc(
+            dbService,
+            'ChattingUsers',
+            `${CurrentUid}`,
+            'chattingListroom',
+            applicantChatroomId
+          ),
+          {
+            combineId,
+            profile: getPostings.ThumbnailURL_Posting,
+            nickname: getPostings.Nickname,
+            createdAt: new Date(),
+            uid: CurrentUid,
+            opponentUserUid: getPostings.UID,
+            posterChatroomId: posterChatroomId,
+            myRoomId: applicantChatroomId,
+          }
+        );
 
-      //알람기능을 위해 게시글 작성자에게 보내지는 알람
-      await addDoc(
-        collection(dbService, 'ChattingUsers', `${getPostingUID}`, 'Alarm'),
-        {
-          profile: UID.myporfile,
-          uid: UID.useruid,
-          nickname: UID.mynickname,
-          createdAt: new Date(),
-          createdAT: Date(),
-        }
-      );
+        //알람기능을 위해 게시글 작성자에게 보내지는 알람
+        await addDoc(
+          collection(dbService, 'ChattingUsers', `${getPostingUID}`, 'Alarm'),
+          {
+            profile: UID.myporfile,
+            uid: UID.useruid,
+            nickname: UID.mynickname,
+            createdAt: new Date(),
+            createdAT: Date(),
+          }
+        );
 
-      // 함께 걸을래요를 누르면 해당 값들이 chatbox에 전달된다
-      roomId(combineId);
-      nickname(getPostings.Nickname);
-      profileImg(getPostings.ThumbnailURL_Posting);
+        // 함께 걸을래요를 누르면 해당 값들이 chatbox에 전달된다
+        roomId(combineId);
+        nickname(getPostings.Nickname);
+        profileImg(getPostings.ThumbnailURL_Posting);
+      }
+    } catch (error) {
+      console.error('Error fetching chatting list:', error);
     }
   };
 

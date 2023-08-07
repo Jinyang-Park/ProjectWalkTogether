@@ -8,7 +8,7 @@ export const ChattingBox = styled.div<{ swapBoxAndLists: boolean }>`
   @media screen and (max-width: 430px) {
     width: 430px;
     position: relative;
-    left: 0px;
+    left: 5px;
     bottom: 24px;
     border-radius: 0px;
     display: ${(props) => (props.swapBoxAndLists ? 'none' : 'block')};

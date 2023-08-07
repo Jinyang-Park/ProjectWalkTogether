@@ -122,7 +122,6 @@ function ChattingList({
   }, [mychatlist]);
 
   const chattingUser = chatList;
-  console.log('chattingUser:', chattingUser);
 
   return (
     <>

@@ -5,3 +5,35 @@
     right: 2000px;
   }
 }
+
+.ant-picker-header-super-next-btn {
+  display: none;
+}
+.ant-picker-header-super-prev-btn {
+  display: none;
+}
+
+.ant-picker-footer {
+  background-color: #bec5d7;
+}
+
+:where(.css-dev-only-do-not-override-1me4733).ant-picker-dropdown
+  .ant-picker-today-btn {
+  color: white;
+}
+
+.ant-picker-now-btn {
+  color: white;
+}
+
+:where(.css-dev-only-do-not-override-1me4733).ant-btn-primary {
+  color: #fff;
+  background-color: #bec5d7;
+}
+
+:where(.css-dev-only-do-not-override-1me4733).ant-btn-primary:not(
+    :disabled
+  ):hover {
+  color: #fff;
+  background-color: #bec5d7;
+}
