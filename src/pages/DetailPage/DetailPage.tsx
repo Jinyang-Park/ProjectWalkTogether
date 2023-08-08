@@ -78,7 +78,7 @@ const DetailPage = () => {
   const CurrentUid = UID.useruid;
 
   //  동일한 유저이더라도 게시글마다 새로운 채팅방이 생긴다
-  const combineId: any = getPostings.PostingID_Posting + CurrentUid;
+  const combineId: any = id + CurrentUid;
   // const getPostingsThumbnail = getPostings.ThumbnailURL_Posting;
   //게시글작성자의 chattingListroom의 doc id
   const posterChatroomId = uuidv4();
@@ -88,6 +88,8 @@ const DetailPage = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
+  console.log('getPostings.PostingID_Postin:', getPostings);
+  console.log('id:', id);
 
   //함께걸을래요를 누르면 해당 채팅박스가 바로 뜨게하는 리코일
   const roomId = useSetRecoilState(tochattingboxroomid);
@@ -515,6 +517,8 @@ const DetailPage = () => {
               {/*post.id인 id를 DropBox로 넘겨준다*/}
               {myPageIsOpen && (
                 <DropBox
+                  getPostingUID={getPostingUID}
+                  CurrentUid={CurrentUid}
                   isDropped={myPageIsOpen}
                   setShowBox={setShowBox}
                   id={id}
