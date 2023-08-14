@@ -36,6 +36,7 @@ import MessageWindow, {
   MessageWindowProperties,
   messageWindowPropertiesAtom,
 } from '../../messagewindow/MessageWindow';
+import ReviewModals from '../../components/ReviewModal/ReviewModal';
 
 const DetailPage = () => {
   // 모달 외부 클릭 시 닫기 customhook
@@ -95,6 +96,11 @@ const DetailPage = () => {
   const roomId = useSetRecoilState(tochattingboxroomid);
   const nickname = useSetRecoilState(tochattingboxnickname);
   const profileImg = useSetRecoilState(tochattingboxprofileimg);
+
+  //리뷰할 상대들의 리스트를 가져오는 값
+  const [reviewList, SetReviewList] = useState<undefined | object>();
+
+  console.log('reviewList:', reviewList);
 
   // 게시글 id db 가져오기
   const getPost = async () => {
@@ -385,6 +391,7 @@ const DetailPage = () => {
   return (
     <>
       <CommonStyles>
+        <ReviewModals reviewList={reviewList} />
         <S.DetailIntroWapper>
           <S.BannereURL src={getPostings.BannerURL_Posting} />
         </S.DetailIntroWapper>
@@ -421,7 +428,7 @@ const DetailPage = () => {
                       return (
                         <>
                           {tagItem == '' ? (
-                            <div>&nbsp;</div>
+                            <div key={i}>&nbsp;</div>
                           ) : (
                             <div key={i}>&nbsp;{'#' + tagItem}</div>
                           )}
@@ -524,6 +531,7 @@ const DetailPage = () => {
                   id={id}
                   getPostings={getPostings}
                   setComplete={setComplete}
+                  SetReviewList={SetReviewList}
                 />
               )}
             </S.ShareBtn>

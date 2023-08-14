@@ -33,6 +33,7 @@ interface DropProps {
   isDropped: React.Dispatch<React.SetStateAction<boolean>>;
   setComplete: React.Dispatch<React.SetStateAction<boolean>>;
   setShowBox: React.Dispatch<React.SetStateAction<boolean>>;
+  SetReviewList: React.Dispatch<React.SetStateAction<object>>;
   getPostingUID: string;
   CurrentUid: string;
 }
@@ -44,6 +45,7 @@ const DropBox = ({
   setComplete,
   CurrentUid,
   getPostingUID,
+  SetReviewList,
 }: DropProps) => {
   const navigate = useNavigate();
 
@@ -141,7 +143,7 @@ const DropBox = ({
                 return t.combineId.includes(postId);
               });
               console.log('getList:', getList);
-              tempChatList = getList;
+              SetReviewList(getList);
               // AppointSomeoneToReview(id);
             },
           },

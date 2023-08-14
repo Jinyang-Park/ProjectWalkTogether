@@ -92,6 +92,7 @@ function HeaderAlarm({ setAlarm }: Props) {
             onClick={() => {
               DeleteNotificationHandler(ars.id);
             }}
+            id={ars.id}
           >
             <S.NoitificationIconBox>
               <S.Img src={require('../../assets/ballon.svg').default}></S.Img>

@@ -4,6 +4,7 @@ import CommonStyles from './../../styles/CommonStyles';
 import ChattingList from './ChattingList/ChattingList';
 import ChattingBox from './ChattingBox/ChattingBox';
 import Footer from './../../layout/Footer/Footer';
+import ReviewBox from './ReviewBox/ReviewBox';
 
 const ChattingPage = () => {
   const [tochattingBoxUid, SetTochattingBoxUid] = useState<string>('');
@@ -31,7 +32,14 @@ const ChattingPage = () => {
             tochattingBoxUid={tochattingBoxUid}
             tochattingBoxOpponentRoomIndex={tochattingBoxOpponentRoomIndex}
           />
-          <ChattingBox
+          {/* <ChattingBox
+            tochattingBoxUid={tochattingBoxUid}
+            tochattingBoxRoomIndex={tochattingBoxRoomIndex}
+            tochattingBoxOpponentRoomIndex={tochattingBoxOpponentRoomIndex}
+            SetSwapBoxAndLists={SetSwapBoxAndLists}
+            swapBoxAndLists={swapBoxAndLists}
+          /> */}
+          <ReviewBox
             tochattingBoxUid={tochattingBoxUid}
             tochattingBoxRoomIndex={tochattingBoxRoomIndex}
             tochattingBoxOpponentRoomIndex={tochattingBoxOpponentRoomIndex}
