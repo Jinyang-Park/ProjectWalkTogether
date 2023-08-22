@@ -32,6 +32,7 @@ interface SetProps {
 }
 
 interface ChattingUser {
+  reviewRoomId: any;
   id: React.Key | null | undefined;
   combineId: string | ((currVal: string) => string);
   nickname: string;
@@ -122,6 +123,7 @@ function ChattingList({
   }, [mychatlist]);
 
   const chattingUser = chatList;
+
   console.log('chattingUser:', chattingUser);
 
   return (
@@ -138,7 +140,41 @@ function ChattingList({
         <S.ChattingListouter>
           <S.ChattingUserBox>
             {chattingUser.map((user: ChattingUser) => {
-              return (
+              return user.reviewRoomId ? (
+                <S.ChattingUser
+                  key={user.id}
+                  onClick={() => {
+                    SetTochattingBoxRoomId(user.reviewRoomId);
+                    SetTochattingBoxNickname(user.nickname);
+                    SetTochattingBoxProfileImg(user.profile);
+                    SetTochattingBoxUid(user.opponentUserUid);
+                    SetTochattingBoxRoomIndex(user.myRoomId);
+                    SetTochattingBoxOpponenRoomIndex(user.posterChatroomId);
+                    SetSwapBoxAndLists(false);
+                    isActiveUpdate();
+                    SetIsActivList(false);
+                  }}
+                >
+                  <S.ChattingUserContents>
+                    <S.UserImgCover>
+                      <S.UserImg
+                        src={require('../../../assets/avatar.svg').default}
+                      />
+                    </S.UserImgCover>
+                    <S.NickNMessage>
+                      <S.UserName>{user.nickname}님의 리뷰</S.UserName>
+                      <S.LastConversation>
+                        {user.lastConversation}
+                      </S.LastConversation>
+                    </S.NickNMessage>
+                  </S.ChattingUserContents>
+                  {user.isActive === 'filled' ? (
+                    <S.GreenLight></S.GreenLight>
+                  ) : (
+                    <></>
+                  )}
+                </S.ChattingUser>
+              ) : (
                 <S.ChattingUser
                   key={user.id}
                   tabIndex={-1}

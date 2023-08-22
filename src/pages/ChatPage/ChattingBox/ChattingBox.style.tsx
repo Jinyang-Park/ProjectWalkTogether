@@ -8,7 +8,7 @@ export const ChattingBox = styled.div<{ swapBoxAndLists: boolean }>`
   @media screen and (max-width: 430px) {
     width: 430px;
     position: relative;
-    left: 0px;
+    left: 15px;
     bottom: 24px;
     border-radius: 0px;
     display: ${(props) => (props.swapBoxAndLists ? 'none' : 'block')};
@@ -210,7 +210,9 @@ export const ChattingText = styled.div`
 `;
 
 //왼쪽
-export const ChattingTextBoxLeft = styled.div`
+export const ChattingTextBoxLeft = styled.div``;
+
+export const ChattingTextBoxLeftContainer = styled.div`
   display: flex;
 `;
 
@@ -220,7 +222,7 @@ export const ChattingTextLeft = styled.div`
   margin: 12px;
   border-radius: 4px;
   padding: 10px;
-  font-size: 12px;
+  font-size: 14px;
   display: inline-block;
   text-align: left;
   word-break: break-all;
@@ -280,4 +282,39 @@ export const BackButton = styled.button`
     display: block;
     background-color: white;
   }
+`;
+
+export const SelectReview = styled.div<{ selected: boolean }>`
+  background-color: ${({ selected }) => (selected ? '#EEF1F7' : 'white')};
+  color: ${({ selected }) => (selected ? '#24264E' : ' #7D8BAE')};
+  border: 1px solid #bec5d7;
+  padding: 8px 10px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 33px;
+  width: 220px;
+  height: 35px;
+  font-size: 10px;
+`;
+
+export const ReviewSelectComplete = styled.button`
+  width: 70px;
+  height: 30px;
+  padding: 5px 10px;
+  margin: 10px;
+  margin-top: 0px;
+  cursor: pointer;
+  border-radius: 33px;
+  color: #7d8bae;
+  border: 1px solid #bec5d7;
+  background-color: white;
+  font-size: 10px;
+  :hover {
+    background-color: #7d8bae;
+    color: white;
+  }
+`;
+
+export const ReviewSelectBox = styled.div`
+  padding-left: 35px;
 `;

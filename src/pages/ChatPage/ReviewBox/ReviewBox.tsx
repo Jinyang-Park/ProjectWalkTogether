@@ -6,7 +6,7 @@ import {
   ReactFragment,
   useEffect,
 } from 'react';
-import * as S from './ChattingBox.style';
+import * as S from '../ChattingBox/ChattingBox.style';
 import { useState } from 'react';
 import { dbService } from '../../../common/firebase';
 import {
@@ -59,8 +59,7 @@ interface Nowmessage {
 
   id: Key | null | undefined;
 }
-
-function ChattingBox({
+function ReviewBox({
   SetSwapBoxAndLists,
   swapBoxAndLists,
   tochattingBoxUid,
@@ -80,61 +79,31 @@ function ChattingBox({
   const myRoomIndex = tochattingBoxRoomIndex;
   const opponentRoomIndex = tochattingBoxOpponentRoomIndex;
   const currentUid = useRecoilValue(currentUserUid);
-
   // const roomId = userInfo.roomId;
+  // 리뷰 선택리스트
+
+  const reviewList = [
+    '친절하고 매너가 좋아요',
+    '재미있어요',
+    '자상하고 편안했어요!',
+    '대화의 폭이 넓었어요!',
+    '직접 입력할래요',
+  ];
+  const [selectedReview, setSelectedReview] = useState([]);
+
+  const handleReviewClick = (review: any) => {
+    if (selectedReview.includes(review)) {
+      setSelectedReview(selectedReview.filter((p: string) => p !== review));
+    } else {
+      setSelectedReview([...selectedReview, review]);
+    }
+  };
+
+  console.log('selectedReview:', selectedReview);
 
   const chattinguser = useRecoilValue(currentUserUid);
 
   const nowchattime = Date().slice(16, 21);
-
-  //메세지 전송시 함수
-  const sendMessage = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (message.trim() === '') {
-      alert('채팅을 입력해 주세요!');
-      return;
-    } else {
-      const docRef = await addDoc(
-        collection(dbService, 'Chatting', roomId, 'message'),
-        {
-          chattingRoomId: roomId,
-          message: message,
-          user: chattinguser,
-          createdAt: new Date(),
-          nowchattime: nowchattime,
-          // nickname: nickname,
-          profileImg: profileImg,
-        }
-      ).then(() => {
-        const updatMyDoc = doc(
-          dbService,
-          'ChattingUsers',
-          currentUid,
-          'chattingListroom',
-          myRoomIndex
-        );
-        const updatYourDoc = doc(
-          dbService,
-          'ChattingUsers',
-          opponentuid,
-          'chattingListroom',
-          opponentRoomIndex
-        );
-        updateDoc(updatMyDoc, {
-          isActive: 'empty',
-          lastConversation: message,
-          createdAt: new Date(),
-        });
-
-        updateDoc(updatYourDoc, {
-          isActive: 'filled',
-          lastConversation: message,
-          createdAt: new Date(),
-        });
-      });
-      setMessage('');
-    }
-  };
 
   const getChatting = async () => {
     if (chattinguser === '') {
@@ -142,7 +111,7 @@ function ChattingBox({
     }
 
     const q = query(
-      collection(dbService, 'Chatting', roomId, 'message'),
+      collection(dbService, 'Review', roomId, 'message'),
       where('chattingRoomId', '==', roomId),
       orderBy('createdAt', 'desc')
     );
@@ -163,7 +132,7 @@ function ChattingBox({
     getChatting();
   }, [roomId]);
 
-  const nowmessage = getmessage;
+  console.log('getmessage:', getmessage);
 
   return (
     <>
@@ -194,51 +163,45 @@ function ChattingBox({
         </S.ChattingNickname>
 
         <S.ChattingContent>
-          {/* 글 들어가는 곳 */}
+          <S.ChattingTextBoxLeft>
+            <S.ChattingTextBoxLeftContainer>
+              {' '}
+              <S.ChattingImg>
+                <S.ChattingBoxheaderImgCover>
+                  <S.ChattingBoxheaderImg src={profileImg} />
+                </S.ChattingBoxheaderImgCover>
+              </S.ChattingImg>
+              <S.ChattingTextLeft>
+                산책 메이트에 대한 평가를 남겨주세요!
+              </S.ChattingTextLeft>
+              <S.ChattingTime>{nowchattime}</S.ChattingTime>
+            </S.ChattingTextBoxLeftContainer>
 
-          {roomId ? (
-            nowmessage.map((ars: Nowmessage, id: Key | undefined | null) => {
-              return ars.user === chattinguser ? (
-                <S.ChattingTextBox key={id}>
-                  <S.ChattingText>{ars.message}</S.ChattingText>
-                  <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
-                </S.ChattingTextBox>
-              ) : (
-                <S.ChattingTextBoxLeft key={id}>
-                  <S.ChattingTextBoxLeftContainer>
-                    {' '}
-                    <S.ChattingImg>
-                      <S.ChattingBoxheaderImgCover>
-                        <S.ChattingBoxheaderImg src={profileImg} />
-                      </S.ChattingBoxheaderImgCover>
-                    </S.ChattingImg>
-                    <S.ChattingTextLeft>{ars.message}</S.ChattingTextLeft>
-                    <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
-                  </S.ChattingTextBoxLeftContainer>
-                </S.ChattingTextBoxLeft>
-              );
-            })
-          ) : (
-            <S.ChattingIntro>
-              <S.ChattingIntroTextTop style={{ fontWeight: 600 }}>
-                게시글에서 '함께 걸을래요' 버튼 선택 후
-              </S.ChattingIntroTextTop>
-              <S.ChattingIntroTextBottom style={{ fontWeight: 600 }}>
-                원하시는 상대와 채팅을 시작해 주세요.
-              </S.ChattingIntroTextBottom>
-            </S.ChattingIntro>
-          )}
+            <S.ReviewSelectBox>
+              {reviewList.map((t) => {
+                return (
+                  <S.SelectReview
+                    selected={selectedReview.includes(t)}
+                    onClick={() => handleReviewClick(t)}
+                  >
+                    {t}
+                  </S.SelectReview>
+                );
+              })}
+              <S.ReviewSelectComplete>선택 완료</S.ReviewSelectComplete>
+            </S.ReviewSelectBox>
+          </S.ChattingTextBoxLeft>
         </S.ChattingContent>
         <S.ChattingInputBox>
           <S.ChattingForm
-            onSubmit={(event) => sendMessage(event)}
+            // onSubmit={(event) => sendMessage(event)}
             className='send-message'
           >
             <S.ChattingInputouter>
               <S.ChattingInput
                 placeholder='채팅을 입력해 주세요'
-                onChange={(e) => setMessage(e.target.value)}
-                value={message}
+                // onChange={(e) => setMessage(e.target.value)}
+                // value={message}
               />
               <S.ChattingButton>
                 <S.PlaneImg
@@ -253,4 +216,4 @@ function ChattingBox({
   );
 }
 
-export default ChattingBox;
+export default ReviewBox;
