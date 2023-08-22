@@ -20,7 +20,7 @@ function ReviewModal({ reviewList }: ReviewModalProps) {
   const navigate = useNavigate();
   const UID = useRecoilValue(userForChat);
 
-  console.log('UID:', UID);
+  console.log('selectedPeople:', selectedPeople);
 
   if (reviewList === undefined) return;
   const showlist: any = reviewList;
@@ -58,19 +58,23 @@ function ReviewModal({ reviewList }: ReviewModalProps) {
         {
           ...item,
           nickname: UID.mynickname,
-          chattingRoomId: uuidv4() + item.reviewRoomId,
+          reviewRoomId: item.reviewRoomId + 'opponent',
         }
       ).then(async () => {
         await addDoc(
-          collection(dbService, 'Review', item.chattingRoomId, 'message'),
+          collection(
+            dbService,
+            'Review',
+            item.reviewRoomId + 'opponent',
+            'message'
+          ),
           {
-            chattingRoomId: item.chattingRoomId,
+            chattingRoomId: item.reviewRoomId + 'opponent',
             opponentsUid: item.uid,
             myuid: item.opponentUserUid,
             createdAt: new Date(),
             nickname: UID.mynickname,
             profileImg: item.profile,
-            Progress: 'Proceeding',
             select1: '친절하고 매너가 좋아요',
             select1State: false,
             select2: '재미있어요',
@@ -96,13 +100,18 @@ function ReviewModal({ reviewList }: ReviewModalProps) {
         ),
         {
           ...item,
-          chattingRoomId: uuidv4() + item.reviewRoomId,
+          reviewRoomId: item.reviewRoomId + 'poster',
         }
       ).then(async () => {
         await addDoc(
-          collection(dbService, 'Review', item.chattingRoomId, 'message'),
+          collection(
+            dbService,
+            'Review',
+            item.reviewRoomId + 'poster',
+            'message'
+          ),
           {
-            chattingRoomId: item.chattingRoomId,
+            chattingRoomId: item.reviewRoomId + 'poster',
             opponentsUid: item.uid,
             myuid: item.opponentUserUid,
             createdAt: new Date(),

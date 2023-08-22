@@ -205,14 +205,16 @@ function ChattingBox({
                 </S.ChattingTextBox>
               ) : (
                 <S.ChattingTextBoxLeft key={id}>
-                  <S.ChattingImg>
-                    <S.ChattingBoxheaderImgCover>
-                      <S.ChattingBoxheaderImg src={profileImg} />
-                    </S.ChattingBoxheaderImgCover>
-                  </S.ChattingImg>
-                  <S.ChattingTextLeft>{ars.message}</S.ChattingTextLeft>
-
-                  <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
+                  <S.ChattingTextBoxLeftContainer>
+                    {' '}
+                    <S.ChattingImg>
+                      <S.ChattingBoxheaderImgCover>
+                        <S.ChattingBoxheaderImg src={profileImg} />
+                      </S.ChattingBoxheaderImgCover>
+                    </S.ChattingImg>
+                    <S.ChattingTextLeft>{ars.message}</S.ChattingTextLeft>
+                    <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
+                  </S.ChattingTextBoxLeftContainer>
                 </S.ChattingTextBoxLeft>
               );
             })

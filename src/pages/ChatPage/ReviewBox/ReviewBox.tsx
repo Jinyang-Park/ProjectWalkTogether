@@ -80,6 +80,26 @@ function ReviewBox({
   const opponentRoomIndex = tochattingBoxOpponentRoomIndex;
   const currentUid = useRecoilValue(currentUserUid);
   // const roomId = userInfo.roomId;
+  // 리뷰 선택리스트
+
+  const reviewList = [
+    '친절하고 매너가 좋아요',
+    '재미있어요',
+    '자상하고 편안했어요!',
+    '대화의 폭이 넓었어요!',
+    '직접 입력할래요',
+  ];
+  const [selectedReview, setSelectedReview] = useState([]);
+
+  const handleReviewClick = (review: any) => {
+    if (selectedReview.includes(review)) {
+      setSelectedReview(selectedReview.filter((p: string) => p !== review));
+    } else {
+      setSelectedReview([...selectedReview, review]);
+    }
+  };
+
+  console.log('selectedReview:', selectedReview);
 
   const chattinguser = useRecoilValue(currentUserUid);
 
@@ -142,7 +162,36 @@ function ReviewBox({
           </S.ChattingNicknameto>
         </S.ChattingNickname>
 
-        <S.ChattingContent>{/* 글 들어가는 곳 */}</S.ChattingContent>
+        <S.ChattingContent>
+          <S.ChattingTextBoxLeft>
+            <S.ChattingTextBoxLeftContainer>
+              {' '}
+              <S.ChattingImg>
+                <S.ChattingBoxheaderImgCover>
+                  <S.ChattingBoxheaderImg src={profileImg} />
+                </S.ChattingBoxheaderImgCover>
+              </S.ChattingImg>
+              <S.ChattingTextLeft>
+                산책 메이트에 대한 평가를 남겨주세요!
+              </S.ChattingTextLeft>
+              <S.ChattingTime>{nowchattime}</S.ChattingTime>
+            </S.ChattingTextBoxLeftContainer>
+
+            <S.ReviewSelectBox>
+              {reviewList.map((t) => {
+                return (
+                  <S.SelectReview
+                    selected={selectedReview.includes(t)}
+                    onClick={() => handleReviewClick(t)}
+                  >
+                    {t}
+                  </S.SelectReview>
+                );
+              })}
+              <S.ReviewSelectComplete>선택 완료</S.ReviewSelectComplete>
+            </S.ReviewSelectBox>
+          </S.ChattingTextBoxLeft>
+        </S.ChattingContent>
         <S.ChattingInputBox>
           <S.ChattingForm
             // onSubmit={(event) => sendMessage(event)}

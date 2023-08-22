@@ -10,7 +10,7 @@ export const ChattingBox = styled.div<{ swapBoxAndLists: boolean }>`
   @media screen and (max-width: 430px) {
     width: 430px;
     position: relative;
-    left: 5px;
+    left: 15px;
     bottom: 25px;
     /* height: calc(100vh - 50px); */
     border-radius: 0;
@@ -148,6 +148,9 @@ export const LastConversation = styled.div`
   font-size: 12px;
   line-height: 20px;
   color: #7d8bae;
+  width: 200px;
+  height: 20px;
+  overflow: hidden;
 `;
 
 export const GreenLight = styled.div`
