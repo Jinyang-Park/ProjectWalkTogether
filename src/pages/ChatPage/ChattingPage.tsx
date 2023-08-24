@@ -19,7 +19,7 @@ const ChattingPage = () => {
   //반응형에서 채팅리스트와 채팅박스트를 보여주는 부분을 다루는 상태값
   const roomId = useRecoilValue(tochattingboxroomid);
 
-  console.log('roomId:', roomId);
+  // console.log('roomId:', roomId);
 
   return (
     <>

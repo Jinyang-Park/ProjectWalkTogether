@@ -19,6 +19,8 @@ function ReviewModal({ reviewList }: ReviewModalProps) {
   const [reviewModalState, setReviewModalState] = useState(false);
   const navigate = useNavigate();
   const UID = useRecoilValue(userForChat);
+  //시간
+  const nowchattime = Date().slice(16, 21);
 
   console.log('selectedPeople:', selectedPeople);
 
@@ -47,6 +49,7 @@ function ReviewModal({ reviewList }: ReviewModalProps) {
     });
 
     const sendconfirm = myReviewList.map(async (item: any) => {
+      //리뷰상대의 채팅방에 올라가는 글 작성자에 대한 리뷰
       await setDoc(
         doc(
           dbService,
@@ -72,24 +75,26 @@ function ReviewModal({ reviewList }: ReviewModalProps) {
             chattingRoomId: item.reviewRoomId + 'opponent',
             opponentsUid: item.uid,
             myuid: item.opponentUserUid,
+            uid: item.uid,
             createdAt: new Date(),
+            nowchattime: nowchattime,
             nickname: UID.mynickname,
             profileImg: item.profile,
-            select1: '친절하고 매너가 좋아요',
-            select1State: false,
-            select2: '재미있어요',
-            select2State: false,
-            select3: '자상하고 편안했어요!',
-            select3State: false,
-            select4: '대화의 폭이 넓었어요!',
-            select4State: false,
-            select5: '직접 입력할래요',
-            select5State: false,
+            select: [
+              '친절하고 매너가 좋아요',
+              '재미있어요',
+              '자상하고 편안했어요!',
+              '대화의 폭이 넓었어요!',
+              '시간약속을 잘 지켰어요',
+            ],
+            confirmState: true,
+            inputState: false,
           }
         ).catch((error) => {
           console.log('대화 상대에게 리뷰 메세지 오류', error);
         });
       });
+      //글작성자의 채팅방에 올라가는 상대방에 대한 리뷰
       await setDoc(
         doc(
           dbService,
@@ -112,22 +117,23 @@ function ReviewModal({ reviewList }: ReviewModalProps) {
           ),
           {
             chattingRoomId: item.reviewRoomId + 'poster',
-            opponentsUid: item.uid,
-            myuid: item.opponentUserUid,
+            opponentsUid: item.opponentUserUid,
+            myuid: item.uid,
+            uid: item.opponentUserUid,
             createdAt: new Date(),
+            nowchattime: nowchattime,
             nickname: item.nickname,
             profileImg: item.profile,
             Progress: 'Proceeding',
-            select1: '친절하고 매너가 좋아요',
-            select1State: false,
-            select2: '재미있어요',
-            select2State: false,
-            select3: '자상하고 편안했어요!',
-            select3State: false,
-            select4: '대화의 폭이 넓었어요!',
-            select4State: false,
-            select5: '직접 입력할래요',
-            select5State: false,
+            select: [
+              '친절하고 매너가 좋아요',
+              '재미있어요',
+              '자상하고 편안했어요!',
+              '대화의 폭이 넓었어요!',
+              '시간약속을 잘 지켰어요',
+            ],
+            confirmState: true,
+            inputState: false,
           }
         ).catch((error) => {
           console.log('작성자에게 보내는 리뷰 메세지 오류', error);

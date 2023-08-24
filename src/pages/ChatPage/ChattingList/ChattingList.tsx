@@ -164,7 +164,7 @@ function ChattingList({
                     <S.NickNMessage>
                       <S.UserName>{user.nickname}님의 리뷰</S.UserName>
                       <S.LastConversation>
-                        {user.lastConversation}
+                        {user.reviewRoomId ? '' : user.lastConversation}
                       </S.LastConversation>
                     </S.NickNMessage>
                   </S.ChattingUserContents>
