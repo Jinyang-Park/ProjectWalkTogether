@@ -19,6 +19,7 @@ import {
   addDoc,
   updateDoc,
   getDoc,
+  setDoc,
 } from 'firebase/firestore';
 
 import {
@@ -90,8 +91,11 @@ function ReviewBox({
   //채팅 대화 내용관리
   const [talk, setTalk] = useState('');
   //DB에서 받아오는 상대방 리뷰값
-  const [opponentReveiwList, setOpponentReviewList] = useState<any>();
-  const [updatedReview, setUpdatedReview] = useState<any[]>();
+  const [opponentReviewList, setOpponentReviewList] = useState<any>();
+  const [updatedReview, setUpdatedReview] = useState<any>();
+
+  //객체복사
+  const opponentReviewListduplicated = opponentReviewList;
 
   const userReview = [
     { option: '친절하고 매너가 좋아요', count: 0 },
@@ -109,6 +113,15 @@ function ReviewBox({
     }
   };
 
+  const handleUserInfo = async () => {
+    const docRef = doc(dbService, 'user', opponentuid);
+    const docSnap = await getDoc(docRef);
+
+    setOpponentReviewList(() => docSnap.data());
+    console.log('getdoctest1:', opponentReviewList);
+    console.log('test1:', updatedReview);
+  };
+
   console.log('selectedReview:', selectedReview);
 
   const chattinguser = useRecoilValue(currentUserUid);
@@ -118,38 +131,48 @@ function ReviewBox({
   const inputlength = getmessage?.length;
   const inputState = getmessage[0]?.inputState;
   //유저 정보에 들어갈 상태 값
-  const reveiwState = getmessage[inputlength - 1]?.selected;
+  const reviewState = getmessage[inputlength - 1]?.selected;
   const updatedOpponentReveiwList = updatedReview;
 
-  const handleReviewState = () => {
-    if (opponentReveiwList.review === undefined) {
-      const renew = userReview.map((item) => {
-        reveiwState.map((t: string) => {
+  const handleReviewState = async () => {
+    console.log('reviewState:', reviewState);
+    console.log('opponentReviewListduplicated:', opponentReviewListduplicated);
+    if (opponentReviewListduplicated?.review === undefined) {
+      userReview?.map((item: { option: string; count: number }) => {
+        selectedReview?.forEach((t: string) => {
           if (item.option === t) {
             return item.count++;
           }
         });
       });
-      console.log('reveiwState:', reveiwState);
-      setUpdatedReview(renew);
-    } else if (opponentReveiwList?.review) {
-      const renew = opponentReveiwList?.map((item) => {
-        reveiwState.map((t) => {
-          if (item.option === t) {
-            return item.count++;
-          }
-        });
-      });
-      console.log('renew2:', renew);
-      setUpdatedReview(renew);
+      setUpdatedReview(userReview);
+      console.log('updatedUserReview', userReview);
+      console.log('path1');
+      console.log('handleReviewStateSupdatedReview', updatedReview);
+    } else if (opponentReviewListduplicated.review) {
+      await opponentReviewListduplicated.review.map(
+        (item: { option: any; count: number }) => {
+          selectedReview?.forEach((t) => {
+            if (item.option === t) {
+              return item.count++;
+            }
+          });
+        }
+      );
+      console.log(
+        'opponentReviewListduplicated:',
+        opponentReviewListduplicated
+      );
+      setUpdatedReview(opponentReviewListduplicated);
+      console.log('path2');
+      console.log('handleReviewStateSupdatedReview', updatedReview);
     }
   };
 
   useEffect(() => {
     handleReviewState();
-  }, [opponentReveiwList]);
+  }, [opponentReviewList]);
 
-  console.log('opponentReveiwList:', opponentReveiwList);
   console.log('updatedReview:', updatedReview);
 
   const getChatting = async () => {
@@ -170,13 +193,14 @@ function ReviewBox({
         };
         return chat;
       });
-      setGetMessage(getChat);
+      setGetMessage(() => getChat);
     });
   };
 
   useEffect(() => {
     if (!roomId) return;
     getChatting();
+    handleUserInfo();
   }, [roomId]);
 
   // const reviewMessage = getmessage[0]?.select;
@@ -196,15 +220,16 @@ function ReviewBox({
       { selected: selectedReview, confirmState: false, progress: 'done' }
     )
       .then(async () => {
-        const docRef = doc(dbService, 'user', getmessage[0].opponentsUid);
-        const docSnap = await getDoc(docRef);
+        if (updatedOpponentReveiwList === undefined) return;
+        handleReviewState();
+        console.log('getdoctest2:', opponentReviewList);
+        console.log('test2:', updatedReview);
 
-        setOpponentReviewList(docSnap.data());
-      })
-      .then(async () => {
-        if (updatedOpponentReveiwList[0] === undefined) return;
         await updateDoc(doc(dbService, 'user', getmessage[0].opponentsUid), {
           review: updatedReview,
+        }).then(() => {
+          console.log('getdoctest3:', opponentReviewList);
+          console.log('test3:', updatedReview);
         });
       })
       .then(
@@ -250,11 +275,12 @@ function ReviewBox({
             }
           ).catch((error) => console.log(error))
       );
+    console.log('getdoctest3:', opponentReviewList);
 
-    await updateDoc(doc(dbService, 'user', getmessage[0].opponentsUid), {});
+    // await updateDoc(doc(dbService, 'user', getmessage[0].opponentsUid), {});
   };
 
-  const handleTalkSubmit = async (e) => {
+  const handleTalkSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await addDoc(
       collection(dbService, 'Review', getmessage[0].chattingRoomId, 'message'),
