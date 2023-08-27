@@ -96,6 +96,7 @@ function ReviewBox({
 
   //객체복사
   const opponentReviewListduplicated = opponentReviewList;
+  console.log('opponentuid:', opponentuid);
 
   const userReview = [
     { option: '친절하고 매너가 좋아요', count: 0 },
@@ -135,26 +136,29 @@ function ReviewBox({
   const updatedOpponentReveiwList = updatedReview;
 
   const handleReviewState = async () => {
-    console.log('reviewState:', reviewState);
+    console.log('selectedReview:', selectedReview);
     console.log('opponentReviewListduplicated:', opponentReviewListduplicated);
-    if (opponentReviewListduplicated?.review === undefined) {
-      userReview?.map((item: { option: string; count: number }) => {
-        selectedReview?.forEach((t: string) => {
-          if (item.option === t) {
-            return item.count++;
-          }
-        });
-      });
-      setUpdatedReview(userReview);
-      console.log('updatedUserReview', userReview);
-      console.log('path1');
-      console.log('handleReviewStateSupdatedReview', updatedReview);
-    } else if (opponentReviewListduplicated.review) {
-      await opponentReviewListduplicated.review.map(
+    // if (opponentReviewListduplicated?.review === undefined) {
+    //   const newReview = userReview?.map(
+    //     (item: { option: string; count: number }) => {
+    //       selectedReview?.forEach((t: string) => {
+    //         if (item.option === t) {
+    //           item.count++;
+    //         }
+    //       });
+    //     }
+    //   );
+    //   setUpdatedReview(newReview);
+    //   console.log('updatedUserReview', userReview);
+    //   console.log('path1');
+    //   console.log('handleReviewStateSupdatedReview', updatedReview);
+    // } else
+    if (Array.isArray(opponentReviewListduplicated?.review)) {
+      await opponentReviewListduplicated.review.forEach(
         (item: { option: any; count: number }) => {
           selectedReview?.forEach((t) => {
             if (item.option === t) {
-              return item.count++;
+              item.count++;
             }
           });
         }
@@ -163,9 +167,9 @@ function ReviewBox({
         'opponentReviewListduplicated:',
         opponentReviewListduplicated
       );
-      setUpdatedReview(opponentReviewListduplicated);
+      setUpdatedReview(() => opponentReviewListduplicated.review);
       console.log('path2');
-      console.log('handleReviewStateSupdatedReview', updatedReview);
+      console.log('updatedReview', updatedReview);
     }
   };
 
@@ -221,7 +225,7 @@ function ReviewBox({
     )
       .then(async () => {
         if (updatedOpponentReveiwList === undefined) return;
-        handleReviewState();
+        await handleReviewState();
         console.log('getdoctest2:', opponentReviewList);
         console.log('test2:', updatedReview);
 

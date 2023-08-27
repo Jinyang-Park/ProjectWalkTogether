@@ -62,6 +62,8 @@ function ReviewModal({ reviewList }: ReviewModalProps) {
           ...item,
           nickname: UID.mynickname,
           reviewRoomId: item.reviewRoomId + 'opponent',
+          opponentUserUid: item.uid,
+          uid: item.opponentUserUid,
         }
       ).then(async () => {
         await addDoc(
@@ -106,6 +108,7 @@ function ReviewModal({ reviewList }: ReviewModalProps) {
         {
           ...item,
           reviewRoomId: item.reviewRoomId + 'poster',
+          opponentUserUid: item.opponentUserUid,
         }
       ).then(async () => {
         await addDoc(

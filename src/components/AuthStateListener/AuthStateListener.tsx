@@ -61,6 +61,13 @@ export default function AuthStateListener() {
         profileImg: profileImg,
         uid: uid,
         id: uid,
+        review: [
+          { option: '친절하고 매너가 좋아요', count: 0 },
+          { option: '재미있어요', count: 0 },
+          { option: '자상하고 편안했어요!', count: 0 },
+          { option: '대화의 폭이 넓었어요!', count: 0 },
+          { option: '시간약속을 잘 지켰어요', count: 0 },
+        ],
       });
     }
   };
