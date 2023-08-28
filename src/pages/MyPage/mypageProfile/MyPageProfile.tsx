@@ -13,10 +13,15 @@ import useDetectClose from '../../../hooks/useDetectClose';
 import * as S from './MyPageProfile.style';
 import { UserNickName } from '../../../Recoil/Atom';
 
-const MyPageProfile = (props: { uid: string }) => {
+interface Setprops {
+  uid: string;
+  setUserInfo: React.Dispatch<React.SetStateAction<object>>;
+}
+
+const MyPageProfile = ({ uid, setUserInfo }: Setprops) => {
   const navigate = useNavigate();
-  const uid = props.uid;
-  // console.log(uid);
+  // const uid = props.uid;
+  // console.log('uid', uid);
 
   const [newname, setNewname] = useState('');
   const [newmessage, setNewmessage] = useState('');
@@ -26,6 +31,8 @@ const MyPageProfile = (props: { uid: string }) => {
   const setUsername = useSetRecoilState(username);
 
   const [isEditing, setIsEditing] = useState(false);
+
+  // const imageURL = userInfo?.profileImg;
 
   const [imageURL, setImageURL] = useState<string>('');
   const userUID = useRecoilValue(currentUserUid);
@@ -40,17 +47,21 @@ const MyPageProfile = (props: { uid: string }) => {
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
 
   useEffect(() => {
-    getImageURL();
+    getUserInfo();
   }, []);
 
-  const getImageURL = async () => {
+  // console.log('userInfo', userInfo);
+
+  const getUserInfo = async () => {
     console.log(uid);
 
     const docRef = doc(dbService, 'user', uid);
     const docSnap = await getDoc(docRef);
 
     setImageURL(docSnap.data().profileImg);
+    setUserInfo(docSnap.data());
   };
+
   const onImageChange = (
     e: React.ChangeEvent<EventTarget & HTMLInputElement>
   ) => {
