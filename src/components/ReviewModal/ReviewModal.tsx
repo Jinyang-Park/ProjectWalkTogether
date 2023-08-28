@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './ReviewModal.css';
 import { useState } from 'react';
-import { doc, setDoc, addDoc, collection } from 'firebase/firestore';
+import { doc, setDoc, addDoc, collection, updateDoc } from 'firebase/firestore';
 import { dbService } from './../../common/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
@@ -10,9 +10,10 @@ import { uuidv4 } from '@firebase/util';
 
 interface ReviewModalProps {
   reviewList: object;
+  id: string;
 }
 
-function ReviewModal({ reviewList }: ReviewModalProps) {
+function ReviewModal({ reviewList, id }: ReviewModalProps) {
   //선택한 리뷰 상대들 목록
   const [selectedPeople, setSelectedPeople] = useState<any>([]);
   //모달창 상태값 현재 필요성을 다시 생각해 봐야될 것 같다.
@@ -21,6 +22,7 @@ function ReviewModal({ reviewList }: ReviewModalProps) {
   const UID = useRecoilValue(userForChat);
   //시간
   const nowchattime = Date().slice(16, 21);
+  const paramID = id;
 
   console.log('selectedPeople:', selectedPeople);
 
@@ -49,6 +51,13 @@ function ReviewModal({ reviewList }: ReviewModalProps) {
     });
 
     const sendconfirm = myReviewList.map(async (item: any) => {
+      //게시글 상태 posting=>postingDone
+      await updateDoc(doc(dbService, 'Post', paramID), {
+        ProceedState_Posting: 'postingDone',
+      }).catch((error) => {
+        console.log('게시글 상태 완료 실패', error);
+      });
+
       //리뷰상대의 채팅방에 올라가는 글 작성자에 대한 리뷰
       await setDoc(
         doc(
@@ -142,8 +151,12 @@ function ReviewModal({ reviewList }: ReviewModalProps) {
           console.log('작성자에게 보내는 리뷰 메세지 오류', error);
         });
       });
+
       return item;
     });
+
+    navigate('/chat');
+
     console.log('newList:', myReviewList);
     console.log('sendconfirm:', sendconfirm);
   };
@@ -187,66 +200,14 @@ function ReviewModal({ reviewList }: ReviewModalProps) {
                   );
                 }
               )}
-              {showlist.map(
-                (t: {
-                  id: React.Key;
-                  nickname:
-                    | string
-                    | number
-                    | boolean
-                    | React.ReactElement<
-                        any,
-                        string | React.JSXElementConstructor<any>
-                      >
-                    | React.ReactFragment
-                    | React.ReactPortal;
-                }) => {
-                  return (
-                    <li key={t.id}>
-                      <S.SelectPerson
-                        selected={selectedPeople.includes(t)}
-                        onClick={() => handlePersonClick(t)}
-                      >
-                        {t.nickname}
-                      </S.SelectPerson>
-                    </li>
-                  );
-                }
-              )}
-              {showlist.map(
-                (t: {
-                  id: React.Key;
-                  nickname:
-                    | string
-                    | number
-                    | boolean
-                    | React.ReactElement<
-                        any,
-                        string | React.JSXElementConstructor<any>
-                      >
-                    | React.ReactFragment
-                    | React.ReactPortal;
-                }) => {
-                  return (
-                    <li key={t.id}>
-                      <S.SelectPerson
-                        selected={selectedPeople.includes(t)}
-                        onClick={() => handlePersonClick(t)}
-                      >
-                        {t.nickname}
-                      </S.SelectPerson>
-                    </li>
-                  );
-                }
-              )}
             </ul>
           </S.SelectPersonBox>
           <S.ModalButtonWrapper>
             <S.ModalConfirmCancelButton
-              type='submit'
-              // onClick={() => {
-              //   navigate('/chat');
-              // }}
+            // type='submit'
+            // onClick={() => {
+            //   navigate('/chat');
+            // }}
             >
               리뷰하러 가기
             </S.ModalConfirmCancelButton>

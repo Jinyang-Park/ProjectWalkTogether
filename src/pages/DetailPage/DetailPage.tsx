@@ -391,7 +391,7 @@ const DetailPage = () => {
   return (
     <>
       <CommonStyles>
-        <ReviewModals reviewList={reviewList} />
+        <ReviewModals reviewList={reviewList} id={id} />
         <S.DetailIntroWapper>
           <S.BannereURL src={getPostings.BannerURL_Posting} />
         </S.DetailIntroWapper>

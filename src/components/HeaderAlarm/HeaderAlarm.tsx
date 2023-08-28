@@ -23,8 +23,8 @@ function HeaderAlarm({ setAlarm }: Props) {
   const mychatlist = useRecoilValue(currentUserUid);
   const navigate = useNavigate();
 
-  const timee = notificationList[0]?.createdAT;
-  const timecal = ``;
+  // const timee = notificationList[0]?.createdAT;
+  // const timecal = ``;
 
   //시간전
   function timeForToday(time) {
@@ -71,6 +71,7 @@ function HeaderAlarm({ setAlarm }: Props) {
         return nowList;
       });
       setNotificationList(getNotificationList);
+      // setAlarm(notificationList.length); // Move this to useEffect's callback
     });
   };
 
@@ -79,20 +80,21 @@ function HeaderAlarm({ setAlarm }: Props) {
     navigate('/chat');
   };
 
-  const count = setAlarm(notificationList.length);
+  // const count = setAlarm(notificationList.length);
 
   useEffect(() => {
     getNotificationList();
   }, []);
+
   return (
     <S.NotificationOuter>
-      {notificationList.map((ars) => {
+      {notificationList.map((ars: { id: any; createdAT: any }, id: number) => {
         return (
           <S.NotificationCover
             onClick={() => {
               DeleteNotificationHandler(ars.id);
             }}
-            id={ars.id}
+            key={id}
           >
             <S.NoitificationIconBox>
               <S.Img src={require('../../assets/ballon.svg').default}></S.Img>

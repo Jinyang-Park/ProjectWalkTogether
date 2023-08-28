@@ -19,7 +19,6 @@ import {
   addDoc,
   updateDoc,
   getDoc,
-  setDoc,
 } from 'firebase/firestore';
 
 import {
@@ -29,8 +28,6 @@ import {
   tochattingboxprofileimg,
 } from '../../../Recoil/Atom';
 import { useRecoilValue } from 'recoil';
-import { useNavigate } from 'react-router-dom';
-// import { relative } from 'path';
 
 interface SetProps {
   tochattingBoxUid: string;
@@ -65,10 +62,7 @@ function ReviewBox({
   SetSwapBoxAndLists,
   swapBoxAndLists,
   tochattingBoxUid,
-  tochattingBoxRoomIndex,
-  tochattingBoxOpponentRoomIndex,
 }: SetProps) {
-  const navigate = useNavigate();
   // const [message, setMessage] = useState('');
   const [getmessage, setGetMessage] = useState<any>([]);
   //ChattingList에서 받아오는값들
@@ -76,8 +70,6 @@ function ReviewBox({
   const nickname = useRecoilValue(tochattingboxnickname);
   const profileImg = useRecoilValue(tochattingboxprofileimg);
   const opponentuid = tochattingBoxUid;
-  const myRoomIndex = tochattingBoxRoomIndex;
-  const opponentRoomIndex = tochattingBoxOpponentRoomIndex;
   const currentUid = useRecoilValue(currentUserUid);
   // 리뷰 선택리스트
   const reviewList = [
@@ -96,16 +88,24 @@ function ReviewBox({
 
   //객체복사
   const opponentReviewListduplicated = opponentReviewList;
-  console.log('opponentuid:', opponentuid);
 
-  const userReview = [
-    { option: '친절하고 매너가 좋아요', count: 0 },
-    { option: '재미있어요', count: 0 },
-    { option: '자상하고 편안했어요!', count: 0 },
-    { option: '대화의 폭이 넓었어요!', count: 0 },
-    { option: '시간약속을 잘 지켰어요', count: 0 },
-  ];
+  //채팅을 입력한 시간
+  const nowchattime = Date().slice(16, 21);
+  //채팅 상태값 리뷰선택(input비활성화)=> 리뷰완료(input활성화)
 
+  const inputState = getmessage[0]?.inputState;
+  //유저 정보에 들어갈 상태 값
+  const updatedOpponentReveiwList = updatedReview;
+
+  // const userReview = [
+  //   { option: '친절하고 매너가 좋아요', count: 0 },
+  //   { option: '재미있어요', count: 0 },
+  //   { option: '자상하고 편안했어요!', count: 0 },
+  //   { option: '대화의 폭이 넓었어요!', count: 0 },
+  //   { option: '시간약속을 잘 지켰어요', count: 0 },
+  // ];
+
+  //리뷰선택함수
   const handleReviewClick = (review: any) => {
     if (selectedReview.includes(review)) {
       setSelectedReview(selectedReview.filter((p: string) => p !== review));
@@ -114,76 +114,8 @@ function ReviewBox({
     }
   };
 
-  const handleUserInfo = async () => {
-    const docRef = doc(dbService, 'user', opponentuid);
-    const docSnap = await getDoc(docRef);
-
-    setOpponentReviewList(() => docSnap.data());
-    console.log('getdoctest1:', opponentReviewList);
-    console.log('test1:', updatedReview);
-  };
-
-  console.log('selectedReview:', selectedReview);
-
-  const chattinguser = useRecoilValue(currentUserUid);
-  //채팅을 입력한 시간
-  const nowchattime = Date().slice(16, 21);
-  //채팅 상태값 리뷰선택(input비활성화)=> 리뷰완료(input활성화)
-  const inputlength = getmessage?.length;
-  const inputState = getmessage[0]?.inputState;
-  //유저 정보에 들어갈 상태 값
-  const reviewState = getmessage[inputlength - 1]?.selected;
-  const updatedOpponentReveiwList = updatedReview;
-
-  const handleReviewState = async () => {
-    console.log('selectedReview:', selectedReview);
-    console.log('opponentReviewListduplicated:', opponentReviewListduplicated);
-    // if (opponentReviewListduplicated?.review === undefined) {
-    //   const newReview = userReview?.map(
-    //     (item: { option: string; count: number }) => {
-    //       selectedReview?.forEach((t: string) => {
-    //         if (item.option === t) {
-    //           item.count++;
-    //         }
-    //       });
-    //     }
-    //   );
-    //   setUpdatedReview(newReview);
-    //   console.log('updatedUserReview', userReview);
-    //   console.log('path1');
-    //   console.log('handleReviewStateSupdatedReview', updatedReview);
-    // } else
-    if (Array.isArray(opponentReviewListduplicated?.review)) {
-      await opponentReviewListduplicated.review.forEach(
-        (item: { option: any; count: number }) => {
-          selectedReview?.forEach((t) => {
-            if (item.option === t) {
-              item.count++;
-            }
-          });
-        }
-      );
-      console.log(
-        'opponentReviewListduplicated:',
-        opponentReviewListduplicated
-      );
-      setUpdatedReview(() => opponentReviewListduplicated.review);
-      console.log('path2');
-      console.log('updatedReview', updatedReview);
-    }
-  };
-
-  useEffect(() => {
-    handleReviewState();
-  }, [opponentReviewList]);
-
-  console.log('updatedReview:', updatedReview);
-
+  //리뷰방의 내용을 가져오는 함수
   const getChatting = async () => {
-    if (chattinguser === '') {
-      return;
-    }
-
     const q = query(
       collection(dbService, 'Review', roomId, 'message'),
       where('chattingRoomId', '==', roomId),
@@ -201,13 +133,39 @@ function ReviewBox({
     });
   };
 
+  //상대방의 리뷰리스트를 불러오는 함수
+  const handleUserInfo = async () => {
+    const docRef = doc(dbService, 'user', opponentuid);
+    const docSnap = await getDoc(docRef);
+
+    setOpponentReviewList(() => docSnap.data());
+  };
+
+  // 상대방의 리뷰의 카운트를 다루는 함수
+  const handleReviewState = async () => {
+    if (Array.isArray(opponentReviewListduplicated?.review)) {
+      await opponentReviewListduplicated.review.forEach(
+        (item: { option: any; count: number }) => {
+          selectedReview?.forEach((t) => {
+            if (item.option === t) {
+              item.count++;
+            }
+          });
+        }
+      );
+      setUpdatedReview(() => opponentReviewListduplicated.review);
+    }
+  };
+
   useEffect(() => {
     if (!roomId) return;
     getChatting();
     handleUserInfo();
   }, [roomId]);
 
-  // const reviewMessage = getmessage[0]?.select;
+  useEffect(() => {
+    handleReviewState();
+  }, [opponentReviewList]);
 
   const handleReviewSubmit = async () => {
     // 1단계 : 리뷰리스트를 선택하고 선택완료를 누르면 선택한 값이 채팅내용(리뷰리스트를 불러오는 데이터값)이 업데이트된다.
@@ -225,16 +183,11 @@ function ReviewBox({
     )
       .then(async () => {
         if (updatedOpponentReveiwList === undefined) return;
-        await handleReviewState();
-        console.log('getdoctest2:', opponentReviewList);
-        console.log('test2:', updatedReview);
+        handleReviewState();
 
         await updateDoc(doc(dbService, 'user', getmessage[0].opponentsUid), {
           review: updatedReview,
-        }).then(() => {
-          console.log('getdoctest3:', opponentReviewList);
-          console.log('test3:', updatedReview);
-        });
+        }).then(() => {});
       })
       .then(
         async () =>
@@ -279,9 +232,6 @@ function ReviewBox({
             }
           ).catch((error) => console.log(error))
       );
-    console.log('getdoctest3:', opponentReviewList);
-
-    // await updateDoc(doc(dbService, 'user', getmessage[0].opponentsUid), {});
   };
 
   const handleTalkSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -302,10 +252,6 @@ function ReviewBox({
     setTalk('');
   };
 
-  console.log('selectedReview:', selectedReview);
-  console.log('getmessage:', getmessage);
-  console.log('roomId:', roomId);
-
   return (
     <>
       <S.ChattingBox swapBoxAndLists={swapBoxAndLists}>
@@ -322,7 +268,9 @@ function ReviewBox({
               </S.ChattingBoxheaderImgCover>
             ) : (
               <S.ChattingBoxheaderImgCover>
-                <S.ChattingBoxheaderImg src={profileImg} />
+                <S.ChattingBoxheaderImg
+                  src={require('../../../assets/avatar.svg').default}
+                />
               </S.ChattingBoxheaderImgCover>
             )}
           </S.ChattingNicknamePhoto>
@@ -339,6 +287,7 @@ function ReviewBox({
           {getmessage.map(
             (
               ars: {
+                id: Key;
                 nowchattime: string;
                 createdAt: any;
                 progress: string;
@@ -347,19 +296,21 @@ function ReviewBox({
                 selected: string | any[];
                 comment: string;
               },
-              id: Key
+              index: number
             ) => {
               return ars.uid === currentUid ? (
-                <S.ChattingTextBox key={id}>
+                <S.ChattingTextBox key={index}>
                   <S.ChattingText>{ars.comment}</S.ChattingText>
                   <S.ChattingTime>{ars.nowchattime}</S.ChattingTime>
                 </S.ChattingTextBox>
               ) : ars.progress === 'directly' ? (
-                <S.ChattingTextBoxLeft key={id}>
+                <S.ChattingTextBoxLeft key={ars.id}>
                   <S.ChattingTextBoxLeftContainer>
                     <S.ChattingImg>
                       <S.ChattingBoxheaderImgCover>
-                        <S.ChattingBoxheaderImg src={profileImg} />
+                        <S.ChattingBoxheaderImg
+                          src={require('../../../assets/avatar.svg').default}
+                        />
                       </S.ChattingBoxheaderImgCover>
                     </S.ChattingImg>
                     <S.ChattingTextLeft>{ars.comment}</S.ChattingTextLeft>
@@ -367,11 +318,13 @@ function ReviewBox({
                   </S.ChattingTextBoxLeftContainer>
                 </S.ChattingTextBoxLeft>
               ) : (
-                <S.ChattingTextBoxLeft key={id}>
+                <S.ChattingTextBoxLeft key={ars.id}>
                   <S.ChattingTextBoxLeftContainer>
                     <S.ChattingImg>
                       <S.ChattingBoxheaderImgCover>
-                        <S.ChattingBoxheaderImg src={profileImg} />
+                        <S.ChattingBoxheaderImg
+                          src={require('../../../assets/avatar.svg').default}
+                        />
                       </S.ChattingBoxheaderImgCover>
                     </S.ChattingImg>
                     <S.ChattingTextLeft>
