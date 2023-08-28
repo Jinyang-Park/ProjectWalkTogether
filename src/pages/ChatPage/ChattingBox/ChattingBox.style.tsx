@@ -151,6 +151,17 @@ export const ChattingInput = styled.input`
     /* display: none; */
   }
 `;
+export const ChattingInputShapeBox = styled.input`
+  width: 1200px;
+  height: 20px;
+  background-color: blue;
+  display: inline-block;
+  @media screen and (max-width: 430px) {
+    width: 300px;
+
+    /* display: none; */
+  }
+`;
 
 export const ChattingButton = styled.button`
   display: flex;

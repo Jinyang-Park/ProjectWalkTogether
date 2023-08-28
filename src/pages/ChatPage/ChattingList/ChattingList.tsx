@@ -139,10 +139,10 @@ function ChattingList({
         </S.ChattingListMessage>
         <S.ChattingListouter>
           <S.ChattingUserBox>
-            {chattingUser.map((user: ChattingUser) => {
+            {chattingUser.map((user: ChattingUser, id: number) => {
               return user.reviewRoomId ? (
                 <S.ChattingUser
-                  key={user.id}
+                  key={id}
                   onClick={() => {
                     SetTochattingBoxRoomId(user.reviewRoomId);
                     SetTochattingBoxNickname(user.nickname);
@@ -162,9 +162,9 @@ function ChattingList({
                       />
                     </S.UserImgCover>
                     <S.NickNMessage>
-                      <S.UserName>{user.nickname}님의 리뷰</S.UserName>
+                      <S.UserName>{user.nickname}님에 대한 리뷰</S.UserName>
                       <S.LastConversation>
-                        {user.lastConversation}
+                        {user.reviewRoomId ? '' : user.lastConversation}
                       </S.LastConversation>
                     </S.NickNMessage>
                   </S.ChattingUserContents>
@@ -176,8 +176,7 @@ function ChattingList({
                 </S.ChattingUser>
               ) : (
                 <S.ChattingUser
-                  key={user.id}
-                  tabIndex={-1}
+                  key={id}
                   onClick={() => {
                     SetTochattingBoxRoomId(user.combineId);
                     SetTochattingBoxNickname(user.nickname);
