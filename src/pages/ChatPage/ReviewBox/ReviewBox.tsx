@@ -187,6 +187,7 @@ function ReviewBox({
 
         await updateDoc(doc(dbService, 'user', getmessage[0].opponentsUid), {
           review: updatedReview,
+          reviewcount: +1,
         }).then(() => {});
       })
       .then(

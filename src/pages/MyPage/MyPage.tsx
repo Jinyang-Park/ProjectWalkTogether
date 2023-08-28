@@ -12,11 +12,27 @@ import MyPageLike from './likepage/MyPageLike';
 import styled from 'styled-components';
 import Footer from './../../layout/Footer/Footer';
 
+interface ReviewItem {
+  count: number;
+  option: string;
+}
+
+interface UserInfo {
+  email: string | null;
+  id: string;
+  nickname: string;
+  profileImg: string;
+  review: ReviewItem[];
+  uid: string;
+  reviewcount: number;
+}
+
 const MyPage = () => {
   let { uid } = useParams();
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState('Post');
+  const [userInfo, setUserInfo] = useState<UserInfo | null>();
 
   const loggedIn = useRecoilValue(isLoggedIn);
   const userUid = useRecoilValue(currentUserUid);
@@ -61,8 +77,8 @@ const MyPage = () => {
         {id !== '' && (
           <MyPageWrap>
             <MyPageBanner uid={id} />
-            <MyPageProfile uid={id} />
-            {/* <MyPageReview /> */}
+            <MyPageProfile uid={id} setUserInfo={setUserInfo} />
+            <MyPageReview userInfo={userInfo} />
             <MypageTabbar
               uid={id}
               currentpage={currentPage}

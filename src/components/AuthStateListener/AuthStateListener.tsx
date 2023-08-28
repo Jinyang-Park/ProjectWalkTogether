@@ -68,6 +68,7 @@ export default function AuthStateListener() {
           { option: '대화의 폭이 넓었어요!', count: 0 },
           { option: '시간약속을 잘 지켰어요', count: 0 },
         ],
+        reviewcount: 0,
       });
     }
   };

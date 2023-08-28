@@ -1,20 +1,34 @@
 import * as S from './MyPageReview.style';
 
-const MyPageReView = () => {
-  const a = [1, 2, 3];
+interface infotype {
+  option: string;
+  count: number;
+}
+
+const MyPageReView = (props: {
+  userInfo: { review: infotype[]; reviewcount: number };
+}) => {
+  const userInfomation = props.userInfo;
+  if (!userInfomation) return;
+  const userReview: infotype[] = userInfomation.review;
+  const userReviewCount = userInfomation.reviewcount;
+  console.log('props:', userReview);
+
   return (
     <S.MyPageReViewWrap>
-      <S.MyPageReViewText>총 {20}건의 후기를 받으셨어요.</S.MyPageReViewText>
+      <S.MyPageReViewText>
+        총 {userReviewCount}건의 후기를 받으셨어요.
+      </S.MyPageReViewText>
 
       <S.MyPageReViewListContainer>
-        {a.map((el) => {
+        {userReview.map((item, id) => {
           return (
-            <S.ReViewCard>
-              <S.UserEvaluationImg />
-              <S.UserEvaluationScore>{7}</S.UserEvaluationScore>
-              <S.UserEvaluationText>
-                친절하고 매너가 좋아요!
-              </S.UserEvaluationText>
+            <S.ReViewCard key={id}>
+              <S.UserEvaluationImg
+                src={require('../../../assets/MypageIcon/Avatar.svg').default}
+              />
+              <S.UserEvaluationScore>{item.count}</S.UserEvaluationScore>
+              <S.UserEvaluationText>{item.option}</S.UserEvaluationText>
             </S.ReViewCard>
           );
         })}
