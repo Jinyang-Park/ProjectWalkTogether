@@ -85,6 +85,7 @@ function ReviewBox({
   //DB에서 받아오는 상대방 리뷰값
   const [opponentReviewList, setOpponentReviewList] = useState<any>();
   const [updatedReview, setUpdatedReview] = useState<any>();
+  const [reviewCount, setReviewCount] = useState<number | undefined>();
 
   //객체복사
   const opponentReviewListduplicated = opponentReviewList;
@@ -143,19 +144,26 @@ function ReviewBox({
 
   // 상대방의 리뷰의 카운트를 다루는 함수
   const handleReviewState = async () => {
-    if (Array.isArray(opponentReviewListduplicated?.review)) {
-      await opponentReviewListduplicated.review.forEach(
-        (item: { option: any; count: number }) => {
-          selectedReview?.forEach((t) => {
-            if (item.option === t) {
-              item.count++;
-            }
-          });
-        }
-      );
-      setUpdatedReview(() => opponentReviewListduplicated.review);
-    }
+    if (!Array.isArray(opponentReviewListduplicated?.review)) return;
+    await opponentReviewListduplicated.review.forEach(
+      (item: { option: any; count: number }) => {
+        selectedReview?.forEach((t) => {
+          if (item.option === t) {
+            item.count++;
+          }
+        });
+      }
+    );
+    setUpdatedReview(() => opponentReviewListduplicated.review);
   };
+
+  const handleReviewCount = async () => {
+    if (!opponentReviewListduplicated?.review) return;
+    const newCount = opponentReviewListduplicated.reviewcount + 1;
+    setReviewCount(newCount);
+  };
+
+
 
   useEffect(() => {
     if (!roomId) return;
@@ -165,6 +173,7 @@ function ReviewBox({
 
   useEffect(() => {
     handleReviewState();
+    handleReviewCount();
   }, [opponentReviewList]);
 
   const handleReviewSubmit = async () => {
@@ -184,10 +193,11 @@ function ReviewBox({
       .then(async () => {
         if (updatedOpponentReveiwList === undefined) return;
         handleReviewState();
+        handleReviewCount();
 
         await updateDoc(doc(dbService, 'user', getmessage[0].opponentsUid), {
           review: updatedReview,
-          reviewcount: +1,
+          reviewcount: reviewCount,
         }).then(() => {});
       })
       .then(

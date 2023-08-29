@@ -89,8 +89,7 @@ const DetailPage = () => {
   const setState = useSetRecoilState<MessageWindowProperties>(
     messageWindowPropertiesAtom
   );
-  console.log('getPostings.PostingID_Postin:', getPostings);
-  console.log('id:', id);
+
 
   //함께걸을래요를 누르면 해당 채팅박스가 바로 뜨게하는 리코일
   const roomId = useSetRecoilState(tochattingboxroomid);
@@ -100,7 +99,7 @@ const DetailPage = () => {
   //리뷰할 상대들의 리스트를 가져오는 값
   const [reviewList, SetReviewList] = useState<undefined | object>();
 
-  console.log('reviewList:', reviewList);
+
 
   // 게시글 id db 가져오기
   const getPost = async () => {

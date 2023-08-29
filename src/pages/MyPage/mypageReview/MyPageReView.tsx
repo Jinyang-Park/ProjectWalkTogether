@@ -12,7 +12,7 @@ const MyPageReView = (props: {
   if (!userInfomation) return;
   const userReview: infotype[] = userInfomation.review;
   const userReviewCount = userInfomation.reviewcount;
-  console.log('props:', userReview);
+
 
   return (
     <S.MyPageReViewWrap>

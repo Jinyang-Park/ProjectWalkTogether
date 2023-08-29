@@ -24,7 +24,7 @@ function ReviewModal({ reviewList, id }: ReviewModalProps) {
   const nowchattime = Date().slice(16, 21);
   const paramID = id;
 
-  console.log('selectedPeople:', selectedPeople);
+
 
   if (reviewList === undefined) return;
   const showlist: any = reviewList;
@@ -157,12 +157,10 @@ function ReviewModal({ reviewList, id }: ReviewModalProps) {
 
     navigate('/chat');
 
-    console.log('newList:', myReviewList);
-    console.log('sendconfirm:', sendconfirm);
+
   };
 
-  // console.log('newList:', newList);
-
+  
   return (
     <div>
       <S.ReviewModalBox>
