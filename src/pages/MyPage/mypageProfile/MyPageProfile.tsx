@@ -53,7 +53,7 @@ const MyPageProfile = ({ uid, setUserInfo }: Setprops) => {
   // console.log('userInfo', userInfo);
 
   const getUserInfo = async () => {
-    console.log(uid);
+  
 
     const docRef = doc(dbService, 'user', uid);
     const docSnap = await getDoc(docRef);
@@ -77,10 +77,10 @@ const MyPageProfile = ({ uid, setUserInfo }: Setprops) => {
 
     uploadTask
       .then((snapshot) => {
-        console.log('a');
+       
         e.target.value = '';
         getDownloadURL(snapshot.ref).then((downloadURL) => {
-          console.log('b');
+       
           setImageURL(downloadURL);
           updateDoc(doc(dbService, 'user', authService.currentUser.uid), {
             profileImg: downloadURL,

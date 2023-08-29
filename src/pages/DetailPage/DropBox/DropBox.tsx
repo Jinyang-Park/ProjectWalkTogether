@@ -142,7 +142,6 @@ const DropBox = ({
               const getList = data.filter((t) => {
                 return t.combineId.includes(postId);
               });
-              console.log('getList:', getList);
               SetReviewList(getList);
               // AppointSomeoneToReview(id);
             },
